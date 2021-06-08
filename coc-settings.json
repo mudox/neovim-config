@@ -1,0 +1,18 @@
+{
+  // coc
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "python"],
+  "coc.preferences.colorSupport": true,
+
+  // suggest
+  "suggest.triggerAfterInsertEnter": true,
+
+  // diagnostic
+  "diagnostic.errorSign": "x",
+  "diagnostic.warningSign": "?",
+  "diagnostic.infoSign": "!",
+  "diagnostic.hintSign": ">",
+
+  // rust
+  "rust.cfg_test": true
+}

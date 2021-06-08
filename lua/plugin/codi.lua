@@ -1,0 +1,3 @@
+install = [[
+Plug 'https://github.com/metakirby5/codi.vim.git'
+]]

@@ -1,0 +1,464 @@
+commands = {}
+dependencies = {
+   inspect = {
+      ["3.1.1-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   luafilesystem = {
+      ["1.8.0-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   luaposix = {
+      ["35.0-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               },
+               {
+                  op = "<",
+                  version = {
+                     5, 5, string = "5.5"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   moses = {
+      ["2.1.0-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               },
+               {
+                  op = "<",
+                  version = {
+                     5, 4, string = "5.4"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   penlight = {
+      ["1.8.1-1"] = {
+         {
+            constraints = {},
+            name = "luafilesystem"
+         }
+      }
+   }
+}
+modules = {
+   inspect = {
+      "inspect/3.1.1-0"
+   },
+   lfs = {
+      "luafilesystem/1.8.0-1"
+   },
+   moses = {
+      "moses/2.1.0-1"
+   },
+   moses_min = {
+      "moses/2.1.0-1"
+   },
+   ["pl.Date"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.List"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.Map"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.MultiMap"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.OrderedMap"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.Set"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.app"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.array2d"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.class"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.compat"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.comprehension"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.config"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.data"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.dir"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.file"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.func"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.import_into"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.init"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.input"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.lapp"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.lexer"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.luabalanced"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.operator"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.path"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.permute"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.pretty"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.seq"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.sip"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.strict"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.stringio"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.stringx"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.tablex"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.template"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.test"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.text"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.types"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.url"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.utils"] = {
+      "penlight/1.8.1-1"
+   },
+   ["pl.xml"] = {
+      "penlight/1.8.1-1"
+   },
+   ["posix._base"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix._bitwise"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix._strict"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.compat"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.ctype"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.deprecated"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.dirent"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.errno"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.fcntl"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.fnmatch"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.glob"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.grp"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.init"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.libgen"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.poll"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.pwd"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sched"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.signal"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.stdio"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.stdlib"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.msg"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.resource"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.socket"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.stat"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.statvfs"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.time"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.times"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.utsname"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.sys.wait"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.syslog"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.termio"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.time"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.unistd"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.util"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.utime"] = {
+      "luaposix/35.0-1"
+   },
+   ["posix.version"] = {
+      "luaposix/35.0-1"
+   }
+}
+repository = {
+   inspect = {
+      ["3.1.1-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               inspect = "inspect.lua"
+            }
+         }
+      }
+   },
+   luafilesystem = {
+      ["1.8.0-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               lfs = "lfs.so"
+            }
+         }
+      }
+   },
+   luaposix = {
+      ["35.0-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["posix._base"] = "posix/_base.lua",
+               ["posix._bitwise"] = "posix/_bitwise.lua",
+               ["posix._strict"] = "posix/_strict.lua",
+               ["posix.compat"] = "posix/compat.lua",
+               ["posix.ctype"] = "posix/ctype.so",
+               ["posix.deprecated"] = "posix/deprecated.lua",
+               ["posix.dirent"] = "posix/dirent.so",
+               ["posix.errno"] = "posix/errno.so",
+               ["posix.fcntl"] = "posix/fcntl.so",
+               ["posix.fnmatch"] = "posix/fnmatch.so",
+               ["posix.glob"] = "posix/glob.so",
+               ["posix.grp"] = "posix/grp.so",
+               ["posix.init"] = "posix/init.lua",
+               ["posix.libgen"] = "posix/libgen.so",
+               ["posix.poll"] = "posix/poll.so",
+               ["posix.pwd"] = "posix/pwd.so",
+               ["posix.sched"] = "posix/sched.so",
+               ["posix.signal"] = "posix/signal.so",
+               ["posix.stdio"] = "posix/stdio.so",
+               ["posix.stdlib"] = "posix/stdlib.so",
+               ["posix.sys"] = "posix/sys.lua",
+               ["posix.sys.msg"] = "posix/sys/msg.so",
+               ["posix.sys.resource"] = "posix/sys/resource.so",
+               ["posix.sys.socket"] = "posix/sys/socket.so",
+               ["posix.sys.stat"] = "posix/sys/stat.so",
+               ["posix.sys.statvfs"] = "posix/sys/statvfs.so",
+               ["posix.sys.time"] = "posix/sys/time.so",
+               ["posix.sys.times"] = "posix/sys/times.so",
+               ["posix.sys.utsname"] = "posix/sys/utsname.so",
+               ["posix.sys.wait"] = "posix/sys/wait.so",
+               ["posix.syslog"] = "posix/syslog.so",
+               ["posix.termio"] = "posix/termio.so",
+               ["posix.time"] = "posix/time.so",
+               ["posix.unistd"] = "posix/unistd.so",
+               ["posix.util"] = "posix/util.lua",
+               ["posix.utime"] = "posix/utime.so",
+               ["posix.version"] = "posix/version.lua"
+            }
+         }
+      }
+   },
+   moses = {
+      ["2.1.0-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               moses = "moses.lua",
+               moses_min = "moses_min.lua"
+            }
+         }
+      }
+   },
+   penlight = {
+      ["1.8.1-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               luafilesystem = "1.8.0-1"
+            },
+            modules = {
+               ["pl.Date"] = "pl/Date.lua",
+               ["pl.List"] = "pl/List.lua",
+               ["pl.Map"] = "pl/Map.lua",
+               ["pl.MultiMap"] = "pl/MultiMap.lua",
+               ["pl.OrderedMap"] = "pl/OrderedMap.lua",
+               ["pl.Set"] = "pl/Set.lua",
+               ["pl.app"] = "pl/app.lua",
+               ["pl.array2d"] = "pl/array2d.lua",
+               ["pl.class"] = "pl/class.lua",
+               ["pl.compat"] = "pl/compat.lua",
+               ["pl.comprehension"] = "pl/comprehension.lua",
+               ["pl.config"] = "pl/config.lua",
+               ["pl.data"] = "pl/data.lua",
+               ["pl.dir"] = "pl/dir.lua",
+               ["pl.file"] = "pl/file.lua",
+               ["pl.func"] = "pl/func.lua",
+               ["pl.import_into"] = "pl/import_into.lua",
+               ["pl.init"] = "pl/init.lua",
+               ["pl.input"] = "pl/input.lua",
+               ["pl.lapp"] = "pl/lapp.lua",
+               ["pl.lexer"] = "pl/lexer.lua",
+               ["pl.luabalanced"] = "pl/luabalanced.lua",
+               ["pl.operator"] = "pl/operator.lua",
+               ["pl.path"] = "pl/path.lua",
+               ["pl.permute"] = "pl/permute.lua",
+               ["pl.pretty"] = "pl/pretty.lua",
+               ["pl.seq"] = "pl/seq.lua",
+               ["pl.sip"] = "pl/sip.lua",
+               ["pl.strict"] = "pl/strict.lua",
+               ["pl.stringio"] = "pl/stringio.lua",
+               ["pl.stringx"] = "pl/stringx.lua",
+               ["pl.tablex"] = "pl/tablex.lua",
+               ["pl.template"] = "pl/template.lua",
+               ["pl.test"] = "pl/test.lua",
+               ["pl.text"] = "pl/text.lua",
+               ["pl.types"] = "pl/types.lua",
+               ["pl.url"] = "pl/url.lua",
+               ["pl.utils"] = "pl/utils.lua",
+               ["pl.xml"] = "pl/xml.lua"
+            }
+         }
+      }
+   }
+}

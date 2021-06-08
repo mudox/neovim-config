@@ -1,0 +1,16 @@
+*.pyc
+*.swp
+*yankring*
+.VimballRecord
+/autoload/plug.vim
+/autoload/plug.vim.old
+/chameleon/cur_mode
+/neobundle
+/nvimrc
+/plugged
+/sessions
+/spell
+
+/colors/desert.vim
+/colors/papercolor.vim
+.netrwhist
