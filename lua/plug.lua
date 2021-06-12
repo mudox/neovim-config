@@ -15,33 +15,31 @@
     + set vim globals via `g` table
     more to be added later
     + set vim global options via `o` table
-]]
-
---- @module plug
+]] --- @module plug
 local plug = {}
 
-local utils = require("pl.utils")
-local path = require("pl.path")
-local tablex = require("pl.tablex")
-local glob = require("posix.glob")
-local _ = require("moses").chain
-local x = require("inspect")
+local utils = require('pl.utils')
+local path = require('pl.path')
+local tablex = require('pl.tablex')
+local glob = require('posix.glob')
+local _ = require('moses').chain
+local x = require('inspect')
 
 local setups = {}
 
 local function make_env()
 
   local env = tablex.copy(_G)
-  utils.import(require("keymap"), env)
-  setmetatable(env, {__index = require("keymap")})
+  utils.import(require('keymap'), env)
+  setmetatable(env, {__index = require('keymap')})
 
   -- vim `g:` varaibles
   env.g = {}
-  setmetatable(env.g, { __index = vim.g })
+  setmetatable(env.g, {__index = vim.g})
 
   -- vim global options
   env.o = {}
-  setmetatable(env.o, { __index = vim.o })
+  setmetatable(env.o, {__index = vim.o})
 
   return env
 end
@@ -63,22 +61,20 @@ end
 -- return list of string with prefix `<group>/xxx` for `loadfile`
 
 local function glob_spec_group(group)
-  local pat = path.join(vim.fn.stdpath("config"), "lua/plugin", group, "*.lua")
+  local pat = path.join(vim.fn.stdpath('config'), 'lua/plugin', group, '*.lua')
 
   local files = glob.glob(pat, 0)
   -- local files = vim.fn.glob(pat, true, true)
 
-  if type(files) ~= "table" then
+  if type(files) ~= 'table' then
     -- maybe empty
     return {}
   end
 
-  return _(files):map(
-    function(p)
-      local name = path.basename(path.splitext(p))
-      return path.join(group, name)
-    end
-  ):value()
+  return _(files):map(function(p)
+    local name = path.basename(path.splitext(p))
+    return path.join(group, name)
+  end):value()
 end
 
 local function start()
@@ -86,23 +82,23 @@ local function start()
 end
 
 local function done()
-  vim.call "plug#end"
+  vim.call 'plug#end'
 
   do_setups()
 end
 
 local function load_spec(name)
   -- print('load spec: ' .. name)
-  local dir = path.join(vim.fn.stdpath("config"), "lua/plugin/", name)
-  local fn = loadfile(dir .. ".lua")
+  local dir = path.join(vim.fn.stdpath('config'), 'lua/plugin/', name)
+  local fn = loadfile(dir .. '.lua')
 
   local env = {}
   setfenv(fn, env)()
 
-  assert(type(env.install) == "string")
+  assert(type(env.install) == 'string')
   vim.cmd(env.install)
 
-  if type(env.setup) == "function" then
+  if type(env.setup) == 'function' then
     setups[name] = env.setup
   end
 end
@@ -126,17 +122,18 @@ end
 function plug.load(dsl_name)
   start()
 
-  local dsl_path = path.join(vim.fn.stdpath("config"), "lua", dsl_name) .. ".lua"
+  local dsl_path = path.join(vim.fn.stdpath('config'), 'lua', dsl_name) ..
+                       '.lua'
   local fn = loadfile(dsl_path)
 
   local env = {}
   setfenv(fn, env)()
 
-  if type(env.specs) == "table" then
+  if type(env.specs) == 'table' then
     load_specs(env.specs)
   end
 
-  if type(env.spec_groups) == "table" then
+  if type(env.spec_groups) == 'table' then
     load_spec_groups(env.spec_groups)
   end
 

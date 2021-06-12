@@ -7,7 +7,7 @@ function setup()
   g.fzf_buffers_jump = 1
 
   g.fzf_layout = {
-    window  = { width = 1, height = 0.4, yoffset = 1, border = 'horizontal' }
+    window = {width = 1, height = 0.4, yoffset = 1, border = 'horizontal'},
   }
 
   ncmd('<Space>r', 'History')

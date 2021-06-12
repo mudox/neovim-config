@@ -1,8 +1,6 @@
 -- vim: fdm=marker
-
 -- helpers {{{
-
-local home = os.getenv("HOME")
+local home = os.getenv('HOME')
 
 -- access vim remote plugin api
 local a = vim.api
@@ -30,12 +28,12 @@ o.smartindent = true
 o.cursorline = false
 -- iTerm 的行间距恢复默认了，默认字符正好连起来
 -- o.fillchars = "vert: ,eob: " 
-o.fillchars = "eob: "
+o.fillchars = 'eob: '
 o.laststatus = 0
-o.mouse = "a"
+o.mouse = 'a'
 o.number = false
 o.ruler = false
-o.shortmess = o.shortmess .. "I"
+o.shortmess = o.shortmess .. 'I'
 o.showcmd = false
 o.showtabline = 1
 -- }}}
@@ -55,7 +53,7 @@ o.wrapscan = true
 o.incsearch = true
 o.ignorecase = true
 o.smartcase = true
-o.inccommand = "nosplit"
+o.inccommand = 'nosplit'
 -- }}}
 
 -- editing behavior {{{
@@ -65,13 +63,13 @@ o.autowriteall = true -- auto-save aggressively
 -- }}}
 
 -- completion {{{
-o.completeopt = "menu"
+o.completeopt = 'menu'
 o.dictionary = [[/usr/share/dict/words]]
 o.wildignorecase = true
 -- }}}
 
 -- font {{{
-o.guifont = "Monaco for Powerline:h11"
+o.guifont = 'Monaco for Powerline:h11'
 o.linespace = 0
 -- }}}
 

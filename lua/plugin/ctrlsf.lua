@@ -8,17 +8,17 @@ function setup()
   ]]
 
   -- search immediately
-  nplug(",sf", "CtrlSFCwordExec")
-  vplug(",sf", "CtrlSFVwordExec")
-  nplug(",ss", "CtrlSFCCwordExec")
+  nplug(',sf', 'CtrlSFCwordExec')
+  vplug(',sf', 'CtrlSFVwordExec')
+  nplug(',ss', 'CtrlSFCCwordExec')
 
   -- put on command line
-  vplug(",s:", "CtrlSFVwordPath")
-  nplug(",s:", "CtrlSFCwordPath")
+  vplug(',s:', 'CtrlSFVwordPath')
+  nplug(',s:', 'CtrlSFCwordPath')
 
   -- first try locating project root, starting from current file path
   -- if not found, fallback to current file path
-  vim.g.ctrlsf_default_root = "project+ff"
+  vim.g.ctrlsf_default_root = 'project+ff'
 
   -- more compat layout
   vim.g.ctrlsf_indent = 2

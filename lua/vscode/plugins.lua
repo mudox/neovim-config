@@ -1,11 +1,3 @@
-specs = {
-  'sandwich',
-  'cleverf',
-  'nerdcommenter',
-  'unimpaired',
-}
+specs = {'sandwich', 'cleverf', 'nerdcommenter', 'unimpaired'}
 
-spec_groups = {
-  'textobject',
-  'filetype',
-}
+spec_groups = {'textobject', 'filetype'}

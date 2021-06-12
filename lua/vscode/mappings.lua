@@ -1,5 +1,4 @@
 -- vim: fdm=marker
-
 local k = require('keymap')
 
 vim.g.mapleader = ','

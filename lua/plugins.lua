@@ -48,8 +48,4 @@ specs = {
   'devicons',
 }
 
-spec_groups = {
-  'textobject',
-  'filetype',
-  'color',
-}
+spec_groups = {'textobject', 'filetype', 'color'}

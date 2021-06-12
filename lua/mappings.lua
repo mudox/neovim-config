@@ -1,15 +1,14 @@
 -- vim: fdm=marker
-
 local k = require('keymap')
 
 vim.g.mapleader = ','
 
-k.nmap('<C-7>', '<C-O>', {noremap=false})
-k.nmap('<C-9>', '<C-I>', {noremap=false})
+k.nmap('<C-7>', '<C-O>', {noremap = false})
+k.nmap('<C-9>', '<C-I>', {noremap = false})
 
 -- sensible `n, N`
-k.nmap('n', '"Nn"[v:searchforward]', {expr=true})
-k.nmap('N', '"Nn"[v:searchforward]', {expr=true})
+k.nmap('n', '"Nn"[v:searchforward]', {expr = true})
+k.nmap('N', '"Nn"[v:searchforward]', {expr = true})
 
 -- sensible `Y`
 k.nmap('Y', 'y$')
@@ -18,13 +17,14 @@ k.nmap('Y', 'y$')
 k.nmap('gs', 'ciw')
 
 -- `coX` to toggle syntax highlighting
-k.nmap('coX', [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
+k.nmap('coX',
+       [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
 
 -- `F4` to quick save file
-k.nmap('<F4>',  [[:<C-U><C-U>w<Cr>]])
-k.nmap('<C-s>',  [[:<C-U><C-U>w<Cr>]])
-k.imap('<F4>',  [[<Esc>:w<Cr>]])
-k.imap('<C-s>',  [[<Esc>:w<Cr>]])
+k.nmap('<F4>', [[:<C-U><C-U>w<Cr>]])
+k.nmap('<C-s>', [[:<C-U><C-U>w<Cr>]])
+k.imap('<F4>', [[<Esc>:w<Cr>]])
+k.imap('<C-s>', [[<Esc>:w<Cr>]])
 
 -- sensible `j, k`
 k.nmap('j', 'gj')
@@ -44,12 +44,11 @@ k.nmap('<M-h>', 'gT')
 k.nmap('<M-L>', 'gt')
 k.nmap('<M-H>', 'gT')
 
-
 -- `K, J, H, L` to move cursor up and down in big steps
-k.nmap('K', [[@="8gk"<Cr>]], {silent=true})
-k.nmap('J', [[@="8gj"<Cr>]], {silent=true})
-k.vmap('K', [[@="8gk"<Cr>]], {silent=true})
-k.vmap('J', [[@="8gj"<Cr>]], {silent=true})
+k.nmap('K', [[@="8gk"<Cr>]], {silent = true})
+k.nmap('J', [[@="8gj"<Cr>]], {silent = true})
+k.vmap('K', [[@="8gk"<Cr>]], {silent = true})
+k.vmap('J', [[@="8gj"<Cr>]], {silent = true})
 k.nmap('H', '')
 k.nmap('L', '')
 
@@ -57,8 +56,8 @@ k.nmap('L', '')
 -- use `_q` instead
 k.nmap('q', '')
 k.nmap('_q', 'q')
---nmap('q:', 'q:')
---nmap('q/', 'q/')
+-- nmap('q:', 'q:')
+-- nmap('q/', 'q/')
 
 -- `Q` triggers Ex mode easily
 -- use gQ instead

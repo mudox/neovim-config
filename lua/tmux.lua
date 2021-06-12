@@ -1,9 +1,8 @@
 -- @module tmux
 local tmux = {}
 
-local sx = require("pl.stringx")
-local k = require("keymap")
-
+local sx = require('pl.stringx')
+local k = require('keymap')
 
 local function shell_command()
   local f = vim.fn.findfile('tmux-test', '.;')
@@ -28,8 +27,8 @@ end
 
 -- return panes count of current window
 local function pane_count()
-  local out = io.popen([[tmux list-panes | wc -l]], "r")
-  return tonumber(out:read("*a"))
+  local out = io.popen([[tmux list-panes | wc -l]], 'r')
+  return tonumber(out:read('*a'))
 end
 
 local function respawn_test_pane()
@@ -46,8 +45,8 @@ end
 function tmux.test_in_right_pane()
   vim.cmd [[cd %:p:h]]
 
-  if not os.getenv("TMUX") then
-    print "not in a tmux environment, abort"
+  if not os.getenv('TMUX') then
+    print 'not in a tmux environment, abort'
     return
   end
 
@@ -58,7 +57,7 @@ function tmux.test_in_right_pane()
   end
 end
 
-k.ncmd("<BS>t", [[lua require('tmux').test_in_right_pane()]])
+k.ncmd('<BS>t', [[lua require('tmux').test_in_right_pane()]])
 
 -- TODO: watch & respawn
 

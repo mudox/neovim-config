@@ -1,5 +1,4 @@
 -- vim:fdm=marker
-
 require 'settings'
 
 require 'mappings'
