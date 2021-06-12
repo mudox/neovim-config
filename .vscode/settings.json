@@ -1,6 +1,12 @@
 {
     "Lua.diagnostics.globals": [
         "vim",
-        "dump"
+        "dump",
+        "ncmd",
+        "setup",
+        "install"
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
     ]
 }
