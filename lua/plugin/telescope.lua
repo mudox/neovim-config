@@ -16,6 +16,7 @@ function setup()
   
 
   -- files
+  ncmd("<C-p>", "Telescope find_files")
   ncmd(prefix .. "f", "Telescope find_files")
   ncmd(prefix .. "F", "Telescope git_files")
   ncmd(prefix .. "/", "Telescope file_browser")
