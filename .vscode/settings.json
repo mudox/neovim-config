@@ -4,7 +4,13 @@
         "dump",
         "ncmd",
         "setup",
-        "install"
+        "install",
+        "g",
+        "nplug",
+        "vplug",
+        "nnop",
+        "xnop",
+        "nmap"
     ],
     "Lua.diagnostics.disable": [
         "lowercase-global"
