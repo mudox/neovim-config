@@ -2,6 +2,7 @@ specs = {
   'startuptime',
 
   -- 'autoformat',
+  'neoformat',
   'visualmulti',
 
   -----------------
