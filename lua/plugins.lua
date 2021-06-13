@@ -1,4 +1,6 @@
 specs = {
+  'startuptime',
+
   -- 'autoformat',
   'visualmulti',
 
