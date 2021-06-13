@@ -25,9 +25,10 @@ o.smartindent = true
 -- }}}
 
 -- UI {{{
+o.termguicolors = true
 o.cursorline = false
 -- iTerm 的行间距恢复默认了，默认字符正好连起来
--- o.fillchars = "vert: ,eob: " 
+-- o.fillchars = "vert: ,eob: "
 o.fillchars = 'eob: '
 o.laststatus = 0
 o.mouse = 'a'
