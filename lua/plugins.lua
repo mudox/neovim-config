@@ -46,6 +46,11 @@ specs = {
   --
   'airline',
   'devicons',
+
+  -----------------
+  -- other
+  --
+  'colorizer',
 }
 
 spec_groups = {'textobject', 'filetype', 'color'}
