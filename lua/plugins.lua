@@ -1,23 +1,29 @@
 specs = {
   'startuptime',
 
-  -- 'autoformat',
+  -----------------
+  -- editor
   'neoformat',
   'visualmulti',
+
+  'nvim-smoothie', -- scrolling
 
   -----------------
   -- pairs & align
   --
 
-  'autopairs',
+  -- pairing
+  -- 'autopairs'
+  'nvim-autopairs',
   'sandwich',
+
   'join',
   'easyalign',
 
   'snippets',
 
   -----------------
-  -- opener
+  -- chooser
   --
 
   'qpen',
@@ -35,9 +41,7 @@ specs = {
   --
   'ctrlsf',
   'cleverf',
-  'codi',
   'nerdcommenter',
-  'papercolor',
   'rename',
   'renamer',
   'tmuxnavigator',
@@ -54,6 +58,8 @@ specs = {
   -- other
   --
   'colorizer',
+  -- 'gitsigns', -- highlighting is ugly, currently use coc-git instead
+  'nvim-tree',
 }
 
 spec_groups = {'textobject', 'filetype', 'color'}
