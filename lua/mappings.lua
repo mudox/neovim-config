@@ -78,3 +78,7 @@ k.ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t .2')
 -- for languages like C/C++, Rust ...
 k.imap('<C-]>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
 k.imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
+
+-- search
+k.nmap('n', 'nzz', {remap = true})
+k.nmap('N', 'Nzz', {remap = true})
