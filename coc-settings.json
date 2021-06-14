@@ -14,5 +14,6 @@
   "diagnostic.hintSign": ">",
 
   // rust
-  "rust.cfg_test": true
+  "rust.cfg_test": true,
+  "git.enableGutters": false
 }
