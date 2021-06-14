@@ -58,7 +58,6 @@ specs = {
   -- other
   --
   'colorizer',
-  -- 'gitsigns', -- highlighting is ugly, currently use coc-git instead
   'nvim-tree',
 }
 

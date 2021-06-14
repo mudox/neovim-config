@@ -1,15 +1,15 @@
---[==[ 
+--[==[
   utility lib for defining common mappings.
 
-  the module provides 4 functions (map, cmd, plug, nop) all of which need a mode 
+  the module provides 4 functions (map, cmd, plug, nop) all of which need a mode
   char as its 1st argument
 
-  by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods 
+  by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods
   with mode char
-  
+
   by default all `noremap` option is enabled, `{ remap= true }` to disable it
   by default all `silent` option is enabled, `{ nosilent = true }` to disable it
- 
+
   @usage: k.ncmd("<C-]>", [[echo "hello world"]])
 ]==] local Set = require('pl.Set')
 local modes = Set {'n', 'i', 'v', 'o', 'c', 's', 'l', 't', 'x'}
@@ -65,7 +65,7 @@ local bodys = {map = map, cmd = cmd, plug = plug, nop = nop}
 --[[
   compose mapping defining functions from parameter `name`.
   the 1st char in `name` is mode char, the remaining is one of string in `bodys` above
-  
+
   @param name the name of the function invoked
   @return composed convenient mapping defining function
 ]]
