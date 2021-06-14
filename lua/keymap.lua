@@ -25,14 +25,16 @@ local function map(mode, -- mode char, see `:h map`
   options = options or {}
 
   -- eanble `noremap` by default
-  if options.remap == nil then
+  if options.remap ~= true then
     options.noremap = true
   end
+  options.remap = nil
 
   -- eanble `silent` by default
-  if options.nosilent == nil then
+  if not options.nosilent ~= true then
     options.silent = true
   end
+  options.nosilent = nil
 
   vim.api.nvim_set_keymap(mode, from, to, options)
 end
