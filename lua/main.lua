@@ -9,10 +9,6 @@ require('plug').load('plugins')
 -- * Colorscheme
 -- *
 
--- vim.cmd [[color desert]]
--- vim.cmd [[color monokai]]
--- vim.cmd [[color papercolor]]
-
 local base16 = require('base16')
 base16(base16.themes['papercolor-dark'], true)
 
