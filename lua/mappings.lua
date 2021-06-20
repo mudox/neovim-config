@@ -21,10 +21,10 @@ k.nmap('coX',
        [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
 
 -- `F4` to quick save file
-k.nmap('<F4>', [[:<C-U><C-U>w<Cr>]])
-k.nmap('<C-s>', [[:<C-U><C-U>w<Cr>]])
-k.imap('<F4>', [[<Esc>:w<Cr>]])
-k.imap('<C-s>', [[<Esc>:w<Cr>]])
+k.ncmd('<F4>', 'write')
+k.ncmd('<C-s>', 'write')
+k.icmd('<F4>', 'write')
+k.icmd('<C-s>', 'write')
 
 -- sensible `j, k`
 k.nmap('j', 'gj')
