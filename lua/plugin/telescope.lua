@@ -16,6 +16,7 @@ function setup()
 
   -- files
   ncmd('<C-p>', 'Telescope find_files')
+  ncmd(prefix .. 'r', 'Telescope oldfiles')
   ncmd(prefix .. 'f', 'Telescope find_files')
   ncmd(prefix .. 'F', 'Telescope git_files')
   ncmd(prefix .. '/', 'Telescope file_browser')
@@ -24,7 +25,7 @@ function setup()
   ncmd(prefix .. 'g', 'Telescope grep_string')
   ncmd(prefix .. 'G', 'Telescope live_grep')
 
-  -- 
+  --
   -- lsp
   --
 
@@ -110,4 +111,3 @@ function setup()
 
   require('telescope').load_extension('fzf')
 end
-
