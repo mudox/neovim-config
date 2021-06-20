@@ -1,3 +1,3 @@
 install = [[
-Plug 'mudox/nvim-base16.lua'
+Plug 'siduck76/nvim-base16.lua'
 ]]
