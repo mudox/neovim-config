@@ -10,7 +10,7 @@ require('plug').load('plugins')
 -- *
 
 local base16 = require('base16')
-base16(base16.themes['papercolor-dark'], true)
+base16(base16.themes['gruvbox-dark-hard'], true)
 
 local theme_names = base16.theme_names()
 local pos = 1
