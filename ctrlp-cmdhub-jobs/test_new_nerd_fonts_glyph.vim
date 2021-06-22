@@ -1,12 +1,11 @@
 " cmdhub: Test new nerd font
 
 function s:make_block(title, code_points)
-
   let lines = [a:title, '']
   let glyph_list = map(a:code_points, 'printf("  %s  %x", nr2char(v:val), v:val)')
   let glyph_line = join(glyph_list, '')
-  let glyph_line = substitute(glyph_line, '.\{72}', "&:", 'g')
-  call extend(lines, split(glyph_line, ':'))
+  let glyph_line = substitute(glyph_line, '.\{144}', "&::", 'g')
+  call extend(lines, split(glyph_line, ':', 1))
 
   return lines + ['']
 endfunction
