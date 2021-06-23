@@ -6,8 +6,6 @@ specs = {
   'neoformat',
   'visualmulti',
 
-  'nvim-smoothie', -- scrolling
-
   -----------------
   -- pairs & align
   --
