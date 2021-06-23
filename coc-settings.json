@@ -8,10 +8,15 @@
   "suggest.triggerAfterInsertEnter": true,
 
   // diagnostic
-  "diagnostic.errorSign": "x",
-  "diagnostic.warningSign": "?",
-  "diagnostic.infoSign": "!",
-  "diagnostic.hintSign": ">",
+  // "diagnostic.errorSign": "",
+   // "diagnostic.errorSign": "",
+   // "diagnostic.warningSign": "",
+   // "diagnostic.infoSign": "",
+   // "diagnostic.hintSign": "",
+  "diagnostic.errorSign": " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.infoSign": " ",
+  "diagnostic.hintSign": " ",
 
   // rust
   "rust.cfg_test": true,
