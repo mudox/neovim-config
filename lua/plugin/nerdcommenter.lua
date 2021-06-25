@@ -1,8 +1,10 @@
-install = [[
-Plug 'https://github.com/scrooloose/nerdcommenter.git'
-]]
+url = 'scrooloose/nerdcommenter'
 
-function setup()
+keys = {{'n', ',c<Space>'}, {'v', ',c<Space>'}}
+
+function config()
+  local g = vim.g
+
   g.NERDBlockComIgnoreEmpty = 1
   g.NERDSpaceDelims = 1
   g.NERDDefaultNesting = 0

@@ -1,4 +1,3 @@
--- Multiple VimScript lines allowed
-install = [[
-    Plug 'tweekmonster/startuptime.vim'
-]]
+url = 'tweekmonster/startuptime.vim'
+
+cmd = {'StartupTime'}

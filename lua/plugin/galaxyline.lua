@@ -1,8 +1,4 @@
-install = [[
-Plug 'glepnir/galaxyline.nvim'
-]]
+url = 'glepnir/galaxyline.nvim'
+branch = 'main'
 
--- function setup()
--- Use `g.<global_var> = ...` to set global variables
--- Use `[n|i|c|...][map|cmd|plug|nop]` to bind keys
--- end
+requires = {'kyazdani42/nvim-web-devicons', opt = true}

@@ -1,62 +1,42 @@
-specs = {
+return {
+  -- plugin manager
+  'packer',
+
+  -- profiling
   'startuptime',
 
-  -----------------
-  -- editor
-  'neoformat',
-  'visualmulti',
-
-  -----------------
-  -- pairs & align
-  --
-
-  -- pairing
-  -- 'autopairs'
-  'nvim-autopairs',
-  'sandwich',
-
-  'join',
-  'easyalign',
-
-  'snippets',
-
-  -----------------
-  -- chooser
-  --
-
-  'qpen',
-  'fzf',
-  'telescope',
-
-  -----------------
-  -- language services
-  --
+  -- language service
   'coc',
   'treesitter',
 
-  -----------------
-  -- others, ungrouped
-  --
-  'ctrlsf',
-  'cleverf',
+  'dap', -- debug
+
+  -- editing
   'nerdcommenter',
-  'rename',
-  'renamer',
-  'tmuxnavigator',
-  'unimpaired',
-  'floaterm',
+  'visualmulti',
+  'endwise',
+  'switch',
+  'cleverf',
+  'sandwich',
+  'easyalign',
 
-  -----------------
   -- ui
-  --
-  'airline',
-  'devicons',
-
-  -----------------
-  -- other
-  --
+  'base16',
+  'galaxyline',
+  'zen-mode',
+  'telescope',
   'colorizer',
-  'nvim-tree',
-}
 
-spec_groups = {'textobject', 'filetype', 'color'}
+  -- text object
+  'textobject/*',
+
+  -- 'treesitter-textobjects',
+
+  -- file type
+  'filetype/*',
+
+  -- other
+  'unimpaired',
+  'qpen',
+  'tmuxnavigator',
+}

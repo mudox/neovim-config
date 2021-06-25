@@ -1,0 +1,1 @@
+url = 'wbthomason/packer.nvim'

@@ -1,8 +1,8 @@
-install = [[
-Plug 'https://github.com/glts/vim-textobj-comment.git'
-]]
+url = 'glts/vim-textobj-comment'
 
-function setup()
+event = 'VimEnter'
+
+function config()
   vim.g.textobj_comment_no_default_key_mappings = 1
   -- " xmap ax <Plug>(textobj-comment-a)
   -- " omap ax <Plug>(textobj-comment-a)

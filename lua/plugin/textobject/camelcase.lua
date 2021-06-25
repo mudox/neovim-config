@@ -1,3 +1,5 @@
-install = [[
-Plug 'https://github.com/bkad/CamelCaseMotion.git'
-]]
+url = 'bkad/CamelCaseMotion'
+
+event = 'VimEnter'
+
+disable = true

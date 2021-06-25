@@ -1,3 +1,1 @@
-install = [[
-    Plug 'mudox/vim-qpen'
-]]
+url = 'mudox/vim-qpen'

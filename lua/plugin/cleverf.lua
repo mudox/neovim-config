@@ -1,3 +1,3 @@
-install = [[
-Plug 'https://github.com/rhysd/clever-f.vim.git'
-]]
+url = 'rhysd/clever-f.vim'
+
+keys = {'f', 'F'}

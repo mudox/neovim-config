@@ -1,3 +1,3 @@
-install = [[
-  Plug 'https://github.com/cespare/vim-toml.git'
-]]
+url = 'cespare/vim-toml'
+
+event = 'VimEnter'

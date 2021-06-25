@@ -1,11 +1,32 @@
-install = [[
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-]]
+url = 'nvim-telescope/telescope.nvim'
 
-function setup()
+keys = {
+  '<C-p>',
+  '<C-t><C-t>',
+  '<C-t>r',
+  '<C-t>f',
+  '<C-t>F',
+  '<C-t>/',
+  '<C-t>g',
+  '<C-t>g',
+  '<C-t>G',
+  '<C-t>d',
+  '<C-t>D',
+  '<C-t>.',
+  '<C-t>o',
+}
+
+requires = {
+  -- ? `opt = true`
+  {'nvim-lua/plenary.nvim'},
+  {'nvim-lua/popup.nvim'},
+  {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+}
+
+function config()
+  local k = require('keymap')
+  local ncmd = k.ncmd
+
   local prefix = '<C-t>'
 
   --
@@ -34,7 +55,7 @@ function setup()
   ncmd(prefix .. 'D', 'Telescope lsp_workspace_diagnostics')
 
   -- lsp code actions
-  ncmd(prefix .. 'D', 'Telescope lsp_code_actions')
+  ncmd(prefix .. '.', 'Telescope lsp_code_actions')
 
   --
   -- vim
@@ -84,8 +105,8 @@ function setup()
       -- results_height = 1,
       -- results_width = 0.8,
       -- border = {},
-      -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-      borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+      -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
       -- color_devicons = true,
       -- use_less = true,
       -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,

@@ -1,3 +1,5 @@
-install = [[
-Plug 'https://github.com/coderifous/textobj-word-column.vim.git'
-]]
+url = 'coderifous/textobj-word-column.vim'
+
+event = 'VimEnter'
+
+disable = true

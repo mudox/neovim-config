@@ -1,5 +1,7 @@
-install = [[
-Plug 'https://github.com/AndrewRadev/switch.vim.git'
-]]
+url = 'AndrewRadev/switch.vim'
 
-vim.g.switch_mapping = '-'
+keys = {'-'}
+
+function config()
+  vim.g.switch_mapping = '-'
+end

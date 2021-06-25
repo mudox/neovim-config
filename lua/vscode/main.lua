@@ -3,4 +3,4 @@ require 'settings'
 
 require 'vscode.mappings'
 
-require('plug').load('vscode/plugins')
+require('pluginmanager').load('vscode.plugins')

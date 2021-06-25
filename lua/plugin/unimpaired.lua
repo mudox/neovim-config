@@ -1,7 +1,3 @@
-install = [[
-  Plug 'https://github.com/tpope/vim-unimpaired.git'
-]]
+url = 'tpope/vim-unimpaired'
 
-function setup()
-  ncmd('coh', 'set hlsearch!')
-end
+event = {'VimEnter'}

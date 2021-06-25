@@ -1,18 +1,18 @@
 {
-    "Lua.diagnostics.globals": [
-        "vim",
-        "dump",
-        "ncmd",
-        "setup",
-        "install",
-        "g",
-        "nplug",
-        "vplug",
-        "nnop",
-        "xnop",
-        "nmap"
-    ],
-    "Lua.diagnostics.disable": [
-        "lowercase-global"
-    ]
+  "Lua.runtime.version": "Lua 5.1",
+  "Lua.diagnostics.globals": [
+    "vim",
+    "dump",
+    "ncmd",
+    "setup",
+    "install",
+    "g",
+    "nplug",
+    "vplug",
+    "nnop",
+    "xnop",
+    "nmap",
+    "use"
+  ],
+  "Lua.diagnostics.disable": ["lowercase-global"]
 }

@@ -1,3 +1,3 @@
-install = [[
-Plug 'https://github.com/mg979/vim-visual-multi.git'
-]]
+url = 'mg979/vim-visual-multi'
+
+keys = {{'n', '<C-n>'}, {'i', '<C-n>'}}

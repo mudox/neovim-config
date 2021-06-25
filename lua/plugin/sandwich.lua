@@ -1,9 +1,11 @@
-install = [[
-Plug 'https://github.com/machakann/vim-sandwich.git'
-]]
+url = 'machakann/vim-sandwich'
 
-function setup()
+event = {'VimEnter'}
+
+function config()
+  local k = require('keymap')
+
   -- use `cl` instead
-  nnop('s')
-  xnop('s')
+  k.nnop('s')
+  k.xnop('s')
 end

@@ -1,3 +1,3 @@
-install = [[
-Plug 'https://github.com/tpope/vim-endwise.git'
-]]
+url = 'tpope/vim-endwise'
+
+event = {'InsertEnter'}

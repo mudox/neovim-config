@@ -1,3 +1,3 @@
-install = [[
-Plug 'https://github.com/keith/swift.vim.git'
-]]
+url = 'keith/swift.vim'
+
+event = 'VimEnter'

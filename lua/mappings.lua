@@ -1,70 +1,75 @@
 -- vim: fdm=marker
-local k = require('keymap')
-
 vim.g.mapleader = ','
 
-k.nmap('<C-7>', '<C-O>', {noremap = false})
-k.nmap('<C-9>', '<C-I>', {noremap = false})
+local k = require('keymap')
+local nmap = k.nmap
+local ncmd = k.ncmd
+local imap = k.imap
+local icmd = k.icmd
+local vmap = k.vmap
+
+nmap('<C-7>', '<C-O>', {noremap = false})
+nmap('<C-9>', '<C-I>', {noremap = false})
 
 -- sensible `n, N`
-k.nmap('n', '"Nn"[v:searchforward]', {expr = true})
-k.nmap('N', '"Nn"[v:searchforward]', {expr = true})
+nmap('n', '"Nn"[v:searchforward]', {expr = true})
+nmap('N', '"Nn"[v:searchforward]', {expr = true})
 
 -- sensible `Y`
-k.nmap('Y', 'y$')
+nmap('Y', 'y$')
 
 -- `gs` to replace current word
-k.nmap('gs', 'ciw')
+nmap('gs', 'ciw')
 
 -- `coX` to toggle syntax highlighting
-k.nmap('coX',
-       [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
+nmap('coX',
+     [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
 
 -- `F4` to quick save file
-k.ncmd('<F4>', 'write')
-k.ncmd('<C-s>', 'write')
-k.icmd('<F4>', 'write')
-k.icmd('<C-s>', 'write')
+ncmd('<F4>', 'write')
+ncmd('<C-s>', 'write')
+icmd('<F4>', 'write')
+icmd('<C-s>', 'write')
 
 -- sensible `j, k`
-k.nmap('j', 'gj')
-k.nmap('k', 'gk')
-k.nmap('gj', '')
-k.nmap('gk', '')
+nmap('j', 'gj')
+nmap('k', 'gk')
+nmap('gj', '')
+nmap('gk', '')
 
 -- `clrl-J,K,H,L` to jump among windows
-k.nmap('<C-H>', '<C-W>h')
-k.nmap('<C-L>', '<C-W>l')
-k.nmap('<C-K>', '<C-W>k')
-k.nmap('<C-J>', '<C-W>j')
+nmap('<C-H>', '<C-W>h')
+nmap('<C-L>', '<C-W>l')
+nmap('<C-K>', '<C-W>k')
+nmap('<C-J>', '<C-W>j')
 
 -- `option-J,K,H,L` to jump among tabs
-k.nmap('<M-l>', 'gt')
-k.nmap('<M-h>', 'gT')
-k.nmap('<M-L>', 'gt')
-k.nmap('<M-H>', 'gT')
+nmap('<M-l>', 'gt')
+nmap('<M-h>', 'gT')
+nmap('<M-L>', 'gt')
+nmap('<M-H>', 'gT')
 
 -- `K, J, H, L` to move cursor up and down in big steps
-k.nmap('K', [[@="8gk"<Cr>]], {silent = true})
-k.nmap('J', [[@="8gj"<Cr>]], {silent = true})
-k.vmap('K', [[@="8gk"<Cr>]], {silent = true})
-k.vmap('J', [[@="8gj"<Cr>]], {silent = true})
-k.nmap('H', '')
-k.nmap('L', '')
+nmap('K', [[@="8gk"<Cr>]], {silent = true})
+nmap('J', [[@="8gj"<Cr>]], {silent = true})
+vmap('K', [[@="8gk"<Cr>]], {silent = true})
+vmap('J', [[@="8gj"<Cr>]], {silent = true})
+nmap('H', '')
+nmap('L', '')
 
 -- `q` triggers macro recording easily
 -- use `_q` instead
-k.nmap('q', '')
-k.nmap('_q', 'q')
+nmap('q', '')
+nmap('_q', 'q')
 -- nmap('q:', 'q:')
 -- nmap('q/', 'q/')
 
 -- `Q` triggers Ex mode easily
 -- use gQ instead
-k.nmap('Q', '')
+nmap('Q', '')
 
 -- sensible `zi`
-k.nmap('zi', 'zizz')
+nmap('zi', 'zizz')
 
 -- command history
 -- `nvim_set_keymap` fails to handle `noremap` option
@@ -72,13 +77,13 @@ vim.cmd [[cmap <C-P> <Up>]]
 
 -- respawn 2nd pane
 -- e.g. re-check, re-run or re-test ...
-k.ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t .2')
+ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t .2')
 
 -- append ';' to the end of line then exit insert mode
 -- for languages like C/C++, Rust ...
-k.imap('<C-]>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
-k.imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
+imap('<C-]>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
+imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
 
 -- search
-k.nmap('n', 'nzz', {remap = true})
-k.nmap('N', 'Nzz', {remap = true})
+nmap('n', 'nzz', {remap = true})
+nmap('N', 'Nzz', {remap = true})

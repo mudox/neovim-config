@@ -1,3 +1,1 @@
-install = [[
-Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
-]]
+url = 'christoomey/vim-tmux-navigator'

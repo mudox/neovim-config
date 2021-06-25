@@ -1,3 +1,3 @@
-install = [[
-Plug 'neoclide/jsonc.vim'
-]]
+url = 'neoclide/jsonc.vim'
+
+event = 'VimEnter'

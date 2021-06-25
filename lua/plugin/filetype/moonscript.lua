@@ -1,3 +1,3 @@
-install = [[
-  Plug 'https://github.com/leafo/moonscript-vim.git'
-]]
+url = 'leafo/moonscript-vim'
+
+event = 'VimEnter'

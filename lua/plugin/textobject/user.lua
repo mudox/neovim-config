@@ -1,3 +1,2 @@
-install = [[
-Plug 'https://github.com/kana/vim-textobj-user.git'
-]]
+url = 'kana/vim-textobj-user'
+event = 'VimEnter'

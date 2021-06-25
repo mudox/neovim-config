@@ -1,3 +1,2 @@
-install = [[
-Plug 'https://github.com/kana/vim-textobj-indent.git'
-]]
+url = 'kana/vim-textobj-indent'
+event = 'VimEnter'

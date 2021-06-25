@@ -18,9 +18,9 @@ local modes = Set {'n', 'i', 'v', 'o', 'c', 's', 'l', 't', 'x'}
   the core method to define mapping. it calls `nvim_set_keymap` at last
 ]]
 local function map(mode, -- mode char, see `:h map`
-                   from, -- key mapping string
-                   to, -- action string
-                   options -- see {opts} in `:h nvim_set_keymap()`
+from, -- key mapping string
+to, -- action string
+options -- see {opts} in `:h nvim_set_keymap()`
 )
   options = options or {}
 
@@ -81,7 +81,7 @@ local function parse(name)
   local fn = bodys[body]
   assert(fn, ('invalid body name `%s`'):format(body))
 
-  return require('moses').bind(fn, mode)
+  return pl.func.bind1(fn, mode)
 end
 
 -- module

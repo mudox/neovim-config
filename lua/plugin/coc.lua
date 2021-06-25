@@ -1,7 +1,8 @@
-install = [[
-Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
-]]
+url = 'neoclide/coc.nvim'
+branch = 'release'
 
-function setup()
+event = 'VimEnter'
+
+config = function()
   vim.cmd(([[source %s/coc.vim]]):format(stdpath.luaplugin))
 end
