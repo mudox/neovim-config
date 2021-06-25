@@ -35,6 +35,7 @@ return {
   -- file type
   'filetype/*',
 
+  'luapad',
   -- other
   'unimpaired',
   'qpen',
