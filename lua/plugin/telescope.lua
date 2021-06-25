@@ -1,5 +1,12 @@
 url = 'nvim-telescope/telescope.nvim'
 
+requires = {
+  -- ? `opt = true`
+  {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+}
+
+after = {'plenary.nvim', 'popup.nvim'}
+
 keys = {
   '<C-p>',
   '<C-t><C-t>',
@@ -14,13 +21,6 @@ keys = {
   '<C-t>D',
   '<C-t>.',
   '<C-t>o',
-}
-
-requires = {
-  -- ? `opt = true`
-  {'nvim-lua/plenary.nvim'},
-  {'nvim-lua/popup.nvim'},
-  {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
 }
 
 function config()
