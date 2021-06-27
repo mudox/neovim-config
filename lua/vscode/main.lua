@@ -3,4 +3,5 @@ require 'settings'
 
 require 'vscode.mappings'
 
-require('pluginmanager').load('vscode.plugins')
+-- treesitter breaks vscode-neovim v highlighting
+vim.g.loaded_nvim_treesitter = 1
