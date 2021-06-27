@@ -1,7 +1,9 @@
-install = [[
-    Plug 'sbdchd/neoformat'
-]]
+url = 'sbdchd/neoformat'
 
-function setup()
+keys = {[[\af]]}
+
+function config()
+  local ncmd = require('keymap').ncmd
+
   ncmd([[\af]], 'Neoformat')
 end
