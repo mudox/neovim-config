@@ -1,6 +1,6 @@
 url = 'machakann/vim-sandwich'
 
-event = {'VimEnter'}
+event = 'VimEnter'
 
 function config()
   local k = require('keymap')

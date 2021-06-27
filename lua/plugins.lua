@@ -14,7 +14,9 @@ return {
   -- editing
   'nerdcommenter',
   'visualmulti',
-  'endwise',
+  'neoformat',
+
+  -- 'endwise',
   'switch',
   'cleverf',
   'sandwich',
@@ -22,8 +24,9 @@ return {
 
   -- ui
   'base16',
-  'galaxyline',
-  'zen-mode',
+  'airline',
+  'popup',
+  'zenmode',
   'telescope',
   'colorizer',
 
@@ -35,7 +38,10 @@ return {
   -- file type
   'filetype/*',
 
+  -- dev
   'luapad',
+  'plenary',
+
   -- other
   'unimpaired',
   'qpen',

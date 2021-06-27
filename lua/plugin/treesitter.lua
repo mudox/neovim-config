@@ -1,6 +1,6 @@
 url = 'nvim-treesitter/nvim-treesitter'
 
-event = {'VimEnter'}
+event = 'VimEnter'
 
 run = ':TSUpdate'
 

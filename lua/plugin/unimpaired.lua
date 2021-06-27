@@ -1,3 +1,3 @@
 url = 'tpope/vim-unimpaired'
 
-event = {'VimEnter'}
+event = 'VimEnter'
