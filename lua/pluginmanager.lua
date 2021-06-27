@@ -1,6 +1,8 @@
+local p = pl.path
+
 -- check packer availability
-local install_path = pl.path.join(stdpath.pack, 'packer/start/packer.nvim')
-if not pl.path.exists(install_path) then
+local install_path = p.join(stdpath.pack, 'packer/start/packer.nvim')
+if not p.exists(install_path) then
   print 'Installing packer.nvim ...'
   vim.fn.system(
       {
@@ -13,21 +15,48 @@ if not pl.path.exists(install_path) then
   vim.cmd 'packadd packer.nvim'
 end
 
+local function configFunc(path)
+  local name = p.basename(p.splitext(path))
+
+  local luaFile = ('%s/%s.lua'):format(stdpath.setup, name)
+  if p.isfile(luaFile) then
+    local code = ([[
+      require 'setup.%s'
+    ]]):format(name, name)
+
+    return load(code)
+  end
+
+  local vimFile = ('%s/%s.vim'):format(stdpath.setup, name)
+  if p.isfile(vimFile) then
+    local code = ([[
+      vim.cmd('source %s')
+    ]]):format(vimFile)
+
+    return load(code)
+  end
+end
+
 local function spec(name)
-  local pat = pl.path.join(stdpath.luaplugin, name .. '.lua')
+  local pat = p.join(stdpath.luaplugin, name .. '.lua')
   local paths = vim.fn.glob(pat, false, true)
   assert(#paths > 0, 'invalid plugin spec pattern: ' .. pat)
 
   local envs = {}
   for _, path in ipairs(paths) do
-    local env = {}
-    setfenv(loadfile(path), env)()
+    local chunk = loadfile(path)
+    assert(chunk, 'invalid spec path: ' .. path)
 
-    ---@diagnostic disable: undefined-field
+    local env = {}
+    setfenv(chunk, env)()
+
+    -- url
     assert(type(env.url) == 'string', ('invalid `url` field in %s'):format(path))
     env[1] = env.url
     env.url = nil
-    ---@diagnostic enable: undefined-field
+
+    -- config
+    env.config = env.config or configFunc(path)
 
     table.insert(envs, env)
   end
