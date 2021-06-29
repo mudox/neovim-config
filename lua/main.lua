@@ -14,3 +14,6 @@ hi DiffAdd guibg=None
 hi DiffDelete guibg=None
 hi DiffChange guibg=None
 ]]
+
+-- prevent built-in plugin loading
+vim.g.loaded_netrwPlugin = true
