@@ -14,5 +14,13 @@
     "nmap",
     "use"
   ],
-  "Lua.diagnostics.disable": ["lowercase-global"]
+  "Lua.diagnostics.disable": ["lowercase-global"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "lua/.rocks": true
+  }
 }
