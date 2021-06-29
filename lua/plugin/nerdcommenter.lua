@@ -1,6 +1,6 @@
 url = 'scrooloose/nerdcommenter'
 
-keys = {{'n', ',c<Space>'}, {'v', ',c<Space>'}}
+event = 'VimEnter'
 
 function config()
   local g = vim.g
