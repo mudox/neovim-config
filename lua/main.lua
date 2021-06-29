@@ -15,5 +15,10 @@ hi DiffDelete guibg=None
 hi DiffChange guibg=None
 ]]
 
+-- explicity load configs for lazy loading plugins
+vim.cmd [[
+  source ~/.config/nvim/lua/setup/airline.vim
+]]
+
 -- prevent built-in plugin loading
 vim.g.loaded_netrwPlugin = true
