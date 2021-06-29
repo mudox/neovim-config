@@ -2,16 +2,17 @@
 *.swp
 *yankring*
 .VimballRecord
+.netrwhist
+
 /autoload/plug.vim
 /autoload/plug.vim.old
-/chameleon/cur_mode
-/neobundle
-/nvimrc
-/plugged
+
 /sessions
 /spell
 
 /colors/desert.vim
 /colors/papercolor.vim
-.netrwhist
+
 /plugin/packer_compiled.vim
+
+/ultisnips
