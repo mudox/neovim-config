@@ -10,13 +10,13 @@ local g = vim.g
 
 -- access vim global options
 local o = vim.o
+local opt = vim.opt
 
 -- execute vim commands
 local cmd = vim.cmd
 
 -- call vim functions
 local fn = vim.fn
-
 -- }}}
 
 -- indent {{{
@@ -30,13 +30,20 @@ o.cursorline = false
 -- iTerm 的行间距恢复默认了，默认字符正好连起来
 -- o.fillchars = "vert: ,eob: "
 o.fillchars = 'eob: '
-o.laststatus = 0
 o.mouse = 'a'
+
 o.number = false
+
 o.ruler = false
+
+o.showtabline = 1
+
+o.splitright = true
+o.splitbelow = true
+
+o.laststatus = 0
 o.shortmess = o.shortmess .. 'I'
 o.showcmd = false
-o.showtabline = 1
 -- }}}
 
 -- tabs {{{
