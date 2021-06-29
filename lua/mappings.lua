@@ -26,9 +26,7 @@ nmap('coX',
      [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
 
 -- `F4` to quick save file
-ncmd('<F4>', 'write')
 ncmd('<C-s>', 'write')
-icmd('<F4>', 'write')
 icmd('<C-s>', 'write')
 
 -- sensible `j, k`
