@@ -15,6 +15,7 @@ return {
   'nerdcommenter',
   'visualmulti',
   'neoformat',
+  'ultisnips',
 
   -- 'endwise',
   'switch',
