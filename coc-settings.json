@@ -12,11 +12,6 @@
   "suggest.triggerAfterInsertEnter": true,
   //
   // diagnostic
-  // "diagnostic.errorSign": "",
-  // "diagnostic.errorSign": "",
-  // "diagnostic.warningSign": "",
-  // "diagnostic.infoSign": "",
-  // "diagnostic.hintSign": "",
   "diagnostic.errorSign": " ",
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": " ",
@@ -24,5 +19,12 @@
   //
   // rust
   "rust.cfg_test": true,
-  "git.enableGutters": false
+  //
+  // git
+  "git.enableGutters": true,
+  "git.addedSign.text": "┃",
+  "git.changedSign.text": "┃",
+  "git.removedSign.text": "┃",
+  "git.changeRemovedSign.text": "┃",
+  "git.topRemovedSign.text": "┃"
 }
