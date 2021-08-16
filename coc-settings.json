@@ -2,6 +2,7 @@
   // coc
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "lua",
     "rust",
     "python",
     "jsonc"
