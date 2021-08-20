@@ -18,16 +18,16 @@ end
 local function configFunc(path)
   local name = p.basename(p.splitext(path))
 
-  local luaFile = ('%s/%s.lua'):format(stdpath.setup, name)
+  local luaFile = ('%s/%s.lua'):format(stdpath.lua_plugin_config, name)
   if p.isfile(luaFile) then
     local code = ([[
-      require 'setup.%s'
+      require 'plugin.config.%s'
     ]]):format(name, name)
 
     return load(code)
   end
 
-  local vimFile = ('%s/%s.vim'):format(stdpath.setup, name)
+  local vimFile = ('%s/%s.vim'):format(stdpath.lua_plugin_config, name)
   if p.isfile(vimFile) then
     local code = ([[
       vim.cmd('source %s')
@@ -38,7 +38,7 @@ local function configFunc(path)
 end
 
 local function spec(name)
-  local pat = p.join(stdpath.luaplugin, name .. '.lua')
+  local pat = p.join(stdpath.lua_plugin, name .. '.lua')
   local paths = vim.fn.glob(pat, false, true)
   assert(#paths > 0, 'invalid plugin spec pattern: ' .. pat)
 
@@ -67,7 +67,7 @@ end
 local config = {
   display = {
     open_fn = function()
-      return require('packer.util').float({border = 'rounded'})
+      return require('packer.util').float({border = 'solid'})
     end,
   },
 }
