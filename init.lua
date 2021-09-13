@@ -25,6 +25,9 @@ else
   mode = os.getenv('MDX_NVIM_MODE') or 'default'
 end
 
+vim.g.mdx_nvim_mode = mode
+vim.cmd [[ lockvar g:mdx_nvim_mode ]]
+
 local prefix = ''
 if mode ~= 'default' then
   prefix = ('mode/%s/'):format(mode)
