@@ -1,8 +1,9 @@
+-- vim: fdm=marker fmr=〈,〉
 -- Commonly used global paths
 local _p = {}
 
--- Config directories
--- ~/.config/nvim
+-- Config directories 〈
+-- in ~/.config/nvim
 _p.root = vim.fn.stdpath('config')
 _p.plugin = _p.root .. '/plugin'
 _p.ftplugin = _p.root .. '/ftplugin'
@@ -12,25 +13,23 @@ _p.lua = _p.root .. '/lua'
 _p.rock = _p.lua .. '/.rocks'
 _p.lua_plugin = _p.lua .. '/plugin'
 _p.lua_plugin_config = _p.lua_plugin .. '/config'
+-- 〉
 
--- Data directories
--- ~/.local/share/nvim
+-- Data directories 〈
+-- in ~/.local/share/nvim
 _p.data = vim.fn.stdpath('data')
 _p.site = _p.data .. '/site'
+-- 〉
 
--- pack directory
+-- Package directories 〈
 _p.pack = _p.site .. '/pack'
-
--- packer directories
-_p.packer = {}
 _p.packer_install = pl.path.join(_p.pack, 'packer/start/packer.nvim')
 _p.packer_plugins = _p.pack .. '/' .. vim.g.mdx_nvim_mode
-
--- packer compiled file
 _p.packer_compiled = pl.path.join(_p.site, 'packer_compiled',
                                   vim.g.mdx_nvim_mode .. '.vim')
+-- 〉
 
---- Resolve module path location to require
+-- Resolve module path location to require 〈
 --
 -- module path = <cfg>/lua/mode/<mode_name>/<module_name>
 --
@@ -43,17 +42,17 @@ local function path(t, name)
     prefix = ('mode/%s/'):format(mode)
   end
 
-  local modulePath = pl.path.join(stdpath.lua, prefix, name .. '.lua')
-  if pl.path.isfile(modulePath) then
+  local module_path = pl.path.join(stdpath.lua, prefix, name .. '.lua')
+  if pl.path.isfile(module_path) then
     return prefix .. name
   else
     return name
   end
 end
+-- 〉
 
-local M = {}
-
-setmetatable(M, {
+-- Module 〈
+local M = setmetatable({}, {
   __call = path,
   __index = function(_, id)
     local r = _p[id]
@@ -65,8 +64,9 @@ setmetatable(M, {
     error('`stdpath` is a constant variable')
   end,
 })
+-- 〉
 
--- Setup package paths
+-- Setup luarocks paths 〈
 
 local path_dir = M.rock .. '/share/lua/5.1'
 package.path = table.concat({
@@ -78,5 +78,6 @@ package.path = table.concat({
 local cpath_dir = M.rock .. '/lib/lua/5.1'
 package.cpath = table.concat({([[%s/?.so]]):format(cpath_dir), package.cpath},
                              ';')
+-- 〉
 
 return M

@@ -2,7 +2,7 @@
 
 local p = pl.path
 
--- install packer.nvim if not found
+-- Bootstrap 〈
 local install_path = p.join(stdpath.pack, 'packer/start/packer.nvim')
 if not p.exists(install_path) then
   print 'Installing packer.nvim ...'
@@ -14,6 +14,7 @@ if not p.exists(install_path) then
   })
   vim.cmd 'packadd packer.nvim'
 end
+-- 〉
 
 local function configFunc(path)
   local name = p.basename(p.splitext(path))
