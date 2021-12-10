@@ -1,7 +1,7 @@
 -- Commonly used global paths
 local _p = {}
 
--- config dir
+-- Config directories
 -- ~/.config/nvim
 _p.root = vim.fn.stdpath('config')
 _p.plugin = _p.root .. '/plugin'
@@ -13,25 +13,50 @@ _p.rock = _p.lua .. '/.rocks'
 _p.lua_plugin = _p.lua .. '/plugin'
 _p.lua_plugin_config = _p.lua_plugin .. '/config'
 
--- data dir
+-- Data directories
 -- ~/.local/share/nvim
 _p.data = vim.fn.stdpath('data')
 _p.site = _p.data .. '/site'
+
+-- pack directory
 _p.pack = _p.site .. '/pack'
-_p.packer = _p.pack .. '/packer'
-_p.start = _p.packer .. '/start'
-_p.opt = _p.packer .. '/opt'
+_p.packer = _p.pack .. '/' .. vim.g.mdx_nvim_mode
+_p.packer_start = _p.packer .. '/start'
+_p.packer_opt = _p.packer .. '/opt'
+
+--- Resolve module path location to require
+--
+-- module path = <cfg>/lua/mode/<mode_name>/<module_name>
+--
+-- fallback to lua root dir (shared) if given module file
+-- is missing under specific mode directory
+local function path(t, name)
+  local prefix = ''
+  local mode = vim.g.mdx_nvim_mode
+  if mode ~= 'default' then
+    prefix = ('mode/%s/'):format(mode)
+  end
+
+  local modulePath = pl.path.join(stdpath.lua, prefix, name .. '.lua')
+  if pl.path.isfile(modulePath) then
+    return prefix .. name
+  else
+    return name
+  end
+end
 
 local M = {}
 
 setmetatable(M, {
+  __call = path,
   __index = function(_, id)
     local r = _p[id]
     assert(r, ('acessing invalid path id `%s`'):format(id))
     return r
   end,
+  -- prohibit adding new fields
   __newindex = function()
-    error('`M` is a constant variable')
+    error('`stdpath` is a constant variable')
   end,
 })
 

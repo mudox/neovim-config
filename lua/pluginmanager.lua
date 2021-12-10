@@ -1,17 +1,15 @@
 local p = pl.path
 
--- check packer availability
+-- install packer.nvim if not found
 local install_path = p.join(stdpath.pack, 'packer/start/packer.nvim')
 if not p.exists(install_path) then
   print 'Installing packer.nvim ...'
-  vim.fn.system(
-      {
-        'git',
-        'clone',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path,
-      }
-  )
+  vim.fn.system({
+    'git',
+    'clone',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  })
   vim.cmd 'packadd packer.nvim'
 end
 
@@ -48,6 +46,7 @@ local function spec(name)
     assert(chunk, 'invalid spec path: ' .. path)
 
     local env = {}
+    ---@diagnostic disable-next-line: deprecated
     setfenv(chunk, env)()
 
     -- url
@@ -65,6 +64,11 @@ local function spec(name)
 end
 
 local config = {
+  -- mode separation
+  package_root = stdpath.pack,
+  plugin_package = vim.g.mdx_nvim_mode,
+  compile_path = p.join(stdpath.plugin, 'packer_compiled_' .. vim.g.mdx_nvim_mode .. '.lua'),
+  -- appearence
   display = {
     open_fn = function()
       return require('packer.util').float({border = 'solid'})
@@ -73,20 +77,19 @@ local config = {
 }
 
 --- @example: require('pluginmanager').load('plugins')
---- @example: require('pluginmanager').load('vscode.plugins')
+--- @example: require('pluginmanager').load('mode.vscode.plugins')
 local function load(path)
-  require('packer').startup(
-      {
-        function()
-          for _, pat in ipairs(require(path)) do
-            for _, env in ipairs(spec(pat)) do
-              use(env)
-            end
-          end
-        end,
-        config = config,
-      }
-  )
+  require('packer').startup({
+    function()
+      for _, pat in ipairs(require(path)) do
+        for _, env in ipairs(spec(pat)) do
+          ---@diagnostic disable-next-line: undefined-global
+          use(env)
+        end
+      end
+    end,
+    config = config,
+  })
 end
 
 return {load = load}

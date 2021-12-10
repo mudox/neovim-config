@@ -3,21 +3,10 @@
 -- Penlight
 pl = require('pl.import_into')()
 
--- Commonew paths
-stdpath = require('path')
-
--- JavaScript
-vim.g.node_host_prog = '/usr/local/bin/neovim-node-host'
-
--- python
-vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
-
--- Load Config
-
---- Load module according to `mode`
+--- Mode
+--
 -- if mode is not `default`, then try require `name` from 'mode.<mode_name>'
--- otherwise require `name` from root directory
+-- otherwise require `name`
 local mode
 if vim.fn.exists('g:vscode') == 1 then
   mode = 'vscode'
@@ -28,23 +17,19 @@ end
 vim.g.mdx_nvim_mode = mode
 vim.cmd [[ lockvar g:mdx_nvim_mode ]]
 
-local prefix = ''
-if mode ~= 'default' then
-  prefix = ('mode/%s/'):format(mode)
-end
+-- Common paths
+stdpath = require('path')
 
-local function findPath(name)
-  local modulePath = pl.path.join(stdpath.lua, prefix, name, '.lua')
-  if pl.path.isfile(modulePath) then
-    return prefix .. name
-  else
-    return name
-  end
-end
+-- JavaScript
+vim.g.node_host_prog = '/usr/local/bin/neovim-node-host'
 
-require(findPath('settings'))
-require(findPath('mappings'))
+-- Python
+vim.g.loaded_python_provider = 0
+vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
 
-require('pluginmanager').load(findPath('plugins'))
+-- Load Config
 
-require(findPath('post'))
+require(stdpath('settings'))
+require(stdpath('mappings'))
+require('pluginmanager').load(stdpath('plugins'))
+require(stdpath('post'))
