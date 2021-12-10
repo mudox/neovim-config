@@ -1,9 +1,10 @@
--- vim: fdm=marker
+-- vim: fdm=marker fmr=〈,〉
 --
 -- Penlight
 pl = require('pl.import_into')()
 
---- Mode
+
+-- Mode 〈
 --
 -- if mode is not `default`, then try require `name` from 'mode.<mode_name>'
 -- otherwise require `name`
@@ -16,6 +17,7 @@ end
 
 vim.g.mdx_nvim_mode = mode
 vim.cmd [[ lockvar g:mdx_nvim_mode ]]
+-- 〉
 
 -- Common paths
 stdpath = require('path')
@@ -27,9 +29,10 @@ vim.g.node_host_prog = '/usr/local/bin/neovim-node-host'
 vim.g.loaded_python_provider = 0
 vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
 
--- Load Config
-
+-- Config
 require(stdpath('settings'))
 require(stdpath('mappings'))
 require('pluginmanager').load(stdpath('plugins'))
 require(stdpath('post'))
+
+vim.cmd(('source %s'):format(stdpath.packer_compiled))

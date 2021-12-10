@@ -20,9 +20,15 @@ _p.site = _p.data .. '/site'
 
 -- pack directory
 _p.pack = _p.site .. '/pack'
-_p.packer = _p.pack .. '/' .. vim.g.mdx_nvim_mode
-_p.packer_start = _p.packer .. '/start'
-_p.packer_opt = _p.packer .. '/opt'
+
+-- packer directories
+_p.packer = {}
+_p.packer_install = pl.path.join(_p.pack, 'packer/start/packer.nvim')
+_p.packer_plugins = _p.pack .. '/' .. vim.g.mdx_nvim_mode
+
+-- packer compiled file
+_p.packer_compiled = pl.path.join(_p.site, 'packer_compiled',
+                                  vim.g.mdx_nvim_mode .. '.vim')
 
 --- Resolve module path location to require
 --

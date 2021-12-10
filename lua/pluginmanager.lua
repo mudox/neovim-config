@@ -1,3 +1,5 @@
+-- vim: fdm=marker fmr=〈,〉
+
 local p = pl.path
 
 -- install packer.nvim if not found
@@ -63,11 +65,14 @@ local function spec(name)
   return envs
 end
 
+
+-- Config packer 〈
+
 local config = {
   -- mode separation
   package_root = stdpath.pack,
   plugin_package = vim.g.mdx_nvim_mode,
-  compile_path = p.join(stdpath.plugin, 'packer_compiled_' .. vim.g.mdx_nvim_mode .. '.lua'),
+  compile_path = stdpath.packer_compiled,
   -- appearence
   display = {
     open_fn = function()
@@ -75,6 +80,8 @@ local config = {
     end,
   },
 }
+
+-- 〉
 
 --- @example: require('pluginmanager').load('plugins')
 --- @example: require('pluginmanager').load('mode.vscode.plugins')
