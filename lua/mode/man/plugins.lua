@@ -5,7 +5,7 @@ return {
 
   -- dev
   -- 'luapad',
-  'plenary',
+  -- 'plenary',
   'startuptime',
 
   -- sematic
