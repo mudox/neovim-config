@@ -3,7 +3,6 @@
 -- Penlight
 pl = require('pl.import_into')()
 
-
 -- Mode 〈
 --
 -- if mode is not `default`, then try require `name` from 'mode.<mode_name>'
@@ -35,4 +34,5 @@ require(stdpath('mappings'))
 require('pluginmanager').load(stdpath('plugins'))
 require(stdpath('post'))
 
+-- packer_compiled
 vim.cmd(('source %s'):format(stdpath.packer_compiled))

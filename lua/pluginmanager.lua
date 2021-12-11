@@ -1,22 +1,27 @@
 -- vim: fdm=marker fmr=〈,〉
-
 local p = pl.path
 
+-- !!!: Important
+vim.o.packpath = vim.o.packpath .. ',' .. stdpath.package_root
+
 -- Bootstrap 〈
-local install_path = p.join(stdpath.pack, 'packer/start/packer.nvim')
-if not p.exists(install_path) then
+local is_bootstrap = false
+if not p.exists(stdpath.packer_install) then
   print 'Installing packer.nvim ...'
-  vim.fn.system({
+  is_bootstrap = vim.fn.system({
     'git',
     'clone',
+    '--depth',
+    '1',
     'https://github.com/wbthomason/packer.nvim',
-    install_path,
+    stdpath.packer_install,
   })
-  vim.cmd 'packadd packer.nvim'
 end
 -- 〉
 
-local function configFunc(path)
+--- if `config` is missing in plugin spec file and there is a <name>.{lua,vim} file under
+-- lua/plugin/config folder, construct a `config` function to `require/source` this file
+local function config_function(path)
   local name = p.basename(p.splitext(path))
 
   local luaFile = ('%s/%s.lua'):format(stdpath.lua_plugin_config, name)
@@ -58,7 +63,7 @@ local function spec(name)
     env.url = nil
 
     -- config
-    env.config = env.config or configFunc(path)
+    env.config = env.config or config_function(path)
 
     table.insert(envs, env)
   end
@@ -66,13 +71,11 @@ local function spec(name)
   return envs
 end
 
-
 -- Config packer 〈
 
 local config = {
   -- mode separation
-  package_root = stdpath.pack,
-  plugin_package = vim.g.mdx_nvim_mode,
+  package_root = stdpath.package_root,
   compile_path = stdpath.packer_compiled,
   -- appearence
   display = {
@@ -84,8 +87,7 @@ local config = {
 
 -- 〉
 
---- @example: require('pluginmanager').load('plugins')
---- @example: require('pluginmanager').load('mode.vscode.plugins')
+--- @example: require('pluginmanager').load(stdpath('plugins'))
 local function load(path)
   require('packer').startup({
     function()
@@ -94,6 +96,10 @@ local function load(path)
           ---@diagnostic disable-next-line: undefined-global
           use(env)
         end
+      end
+
+      if is_bootstrap then
+        require('packer').sync()
       end
     end,
     config = config,

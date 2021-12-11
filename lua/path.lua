@@ -1,4 +1,6 @@
 -- vim: fdm=marker fmr=〈,〉
+local join = pl.path.join
+
 -- Commonly used global paths
 local _p = {}
 
@@ -18,15 +20,19 @@ _p.lua_plugin_config = _p.lua_plugin .. '/config'
 -- Data directories 〈
 -- in ~/.local/share/nvim
 _p.data = vim.fn.stdpath('data')
-_p.site = _p.data .. '/site'
+_p.site = join(_p.data, 'site')
 -- 〉
 
 -- Package directories 〈
-_p.pack = _p.site .. '/pack'
-_p.packer_install = pl.path.join(_p.pack, 'packer/start/packer.nvim')
-_p.packer_plugins = _p.pack .. '/' .. vim.g.mdx_nvim_mode
-_p.packer_compiled = pl.path.join(_p.site, 'packer_compiled',
-                                  vim.g.mdx_nvim_mode .. '.vim')
+-- stdpath('data')/site/mdx_nvim_mode/<g:mdx_nvim_mode>/packer/{start,opt}
+assert(vim.g.mdx_nvim_mode)
+-- fixed packer install path
+_p.packer_install = join(_p.site, 'pack/packer/start/packer.nvim')
+_p.package_root = join(_p.site, 'mdx_nvim_mode', vim.g.mdx_nvim_mode)
+_p.packer_compiled = join(_p.site, 'packer_compiled',
+                          vim.g.mdx_nvim_mode .. '.vim')
+_p.packer_start = join(_p.package_root, 'pack/packer/start')
+_p.packer_opt = join(_p.package_root, 'pack/packer/opt')
 -- 〉
 
 -- Resolve module path location to require 〈
