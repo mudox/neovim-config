@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global
+
 url = 'machakann/vim-sandwich'
 
 event = 'VimEnter'
