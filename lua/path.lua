@@ -29,7 +29,7 @@ _p.site = join(_p.data, 'site')
 assert(vim.g.mdx_nvim_mode)
 
 _p.mode = join(_p.site, 'mdx_nvim_mode', vim.g.mdx_nvim_mode)
-vim.o.packpath = vim.o.packpath .. ',' .. _p.mode
+vim.opt.packpath:append(_p.mode)
 
 _p.pack = join(_p.mode, 'pack') -- `package_root` of packer.nvim
 _p.packer = join(_p.pack, 'packer')
