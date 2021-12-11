@@ -1,7 +1,6 @@
 -- vim: fdm=marker
 local k = require('keymap')
 
-print('hi there')
 vim.g.mapleader = ','
 
 -- sensible `n, N`

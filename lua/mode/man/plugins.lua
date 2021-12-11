@@ -2,49 +2,61 @@ return {
   -- plugin manager
   'packer',
 
-  -- profiling
-  'startuptime',
-
-  -- language service
-  -- 'coc',
-  -- 'treesitter',
-
-  -- 'dap', -- debug
-
-  -- editing
-  'nerdcommenter',
-  -- 'visualmulti',
-  -- 'neoformat',
-  -- 'ultisnips',
-
-  -- 'endwise',
-  'switch',
-  'cleverf',
-  'sandwich',
-  'easyalign',
-
-  -- ui
-  -- 'base16',
-  -- 'airline',
-  -- 'popup',
-  -- 'zenmode',
-  -- 'telescope',
-  -- 'colorizer',
-
-  -- text object
-  'textobject/*',
-
-  -- 'treesitter-textobjects',
-
-  -- file type
-  -- 'filetype/*',
 
   -- dev
   -- 'luapad',
   'plenary',
+  'startuptime',
+
+  -- sematic
+  -- 'coc',
+  -- 'treesitter',
+
+  -- debug
+  -- 'dap',
+
+  -- editing
+  -- 'nerdcommenter',
+  -- 'visualmulti',
+  -- 'neoformat',
+
+  -- snippets
+  -- 'ultisnips',
+  -- 'snippets',
+
+  -- 'switch',
+  'cleverf',
+  'sandwich',
+  -- 'easyalign',
+
+  -- 'ctrlsf',
+
+  -- ui
+  -- 'nonicons',
+  -- 'devicons',
+  'base16',
+  -- 'airline',
+  -- 'tmuxline',
+
+  -- 'popup',
+  -- 'telescope',
+  -- 'colorizer',
+
+  -- 'zenmode',
+  -- 'twilight',
+
+
+  -- text object
+  'textobject/*',
+  -- 'treesitter-textobjects',
+
+
+  -- file type
+  'filetype/*',
+
 
   -- other
   'unimpaired',
   -- 'qpen',
-  -- 'tmuxnavigator',
+  'tmuxnavigator',
 }
