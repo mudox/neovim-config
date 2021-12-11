@@ -4,12 +4,14 @@
 local base16 = require('base16')
 base16(base16.themes['gruvbox-dark-hard'], true)
 
+-- diff
 vim.cmd [[
 hi DiffAdd guibg=None
 hi DiffDelete guibg=None
 hi DiffChange guibg=None
 ]]
 
+-- !!!: hack
 -- explicity load configs for lazy loading plugins
 vim.cmd (([[
   source %s/airline.vim
