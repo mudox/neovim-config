@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 url = 'nvim-treesitter/nvim-treesitter'
 
 event = 'VimEnter'
@@ -11,7 +12,7 @@ function config()
       'haskell', -- see https://github.com/nvim-treesitter/nvim-treesitter/issues/1030
     },
 
-    highlight = {enable = true, disable = {}},
+    highlight = {enable = true, disable = {'zsh'}},
 
     incremental_selection = {
       enable = true,
