@@ -28,7 +28,10 @@ _p.site = join(_p.data, 'site')
 assert(vim.g.mdx_nvim_mode)
 -- fixed packer install path
 _p.packer_install = join(_p.site, 'pack/packer/start/packer.nvim')
+
 _p.package_root = join(_p.site, 'mdx_nvim_mode', vim.g.mdx_nvim_mode)
+vim.o.packpath = vim.o.packpath .. ',' .. _p.package_root
+
 _p.packer_compiled = join(_p.site, 'packer_compiled',
                           vim.g.mdx_nvim_mode .. '.vim')
 _p.packer_start = join(_p.package_root, 'pack/packer/start')

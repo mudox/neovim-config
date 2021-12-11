@@ -1,9 +1,6 @@
 -- vim: fdm=marker fmr=〈,〉
 local p = pl.path
 
--- !!!: Important
-vim.o.packpath = vim.o.packpath .. ',' .. stdpath.package_root
-
 -- Bootstrap 〈
 local is_bootstrap = false
 if not p.exists(stdpath.packer_install) then
@@ -43,8 +40,8 @@ local function config_function(path)
   end
 end
 
-local function spec(name)
-  local pat = p.join(stdpath.lua_plugin, name .. '.lua')
+local function spec(pattern)
+  local pat = p.join(stdpath.lua_plugin, pattern .. '.lua')
   local paths = vim.fn.glob(pat, false, true)
   assert(#paths > 0, 'invalid plugin spec pattern: ' .. pat)
 
