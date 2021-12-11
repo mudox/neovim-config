@@ -1,5 +1,7 @@
+---@diagnostic disable: lowercase-global
+
 url = 'SirVer/ultisnips'
 
-requires = {'mudox/vim-mysnippets', 'honza/vim-snippets'}
+requires = 'mudox/vim-mysnippets'
 
 event = 'InsertEnter'
