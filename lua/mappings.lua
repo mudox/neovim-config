@@ -25,7 +25,7 @@ nmap('gs', 'ciw')
 nmap('coX',
      [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
 
--- `F4` to quick save file
+-- quick save file
 ncmd('<C-s>', 'write')
 icmd('<C-s>', 'write')
 
@@ -75,7 +75,7 @@ vim.cmd [[cmap <C-P> <Up>]]
 
 -- respawn 2nd pane
 -- e.g. re-check, re-run or re-test ...
-ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t .2')
+ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t "{top-right}"')
 
 -- append ';' to the end of line then exit insert mode
 -- for languages like C/C++, Rust ...
@@ -85,3 +85,7 @@ imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
 -- search
 nmap('n', 'nzz', {remap = true})
 nmap('N', 'Nzz', {remap = true})
+
+-- fold
+nmap('zj', 'zjzx', {remap = true})
+nmap('zk', 'zkzx', {remap = true})
