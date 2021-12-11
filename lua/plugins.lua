@@ -2,17 +2,14 @@ return {
   -- plugin manager
   'packer',
 
-
   -- dev
   'luapad',
   'plenary',
   'startuptime',
 
-  -- sematic
+  -- language
   'coc',
   'treesitter',
-
-  -- debug
   'dap',
 
   -- editing
@@ -37,6 +34,7 @@ return {
   'base16',
   'airline',
   'tmuxline',
+  'indentblankline',
 
   'popup',
   'telescope',
@@ -44,7 +42,6 @@ return {
 
   'zenmode',
   -- 'twilight',
-
 
   -- text object
   'textobject/*',
