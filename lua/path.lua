@@ -31,13 +31,14 @@ assert(vim.g.mdx_nvim_mode)
 _p.mode = join(_p.site, 'mdx_nvim_mode', vim.g.mdx_nvim_mode)
 vim.o.packpath = vim.o.packpath .. ',' .. _p.mode
 
-_p.package_root = join(_p.mode, 'pack')
+_p.pack = join(_p.mode, 'pack') -- `package_root` of packer.nvim
+_p.packer = join(_p.pack, 'packer')
 
-_p.packer_install = join(_p.package_root, 'packer/start/packer.nvim')
+_p.packer_install = join(_p.packer, 'start/packer.nvim')
 _p.packer_compiled = join(_p.site, 'packer_compiled',
                           vim.g.mdx_nvim_mode .. '.vim')
-_p.packer_start = join(_p.package_root, 'pack/packer/start')
-_p.packer_opt = join(_p.package_root, 'pack/packer/opt')
+_p.packer_start = join(_p.packer, 'start')
+_p.packer_opt = join(_p.packer, 'opt')
 -- 〉
 
 -- Resolve module path location to require 〈

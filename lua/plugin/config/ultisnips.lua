@@ -16,6 +16,9 @@ vim.cmd [[
 cabbrev ue UltiSnipsEdit
 ]]
 
+-- issue: https://github.com/SirVer/ultisnips/issues/1414
+-- package entries will not be added to &rtp by nvim automatically
+-- while UltiSnips (for now) depends on `&rtp` to discover snippets
 local dir1 = pl.path.join(stdpath.packer_start, 'vim-mysnippets')
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. dir1
 local dir2 = pl.path.join(stdpath.packer_start, 'vim-snippets')

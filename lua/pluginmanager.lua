@@ -72,7 +72,7 @@ end
 
 local config = {
   -- mode separation
-  package_root = stdpath.package_root,
+  package_root = stdpath.pack,
   compile_path = stdpath.packer_compiled,
   -- appearence
   display = {
