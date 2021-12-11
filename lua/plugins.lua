@@ -2,46 +2,58 @@ return {
   -- plugin manager
   'packer',
 
-  -- profiling
+
+  -- dev
+  'luapad',
+  'plenary',
   'startuptime',
 
-  -- language service
+  -- sematic
   'coc',
   'treesitter',
 
-  'dap', -- debug
+  -- debug
+  'dap',
 
   -- editing
   'nerdcommenter',
   'visualmulti',
   'neoformat',
-  'ultisnips',
 
-  -- 'endwise',
+  -- snippets
+  'ultisnips',
+  'snippets',
+
   'switch',
   'cleverf',
   'sandwich',
   'easyalign',
 
+  'ctrlsf',
+
   -- ui
+  -- 'nonicons',
+  'devicons',
   'base16',
   'airline',
+  'tmuxline',
+
   'popup',
-  'zenmode',
   'telescope',
-  'colorizer',
+  -- 'colorizer',
+
+  'zenmode',
+  -- 'twilight',
+
 
   -- text object
   'textobject/*',
+  'treesitter-textobjects',
 
-  -- 'treesitter-textobjects',
 
   -- file type
   'filetype/*',
 
-  -- dev
-  'luapad',
-  'plenary',
 
   -- other
   'unimpaired',
