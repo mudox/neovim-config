@@ -1,4 +1,5 @@
-{ //
+{
+  //
   // coc
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
@@ -10,7 +11,7 @@
   "coc.preferences.colorSupport": true,
   //
   // suggest
-  "suggest.triggerAfterInsertEnter": true,
+  "suggest.triggerAfterInsertEnter": false,
   //
   // diagnostic
   "diagnostic.errorSign": " ",
@@ -18,8 +19,11 @@
   "diagnostic.infoSign": " ",
   "diagnostic.hintSign": " ",
   //
+  // coc-explorer
+  "explorer.icon.enableNerdfont": true,
+  //
   // rust
-  "rust.cfg_test": true,
+  "rust-analyzer.inlayHints.typeHintsSeparator": "‧",
   //
   // git
   "git.enableGutters": true,
@@ -27,5 +31,9 @@
   "git.changedSign.text": "┃",
   "git.removedSign.text": "┃",
   "git.changeRemovedSign.text": "┃",
-  "git.topRemovedSign.text": "┃"
+  "git.topRemovedSign.text": "┃",
+  //
+  // python
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/Users/mudox/.local/bin/black"
 }
