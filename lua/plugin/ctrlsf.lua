@@ -1,11 +1,16 @@
-install = [[
-Plug 'https://github.com/dyng/ctrlsf.vim.git'
-]]
+---@diagnostic disable: lowercase-global, undefined-global
 
-function setup()
+url = 'dyng/ctrlsf.vim'
+
+event = 'VimEnter'
+
+function config()
   vim.cmd [[
   cabbrev sf CtrlSF
   ]]
+
+  local nplug = require('keymap').nplug
+  local vplug = require('keymap').vplug
 
   -- search immediately
   nplug(',sf', 'CtrlSFCwordExec')
