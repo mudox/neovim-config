@@ -1,3 +1,6 @@
+" vim: fdm=marker fmr=\ 〈,\ 〉
+
+" Neovim options 〈
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -23,7 +26,9 @@ set shortmess+=c
 " else
   " set signcolumn=yes
 " endif
+" 〉
 
+" Trigger 〈
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -55,7 +60,9 @@ if exists('*complete_info')
 else
   inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Cr>"
 endif
+" 〉
 
+" Misc 〈
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -95,8 +102,9 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+" 〉
 
-" Cod Action
+" Cod Action 〈
 " Example: `<leader>xap` for current paragraph
 xmap <leader>x  <Plug>(coc-codeaction-selected)
 nmap <leader>x  <Plug>(coc-codeaction-selected)
@@ -104,7 +112,9 @@ nmap <leader>X  <Plug>(coc-codeaction)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+" 〉
 
+" Textobject & range 〈
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 " xmap if <Plug>(coc-funcobj-i)
@@ -120,7 +130,9 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Requires 'textDocument/selectionRange' support of language server.
 " nmap <silent> <C-s> <Plug>(coc-range-select)
 " xmap <silent> <C-s> <Plug>(coc-range-select)
+" 〉
 
+" Commands 〈
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -129,31 +141,35 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" 〉
 
+" Statusline 〈
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" 〉
 
-" Mappings for CoCList
+" CoCList 〈
 " Show all diagnostics.
-nnoremap <silent> <space>?  <Cmd>CocList diagnostics<Cr>
+nnoremap <silent> <C-C>?  <Cmd>CocList diagnostics<Cr>
 " Manage extensions.
-" nnoremap <silent> <space>e  <Cmd>CocList extensions<Cr>
-" Show commands.
-" nnoremap <silent> <space>c  <Cmd>CocList commands<Cr>
+nnoremap <silent> <C-C>e  <Cmd>CocList extensions<Cr>
+" Show commands
+nnoremap <silent> <C-C>c  <Cmd>CocList commands<Cr>
 " Find symbol of current document.
-nnoremap <silent> <space>@  <Cmd>CocList outline<Cr>
+nnoremap <silent> <C-C>@  <Cmd>CocList outline<Cr>
 " Search workspace symbols.
-nnoremap <silent> <space>#  <Cmd>CocList -I symbols<Cr>
+nnoremap <silent> <C-C>#  <Cmd>CocList -I symbols<Cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  <Cmd>CocNext<Cr>
+nnoremap <silent> <C-C>j  <Cmd>CocNext<Cr>
 " Do default action for previous item.
-nnoremap <silent> <space>k  <Cmd>CocPrev<Cr>
+nnoremap <silent> <C-C>k  <Cmd>CocPrev<Cr>
 " Resume latest coc list.
-nnoremap <silent> <space><space>  <Cmd>CocListResume<Cr>
+nnoremap <silent> <C-C><C-C>  <Cmd>CocListResume<Cr>
 " Show action menu
-nnoremap <silent> <space>x  <Cmd>CocAction<Cr>
+nnoremap <silent> <C-C>x  <Cmd>CocAction<Cr>
 
 " file explorer
-nnoremap <space>e <Cmd>CocCommand explorer<Cr>
+nnoremap <C-C>e <Cmd>CocCommand explorer<Cr>
+" 〉
