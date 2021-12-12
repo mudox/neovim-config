@@ -56,6 +56,7 @@ return {
 
   -- other
   'unimpaired',
+  'stickybuf',
   'qpen',
   'tmuxnavigator',
 }
