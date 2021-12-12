@@ -1,6 +1,7 @@
 {
   "Lua.diagnostics.globals": [
     // for plugin spec file
+    "commit",
     "config",
     "after",
     "cmd",
