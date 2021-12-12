@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 -- vim: fdm=marker fmr=〈,〉
 
 -- below are 4 configs exerpted from https://github.com/lukas-reineke/indent-blankline.nvim/tree/master#simple

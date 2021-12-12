@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 
 url = 'junegunn/vim-easy-align'
 

@@ -1,5 +1,11 @@
 {
   "Lua.diagnostics.globals": [
+    // for plugin spec file
+    "url",
+    "event",
+    "keys",
+    "requires",
+    // for init files
     "vim",
     "pl",
     "stdpath"

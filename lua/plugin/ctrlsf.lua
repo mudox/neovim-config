@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global, undefined-global
 
 url = 'dyng/ctrlsf.vim'
 

@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 url = 'nvim-treesitter/nvim-treesitter'
 
 event = 'VimEnter'

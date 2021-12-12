@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 
 install = [[
 Plug 'https://github.com/tmsvg/pear-tree.git'

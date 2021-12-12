@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 
 url = 'norcalli/nvim-colorizer.lua'
 

@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 
 url = 'NvChad/nvim-base16.lua'
 

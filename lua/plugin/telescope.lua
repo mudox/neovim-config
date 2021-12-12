@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 url = 'nvim-telescope/telescope.nvim'
 
 requires = {
