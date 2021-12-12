@@ -1,6 +1,8 @@
 {
   "Lua.diagnostics.globals": [
     // for plugin spec file
+    "after",
+    "cmd",
     "url",
     "event",
     "keys",
