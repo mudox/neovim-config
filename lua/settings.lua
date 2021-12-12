@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fdm=marker fmr=\ 〈,\ 〉
 ---@diagnostic disable: unused-local
 -- helpers 〈
 local home = os.getenv('HOME')
