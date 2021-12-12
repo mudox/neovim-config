@@ -112,4 +112,12 @@ require('telescope').setup {
 -- 〉
 
 require('telescope').load_extension('fzf')
+
 require('telescope').load_extension('coc')
+ncmd(prefix .. 'cc', 'Telescope coc commands')
+ncmd(prefix .. 'ca', 'Telescope coc code_actions')
+ncmd(prefix .. 'cs', 'Telescope coc document_symbols')
+ncmd(prefix .. 'cS', 'Telescope coc workspace_symbols')
+
+require('telescope').load_extension('aerial')
+ncmd(prefix .. 'a', 'Telescope aerial')
