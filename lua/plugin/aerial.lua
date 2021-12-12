@@ -1,0 +1,1 @@
+url = 'stevearc/aerial.nvim'

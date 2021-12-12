@@ -30,6 +30,7 @@ return {
 
   -- ui
   -- 'nonicons',
+  'aerial',
   'devicons',
   'base16',
   'airline',
