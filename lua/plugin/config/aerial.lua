@@ -1,5 +1,4 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
-print('hi here')
 local ncmd = require('keymap').ncmd
 ncmd('yoo', 'AerialToggle')
 ncmd(']a', 'AerialNext')
