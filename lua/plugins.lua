@@ -33,7 +33,8 @@ return {
   'aerial',
   'devicons',
   'base16',
-  'airline',
+  -- 'airline',
+  'lualine',
   'tmuxline',
   'indentblankline',
 
