@@ -1,5 +1,4 @@
 -- vim:fdm=marker
-
 -- color scheme
 -- avoid `:colorsheme` can save ±7ms startuptime
 local base16 = require('base16')
@@ -14,9 +13,9 @@ hi DiffChange guibg=None
 
 -- !!!: hack
 -- explicity load configs for lazy loading plugins
-vim.cmd (([[
-  source %s/airline.vim
-]]):format(stdpath.lua_plugin_config))
+-- vim.cmd (([[
+-- source %s/airline.vim
+-- ]]):format(stdpath.lua_plugin_config))
 
 -- prevent built-in plugin loading
 vim.g.loaded_netrwPlugin = true
