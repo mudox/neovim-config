@@ -43,14 +43,17 @@ end
 local function spec(pattern)
   local pat = p.join(stdpath.lua_plugin, pattern .. '.lua')
   local paths = vim.fn.glob(pat, false, true)
-  assert(#paths > 0, 'invalid plugin spec pattern: ' .. pat)
+  assert(#paths > 0, 'failed to glob plugin spec pattern: ' .. pat)
 
   local envs = {}
   for _, path in ipairs(paths) do
     local chunk = loadfile(path)
     assert(chunk, 'invalid spec path: ' .. path)
 
-    local env = {}
+    local env = {
+      stdpath = stdpath,
+      pl = pl,
+    }
     ---@diagnostic disable-next-line: deprecated
     setfenv(chunk, env)()
 
