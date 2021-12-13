@@ -5,13 +5,18 @@ vim.o.laststatus = 2
 require('lualine').setup {
   options = {
     icons_enabled = true,
+
+    -- themes
     -- theme = 'gruvbox',
     -- theme = 'auto',
     theme = 'ayu_mirage',
+
+    -- separators
     component_separators = {left = '', right = ''},
     section_separators = {left = '', right = ''},
     -- section_separators = {left = '', right = ''},
     -- component_separators = {left = '', right = ''},
+
     disabled_filetypes = {},
     always_divide_middle = true,
   },
@@ -24,13 +29,13 @@ require('lualine').setup {
     lualine_z = {'location'},
   },
   tabline = {
-  lualine_a = {'buffers'},
-  lualine_b = {'filename'},
-  lualine_c = {},
-  lualine_x = {},
-  lualine_y = {'g:mdx_nvim_mode'},
-  lualine_z = {'tabs'}
-},
+    lualine_a = {'buffers'},
+    lualine_b = {'filename'},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {[[ vim.g.mdx_nvim_mode .. ' ' ]]},
+    lualine_z = {'tabs'},
+  },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
