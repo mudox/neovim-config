@@ -1,5 +1,3 @@
-print('config lualine')
-
 vim.o.laststatus = 2
 
 require('lualine').setup {
