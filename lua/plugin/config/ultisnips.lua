@@ -2,9 +2,7 @@ local g = vim.g
 
 g.UltiSnipsEditSplit = 'vertical'
 
--- g.UltiSnipsSnippetDirectories = ['UltiSnips']
-
-local dir = pl.path.join(stdpath.packer_start, 'vim-mysnippets/Ultisnips')
+local dir = pl.path.join(stdpath.my_pack, 'opt/vim-mysnippets/Ultisnips')
 g.UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = dir
 
 g.UltiSnipsExpandTrigger = '<Tab>'

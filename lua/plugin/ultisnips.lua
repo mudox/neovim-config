@@ -1,6 +1,5 @@
-
 url = 'SirVer/ultisnips'
 
-requires = 'mudox/vim-mysnippets'
+requires = stdpath.my_pack .. '/opt/vim-mysnippets'
 
 event = 'InsertEnter'
