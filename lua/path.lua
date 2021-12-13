@@ -7,14 +7,14 @@ local _p = {}
 -- Config directories 〈
 -- in ~/.config/nvim
 _p.root = vim.fn.stdpath('config')
-_p.plugin = _p.root .. '/plugin'
-_p.ftplugin = _p.root .. '/ftplugin'
-_p.autoload = _p.root .. '/autoload'
+_p.plugin = join(_p.root, 'plugin')
+_p.ftplugin = join(_p.root, 'ftplugin')
+_p.autoload = join(_p.root, 'autoload')
 
-_p.lua = _p.root .. '/lua'
-_p.rock = _p.lua .. '/.rocks'
-_p.lua_plugin = _p.lua .. '/plugin'
-_p.lua_plugin_config = _p.lua_plugin .. '/config'
+_p.lua = join(_p.root, 'lua')
+_p.rock = join(_p.lua, '.rocks')
+_p.lua_plugin = join(_p.lua, 'plugin')
+_p.lua_plugin_config = join(_p.lua_plugin, 'config')
 -- 〉
 
 -- Data directories 〈
