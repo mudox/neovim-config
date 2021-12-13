@@ -29,17 +29,20 @@ return {
   'ctrlsf',
 
   -- ui
-  -- 'nonicons',
   'aerial',
   'devicons',
   'base16',
-  -- 'airline',
   'lualine',
   'tmuxline',
   'indentblankline',
 
+  -- window
+  'stickybuf',
+  'stabilize',
+
   'popup',
   'telescope',
+
   -- 'colorizer',
 
   'zenmode',
@@ -56,7 +59,6 @@ return {
 
   -- other
   'unimpaired',
-  'stickybuf',
   'qpen',
   'tmuxnavigator',
 }

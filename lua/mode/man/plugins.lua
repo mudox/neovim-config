@@ -38,6 +38,10 @@ return {
   -- 'airline',
   -- 'tmuxline',
 
+  -- window
+  'stickybuf',
+  'stabilize',
+
   -- 'popup',
   -- 'telescope',
   -- 'colorizer',
