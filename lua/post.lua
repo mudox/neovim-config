@@ -22,6 +22,6 @@ vim.g.loaded_netrwPlugin = true
 
 -- temporarily fix: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
 vim.cmd [[ 
-autocmd VimEnter * :sleep 20m
+autocmd VimEnter * :sleep 10m
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 
 ]]
