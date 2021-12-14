@@ -43,6 +43,7 @@ o.splitright = true
 o.splitbelow = true
 
 o.laststatus = 0
+o.cmdheight = 2
 o.shortmess = o.shortmess .. 'I'
 o.showcmd = false
 -- 〉
