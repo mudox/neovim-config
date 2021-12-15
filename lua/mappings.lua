@@ -18,9 +18,6 @@ nmap('N', '"Nn"[v:searchforward]', {expr = true})
 -- sensible `Y`
 nmap('Y', 'y$')
 
--- `gs` to replace current word
-nmap('gs', 'ciw')
-
 -- `coX` to toggle syntax highlighting
 nmap('coX',
      [[:execute 'setlocal syntax=' . ((&syntax == 'OFF') ? 'ON' : 'OFF')<Cr>]])
