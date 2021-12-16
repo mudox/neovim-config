@@ -1,15 +1,16 @@
 {
   "Lua.diagnostics.globals": [
     // for plugin spec file
-    "ft",
-    "commit",
-    "config",
     "after",
     "cmd",
-    "url",
+    "commit",
+    "config",
     "event",
+    "ft",
     "keys",
     "requires",
+    "tag",
+    "url",
     // for init files
     "vim",
     "pl",
