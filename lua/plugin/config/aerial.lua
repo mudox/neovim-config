@@ -1,6 +1,7 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 local ncmd = require('keymap').ncmd
 ncmd('yoo', 'AerialToggle')
+ncmd('gO', 'AerialOpen')
 ncmd(']a', 'AerialNext')
 ncmd('[a', 'AerialPrev')
 
