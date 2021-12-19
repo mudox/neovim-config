@@ -1,8 +1,5 @@
+url = "junegunn/vim-easy-align"
 
-url = 'junegunn/vim-easy-align'
+requires = "vim-repeat"
 
-function config()
-  local vplug = require('keymap').vplug
-
-  vplug('<Cr>', 'LiveEasyAlign')
-end
+event = "BufRead"
