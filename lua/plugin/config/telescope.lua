@@ -7,7 +7,15 @@ local ncmd = k.ncmd
 local prefix = ",t"
 
 -- builtin
-ncmd(prefix .. ",", "Telescope builtin")
+---@diagnostic disable-next-line: lowercase-global
+function _mdx_telescope_picker_builtin()
+  local theme = require('telescope.themes').get_dropdown
+  local opts = theme({
+		include_extensions = true,
+  })
+	require("telescope.builtin").builtin(opts)
+end
+ncmd(prefix .. ",", "lua _mdx_telescope_picker_builtin()")
 
 -- files
 ncmd("<C-p>", "Telescope find_files")
@@ -25,9 +33,8 @@ ncmd(prefix .. "G", "Telescope live_grep")
 
 ncmd(prefix .. "s", "Telescope treesitter")
 
--- lsp diagnostics
-ncmd(prefix .. "d", "Telescope lsp_document_diagnostics")
-ncmd(prefix .. "D", "Telescope lsp_workspace_diagnostics")
+-- diagnostics
+ncmd(prefix .. "d", "Telescope diagnostics bufnr=0")
 
 -- lsp code actions
 ncmd(prefix .. ".", "Telescope lsp_code_actions")
@@ -40,61 +47,25 @@ ncmd(prefix .. "o", "Telescope vim_options")
 
 require("telescope").setup({
 	defaults = {
-		-- vimgrep_arguments = {
-		-- 'rg',
-		-- '--color=never',
-		-- '--no-heading',
-		-- '--with-filename',
-		-- '--line-number',
-		-- '--column',
-		-- '--smart-case'
-		-- },
-		-- prompt_position = "bottom",
-		-- prompt_prefix = "> ",
-		-- selection_caret = "> ",
-		-- entry_prefix = "  ",
-		-- initial_mode = "insert",
-		-- selection_strategy = "reset",
-		-- sorting_strategy = "descending",
-		-- layout_strategy = "horizontal",
-		-- layout_defaults = {
-		-- horizontal = {
-		-- mirror = false,
-		-- },
-		-- vertical = {
-		-- mirror = false,
-		-- },
-		-- },
-		-- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-		-- file_ignore_patterns = {},
-		-- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-		-- shorten_path = true,
-		-- winblend = 0,
-		-- width = 0.75,
-		-- preview_cutoff = 120,
-		-- results_height = 1,
-		-- results_width = 0.8,
-		-- border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		-- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		-- color_devicons = true,
-		-- use_less = true,
-		-- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-		-- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-		-- grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-		-- qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
 
-		-- Developer configurations: Not meant for general override
-		-- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    -- mappings = {
+      -- ['<C-e>'] = require('telescope.actions.layout').toggle_preview,
+    -- },
+
+    -- preview = {
+      -- hide_on_startup = true,
+    -- },
 
 		-- extensions
 		extensions = {
-			packer = {
-				theme = "ivy",
-				layout_config = {
-					height = 0.5,
-				},
-			},
+			-- packer = {
+				-- theme = "ivy",
+				-- layout_config = {
+					-- height = 0.5,
+				-- },
+			-- },
 
 			fzf = {
 				fuzzy = true, -- false will only do exact matching
@@ -121,7 +92,8 @@ require("telescope").load_extension("fzf")
 
 require("telescope").load_extension("coc")
 ncmd(prefix .. "cc", "Telescope coc commands")
-ncmd(prefix .. "ca", "Telescope coc code_actions")
+ncmd(prefix .. "ca", "Telescope coc file_code_actions")
+ncmd(prefix .. "cA", "Telescope coc code_actions")
 ncmd(prefix .. "cs", "Telescope coc document_symbols")
 ncmd(prefix .. "cS", "Telescope coc workspace_symbols")
 
