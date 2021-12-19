@@ -1,66 +1,79 @@
 return {
-  -- Plugin Manager
-  'packer',
+	-- Plugin Manager
+	"packer",
 
-  -- Lib
-  'plenary',
+	-- Lib
+	"plenary",
 
-  -- LSP
-  'lsp-config',
-  'lsp-installer',
+	-- LSP
+	"lsp-config",
+	"lsp-installer",
+  "lsp-saga",
+	"treesitter",
 
-  'cmp',
+	-- Completion
+	"cmp",
+	"cmp-nvim-lsp",
+	"cmp-buffer",
+	"cmp-path",
+	"cmp-cmdline",
+	-- "cmp-tabnine",
+	"cmp-ultisnips",
 
-  'treesitter',
+	-- Debug
+	"dap",
 
-  -- Debug
-  'dap',
+	-- Snippets
+	"ultisnips",
+	"snippets",
 
-  -- Snippets
-  'ultisnips',
-  'snippets',
+	-- Editing
+	"ctrlsf",
+	"easyalign",
+	"neoformat",
+	"nerdcommenter",
+	"sandwich",
+	"switch",
+	"visualmulti",
 
-  -- Editing
-  'ctrlsf',
-  'easyalign',
-  'neoformat',
-  'nerdcommenter',
-  'sandwich',
-  'switch',
-  'visualmulti',
+	-- UI
+	"base16",
+	"devicons",
+	"indentblankline",
+	"lualine",
+	"tmuxline",
+	"nvim-tree",
+	"trouble",
 
-  -- UI
-  'base16',
-  'devicons',
-  'indentblankline',
-  'lualine',
-  'tmuxline',
+	-- Window
+	"aerial",
+	"popup",
+	"stabilize",
+	"stickybuf",
+	"telescope",
+	"zenmode",
+	-- 'twilight',
+	-- 'colorizer',
 
-  -- Window
-  'aerial',
-  'popup',
-  'stabilize',
-  'stickybuf',
-  'telescope',
-  'zenmode',
-  -- 'twilight',
-  -- 'colorizer',
+	-- Text Object
+	"textobject/*",
+	"treesitter-textobjects",
 
-  -- Text Object
-  'textobject/*',
-  'treesitter-textobjects',
+	-- File Type
+	"filetype/*",
 
-  -- File Type
-  'filetype/*',
+	-- Other
+	"startuptime",
+	"unimpaired",
 
-  -- Other
-  'startuptime',
-  'unimpaired',
+	-- Navigation
+	"cleverf",
+	"tmuxnavigator",
 
-  -- Navigation
-  'cleverf',
-  'tmuxnavigator',
+	-- Lua
+	"luapad",
 
-  -- Lua
-  'luapad',
+	-- Rust
+	"rust-tools",
+	"crates",
 }
