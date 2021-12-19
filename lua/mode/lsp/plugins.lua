@@ -4,21 +4,22 @@ return {
 
 	-- Lib
 	"plenary",
+  "notify",
 
 	-- LSP
 	"lsp-config",
 	"lsp-installer",
-  "lsp-saga",
+	"lsp-saga",
 	"treesitter",
 
 	-- Completion
 	"cmp",
-	"cmp-nvim-lsp",
 	"cmp-buffer",
-	"cmp-path",
 	"cmp-cmdline",
-	-- "cmp-tabnine",
+	"cmp-nvim-lsp",
+	"cmp-path",
 	"cmp-ultisnips",
+  "cmp-tabnine",
 
 	-- Debug
 	"dap",
@@ -28,6 +29,7 @@ return {
 	"snippets",
 
 	-- Editing
+	"cleverf",
 	"ctrlsf",
 	"easyalign",
 	"neoformat",
@@ -42,18 +44,19 @@ return {
 	"indentblankline",
 	"lualine",
 	"tmuxline",
-	"nvim-tree",
 	"trouble",
 
-	-- Window
+	-- Navigation
+	"nnn",
 	"aerial",
-	"popup",
-	"stabilize",
-	"stickybuf",
 	"telescope",
+	"tmuxnavigator",
+
+	-- Window
+	"popup",
+	"stabilize", -- no coc in this mode, hence enale it
+	"stickybuf",
 	"zenmode",
-	-- 'twilight',
-	-- 'colorizer',
 
 	-- Text Object
 	"textobject/*",
@@ -66,14 +69,14 @@ return {
 	"startuptime",
 	"unimpaired",
 
-	-- Navigation
-	"cleverf",
-	"tmuxnavigator",
-
 	-- Lua
 	"luapad",
 
 	-- Rust
 	"rust-tools",
 	"crates",
+
+	-- Web
+	"emmet",
+	"bracey",
 }
