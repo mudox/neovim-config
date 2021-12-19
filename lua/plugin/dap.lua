@@ -1,4 +1,1 @@
-
-url = 'mfussenegger/nvim-dap'
-
-opt = true
+url = "mfussenegger/nvim-dap"
