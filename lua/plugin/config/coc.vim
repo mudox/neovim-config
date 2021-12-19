@@ -28,15 +28,15 @@ set shortmess+=c
 " endif
 " 〉
 
-" Trigger 〈
+" Completion Trigger 〈
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -46,11 +46,11 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
-" if has('nvim')
-  " inoremap <silent><expr> <c-space> coc#refresh()
-" else
-  " inoremap <silent><expr> <c-@> coc#refresh()
-" endif
+if has('nvim')
+inoremap <silent><expr> <c-space> coc#refresh()
+else
+inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use <Cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -79,7 +79,7 @@ nnoremap <silent> gh :call <SID>show_documentation()<Cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+    execute 'h ' . expand('<cword>')
   else
     call CocActionAsync('doHover')
   endif
@@ -106,12 +106,13 @@ augroup end
 
 " Cod Action 〈
 " Example: `<leader>xap` for current paragraph
-xmap <leader>x  <Plug>(coc-codeaction-selected)
-nmap <leader>x  <Plug>(coc-codeaction-selected)
-nmap <leader>X  <Plug>(coc-codeaction)
+" for current line
+xmap gx  <Plug>(coc-codeaction-line)
+" for entire file
+nmap gX  <Plug>(coc-codeaction) 
 
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap \qf  <Plug>(coc-fix-current)
 " 〉
 
 " Textobject & range 〈
@@ -151,6 +152,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " 〉
 
 " CoCList 〈
+
+" Note: use `Telescope coc ...` instead
+
 " Show all diagnostics.
 nnoremap <silent> <C-C>?  <Cmd>CocList diagnostics<Cr>
 " Manage extensions.
@@ -171,5 +175,16 @@ nnoremap <silent> <C-C><C-C>  <Cmd>CocListResume<Cr>
 nnoremap <silent> <C-C>x  <Cmd>CocAction<Cr>
 
 " file explorer
-nnoremap <C-C>e <Cmd>CocCommand explorer<Cr>
+nnoremap <C-C>f <Cmd>CocCommand explorer<Cr>
+" 〉
+
+" Extension Configurations 〈
+
+" coc-css
+autocmd FileType scss setl iskeyword+=@-@
+
+" coc-highlight
+nnoremap <C-m>c <Cmd>call CocAction('pickColor')<Cr>
+nnoremap <C-m>C <Cmd>call CocAction('colorPresentation')<Cr>
+
 " 〉
