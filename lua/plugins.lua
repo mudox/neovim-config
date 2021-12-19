@@ -1,64 +1,64 @@
 return {
-  -- plugin manager
-  'packer',
+	-- The Plugin manager
+	"packer",
 
-  -- dev
-  'luapad',
-  'plenary',
-  'startuptime',
+	-- Dev
+	"notify",
+	"luapad",
+	"plenary",
+	"repeat",
+	"startuptime",
 
-  -- language
-  'coc',
-  'treesitter',
-  'dap',
+	-- Language server
+	"coc",
+	"treesitter",
+	"dap",
 
-  -- editing
-  'nerdcommenter',
-  'visualmulti',
-  'neoformat',
+	-- Editing
+	"nerdcommenter",
+	"visualmulti",
+	"switch",
+	"neoformat",
+	"sandwich",
+	"easyalign",
+	"ctrlsf",
 
-  -- snippets
-  'ultisnips',
-  'snippets',
+	-- Snippets
+	"ultisnips",
+	"snippets",
 
-  'switch',
-  'cleverf',
-  'sandwich',
-  'easyalign',
+	-- UI
+	"dressing",
+	"aerial",
+	"devicons",
+	"base16",
+	"lualine",
+	"tmuxline",
+	"indentblankline",
 
-  'ctrlsf',
+	-- Window
+	"stickybuf",
+	"popup",
 
-  -- ui
-  'aerial',
-  'devicons',
-  'base16',
-  'lualine',
-  'tmuxline',
-  'indentblankline',
+	"zenmode",
 
-  -- window
-  'stickybuf',
-  'stabilize',
+	-- Navigation
+	"cleverf",
+	"nnn",
+	"tmuxnavigator",
+	"telescope",
 
-  'popup',
-  'telescope',
+	-- Text object
+	"textobject/*",
+	"treesitter-textobjects",
 
-  -- 'colorizer',
+	-- File type
+	"filetype/*",
 
-  'zenmode',
-  -- 'twilight',
+	-- Other
+	"unimpaired",
 
-  -- text object
-  'textobject/*',
-  'treesitter-textobjects',
-
-
-  -- file type
-  'filetype/*',
-
-
-  -- other
-  'unimpaired',
-  'qpen',
-  'tmuxnavigator',
+	-- Web
+	"emmet",
+	"bracey",
 }
