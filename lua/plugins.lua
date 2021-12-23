@@ -46,6 +46,7 @@ return {
 
 	-- Navigation
 	"cleverf",
+	"lightspeed",
 	"nnn",
 	"tmuxnavigator",
 	"telescope",
