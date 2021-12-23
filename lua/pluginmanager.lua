@@ -2,6 +2,22 @@
 local p = pl.path
 
 -- Bootstrap 〈
+-- TODO: remove when `impatient.nvim` be merged into Neovim
+local impatient_install = p.join(stdpath.packer, 'start/impatient.nvim')
+if not p.exists(impatient_install) then
+	print("Installing `impatient.nvim` ...")
+  vim.fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/lewis6991/impatient.nvim",
+		impatient_install,
+	})
+end
+vim.opt.runtimepath:append(impatient_install)
+require('impatient')
+
 local is_bootstrap = false
 if not p.exists(stdpath.packer_install) then
 	print("Installing packer.nvim ...")
@@ -14,6 +30,7 @@ if not p.exists(stdpath.packer_install) then
 		stdpath.packer_install,
 	})
 end
+vim.opt.runtimepath:append(stdpath.packer_install)
 -- 〉
 
 --- if `config` is missing in plugin spec file and there is a <name>.{lua,vim} file under

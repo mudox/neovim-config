@@ -1,4 +1,6 @@
 return {
+  "impatient", -- it will be merged into Neovim
+
 	-- The Plugin manager
 	"packer",
 
