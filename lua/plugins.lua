@@ -1,5 +1,5 @@
 return {
-  "impatient", -- it will be merged into Neovim
+	"impatient", -- it will be merged into Neovim
 
 	-- The Plugin manager
 	"packer",
@@ -9,20 +9,20 @@ return {
 	"luapad",
 	"plenary",
 	"repeat",
-	"startuptime",
+	"startup-time",
 
 	-- Language server
 	"coc",
-	"treesitter",
+	"tree-sitter",
 	"dap",
 
 	-- Editing
-	"nerdcommenter",
-	"visualmulti",
+	"nerd-commenter",
+	"visual-multi",
 	"switch",
 	"neoformat",
 	"sandwich",
-	"easyalign",
+	"easy-align",
 	"ctrlsf",
 
 	-- Snippets
@@ -32,11 +32,11 @@ return {
 	-- UI
 	"dressing",
 	"aerial",
-	"devicons",
+	"dev-icons",
 	"base16",
 	"lualine",
 	"tmuxline",
-	"indentblankline",
+	"indent-blank-line",
 
 	-- Window
 	"stickybuf",
@@ -46,14 +46,15 @@ return {
 
 	-- Navigation
 	"cleverf",
-	"lightspeed",
+	"light-speed",
 	"nnn",
-	"tmuxnavigator",
 	"telescope",
+	"telescope-file-browser",
+	"tmuxnavigator",
 
 	-- Text object
 	"textobject/*",
-	"treesitter-textobjects",
+	"tree-sitter-textobjects",
 
 	-- File type
 	"filetype/*",
@@ -63,5 +64,4 @@ return {
 
 	-- Web
 	"emmet",
-	"bracey",
 }

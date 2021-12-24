@@ -78,5 +78,4 @@ return {
 
 	-- Web
 	"emmet",
-	"bracey",
 }
