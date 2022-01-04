@@ -1,5 +1,6 @@
 return {
 	"impatient", -- it will be merged into Neovim
+  "filetype", -- replace `filetype.vim`
 
 	-- The Plugin manager
 	"packer",

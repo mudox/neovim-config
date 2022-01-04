@@ -19,3 +19,8 @@ vim.cmd [[
 autocmd VimEnter * :sleep 10m
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 
 ]]
+
+-- disable bundled runtime files loading
+vim.cmd [[
+let g:did_load_filetypes = 1
+]]
