@@ -1,8 +1,8 @@
 --[==[
   utility lib for defining common mappings.
 
-  the module provides 4 functions (map, cmd, plug, nop) all of which need a mode
-  char as its 1st argument
+  the module provides 4 basic functions (map, cmd, plug, nop) all of which need a mode
+  char as its 1st character
 
   by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods
   with mode char
