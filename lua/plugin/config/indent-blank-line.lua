@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fdm=marker fmr=〈,〉
 
 vim.g.indent_blankline_filetype = { "lua", "rust", "swift", "c", "python" }
 

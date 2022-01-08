@@ -1,5 +1,5 @@
 url = "junegunn/vim-easy-align"
 
-requires = "vim-repeat"
+requires = "tpope/vim-repeat"
 
 event = "BufRead"
