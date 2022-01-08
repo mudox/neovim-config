@@ -53,15 +53,13 @@ nmap('H', '')
 nmap('L', '')
 
 -- `q` triggers macro recording easily
--- use `_q` instead
-nmap('q', '')
-nmap('_q', 'q')
+nmap('<M-k>', 'q')
+nnop('q')
 -- nmap('q:', 'q:')
 -- nmap('q/', 'q/')
 
 -- `Q` triggers Ex mode easily
--- use gQ instead
-nmap('Q', '')
+nnop('Q')
 
 -- sensible `zi`
 nmap('zi', 'zizz')
