@@ -1,3 +1,3 @@
-url = 'tweekmonster/startuptime.vim'
+url = "tweekmonster/startuptime.vim"
 
-cmd = {'StartupTime'}
+cmd = { "StartupTime" }
