@@ -18,6 +18,7 @@ return {
 	"dap",
 
 	-- Editing
+	"tree-hopper",
 	"nerd-commenter",
 	"visual-multi",
 	"switch",
