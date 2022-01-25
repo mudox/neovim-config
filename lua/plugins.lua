@@ -16,6 +16,7 @@ return {
 	"coc",
 	"tree-sitter",
 	"dap",
+  "context-vt",
 
 	-- Editing
 	"tree-hopper",
