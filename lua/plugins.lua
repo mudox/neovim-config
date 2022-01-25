@@ -49,6 +49,7 @@ return {
 	"cleverf",
 	"light-speed",
 	"nnn",
+	"scroll",
 	"telescope",
 	"telescope-file-browser",
 	"tmuxnavigator",
