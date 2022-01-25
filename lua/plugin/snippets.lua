@@ -1,4 +1,7 @@
+url = "honza/vim-snippets"
 
-url = 'honza/vim-snippets'
+requires = "SirVer/ultisnips"
 
-requires = 'SirVer/ultisnips'
+after = "ultisnips"
+
+event = "VimEnter"
