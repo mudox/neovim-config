@@ -185,5 +185,7 @@ autocmd FileType scss setl iskeyword+=@-@
 " coc-highlight
 nnoremap <C-m>c <Cmd>call CocAction('pickColor')<Cr>
 nnoremap <C-m>C <Cmd>call CocAction('colorPresentation')<Cr>
+" coc-file-browser
+nnoremap <silent> <M-/>e <Cmd>CocCommand explorer<Cr>
 
 " 〉
