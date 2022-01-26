@@ -54,7 +54,6 @@ return {
 	"nnn",
 	"scroll",
 	"telescope",
-	"telescope-file-browser",
 	"tmuxnavigator",
 
 	-- Text object
