@@ -1,14 +1,15 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fdm=marker fmr=〈,〉
+
 local ncmd = require('keymap').ncmd
 ncmd('<M-/>a', 'AerialToggle')
 ncmd('<M-/>A', 'AerialOpen')
 ncmd(']a', 'AerialNext')
 ncmd('[a', 'AerialPrev')
 
--- see https://github.com/stevearc/aerial.nvim for updated config code
-vim.g.aerial = {
-  -- Priority list of preferred backends for aerial
-  backends = {'lsp', 'treesitter', 'markdown'},
+require("aerial").setup {
+  -- Priority list of preferred backends for aerial.
+  -- This can be a filetype map (see :help aerial-filetype-map)
+  backends = { "lsp", "treesitter", "markdown" },
 
   -- Enum: persist, close, auto, global
   --   persist - aerial window will stay open until closed
@@ -16,7 +17,7 @@ vim.g.aerial = {
   --   auto    - aerial window will stay open as long as there is a visible
   --             buffer to attach to
   --   global  - same as 'persist', and will always show symbols for the current buffer
-  close_behavior = 'auto',
+  close_behavior = "auto",
 
   -- Set to false to remove the default keybindings for the aerial buffer
   default_bindings = true,
@@ -25,77 +26,92 @@ vim.g.aerial = {
   -- Determines the default direction to open the aerial window. The 'prefer'
   -- options will open the window in the other direction *if* there is a
   -- different buffer in the way of the preferred direction
-  default_direction = 'prefer_right',
+  default_direction = "prefer_right",
+
+  -- Disable aerial on files with this many lines
+  disable_max_lines = 10000,
 
   -- A list of all symbols to display. Set to false to display all symbols.
+  -- This can be a filetype map (see :help aerial-filetype-map)
+  -- To see all available values, see :help SymbolKind
   filter_kind = {
-    'Class',
-    'Constructor',
-    'Enum',
-    'Function',
-    'Interface',
-    'Method',
-    'Struct',
+    "Class",
+    "Constructor",
+    "Enum",
+    "Function",
+    "Interface",
+    "Method",
+    "Struct",
   },
 
   -- Enum: split_width, full_width, last, none
-  -- Determines line highlighting mode when multiple buffers are visible
-  highlight_mode = 'split_width',
+  -- Determines line highlighting mode when multiple splits are visible
+  -- split_width   Each open window will have its cursor location marked in the
+  --               aerial buffer. Each line will only be partially highlighted
+  --               to indicate which window is at that location.
+  -- full_width    Each open window will have its cursor location marked as a
+  --               full-width highlight in the aerial buffer.
+  -- last          Only the most-recently focused window will have its location
+  --               marked in the aerial buffer.
+  -- none          Do not show the cursor locations in the aerial window.
+  highlight_mode = "split_width",
 
-  -- When jumping to a symbol, highlight the line for this many ms
-  -- Set to 0 or false to disable
+  -- When jumping to a symbol, highlight the line for this many ms.
+  -- Set to false to disable
   highlight_on_jump = 300,
 
-  -- fold 〈
-  -- Fold code when folding the tree. Only works when manage_folds is enabled
-  link_tree_to_folds = true,
+  -- Define symbol icons. You can also specify "<Symbol>Collapsed" to change the
+  -- icon when the tree is collapsed at that symbol, or "Collapsed" to specify a
+  -- default collapsed icon. The default icon set is determined by the
+  -- "nerd_font" option below.
+  -- If you have lspkind-nvim installed, aerial will use it for icons.
+  icons = {},
 
-  -- Fold the tree when folding code. Only works when manage_folds is enabled
+  -- When you fold code with za, zo, or zc, update the aerial tree as well.
+  -- Only works when manage_folds = true
   link_folds_to_tree = false,
+
+  -- Fold code when you open/collapse symbols in the tree.
+  -- Only works when manage_folds = true
+  link_tree_to_folds = true,
 
   -- Use symbol tree for folding. Set to true or false to enable/disable
   -- 'auto' will manage folds if your previous foldmethod was 'manual'
-  manage_folds = 'auto',
-  -- 〉
+  manage_folds = false,
 
   -- The maximum width of the aerial window
   max_width = 40,
 
   -- The minimum width of the aerial window.
   -- To disable dynamic resizing, set this to be equal to max_width
-  min_width = 30,
+  min_width = 10,
 
-  -- Set default symbol icons to use Nerd Font icons (see https://www.nerdfonts.com/)
-  nerd_font = 'auto',
+  -- Set default symbol icons to use patched font icons (see https://www.nerdfonts.com/)
+  -- "auto" will set it to true if nvim-web-devicons or lspkind-nvim is installed.
+  nerd_font = "auto",
 
-  -- open automatic 〈
-  -- Whether to open aerial automatically when entering a buffer.
-  -- Can also be specified per-filetype as a map (see below)
+  -- Call this function when aerial attaches to a buffer.
+  -- Useful for setting keymaps. Takes a single `bufnr` argument.
+  on_attach = nil,
+
+  -- Automatically open aerial when entering supported buffers.
+  -- This can be a function (see :help aerial-open-automatic)
   open_automatic = false,
-
-  -- If open_automatic is true, only open aerial if the source buffer is at
-  -- least this long
-  open_automatic_min_lines = 0,
-
-  -- If open_automatic is true, only open aerial if there are at least this many symbols
-  open_automatic_min_symbols = 0,
-  -- 〉
 
   -- Set to true to only open aerial at the far right/left of the editor
   -- Default behavior opens aerial relative to current window
   placement_editor_edge = false,
 
   -- Run this command after jumping to a symbol (false will disable)
-  post_jump_cmd = 'normal! zz',
+  post_jump_cmd = "normal! zz",
 
-  -- If close_on_select is true, aerial will automatically close after jumping to a symbol
+  -- When true, aerial will automatically close after jumping to a symbol
   close_on_select = false,
 
-  -- popup 〈
   -- Options for opening aerial in a floating win
   float = {
     -- Controls border appearance. Passed to nvim_open_win
-    border = 'rounded',
+    border = "rounded",
 
     -- Controls row offset from cursor. Passed to nvim_open_win
     row = 1,
@@ -110,7 +126,6 @@ vim.g.aerial = {
     -- To disable dynamic resizing, set this to be equal to max_height
     min_height = 4,
   },
-  -- 〉
 
   lsp = {
     -- Fetch document symbols when LSP diagnostics change.
@@ -129,20 +144,5 @@ vim.g.aerial = {
   markdown = {
     -- How long to wait (in ms) after a buffer change before updating
     update_delay = 300,
-  },
-
-  icons = {
-    Class  = ' ',
-    Struct = ' ',
-    Enum   = ' ',
-
-    Function = ' ',
-    Method   = '.',
-
-    Property = 'π ',
-    Constant = '♦ ',
-    Variable = '♢ ',
-
-    Collapsed = '▶',
   },
 }
