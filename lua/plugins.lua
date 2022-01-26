@@ -49,12 +49,12 @@ return {
 	"zenmode",
 
 	-- Navigation
-	"cleverf",
+	"clever-f",
 	"light-speed",
 	"nnn",
 	"scroll",
 	"telescope",
-	"tmuxnavigator",
+	"tmux-navigator",
 
 	-- Text object
 	"textobject/*",
