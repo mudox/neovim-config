@@ -1,5 +1,5 @@
 url = "luukvbaal/nnn.nvim"
 
-keys = { "<M-p>", "<C-M-p>" }
+keys = { "<M-/>n", "<M-/>N" }
 
 cmd = { "NnnPicker", "NnnExplorer" }

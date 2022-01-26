@@ -189,3 +189,8 @@ nnoremap <C-m>C <Cmd>call CocAction('colorPresentation')<Cr>
 nnoremap <silent> <M-/>e <Cmd>CocCommand explorer<Cr>
 
 " 〉
+
+" Mappings  〈
+nnoremap <silent> <M-/>o <Cmd>CocOutline<Cr>
+"  〉
+ 
