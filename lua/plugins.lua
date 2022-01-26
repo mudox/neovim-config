@@ -58,7 +58,6 @@ return {
 
 	-- Text object
 	"textobject/*",
-	"tree-sitter-textobjects",
 
 	-- File type
 	"filetype/*",

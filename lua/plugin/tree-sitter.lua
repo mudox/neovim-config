@@ -1,5 +1,7 @@
-url = 'nvim-treesitter/nvim-treesitter'
+url = "nvim-treesitter/nvim-treesitter"
 
-event = 'VimEnter'
+requires = { { "nvim-treesitter/nvim-treesitter-textobjects", event = "VimEnter" } }
 
-run = ':TSUpdate'
+event = "VimEnter"
+
+run = ":TSUpdate"
