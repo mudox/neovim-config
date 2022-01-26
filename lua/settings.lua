@@ -46,6 +46,8 @@ o.laststatus = 0
 o.cmdheight = 2
 o.shortmess = o.shortmess .. 'I'
 o.showcmd = false
+
+o.scrolloff = 4
 -- 〉
 
 -- tabs 〈
