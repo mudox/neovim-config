@@ -35,7 +35,7 @@ vim.opt.runtimepath:append(stdpath.packer_install)
 
 --- if `config` is missing in plugin spec file and there is a <name>.{lua,vim} file under
 -- lua/plugin/config folder, construct a `config` function to `require/source` this file
-local function config_function(path)
+local function fallback_config(path)
 	local name = p.basename(p.splitext(path))
 
 	local luaFile = ("%s/%s.lua"):format(stdpath.lua_plugin_config, name)
@@ -57,7 +57,8 @@ local function config_function(path)
 	end
 end
 
-local function spec(pattern)
+-- `parse_spec`: parses plugin spec DSL files 〈
+local function parse_spec(pattern)
 	local pat = p.join(stdpath.lua_plugin, pattern .. ".lua")
 	local paths = vim.fn.glob(pat, false, true)
 	assert(#paths > 0, "failed to glob plugin spec pattern: " .. pat)
@@ -80,17 +81,18 @@ local function spec(pattern)
 		env.url = nil
 
 		-- config
-		env.config = env.config or config_function(path)
+		env.config = env.config or fallback_config(path)
 
 		table.insert(envs, env)
 	end
 
 	return envs
 end
+-- 〉
 
 -- Config packer 〈
 
-local config = {
+local opts = {
 	-- mode separation
 	package_root = stdpath.pack,
 	compile_path = stdpath.packer_compiled,
@@ -109,7 +111,7 @@ local function load(path)
 	require("packer").startup({
 		function()
 			for _, pat in ipairs(require(path)) do
-				for _, env in ipairs(spec(pat)) do
+				for _, env in ipairs(parse_spec(pat)) do
 					---@diagnostic disable-next-line: undefined-global
 					use(env)
 				end
@@ -119,7 +121,7 @@ local function load(path)
 				require("packer").sync()
 			end
 		end,
-		config = config,
+		config = opts,
 	})
 end
 
