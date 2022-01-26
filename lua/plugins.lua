@@ -46,7 +46,7 @@ return {
 	"stickybuf",
 	"popup",
 
-	"zenmode",
+	"zen-mode",
 
 	-- Navigation
 	"clever-f",
