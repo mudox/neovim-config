@@ -40,6 +40,7 @@ return {
 	"lualine",
 	"tmuxline",
 	"indent-blank-line",
+	"todo-comments",
 
 	-- Window
 	"stickybuf",
