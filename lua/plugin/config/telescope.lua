@@ -104,4 +104,9 @@ require("telescope").load_extension("ui-select")
 
 require("telescope").load_extension("packer")
 ncmd(prefix .. "p", [[ lua require('telescope').extensions.packer.packer(opts) ]])
+
+require("telescope").load_extension("file_browser")
+ncmd("<M-/>t", [[ lua require 'telescope'.extensions.file_browser.file_browser() ]])
+
+require("telescope").load_extension("notify")
 -- 〉

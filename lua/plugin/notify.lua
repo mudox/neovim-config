@@ -1,3 +1,1 @@
-url = 'rcarriga/nvim-notify'
-
-opt = true
+url = "rcarriga/nvim-notify"
