@@ -56,7 +56,7 @@ endif
 " position. Coc only does snippet and additional edit on confirm.
 " <Cr> could be remapped by other vim plugin, try `:verbose imap <Cr>`.
 if exists('*complete_info')
-  inoremap <expr> <Cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<Cr>"
+  inoremap <expr> <Cr> complete_info()["selected"] != "-1" ?  coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 else
   inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Cr>"
 endif
