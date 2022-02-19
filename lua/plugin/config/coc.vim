@@ -30,20 +30,24 @@ set shortmess+=c
 
 " Completion Trigger 〈
 " Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
 imap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>emmet_expandable() ? "\<plug>(emmet-expand-abbr)" :
+      \ pumvisible() ? coc#_select_confirm() :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+" check if prefix can be expanded by emmet (only in given file types)
+function! s:emmet_expandable() abort
+  let fts = ['html', 'css']
+  return index(fts, &ft) >= 0 && emmet#isExpandable()
+endfunction
+
+" return true if is in the 1st column or before a white space
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 
 " Use <c-space> to trigger completion.
 if has('nvim')
