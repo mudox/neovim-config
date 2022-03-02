@@ -6,6 +6,7 @@ requires = {
 	{ "nvim-telescope/telescope-ui-select.nvim" },
 	{ "nvim-telescope/telescope-packer.nvim" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
+	{ "nvim-telescope/telescope-live-grep-raw.nvim" },
 }
 
 event = "VimEnter"
