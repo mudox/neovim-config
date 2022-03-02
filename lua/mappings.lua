@@ -33,10 +33,10 @@ nmap('gj', '')
 nmap('gk', '')
 
 -- `option-J,K,H,L` to jump among tabs
+ncmd('<M-]>', 'bnext')
+ncmd('<M-[>', 'bNext')
 nmap('<M-l>', 'gt')
 nmap('<M-h>', 'gT')
-nmap('<M-L>', 'gt')
-nmap('<M-H>', 'gT')
 
 
 -- `q` triggers macro recording easily
