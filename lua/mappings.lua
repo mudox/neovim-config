@@ -32,12 +32,6 @@ nmap('k', 'gk')
 nmap('gj', '')
 nmap('gk', '')
 
--- `clrl-J,K,H,L` to jump among windows
-nmap('<C-H>', '<C-W>h')
-nmap('<C-L>', '<C-W>l')
-nmap('<C-K>', '<C-W>k')
-nmap('<C-J>', '<C-W>j')
-
 -- `option-J,K,H,L` to jump among tabs
 nmap('<M-l>', 'gt')
 nmap('<M-h>', 'gT')
