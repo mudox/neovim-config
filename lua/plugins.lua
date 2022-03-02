@@ -20,7 +20,7 @@ return {
 
 	-- Editing
 	"tree-hopper",
-	"nerd-commenter",
+  "comment",
 	"visual-multi",
 	"switch",
 	"neoformat",
