@@ -38,7 +38,6 @@ ncmd('<M-[>', 'bNext')
 nmap('<M-l>', 'gt')
 nmap('<M-h>', 'gT')
 
-
 -- `q` triggers macro recording easily
 nmap('<M-k>', 'q')
 nnop('q')
@@ -65,8 +64,8 @@ imap('<C-]>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
 imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
 
 -- search
-nmap('n', 'nzz', {remap = true})
-nmap('N', 'Nzz', {remap = true})
+nmap('n', 'nzvzz', {remap = true})
+nmap('N', 'Nzvzz', {remap = true})
 
 -- fold
 nmap('zj', 'zjzx', {remap = true})
