@@ -26,7 +26,7 @@ vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
 
 -- Python
 vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
+vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 
 -- Config
 require(stdpath("settings"))
