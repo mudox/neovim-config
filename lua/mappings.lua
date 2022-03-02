@@ -1,12 +1,15 @@
 -- vim: fdm=marker
 vim.g.mapleader = ','
 
+---@diagnostic disable: unused-local
 local k = require('keymap')
 local nmap = k.nmap
+local nnop = k.nnop
 local ncmd = k.ncmd
 local imap = k.imap
 local icmd = k.icmd
 local vmap = k.vmap
+---@diagnostic enable: unused-local
 
 nmap('<C-7>', '<C-O>', {noremap = false})
 nmap('<C-9>', '<C-I>', {noremap = false})
