@@ -42,6 +42,7 @@ return {
 	"tmuxline",
 	"indent-blank-line",
 	"todo-comments",
+  "shade",
 
 	-- Window
 	"stickybuf",
