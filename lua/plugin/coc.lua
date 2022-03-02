@@ -1,4 +1,3 @@
-
 url = 'neoclide/coc.nvim'
 
 branch = 'release'
