@@ -55,7 +55,6 @@ return {
 	"clever-f",
 	"light-speed",
 	"nnn",
-	"scroll",
 	"telescope",
 	"tmux-navigator",
 
