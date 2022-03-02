@@ -27,6 +27,7 @@ return {
 	"sandwich",
 	"easy-align",
 	"ctrlsf",
+  "spectre",
 
 	-- Snippets
 	"ultisnips",
