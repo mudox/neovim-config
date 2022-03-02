@@ -33,6 +33,7 @@ return {
 	"snippets",
 
 	-- UI
+  "which-key",
 	"dressing",
 	"aerial",
 	"dev-icons",
