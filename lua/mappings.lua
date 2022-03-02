@@ -54,15 +54,6 @@ nmap('zi', 'zizz')
 -- `nvim_set_keymap` fails to handle `noremap` option
 vim.cmd [[cmap <C-P> <Up>]]
 
--- respawn 2nd pane
--- e.g. re-check, re-run or re-test ...
-ncmd('<BS>t', 'silent! !tmux respawn-pane -k -t "{top-right}"')
-
--- append ';' to the end of line then exit insert mode
--- for languages like C/C++, Rust ...
-imap('<C-]>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
-imap('<C-,>', [[<Cmd>call setline('.', getline('.') .. ';')<Cr><Esc>]])
-
 -- search
 nmap('n', 'nzvzz', {remap = true})
 nmap('N', 'Nzvzz', {remap = true})
