@@ -44,13 +44,6 @@ nmap('<M-h>', 'gT')
 nmap('<M-L>', 'gt')
 nmap('<M-H>', 'gT')
 
--- `K, J, H, L` to move cursor up and down in big steps
-nmap('K', [[@="8gk"<Cr>]], {silent = true})
-nmap('J', [[@="8gj"<Cr>]], {silent = true})
-vmap('K', [[@="8gk"<Cr>]], {silent = true})
-vmap('J', [[@="8gj"<Cr>]], {silent = true})
-nmap('H', '')
-nmap('L', '')
 
 -- `q` triggers macro recording easily
 nmap('<M-k>', 'q')
