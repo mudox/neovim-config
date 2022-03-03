@@ -1,4 +1,5 @@
 -- vim:fdm=marker
+
 -- color scheme
 -- avoid `:colorsheme` can save ±7ms startuptime
 local base16 = require('base16')
@@ -21,6 +22,5 @@ autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 ]]
 
 -- disable bundled runtime files loading
-vim.cmd [[
-let g:did_load_filetypes = 1
-]]
+-- https://github.com/nathom/filetype.nvim#usage
+vim.g.did_load_filetypes = 1
