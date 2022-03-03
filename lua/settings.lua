@@ -1,7 +1,8 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 ---@diagnostic disable: unused-local
+
 -- helpers 〈
-local home = os.getenv('HOME')
+local home = os.getenv "HOME"
 
 -- access vim remote plugin api
 local a = vim.api
@@ -28,10 +29,8 @@ o.smartindent = true
 -- UI 〈
 o.termguicolors = true
 o.cursorline = false
--- iTerm 的行间距恢复默认了，默认字符正好连起来
--- o.fillchars = "vert: ,eob: "
-o.fillchars = 'eob: '
-o.mouse = 'a'
+o.fillchars = "eob: "
+o.mouse = "a"
 
 o.number = false
 
@@ -44,10 +43,15 @@ o.splitbelow = true
 
 o.laststatus = 0
 o.cmdheight = 2
-o.shortmess = o.shortmess .. 'I'
 o.showcmd = false
 
-o.scrolloff = 4
+opt.shortmess:append("I") -- not show `:intro` on startup
+opt.shortmess:append("c") -- not show insert completion menu message
+
+o.scrolloff = 8
+o.sidescrolloff = 8
+
+o.signcolumn = "auto:3"
 -- 〉
 
 -- tabs 〈
@@ -65,7 +69,7 @@ o.wrapscan = true
 o.incsearch = true
 o.ignorecase = true
 o.smartcase = true
-o.inccommand = 'nosplit'
+o.inccommand = "nosplit"
 -- 〉
 
 -- editing behavior 〈
@@ -75,13 +79,13 @@ o.autowriteall = true -- auto-save aggressively
 -- 〉
 
 -- completion 〈
-o.completeopt = 'menu'
+o.completeopt = "menuone,noselect"
 o.dictionary = [[/usr/share/dict/words]]
 o.wildignorecase = true
 -- 〉
 
 -- font 〈
-o.guifont = 'Monaco for Powerline:h11'
+o.guifont = "Monaco for Powerline:h11"
 o.linespace = 0
 -- 〉
 
