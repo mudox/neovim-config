@@ -62,7 +62,6 @@ return {
 	"easy-align",
 
 	-- Search & replace
-	"ctrlsf",
 	"spectre",
 
 	-- Snippets
