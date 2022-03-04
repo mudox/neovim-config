@@ -52,7 +52,7 @@ local function fallback_config(path)
   if p.isfile(luaFile) then
     local code = ([[
       require 'plugin.config.%s'
-    ]]):format(name, name)
+    ]]):format(name)
 
     return load(code)
   end
@@ -126,7 +126,7 @@ local packer_opts = {
 --- @example: require('pluginmanager').load(stdpath('plugins'))
 local function load(path)
   require("packer").startup {
-    function()
+    function(use)
       for _, pat in ipairs(require(path)) do
         for _, env in ipairs(parse_spec(pat)) do
           ---@diagnostic disable-next-line: undefined-global
@@ -138,6 +138,7 @@ local function load(path)
         require("packer").sync()
       end
     end,
+
     config = packer_opts,
   }
 end
