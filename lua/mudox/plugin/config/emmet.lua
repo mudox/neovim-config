@@ -1,14 +1,12 @@
 -- vim: fdm=marker fmr=〈,〉
 
-vim.g.user_emmet_leader_key = '<M-,>'
+vim.g.user_emmet_leader_key = "<M-,>"
 
 -- Settings 〈
 -- see emmet-vim/autoload/emmet.vim, search for `s:emmet_settings`
-vim.g.user_emmet_settings = {
-
-}
+vim.g.user_emmet_settings = {}
 -- 〉
- 
+
 -- Mappings 〈
 
 -- vim.g.user_emmet_expandabbr_key = '<M-,>,'
@@ -28,4 +26,3 @@ vim.g.user_emmet_settings = {
 -- vim.g.user_emmet_codepretty_key = '<M-,>c'
 
 -- 〉
-

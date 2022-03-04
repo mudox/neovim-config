@@ -1,4 +1,3 @@
+url = "edkolev/tmuxline.vim"
 
-url = 'edkolev/tmuxline.vim'
-
-cmd = { 'Tmuxline' }
+cmd = { "Tmuxline" }

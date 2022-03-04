@@ -1,4 +1,3 @@
-url = 'glts/vim-textobj-comment'
+url = "glts/vim-textobj-comment"
 
-requires = 'kana/vim-textobj-user'
-
+requires = "kana/vim-textobj-user"

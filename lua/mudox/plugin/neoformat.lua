@@ -1,6 +1,5 @@
+url = "sbdchd/neoformat"
 
-url = 'sbdchd/neoformat'
+cmd = { "Neoformat" }
 
-cmd = {'Neoformat'}
-
-keys = {[[\af]]}
+keys = { [[\af]] }

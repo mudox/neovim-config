@@ -1,1 +1,1 @@
-url = 'williamboman/nvim-lsp-installer'
+url = "williamboman/nvim-lsp-installer"

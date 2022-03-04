@@ -1,3 +1,3 @@
-url = 'rafcamlet/nvim-luapad'
+url = "rafcamlet/nvim-luapad"
 
 -- cmd = {'LuaRun', 'LuaPad'}

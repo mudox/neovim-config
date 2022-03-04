@@ -1,1 +1,1 @@
-url = 'wbthomason/packer.nvim'
+url = "wbthomason/packer.nvim"

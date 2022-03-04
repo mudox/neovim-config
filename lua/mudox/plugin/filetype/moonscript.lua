@@ -1,3 +1,3 @@
-url = 'leafo/moonscript-vim'
+url = "leafo/moonscript-vim"
 
-event = 'VimEnter'
+event = "VimEnter"

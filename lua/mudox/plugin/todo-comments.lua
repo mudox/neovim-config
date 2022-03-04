@@ -1,1 +1,1 @@
-url = 'folke/todo-comments.nvim'
+url = "folke/todo-comments.nvim"

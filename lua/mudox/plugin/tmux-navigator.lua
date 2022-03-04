@@ -1,1 +1,1 @@
-url = 'christoomey/vim-tmux-navigator'
+url = "christoomey/vim-tmux-navigator"

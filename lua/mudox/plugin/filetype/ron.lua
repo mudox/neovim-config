@@ -1,3 +1,3 @@
-url = 'ron-rs/ron.vim'
+url = "ron-rs/ron.vim"
 
-event = 'VimEnter'
+event = "VimEnter"

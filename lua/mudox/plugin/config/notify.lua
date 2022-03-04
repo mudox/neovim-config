@@ -31,8 +31,8 @@ local opts = {
 	icons = {
 		-- stylua: ignore
 		ERROR = " ",
-		WARN  = " ",
-		INFO  = " ",
+		WARN = " ",
+		INFO = " ",
 		DEBUG = " ",
 		TRACE = " ",
 		-- stylua: ignore end

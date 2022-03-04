@@ -1,1 +1,1 @@
-url = 'stevearc/aerial.nvim'
+url = "stevearc/aerial.nvim"

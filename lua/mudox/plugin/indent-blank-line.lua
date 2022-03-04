@@ -1,4 +1,3 @@
+url = "lukas-reineke/indent-blankline.nvim"
 
-url = 'lukas-reineke/indent-blankline.nvim'
-
-event = 'BufRead'
+event = "BufRead"

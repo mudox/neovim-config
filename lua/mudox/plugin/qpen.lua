@@ -1,3 +1,3 @@
-url = 'mudox/vim-qpen'
+url = "mudox/vim-qpen"
 
-fn = 'Qpen'
+fn = "Qpen"

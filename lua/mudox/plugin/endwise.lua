@@ -1,3 +1,3 @@
-url = 'tpope/vim-endwise'
+url = "tpope/vim-endwise"
 
-event = {'InsertEnter'}
+event = { "InsertEnter" }

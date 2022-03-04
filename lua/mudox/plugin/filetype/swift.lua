@@ -1,3 +1,3 @@
-url = 'keith/swift.vim'
+url = "keith/swift.vim"
 
-event = 'VimEnter'
+event = "VimEnter"

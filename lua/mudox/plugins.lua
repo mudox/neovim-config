@@ -16,27 +16,27 @@ return {
 	-- Language server
 	"coc",
 	"tree-sitter",
-  "context-vt",
+	"context-vt",
 
-  -- Debugging
+	-- Debugging
 	"dap",
 
 	-- Editing
 	"tree-hopper",
-  "comment",
+	"comment",
 	"visual-multi",
 	"switch",
 	"neoformat",
 	"sandwich",
 	"easy-align",
-  "spectre",
+	"spectre",
 
 	-- Snippets
 	"ultisnips",
 	"snippets",
 
 	-- UI
-  "which-key",
+	"which-key",
 	"dressing",
 	"aerial",
 	"dev-icons",
@@ -46,7 +46,7 @@ return {
 	"indent-blank-line",
 	"todo-comments",
 	"trouble",
-  "shade",
+	"shade",
 
 	-- Window
 	"stickybuf",

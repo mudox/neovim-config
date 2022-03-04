@@ -1,6 +1,5 @@
+url = "vim-airline/vim-airline"
 
-url = 'vim-airline/vim-airline'
-
-requires = 'vim-airline/vim-airline-themes'
+requires = "vim-airline/vim-airline-themes"
 
 -- event = 'VimEnter'

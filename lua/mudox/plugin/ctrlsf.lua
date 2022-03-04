@@ -1,32 +1,31 @@
+url = "dyng/ctrlsf.vim"
 
-url = 'dyng/ctrlsf.vim'
-
-event = 'VimEnter'
+event = "VimEnter"
 
 function config()
-  vim.cmd [[
+	vim.cmd([[
   cabbrev sf CtrlSF
-  ]]
+  ]])
 
-  local nplug = require("mudox/keymap").nplug
-  local vplug = require("mudox/keymap").vplug
+	local nplug = require("mudox/keymap").nplug
+	local vplug = require("mudox/keymap").vplug
 
-  -- search immediately
-  nplug(',sf', 'CtrlSFCwordExec')
-  vplug(',sf', 'CtrlSFVwordExec')
-  nplug(',ss', 'CtrlSFCCwordExec')
+	-- search immediately
+	nplug(",sf", "CtrlSFCwordExec")
+	vplug(",sf", "CtrlSFVwordExec")
+	nplug(",ss", "CtrlSFCCwordExec")
 
-  -- put on command line
-  vplug(',s:', 'CtrlSFVwordPath')
-  nplug(',s:', 'CtrlSFCwordPath')
+	-- put on command line
+	vplug(",s:", "CtrlSFVwordPath")
+	nplug(",s:", "CtrlSFCwordPath")
 
-  -- first try locating project root, starting from current file path
-  -- if not found, fallback to current file path
-  vim.g.ctrlsf_default_root = 'project+ff'
+	-- first try locating project root, starting from current file path
+	-- if not found, fallback to current file path
+	vim.g.ctrlsf_default_root = "project+ff"
 
-  -- more compat layout
-  vim.g.ctrlsf_indent = 2
+	-- more compat layout
+	vim.g.ctrlsf_indent = 2
 
-  -- enable regex search by defaults
-  vim.g.ctrlsf_regex_pattern = 1
+	-- enable regex search by defaults
+	vim.g.ctrlsf_regex_pattern = 1
 end

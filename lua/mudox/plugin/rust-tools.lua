@@ -1,1 +1,1 @@
-url = 'simrat39/rust-tools.nvim'
+url = "simrat39/rust-tools.nvim"

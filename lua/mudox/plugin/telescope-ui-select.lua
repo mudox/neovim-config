@@ -1,1 +1,1 @@
-url = 'nvim-telescope/telescope-ui-select.nvim'
+url = "nvim-telescope/telescope-ui-select.nvim"

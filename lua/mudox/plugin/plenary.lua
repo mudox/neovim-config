@@ -1,1 +1,1 @@
-url = 'nvim-lua/plenary.nvim'
+url = "nvim-lua/plenary.nvim"

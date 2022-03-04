@@ -1,3 +1,3 @@
-url = 'neoclide/jsonc.vim'
+url = "neoclide/jsonc.vim"
 
-event = 'VimEnter'
+event = "VimEnter"

@@ -1,8 +1,7 @@
+url = "norcalli/nvim-colorizer.lua"
 
-url = 'norcalli/nvim-colorizer.lua'
-
-ft = {'html', 'css', 'javascript', 'typescript', 'vimscript', 'swift'}
+ft = { "html", "css", "javascript", "typescript", "vimscript", "swift" }
 
 function config()
-  require('colorizer').setup()
+	require("colorizer").setup()
 end

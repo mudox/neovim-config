@@ -1,18 +1,18 @@
 local g = vim.g
 
-g.UltiSnipsEditSplit = 'vertical'
+g.UltiSnipsEditSplit = "vertical"
 
-local my_snippets_dir = pl.path.join(stdpath.my_pack, 'opt/vim-mysnippets')
-g.UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = pl.path.join(my_snippets_dir, 'UltiSnips')
+local my_snippets_dir = pl.path.join(stdpath.my_pack, "opt/vim-mysnippets")
+g.UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = pl.path.join(my_snippets_dir, "UltiSnips")
 
 -- g.UltiSnipsExpandTrigger = '<Tab>'
 -- g.UltiSnipsListSnippets = '<C-x>u'
 -- g.UltiSnipsJumpForwardTrigger = '<C-j>'
 -- g.UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-vim.cmd [[
+vim.cmd([[
 cabbrev ue UltiSnipsEdit
-]]
+]])
 
 -- issue: https://github.com/SirVer/ultisnips/issues/1414
 -- package entries will not be added to &rtp by nvim automatically

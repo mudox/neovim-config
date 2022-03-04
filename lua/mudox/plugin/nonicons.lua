@@ -1,6 +1,5 @@
+url = "yamatsum/nvim-nonicons"
 
-url = 'yamatsum/nvim-nonicons'
+after = "nvim-web-devicons"
 
-after = 'nvim-web-devicons'
-
-event = 'VimEnter'
+event = "VimEnter"

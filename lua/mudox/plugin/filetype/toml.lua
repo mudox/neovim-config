@@ -1,5 +1,5 @@
-url = 'cespare/vim-toml'
+url = "cespare/vim-toml"
 
-branch = 'main'
+branch = "main"
 
-event = 'VimEnter'
+event = "VimEnter"

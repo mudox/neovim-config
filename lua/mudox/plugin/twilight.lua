@@ -1,3 +1,3 @@
-url = 'folke/twilight.nvim'
+url = "folke/twilight.nvim"
 
-event = 'VimEnter'
+event = "VimEnter"

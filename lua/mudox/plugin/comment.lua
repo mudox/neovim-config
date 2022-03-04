@@ -1,3 +1,3 @@
-url = 'numToStr/Comment.nvim'
+url = "numToStr/Comment.nvim"
 
-event = 'BufRead'
+event = "BufRead"

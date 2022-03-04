@@ -1,4 +1,3 @@
+url = "kana/vim-textobj-entire"
 
-url = 'kana/vim-textobj-entire'
-
-requires = 'kana/vim-textobj-user'
+requires = "kana/vim-textobj-user"

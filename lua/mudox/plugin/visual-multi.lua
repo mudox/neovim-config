@@ -1,3 +1,3 @@
-url = 'mg979/vim-visual-multi'
+url = "mg979/vim-visual-multi"
 
-keys = {{'n', '<C-n>'}, {'i', '<C-n>'}, {'v', '<C-n>'}}
+keys = { { "n", "<C-n>" }, { "i", "<C-n>" }, { "v", "<C-n>" } }

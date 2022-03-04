@@ -2,4 +2,4 @@ local opts = {
 	ignore_case = true,
 }
 
-require('lightspeed').setup(opts)
+require("lightspeed").setup(opts)

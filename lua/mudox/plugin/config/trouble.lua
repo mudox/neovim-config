@@ -3,13 +3,13 @@
 -- Options 〈
 local opts = {
 	signs = {
-    -- stylua: ignore start
-		error       = " ",
-		warning     = " ",
-		hint        = "➠ ",
+		-- stylua: ignore start
+		error = " ",
+		warning = " ",
+		hint = "➠ ",
 		information = " ",
-		other       = "﫠"
-    -- stylua: ignore end
+		other = "﫠",
+		-- stylua: ignore end
 	},
 }
 -- 〉

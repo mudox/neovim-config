@@ -1,3 +1,3 @@
-url = 'NvChad/nvim-base16.lua'
+url = "NvChad/nvim-base16.lua"
 
-commit = 'cd5e3cd'
+commit = "cd5e3cd"

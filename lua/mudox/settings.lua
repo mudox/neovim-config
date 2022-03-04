@@ -13,7 +13,7 @@ vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 -- 〉
 
 -- helpers 〈
-local home = os.getenv "HOME"
+local home = os.getenv("HOME")
 
 -- access vim remote plugin api
 local a = vim.api

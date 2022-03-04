@@ -1,4 +1,3 @@
+url = "kana/vim-textobj-indent"
 
-url = 'kana/vim-textobj-indent'
-
-requires = 'kana/vim-textobj-user'
+requires = "kana/vim-textobj-user"

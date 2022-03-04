@@ -1,3 +1,3 @@
-url = 'stevearc/dressing.nvim'
+url = "stevearc/dressing.nvim"
 
-event = 'VimEnter'
+event = "VimEnter"

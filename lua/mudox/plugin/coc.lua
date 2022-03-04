@@ -1,5 +1,5 @@
-url = 'neoclide/coc.nvim'
+url = "neoclide/coc.nvim"
 
-branch = 'release'
+branch = "release"
 
-event = 'VimEnter'
+event = "VimEnter"

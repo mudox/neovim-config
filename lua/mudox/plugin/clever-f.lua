@@ -1,3 +1,3 @@
-url = 'rhysd/clever-f.vim'
+url = "rhysd/clever-f.vim"
 
-keys = {'f', 'F'}
+keys = { "f", "F" }

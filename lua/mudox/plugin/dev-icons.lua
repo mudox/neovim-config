@@ -1,4 +1,3 @@
+url = "kyazdani42/nvim-web-devicons"
 
-url = 'kyazdani42/nvim-web-devicons'
-
-event = 'VimEnter'
+event = "VimEnter"

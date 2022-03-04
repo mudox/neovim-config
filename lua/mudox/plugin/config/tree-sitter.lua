@@ -28,7 +28,7 @@ local opts = {
 		"swift",
 	},
 
-  -- Modules
+	-- Modules
 	highlight = highlight,
 }
 

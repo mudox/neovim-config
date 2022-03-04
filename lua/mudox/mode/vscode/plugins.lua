@@ -1,49 +1,49 @@
 return {
-  -- plugin manager
-  'packer',
+	-- plugin manager
+	"packer",
 
-  -- profiling
-  'startuptime',
+	-- profiling
+	"startuptime",
 
-  -- language service
-  -- 'coc',
-  -- 'treesitter',
+	-- language service
+	-- 'coc',
+	-- 'treesitter',
 
-  -- 'dap', -- debug
+	-- 'dap', -- debug
 
-  -- editing
-  'nerdcommenter',
-  -- 'visualmulti',
-  -- 'neoformat',
-  -- 'ultisnips',
+	-- editing
+	"nerdcommenter",
+	-- 'visualmulti',
+	-- 'neoformat',
+	-- 'ultisnips',
 
-  -- 'endwise',
-  'switch',
-  'cleverf',
-  'sandwich',
-  'easyalign',
+	-- 'endwise',
+	"switch",
+	"cleverf",
+	"sandwich",
+	"easyalign",
 
-  -- ui
-  -- 'base16',
-  -- 'airline',
-  -- 'popup',
-  -- 'telescope',
-  -- 'colorizer',
+	-- ui
+	-- 'base16',
+	-- 'airline',
+	-- 'popup',
+	-- 'telescope',
+	-- 'colorizer',
 
-  -- text object
-  'textobject/*',
+	-- text object
+	"textobject/*",
 
-  -- 'treesitter-textobjects',
+	-- 'treesitter-textobjects',
 
-  -- file type
-  -- 'filetype/*',
+	-- file type
+	-- 'filetype/*',
 
-  -- dev
-  -- 'luapad',
-  'plenary',
+	-- dev
+	-- 'luapad',
+	"plenary",
 
-  -- other
-  'unimpaired',
-  -- 'qpen',
-  -- 'tmuxnavigator',
+	-- other
+	"unimpaired",
+	-- 'qpen',
+	-- 'tmuxnavigator',
 }

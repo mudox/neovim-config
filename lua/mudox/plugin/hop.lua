@@ -1,9 +1,9 @@
-url = 'phaazon/hop.nvim'
+url = "phaazon/hop.nvim"
 
-branch = 'v1' -- optional but strongly recommended
+branch = "v1" -- optional but strongly recommended
 
-event = 'VimEnter'
+event = "VimEnter"
 
 function config()
-  require'hop'.setup {keys = 'etovxqpdygfblzhckisuran'}
+	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 end

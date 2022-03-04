@@ -10,4 +10,3 @@ end
 
 vim.g.mdx_nvim_mode = mode
 vim.cmd([[ lockvar g:mdx_nvim_mode ]])
-
