@@ -86,8 +86,12 @@ local function on_attach(client, bufnr)
 	if client.name == "tsserver" then
 		client.resolved_capabilities.document_formatting = false
 	end
+
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
+
+  -- aerial.nvim
+  require("aerial").on_attach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
