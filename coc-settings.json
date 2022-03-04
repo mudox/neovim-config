@@ -13,12 +13,9 @@
     "rust",
     "typescript"
   ],
-  // let treesitter do it
-  "coc.preferences.colorSupport": false,
-  "coc.preferences.semanticTokensHighlights": false,
   //
   // code lens
-  "codeLens.enable": true,
+  // "codeLens.enable": true,
   //
   // suggest
   "suggest.triggerAfterInsertEnter": false,
