@@ -1,15 +1,15 @@
 return {
-	"packer",
+  "packer",
 
-	"impatient",
-	"filetype",
+  "impatient",
+  "filetype",
 
-	"startup-time",
-	"base16",
+  "startup-time",
+  "base16",
 
-	"stickybuf",
-	"stabilize",
-	"unimpaired",
+  "stickybuf",
+  "stabilize",
+  "unimpaired",
 
-	"tmux-navigator",
+  "tmux-navigator",
 }

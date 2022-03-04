@@ -1,78 +1,78 @@
 return {
-	-- Boost startup time
-	"impatient", -- it will be merged into Neovim
-	"filetype", -- replace `runtime/filetype.vim`
+  -- Boost startup time
+  "impatient", -- it will be merged into Neovim
+  "filetype", -- replace `runtime/filetype.vim`
 
-	-- The Plugin manager
-	"packer",
+  -- The Plugin manager
+  "packer",
 
-	-- Dev
-	"notify",
-	"luapad",
-	"plenary",
-	"repeat",
-	"startup-time",
+  -- Dev
+  "notify",
+  "luapad",
+  "plenary",
+  "repeat",
+  "startup-time",
 
-	-- Language server
-	"coc",
-	"tree-sitter",
-	"context-vt",
+  -- Language server
+  "coc",
+  "tree-sitter",
+  "context-vt",
 
-	-- Debugging
-	"dap",
+  -- Debugging
+  "dap",
 
-	-- Editing
-	"tree-hopper",
-	"comment",
-	"visual-multi",
-	"switch",
-	"neoformat",
-	"sandwich",
-	"easy-align",
-	"spectre",
+  -- Editing
+  "tree-hopper",
+  "comment",
+  "visual-multi",
+  "switch",
+  "neoformat",
+  "sandwich",
+  "easy-align",
+  "spectre",
 
-	-- Snippets
-	"ultisnips",
-	"snippets",
+  -- Snippets
+  "ultisnips",
+  "snippets",
 
-	-- UI
-	"which-key",
-	"dressing",
-	"aerial",
-	"dev-icons",
-	"base16",
-	"lualine",
-	"tmuxline",
-	"indent-blank-line",
-	"todo-comments",
-	"trouble",
-	"shade",
+  -- UI
+  "which-key",
+  "dressing",
+  "aerial",
+  "dev-icons",
+  "base16",
+  "lualine",
+  "tmuxline",
+  "indent-blank-line",
+  "todo-comments",
+  "trouble",
+  "shade",
 
-	-- Window
-	"stickybuf",
-	"popup",
+  -- Window
+  "stickybuf",
+  "popup",
 
-	"zen-mode",
+  "zen-mode",
 
-	-- Navigation
-	"clever-f",
-	"light-speed",
-	"nnn",
-	"telescope",
-	"tmux-navigator",
+  -- Navigation
+  "clever-f",
+  "light-speed",
+  "nnn",
+  "telescope",
+  "tmux-navigator",
 
-	-- Text object
-	"textobject/*",
+  -- Text object
+  "textobject/*",
 
-	-- File type
-	"filetype/*",
+  -- File type
+  "filetype/*",
 
-	-- Other
-	"unimpaired",
+  -- Other
+  "unimpaired",
 
   -- Git
   "fugitive",
 
-	-- Web
-	"emmet",
+  -- Web
+  "emmet",
 }

@@ -1,122 +1,122 @@
 -- vim: fdm=marker fmr=〈,〉
 
 return {
-	-- Boost startup time
-	"impatient", -- it will be merged into Neovim
-	"filetype", -- replace `runtime/filetype.vim`
+  -- Boost startup time
+  "impatient", -- it will be merged into Neovim
+  "filetype", -- replace `runtime/filetype.vim`
 
-	-- The Plugin manager
-	"packer",
+  -- The Plugin manager
+  "packer",
 
-	-- Dev
-	"plenary",
-	"repeat",
-	"startup-time",
+  -- Dev
+  "plenary",
+  "repeat",
+  "startup-time",
 
-	-- Language
-	"tree-sitter",
+  -- Language
+  "tree-sitter",
 
-	"context-vt",
-	"aerial",
+  "context-vt",
+  "aerial",
 
-	"neoformat",
+  "neoformat",
 
-	"trouble",
+  "trouble",
 
-	-- LSP 〈
+  -- LSP 〈
 
-	-- lsp basics
-	"lsp-config",
-	"lsp-installer",
+  -- lsp basics
+  "lsp-config",
+  "lsp-installer",
 
-	-- the completion engine
-	"cmp",
+  -- the completion engine
+  "cmp",
 
-	-- basic sources
-	"cmp-buffer", -- words from buffers
-	"cmp-cmdline", -- neovim commands completion
-	"cmp-path", -- filesystem path completion
+  -- basic sources
+  "cmp-buffer", -- words from buffers
+  "cmp-cmdline", -- neovim commands completion
+  "cmp-path", -- filesystem path completion
 
-	-- snippets
-	"cmp-luasnip",
+  -- snippets
+  "cmp-luasnip",
 
-	-- neovim lua api
-	"cmp-nvim-lua",
+  -- neovim lua api
+  "cmp-nvim-lua",
 
-	-- generic completion sources
-	"cmp-nvim-lsp",
-	"cmp-tabnine",
+  -- generic completion sources
+  "cmp-nvim-lsp",
+  "cmp-tabnine",
 
-	-- 〉
+  -- 〉
 
-	-- Debugging
-	-- "dap",
+  -- Debugging
+  -- "dap",
 
-	-- Editing
-	"visual-multi",
+  -- Editing
+  "visual-multi",
 
-	"comment",
-	"switch",
+  "comment",
+  "switch",
 
-	"sandwich",
-	"easy-align",
+  "sandwich",
+  "easy-align",
 
-	-- Search & replace
-	"spectre",
+  -- Search & replace
+  "spectre",
 
-	-- Snippets
-	"luasnip",
-	-- "ultisnips",
-	-- "snippets",
+  -- Snippets
+  "luasnip",
+  -- "ultisnips",
+  -- "snippets",
 
-	-- UI
-	"notify",
-	"which-key",
-	"dressing",
-	"dev-icons",
-	"base16",
-	"lualine",
-	"tmuxline",
-	"indent-blank-line",
-	"todo-comments",
-	"shade",
+  -- UI
+  "notify",
+  "which-key",
+  "dressing",
+  "dev-icons",
+  "base16",
+  "lualine",
+  "tmuxline",
+  "indent-blank-line",
+  "todo-comments",
+  "shade",
 
-	-- Window
-	"stickybuf",
-	"popup",
+  -- Window
+  "stickybuf",
+  "popup",
 
-	"zen-mode",
+  "zen-mode",
 
-	-- Navigation
-	"clever-f",
-	"light-speed",
-	"nnn",
-	"telescope",
-	"tmux-navigator",
-	"tree-hopper",
+  -- Navigation
+  "clever-f",
+  "light-speed",
+  "nnn",
+  "telescope",
+  "tmux-navigator",
+  "tree-hopper",
 
-	-- Text object
-	"textobject/*",
+  -- Text object
+  "textobject/*",
 
-	-- File type
-	"filetype/*",
+  -- File type
+  "filetype/*",
 
-	-- Other
-	"unimpaired",
+  -- Other
+  "unimpaired",
 
   -- Git
   "fugitive",
 
-	-- Web
-	"emmet",
+  -- Web
+  "emmet",
 
-	-- Lua
-	"luapad",
+  -- Lua
+  "luapad",
 
-	-- Swift
-	-- Rust
-	-- Python
-	-- JS
-	-- HTML/CSS
-	-- C/C++
+  -- Swift
+  -- Rust
+  -- Python
+  -- JS
+  -- HTML/CSS
+  -- C/C++
 }

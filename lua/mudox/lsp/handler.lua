@@ -40,7 +40,6 @@ local function setup()
 end
 
 local function lsp_highlight_document(client)
-  -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
@@ -58,7 +57,7 @@ end
 local function lsp_mappings(bufnr)
   local k = function(mode, key, cmd, opts)
     opts = { noremap = true, silent = true }
-    cmd = ('<Cmd>lua %s<Cr>'):format(cmd)
+    cmd = ("<Cmd>lua %s<Cr>"):format(cmd)
     vim.api.nvim_buf_set_keymap(bufnr, mode, key, cmd, opts)
   end
 
@@ -78,8 +77,8 @@ local function lsp_mappings(bufnr)
   k("n", "<Bs>f", "vim.lsp.buf.formatting()")
 
   -- diagnostic
-  k("n", "[d", 'vim.diagnostic.goto_prev()')
-  k("n", "]d", 'vim.diagnostic.goto_next()')
+  k("n", "[d", "vim.diagnostic.goto_prev()")
+  k("n", "]d", "vim.diagnostic.goto_next()")
   k("n", "gl", "vim.diagnostic.open_float()")
 end
 

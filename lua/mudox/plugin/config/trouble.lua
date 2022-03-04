@@ -2,15 +2,15 @@
 
 -- Options 〈
 local opts = {
-	signs = {
-		-- stylua: ignore start
-		error = " ",
-		warning = " ",
-		hint = "➠ ",
-		information = " ",
-		other = "﫠",
-		-- stylua: ignore end
-	},
+  signs = {
+    -- stylua: ignore start
+    error = " ",
+    warning = " ",
+    hint = "➠ ",
+    information = " ",
+    other = "﫠",
+    -- stylua: ignore end
+  },
 }
 -- 〉
 

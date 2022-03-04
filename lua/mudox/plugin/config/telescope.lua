@@ -9,10 +9,10 @@ local prefix = ",t"
 -- builtin
 ---@diagnostic disable-next-line: lowercase-global
 function _mdx_telescope_picker_builtin()
-	local opts = {
-		include_extensions = true,
-	}
-	require("telescope.builtin").builtin(opts)
+  local opts = {
+    include_extensions = true,
+  }
+  require("telescope.builtin").builtin(opts)
 end
 ncmd(prefix .. ",", "lua _mdx_telescope_picker_builtin()")
 
@@ -45,36 +45,36 @@ ncmd(prefix .. "o", "Telescope vim_options")
 
 -- Setup 〈
 
-require("telescope").setup({
-	defaults = {
-		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		-- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+require("telescope").setup {
+  defaults = {
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 
-		-- mappings = {
-		-- ['<C-e>'] = require('telescope.actions.layout').toggle_preview,
-		-- },
+    -- mappings = {
+    -- ['<C-e>'] = require('telescope.actions.layout').toggle_preview,
+    -- },
 
-		-- preview = {
-		-- hide_on_startup = true,
-		-- },
-	},
+    -- preview = {
+    -- hide_on_startup = true,
+    -- },
+  },
 
-	extensions = {
-		-- packer = {
-		-- theme = "ivy",
-		-- layout_config = {
-		-- height = 0.5,
-		-- },
-		-- },
+  extensions = {
+    -- packer = {
+    -- theme = "ivy",
+    -- layout_config = {
+    -- height = 0.5,
+    -- },
+    -- },
 
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown({
-				-- even more opts
-			}),
-		},
-	},
-	pickers = { hidden = true },
-})
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      },
+    },
+  },
+  pickers = { hidden = true },
+}
 
 -- 〉
 

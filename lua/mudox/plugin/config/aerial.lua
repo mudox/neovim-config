@@ -6,4 +6,4 @@ ncmd("<M-/>A", "AerialOpen")
 ncmd("]a", "AerialNext")
 ncmd("[a", "AerialPrev")
 
-require("aerial").setup({})
+require("aerial").setup {}

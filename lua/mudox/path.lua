@@ -49,34 +49,34 @@ _p.packer_opt = join(_p.packer, "opt")
 -- fallback to lua root dir (shared) if given module file
 -- is missing under specific mode directory
 local function path(_, name)
-	local prefix = "mudox/"
-	local mode = vim.g.mdx_nvim_mode
-	if mode ~= "default" then
-		prefix = ("mudox/mode/%s/"):format(mode)
-	end
+  local prefix = "mudox/"
+  local mode = vim.g.mdx_nvim_mode
+  if mode ~= "default" then
+    prefix = ("mudox/mode/%s/"):format(mode)
+  end
 
-	local module_path = join(stdpath.lua, prefix, name .. ".lua")
-	if pl.path.isfile(module_path) then
-		return prefix .. name
-	else
-		return "mudox/" .. name
-	end
+  local module_path = join(stdpath.lua, prefix, name .. ".lua")
+  if pl.path.isfile(module_path) then
+    return prefix .. name
+  else
+    return "mudox/" .. name
+  end
 end
 -- 〉
 
 -- Module 〈
 
 local M = setmetatable({}, {
-	__call = path,
-	__index = function(_, id)
-		local r = _p[id]
-		assert(r, ("acessing invalid path id `%s`"):format(id))
-		return r
-	end,
-	-- prohibit adding new fields
-	__newindex = function()
-		error("`stdpath` is a constant variable")
-	end,
+  __call = path,
+  __index = function(_, id)
+    local r = _p[id]
+    assert(r, ("acessing invalid path id `%s`"):format(id))
+    return r
+  end,
+  -- prohibit adding new fields
+  __newindex = function()
+    error("`stdpath` is a constant variable")
+  end,
 })
 
 -- 〉

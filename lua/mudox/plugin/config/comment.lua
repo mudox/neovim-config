@@ -1,7 +1,7 @@
 local config = {
-	mappings = {
-		extended = true, -- enable `g>`, `g<` mappings
-	},
+  mappings = {
+    extended = true, -- enable `g>`, `g<` mappings
+  },
 }
 
 require("Comment").setup(config)

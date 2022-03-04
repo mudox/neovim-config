@@ -1,7 +1,7 @@
 -- vim: fdm=marker fmr=〈,〉
 
 -- luarocks
-require('mudox.luarocks')
+require("mudox.luarocks")
 
 -- penlight
 pl = require("pl.import_into")()

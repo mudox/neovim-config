@@ -13,53 +13,53 @@
   @usage: k.ncmd("<C-]>", [[echo "hello world"]])
 ]==]
 local Set = require("pl.Set")
-local modes = Set({ "n", "i", "v", "o", "c", "s", "l", "t", "x" })
+local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
 
 --[[
   the core method to define mapping. it calls `nvim_set_keymap` at last
 ]]
 local function map(
-	mode, -- mode char, see `:h map`
-	from, -- key mapping string
-	to, -- action string
-	options -- see {opts} in `:h nvim_set_keymap()`
+  mode, -- mode char, see `:h map`
+  from, -- key mapping string
+  to, -- action string
+  options -- see {opts} in `:h nvim_set_keymap()`
 )
-	options = options or {}
+  options = options or {}
 
-	-- eanble `noremap` by default
-	if options.remap ~= true then
-		options.noremap = true
-	end
-	options.remap = nil
+  -- eanble `noremap` by default
+  if options.remap ~= true then
+    options.noremap = true
+  end
+  options.remap = nil
 
-	-- eanble `silent` by default
-	if not options.nosilent ~= true then
-		options.silent = true
-	end
-	options.nosilent = nil
+  -- eanble `silent` by default
+  if not options.nosilent ~= true then
+    options.silent = true
+  end
+  options.nosilent = nil
 
-	vim.api.nvim_set_keymap(mode, from, to, options)
+  vim.api.nvim_set_keymap(mode, from, to, options)
 end
 
 --[[
   convenient method for common patter `<Cmd>...<Cr>`
 ]]
 local function cmd(mode, from, to, options)
-	map(mode, from, "<Cmd>" .. to .. "<Cr>", options)
+  map(mode, from, "<Cmd>" .. to .. "<Cr>", options)
 end
 
 --[[
   convenient method for common patter `<Plug>...`
 ]]
 local function plug(mode, from, to, options)
-	map(mode, from, ("<Plug>(%s)"):format(to), options)
+  map(mode, from, ("<Plug>(%s)"):format(to), options)
 end
 
 --[[
   convenient method to clear mapping
 ]]
 local function nop(mode, from)
-	map(mode, from, "<Nop>", {})
+  map(mode, from, "<Nop>", {})
 end
 
 local bodys = { map = map, cmd = cmd, plug = plug, nop = nop }
@@ -72,18 +72,18 @@ local bodys = { map = map, cmd = cmd, plug = plug, nop = nop }
   @return composed convenient mapping defining function
 ]]
 local function parse(name)
-	assert(type(name) == "string")
+  assert(type(name) == "string")
 
-	-- mode char
-	local mode = name:sub(1, 1)
-	assert(modes[mode], ("invalid mode char `%s`"):format(mode))
+  -- mode char
+  local mode = name:sub(1, 1)
+  assert(modes[mode], ("invalid mode char `%s`"):format(mode))
 
-	-- body method
-	local body = name:sub(2)
-	local fn = bodys[body]
-	assert(fn, ("invalid body name `%s`"):format(body))
+  -- body method
+  local body = name:sub(2)
+  local fn = bodys[body]
+  assert(fn, ("invalid body name `%s`"):format(body))
 
-	return pl.func.bind1(fn, mode)
+  return pl.func.bind1(fn, mode)
 end
 
 -- module
@@ -91,13 +91,13 @@ end
 M = {}
 
 for k, v in pairs(bodys) do
-	M[k] = v
+  M[k] = v
 end
 
 M.__index = function(tbl, name)
-	local fn = parse(name)
-	tbl[name] = fn
-	return fn
+  local fn = parse(name)
+  tbl[name] = fn
+  return fn
 end
 
 setmetatable(M, M)
