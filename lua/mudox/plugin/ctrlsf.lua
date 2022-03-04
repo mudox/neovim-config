@@ -7,8 +7,8 @@ function config()
   cabbrev sf CtrlSF
   ]])
 
-	local nplug = require("mudox/keymap").nplug
-	local vplug = require("mudox/keymap").vplug
+	local nplug = .nplug
+	local vplug = .vplug
 
 	-- search immediately
 	nplug(",sf", "CtrlSFCwordExec")

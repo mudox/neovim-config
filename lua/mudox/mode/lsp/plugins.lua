@@ -89,12 +89,12 @@ return {
 	"zen-mode",
 
 	-- Navigation
-	"tree-hopper",
 	"clever-f",
 	"light-speed",
 	"nnn",
 	"telescope",
 	"tmux-navigator",
+	"tree-hopper",
 
 	-- Text object
 	"textobject/*",
@@ -104,6 +104,9 @@ return {
 
 	-- Other
 	"unimpaired",
+
+  -- Git
+  "fugitive",
 
 	-- Web
 	"emmet",

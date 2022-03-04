@@ -70,6 +70,9 @@ return {
 	-- Other
 	"unimpaired",
 
+  -- Git
+  "fugitive",
+
 	-- Web
 	"emmet",
 }
