@@ -1,9 +1,9 @@
 -- TODO: backfill this to template
 local function setup()
   vim.cmd([[
-    hi LspReferenceText ctermbg=gray guibg=gray
-    hi LspReferenceRead ctermbg=gray guibg=gray
-    hi LspReferenceWrite ctermbg=gray guibg=gray
+    hi default link LspReferenceText CusorColumn
+    hi default LspReferenceRead LspReferenceText
+    hi default LspReferenceWrite LspReferenceText
   ]])
 
   local signs = {
