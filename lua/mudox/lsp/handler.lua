@@ -1,5 +1,11 @@
 -- TODO: backfill this to template
 local function setup()
+  vim.cmd([[
+    hi LspReferenceText ctermbg=gray guibg=gray
+    hi LspReferenceRead ctermbg=gray guibg=gray
+    hi LspReferenceWrite ctermbg=gray guibg=gray
+  ]])
+
   local signs = {
     { name = "DiagnosticSignError", text = " " },
     { name = "DiagnosticSignWarn", text = " " },
