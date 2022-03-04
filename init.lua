@@ -21,14 +21,6 @@ vim.cmd([[ lockvar g:mdx_nvim_mode ]])
 -- Common paths
 stdpath = require("path")
 
--- JavaScript
-vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
-
--- Python
-vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
-
--- Config
 require(stdpath("settings"))
 require(stdpath("mappings"))
 require("pluginmanager").load(stdpath("plugins"))

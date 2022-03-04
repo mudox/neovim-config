@@ -1,6 +1,17 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 ---@diagnostic disable: unused-local
 
+-- language client 〈
+
+-- JavaScript
+vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
+
+-- Python
+vim.g.loaded_python_provider = 0
+vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
+
+-- 〉
+
 -- helpers 〈
 local home = os.getenv "HOME"
 
