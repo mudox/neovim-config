@@ -52,5 +52,5 @@ require("zen-mode").mudoxToggle = function()
 	})
 end
 
-local ncmd = require("mudox/keymap").ncmd
+local ncmd = require("mudox.keymap").ncmd
 ncmd("yoz", [[lua require("zen-mode").mudoxToggle()]])

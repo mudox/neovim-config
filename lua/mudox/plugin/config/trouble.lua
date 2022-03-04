@@ -17,7 +17,7 @@ local opts = {
 require("trouble").setup(opts)
 
 -- Mappings 〈
-local ncmd = require("mudox/keymap").ncmd
+local ncmd = require("mudox.keymap").ncmd
 ncmd(",xx", "TroubleToggle")
 ncmd(",xw", "TroubleToggle workspace_diagnostics")
 ncmd(",xd", "TroubleToggle document_diagnostics")

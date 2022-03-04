@@ -12,7 +12,7 @@ local opts = {
 
 require("todo-comments").setup(opts)
 
-local ncmd = require("mudox/keymap").ncmd
+local ncmd = require("mudox.keymap").ncmd
 
 ncmd(",xt", "TodoTrouble")
 ncmd(",tt", "TodoTelescope")

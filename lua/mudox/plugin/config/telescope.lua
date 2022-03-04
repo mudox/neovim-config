@@ -1,7 +1,7 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 
 -- Mappings 〈
-local k = require("mudox/keymap")
+local k = require("mudox.keymap")
 local ncmd = k.ncmd
 
 local prefix = ",t"

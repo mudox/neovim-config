@@ -50,8 +50,8 @@ require("lspsaga").setup(opts)
 
 -- Mappings 〈
 
-local ncmd = require("mudox/keymap").ncmd
-local xcmd = require("mudox/keymap").xcmd
+local ncmd = require("mudox.keymap").ncmd
+local xcmd = require("mudox.keymap").xcmd
 
 -- refactor
 ncmd(",rn", "Lspsaga rename")

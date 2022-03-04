@@ -1,5 +1,5 @@
 -- vim: fdm=marker
-local k = require("mudox/keymap")
+local k = require("mudox.keymap")
 
 vim.g.mapleader = ","
 

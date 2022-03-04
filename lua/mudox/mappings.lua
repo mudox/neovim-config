@@ -2,7 +2,7 @@
 vim.g.mapleader = ","
 
 ---@diagnostic disable: unused-local
-local k = require("mudox/keymap")
+local k = require("mudox.keymap")
 local nmap = k.nmap
 local nnop = k.nnop
 local ncmd = k.ncmd

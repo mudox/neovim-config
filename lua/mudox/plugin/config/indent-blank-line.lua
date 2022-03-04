@@ -72,4 +72,4 @@ style.highlight()
 
 -- 〉
 
-require("mudox/keymap").ncmd("yoi", "IndentBlanklineToggle")
+require("mudox.keymap").ncmd("yoi", "IndentBlanklineToggle")

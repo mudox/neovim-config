@@ -1,4 +1,4 @@
-local ncmd = require("mudox/keymap").ncmd
+local ncmd = require("mudox.keymap").ncmd
 ncmd([[\af]], "Neoformat")
 
 vim.g.neoformat_enabled_python = { "black", "docformatter" }
