@@ -1,0 +1,88 @@
+return {
+	"impatient",
+	"filetype",
+
+	-- Plugin Manager
+	"packer",
+
+	-- Lib
+	"plenary",
+	"notify",
+
+	-- LSP
+	"lsp-config",
+	"lsp-installer",
+	"lsp-saga",
+	"tree-sitter",
+
+	-- Completion
+	"cmp",
+
+	"cmp-buffer",
+	"cmp-cmdline",
+	"cmp-path",
+
+	"cmp-ultisnips",
+
+	"cmp-tabnine",
+	"cmp-nvim-lsp",
+
+	-- Debug
+	"dap",
+
+	-- Snippets
+	"ultisnips",
+	"snippets",
+
+	-- Editing
+	"cleverf",
+	"ctrlsf",
+	"easy-align",
+	"neoformat",
+	"nerd-commenter",
+	"sandwich",
+	"switch",
+	"visual-multi",
+
+	-- UI
+	"base16",
+	"dev-icons",
+	"indent-blank-line",
+	"lualine",
+	"tmuxline",
+	"trouble",
+
+	-- Navigation
+	"aerial",
+	"light-speed",
+	"nnn",
+	"telescope",
+	"tmuxnavigator",
+
+	-- Window
+	"popup",
+	"stabilize", -- no coc in this mode, hence enale it
+	"stickybuf",
+	"zen-mode",
+
+	-- Text Object
+	"textobject/*",
+	"tree-sitter-textobjects",
+
+	-- File Type
+	"filetype/*",
+
+	-- Other
+	"startup-time",
+	"unimpaired",
+
+	-- Lua
+	"luapad",
+
+	-- Rust
+	"rust-tools",
+	"crates",
+
+	-- Web
+	"emmet",
+}

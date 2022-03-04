@@ -7,15 +7,15 @@ require('mudox.luarocks')
 pl = require("pl.import_into")()
 
 -- mode
-require("resolve_mode")
+require("mudox.resolve_mode")
 
 -- common paths
-stdpath = require("path")
+stdpath = require("mudox.path")
 
 -- config
 require(stdpath("settings"))
 require(stdpath("mappings"))
-require("pluginmanager").load(stdpath("plugins"))
+require("mudox.pluginmanager").load(stdpath("plugins"))
 require(stdpath("post"))
 
 -- packer_compiled
