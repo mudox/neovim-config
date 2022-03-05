@@ -1,6 +1,8 @@
 -- vim: fdm=marker fmr=〈,〉
 
 return {
+  "fix-cursor-hold", -- fix `updatetime`
+
   -- Boost startup time
   "impatient", -- it will be merged into Neovim
   "filetype", -- replace `runtime/filetype.vim`
