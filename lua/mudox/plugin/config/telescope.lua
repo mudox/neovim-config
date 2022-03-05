@@ -43,6 +43,15 @@ ncmd(prefix .. "r", "Telescope lsp_references")
 
 -- vim options
 ncmd(prefix .. "o", "Telescope vim_options")
+
+-- mappings in telescope interface
+local actions = require "telescope.actions"
+local mappings = {
+  i = {},
+  n = {
+    ['q'] = actions.close
+  },
+}
 -- 〉
 
 -- Setup 〈
@@ -52,10 +61,7 @@ require("telescope").setup {
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 
-    -- mappings = {
-    -- ['<C-e>'] = require('telescope.actions.layout').toggle_preview,
-    -- },
-
+    mappings = mappings,
     -- preview = {
     -- hide_on_startup = true,
     -- },
