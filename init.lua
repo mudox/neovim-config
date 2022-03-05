@@ -15,6 +15,7 @@ stdpath = require("mudox.path")
 -- config
 require(stdpath("settings"))
 require(stdpath("mappings"))
+require(stdpath("auto_commands"))
 require("mudox.plugin_manager")
 require(stdpath("post"))
 
