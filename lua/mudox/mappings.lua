@@ -63,3 +63,54 @@ nmap("N", "Nzvzz", { remap = true })
 -- fold
 nmap("zj", "zjzx", { remap = true })
 nmap("zk", "zkzx", { remap = true })
+
+-- quickly close window
+ncmd("<C-w><C-w>", "wincmd q")
+
+vim.cmd([[
+function! WipeoutBuffer()
+  try
+    bwipeout
+  catch /E444/
+  catch /E89/
+    lua vim.notify(
+    \  'There are unsaved changes, can not wipeout buffer', 
+    \  'warn',
+    \  { title = 'WipeoutBuffer' }
+    \)
+  endtry
+endfunction
+
+nnoremap <silent> <C-w>r <Cmd>call WipeoutBuffer()<Cr>
+]])
+
+-- quickfix/location list window toggle
+vim.cmd([[
+function! ToggleQuickFix()
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+  else
+    cclose
+  endif
+endfunction
+
+nnoremap <silent> <M-/>q <Cmd>call ToggleQuickFix()<Cr>
+
+function! ToggleLocList()
+  try
+    if empty(filter(getwininfo(), 'v:val.loclist'))
+      lopen
+    else
+      lclose
+    endif
+  catch /E776/
+    lua vim.notify(
+    \  'Empty location list', 
+    \  'warn',
+    \  { title = 'ToggleLocList' }
+    \)
+  endtry
+endfunction
+
+nnoremap <silent> <M-/>l <Cmd>call ToggleLocList()<Cr>
+]])
