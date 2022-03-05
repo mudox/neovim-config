@@ -76,6 +76,16 @@ vim.cmd([[
   hi default link LspReferenceWrite LspReferenceText
 ]])
 
+-- unify all window with borders use "rounded" border style
+local orig_nvim_open_win = vim.api.nvim_open_win
+function vim.api.nvim_open_win(buffer, enter, opts)
+  opts = opts or {}
+  if opts.border then
+    opts.border = "rounded"
+  end
+  return orig_nvim_open_win(buffer, enter, opts)
+end
+
 -- 〉
 
 -- tabs 〈
