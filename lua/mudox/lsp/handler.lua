@@ -1,5 +1,4 @@
-
-local function lsp_highlight_document(client)
+local function setup_lsp_highlight_cursor(client)
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
@@ -15,7 +14,7 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function lsp_mappings(bufnr)
+local function install_lsp_buffer_mappings(bufnr)
   local k = function(mode, key, cmd, opts)
     opts = { noremap = true, silent = true }
     cmd = ("<Cmd>lua %s<Cr>"):format(cmd)
@@ -48,8 +47,9 @@ local function on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
 
-  lsp_mappings(bufnr)
-  lsp_highlight_document(client)
+  install_lsp_buffer_mappings(bufnr)
+
+  setup_lsp_highlight_cursor(client)
 
   -- aerial.nvim
   require("aerial").on_attach(client, bufnr)
