@@ -47,6 +47,7 @@ local function lsp_highlight_document(client)
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
+      set updatetime=300
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
