@@ -28,6 +28,7 @@ return {
   -- lsp basics
   "lsp-config",
   "lsp-installer",
+  "null-ls",
 
   -- the completion engine
   "cmp",
