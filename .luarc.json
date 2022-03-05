@@ -9,7 +9,8 @@
     "requires",
     "event",
     "keys",
-    "run"
+    "run",
+    "config"
   ],
   "Lua.workspace.library": [
     "/Users/mudox/.config/nvim/lua/mudox"
