@@ -35,8 +35,8 @@ nmap("gj", "")
 nmap("gk", "")
 
 -- `option-J,K,H,L` to jump among tabs
-ncmd("<M-]>", "bnext")
-ncmd("<M-[>", "bNext")
+ncmd("L", "bnext")
+ncmd("H", "bNext")
 nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
