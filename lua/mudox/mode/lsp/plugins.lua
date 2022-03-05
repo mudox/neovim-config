@@ -58,6 +58,7 @@ return {
   "comment",
   "switch",
 
+  "auto-pairs",
   "sandwich",
   "easy-align",
 
