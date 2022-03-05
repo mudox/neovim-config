@@ -1,9 +1,10 @@
 -- TODO: backfill this to template
 local function setup()
   vim.cmd([[
-    hi default link LspReferenceText CusorColumn
-    hi default LspReferenceRead LspReferenceText
-    hi default LspReferenceWrite LspReferenceText
+    hi default link NormalFloat Normal
+    hi default link LspReferenceText CursorColumn
+    hi default link LspReferenceRead LspReferenceText
+    hi default link LspReferenceWrite LspReferenceText
   ]])
 
   local signs = {
@@ -18,10 +19,7 @@ local function setup()
   end
 
   local config = {
-    -- disable virtual text
     virtual_text = false,
-    -- show signs
-    signs = true,
     update_in_insert = true,
     underline = true,
     severity_sort = true,
@@ -29,8 +27,8 @@ local function setup()
       focusable = false,
       border = "rounded",
       source = "always",
-      header = "  Diagnostics",
-      prefix = " - ",
+      header = " DIAGNOSTICS",
+      prefix = "  ",
     },
   }
 
