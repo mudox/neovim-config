@@ -60,6 +60,7 @@ return {
 
   "auto-pairs",
   "sandwich",
+
   "easy-align",
 
   -- Search & replace
@@ -71,6 +72,7 @@ return {
   -- "snippets",
 
   -- UI
+  "git-signs",
   "notify",
   "which-key",
   "dressing",
