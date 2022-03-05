@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "Lua.diagnostics.globals": [
+    "vim",
+    "pl",
+    "stdpath",
+    "use",
+    "url",
+    "requires",
+    "event",
+    "keys",
+    "run"
+  ],
+  "Lua.workspace.library": [
+    "/Users/mudox/.config/nvim/lua/mudox"
+  ]
+}

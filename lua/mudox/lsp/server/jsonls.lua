@@ -160,6 +160,11 @@ local schemas = {
     fileMatch = { "resume.json" },
     url = "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   },
+  {
+    description = "Sumneko_lua config file",
+    fileMatch = { ".luarc.json" },
+    url = "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  },
 }
 
 local opts = {
