@@ -15,7 +15,7 @@ stdpath = require("mudox.path")
 -- config
 require(stdpath("settings"))
 require(stdpath("mappings"))
-require("mudox.pluginmanager").load(stdpath("plugins"))
+require("mudox.plugin_manager")
 require(stdpath("post"))
 
 -- packer_compiled

@@ -111,6 +111,7 @@ local packer_opts = {
   -- mode separation
   package_root = stdpath.pack,
   compile_path = stdpath.packer_compiled,
+  transitive_opt = true,
   -- appearence
   display = {
     open_fn = function()
@@ -145,4 +146,4 @@ end
 
 -- 〉
 
-return { load = load }
+load(stdpath("plugins"))
