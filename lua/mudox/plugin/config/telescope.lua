@@ -27,6 +27,7 @@ ncmd(prefix .. "f", "Telescope git_files")
 ncmd("<Space>r", "Telescope oldfiles")
 
 -- grep
+ncmd("g/", "Telescope live_grep") -- interactive grep
 ncmd(prefix .. "g", "Telescope live_grep") -- interactive grep
 ncmd(prefix .. "G", "Telescope grep_string") -- grep string under cursor
 
@@ -36,8 +37,9 @@ ncmd(prefix .. "s", "Telescope treesitter")
 -- diagnostics
 ncmd(prefix .. "d", "Telescope diagnostics bufnr=0")
 
--- lsp code actions
+-- lsp
 ncmd(prefix .. ".", "Telescope lsp_code_actions")
+ncmd(prefix .. "r", "Telescope lsp_references")
 
 -- vim options
 ncmd(prefix .. "o", "Telescope vim_options")
@@ -103,5 +105,5 @@ require("telescope").load_extension("notify")
 ncmd(prefix .. "n", "Telescope notify")
 
 -- telescope-rg
-ncmd(prefix .. "r", [[ lua require("telescope").extensions.live_grep_raw.live_grep_raw() ]])
+ncmd(prefix .. "R", [[ lua require("telescope").extensions.live_grep_raw.live_grep_raw() ]])
 -- 〉
