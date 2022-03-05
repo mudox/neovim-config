@@ -1,12 +1,6 @@
 -- TODO: backfill this to template
 local function setup()
-  vim.cmd([[
-    hi default link NormalFloat Normal
-    hi default link LspReferenceText CursorColumn
-    hi default link LspReferenceRead LspReferenceText
-    hi default link LspReferenceWrite LspReferenceText
-  ]])
-
+  -- diagnostic sign icons
   local signs = {
     { name = "DiagnosticSignError", text = " " },
     { name = "DiagnosticSignWarn", text = " " },
@@ -18,6 +12,7 @@ local function setup()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
+  -- diagnostic float window
   local config = {
     virtual_text = false,
     update_in_insert = true,

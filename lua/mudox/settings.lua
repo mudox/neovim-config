@@ -39,22 +39,25 @@ o.smartindent = true
 
 -- UI 〈
 o.termguicolors = true
-o.cursorline = false
-o.fillchars = "eob: "
+
 o.mouse = "a"
 
+o.fillchars = "eob: "
+
+o.cursorline = false
 o.number = false
 
-o.ruler = false
-
-o.showtabline = 1
 
 o.splitright = true
 o.splitbelow = true
 
-o.laststatus = 0
-o.cmdheight = 2
+-- overriden by `lualine`
+o.showtabline = 0
+o.laststatus = 2
 o.showcmd = false
+o.ruler = false
+
+o.cmdheight = 2
 
 opt.shortmess:append("I") -- not show `:intro` on startup
 opt.shortmess:append("c") -- not show insert completion menu message
@@ -62,7 +65,18 @@ opt.shortmess:append("c") -- not show insert completion menu message
 o.scrolloff = 8
 o.sidescrolloff = 8
 
-o.signcolumn = "auto:3"
+o.signcolumn = "auto:2"
+
+-- transparent background for float windows
+-- document highlighting style
+vim.cmd([[
+  hi default link NormalFloat Normal
+
+  hi default link LspReferenceText CursorColumn
+  hi default link LspReferenceRead LspReferenceText
+  hi default link LspReferenceWrite LspReferenceText
+]])
+
 -- 〉
 
 -- tabs 〈
