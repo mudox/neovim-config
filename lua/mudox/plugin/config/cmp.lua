@@ -78,7 +78,7 @@ local formatting = {
       buffer = "[Buffer]",
       path = "[Path]",
       cmdline = "[Cmdline]",
-      cmp_tabnine = "[TabNine]"
+      cmp_tabnine = "[TabNine]",
     })[entry.source.name]
     return vim_item
   end,

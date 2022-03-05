@@ -47,7 +47,6 @@ o.fillchars = "eob: "
 o.cursorline = false
 o.number = false
 
-
 o.splitright = true
 o.splitbelow = true
 
