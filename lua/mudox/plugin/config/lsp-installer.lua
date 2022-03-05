@@ -1,7 +1,8 @@
+local lsp = require("mudox.lsp")
 local installer = require("nvim-lsp-installer")
 local handler = require("mudox.lsp.handler")
 
-handler.setup()
+lsp.setup()
 
 installer.on_server_ready(function(server)
   local opts = {
