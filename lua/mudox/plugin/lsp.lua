@@ -1,9 +1,9 @@
 url = "williamboman/nvim-lsp-installer"
 
 requires = {
-  { "neovim/nvim-lspconfig", event = "BufferRead" },
+  { "neovim/nvim-lspconfig" },
 }
 
-event = "BufferRead"
+event = "BufRead"
 
 after = "nvim-lspconfig"

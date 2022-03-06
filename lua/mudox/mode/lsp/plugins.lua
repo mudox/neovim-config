@@ -25,11 +25,8 @@ return {
 
   "trouble",
 
-  -- LSP 〈
-
-  -- lsp basics
-  "lsp-config",
-  "lsp-installer",
+  -- LSP
+  "lsp",
   "null-ls",
 
   -- Completion

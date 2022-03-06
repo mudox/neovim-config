@@ -1,1 +1,0 @@
-url = "neovim/nvim-lspconfig"
