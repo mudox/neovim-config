@@ -1,5 +1,6 @@
 local gitsigns = require("gitsigns")
 
+-- GitSignsXXX linked to GitGutterXXX
 vim.cmd [[
 hi GitGutterAdd guibg=NONE
 hi GitGutterChange guibg=NONE
