@@ -32,25 +32,8 @@ return {
   "lsp-installer",
   "null-ls",
 
-  -- the completion engine
+  -- Completion
   "cmp",
-
-  -- basic sources
-  "cmp-buffer", -- words from buffers
-  "cmp-cmdline", -- neovim commands completion
-  "cmp-path", -- filesystem path completion
-
-  -- snippets
-  "cmp-luasnip",
-
-  -- neovim lua api
-  "cmp-nvim-lua",
-
-  -- generic completion sources
-  "cmp-nvim-lsp",
-  "cmp-tabnine",
-
-  -- 〉
 
   -- Debugging
   -- "dap",
