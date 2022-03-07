@@ -1,4 +1,5 @@
 -- vim: fdm=marker fmr=〈,〉
+
 local p = pl.path
 
 -- Bootstrap 〈
@@ -144,6 +145,18 @@ local function load(path)
     config = packer_opts,
   }
 end
+
+-- 〉
+
+-- Mappings 〈
+
+local ncmd = require("mudox.keymap").ncmd
+
+ncmd(",pS", "PackerSync")
+ncmd(",ps", "PackerStatus")
+ncmd(",pc", "PackerClean")
+ncmd(",pC", "PackerCompile")
+ncmd(",pI", "PackerInstall")
 
 -- 〉
 
