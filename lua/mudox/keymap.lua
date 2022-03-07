@@ -16,6 +16,21 @@ local Set = require("pl.Set")
 local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
 
 --[[
+  nvim_set_keymap does not like unknown keys
+--]]
+local function normalize_options(options)
+  return {
+    nowait = options.nowait,
+    silent = options.silent,
+    script = options.script,
+    expr = options.expr,
+    unique = options.unique,
+
+    noremap = options.noremap,
+  }
+end
+
+--[[
   the core method to define mapping. it calls `nvim_set_keymap` at last
 ]]
 local function map(
@@ -38,7 +53,13 @@ local function map(
   end
   options.nosilent = nil
 
-  vim.api.nvim_set_keymap(mode, from, to, options)
+  if options.bufnr ~= nil then
+    local bufnr = options.bufnr
+    assert(type(bufnr) == 'number')
+    vim.api.nvim_buf_set_keymap(bufnr, mode, from, to, normalize_options(options))
+  else
+    vim.api.nvim_set_keymap(mode, from, to, normalize_options(options))
+  end
 end
 
 --[[
