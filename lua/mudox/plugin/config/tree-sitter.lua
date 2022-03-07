@@ -39,10 +39,10 @@ local textobjects = {
   swap = {
     enable = true,
     swap_next = {
-      [">a"] = "@parameter.inner",
+      ["\\sf"] = "@parameter.inner",
     },
     swap_previous = {
-      ["<a"] = "@parameter.inner",
+      ["\\sb"] = "@parameter.inner",
     },
   },
 
@@ -71,8 +71,8 @@ local textobjects = {
     enable = true,
     border = "none",
     peek_definition_code = {
-      ["<leader>df"] = "@function.outer",
-      ["<leader>dF"] = "@class.outer",
+      ["gy"] = "@function.outer",
+      ["gY"] = "@class.outer",
     },
   },
 }

@@ -30,9 +30,9 @@ local function install_lsp_buffer_mappings(bufnr)
   k("n", "J", "vim.lsp.buf.signature_help()")
 
   -- refactor
-  k("n", "<Bs>r", "vim.lsp.buf.rename()")
-  k("n", "<Bs>a", "vim.lsp.buf.code_action()")
-  k("n", "<Bs>f", "vim.lsp.buf.formatting()")
+  k("n", "\\rn", "vim.lsp.buf.rename()")
+  k("n", "\\ca", "vim.lsp.buf.code_action()")
+  k("n", "\\fm", "vim.lsp.buf.formatting()")
 
   -- diagnostic
   k("n", "[d", "vim.diagnostic.goto_prev()")
