@@ -46,7 +46,6 @@ return {
   "indent-blank-line",
   "todo-comments",
   "trouble",
-  "shade",
 
   -- Window
   "stickybuf",
