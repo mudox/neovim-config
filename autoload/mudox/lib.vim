@@ -31,10 +31,10 @@ endfunction
 function! mudox#lib#wipeoutBuffer()
   try
     bwipeout
-  catch /E444/
+  catch /E444\|E5601/
   catch /E89/
     lua vim.notify(
-    \  'There are unsaved changes, can not wipeout buffer', 
+    \  { 'There are unsaved changes, can not wipeout buffer.', 'Press `ZQ` to discard the window & buffer.' },
     \  'warn',
     \  { title = 'WipeoutBuffer' }
     \)
