@@ -15,7 +15,7 @@ hi DiffChange guibg=None
 -- prevent built-in plugin loading
 vim.g.loaded_netrwPlugin = true
 
--- temporarily fix: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
+-- HACK: temporarily fix: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
 vim.cmd([[ 
 autocmd VimEnter * :sleep 1m
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 

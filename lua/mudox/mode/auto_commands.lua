@@ -10,7 +10,7 @@ augroup end
 vim.cmd([[
 augroup mdx_general_auto_commands
   autocmd!
-  autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q <Cmd>close<Cr> 
+  autocmd FileType qf,help,man,lspinfo,null-ls-info nnoremap <silent> <buffer> q <Cmd>close<Cr> 
   autocmd FileType qf set nobuflisted
 augroup end
 ]])
