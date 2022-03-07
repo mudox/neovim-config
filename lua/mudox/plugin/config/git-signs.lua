@@ -1,12 +1,12 @@
 local gitsigns = require("gitsigns")
 
 -- GitSignsXXX linked to GitGutterXXX
-vim.cmd [[
+vim.cmd([[
 hi GitGutterAdd guibg=NONE
 hi GitGutterChange guibg=NONE
 hi GitGutterDelete guibg=NONE
 hi GitGutterChangeDelete guibg=NONE
-]]
+]])
 
 -- stylua: ignore start
 local signs = {

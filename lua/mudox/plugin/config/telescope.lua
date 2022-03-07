@@ -45,11 +45,11 @@ ncmd(prefix .. "r", "Telescope lsp_references")
 ncmd(prefix .. "o", "Telescope vim_options")
 
 -- mappings in telescope interface
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 local mappings = {
   i = {},
   n = {
-    ['q'] = actions.close
+    ["q"] = actions.close,
   },
 }
 -- 〉

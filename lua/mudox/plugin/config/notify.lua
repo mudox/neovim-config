@@ -29,7 +29,7 @@ local opts = {
 
   -- Icons for the different levels
   icons = {
-    ERROR  = " ",
+    ERROR = " ",
     WARN = " ",
     INFO = " ",
     DEBUG = " ",

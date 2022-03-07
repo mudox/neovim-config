@@ -8,7 +8,7 @@ local function setup()
   }
 
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
   end
 
   -- diagnostic float window
@@ -36,7 +36,6 @@ local function setup()
     border = "rounded",
   })
 end
-
 
 return {
   setup = setup,
