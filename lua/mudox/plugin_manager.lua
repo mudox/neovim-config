@@ -112,6 +112,7 @@ local packer_opts = {
   package_root = stdpath.pack,
   compile_path = stdpath.packer_compiled,
   transitive_opt = true,
+  max_jobs = 32, -- HACK: fix `PackerSync` stucking issue
   -- appearence
   display = {
     open_fn = function()
