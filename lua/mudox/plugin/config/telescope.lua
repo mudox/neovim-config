@@ -3,6 +3,11 @@
 -- Mappings 〈
 local k = require("mudox.keymap")
 local ncmd = k.ncmd
+local nlua = k.nlua
+
+local function map(from, to)
+  nlua(from, ('require("telescope").%s'):format(to))
+end
 
 local prefix = ",t"
 
@@ -14,7 +19,7 @@ function _mdx_telescope_picker_builtin()
   }
   require("telescope.builtin").builtin(opts)
 end
-ncmd(prefix .. ",", "lua _mdx_telescope_picker_builtin()")
+ncmd(prefix .. ":", "lua _mdx_telescope_picker_builtin()")
 
 -- resume last list
 ncmd(prefix .. "<space>", "Telescope resume")
@@ -35,7 +40,7 @@ ncmd(prefix .. "G", "Telescope grep_string") -- grep string under cursor
 ncmd(prefix .. "s", "Telescope treesitter")
 
 -- diagnostics
-ncmd(prefix .. "d", "Telescope diagnostics bufnr=0")
+ncmd(prefix .. "?", "Telescope diagnostics bufnr=0")
 
 -- lsp
 ncmd(prefix .. ".", "Telescope lsp_code_actions")
@@ -102,16 +107,17 @@ ncmd(prefix .. "a", "Telescope aerial")
 require("telescope").load_extension("ui-select")
 
 require("telescope").load_extension("packer")
-ncmd(prefix .. "p", [[ lua require('telescope').extensions.packer.packer(opts) ]])
+map(prefix .. "p", [[extensions.packer.packer(opts) ]])
 
 require("telescope").load_extension("file_browser")
-ncmd("<M-/>t", [[ lua require 'telescope'.extensions.file_browser.file_browser() ]])
+map("<M-/>t", [[extensions.file_browser.file_browser() ]])
 
 require("telescope").load_extension("notify")
 ncmd(prefix .. "n", "Telescope notify")
 
--- telescope-rg
-ncmd(prefix .. "R", [[ lua require("telescope").extensions.live_grep_raw.live_grep_raw() ]])
+-- telescope-rg (telescope-live-grep-raw)
+map(prefix .. "R", 'extensions.live_grep_raw.live_grep_raw()')
+
 require("telescope").load_extension("dap")
 ncmd(prefix .. "d:", 'Telescope dap commands')
 ncmd(prefix .. "dc", 'Telescope dap configurations')
