@@ -52,6 +52,9 @@ end
   convenient method for common patter `<Plug>...`
 ]]
 local function plug(mode, from, to, options)
+  options = options or {}
+  options.remap = true
+  options.noremap = false
   map(mode, from, ("<Plug>(%s)"):format(to), options)
 end
 
