@@ -33,7 +33,9 @@ return {
   "cmp",
 
   -- Debugging
-  -- "dap",
+  "dap",
+  "dap-ui",
+  "dap-python",
 
   -- Editing
   "visual-multi",

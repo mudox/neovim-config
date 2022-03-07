@@ -18,9 +18,6 @@ return {
   "tree-sitter",
   "context-vt",
 
-  -- Debugging
-  "dap",
-
   -- Editing
   "tree-hopper",
   "comment",

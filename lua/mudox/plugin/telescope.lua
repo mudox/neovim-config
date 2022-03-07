@@ -7,6 +7,7 @@ requires = {
   { "nvim-telescope/telescope-packer.nvim" },
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-live-grep-raw.nvim" },
+  { "nvim-telescope/telescope-dap.nvim" },
 }
 
 event = "VimEnter"

@@ -112,4 +112,11 @@ ncmd(prefix .. "n", "Telescope notify")
 
 -- telescope-rg
 ncmd(prefix .. "R", [[ lua require("telescope").extensions.live_grep_raw.live_grep_raw() ]])
+require("telescope").load_extension("dap")
+ncmd(prefix .. "d:", 'Telescope dap commands')
+ncmd(prefix .. "dc", 'Telescope dap configurations')
+ncmd(prefix .. "dv", 'Telescope dap variables')
+ncmd(prefix .. "df", 'Telescope dap frames')
+ncmd(prefix .. "db", 'Telescope dap list_breakpoints')
+
 -- 〉
