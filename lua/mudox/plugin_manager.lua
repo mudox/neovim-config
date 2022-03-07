@@ -113,7 +113,10 @@ local packer_opts = {
   package_root = stdpath.pack,
   compile_path = stdpath.packer_compiled,
   transitive_opt = true,
-  max_jobs = 32, -- HACK: fix `PackerSync` stucking issue
+
+  -- HACK: fix `PackerSync` stucking issue
+  -- track: https://github.com/wbthomason/packer.nvim/issues/756#issuecomment-1004258387
+  max_jobs = 32,
   -- appearence
   display = {
     open_fn = function()

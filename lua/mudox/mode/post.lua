@@ -21,6 +21,6 @@ autocmd VimEnter * :sleep 1m
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 
 ]])
 
--- disable bundled runtime files loading
--- https://github.com/nathom/filetype.nvim#usage
+-- HACK: disable `filetype.vim` loading
+-- track: https://github.com/nathom/filetype.nvim#usage
 vim.g.did_load_filetypes = 1
