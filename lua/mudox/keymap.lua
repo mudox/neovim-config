@@ -1,7 +1,7 @@
 --[==[
   utility lib for defining common mappings.
 
-  the module provides 4 basic functions (map, cmd, plug, nop, lua) all of which need a mode
+  the module provides 4 basic functions (map, cmd, plug, nop, lua, call) all of which need a mode
   char as its 1st character
 
   by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods
@@ -55,7 +55,7 @@ local function map(
 
   if options.bufnr ~= nil then
     local bufnr = options.bufnr
-    assert(type(bufnr) == 'number')
+    assert(type(bufnr) == "number")
     vim.api.nvim_buf_set_keymap(bufnr, mode, from, to, normalize_options(options))
   else
     vim.api.nvim_set_keymap(mode, from, to, normalize_options(options))
@@ -77,6 +77,13 @@ local function lua(mode, from, to, options)
 end
 
 --[[
+  convenient method for common patter `<Cmd>call {vim function}<Cr>`
+]]
+local function call(mode, from, to, options)
+  map(mode, from, "<Cmd>call " .. to .. "<Cr>", options)
+end
+
+--[[
   convenient method for common patter `<Plug>...`
 ]]
 local function plug(mode, from, to, options)
@@ -93,7 +100,7 @@ local function nop(mode, from)
   map(mode, from, "<Nop>", {})
 end
 
-local bodys = { map = map, cmd = cmd, plug = plug, nop = nop, lua = lua }
+local bodys = { map = map, cmd = cmd, plug = plug, nop = nop, lua = lua, call = call }
 
 --[[
   compose mapping defining functions from parameter `name`.
