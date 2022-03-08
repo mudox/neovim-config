@@ -36,6 +36,7 @@ return {
   "dap",
   "dap-ui",
   "dap-python",
+  "dap-virtual-text",
 
   -- Editing
   "visual-multi",

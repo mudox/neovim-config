@@ -85,6 +85,16 @@ require("telescope").setup {
         -- even more opts
       },
     },
+
+    termfinder = {
+      mappings = {
+        rename_term = "<C-r>",
+        delete_term = "<C-x>",
+        vertical_term = "<C-v>",
+        horizontal_term = "<C-h>",
+        float_term = "<C-f>",
+      },
+    },
   },
   pickers = { hidden = true },
 }
@@ -125,4 +135,6 @@ ncmd(prefix .. "dv", 'Telescope dap variables')
 ncmd(prefix .. "df", 'Telescope dap frames')
 ncmd(prefix .. "db", 'Telescope dap list_breakpoints')
 
+require("telescope").load_extension("termfinder")
+ncmd(prefix .. "/", "Telescope termfinder find")
 -- 〉
