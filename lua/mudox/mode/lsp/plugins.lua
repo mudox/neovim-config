@@ -73,6 +73,9 @@ return {
   "stickybuf",
   "popup",
 
+  -- Terminal
+  "toggle-term",
+
   "zen-mode",
 
   -- Navigation
