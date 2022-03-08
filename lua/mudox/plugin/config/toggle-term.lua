@@ -5,9 +5,11 @@ require("toggleterm").setup {
 
   direction = "float",
 
+  start_in_insert = true,
+
   float_opts = {
     highlights = {
-      border = 'FloatBorder',
+      border = "FloatBorder",
       winblend = 0,
     },
   },
@@ -26,4 +28,72 @@ function _G._mdx_set_terminal_keymaps()
   map("<C-l>", [[<C-\><C-n><C-W>l]])
 end
 
-vim.cmd('autocmd! TermOpen term://* lua _mdx_set_terminal_keymaps()')
+vim.cmd("autocmd! TermOpen term://* lua _mdx_set_terminal_keymaps()")
+
+-- Custom terminals
+
+local Terminal = require("toggleterm.terminal").Terminal
+local primary = Terminal:new {
+  cmd = "zsh",
+  hiiden = true,
+  direction = "float",
+  ---@diagnostic disable-next-line: unused-local
+  on_open = function(term)
+    vim.cmd("startinsert!")
+  end,
+}
+
+function _G._mdx_toggle_primary()
+  primary:toggle()
+end
+
+function _G._mdx_open_primary_bottom()
+  local function open()
+    primary.direction = "horizontal"
+    primary:open()
+  end
+  if primary:is_open() then
+    if not primary:is_split() then
+      primary:close()
+      open()
+    else
+      return
+    end
+  else -- closed
+    open()
+  end
+end
+
+function _G._mdx_open_primary_float()
+  local function open()
+    primary.direction = "float"
+    primary:open()
+  end
+  if primary:is_open() then
+    if not primary:is_float() then
+      primary:close()
+      open()
+    else
+      return
+    end
+  else -- closed
+    open()
+  end
+end
+
+local nlua = require("mudox.keymap").nlua
+nlua("<M-j>", "_mdx_toggle_primary()")
+
+local function map(from, to)
+  local cmd = ([[
+    autocmd TermEnter term://*toggleterm#* tnoremap <silent> %s <Cmd>%s<Cr>
+
+    nnoremap <silent> %s <Cmd>%s<Cr>
+    inoremap <silent> %s <Cmd>%s<Cr>
+  ]]):format(from, to, from, to, from, to)
+
+  vim.cmd(cmd)
+end
+
+map("<C-t><Space>", "lua _mdx_open_primary_bottom()")
+map("<C-t><C-t>", "lua _mdx_open_primary_float()")
