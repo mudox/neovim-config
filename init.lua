@@ -1,10 +1,7 @@
 -- vim: fdm=marker fmr=〈,〉
 
 -- luarocks
-require("mudox.luarocks")
-
--- penlight
-pl = require("pl.import_into")()
+pl = require("mudox.luarocks")
 
 -- mode
 require("mudox.resolve_mode")

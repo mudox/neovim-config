@@ -49,11 +49,7 @@ _p.packer_opt = join(_p.packer, "opt")
 -- fallback to lua root dir (shared) if given module file
 -- is missing under specific mode directory
 local function path(_, name)
-  local prefix = "mudox/mode/"
-  local mode = vim.g.mdx_nvim_mode
-  if mode ~= "default" then
-    prefix = ("mudox/mode/%s/"):format(mode)
-  end
+  local prefix = ("mudox/mode/%s/"):format(vim.g.mdx_nvim_mode)
 
   local module_path = join(stdpath.lua, prefix, name .. ".lua")
   if pl.path.isfile(module_path) then

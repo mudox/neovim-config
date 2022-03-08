@@ -9,3 +9,6 @@ package.path = table.concat({
 
 local cpath_dir = rocks_dir .. "/lib/lua/5.1"
 package.cpath = table.concat({ ([[%s/?.so]]):format(cpath_dir), package.cpath }, ";")
+
+-- penlight
+return require("pl.import_into")()
