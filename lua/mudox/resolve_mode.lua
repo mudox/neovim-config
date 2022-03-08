@@ -5,7 +5,7 @@ local mode
 if vim.fn.exists("g:vscode") == 1 then
   mode = "vscode"
 else
-  mode = os.getenv("MDX_NVIM_MODE") or "default"
+  mode = os.getenv("MDX_NVIM_MODE") or os.getenv("DEFAULT_NVIM_MODE") or "lsp"
 end
 
 vim.g.mdx_nvim_mode = mode
