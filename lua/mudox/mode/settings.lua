@@ -124,7 +124,7 @@ o.linespace = 0
 -- 〉
 
 -- tmp file 〈
-o.hidden = false
+o.hidden = true -- many plugins need this feature
 o.backup = false
 o.writebackup = false
 o.swapfile = false
