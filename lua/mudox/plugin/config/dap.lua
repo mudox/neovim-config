@@ -54,9 +54,7 @@ local signs = {
 }
 -- stylua: ignore end
 for _, sign in ipairs(signs) do
-  print(vim.inspect(sign))
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
 end
 
 -- 〉
-

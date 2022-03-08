@@ -5,7 +5,7 @@ require("nvim_context_vt").setup {
   -- Disable virtual text for given filetypes
   -- Default is an empty table
   disable_ft = {},
-  disable_virtual_lines_ft = { 'python' },
+  disable_virtual_lines_ft = { "python" },
 
   -- How many lines required after starting position to show virtual text
   -- Default is 1 (equals two lines total)

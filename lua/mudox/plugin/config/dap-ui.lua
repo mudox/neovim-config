@@ -32,7 +32,7 @@ end
 local eid = "mudox.dap-ui"
 
 dap.listeners.after.event_initialized[eid] = function()
-  dapui.open('sidebar')
+  dapui.open("sidebar")
   info("Debugging started")
 end
 
