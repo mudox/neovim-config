@@ -70,18 +70,9 @@ require("telescope").setup {
     -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 
     mappings = mappings,
-    -- preview = {
-    -- hide_on_startup = true,
-    -- },
   },
 
   extensions = {
-    -- packer = {
-    -- theme = "ivy",
-    -- layout_config = {
-    -- height = 0.5,
-    -- },
-    -- },
 
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
@@ -105,39 +96,43 @@ require("telescope").setup {
 -- 〉
 
 -- Extensions 〈
-require("telescope").load_extension("fzf")
+local function load(name)
+  require("telescope").load_extension(name)
+end
 
-require("telescope").load_extension("coc")
+load("fzf")
+
+load("coc")
 ncmd(prefix .. "cc", "Telescope coc commands")
 ncmd(prefix .. "ca", "Telescope coc file_code_actions")
 ncmd(prefix .. "cA", "Telescope coc code_actions")
 ncmd(prefix .. "cs", "Telescope coc document_symbols")
 ncmd(prefix .. "cS", "Telescope coc workspace_symbols")
 
-require("telescope").load_extension("aerial")
+load("aerial")
 ncmd(prefix .. "a", "Telescope aerial")
 
-require("telescope").load_extension("ui-select")
+load("ui-select")
 
-require("telescope").load_extension("packer")
+load("packer")
 map(prefix .. "p", [[extensions.packer.packer(opts) ]])
 
-require("telescope").load_extension("file_browser")
+load("file_browser")
 map("<M-/>t", [[extensions.file_browser.file_browser() ]])
 
-require("telescope").load_extension("notify")
+load("notify")
 ncmd(prefix .. "n", "Telescope notify")
 
 -- telescope-rg (telescope-live-grep-raw)
 map(prefix .. "R", "extensions.live_grep_raw.live_grep_raw()")
 
-require("telescope").load_extension("dap")
+load("dap")
 ncmd(prefix .. "d:", "Telescope dap commands")
 ncmd(prefix .. "dc", "Telescope dap configurations")
 ncmd(prefix .. "dv", "Telescope dap variables")
 ncmd(prefix .. "df", "Telescope dap frames")
 ncmd(prefix .. "db", "Telescope dap list_breakpoints")
 
-require("telescope").load_extension("termfinder")
+load("termfinder")
 ncmd(prefix .. "/", "Telescope termfinder find")
 -- 〉
