@@ -1,4 +1,4 @@
-vim.o.laststatus = 2
+vim.o.laststatus = 2 -- always show statusline
 
 local options = {
   icons_enabled = true,
@@ -18,14 +18,53 @@ local options = {
   always_divide_middle = true,
 }
 
+local function cond1()
+  local disabled_filetypes = {
+    dapui_scopes = true,
+    dapui_breakpoints = true,
+    dapui_stacks = true,
+    dapui_watches = true,
+  }
+
+  return not disabled_filetypes[vim.o.filetype]
+end
+
+local function cond2()
+  local enabled_filetypes = {
+    dapui_scopes = true,
+    dapui_breakpoints = true,
+    dapui_stacks = true,
+    dapui_watches = true,
+  }
+
+  return enabled_filetypes[vim.o.filetype]
+end
+
+-- stylua: ignore start
 local sections = {
-  lualine_a = { "mode" },
-  lualine_b = { "branch", "diff" },
-  lualine_c = { "filename" },
-  lualine_x = { "diagnostics", "filetype" },
-  lualine_y = { "progress" },
-  lualine_z = { "location" },
+  lualine_a = {
+    { "mode",        cond = cond1 },
+    { "filename",    cond = cond2 },
+  },
+  lualine_b = {
+    { "branch",      cond = cond1 },
+    { "diff",        cond = cond1 },
+  },
+  lualine_c = {
+    { "filename",    cond = cond1 },
+  },
+  lualine_x = {
+    { "diagnostics", cond = cond1 },
+    { "filetype",    cond = cond1 },
+  },
+  lualine_y = {
+    { "progress",    cond = cond1 },
+  },
+  lualine_z = {
+    { "location",    cond = cond1 },
+  },
 }
+-- stylua: ignore end
 
 local tabline = {
   lualine_a = { "buffers" },
