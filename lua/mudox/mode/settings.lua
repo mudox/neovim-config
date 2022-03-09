@@ -64,7 +64,7 @@ opt.shortmess:append("c") -- not show insert completion menu message
 o.scrolloff = 8
 o.sidescrolloff = 8
 
-o.signcolumn = "auto:2"
+o.signcolumn = "auto"
 
 -- transparent background for float windows
 -- document highlighting style
