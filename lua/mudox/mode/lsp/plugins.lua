@@ -106,6 +106,8 @@ return {
 
   -- Swift
   -- Rust
+  "rust-tools",
+
   -- Python
   -- JS
   -- HTML/CSS

@@ -10,14 +10,19 @@ installer.on_server_ready(function(server)
     capabilities = handler.capabilities,
   }
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require("mudox.lsp.server.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", opts, sumneko_opts)
+  local function extend(lhs, rhs)
+    return vim.tbl_deep_extend("force", lhs, rhs)
   end
 
-  if server.name == "jsonls" then
+  if server.name == "sumneko_lua" then
+    local sumneko_opts = require("mudox.lsp.server.sumneko_lua")
+    opts = extend(sumneko_opts, opts)
+  elseif server.name == "jsonls" then
     local jsonls_opts = require("mudox.lsp.server.jsonls")
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+    opts = extend(jsonls_opts, opts)
+  elseif server.name == "rust_analyzer" then
+    require("mudox.lsp.rust").setup_server(server, opts)
+    return
   end
 
   server:setup(opts)
