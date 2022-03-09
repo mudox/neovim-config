@@ -13,31 +13,32 @@ local function setup_lsp_highlight_cursor(client)
 end
 
 local function install_lsp_buffer_mappings(bufnr)
-  local k = function(mode, key, cmd, opts)
-    opts = { noremap = true, silent = true }
-    cmd = ("<Cmd>lua %s<Cr>"):format(cmd)
-    vim.api.nvim_buf_set_keymap(bufnr, mode, key, cmd, opts)
+  local nlua = function(key, cmd)
+    local opts = { bufnr = bufnr }
+    require("mudox.keymap").nlua(key, cmd, opts)
   end
 
   -- goto
-  k("n", "gD", "vim.lsp.buf.declaration()")
-  k("n", "gd", "vim.lsp.buf.definition()")
-  k("n", "gi", "vim.lsp.buf.implementation()")
-  k("n", "gr", "vim.lsp.buf.references()")
+  nlua("gD", "vim.lsp.buf.declaration()")
+  nlua("gd", "vim.lsp.buf.definition()")
+  nlua("gi", "vim.lsp.buf.implementation()")
+  nlua("gr", "vim.lsp.buf.references()")
 
   -- help
-  k("n", "K", "vim.lsp.buf.hover()")
-  k("n", "J", "vim.lsp.buf.signature_help()")
+  nlua("K", "vim.lsp.buf.hover()")
+  nlua("J", "vim.lsp.buf.signature_help()")
 
   -- refactor
-  k("n", "\\rn", "vim.lsp.buf.rename()")
-  k("n", "\\ca", "vim.lsp.buf.code_action()")
-  k("n", "\\fm", "vim.lsp.buf.formatting()")
+  nlua("\\rn", "vim.lsp.buf.rename()")
+  nlua("\\ca", "vim.lsp.buf.code_action()")
+  nlua("\\fm", "vim.lsp.buf.formatting()")
 
-  -- diagnostic
-  k("n", "[d", "vim.diagnostic.goto_prev()")
-  k("n", "]d", "vim.diagnostic.goto_next()")
-  k("n", "gl", "vim.diagnostic.open_float()")
+  -- diagnostics
+  nlua("[d", "vim.diagnostic.goto_prev()")
+  nlua("]d", "vim.diagnostic.goto_next()")
+  nlua("gl", "vim.diagnostic.open_float()")
+end
+
 function _G._mdx_format_document()
   local enabled_filetypes = {
     lua = true,
@@ -60,8 +61,10 @@ local function on_attach(client, bufnr)
     client.resolved_capabilities.document_range_formatting = false
   end
 
+  -- keymaps
   install_lsp_buffer_mappings(bufnr)
 
+  -- highlighting cursor
   setup_lsp_highlight_cursor(client)
 
   install_buffer_autocmds()
