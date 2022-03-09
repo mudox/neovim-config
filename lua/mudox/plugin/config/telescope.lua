@@ -135,4 +135,7 @@ ncmd(prefix .. "db", "Telescope dap list_breakpoints")
 
 load("termfinder")
 ncmd(prefix .. "/", "Telescope termfinder find")
+
+load("projects")
+ncmd(prefix .. "w", "Telescope projects")
 -- 〉

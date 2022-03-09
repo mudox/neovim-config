@@ -28,6 +28,7 @@ return {
   -- LSP
   "lsp",
   "null-ls",
+  "project",
 
   -- Completion
   "cmp",
