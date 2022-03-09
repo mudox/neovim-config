@@ -13,7 +13,5 @@
     "after",
     "config"
   ],
-  "Lua.workspace.library": [
-    "/Users/mudox/.config/nvim/lua/mudox"
-  ]
+  "Lua.workspace.library": ["/Users/mudox/.config/nvim/lua/mudox"]
 }
