@@ -21,3 +21,5 @@ for i = 1, #requires do
 end
 
 event = "BufRead"
+
+after = "LuaSnip"
