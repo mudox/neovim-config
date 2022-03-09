@@ -35,7 +35,6 @@ return {
   -- Debugging
   "dap",
   "dap-ui",
-  "dap-python",
   "dap-virtual-text",
 
   -- Editing
@@ -105,10 +104,13 @@ return {
   "luapad",
 
   -- Swift
+
   -- Rust
   "rust-tools",
 
   -- Python
+  "dap-python",
+
   -- JS
   -- HTML/CSS
   -- C/C++

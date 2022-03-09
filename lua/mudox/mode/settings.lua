@@ -69,7 +69,7 @@ o.signcolumn = "auto"
 -- transparent background for float windows
 -- document highlighting style
 vim.cmd([[
-  hi default link NormalFloat Normal
+  " hi default link NormalFloat Normal
 
   hi default link LspReferenceText CursorColumn
   hi default link LspReferenceRead LspReferenceText
