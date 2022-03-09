@@ -51,8 +51,11 @@ ncmd(prefix .. "o", "Telescope vim_options")
 
 -- mappings in telescope interface
 local actions = require("telescope.actions")
+local actions_layout = require("telescope.actions.layout")
 local mappings = {
-  i = {},
+  i = {
+    ["?"] = actions_layout.toggle_preview,
+  },
   n = {
     ["q"] = actions.close,
   },
