@@ -69,7 +69,7 @@ return {
   "todo-comments",
 
   -- Window
-  "stickybuf",
+  -- "stickybuf",
   "popup",
 
   -- Terminal
