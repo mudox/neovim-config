@@ -9,6 +9,7 @@ requires = {
   { "nvim-telescope/telescope-live-grep-raw.nvim" },
   { "nvim-telescope/telescope-dap.nvim" },
   { "tknightz/telescope-termfinder.nvim" },
+  { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } },
 }
 
 after = "project.nvim"

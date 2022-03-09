@@ -89,7 +89,22 @@ require("telescope").setup {
         float_term = "<C-f>",
       },
     },
+
+    frecency = {
+      db_root = stdpath.data .. "/sqlite",
+      show_scores = false,
+      show_unindexed = true,
+      ignore_patterns = { "*.git/*", "*/tmp/*" },
+      disable_devicons = false,
+      workspaces = {
+        ["dot"] = "/Users/mudox/.dotfiles",
+        ["vi"] = "/Users/mudox/Git/neovim-config",
+        ["tmux"] = "/Users/mudox/Git/tmux-config",
+        ["hs"] = "/Users/mudox/Git/hs-config",
+      },
+    },
   },
+
   pickers = { hidden = true },
 }
 
@@ -138,4 +153,7 @@ ncmd(prefix .. "/", "Telescope termfinder find")
 
 load("projects")
 ncmd(prefix .. "w", "Telescope projects")
+
+load("frecency")
+ncmd("<M-o>", "Telescope frecency")
 -- 〉
