@@ -38,6 +38,19 @@ local function install_lsp_buffer_mappings(bufnr)
   k("n", "[d", "vim.diagnostic.goto_prev()")
   k("n", "]d", "vim.diagnostic.goto_next()")
   k("n", "gl", "vim.diagnostic.open_float()")
+function _G._mdx_format_document()
+  local enabled_filetypes = {
+    lua = true,
+  }
+  if enabled_filetypes[vim.o.ft] then
+    vim.lsp.buf.formatting()
+  end
+end
+
+local function install_buffer_autocmds()
+  vim.cmd([[
+  au BufWritePost <buffer> lua _mdx_format_document()
+  ]])
 end
 
 local function on_attach(client, bufnr)
@@ -50,6 +63,8 @@ local function on_attach(client, bufnr)
   install_lsp_buffer_mappings(bufnr)
 
   setup_lsp_highlight_cursor(client)
+
+  install_buffer_autocmds()
 
   -- aerial.nvim
   require("aerial").on_attach(client, bufnr)
