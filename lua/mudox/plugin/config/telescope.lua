@@ -26,7 +26,11 @@ ncmd(prefix .. "<space>", "Telescope resume")
 
 -- files
 ncmd("<C-p>", "Telescope find_files")
+
+-- git
 ncmd(prefix .. "f", "Telescope git_files")
+ncmd(prefix .. "c", "Telescope git_status")
+ncmd("<M-p>", "Telescope git_status")
 
 -- recent files
 ncmd("<Space>r", "Telescope oldfiles")
