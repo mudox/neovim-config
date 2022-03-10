@@ -11,6 +11,4 @@ requires = {
   { "tknightz/telescope-termfinder.nvim" },
 }
 
-after = "ahmedkhalf/project.nvim"
-
 event = "VimEnter"

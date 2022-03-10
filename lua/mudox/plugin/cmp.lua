@@ -22,4 +22,4 @@ end
 
 event = "BufRead"
 
-after = { "L3MON4D3/LuaSnip" }
+-- after = { "L3MON4D3/LuaSnip" }
