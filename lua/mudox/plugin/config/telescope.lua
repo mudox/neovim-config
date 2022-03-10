@@ -154,6 +154,4 @@ ncmd(prefix .. "/", "Telescope termfinder find")
 load("projects")
 ncmd(prefix .. "w", "Telescope projects")
 
-load("frecency")
-ncmd("<M-o>", "Telescope frecency")
 -- 〉
