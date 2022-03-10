@@ -43,14 +43,15 @@ function _G._mdx_format_document()
   local enabled_filetypes = {
     lua = true,
   }
+
   if enabled_filetypes[vim.o.ft] then
-    vim.lsp.buf.formatting()
+    vim.lsp.buf.formatting_sync()
   end
 end
 
 local function install_buffer_autocmds()
   vim.cmd([[
-  au BufWritePost <buffer> lua _mdx_format_document()
+  au BufWritePre <buffer> lua _mdx_format_document()
   ]])
 end
 
