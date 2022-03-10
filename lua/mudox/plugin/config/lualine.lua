@@ -54,6 +54,7 @@ local sections = {
     { "filename",    cond = cond1 },
   },
   lualine_x = {
+    { "lsp_progress", cond = cond1 },
     { "diagnostics", cond = cond1 },
     { "filetype",    cond = cond1 },
   },
