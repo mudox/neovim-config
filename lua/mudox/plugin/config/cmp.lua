@@ -153,8 +153,6 @@ local mapping = {
 -- 〉
 
 -- Snippet 〈
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local snippet = {
   expand = function(args)
     -- use `LuaSnip`

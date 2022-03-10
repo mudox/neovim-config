@@ -27,6 +27,7 @@ _p.site = join(_p.data, "site")
 -- stdpath('data')/site/mdx_nvim_mode/<g:mdx_nvim_mode>/pack/packer/{start,opt}
 
 _p.my_pack = join(_p.site, "pack/mudox")
+_p.my_snippets = join(_p.my_pack, "start/vim-mysnippets")
 
 assert(vim.g.mdx_nvim_mode)
 
