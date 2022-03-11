@@ -12,8 +12,8 @@ k.slua("<M-l>", 'require("luasnip").jump(1)')
 k.slua("<M-h>", 'require("luasnip").jump(-1)')
 
 -- choice
-k.iplug("<M-.>", "<Plug>luasnip-next-choice")
-k.splug("<M-.>", "<Plug>luasnip-next-choice")
+k.iexpr("<M-.>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : ''", { remap = true })
+k.sexpr("<M-.>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : ''", { remap = true })
 
 -- re-merge my snippets
 function _G._mdx_remerge_my_luasnip_snippets()
