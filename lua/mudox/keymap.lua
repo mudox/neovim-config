@@ -1,7 +1,7 @@
 --[==[
   utility lib for defining common mappings.
 
-  the module provides 4 basic functions (map, cmd, plug, nop, lua, call) all of which need a mode
+  the module provides 4 basic functions (map, cmd, plug, nop, lua, call, expr) all of which need a mode
   char as its 1st character
 
   by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods
@@ -62,6 +62,12 @@ local function map(
   end
 end
 
+local function expr(mode, from, to, opts)
+  opts = opts or {}
+  opts.expr = true
+  map(mode, from, to, opts)
+end
+
 --[[
   convenient method for common patter `<Cmd>{ex command}<Cr>`
 ]]
@@ -89,7 +95,7 @@ end
 local function plug(mode, from, to, options)
   options = options or {}
   options.remap = true
-  options.noremap = false
+  options.noremap = nil
   map(mode, from, ("<Plug>(%s)"):format(to), options)
 end
 
@@ -100,7 +106,7 @@ local function nop(mode, from)
   map(mode, from, "<Nop>", {})
 end
 
-local bodys = { map = map, cmd = cmd, plug = plug, nop = nop, lua = lua, call = call }
+local bodys = { map = map, cmd = cmd, plug = plug, nop = nop, lua = lua, call = call, expr = expr }
 
 --[[
   compose mapping defining functions from parameter `name`.
