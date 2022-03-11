@@ -4,6 +4,7 @@
 local k = require("mudox.keymap")
 local ncmd = k.ncmd
 local nlua = k.nlua
+local dropdown = require("telescope.themes").get_dropdown
 
 local function map(from, to)
   nlua(from, ('require("telescope").%s'):format(to))
@@ -12,10 +13,10 @@ end
 local prefix = ",t"
 
 -- builtin
----@diagnostic disable-next-line: lowercase-global
-function _mdx_telescope_picker_builtin()
+function _G._mdx_telescope_picker_builtin()
   local opts = {
     include_extensions = true,
+    preview = { hide_on_startup = true },
   }
   require("telescope.builtin").builtin(opts)
 end
