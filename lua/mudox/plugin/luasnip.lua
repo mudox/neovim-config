@@ -1,5 +1,8 @@
 url = "L3MON4D3/LuaSnip"
 
-requires = { { "rafamadriz/friendly-snippets" } }
+requires = {
+  { "rafamadriz/friendly-snippets" },
+  { "honza/vim-snippets" },
+}
 
 event = "VimEnter"
