@@ -1,5 +1,19 @@
 -- for `friendly-snippets`
-require("luasnip.loaders.from_vscode").lazy_load()
+-- require("luasnip.loaders.from_vscode").lazy_load()
+-- require("luasnip.loaders.from_snipmate").lazy_load()
+
+-- Mappings
+local k = require("mudox.keymap")
+
+-- jump
+k.ilua("<M-l>", 'require("luasnip").jump(1)')
+k.ilua("<M-h>", 'require("luasnip").jump(-1)')
+k.slua("<M-l>", 'require("luasnip").jump(1)')
+k.slua("<M-h>", 'require("luasnip").jump(-1)')
+
+-- choice
+k.iplug("<M-.>", "<Plug>luasnip-next-choice")
+k.splug("<M-.>", "<Plug>luasnip-next-choice")
 
 -- re-merge my snippets
 function _G._mdx_remerge_my_luasnip_snippets()
