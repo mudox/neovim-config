@@ -58,22 +58,27 @@ return {
   -- "snippets",
 
   -- UI
-  "git-signs",
-  "notify",
-  "which-key",
-  "dressing",
-  "dev-icons",
   "base16",
+
+  "dev-icons",
+  "dressing",
+
+  "git-signs",
+
   "lualine",
   "tmuxline",
+
   "indent-blank-line",
+
   "todo-comments",
 
   -- Window
-  -- "stickybuf",
   "popup",
 
-  -- Terminal
+  "which-key",
+
+  "notify",
+
   "toggle-term",
 
   "zen-mode",
@@ -81,10 +86,13 @@ return {
   -- Navigation
   "clever-f",
   "light-speed",
-  "nnn",
-  "telescope",
-  "tmux-navigator",
   "tree-hopper",
+
+  "nnn",
+
+  "telescope",
+
+  "tmux-navigator",
 
   -- Text object
   "textobject/*",
