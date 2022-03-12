@@ -39,6 +39,7 @@ ncmd("<Space>r", "Telescope oldfiles")
 ncmd("g/", "Telescope live_grep") -- interactive grep
 ncmd(prefix .. "g", "Telescope live_grep") -- interactive grep
 ncmd(prefix .. "G", "Telescope grep_string") -- grep string under cursor
+-- Interface Mappings  〈
 
 -- treesitter symbols
 ncmd(prefix .. "s", "Telescope treesitter")
@@ -59,11 +60,14 @@ local actions_layout = require("telescope.actions.layout")
 local mappings = {
   i = {
     ["?"] = actions_layout.toggle_preview,
+    ["<C-f>"] = actions.results_scrolling_down,
+    ["<C-b>"] = actions.results_scrolling_up,
   },
   n = {
     ["q"] = actions.close,
   },
 }
+
 -- 〉
 
 -- Setup 〈
