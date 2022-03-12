@@ -24,7 +24,7 @@ local sources = {
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { sources = { { name = "buffer" } } })
+cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_item_count = 20 } } })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
