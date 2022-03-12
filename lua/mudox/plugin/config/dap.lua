@@ -19,19 +19,6 @@ map("<F10>", "step_over()")
 map("<F11>", "step_into()")
 map("<F12>", "step_out()")
 
--- toggle breakpoint
-map(",db", "toggle_breakpoint()")
--- add conditional breakpoint
-map(",dc", "set_breakpoint(vim.fn.input('Breakpoint condition: '))")
--- add log point
-map(",dp", "set_breakpoint(nil, nil, vim.fn.input('Log point message: '))")
-
--- repl
-map(",d:", "repl.open()")
-
--- retry last debug session
-map(",d<Space>", "require('dap').run_last()")
-
 -- 〉
 
 -- Signs 〈
