@@ -15,12 +15,15 @@ installer.on_server_ready(function(server)
   end
 
   if server.name == "sumneko_lua" then
+    -- Lua
     local sumneko_opts = require("mudox.lsp.server.sumneko_lua")
     opts = extend(sumneko_opts, opts)
   elseif server.name == "jsonls" then
+    -- JSON
     local jsonls_opts = require("mudox.lsp.server.jsonls")
     opts = extend(jsonls_opts, opts)
   elseif server.name == "rust_analyzer" then
+    -- Rust
     require("mudox.lsp.rust").setup_server(server, opts)
     return
   end
