@@ -11,6 +11,7 @@
     "keys",
     "run",
     "after",
+    "opt",
     "config"
   ],
   "Lua.workspace.library": ["/Users/mudox/.config/nvim/lua/mudox"]
