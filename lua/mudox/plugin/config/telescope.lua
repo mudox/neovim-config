@@ -121,13 +121,6 @@ end
 
 load("fzf")
 
-load("coc")
-ncmd(prefix .. "cc", "Telescope coc commands")
-ncmd(prefix .. "ca", "Telescope coc file_code_actions")
-ncmd(prefix .. "cA", "Telescope coc code_actions")
-ncmd(prefix .. "cs", "Telescope coc document_symbols")
-ncmd(prefix .. "cS", "Telescope coc workspace_symbols")
-
 load("aerial")
 ncmd(prefix .. "a", "Telescope aerial")
 
@@ -152,8 +145,6 @@ ncmd(prefix .. "dv", "Telescope dap variables")
 ncmd(prefix .. "df", "Telescope dap frames")
 ncmd(prefix .. "db", "Telescope dap list_breakpoints")
 
-load("termfinder")
-ncmd(prefix .. "/", "Telescope termfinder find")
 
 load("projects")
 ncmd(prefix .. "w", "Telescope projects")
