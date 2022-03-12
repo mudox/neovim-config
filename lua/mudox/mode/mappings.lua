@@ -72,3 +72,5 @@ ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 -- quickfix/location list window toggle
 ncmd("<M-/>l", "call mudox#lib#toggleLocList()")
 ncmd("<M-/>q", "call mudox#lib#toggleQuickFix()")
+vim.cmd([[PackerLoad which-key.nvim]])
+local wk = require("which-key")
