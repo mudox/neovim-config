@@ -7,6 +7,8 @@ requires = {
 
   -- snippets
   { "saadparwaiz1/cmp_luasnip" },
+
+  -- lua neovim api
   { "hrsh7th/cmp-nvim-lua" },
 
   -- omni completion sources
