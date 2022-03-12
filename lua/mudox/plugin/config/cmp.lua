@@ -30,7 +30,7 @@ cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources(
     { { name = "path" } },
-    { { name = "cmdline", keyword_pattern = [[\k\+]], keyword_length = 3, max_item_count = 20 } }
+    { { name = "cmdline", keyword_pattern = [[\h\+]], keyword_length = 3, max_item_count = 20 } }
   ),
 })
 
