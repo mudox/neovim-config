@@ -9,7 +9,10 @@ local format = string.format
 local compat = require 'pl.compat'
 local stdout = io.stdout
 local append = table.insert
+local concat = table.concat
 local _unpack = table.unpack  -- always injected by 'compat'
+local find = string.find
+local sub = string.sub
 
 local is_windows = compat.is_windows
 local err_mode = 'default'
@@ -18,7 +21,7 @@ local operators
 local _function_factories = {}
 
 
-local utils = { _VERSION = "1.8.1" }
+local utils = { _VERSION = "1.12.0" }
 for k, v in pairs(compat) do utils[k] = v  end
 
 --- Some standard patterns
@@ -50,6 +53,8 @@ utils.stdmt = {
 -- @return a table with field `n` set to the length
 -- @function utils.pack
 -- @see compat.pack
+-- @see utils.npairs
+-- @see utils.unpack
 utils.pack = table.pack  -- added here to be symmetrical with unpack
 
 --- unpack a table and return its contents.
@@ -58,10 +63,12 @@ utils.pack = table.pack  -- added here to be symmetrical with unpack
 -- that this one DOES honor the `n` field in the table `t`, such that it is 'nil-safe'.
 -- @param t table to unpack
 -- @param[opt] i index from which to start unpacking, defaults to 1
--- @param[opt] t index of the last element to unpack, defaults to `t.n` or `#t`
+-- @param[opt] j index of the last element to unpack, defaults to `t.n` or else `#t`
 -- @return multiple return values from the table
 -- @function utils.unpack
 -- @see compat.unpack
+-- @see utils.pack
+-- @see utils.npairs
 -- @usage
 -- local t = table.pack(nil, nil, nil, 4)
 -- local a, b, c, d = table.unpack(t)   -- this `unpack` is NOT nil-safe, so d == nil
@@ -166,6 +173,56 @@ function utils.is_type (obj,tp)
     return tp == mt
 end
 
+
+
+--- an iterator with indices, similar to `ipairs`, but with a range.
+-- This is a nil-safe index based iterator that will return `nil` when there
+-- is a hole in a list. To be safe ensure that table `t.n` contains the length.
+-- @tparam table t the table to iterate over
+-- @tparam[opt=1] integer i_start start index
+-- @tparam[opt=t.n or #t] integer i_end end index
+-- @tparam[opt=1] integer step step size
+-- @treturn integer index
+-- @treturn any value at index (which can be `nil`!)
+-- @see utils.pack
+-- @see utils.unpack
+-- @usage
+-- local t = utils.pack(nil, 123, nil)  -- adds an `n` field when packing
+--
+-- for i, v in utils.npairs(t, 2) do  -- start at index 2
+--   t[i] = tostring(t[i])
+-- end
+--
+-- -- t = { n = 3, [2] = "123", [3] = "nil" }
+function utils.npairs(t, i_start, i_end, step)
+  step = step or 1
+  if step == 0 then
+    error("iterator step-size cannot be 0", 2)
+  end
+  local i = (i_start or 1) - step
+  i_end = i_end or t.n or #t
+  if step < 0 then
+    return function()
+      i = i + step
+      if i < i_end then
+        return nil
+      end
+      return i, t[i]
+    end
+
+  else
+    return function()
+      i = i + step
+      if i > i_end then
+        return nil
+      end
+      return i, t[i]
+    end
+  end
+end
+
+
+
 --- Error handling
 -- @section Error-handling
 
@@ -191,6 +248,68 @@ function utils.assert_arg (n,val,tp,verify,msg,lev)
     end
     return val
 end
+
+--- creates an Enum table.
+-- This helps prevent magic strings in code by throwing errors for accessing
+-- non-existing values.
+--
+-- Calling on the object does the same, but returns a soft error; `nil + err`.
+--
+-- The values are equal to the keys. The enum object is
+-- read-only.
+-- @param ... strings that make up the enumeration.
+-- @return Enum object
+-- @usage -- accessing at runtime
+-- local obj = {}
+-- obj.MOVEMENT = utils.enum("FORWARD", "REVERSE", "LEFT", "RIGHT")
+--
+-- if current_movement == obj.MOVEMENT.FORWARD then
+--   -- do something
+--
+-- elseif current_movement == obj.MOVEMENT.REVERES then
+--   -- throws error due to typo 'REVERES', so a silent mistake becomes a hard error
+--   -- "'REVERES' is not a valid value (expected one of: 'FORWARD', 'REVERSE', 'LEFT', 'RIGHT')"
+--
+-- end
+-- @usage -- validating user-input
+-- local parameter = "...some user provided option..."
+-- local ok, err = obj.MOVEMENT(parameter) -- calling on the object
+-- if not ok then
+--   print("bad 'parameter', " .. err)
+--   os.exit(1)
+-- end
+function utils.enum(...)
+  local lst = utils.pack(...)
+  utils.assert_arg(1, lst[1], "string") -- at least 1 string
+
+  local enum = {}
+  for i, value in ipairs(lst) do
+    utils.assert_arg(i, value, "string")
+    enum[value] = value
+  end
+
+  local valid = "(expected one of: '" .. concat(lst, "', '") .. "')"
+  setmetatable(enum, {
+    __index = function(self, key)
+      error(("'%s' is not a valid value %s"):format(tostring(key), valid), 2)
+    end,
+    __newindex = function(self, key, value)
+      error("the Enum object is read-only", 2)
+    end,
+    __call = function(self, key)
+      if type(key) == "string" then
+        local v = rawget(self, key)
+        if v then
+          return v
+        end
+      end
+      return nil, ("'%s' is not a valid value %s"):format(tostring(key), valid)
+    end
+  })
+
+  return enum
+end
+
 
 --- process a function argument.
 -- This is used throughout Penlight and defines what is meant by a function:
@@ -403,7 +522,7 @@ function utils.quote_arg(argument)
             r[i] = utils.quote_arg(arg)
         end
 
-        return table.concat(r, " ")
+        return concat(r, " ")
     end
     -- only a single argument
     if is_windows then
@@ -464,14 +583,14 @@ end
 
 --- split a string into a list of strings separated by a delimiter.
 -- @param s The input string
--- @param re A Lua string pattern; defaults to '%s+'
--- @param plain don't use Lua patterns
--- @param n optional maximum number of splits
+-- @param re optional A Lua string pattern; defaults to '%s+'
+-- @param plain optional If truthy don't use Lua patterns
+-- @param n optional maximum number of elements (if there are more, the last will remian un-split)
 -- @return a list-like table
 -- @raise error if s is not a string
+-- @see splitv
 function utils.split(s,re,plain,n)
     utils.assert_string(1,s)
-    local find,sub,append = string.find, string.sub, table.insert
     local i1,ls = 1,{}
     if not re then re = '%s+' end
     if re == '' then return {s} end
@@ -496,13 +615,19 @@ function utils.split(s,re,plain,n)
 end
 
 --- split a string into a number of return values.
+-- Identical to `split` but returns multiple sub-strings instead of
+-- a single list of sub-strings.
 -- @param s the string
--- @param re the delimiter, default space
+-- @param re A Lua string pattern; defaults to '%s+'
+-- @param plain don't use Lua patterns
+-- @param n optional maximum number of splits
 -- @return n values
--- @usage first,next = splitv('jane:doe',':')
+-- @usage first,next = splitv('user=jane=doe','=', false, 2)
+-- assert(first == "user")
+-- assert(next == "jane=doe")
 -- @see split
-function utils.splitv (s,re)
-    return _unpack(utils.split(s,re))
+function utils.splitv (s,re, plain, n)
+    return _unpack(utils.split(s,re, plain, n))
 end
 
 
@@ -557,6 +682,7 @@ local function _string_lambda(f)
     end
 end
 
+
 --- an anonymous function as a string. This string is either of the form
 -- '|args| expression' or is a function of one argument, '_'
 -- @param lf function as a string
@@ -587,6 +713,7 @@ function utils.bind1 (fn,p)
     return function(...) return fn(p,...) end
 end
 
+
 --- bind the second argument of the function to a value.
 -- @param fn a function of at least two values (may be an operator string)
 -- @param p a value
@@ -604,6 +731,110 @@ function utils.bind2 (fn,p)
     fn = utils.function_arg(1,fn)
     return function(x,...) return fn(x,p,...) end
 end
+
+
+
+
+--- Deprecation
+-- @section deprecation
+
+do
+  -- the default implementation
+  local deprecation_func = function(msg, trace)
+    if trace then
+      warn(msg, "\n", trace)  -- luacheck: ignore
+    else
+      warn(msg)  -- luacheck: ignore
+    end
+  end
+
+  --- Sets a deprecation warning function.
+  -- An application can override this function to support proper output of
+  -- deprecation warnings. The warnings can be generated from libraries or
+  -- functions by calling `utils.raise_deprecation`. The default function
+  -- will write to the 'warn' system (introduced in Lua 5.4, or the compatibility
+  -- function from the `compat` module for earlier versions).
+  --
+  -- Note: only applications should set/change this function, libraries should not.
+  -- @param func a callback with signature: `function(msg, trace)` both arguments are strings, the latter being optional.
+  -- @see utils.raise_deprecation
+  -- @usage
+  -- -- write to the Nginx logs with OpenResty
+  -- utils.set_deprecation_func(function(msg, trace)
+  --   ngx.log(ngx.WARN, msg, (trace and (" " .. trace) or nil))
+  -- end)
+  --
+  -- -- disable deprecation warnings
+  -- utils.set_deprecation_func()
+  function utils.set_deprecation_func(func)
+    if func == nil then
+      deprecation_func = function() end
+    else
+      utils.assert_arg(1, func, "function")
+      deprecation_func = func
+    end
+  end
+
+  --- raises a deprecation warning.
+  -- For options see the usage example below.
+  --
+  -- Note: the `opts.deprecated_after` field is the last version in which
+  -- a feature or option was NOT YET deprecated! Because when writing the code it
+  -- is quite often not known in what version the code will land. But the last
+  -- released version is usually known.
+  -- @param opts options table
+  -- @see utils.set_deprecation_func
+  -- @usage
+  -- warn("@on")   -- enable Lua warnings, they are usually off by default
+  --
+  -- function stringx.islower(str)
+  --   raise_deprecation {
+  --     source = "Penlight " .. utils._VERSION,                   -- optional
+  --     message = "function 'islower' was renamed to 'is_lower'", -- required
+  --     version_removed = "2.0.0",                                -- optional
+  --     deprecated_after = "1.2.3",                               -- optional
+  --     no_trace = true,                                          -- optional
+  --   }
+  --   return stringx.is_lower(str)
+  -- end
+  -- -- output: "[Penlight 1.9.2] function 'islower' was renamed to 'is_lower' (deprecated after 1.2.3, scheduled for removal in 2.0.0)"
+  function utils.raise_deprecation(opts)
+    utils.assert_arg(1, opts, "table")
+    if type(opts.message) ~= "string" then
+      error("field 'message' of the options table must be a string", 2)
+    end
+    local trace
+    if not opts.no_trace then
+      trace = debug.traceback("", 2):match("[\n%s]*(.-)$")
+    end
+    local msg
+    if opts.deprecated_after and opts.version_removed then
+      msg = (" (deprecated after %s, scheduled for removal in %s)"):format(
+        tostring(opts.deprecated_after), tostring(opts.version_removed))
+    elseif opts.deprecated_after then
+      msg = (" (deprecated after %s)"):format(tostring(opts.deprecated_after))
+    elseif opts.version_removed then
+      msg = (" (scheduled for removal in %s)"):format(tostring(opts.version_removed))
+    else
+      msg = ""
+    end
+
+    msg = opts.message .. msg
+
+    if opts.source then
+      msg = "[" .. opts.source .."] " .. msg
+    else
+      if msg:sub(1,1) == "@" then
+        -- in Lua 5.4 "@" prefixed messages are control messages to the warn system
+        error("message cannot start with '@'", 2)
+      end
+    end
+
+    deprecation_func(msg, trace)
+  end
+
+end
+
 
 return utils
 

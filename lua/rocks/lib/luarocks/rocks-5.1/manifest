@@ -52,7 +52,7 @@ dependencies = {
       }
    },
    penlight = {
-      ["1.8.1-1"] = {
+      ["1.12.0-1"] = {
          {
             constraints = {},
             name = "luafilesystem"
@@ -68,121 +68,121 @@ modules = {
       "luafilesystem/1.8.0-1"
    },
    ["pl.Date"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.List"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.Map"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.MultiMap"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.OrderedMap"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.Set"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.app"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.array2d"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.class"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.compat"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.comprehension"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.config"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.data"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.dir"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.file"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.func"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.import_into"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.init"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.input"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.lapp"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.lexer"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.luabalanced"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.operator"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.path"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.permute"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.pretty"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.seq"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.sip"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.strict"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.stringio"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.stringx"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.tablex"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.template"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.test"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.text"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.types"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.url"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.utils"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["pl.xml"] = {
-      "penlight/1.8.1-1"
+      "penlight/1.12.0-1"
    },
    ["posix._base"] = {
       "luaposix/35.0-1"
@@ -370,7 +370,7 @@ repository = {
       }
    },
    penlight = {
-      ["1.8.1-1"] = {
+      ["1.12.0-1"] = {
          {
             arch = "installed",
             commands = {},
