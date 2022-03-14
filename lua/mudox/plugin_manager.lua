@@ -151,16 +151,6 @@ end
 
 -- 〉
 
--- Mappings 〈
-
-local ncmd = require("mudox.keymap").ncmd
-
-ncmd(",pS", "PackerSync")
-ncmd(",ps", "PackerStatus")
-ncmd(",pc", "PackerClean")
-ncmd(",pC", "PackerCompile")
-ncmd(",pI", "PackerInstall")
-
 -- 〉
 
 load(stdpath("plugins"))

@@ -198,11 +198,25 @@ local aerial = {
 
 -- 〉
 
+-- Packer 〈
+local packer = {
+  name = "Packer",
+
+  ["S"] = { cmd("PackerSync"), "`PackerUpdate` then `PackerSync`" },
+  ["s"] = { cmd("PackerStatus"), "Show packer status" },
+  ["c"] = { cmd("PackerClean"), "Clean packer plugins" },
+  ["C"] = { cmd("PackerCompile"), "Regenerate `packer_compiled` file" },
+  ["I"] = { cmd("PackerInstall"), "Install plugins" },
+}
+
+-- 〉
+
 local comma = {
   name = "Plugin prefix",
 
   a = aerial,
   d = dap,
+  p = packer,
   t = telescope,
   x = trouble,
 }
