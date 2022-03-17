@@ -73,7 +73,9 @@ ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 
 -- quickfix/location list window toggle
 ncmd("<M-/>l", "call mudox#lib#toggleLocList()")
+ncmd("yoL", "call mudox#lib#toggleLocList()")
 ncmd("<M-/>q", "call mudox#lib#toggleQuickFix()")
+ncmd("yoq", "call mudox#lib#toggleQuickFix()")
 
 -- 〉
 
