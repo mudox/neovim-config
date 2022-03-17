@@ -1,12 +1,11 @@
 local function dap_config()
-  local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.6.10/"
-  local codelldb_path = extension_path .. "adapter/codelldb"
-  local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+  local extension_path = vim.fn.expand("~/.vscode/extensions/vadimcn.vscode-lldb-*")
 
-  if not pl.path.isfile(codelldb_path) then
-    vim.notify("codelldb path changed, skip rust-tools debugging configuration", "error", { title = "RUST-TOOLS" })
-    return nil
-  end
+  local codelldb_path = extension_path .. "/adapter/codelldb"
+  assert(pl.path.isfile(codelldb_path))
+
+  local liblldb_path = extension_path .. "/lldb/lib/liblldb.dylib"
+  assert(pl.path.isfile(liblldb_path))
 
   return {
     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
