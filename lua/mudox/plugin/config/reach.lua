@@ -4,4 +4,7 @@ reach.setup()
 
 local ncmd = require("mudox.keymap").ncmd
 ncmd("<M-o>", "ReachOpen buffers")
-ncmd("<M-p>", "ReachOpen buffers")
+
+vim.cmd([[
+hi ReachHandleDelete guifg=red
+]])
