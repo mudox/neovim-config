@@ -156,7 +156,7 @@ local trouble = {
   ["q"] = { cmd("TroubleToggle quickfix"), "Trouble quickfix" },
   ["l"] = { cmd("TroubleToggle loclist"), "Trouble loclist" },
 
-  ["r"] = { cmd("TroubleToggle lsp_reference"), "Trouble lsp references" },
+  ["r"] = { cmd("TroubleToggle lsp_references"), "Trouble lsp references" },
 }
 
 -- 〉
