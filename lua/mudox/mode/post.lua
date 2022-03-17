@@ -1,21 +1,34 @@
 -- vim:fdm=marker
 
--- color scheme
--- avoid `:colorsheme` can save ±7ms startuptime
+-- Color scheme
+-- Avoid `:colorsheme` can save ±7ms startuptime
 local base16 = require("base16")
 base16(base16.themes["gruvbox-dark-hard"], true)
 
--- diff
+-- Adjust some colors
 vim.cmd([[
+" transparent background
+hi Normal guibg=NONE
+
+" transparent column
 hi DiffAdd guibg=None
 hi DiffDelete guibg=None
 hi DiffChange guibg=None
+
+" brighter text
+hi Folded guifg=yellow
+
+" brighter border and border title
+hi link FloatBorder TelescopeBorder
+
+" lsp highlight cursor
+hi default link LspReferenceText CursorColumn
+hi default link LspReferenceRead LspReferenceText
+hi default link LspReferenceWrite LspReferenceText
 ]])
 
--- prevent built-in plugin loading
-vim.g.loaded_netrwPlugin = true
-
--- HACK: temporarily fix: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
+-- HACK: temporarily fix neovim window resizing issue
+-- track: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
 vim.cmd([[ 
 autocmd VimEnter * :sleep 1m
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 
