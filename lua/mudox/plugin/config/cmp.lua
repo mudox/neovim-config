@@ -7,21 +7,25 @@ local luasnip = require("luasnip")
 
 -- Source 〈
 
-local sources = {
-  -- powerful generic sources
-  { name = "nvim_lsp" },
-  { name = "cmp_tabnine" },
+local sources = cmp.config.sources({
+  -- LSP
+  { name = "nvim_lsp", max_item_count = 20 },
 
-  -- snippets
+  -- Neovim lua api
+  { name = "nvim_lua", max_item_count = 10 },
+
+  -- Tokens from opened buffers
+  { name = "buffer" },
+
+  -- File sytem path
+  { name = "path" },
+}, {
+  -- LuaSnip snippets
   { name = "luasnip" },
 
-  -- neovim lua api
-  { name = "nvim_lua" },
-
-  -- basic stuff
-  { name = "buffer" },
-  { name = "path" },
-}
+  -- TabNine AI completion engine
+  { name = "cmp_tabnine", max_item_count = 10 },
+})
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_item_count = 20 } } })
@@ -29,7 +33,7 @@ cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources(
-    { { name = "path" } },
+    { { name = "path", keyword_length = 3 } },
     { { name = "cmdline", keyword_pattern = [[\h\+]], keyword_length = 3, max_item_count = 20 } }
   ),
 })
