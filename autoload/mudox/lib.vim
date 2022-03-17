@@ -7,16 +7,14 @@ function! mudox#lib#toggleQuickFix()
   if empty(filter(getwininfo(), 'v:val.quickfix'))
     copen
   else
-    " cclose
-    Trouble quickfix
+    cclose
   endif
 endfunction
 
 function! mudox#lib#toggleLocList()
   try
     if empty(filter(getwininfo(), 'v:val.loclist'))
-      " lopen
-      Trouble loclist
+      lopen
     else
       lclose
     endif
@@ -28,7 +26,6 @@ function! mudox#lib#toggleLocList()
     \)
   endtry
 endfunction
-
 
 function! mudox#lib#wipeoutBuffer()
   try
