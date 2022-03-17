@@ -21,6 +21,7 @@ local function install_lsp_buffer_mappings(bufnr)
   -- goto
   nlua("gD", "vim.lsp.buf.declaration()")
   nlua("gd", "vim.lsp.buf.definition()")
+  nlua("gT", "vim.lsp.buf.type_definition()")
   nlua("gi", "vim.lsp.buf.implementation()")
   nlua("gr", "vim.lsp.buf.references()")
 
