@@ -110,6 +110,7 @@ local telescope = {
   -- Files
   ["f"] = { cmd("Telescope git_files"), "Git files" },
   ["c"] = { cmd("Telescope git_status"), "Git changed files" },
+  ["R"] = { req("extensions.live_grep_raw.live_grep_raw()"), "Rg raw mode" },
 
   -- Grep
   ["g"] = { cmd("Telescope live_grep"), "Live grep" },
@@ -133,7 +134,6 @@ local telescope = {
 
   -- Notify
   ["n"] = { cmd("Telescope notify"), "Notifications" },
-  ["R"] = { req("extensions.live_grep_raw.live_grep_raw()"), "Rg raw mode" },
 
   -- Project
   ["w"] = { cmd("Telescope projects"), "Project" },

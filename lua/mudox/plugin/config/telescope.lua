@@ -97,4 +97,6 @@ load("dap")
 
 load("projects")
 
+load("live_grep_raw")
+
 -- 〉
