@@ -1,5 +1,3 @@
-vim.o.laststatus = 2 -- always show statusline
-
 local options = {
   icons_enabled = true,
 
@@ -92,3 +90,6 @@ require("lualine").setup {
   tabline = tabline,
   extensions = {},
 }
+
+-- `setup` above set `laststatus=2`
+vim.o.laststatus = 3 -- global statusline

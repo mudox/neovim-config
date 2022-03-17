@@ -52,7 +52,10 @@ o.splitbelow = true
 
 -- overriden by `lualine`
 o.showtabline = 0
-o.laststatus = 2
+
+-- overriden by `lualine`
+o.laststatus = 3 -- global statusline
+
 o.showcmd = false
 o.ruler = false
 
