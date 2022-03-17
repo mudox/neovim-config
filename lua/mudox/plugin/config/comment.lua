@@ -1,6 +1,6 @@
-local ncmd = require("mudox.keymap").ncmd
+local xmap = require("mudox.keymap").xmap
 
-ncmd("<C-_>", "gcc")
+xmap("<C-_>", "gc", { remap = true })
 
 local config = {
   toggler = {
