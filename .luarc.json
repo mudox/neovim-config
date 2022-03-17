@@ -1,18 +1,23 @@
 {
-  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-  "Lua.diagnostics.globals": [
-    "vim",
-    "pl",
-    "stdpath",
-    "use",
-    "url",
-    "requires",
-    "event",
-    "keys",
-    "run",
-    "after",
-    "opt",
-    "config"
-  ],
-  "Lua.workspace.library": ["/Users/mudox/.config/nvim/lua/mudox"]
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "diagnostics.globals": [
+        "vim",
+        "pl",
+        "stdpath",
+        "url",
+        "requires",
+        "event",
+        "keys",
+        "run",
+        "after",
+        "opt",
+        "config",
+        "ngx"
+    ],
+    "runtime.version": "LuaJIT",
+    "workspace.checkThirdParty": false,
+    "workspace.library": [
+        "/Users/mudox/.config/nvim/lua/mudox/lua/rocks/share/lua/5.1",
+        "${3rd}/OpenResty/library"
+    ]
 }
