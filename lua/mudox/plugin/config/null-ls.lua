@@ -1,17 +1,24 @@
 local null_ls = require("null-ls")
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-local formatting = null_ls.builtins.formatting
-
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
+local f = null_ls.builtins.formatting
+local d = null_ls.builtins.diagnostics
+local a = null_ls.builtins.code_actions
 
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
-    formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
-    diagnostics.flake8,
+    -- formatting
+    f.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
+    f.black.with { extra_args = { "--fast" } }, -- Python
+    f.stylua, -- Lua
+    f.swiftformat, -- Swift
+
+    -- diagnostics
+    d.flake8, -- Python flake8
+    d.eslint_d, -- ESLint
+
+    -- code actions
+    a.eslint_d, -- ESLint
+    a.gitsigns, -- Git stage / preview / reset hunks / blame ...
   },
 }
