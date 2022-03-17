@@ -40,9 +40,21 @@ local function install_lsp_buffer_mappings(bufnr)
   nlua("gl", "vim.diagnostic.open_float()")
 end
 
-function _G._mdx_format_document()
+--- For slow formatting
+function _G._mdx_async_format_document()
+  local enabled_filetypes = {}
+
+  if enabled_filetypes[vim.o.ft] then
+    vim.lsp.buf.formatting()
+  end
+end
+
+-- For instant formatting
+function _G._mdx_sync_format_document()
   local enabled_filetypes = {
     lua = true,
+    swift = true,
+    python = true,
   }
 
   if enabled_filetypes[vim.o.ft] then
@@ -52,7 +64,8 @@ end
 
 local function install_buffer_autocmds()
   vim.cmd([[
-  au BufWritePre <buffer> lua _mdx_format_document()
+  au BufWritePre <buffer> lua _mdx_sync_format_document()
+  au BufWritePost <buffer> lua _mdx_async_format_document()
   ]])
 end
 
