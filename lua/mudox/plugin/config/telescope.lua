@@ -16,9 +16,16 @@ local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local mappings = {
   i = {
+    -- Preview
     ["?"] = actions_layout.toggle_preview,
+
+    -- Scrolling
     ["<C-f>"] = actions.results_scrolling_down,
     ["<C-b>"] = actions.results_scrolling_up,
+
+    -- Split open
+    -- By convention <C-x> and <C-s> are used for horizontal splitting
+    ["<C-s>"] = actions.select_horizontal,
   },
   n = {
     ["q"] = actions.close,
