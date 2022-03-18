@@ -42,7 +42,18 @@ o.termguicolors = true
 
 o.mouse = "a"
 
-o.fillchars = "eob: "
+opt.fillchars = {
+  eob = " ",
+
+  -- Pane separators
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vert = "┃",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
+}
 
 o.cursorline = false
 o.number = false
