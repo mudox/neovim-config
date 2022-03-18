@@ -1,7 +1,7 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 ---@diagnostic disable: unused-local
 
--- language client 〈
+-- Language client 〈
 
 -- JavaScript
 vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
@@ -12,27 +12,27 @@ vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 
 -- 〉
 
--- helpers 〈
+-- Helpers 〈
 local home = os.getenv("HOME")
 
--- access vim remote plugin api
+-- Access vim remote plugin api
 local a = vim.api
 
--- access vim global variables
+-- Access vim global variables
 local g = vim.g
 
--- access vim global options
+-- Access vim global options
 local o = vim.o
 local opt = vim.opt
 
--- execute vim commands
+-- Execute vim commands
 local cmd = vim.cmd
 
--- call vim functions
+-- Call vim functions
 local fn = vim.fn
 -- 〉
 
--- indent 〈
+-- Indent 〈
 o.autoindent = true
 o.smartindent = true
 -- 〉
@@ -61,26 +61,26 @@ o.number = false
 o.splitright = true
 o.splitbelow = true
 
--- overriden by `lualine`
+-- Overriden by `lualine`
 o.showtabline = 0
 
--- overriden by `lualine`
-o.laststatus = 3 -- global statusline
+-- Overriden by `lualine`
+o.laststatus = 3 -- Global statusline
 
 o.showcmd = false
 o.ruler = false
 
 o.cmdheight = 2
 
-opt.shortmess:append("I") -- not show `:intro` on startup
-opt.shortmess:append("c") -- not show insert completion menu message
+opt.shortmess:append("I") -- Not show `:intro` on startup
+opt.shortmess:append("c") -- Not show insert completion menu message
 
 o.scrolloff = 8
 o.sidescrolloff = 8
 
 -- 〉
 
--- tabs 〈
+-- Tabs 〈
 o.tabstop = 8
 o.softtabstop = 4
 o.shiftwidth = 4
@@ -89,7 +89,7 @@ o.expandtab = true
 o.listchars = [[tab:▸-,eol:¶]]
 -- 〉
 
--- pattern search 〈
+-- Pattern search 〈
 o.hlsearch = false
 o.wrapscan = true
 o.incsearch = true
@@ -98,25 +98,25 @@ o.smartcase = true
 o.inccommand = "nosplit"
 -- 〉
 
--- editing behavior 〈
+-- Editing behavior 〈
 o.whichwrap = [[b,s,<,>,[,],h,l]]
 o.autochdir = false
-o.autowriteall = true -- auto-save aggressively
+o.autowriteall = true -- Auto-save aggressively
 -- 〉
 
--- completion 〈
+-- Completion 〈
 o.completeopt = "menuone,noselect"
 o.dictionary = [[/usr/share/dict/words]]
 o.wildignorecase = true
 -- 〉
 
--- font 〈
+-- Font 〈
 o.guifont = "Monaco for Powerline:h11"
 o.linespace = 0
 -- 〉
 
--- tmp file 〈
-o.hidden = true -- many plugins need this feature
+-- Tmp file 〈
+o.hidden = true -- Many plugins need this feature
 o.backup = false
 o.writebackup = false
 o.swapfile = false
