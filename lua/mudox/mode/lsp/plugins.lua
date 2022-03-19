@@ -124,4 +124,7 @@ return {
   -- JS
   -- HTML/CSS
   -- C/C++
+
+  -- Org
+  "neorg",
 }
