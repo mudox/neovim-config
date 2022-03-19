@@ -1,4 +1,5 @@
 local options = {
+  globalstatus = true,
   icons_enabled = true,
 
   -- themes
@@ -90,6 +91,3 @@ require("lualine").setup {
   tabline = tabline,
   extensions = {},
 }
-
--- `setup` above set `laststatus=2`
-vim.o.laststatus = 3 -- global statusline
