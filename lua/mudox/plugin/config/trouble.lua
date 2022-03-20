@@ -1,12 +1,12 @@
--- vim: fdm=marker fmr=〈,〉
+local i = require("mudox.ui").icons
 
 -- stylua: ignore start
 local opts = {
   signs = {
-    error       = " ",
-    warning     = " ",
-    hint        = "➠ ",
-    information = " ",
+    error       = i.error,
+    warning     = i.warn,
+    information = i.info,
+    hint        = i.hint,
     other       = "﫠",
   },
 }

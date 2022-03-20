@@ -1,9 +1,11 @@
+local i = require("mudox.ui").icons
+
 -- stylua: ignore start
 local signs = {
-  { name = "DiagnosticSignError", text = " " },
-  { name = "DiagnosticSignWarn",  text = " " },
-  { name = "DiagnosticSignHint",  text = " " },
-  { name = "DiagnosticSignInfo",  text = " " },
+  { name = "DiagnosticSignError", text = i.error },
+  { name = "DiagnosticSignWarn",  text = i.warn },
+  { name = "DiagnosticSignInfo",  text = i.info },
+  { name = "DiagnosticSignHint",  text = i.hint },
 }
 -- stylua: ignore end
 
