@@ -58,6 +58,7 @@ return {
   -- "snippets",
 
   -- UI
+  "colorizer",
   "base16",
 
   "dev-icons",
