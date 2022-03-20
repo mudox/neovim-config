@@ -168,7 +168,7 @@ req = make_req("dap")
 local dap = {
   name = "DAP",
 
-  ["<Space>"] = { req("require('dap').run_last()"), "Re-run last debug session" },
+  ["<Space>"] = { req("run_last()"), "Re-run last debug session" },
 
   ["b"] = { req("toggle_breakpoint()"), "Toggle breakpoint" },
   ["c"] = { req("set_breakpoint(vim.fn.input('Breakpoint condition: '))"), "Add conditional breakpoint" },
