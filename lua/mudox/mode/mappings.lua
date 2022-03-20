@@ -80,19 +80,19 @@ ncmd("yoq", "call mudox#lib#toggleQuickFix()")
 -- 〉
 
 -- Which-key 〈
-
-vim.cmd([[PackerLoad which-key.nvim]])
-local wk = require("which-key")
-
 local function cmd(c)
   return ("<Cmd>%s<Cr>"):format(c)
 end
 
-local function req(c)
-  return ([[<Cmd>lua require("telescope").%s<Cr>]]):format(c)
+local function make_req(mod)
+  return function(c)
+    return ([[<Cmd>lua require("%s").%s<Cr>]]):format(mod, c)
+  end
 end
 
 -- Telescope 〈
+
+local req = make_req("telescope")
 
 local telescope = {
   name = "Telescope",
@@ -163,6 +163,8 @@ local trouble = {
 
 -- DAP 〈
 
+req = make_req("dap")
+
 local dap = {
   name = "DAP",
 
@@ -201,6 +203,7 @@ local aerial = {
 -- 〉
 
 -- Packer 〈
+
 local packer = {
   name = "Packer",
 
@@ -213,18 +216,100 @@ local packer = {
 
 -- 〉
 
+-- GitSigns 〈
+
+req = make_req("gitsigns")
+
+local gitsigns = {
+  name = "GitSigns",
+
+  ["<Space>"] = { req("toggle_signs()"), "Toggle GitSigns signs" },
+
+  -- Stage
+  ["s"] = { req("stage_hunk()"), "Stage hunk" },
+  ["S"] = { req("stage_buffer()"), "Stage current file" },
+  ["u"] = { req("undo_stage_hunk()"), "Undo stage hunk" },
+  ["D"] = { req("reset_hunk()"), "Reset (discard) hunk" },
+
+  -- Diff
+  ["d"] = { req("diffthis()"), "Diff this file" },
+  ["v"] = { req("preview_hunk()"), "Preview hunk changes" },
+
+  -- Blame
+  ["b"] = { req("blame_line()"), "Blame line" },
+}
+
+-- 〉
+
+-- LSP 〈
+
+local lsp = {
+  name = "LSP",
+
+  ["i"] = { cmd("LspInfo"), "LSP server info" },
+  ["I"] = { cmd("LspInstallInfo"), "LSP install info" },
+
+  ["R"] = { cmd("LspRestart"), "Restart LSP server" },
+  ["<Space>"] = { cmd("LspRestart"), "Restart LSP server" },
+}
+
+-- 〉
+
+-- WARN: currently not wokring
+local panes = {
+  name = "Panes",
+
+  a = { cmd("AerialToggle"), "Toggle aerial window" },
+
+  n = { cmd("NnnPicker"), "Toggle nnn popup window" },
+  N = { cmd("NnnExplorer"), "Toggle nnn side pane" },
+}
+
+local emmet = {
+  name = "Emmet",
+
+  -- TODO: move emmet.vim's mapping logic to here
+}
+
+-- Leader comma 〈
+
 local comma = {
   name = "Plugin prefix",
 
   a = aerial,
   d = dap,
+  e = emmet,
+  g = gitsigns,
   p = packer,
   t = telescope,
   x = trouble,
+  l = lsp,
 }
 
+-- 〉
+
+-- Leader: space 〈
+
+local space = {
+  name = "The space key mappings",
+
+  r = { cmd("Telescope oldfiles"), "File history" },
+  o = { cmd("NeorgStart"), "Start Neorg" },
+}
+
+--〉
+
+-- NOTE: `legendary.nvim` requires Neovim 0.7.0
+-- vim.cmd([[PackerLoad which-key.nvim legendary.nvim]])
+vim.cmd([[PackerLoad which-key.nvim]])
+local wk = require("which-key")
+
 wk.register {
+  ["<Space>"] = space,
   [","] = comma,
+  -- NOTE: meta key combination is currently not work
+  -- track: https://github.com/folke/which-key.nvim/issues/199
+  -- ["<M-/>"] = panes,
 }
 
 -- 〉
