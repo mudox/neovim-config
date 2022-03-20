@@ -90,6 +90,7 @@ return {
   "reach",
 
   "nnn",
+  "tree",
 
   "telescope",
 
