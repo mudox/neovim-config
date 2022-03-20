@@ -10,6 +10,16 @@ local opts = {
     PERF = { icon = " ", color = "info",    alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", } },
     NOTE = { icon = " ", color = "hint",    alt = { "INFO", } },
   },
+  search = {
+    args = {
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--glob", '!lua/rocks',
+    }
+  }
 }
 -- stylua: ignore end
 
