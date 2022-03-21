@@ -141,6 +141,8 @@ local keybindings = function(k)
   k.map("norg", "n", ",oc", "<Cmd>Neorg keybind norg core.gtd.base.capture<Cr>")
   k.map("norg", "n", ",ov", "<Cmd>Neorg keybind norg core.gtd.base.views<Cr>")
   k.map("norg", "n", ",oe", "<Cmd>Neorg keybind norg core.gtd.base.edit<Cr>")
+
+  k.map("norg", "n", ",ot", "<Cmd>Neorg journal today<Cr>")
 end
 
 -- 〉
