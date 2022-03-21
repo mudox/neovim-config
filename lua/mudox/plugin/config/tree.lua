@@ -22,8 +22,8 @@ vim.g.nvim_tree_icons = {
     deleted      = "x",
   },
   folder         = {
-    arrow_open   = "",
-    arrow_closed = "",
+    arrow_open   = i.expanded,
+    arrow_closed = i.collapsed,
     default      = "",
     open         = "",
     empty        = "",
