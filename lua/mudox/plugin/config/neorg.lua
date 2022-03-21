@@ -122,7 +122,6 @@ local dirman = {
   workspaces = {
     work = "~/OneDrive/Neorg/work",
     home = "~/OneDrive/Neorg/home",
-    example_gtd = "~/Git/Learn/example_workspaces/gtd",
   },
   default_workspace = "home",
   autodir = true,
@@ -172,7 +171,7 @@ require("neorg").setup {
     },
     ["core.gtd.base"] = {
       config = {
-        workspace = "example_gtd",
+        workspace = "home",
       },
     },
     ["core.integrations.telescope"] = {},
