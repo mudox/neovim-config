@@ -67,11 +67,11 @@ local sections = {
 -- stylua: ignore end
 
 local tabline = {
-  lualine_a = { { "buffers", mode = 2 } },
+  lualine_a = { { "buffers" } },
   lualine_b = {},
   lualine_c = {},
-  lualine_x = {},
-  lualine_y = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
+  lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
+  lualine_y = {},
   lualine_z = { "tabs" },
 }
 
