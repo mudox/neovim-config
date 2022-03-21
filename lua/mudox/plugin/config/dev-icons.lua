@@ -16,6 +16,18 @@ icons["toml"].color       = "#9c4221"
 icons["yml"].icon         = " "
 icons["yml"].color        = "#cb171d"
 
+icons.norg                = {
+  name                    = "Neorg",
+  icon                    = " ",
+  color                   = "#18b63a",
+}
+
+icons.bak                 = {
+  name                    = "Backup file",
+  icon                    = " ",
+  -- color                   = "#642e95",
+}
+
 icons["zsh"].icon         = " "
 -- stylua: ignore end
 
