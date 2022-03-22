@@ -19,6 +19,5 @@ null_ls.setup {
 
     -- code actions
     a.eslint_d, -- ESLint
-    a.gitsigns, -- Git stage / preview / reset hunks / blame ...
   },
 }
