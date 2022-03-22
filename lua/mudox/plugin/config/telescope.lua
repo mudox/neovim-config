@@ -44,35 +44,8 @@ require("telescope").setup {
   },
 
   extensions = {
-
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      },
-    },
-
-    termfinder = {
-      mappings = {
-        rename_term = "<C-r>",
-        delete_term = "<C-x>",
-        vertical_term = "<C-v>",
-        horizontal_term = "<C-h>",
-        float_term = "<C-f>",
-      },
-    },
-
-    frecency = {
-      db_root = stdpath.data .. "/sqlite",
-      show_scores = false,
-      show_unindexed = true,
-      ignore_patterns = { "*.git/*", "*/tmp/*" },
-      disable_devicons = false,
-      workspaces = {
-        ["dot"] = "/Users/mudox/.dotfiles",
-        ["vi"] = "/Users/mudox/Git/neovim-config",
-        ["tmux"] = "/Users/mudox/Git/tmux-config",
-        ["hs"] = "/Users/mudox/Git/hs-config",
-      },
+      require("telescope.themes").get_dropdown {},
     },
   },
 
