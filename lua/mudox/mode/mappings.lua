@@ -166,7 +166,6 @@ local trouble = {
 -- DAP 〈
 
 req = make_req("dap")
-
 local dap = {
   name = "DAP",
 
@@ -204,6 +203,7 @@ local aerial = {
 
   ["<Space>"] = { cmd("AerialToggle"), "Toggle aerial window" },
   ["a"] = { cmd("AerialOpen"), "Open aerial window" },
+  ["i"] = { cmd("AerialInfo"), "Aerial debug info" },
 }
 
 -- 〉
