@@ -177,6 +177,10 @@ local dap = {
   [":"] = { req("repl.open()"), "Open repl" },
 }
 
+req = make_req("dap-python")
+dap["C"] = { req("test_class()"), "Test current class" }
+dap["M"] = { req("test_method()"), "Test current method" }
+
 local telescope_dap = {
   name = "DAP",
 
