@@ -7,7 +7,7 @@ local options = {
   -- theme = 'auto',
   theme = "ayu_mirage",
 
-  -- separators
+  -- Separators
   component_separators = { left = "", right = "" },
   section_separators = { left = "", right = "" },
   -- section_separators = {left = '', right = ''},
@@ -51,6 +51,7 @@ local sections = {
   },
   lualine_c = {
     { "filename",    cond = cond1 },
+    { "aerial", sep = '  ', depth = -2, dense = false, },
   },
   lualine_x = {
     { "lsp_progress", cond = cond1 },
