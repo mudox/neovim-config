@@ -23,6 +23,8 @@ end
 
 _mdx_remerge_my_luasnip_snippets()
 
+vim.keymap.set("n", ",,s", _mdx_remerge_my_luasnip_snippets)
+
 vim.cmd([[
 augroup mdx_auto_merge_luasnip_snippets
 autocmd!
