@@ -6,10 +6,10 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 local k = require("mudox.keymap")
 
 -- jump
-k.ilua("<M-l>", 'require("luasnip").jump(1)')
-k.ilua("<M-h>", 'require("luasnip").jump(-1)')
-k.slua("<M-l>", 'require("luasnip").jump(1)')
-k.slua("<M-h>", 'require("luasnip").jump(-1)')
+k.ilua("<M-]>", 'require("luasnip").jump(1)')
+k.ilua("<M-[>", 'require("luasnip").jump(-1)')
+k.slua("<M-]>", 'require("luasnip").jump(1)')
+k.slua("<M-[>", 'require("luasnip").jump(-1)')
 
 -- choice
 k.iexpr("<M-.>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : ''", { remap = true })
