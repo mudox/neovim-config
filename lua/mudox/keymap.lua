@@ -25,8 +25,6 @@ local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
   `vim.keymap.set` does not like unknown keys
 --]]
 local function normalize_options(options)
-  assert(options.bufnr == nil, "use `buffer` instead")
-
   return {
     buffer = options.buffer,
 
@@ -55,18 +53,6 @@ local function map(
   options -- see {opts} in `:h nvim_set_keymap()`
 )
   options = options or {}
-
-  -- eanble `noremap` by default
-  if options.remap ~= true then
-    options.noremap = true
-  end
-  options.remap = nil
-
-  -- eanble `silent` by default
-  if not options.nosilent ~= true then
-    options.silent = true
-  end
-  options.nosilent = nil
 
   vim.keymap.set(mode, from, to, normalize_options(options))
 end
