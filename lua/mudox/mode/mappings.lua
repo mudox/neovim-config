@@ -120,6 +120,8 @@ local telescope = {
 
   -- LSP & Tree-Sitter
   ["s"] = { cmd("Telescope treesitter"), "Tree-Sitter symbols" },
+  ["S"] = { cmd("Telescope lsp_dynamic_workspace_symbols"), "LSP (dynamic) workspace symbols" },
+
   ["?"] = { cmd("Telescope diagnostics bufnr=0"), "Diagnostics" },
   ["."] = { cmd("Telescope lsp_code_actions"), "Code actions" },
   ["r"] = { cmd("Telescope lsp_references"), "LSP references" },
