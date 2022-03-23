@@ -24,7 +24,7 @@ local on_attach = function(bufnr)
   local function bind(from, to)
     local ncmd = require("mudox.keymap").ncmd
     to = ([[lua require("gitsigns").%s]]):format(to)
-    ncmd(from, to, { bufnr = bufnr })
+    ncmd(from, to, { buffer = bufnr })
   end
 
   bind(",g<Space>", "toggle_signs()")

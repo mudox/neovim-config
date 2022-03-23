@@ -14,7 +14,7 @@ end
 
 local function install_lsp_buffer_mappings(bufnr)
   local nlua = function(key, cmd)
-    local opts = { bufnr = bufnr }
+    local opts = { buffer = bufnr }
     require("mudox.keymap").nlua(key, cmd, opts)
   end
 

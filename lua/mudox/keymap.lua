@@ -1,14 +1,20 @@
 --[==[
-  utility lib for defining common mappings.
+  Utility lib for defining common mappings.
 
-  the module provides 4 basic functions (map, cmd, plug, nop, lua, call, expr) all of which need a mode
-  char as its 1st character
+  The module provides follow basic functions:
+    - map
+    - cmd
+    - plug
+    - nop
+    - lua
+    - call
+    - expr
+    - func
+  All of which need a map mode char as its 1st character (`help map-modes`).
 
-  by using metamethod `__index(tbl, name)` user can directly prefix the 4 methods
-  with mode char
-
-  by default all `noremap` option is enabled, `{ remap= true }` to disable it
-  by default all `silent` option is enabled, `{ nosilent = true }` to disable it
+  By default
+    - remap = false
+    - silent = true
 
   @usage: k.ncmd("<C-]>", [[echo "hello world"]])
 ]==]
@@ -16,22 +22,31 @@ local Set = require("pl.Set")
 local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
 
 --[[
-  nvim_set_keymap does not like unknown keys
+  `vim.keymap.set` does not like unknown keys
 --]]
 local function normalize_options(options)
+  assert(options.bufnr == nil, "use `buffer` instead")
+
   return {
+    buffer = options.buffer,
+
     nowait = options.nowait,
-    silent = options.silent,
+    silent = options.silent or true,
     script = options.script,
     expr = options.expr,
     unique = options.unique,
 
-    noremap = options.noremap,
+    -- Added by `vim.keymap.set`, default true
+    -- Use with option `expr`
+    replace_keycodes = options.replace_keycodes,
+
+    -- Default false for `vim.keymap.set`
+    remap = options.remap or false,
   }
 end
 
 --[[
-  the core method to define mapping. it calls `nvim_set_keymap` at last
+  the core method to define mapping. it calls `vim.keymap.set` at the end
 ]]
 local function map(
   mode, -- mode char, see `:h map`
@@ -53,13 +68,7 @@ local function map(
   end
   options.nosilent = nil
 
-  if options.bufnr ~= nil then
-    local bufnr = options.bufnr
-    assert(type(bufnr) == "number")
-    vim.api.nvim_buf_set_keymap(bufnr, mode, from, to, normalize_options(options))
-  else
-    vim.api.nvim_set_keymap(mode, from, to, normalize_options(options))
-  end
+  vim.keymap.set(mode, from, to, normalize_options(options))
 end
 
 local function expr(mode, from, to, opts)

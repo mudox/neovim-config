@@ -19,7 +19,7 @@ require("toggleterm").setup {
 function _G._mdx_set_terminal_keymaps()
   local function map(from, to)
     local tmap = require("mudox.keymap").tmap
-    tmap(from, to, { bufnr = 0 })
+    tmap(from, to, { buffer = 0 })
   end
 
   map("<C-h>", [[<C-\><C-n><C-W>h]])
