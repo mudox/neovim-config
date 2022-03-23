@@ -7,7 +7,7 @@ ncmd("<C-p>", "Telescope find_files")
 ncmd("g/", "Telescope live_grep") -- interactive grep
 
 ncmd("<M-i>", "Telescope lsp_document_symbols")
-ncmd("<C-i>", "Telescope treesitter")
+ncmd("<M-8>", "Telescope treesitter")
 
 -- 〉
 
