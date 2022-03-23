@@ -14,7 +14,11 @@ null_ls.setup {
     f.swiftformat, -- Swift
 
     -- diagnostics
-    d.flake8, -- Python flake8
+    d.flake8.with {
+      extra_args = {
+        "--extend-ignore=E203", --[[ black pads space around colon ]]
+      },
+    },
     d.eslint_d, -- ESLint
 
     -- code actions
