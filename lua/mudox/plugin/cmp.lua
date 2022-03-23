@@ -1,19 +1,28 @@
 url = "hrsh7th/nvim-cmp"
 
 requires = {
+  -- Basic sources
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-cmdline" },
   { "hrsh7th/cmp-path" },
 
-  -- snippets
+  -- Snippets
   { "saadparwaiz1/cmp_luasnip" },
 
-  -- lua neovim api
-  { "hrsh7th/cmp-nvim-lua" },
-
-  -- omni completion sources
+  -- Generic completion sources
   { "hrsh7th/cmp-nvim-lsp" },
+  { "ray-x/cmp-treesitter" },
   { "tzachar/cmp-tabnine", run = "./install.sh" },
+
+  -- `rg`
+  { "lukas-reineke/cmp-rg" },
+
+  -- Npm
+  { "David-Kunz/cmp-npm" },
+
+  -- Lua
+  { "hrsh7th/cmp-nvim-lua" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" },
 }
 
 for i = 1, #requires do
