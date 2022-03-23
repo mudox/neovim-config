@@ -5,7 +5,9 @@
 local ncmd = require("mudox.keymap").ncmd
 ncmd("<C-p>", "Telescope find_files")
 ncmd("g/", "Telescope live_grep") -- interactive grep
+
 ncmd("<M-i>", "Telescope lsp_document_symbols")
+ncmd("<C-i>", "Telescope treesitter")
 
 -- 〉
 
