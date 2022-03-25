@@ -108,6 +108,7 @@ end
 
 -- Config packer 〈
 
+local i = require("mudox.ui").icons
 local packer_opts = {
   -- mode separation
   package_root = stdpath.pack,
@@ -119,6 +120,25 @@ local packer_opts = {
   max_jobs = 32,
   -- appearence
   display = {
+
+    working_sym = "", -- The symbol for a plugin being installed/updated
+    error_sym = i.error, -- The symbol for a plugin with an error in installation/updating
+    done_sym = i.success, -- The symbol for a plugin which has completed installation/updating
+    removed_sym = i.deleted, -- The symbol for an unused plugin which was removed
+    moved_sym = "➠ ", -- The symbol for a plugin which was moved (e.g. from opt to start)
+    header_sym = "━", -- The symbol for the header line in packer's display
+
+    show_all_info = true, -- Should packer show all update details automatically?
+
+    prompt_border = "rounded", -- Border style of prompt popups.
+
+    -- open_cmd = "tabnew \\[packer\\]", -- An optional command to open a window for packer's display
+    keybindings = { -- Keybindings for the display window
+      quit = "q",
+      toggle_info = "<CR>",
+      diff = "d",
+      prompt_revert = "r",
+    },
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
