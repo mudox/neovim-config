@@ -15,9 +15,16 @@ end
 
 -- flow control
 map("<F5>", "continue()")
+map("<C-Left>", "continue()")
+
 map("<F10>", "step_over()")
+map("<C-Right>", "step_over()")
+
 map("<F11>", "step_into()")
+map("<C-Down>", "step_into()")
+
 map("<F12>", "step_out()")
+map("<C-Up>", "step_out()")
 
 -- 〉
 
