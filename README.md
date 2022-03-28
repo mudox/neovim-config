@@ -4,4 +4,4 @@
 ![snapshot](screenshot/neorg.png)
 
 ## DAP
-![dap](screenshot/dap.png)**
+![dap](screenshot/dap.png)
