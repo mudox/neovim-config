@@ -61,12 +61,13 @@ local formatting = {
     vim_item.menu = ({
       nvim_lsp = "[LSP]",
       nvim_lua = "[Nvim Lua]",
-      luasnip = "[Snippet]",
+      luasnip = "[LuaSnip]",
       buffer = "[Buffer]",
       path = "[Path]",
       cmdline = "[Cmdline]",
       cmp_tabnine = "[TabNine]",
-    })[entry.source.name]
+      treesitter = "[TeeSitter]",
+    })[entry.source.name] or entry.source.name
     return vim_item
   end,
 }
