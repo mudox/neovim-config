@@ -175,13 +175,21 @@ req = make_req("dap")
 local dap = {
   name = "DAP",
 
-  ["<Space>"] = { req("run_last()"), "Re-run last debug session" },
-
+  -- Breakpoint
   ["b"] = { req("toggle_breakpoint()"), "Toggle breakpoint" },
   ["c"] = { req("set_breakpoint(vim.fn.input('Breakpoint condition: '))"), "Add conditional breakpoint" },
   ["p"] = { req("set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"), "Add log point" },
+  ["X"] = { req("clear_breakpoint()"), "Clear all breakpoints" },
 
-  [":"] = { req("repl.open()"), "Open repl" },
+  -- Session control
+  ["<Space>"] = { req("run_last()"), "Re-run last debug session" },
+  ["."] = { req("terminate()"), "Terminate current debug session" },
+  ["]"] = { req("run_to_cursor()"), "Continues execution to current currsor" },
+  ["u"] = { req("up()"), "Up a stack frame" },
+  ["d"] = { req("down()"), "Down a stack frame" },
+
+  -- REPL
+  [":"] = { req("repl.toggle()"), "Toggle REPL" },
 }
 
 req = make_req("dap-python")
