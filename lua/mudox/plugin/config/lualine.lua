@@ -1,11 +1,14 @@
 local options = {
   globalstatus = true,
+
   icons_enabled = true,
 
-  -- themes
-  -- theme = 'gruvbox',
-  -- theme = 'auto',
-  theme = "ayu_mirage",
+  -- Theme
+  -- theme = "auto",
+  -- theme = "gruvbox",
+  -- theme = "horizon",
+  theme = "molokai",
+  -- theme = "ayu_mirage",
 
   -- Separators
   component_separators = { left = "", right = "" },
@@ -17,52 +20,30 @@ local options = {
   always_divide_middle = true,
 }
 
-local function cond1()
-  local disabled_filetypes = {
-    dapui_scopes = true,
-    dapui_breakpoints = true,
-    dapui_stacks = true,
-    dapui_watches = true,
-  }
-
-  return not disabled_filetypes[vim.o.filetype]
-end
-
-local function cond2()
-  local enabled_filetypes = {
-    dapui_scopes = true,
-    dapui_breakpoints = true,
-    dapui_stacks = true,
-    dapui_watches = true,
-  }
-
-  return enabled_filetypes[vim.o.filetype]
-end
-
 -- stylua: ignore start
 local sections = {
   lualine_a = {
-    { "mode",        cond = cond1 },
-    { "filename",    cond = cond2 },
+    { "mode",         },
+    { "filename",     },
   },
   lualine_b = {
-    { "branch",      cond = cond1 },
-    { "diff",        cond = cond1 },
+    { "branch",       },
+    { "diff",         },
   },
   lualine_c = {
-    { "filename",    cond = cond1 },
+    { "filename",     },
     { "aerial", sep = '  ', depth = -2, dense = false, },
   },
   lualine_x = {
-    { "lsp_progress", cond = cond1 },
-    { "diagnostics", cond = cond1 },
-    { "filetype",    cond = cond1 },
+    -- { "lsp_progress",  },
+    { "diagnostics",  },
+    { "filetype",     },
   },
   lualine_y = {
-    { "progress",    cond = cond1 },
+    { "progress",     },
   },
   lualine_z = {
-    { "location",    cond = cond1 },
+    { "location",     },
   },
 }
 -- stylua: ignore end
