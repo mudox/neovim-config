@@ -19,7 +19,7 @@ local cmap = k.cmap
 ---@diagnostic enable: unused-local
 -- 〉
 
--- Overide builtin mappings 〈
+-- Normal mode mappings 〈
 
 -- sensible `n, N`
 nmap("n", '"Nn"[v:searchforward]', { expr = true })
@@ -76,6 +76,12 @@ ncmd("<M-/>l", "call mudox#lib#toggleLocList()")
 ncmd("yoL", "call mudox#lib#toggleLocList()")
 ncmd("<M-/>q", "call mudox#lib#toggleQuickFix()")
 ncmd("yoq", "call mudox#lib#toggleQuickFix()")
+
+-- 〉
+
+-- Insert mode mappings 〈
+
+imap("<M-;>", "<Esc>A")
 
 -- 〉
 
