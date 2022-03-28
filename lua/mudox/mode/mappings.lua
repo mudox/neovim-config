@@ -201,8 +201,15 @@ telescope.d = telescope_dap
 local aerial = {
   name = "Aerial",
 
-  ["<Space>"] = { cmd("AerialToggle"), "Toggle aerial window" },
+  ["<Space>"] = { cmd("AerialToggle!"), "Toggle aerial window" },
   ["a"] = { cmd("AerialOpen"), "Open aerial window" },
+
+  ["h"] = { cmd("AerialOpen! left"), "Left pane" },
+  ["H"] = { cmd("AerialOpen left"), "Left pane focused" },
+  ["l"] = { cmd("AerialOpen! right"), "Right pane" },
+  ["L"] = { cmd("AerialOpen right"), "Right pane focused" },
+  ["f"] = { cmd("AerialOpen float"), "Float window focused" },
+
   ["i"] = { cmd("AerialInfo"), "Aerial debug info" },
 }
 
