@@ -1,3 +1,7 @@
+-- vim: fdm=marker fmr=〈,〉
+
+-- Setup 〈
+
 require("toggleterm").setup {
   open_mapping = "<M-j>",
 
@@ -15,6 +19,10 @@ require("toggleterm").setup {
   },
 }
 
+-- 〉
+
+-- Key mappings 〈
+
 -- Mappings to quickly go out of terminal window without closing it
 function _G._mdx_set_terminal_keymaps()
   local function map(from, to)
@@ -22,17 +30,22 @@ function _G._mdx_set_terminal_keymaps()
     tmap(from, to, { buffer = 0 })
   end
 
-  map("<C-h>", [[<C-\><C-n><C-W>h]])
-  map("<C-j>", [[<C-\><C-n><C-W>j]])
+  -- map("<C-h>", [[<C-\><C-n><C-W>h]])
+  -- map("<C-l>", [[<C-\><C-n><C-W>l]])
+  -- map("<C-j>", [[<C-\><C-n><C-W>j]])
   map("<C-k>", [[<C-\><C-n><C-W>k]])
-  map("<C-l>", [[<C-\><C-n><C-W>l]])
 end
 
 vim.cmd("autocmd! TermOpen term://* lua _mdx_set_terminal_keymaps()")
 
--- Custom terminals
+--〉
+
+-- Custom terminals 〈
 
 local Terminal = require("toggleterm.terminal").Terminal
+
+-- Primary terminal 〈
+
 local primary = Terminal:new {
   cmd = "zsh",
   hiiden = true,
@@ -81,8 +94,8 @@ function _G._mdx_open_primary_float()
   end
 end
 
-local nlua = require("mudox.keymap").nlua
-nlua("<M-j>", "_mdx_toggle_primary()")
+local nmap = require("mudox.keymap").nmap
+nmap("<M-j>", _G._mdx_toggle_primary)
 
 local function map(from, to)
   local cmd = ([[
@@ -97,3 +110,7 @@ end
 
 map("<C-t><Space>", "lua _mdx_open_primary_bottom()")
 map("<C-t><C-t>", "lua _mdx_open_primary_float()")
+
+-- Primary terminal 〉
+
+-- Custom terminals 〉
