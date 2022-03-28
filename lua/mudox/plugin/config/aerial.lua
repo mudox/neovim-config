@@ -13,6 +13,8 @@ require("aerial").setup {
 
   post_jump_cmd = "normal! zzzv",
 
+  icons = require("mudox.ui").icons.lsp.kind,
+
   show_guides = true,
   guides = {
     mid_item = "├─",
