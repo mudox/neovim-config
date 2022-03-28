@@ -121,9 +121,9 @@ local packer_opts = {
   -- appearence
   display = {
 
-    working_sym = "", -- The symbol for a plugin being installed/updated
-    error_sym = i.error, -- The symbol for a plugin with an error in installation/updating
-    done_sym = i.success, -- The symbol for a plugin which has completed installation/updating
+    working_sym = i.heavy_dot, -- The symbol for a plugin being installed/updated
+    error_sym = i.cross, -- The symbol for a plugin with an error in installation/updating
+    done_sym = i.check, -- The symbol for a plugin which has completed installation/updating
     removed_sym = i.deleted, -- The symbol for an unused plugin which was removed
     moved_sym = "➠ ", -- The symbol for a plugin which was moved (e.g. from opt to start)
     header_sym = "━", -- The symbol for the header line in packer's display

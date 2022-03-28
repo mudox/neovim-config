@@ -33,11 +33,13 @@ local icons = {
   warn      = " ",
   info      = " ",
   hint      = " ",
+  success   = " ",
 
+  light_dot = "·",
+  heavy_dot = "",
   check     = "✔",
   cross     = "✘",
-  success   = " ",
-  
+
   deleted   = " ",
 
   expanded  = '',
