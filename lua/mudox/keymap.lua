@@ -90,7 +90,6 @@ end
 local function plug(mode, from, to, options)
   options = options or {}
   options.remap = true
-  options.noremap = nil
   map(mode, from, ("<Plug>(%s)"):format(to), options)
 end
 
