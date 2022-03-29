@@ -1,4 +1,21 @@
 -- stylua: ignore start
+local powerline = {
+  t1 = {
+    heavy_left  = "",
+    heavy_right = "",
+    light_left  = "",
+    light_right = "",
+  },
+  t2 = {
+    heavy_left  = "",
+    heavy_right = "",
+    light_left  = "",
+    light_right = "",
+  }
+}
+
+powerline.current = powerline.t1
+
 local lsp_kind_icons = {
   Class         = " ",
   Color         = " ",
@@ -47,7 +64,9 @@ local icons = {
 
   lsp = {
     kind = lsp_kind_icons,
-  }
+  },
+
+  powerline = powerline,
 }
 -- stylua: ignore end
 

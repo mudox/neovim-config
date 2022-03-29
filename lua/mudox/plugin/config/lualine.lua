@@ -1,3 +1,6 @@
+local i = require("mudox.ui").icons
+local sep = i.powerline.current
+
 local options = {
   globalstatus = true,
 
@@ -11,10 +14,14 @@ local options = {
   -- theme = "ayu_mirage",
 
   -- Separators
-  component_separators = { left = "", right = "" },
-  section_separators = { left = "", right = "" },
-  -- section_separators = {left = '', right = ''},
-  -- component_separators = {left = '', right = ''},
+  component_separators = {
+    left = sep.light_left,
+    right = sep.light_right,
+  },
+  section_separators = {
+    left = sep.heavy_left,
+    right = sep.heavy_right,
+  },
 
   disabled_filetypes = {},
   always_divide_middle = true,
@@ -24,7 +31,6 @@ local options = {
 local sections = {
   lualine_a = {
     { "mode",         },
-    { "filename",     },
   },
   lualine_b = {
     { "branch",       },
@@ -48,8 +54,22 @@ local sections = {
 }
 -- stylua: ignore end
 
+local buffers = {
+
+  "buffers",
+
+  show_filename_only = true,
+  hide_filename_extension = true,
+
+  filetype_names = {
+    TelescopePrompt = "[telescope]",
+    packer = "[packer]",
+    aerial = "[aerial]",
+  },
+}
+
 local tabline = {
-  lualine_a = { { "buffers" } },
+  lualine_a = { buffers },
   lualine_b = {},
   lualine_c = {},
   lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
@@ -68,8 +88,10 @@ local inactive_sections = {
 
 require("lualine").setup {
   options = options,
-  sections = sections,
-  inactive_sections = inactive_sections,
+
   tabline = tabline,
+  sections = sections,
+  inactive_sections = inactive_sections, -- no need for global statusline
+
   extensions = {},
 }
