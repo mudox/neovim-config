@@ -16,6 +16,12 @@ local powerline = {
 
 powerline.current = powerline.t1
 
+local tree = {
+  top    = "│ ",
+  middle = "├─",
+  last   = "└─",
+}
+
 local lsp_kind_icons = {
   Class         = " ",
   Color         = " ",
@@ -67,6 +73,8 @@ local icons = {
   },
 
   powerline = powerline,
+
+  tree = tree,
 }
 -- stylua: ignore end
 
