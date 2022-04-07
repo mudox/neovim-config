@@ -89,7 +89,6 @@ return {
   "zen-mode",
 
   -- Navigation
-  "clever-f",
   "light-speed",
   "tree-hopper",
   "reach",
