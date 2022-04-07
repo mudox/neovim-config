@@ -38,6 +38,10 @@ return {
   "dap-ui",
   "dap-virtual-text",
 
+  -- Testing
+  "vim-test",
+  "ultest",
+
   -- Editing
   "visual-multi",
 
