@@ -15,6 +15,7 @@ _p.lua = join(_p.config, "lua")
 _p.mudox = join(_p.lua, "mudox")
 _p.lua_plugin = join(_p.mudox, "plugin")
 _p.lua_plugin_config = join(_p.lua_plugin, "config")
+_p.lua_plugin_setup = join(_p.lua_plugin, "setup")
 -- 〉
 
 -- Data directories 〈

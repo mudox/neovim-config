@@ -68,6 +68,27 @@ local function fallback_config(path)
   end
 end
 
+local function fallback_setup(path)
+  local name = p.basename(p.splitext(path))
+
+  local luaFile = ("%s/%s.lua"):format(stdpath.lua_plugin_setup, name)
+  if p.isfile(luaFile) then
+    local code = ([[
+      require 'mudox.plugin.setup.%s'
+    ]]):format(name)
+
+    return load(code)
+  end
+
+  local vimFile = ("%s/%s.vim"):format(stdpath.lua_plugin_setup, name)
+  if p.isfile(vimFile) then
+    local code = ([[
+      vim.cmd('source %s')
+    ]]):format(vimFile)
+
+    return load(code)
+  end
+end
 -- 〉
 
 -- Plugin spec DSL 〈
@@ -95,7 +116,9 @@ local function parse_spec(pattern)
     env[1] = env.url
     env.url = nil
 
-    -- config
+    -- setup: load before plugin is loaded to `packpath` & `rtp`
+    env.setup = env.setup or fallback_setup(path)
+    -- config: load after plugin is loaded
     env.config = env.config or fallback_config(path)
 
     table.insert(envs, env)
