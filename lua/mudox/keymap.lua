@@ -3,13 +3,13 @@
 
   The module provides follow basic functions:
     - map
-    - cmd
-    - plug
-    - nop
-    - lua
-    - call
-    - expr
-    - func
+    - cmd     ->  <Cmd>%s<Cr>
+    - plug    ->  <Plug>(%s) with `remap` = true
+    - nop     ->  <Nop>
+    - lua     ->  <Cmd>lua %s
+    - call    ->  <Cmd>call %s
+    - expr    ->  %s with `expr` = true
+    - req     ->  <Cmd>lua require(%s).%s<Cr>
   All of which need a map mode char as its 1st character (`help map-modes`).
 
   By default
@@ -85,7 +85,7 @@ local function call(mode, from, to, options)
 end
 
 --[[
-  convenient method for common patter `<Plug>...`
+  convenient method for common patter `<Plug>(...)`
 ]]
 local function plug(mode, from, to, options)
   options = options or {}
@@ -94,13 +94,29 @@ local function plug(mode, from, to, options)
 end
 
 --[[
+  convenient method for common patter `<Cmd>lua require(...)...<Cr>`
+]]
+local function req(mode, from, module, to, options)
+  map(mode, from, ("<Cmd>lua require('%s').%s"):format(module, to), options)
+end
+
+--[[
   convenient method to clear mapping
 ]]
 local function nop(mode, from)
-  map(mode, from, "<Nop>", {})
+  map(mode, from, "<Nop>")
 end
 
-local bodys = { map = map, cmd = cmd, plug = plug, nop = nop, lua = lua, call = call, expr = expr }
+local bodys = {
+  map = map,
+  cmd = cmd,
+  plug = plug,
+  nop = nop,
+  lua = lua,
+  call = call,
+  expr = expr,
+  req = req,
+}
 
 --[[
   compose mapping defining functions from parameter `name`.
