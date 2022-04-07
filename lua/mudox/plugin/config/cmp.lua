@@ -53,22 +53,28 @@ cmp.setup.cmdline(":", {
 
 local kind_icons = require("mudox.ui").icons.lsp.kind
 
+local function menu_name(key)
+  local map = {
+    nvim_lsp = "[LSP]",
+    nvim_lua = "[Nvim Lua]",
+    luasnip = "[LuaSnip]",
+    buffer = "[Buffer]",
+    path = "[Path]",
+    cmdline = "[Cmdline]",
+    cmp_tabnine = "[TabNine]",
+    treesitter = "[TeeSitter]",
+    rg = "[RG]",
+  }
+  return map[key] or key
+end
+
 local formatting = {
   fields = { "kind", "abbr", "menu" },
   format = function(entry, vim_item)
     -- Kind icons
     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
     -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-    vim_item.menu = ({
-      nvim_lsp = "[LSP]",
-      nvim_lua = "[Nvim Lua]",
-      luasnip = "[LuaSnip]",
-      buffer = "[Buffer]",
-      path = "[Path]",
-      cmdline = "[Cmdline]",
-      cmp_tabnine = "[TabNine]",
-      treesitter = "[TeeSitter]",
-    })[entry.source.name] or entry.source.name
+    vim_item.menu = menu_name(entry.source.name)
     return vim_item
   end,
 }
