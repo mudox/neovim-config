@@ -141,27 +141,27 @@ local packer_opts = {
   -- HACK: fix `PackerSync` stucking issue
   -- track: https://github.com/wbthomason/packer.nvim/issues/756#issuecomment-1004258387
   max_jobs = 32,
-  -- appearence
+
   display = {
 
-    working_sym = i.heavy_dot, -- The symbol for a plugin being installed/updated
-    error_sym = i.cross, -- The symbol for a plugin with an error in installation/updating
-    done_sym = i.check, -- The symbol for a plugin which has completed installation/updating
-    removed_sym = i.deleted, -- The symbol for an unused plugin which was removed
-    moved_sym = "➠ ", -- The symbol for a plugin which was moved (e.g. from opt to start)
-    header_sym = "━", -- The symbol for the header line in packer's display
+    working_sym = i.heavy_dot,
+    error_sym = i.ballot,
+    done_sym = i.check,
+    removed_sym = i.deleted,
+    moved_sym = "➠ ",
+    header_sym = "━",
 
-    show_all_info = true, -- Should packer show all update details automatically?
+    show_all_info = true,
 
-    prompt_border = "rounded", -- Border style of prompt popups.
+    prompt_border = "rounded",
 
-    -- open_cmd = "tabnew \\[packer\\]", -- An optional command to open a window for packer's display
-    keybindings = { -- Keybindings for the display window
+    keybindings = {
       quit = "q",
       toggle_info = "<CR>",
       diff = "d",
       prompt_revert = "r",
     },
+
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
