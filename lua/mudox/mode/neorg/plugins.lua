@@ -18,25 +18,10 @@ return {
   -- Language
   "tree-sitter",
 
-  -- "context-vt",
-  -- "aerial",
-
-  -- "neoformat",
-
   "trouble",
-
-  -- LSP
-  -- "lsp",
-  -- "null-ls",
-  -- "project",
 
   -- Completion
   "cmp",
-
-  -- Debugging
-  -- "dap",
-  -- "dap-ui",
-  -- "dap-virtual-text",
 
   -- Editing
   "visual-multi",
@@ -90,7 +75,6 @@ return {
   "zen-mode",
 
   -- Navigation
-  "clever-f",
   "light-speed",
   "tree-hopper",
   "reach",
