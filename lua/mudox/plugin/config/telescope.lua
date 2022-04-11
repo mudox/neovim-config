@@ -1,6 +1,6 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fdm=marker fmr=〈,〉
 
--- Mappings  〈
+-- Keymaps 〈
 
 local ncmd = require("mudox.keymap").ncmd
 ncmd("<C-p>", "Telescope find_files")
@@ -11,7 +11,7 @@ ncmd("<M-8>", "Telescope treesitter")
 
 -- 〉
 
--- Interface Mappings  〈
+-- Interface Keymaps 〈
 
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
