@@ -2,8 +2,20 @@
 
 -- Keymaps 〈
 
+local builtin = require("telescope.builtin")
+local dropdown = require("telescope.themes").get_dropdown
+local cursor = require("telescope.themes").get_cursor
+
 local ncmd = require("mudox.keymap").ncmd
-ncmd("<C-p>", "Telescope find_files")
+local nmap = require("mudox.keymap").nmap
+
+-- Files
+nmap("<C-p>", function()
+  if not pcall(builtin.git_files, {}) then
+    builtin.find_files {}
+  end
+end)
+
 ncmd("g/", "Telescope live_grep") -- interactive grep
 
 ncmd("<M-i>", "Telescope lsp_document_symbols")
