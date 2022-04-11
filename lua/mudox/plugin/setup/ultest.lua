@@ -9,5 +9,5 @@ g.ultest_running_sign = i.heavy_dot
 g.ultest_not_run_sign = i.heavy_dot
 
 local nplug = require("mudox.keymap").nplug
-nplug("]t", "ultest-next-fail")
-nplug("[t", "ultest-prev-fail")
+nplug("]t", "(ultest-next-fail)")
+nplug("[t", "(ultest-prev-fail)")

@@ -86,11 +86,12 @@ end
 
 --[[
   convenient method for common patter `<Plug>(...)`
-]]
+  NOTE: parentheses are not added automatically
+  ]]
 local function plug(mode, from, to, options)
   options = options or {}
   options.remap = true
-  map(mode, from, ("<Plug>(%s)"):format(to), options)
+  map(mode, from, ("<Plug>%s"):format(to), options)
 end
 
 --[[
