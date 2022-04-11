@@ -11,10 +11,17 @@ local powerline = {
     heavy_right = "",
     light_left  = "",
     light_right = "",
-  }
+  },
+  t3 = {
+    heavy_left  = "",
+    heavy_right = "",
+    light_left  = "",
+    light_right = "",
+  },
+
 }
 
-powerline.current = powerline.t1
+powerline.current = powerline.t3
 
 local tree = {
   top    = "│ ",
@@ -26,7 +33,7 @@ local lsp_kind_icons = {
   Class         = " ",
   Color         = " ",
   Constant      = " ",
-  Constructor   = " ",  -- " "
+  Constructor   = " ",
   Enum          = " ",
   EnumMember    = " ",
   Event         = " ",
@@ -48,7 +55,19 @@ local lsp_kind_icons = {
   TypeParameter = " ",
   Unit          = " ",
   Value         = " ",
-  Variable      = " ",  -- " "
+  Variable      = " ",
+}
+
+local filetype = {
+  markdown = " ",
+  git      = " ",
+  apple    = " ",
+  java     = " ",
+  neorg    = " ",
+  config   = " ",
+  compiled = " ",
+  backup   = " ",
+  script   = " ",
 }
 
 local icons = {
@@ -60,8 +79,9 @@ local icons = {
 
   light_dot = "·",
   heavy_dot = "",
+
   check     = "✔",
-  cross     = "✘",
+  ballot    = "✘",
 
   deleted   = " ",
 
@@ -73,8 +93,8 @@ local icons = {
   },
 
   powerline = powerline,
-
   tree = tree,
+  filetype = filetype,
 }
 -- stylua: ignore end
 
