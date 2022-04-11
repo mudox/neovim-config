@@ -16,10 +16,13 @@ nmap("<C-p>", function()
   end
 end)
 
+-- Grep
 ncmd("g/", "Telescope live_grep") -- interactive grep
 
-ncmd("<M-i>", "Telescope lsp_document_symbols")
-ncmd("<M-8>", "Telescope treesitter")
+-- Symbols
+ncmd("<M-8>", "Telescope lsp_document_symbols")
+ncmd("<M-9>", "Telescope lsp_dynamic_workspace_symbols")
+ncmd("<M-i>", "Telescope treesitter")
 
 -- 〉
 
