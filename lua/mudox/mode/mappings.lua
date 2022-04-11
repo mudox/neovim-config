@@ -192,9 +192,15 @@ local dap = {
   [":"] = { req("repl.toggle()"), "Toggle REPL" },
 }
 
+req = make_req("dapui")
+dap["t"] = { req("toggle()"), "Toggle panes" }
+dap["h"] = { req("toggle('sidebar')"), "Toggle sidebar" }
+dap["j"] = { req("toggle('tray')"), "Toggle tray" }
+
 req = make_req("dap-python")
 dap["C"] = { req("test_class()"), "Test current class" }
 dap["M"] = { req("test_method()"), "Test current method" }
+dap["S"] = { req("debug_selection()"), "Debug selection" }
 
 local telescope_dap = {
   name = "DAP",
