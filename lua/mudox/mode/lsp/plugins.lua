@@ -91,6 +91,7 @@ return {
   -- Navigation
   "light-speed",
   "tree-hopper",
+  "marks",
   "reach",
 
   "nnn",
