@@ -321,21 +321,16 @@ local lsp = {
 
 -- 〉
 
--- WARN: currently not wokring
-local panes = {
-  name = "Panes",
+-- Second comma 〈
 
-  a = { cmd("AerialToggle"), "Toggle aerial window" },
+local second_comma = {
+  name = "Misc",
 
-  n = { cmd("NnnPicker"), "Toggle nnn popup window" },
-  N = { cmd("NnnExplorer"), "Toggle nnn side pane" },
+  ["e"] = { cmd("edit"), "Reload LuaSnip snippets" },
+  ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), ":edit" },
 }
 
-local emmet = {
-  name = "Emmet",
-
-  -- TODO: move emmet.vim's mapping logic to here
-}
+-- Second comma 〉
 
 -- Leader comma 〈
 
@@ -344,13 +339,15 @@ local comma = {
 
   a = aerial,
   d = dap,
-  e = emmet,
   u = test,
+  -- e = emmet,
   g = gitsigns,
   p = packer,
   t = telescope,
   x = trouble,
   l = lsp,
+
+  [","] = second_comma,
 }
 
 -- 〉
@@ -366,7 +363,6 @@ local space = {
 
 --〉
 
--- NOTE: `legendary.nvim` requires Neovim 0.7.0
 -- vim.cmd([[PackerLoad which-key.nvim legendary.nvim]])
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
@@ -374,9 +370,6 @@ local wk = require("which-key")
 wk.register {
   ["<Space>"] = space,
   [","] = comma,
-  -- NOTE: meta key combination is currently not work
-  -- track: https://github.com/folke/which-key.nvim/issues/199
-  -- ["<M-/>"] = panes,
 }
 
 -- 〉
