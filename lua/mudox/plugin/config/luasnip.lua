@@ -16,9 +16,13 @@ k.iexpr("<M-.>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : ''", {
 k.sexpr("<M-.>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : ''", { remap = true })
 
 -- re-merge my snippets
+local first = true
 function _G._mdx_remerge_my_luasnip_snippets()
   loadfile(stdpath.my_snippets .. "/LuaSnip/init.lua")()
-  print("Re-merged my luasnip snippets")
+  if not first then
+    print("Re-merged my luasnip snippets")
+  end
+  first = false
 end
 
 _mdx_remerge_my_luasnip_snippets()
