@@ -42,18 +42,22 @@ o.termguicolors = true
 
 o.mouse = "a"
 
+-- stylua: ignore start
 opt.fillchars = {
   eob = " ",
 
   -- Pane separators
-  horiz = "━",
-  horizup = "┻",
+  horiz     = "━",
+  horizup   = "┻",
   horizdown = "┳",
-  vert = "┃",
-  vertleft = "┫",
+
+  vert      = "┃",
+  vertleft  = "┫",
   vertright = "┣",
+
   verthoriz = "╋",
 }
+-- stylua: ignore end
 
 o.cursorline = false
 o.number = false
