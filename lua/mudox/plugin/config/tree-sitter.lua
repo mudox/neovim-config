@@ -94,7 +94,60 @@ local rainbow = {
 
 local opts = {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "vim",
+
+    "lua",
+    "fennel",
+
+    "bash",
+
+    "dockerfile",
+
+    "c",
+    "cpp",
+    "make",
+
+    "python",
+    "rust",
+
+    "javascript",
+    "typescript",
+    "vue",
+    "tsx",
+
+    "http",
+
+    "html",
+    "css",
+    "scss",
+
+    "json",
+    "json5",
+    "jsonc",
+    "toml",
+    "yaml",
+
+    "go",
+    "java",
+
+    "swift",
+    "kotlin",
+
+    "norg",
+    "norg_meta",
+    "norg_table",
+
+    "markdown",
+
+    "query",
+
+    "rust",
+
+    -- "scheme",
+    -- "scala",
+    -- "haskell",
+  },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
