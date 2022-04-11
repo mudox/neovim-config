@@ -26,8 +26,8 @@ nmap("n", '"Nn"[v:searchforward]', { expr = true })
 nmap("N", '"Nn"[v:searchforward]', { expr = true })
 
 -- quick save file
-ncmd("<C-s>", "write")
-icmd("<C-s>", "write")
+ncmd("<C-s>", "update")
+icmd("<C-s>", "update")
 
 -- sensible `j, k`
 nmap("j", "gj")
