@@ -210,6 +210,39 @@ telescope.d = telescope_dap
 
 -- 〉
 
+-- Test 〈
+
+local test = {
+  name = "Test",
+
+  -- Summary window
+  ["s"] = { cmd("UltestSummary"), "Summary window" },
+  ["S"] = { cmd("UltestSummary!"), "Summary window focused" },
+
+  -- Test
+  ["f"] = { cmd("Ultest"), "Test file" },
+  ["n"] = { cmd("UltestNearest"), "Test nearest" },
+  ["<Space>"] = { cmd("UltestLast"), "Test last" },
+  ["."] = { cmd("UltestStop"), "Stop all tests" },
+  ["c"] = { cmd("UltestClear"), "Clear test results" },
+
+  -- Debug
+  ["D"] = { cmd("UltestDebug"), "Debug file" },
+  ["d"] = { cmd("UltestDebugNearest"), "Test debug nearest" },
+}
+
+req = make_req("dapui")
+dap["t"] = { req("toggle()"), "Toggle panes" }
+dap["h"] = { req("toggle('sidebar')"), "Toggle sidebar" }
+dap["j"] = { req("toggle('tray')"), "Toggle tray" }
+
+req = make_req("dap-python")
+dap["C"] = { req("test_class()"), "Test current class" }
+dap["M"] = { req("test_method()"), "Test current method" }
+dap["S"] = { req("debug_selection()"), "Debug selection" }
+
+-- 〉
+
 -- Aerial 〈
 
 local aerial = {
@@ -306,6 +339,7 @@ local comma = {
   a = aerial,
   d = dap,
   e = emmet,
+  u = test,
   g = gitsigns,
   p = packer,
   t = telescope,
