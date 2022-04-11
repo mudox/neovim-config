@@ -32,6 +32,7 @@ return {
 
   -- Completion
   "cmp",
+  "copilot",
 
   -- Debugging
   "dap",
