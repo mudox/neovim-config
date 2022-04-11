@@ -41,9 +41,8 @@ cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   sources = {
+    { name = "cmdline", keyword_length = 3, max_item_count = 30 },
     { name = "path" },
-    -- { { name = "cmdline", keyword_pattern = [[\h\+]], keyword_length = 3, max_item_count = 20 } }
-    { name = "cmdline" },
   },
 })
 
