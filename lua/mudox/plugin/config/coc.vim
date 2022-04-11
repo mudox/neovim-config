@@ -123,7 +123,6 @@ nmap \qf  <Plug>(coc-fix-current)
 
 " Textobject & range 〈
 " Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 " xmap if <Plug>(coc-funcobj-i)
 " omap if <Plug>(coc-funcobj-i)
 " xmap af <Plug>(coc-funcobj-a)
@@ -148,13 +147,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-" 〉
-
-" Statusline 〈
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " 〉
 
 " CoCList 〈
