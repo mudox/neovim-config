@@ -108,8 +108,8 @@ local function map(from, to)
   vim.cmd(cmd)
 end
 
-map("<C-t><Space>", "lua _mdx_open_primary_bottom()")
-map("<C-t><C-t>", "lua _mdx_open_primary_float()")
+map("<M-k><Space>", "lua _mdx_open_primary_bottom()")
+map("<M-k><M-k>", "lua _mdx_open_primary_float()")
 
 -- Primary terminal 〉
 
