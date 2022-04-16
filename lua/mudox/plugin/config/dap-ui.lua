@@ -4,15 +4,6 @@ local i = require("mudox.ui").icons
 local dap = require("dap")
 local dapui = require("dapui")
 
-local function map(from, to)
-  local nlua = require("mudox.keymap").nlua
-  nlua(from, ('require("dapui").%s'):format(to))
-end
-
-map("<M-/>d", "toggle()")
-map("<M-/>h", "toggle('sidebar')")
-map("<M-/>j", "toggle('tray')")
-
 -- Setup 〈
 
 dapui.setup {
