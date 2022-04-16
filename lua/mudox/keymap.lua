@@ -98,7 +98,7 @@ end
   convenient method for common patter `<Cmd>lua require(...)...<Cr>`
 ]]
 local function req(mode, from, module, to, options)
-  map(mode, from, ("<Cmd>lua require('%s').%s"):format(module, to), options)
+  map(mode, from, ("<Cmd>lua require('%s').%s<Cr>"):format(module, to), options)
 end
 
 --[[
