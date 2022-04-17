@@ -323,11 +323,14 @@ local lsp = {
 
 -- Second comma 〈
 
+vim.cmd([[ command! BufOnly silent! execute "%bd|e#|bd#" ]])
+
 local second_comma = {
   name = "Misc",
 
-  ["e"] = { cmd("edit"), "Reload LuaSnip snippets" },
-  ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), ":edit" },
+  ["e"] = { cmd("edit"), "Run command `:edit!`" },
+  ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), "Reload my LuaSnip snippets" },
+  ["o"] = { cmd("BufOnly"), "Close other buffers" },
 }
 
 -- Second comma 〉
