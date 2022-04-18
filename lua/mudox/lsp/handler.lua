@@ -1,7 +1,7 @@
 local function setup_lsp_highlight_cursor(client)
   -- use `antoinemadec/FixCursorHold.nvim` to reduce update time without incuor
   -- frequent swap writing
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -72,8 +72,8 @@ end
 local function on_attach(client, bufnr)
   -- use prettier by null-ls instead
   if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   -- keymaps
