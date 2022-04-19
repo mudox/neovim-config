@@ -290,12 +290,12 @@ local packer = {
 
 -- 〉
 
--- GitSigns 〈
+-- Git 〈
 
 req = make_req("gitsigns")
 
 local gitsigns = {
-  name = "GitSigns",
+  name = "Git (Fugitive, Gitsigns)",
 
   ["<Space>"] = { req("toggle_signs()"), "Toggle GitSigns signs" },
 
