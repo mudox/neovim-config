@@ -15,7 +15,8 @@
         "opt",
         "config",
         "ngx",
-        "lock"
+        "lock",
+        "commit"
     ],
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,
