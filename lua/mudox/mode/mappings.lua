@@ -86,6 +86,7 @@ imap("<M-;>", "<Esc>A")
 -- 〉
 
 -- Which-key 〈
+
 local function cmd(c)
   return ("<Cmd>%s<Cr>"):format(c)
 end
@@ -329,6 +330,23 @@ local lsp = {
 
 -- 〉
 
+-- Refactoring 〈
+
+local refactoring = {
+  name = "Refactoring",
+
+  ["b"] = { make_req("refactoring")('refactor("Extract Block")'), "Extract Block" },
+  ["B"] = { make_req("refactoring")('refactor("Extract Block To File")'), "Extract Block To File" },
+
+  ["i"] = { make_req("refactoring")('refactor("Inline Variable")'), "Inline Variable under cursor" },
+
+  ["p"] = { make_req("refactoring")("debug.printf({below = false})"), "Print function call" },
+
+  ["c"] = { make_req("refactoring")("debug.cleanup({})"), "Cleanup debug print lines" },
+}
+
+-- 〉
+
 -- Second comma 〈
 
 vim.cmd([[ command! BufOnly silent! execute "%bd|e#|bd#" ]])
@@ -357,6 +375,7 @@ local comma = {
   t = telescope,
   x = trouble,
   l = lsp,
+  r = refactoring,
 
   [","] = second_comma,
 }
@@ -378,9 +397,42 @@ local space = {
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
 
+-- Normal mode keymaps
 wk.register {
   ["<Space>"] = space,
   [","] = comma,
 }
+
+-- Refactoring 〈
+
+local function refactor(c)
+  make_req("refactoring")(('refactor("%s")'):format(c))
+end
+
+refactoring = {
+  name = "Refactoring",
+
+  ["r"] = { make_req("refactoring")("select_refactor()"), "Refactor selection" },
+
+  ["p"] = { make_req("refactoring")("debug.print_var({})"), "Print variable" },
+}
+
+local cmds = {
+  e = "Extract Function",
+  f = "Extract Function To File",
+  v = "Extract Variable",
+  i = "Inline Variable",
+}
+
+for key, s in pairs(cmds) do
+  refactoring[key] = { refactor(s), s }
+end
+
+-- 〉
+
+-- Visual mode keymaps
+wk.register({
+  r = refactoring,
+}, { mode = "v" })
 
 -- 〉

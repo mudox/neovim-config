@@ -28,6 +28,7 @@ return {
   -- LSP
   "lsp",
   "null-ls",
+  "refactoring",
   "project",
 
   -- Completion
