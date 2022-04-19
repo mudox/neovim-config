@@ -226,13 +226,17 @@ local test = {
   name = "Test",
 
   -- Summary window
+  ["l"] = { cmd("UltestSummary"), "Summary window" },
+  ["L"] = { cmd("UltestSummary!"), "Summary window focused" },
   ["s"] = { cmd("UltestSummary"), "Summary window" },
   ["S"] = { cmd("UltestSummary!"), "Summary window focused" },
 
   -- Test
+  ["<Space>"] = { cmd("UltestLast"), "Test last" },
+
   ["f"] = { cmd("Ultest"), "Test file" },
   ["n"] = { cmd("UltestNearest"), "Test nearest" },
-  ["<Space>"] = { cmd("UltestLast"), "Test last" },
+
   ["."] = { cmd("UltestStop"), "Stop all tests" },
   ["c"] = { cmd("UltestClear"), "Clear test results" },
 
