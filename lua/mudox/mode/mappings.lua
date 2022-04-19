@@ -179,6 +179,7 @@ local dap = {
   ["b"] = { req("toggle_breakpoint()"), "Toggle breakpoint" },
   ["c"] = { req("set_breakpoint(vim.fn.input('Breakpoint condition: '))"), "Add conditional breakpoint" },
   ["p"] = { req("set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"), "Add log point" },
+  ["e"] = { req("set_exception_breakpoints({'all'})"), "Set breakpoint for all exceptions" },
   ["X"] = { req("clear_breakpoint()"), "Clear all breakpoints" },
 
   -- Session control
@@ -191,6 +192,9 @@ local dap = {
   -- REPL
   [":"] = { req("repl.toggle()"), "Toggle REPL" },
 }
+
+req = make_req("dap.ui.widgets")
+dap["i"] = { req("hover()"), "Hover" }
 
 req = make_req("dapui")
 dap["t"] = { req("toggle()"), "Toggle panes" }
