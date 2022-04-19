@@ -42,7 +42,7 @@ nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
 -- `q` triggers macro recording too easily
-nmap("<M-k>", "q")
+nmap("\\q", "q")
 nnop("q")
 
 -- `Q` triggers Ex mode too easily
