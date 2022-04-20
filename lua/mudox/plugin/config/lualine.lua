@@ -33,7 +33,7 @@ local sections = {
     { "mode",         },
   },
   lualine_b = {
-    { "branch",       },
+    { "branch", icon = "┣" },
     { "diff",         },
   },
   lualine_c = {
