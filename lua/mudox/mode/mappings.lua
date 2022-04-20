@@ -388,7 +388,7 @@ local space = {
   name = "The space key mappings",
 
   r = { cmd("Telescope oldfiles"), "File history" },
-  o = { cmd("NeorgStart"), "Start Neorg" },
+  g = { cmd("Git"), "Git (fugitive)" },
 }
 
 --〉
