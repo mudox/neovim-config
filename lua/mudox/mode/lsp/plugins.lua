@@ -133,6 +133,5 @@ return {
   -- HTML/CSS
   -- C/C++
 
-  -- Org
-  "neorg",
+  -- C/C++
 }
