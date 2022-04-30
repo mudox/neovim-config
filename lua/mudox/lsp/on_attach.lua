@@ -83,7 +83,7 @@ local function format_on_save(bufnr)
   })
 end
 
-local function on_attach(client, bufnr)
+return function(client, bufnr)
   -- Use prettier by null-ls instead
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
@@ -104,11 +104,3 @@ local function on_attach(client, bufnr)
 
   require("aerial").on_attach(client, bufnr)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-return {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}

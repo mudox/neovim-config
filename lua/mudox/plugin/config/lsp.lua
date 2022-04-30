@@ -1,13 +1,17 @@
 local lsp = require("mudox.lsp")
+
 local installer = require("nvim-lsp-installer")
-local handler = require("mudox.lsp.handler")
+local lspconfig = require("lspconfig")
 
 lsp.setup()
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 installer.on_server_ready(function(server)
   local opts = {
-    on_attach = handler.on_attach,
-    capabilities = handler.capabilities,
+    on_attach = require("mudox.lsp.on_attach"),
+    capabilities = capabilities,
   }
 
   local function extend(lhs, rhs)
