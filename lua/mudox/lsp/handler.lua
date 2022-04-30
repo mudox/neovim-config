@@ -1,4 +1,4 @@
-local function setup_lsp_highlight_cursor(bufnr)
+local function highlight_cursor(bufnr)
   local gid = vim.api.nvim_create_augroup("MudoxLspHighlightCursor", { clear = true })
 
   -- NOTE: related plugin `FixCursorHold`
@@ -6,21 +6,17 @@ local function setup_lsp_highlight_cursor(bufnr)
   vim.api.nvim_create_autocmd("CursorHold", {
     group = gid,
     buffer = bufnr,
-    callback = function()
-      vim.lsp.buf.document_highlight()
-    end,
+    callback = vim.lsp.buf.document_highlight,
   })
 
   vim.api.nvim_create_autocmd("CursorMoved", {
     group = gid,
     buffer = bufnr,
-    callback = function()
-      vim.lsp.buf.clear_references()
-    end,
+    callback = vim.lsp.buf.clear_references,
   })
 end
 
-local function install_lsp_buffer_mappings(bufnr)
+local function lsp_mappings(bufnr)
   local nlua = function(key, cmd)
     local opts = { buffer = bufnr }
     require("mudox.keymap").nlua(key, cmd, opts)
@@ -49,7 +45,7 @@ local function install_lsp_buffer_mappings(bufnr)
 end
 
 --- For slow formatting
-function _G._mdx_async_format_document()
+local function format_document_async()
   local enabled_filetypes = {
     python = true,
   }
@@ -60,7 +56,7 @@ function _G._mdx_async_format_document()
 end
 
 -- For instant formatting
-function _G._mdx_sync_format_document()
+local function format_document_sync()
   local enabled_filetypes = {
     lua = true,
     swift = true,
@@ -71,11 +67,20 @@ function _G._mdx_sync_format_document()
   end
 end
 
-local function install_buffer_autocmds()
-  vim.cmd([[
-  au BufWritePre <buffer> lua _mdx_sync_format_document()
-  au BufWritePost <buffer> lua _mdx_async_format_document()
-  ]])
+local function format_on_save(bufnr)
+  local gid = vim.api.nvim_create_augroup("MudoxLspFormatOnSave", { clear = true })
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = gid,
+    buffer = bufnr,
+    callback = format_document_sync,
+  })
+
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = gid,
+    buffer = bufnr,
+    callback = format_document_async,
+  })
 end
 
 local function on_attach(client, bufnr)
@@ -91,15 +96,12 @@ local function on_attach(client, bufnr)
     client.resolved_capabilities.document_range_formatting = false
   end
 
-  -- keymaps
-  install_lsp_buffer_mappings(bufnr)
+  lsp_mappings(bufnr)
 
-  -- highlighting cursor
-  setup_lsp_highlight_cursor(bufnr)
+  highlight_cursor(bufnr)
 
-  install_buffer_autocmds()
+  format_on_save()
 
-  -- aerial.nvim
   require("aerial").on_attach(client, bufnr)
 end
 
