@@ -70,17 +70,23 @@ local function install_buffer_autocmds()
 end
 
 local function on_attach(client, bufnr)
-  -- use prettier by null-ls instead
+  -- Use prettier by null-ls instead
   if client.name == "tsserver" then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+
+  -- Use stylua by null-ls instead
+  if client.name == "sumneko_lua" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
 
   -- keymaps
   install_lsp_buffer_mappings(bufnr)
 
   -- highlighting cursor
-  setup_lsp_highlight_cursor(client)
+  setup_lsp_highlight_cursor(bufnr)
 
   install_buffer_autocmds()
 
