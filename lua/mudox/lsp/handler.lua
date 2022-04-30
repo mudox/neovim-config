@@ -1,15 +1,23 @@
-local function setup_lsp_highlight_cursor(client)
-  -- use `antoinemadec/FixCursorHold.nvim` to reduce update time without incuor
-  -- frequent swap writing
-  if client.server_capabilities.document_highlight then
-    vim.cmd([[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]])
-  end
+local function setup_lsp_highlight_cursor(bufnr)
+  local gid = vim.api.nvim_create_augroup("MudoxLspHighlightCursor", { clear = true })
+
+  -- NOTE: related plugin `FixCursorHold`
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    group = gid,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.document_highlight()
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = gid,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.clear_references()
+    end,
+  })
 end
 
 local function install_lsp_buffer_mappings(bufnr)
@@ -42,7 +50,9 @@ end
 
 --- For slow formatting
 function _G._mdx_async_format_document()
-  local enabled_filetypes = {}
+  local enabled_filetypes = {
+    python = true,
+  }
 
   if enabled_filetypes[vim.o.ft] then
     vim.lsp.buf.formatting()
@@ -54,7 +64,6 @@ function _G._mdx_sync_format_document()
   local enabled_filetypes = {
     lua = true,
     swift = true,
-    python = true,
   }
 
   if enabled_filetypes[vim.o.ft] then
