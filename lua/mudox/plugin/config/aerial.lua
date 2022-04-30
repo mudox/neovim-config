@@ -32,8 +32,8 @@ local kinds = {
   "Function",
   "Method",
 
-  "Variable",
-  "Constant",
+  -- "Variable",
+  -- "Constant",
 }
 
 local guides = {
