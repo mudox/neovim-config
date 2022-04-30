@@ -25,6 +25,9 @@ hi link FloatBorder TelescopeBorder
 hi default link LspReferenceText CursorColumn
 hi default link LspReferenceRead LspReferenceText
 hi default link LspReferenceWrite LspReferenceText
+
+" Copilot
+hi CopilotSuggestion guifg=#237cff
 ]])
 
 -- HACK: temporarily fix neovim window resizing issue
