@@ -1,20 +1,21 @@
 local i = require("mudox.ui").icons
 
--- stylua: ignore start
-local signs = {
-  { name = "DiagnosticSignError", text = i.error },
-  { name = "DiagnosticSignWarn",  text = i.warn },
-  { name = "DiagnosticSignInfo",  text = i.info },
-  { name = "DiagnosticSignHint",  text = i.hint },
-}
--- stylua: ignore end
-
 local function setup()
+  -- Icons
+
+  local signs = {
+    { name = "DiagnosticSignError", text = i.error },
+    { name = "DiagnosticSignWarn", text = i.warn },
+    { name = "DiagnosticSignInfo", text = i.info },
+    { name = "DiagnosticSignHint", text = i.hint },
+  }
+
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
   end
 
-  -- diagnostic float window
+  -- Diagnostic float window
+
   local config = {
     virtual_text = false,
     update_in_insert = false,
@@ -25,11 +26,13 @@ local function setup()
       border = "rounded",
       source = "always",
       header = " DIAGNOSTICS",
-      prefix = "  ",
+      prefix = "⋅ ",
     },
   }
 
   vim.diagnostic.config(config)
+
+  -- Float window border
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
