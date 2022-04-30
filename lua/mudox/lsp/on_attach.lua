@@ -63,7 +63,7 @@ local function format_document_sync()
   }
 
   if enabled_filetypes[vim.o.ft] then
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.formatting_sync(nil, 1000)
   end
 end
 
