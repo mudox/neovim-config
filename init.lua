@@ -1,24 +1,28 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- luarocks
+-- Luarocks
 pl = require("mudox.luarocks")
 
--- mode
+-- Mode
 require("mudox.resolve_mode")
 
--- common paths
+-- Common paths
 stdpath = require("mudox.path")
 
--- config
+-- Config
 require(stdpath("settings"))
 require(stdpath("auto_commands"))
 require("mudox.plugin_manager")
 require(stdpath("post"))
 
--- mappings
-vim.cmd([[
-autocmd VimEnter * lua require(stdpath('mappings'))
-]])
+-- Mappings
+vim.api.nvim_create_augroup("Mudox", { clear = true })
+vim.api.nvim_create_autocmd("UIEnter", {
+  group = "Mudox",
+  callback = function()
+    require(stdpath("mappings"))
+  end,
+})
 
--- packer_compiled
+-- Packer
 vim.cmd(("source %s"):format(stdpath.packer_compiled))
