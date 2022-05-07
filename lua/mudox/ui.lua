@@ -30,32 +30,43 @@ local tree = {
 }
 
 local lsp_kind_icons = {
-  Class         = " ",
-  Color         = " ",
-  Constant      = " ",
-  Constructor   = " ",
-  Enum          = " ",
-  EnumMember    = " ",
-  Event         = " ",
-  Field         = " ",
   File          = " ",
   Folder        = " ",
-  Function      = " ",
-  Interface     = " ",
-  Keyword       = " ",
-  Method        = " ",
+
   Module        = " ",
-  Operator      = " ",
   Package       = " ",
+
+  Enum          = "🅴 ",
+  Class         = "🅲 ",
+  Struct        = "🆂 ",
+  Interface     = "🅸 ",
+
+  Function      = "",
+  Method        = "",
+  Event         = "",
+
+  Constant      = "",
+  Variable      = "",
+  Value         = " ",
+  Text          = " ",
+
+  EnumMember    = " ",
+  Field         = " ",
+
+  Color         = " ",
+  Constructor   = " ",
+
+  Keyword       = " ",
+  Operator      = " ",
+
   Property      = "⚑ ",
   Reference     = " ",
+
   Snippet       = " ",  -- " "
-  Struct        = " ",
-  Text          = " ",
+
   TypeParameter = " ",
+
   Unit          = " ",
-  Value         = " ",
-  Variable      = " ",
 }
 
 local filetype = {
