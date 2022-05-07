@@ -1,16 +1,19 @@
--- auto equal panes
-vim.cmd([[
-augroup mdx_equal_panes
-  autocmd!
-  autocmd VimResized * tabdo wincmd = 
-augroup end
-]])
+-- Equal panes when window resized
+local gid = vim.api.nvim_create_augroup("MudoxEqualPanes", { clear = true })
+vim.api.nvim_create_autocmd("VimResized", {
+  group = gid,
+  command = "tabdo wincmd =",
+})
 
--- mappings & settings for special buffers
-vim.cmd([[
-augroup mdx_general_auto_commands
-  autocmd!
-  autocmd FileType qf,help,man,lspinfo,null-ls-info nnoremap <silent> <buffer> q <Cmd>close<Cr> 
-  autocmd FileType qf set nobuflisted
-augroup end
-]])
+-- Press `q` to close buffer
+gid = vim.api.nvim_create_augroup("MudoxMisc", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = gid,
+  pattern = { "qf", "help", "man", "lspinfo", "null-ls-info" },
+  command = "nnoremap <silent> <buffer> q <Cmd>close<Cr>",
+})
+vim.api.nvim_create_autocmd("FileType", {
+  group = gid,
+  pattern = { "qf" },
+  command = "setlocal nobuflisted",
+})
