@@ -70,7 +70,7 @@ return {
   "dev-icons",
   "dressing",
 
-  "git-signs",
+  "pretty-fold",
 
   "lualine",
   "tmuxline",
