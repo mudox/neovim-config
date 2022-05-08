@@ -31,7 +31,14 @@ ncmd("<M-i>", "Telescope treesitter")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local mappings = {
+  -- Insert mode
   i = {
+    -- No normal mode
+    ["<Esc>"] = actions.close,
+
+    -- Clear prompt instead of scroll up
+    ["<C-u>"] = false,
+
     -- Preview
     ["?"] = actions_layout.toggle_preview,
 
@@ -43,6 +50,8 @@ local mappings = {
     -- By convention <C-x> and <C-s> are used for horizontal splitting
     ["<C-s>"] = actions.select_horizontal,
   },
+
+  -- Normal mode
   n = {
     ["q"] = actions.close,
   },
