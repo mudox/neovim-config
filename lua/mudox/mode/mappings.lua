@@ -116,6 +116,9 @@ local telescope = {
     "Telescope pickers",
   },
 
+  -- Vim
+  ["h"] = { cmd("Telescope help_tags"), "Vim help" },
+
   -- Files
   ["f"] = { cmd("Telescope git_files"), "Git files" },
   ["c"] = { cmd("Telescope git_status"), "Git changed files" },
@@ -374,6 +377,7 @@ local comma = {
   p = packer,
   t = telescope,
   x = trouble,
+  m = trouble,
   l = lsp,
   r = refactoring,
 
@@ -382,13 +386,45 @@ local comma = {
 
 -- 〉
 
--- Leader: space 〈
+-- Leader: space - common functions 〈
 
 local space = {
   name = "The space key mappings",
 
-  r = { cmd("Telescope oldfiles"), "File history" },
-  g = { cmd("Git"), "Git (fugitive)" },
+  r = { cmd("Telescope oldfiles"), "File History" },
+  g = { cmd("Git"), "Fugitive" },
+  d = { cmd("DiffviewOpen"), "Diff view" },
+}
+
+--〉
+
+-- Leader: backslash - refactoring 〈
+
+local swap = {
+  name = "Swap",
+
+  f = "Swap parameter forwards",
+  b = "Swap parameter backwards",
+}
+
+req = make_req("neogen")
+local neogen = {
+  name = "Neogen",
+
+  f = { req("generate({type='func'})"), "Annotate function" },
+  c = { req("generate({type='class'})"), "Annotate class" },
+  t = { req("generate({type='type'})"), "Annotate type" },
+  F = { req("generate({type='file'})"), "Annotate file" },
+}
+
+local backslash = {
+  name = "Refactoring",
+
+  ["af"] = { cmd("Neoformat"), "Neoformat" },
+  ["ef"] = { "m`gg=G``", "Format (=) entire file" },
+
+  g = neogen,
+  s = swap,
 }
 
 --〉
@@ -401,6 +437,7 @@ local wk = require("which-key")
 wk.register {
   ["<Space>"] = space,
   [","] = comma,
+  ["\\"] = backslash,
 }
 
 -- Refactoring 〈
