@@ -72,8 +72,8 @@ local style = {
 
 -- style.simple()
 -- style.fill()
--- style.highlight()
-style.rainbow()
+style.highlight()
+-- style.rainbow()
 
 -- 〉
 
