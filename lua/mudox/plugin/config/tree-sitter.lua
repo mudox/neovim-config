@@ -92,6 +92,31 @@ local rainbow = {
 
 -- 〉
 
+-- Neog subparsers 〈
+-- NOTE: must be put before `require('nvim-treesitter.configs').setup()`
+
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_configs.norg_meta = {
+  install_info = {
+    url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
+parser_configs.norg_table = {
+  install_info = {
+    url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
+-- 〉
+
+-- Setup 〈
+
 local opts = {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
@@ -171,3 +196,5 @@ local opts = {
 }
 
 require("nvim-treesitter.configs").setup(opts)
+
+-- 〉
