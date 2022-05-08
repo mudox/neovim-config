@@ -434,6 +434,19 @@ local backslash = {
 
 --〉
 
+-- <M-/>: interface 〈
+
+local metaslash = {
+  name = "Interface",
+
+  ["d"] = { cmd("DiffviewOpen"), "Diff view" },
+
+  ["n"] = { cmd("NnnPicker"), "Nnn popup" },
+  ["N"] = { cmd("NnnExplorer"), "Nnn side pane" },
+}
+
+-- 〉
+
 -- vim.cmd([[PackerLoad which-key.nvim legendary.nvim]])
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
@@ -443,6 +456,7 @@ wk.register {
   ["<Space>"] = space,
   [","] = comma,
   ["\\"] = backslash,
+  ["<M-/>"] = metaslash,
 }
 
 -- Refactoring 〈
