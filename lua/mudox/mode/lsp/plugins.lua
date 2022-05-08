@@ -29,9 +29,13 @@ return {
 
   -- LSP
   "lsp",
+
+  "lsp-format",
   "null-ls",
-  "refactoring",
+
   "project",
+
+  "refactoring",
 
   -- Completion
   "cmp",
@@ -62,8 +66,6 @@ return {
 
   -- Snippets
   "luasnip",
-  -- "ultisnips",
-  -- "snippets",
 
   -- UI
   "colorizer",
@@ -81,10 +83,11 @@ return {
 
   "todo-comments",
 
-  -- Window
+  -- Window & Panes
   "popup",
 
   "which-key",
+  "legendary",
 
   "notify",
 
@@ -92,14 +95,15 @@ return {
 
   "zen-mode",
 
+  -- File Explorer
+  "nnn",
+  "tree",
+
   -- Navigation
   "light-speed",
   "tree-hopper",
   "marks",
   "reach",
-
-  "nnn",
-  "tree",
 
   "telescope",
 
@@ -117,8 +121,8 @@ return {
   -- Git
   "fugitive",
 
-  -- Web
-  "emmet",
+  "diff-view",
+  "git-signs",
 
   -- Lua
   "luapad",
@@ -127,13 +131,18 @@ return {
 
   -- Rust
   "rust-tools",
+  -- TODO: https://github.com/Saecki/crates.nvim
 
   -- Python
   "dap-python",
 
-  -- JS
+  -- JavaScript
+
+  -- TypeScript
+  -- LATER: https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+
   -- HTML/CSS
-  -- C/C++
+  "emmet",
 
   -- C/C++
 }
