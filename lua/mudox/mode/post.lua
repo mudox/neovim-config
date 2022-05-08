@@ -8,12 +8,15 @@ vim.api.nvim_create_autocmd("UIEnter", {
   command = "doautocmd ColorScheme",
 })
 
--- HACK: temporarily fix neovim window resizing issue
+-- HACK: fix neovim window resizing issue when used as terminal initial command
 -- track: https://github.com/neovim/neovim/issues/11330#issuecomment-900204299
-vim.cmd([[ 
-autocmd VimEnter * :sleep 1m
-autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID" 
-]])
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.defer_fn(function()
+      vim.loop.kill(vim.fn.getpid(), vim.loop.constants.SIGWINCH)
+    end, 1)
+  end,
+})
 
 -- HACK: disable `filetype.vim` loading
 -- track: https://github.com/nathom/filetype.nvim#usage
