@@ -4,27 +4,31 @@
 
 local dap = require("dap")
 
+dap.defaults.fallback.terminal_win_cmd = "6split new"
+dap.defaults.python.terminal_win_cmd = "6split new"
+
 -- 〉
 
 -- Mappings 〈
 
-local function map(from, to)
-  local nlua = require("mudox.keymap").nlua
-  nlua(from, ('require("dap").%s'):format(to))
-end
+local nreq = require("mudox.keymap").nreq
+
+-- stylua: ignore start
 
 -- flow control
-map("<F5>", "continue()")
-map("<C-Left>", "continue()")
+nreq("<F5>",      'dap', "continue()")
+nreq("<C-Left>",  'dap', "continue()")
 
-map("<F10>", "step_over()")
-map("<C-Right>", "step_over()")
+nreq("<F10>",     'dap', "step_over()")
+nreq("<C-Right>", 'dap', "step_over()")
 
-map("<F11>", "step_into()")
-map("<C-Down>", "step_into()")
+nreq("<F11>",     'dap', "step_into()")
+nreq("<C-Down>",  'dap', "step_into()")
 
-map("<F12>", "step_out()")
-map("<C-Up>", "step_out()")
+nreq("<F12>",     'dap', "step_out()")
+nreq("<C-Up>",    'dap', "step_out()")
+
+-- stylua: ignore end
 
 -- 〉
 
@@ -52,3 +56,10 @@ for _, sign in ipairs(signs) do
 end
 
 -- 〉
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dap-repl",
+  callback = function()
+    require("dap.ext.autocompl").attach()
+  end,
+})
