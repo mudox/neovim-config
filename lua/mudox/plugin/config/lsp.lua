@@ -5,32 +5,62 @@ local lspconfig = require("lspconfig")
 
 lsp.setup()
 
+local servers = {
+  -- Lua
+  "sumneko_lua",
+
+  -- JSON
+  "jsonls",
+
+  -- Rust
+  "rust_analyzer",
+
+  -- Swift
+  "sourcekit",
+
+  -- VimScript
+  "vimls",
+
+  -- Shell
+  "bashls",
+
+  -- Java
+  "jdtls",
+
+  -- WEB
+  "html",
+  "cssls",
+
+  -- Python
+  "pyright",
+  "sourcery",
+
+  -- JavaScript, TypeScript
+  "tsserver",
+}
+
+installer.setup {
+  ensure_installed = servers,
+  automatic_installation = true,
+}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-installer.on_server_ready(function(server)
-  local opts = {
+local function setup(server)
+  local opts = vim.deepcopy {
     on_attach = require("mudox.lsp.on_attach"),
     capabilities = capabilities,
   }
 
-  local function extend(lhs, rhs)
-    return vim.tbl_deep_extend("force", lhs, rhs)
+  local ok, custom_opts = pcall(require, "mudox.lsp.server." .. server)
+  if ok then
+    opts = vim.tbl_deep_extend("force", opts, custom_opts)
   end
 
-  if server.name == "sumneko_lua" then
-    -- Lua
-    local sumneko_opts = require("mudox.lsp.server.sumneko_lua")
-    opts = extend(sumneko_opts, opts)
-  elseif server.name == "jsonls" then
-    -- JSON
-    local jsonls_opts = require("mudox.lsp.server.jsonls")
-    opts = extend(jsonls_opts, opts)
-  elseif server.name == "rust_analyzer" then
-    -- Rust
-    require("mudox.lsp.rust").setup_server(server, opts)
-    return
-  end
+  lspconfig[server].setup(opts)
+end
 
-  server:setup(opts)
-end)
+for _, server in ipairs(servers) do
+  setup(server)
+end

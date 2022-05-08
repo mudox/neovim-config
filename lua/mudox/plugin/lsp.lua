@@ -6,4 +6,4 @@ requires = {
 
 event = "BufRead"
 
-after = "nvim-lspconfig"
+after = { "nvim-lspconfig", "cmp-nvim-lsp" }
