@@ -1,14 +1,5 @@
 local gitsigns = require("gitsigns")
 
--- Make background transparent
--- GitSignsXXX linked to GitGutterXXX
-vim.cmd([[
-hi GitGutterAdd guibg=NONE
-hi GitGutterChange guibg=NONE
-hi GitGutterDelete guibg=NONE
-hi GitGutterChangeDelete guibg=NONE
-]])
-
 -- stylua: ignore start
 local signs = {
   add          = { hl = "GitSignsAdd",    text = "┃", numhl = "GitSignsAddNr",    linehl = "GitSignsAddLn"    },
