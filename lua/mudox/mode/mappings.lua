@@ -72,9 +72,7 @@ ncmd("<C-w><C-w>", "wincmd q")
 ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 
 -- quickfix/location list window toggle
-ncmd("<M-/>l", "call mudox#lib#toggleLocList()")
 ncmd("yoL", "call mudox#lib#toggleLocList()")
-ncmd("<M-/>q", "call mudox#lib#toggleQuickFix()")
 ncmd("yoq", "call mudox#lib#toggleQuickFix()")
 
 -- 〉
@@ -434,19 +432,6 @@ local backslash = {
 
 --〉
 
--- <M-/>: interface 〈
-
-local metaslash = {
-  name = "Interface",
-
-  ["d"] = { cmd("DiffviewOpen"), "Diff view" },
-
-  ["n"] = { cmd("NnnPicker"), "Nnn popup" },
-  ["N"] = { cmd("NnnExplorer"), "Nnn side pane" },
-}
-
--- 〉
-
 -- vim.cmd([[PackerLoad which-key.nvim legendary.nvim]])
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
@@ -456,7 +441,6 @@ wk.register {
   ["<Space>"] = space,
   [","] = comma,
   ["\\"] = backslash,
-  ["<M-/>"] = metaslash,
 }
 
 -- Refactoring 〈
