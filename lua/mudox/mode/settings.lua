@@ -56,6 +56,8 @@ opt.fillchars = {
   vertright = "┣",
 
   verthoriz = "╋",
+
+  diff      = '╱'
 }
 -- stylua: ignore end
 
