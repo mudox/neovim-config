@@ -21,6 +21,8 @@ return {
   "context-vt",
   "aerial",
 
+  "neogen",
+
   "neoformat",
 
   "trouble",
