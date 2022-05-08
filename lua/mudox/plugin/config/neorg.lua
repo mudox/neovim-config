@@ -1,26 +1,5 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- Syntax highlighting 〈
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_configs.norg_meta = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
-parser_configs.norg_table = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
--- 〉
-
 -- Icons 〈
 
 local function level_icons(icon)
@@ -35,7 +14,6 @@ end
 
 local concealer_icons = {
   link = level_icons("➠ "),
-  -- list = level_icons("●"),
   list = level_icons("◆"),
   quote = level_icons("┃"),
   heading = {
@@ -171,6 +149,7 @@ require("neorg").setup {
     ["core.norg.qol.toc"] = {},
     ["core.norg.journal"] = {
       config = {
+        workspace = "home",
         strategy = "flat",
       },
     },
@@ -179,6 +158,6 @@ require("neorg").setup {
         workspace = "home",
       },
     },
-    ["core.integrations.telescope"] = {},
+    -- ["core.integrations.telescope"] = {},
   },
 }
