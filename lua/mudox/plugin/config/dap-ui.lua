@@ -10,10 +10,10 @@ dapui.setup {
   icons = { expanded = i.expanded, collapsed = i.collapsed },
   sidebar = {
     elements = {
-      { id = "scopes", size = 0.25 },
-      { id = "breakpoints", size = 0.25 },
+      { id = "scopes", size = 0.40 },
+      { id = "watches", size = 00.20 },
       { id = "stacks", size = 0.25 },
-      { id = "watches", size = 00.25 },
+      { id = "breakpoints", size = 0.15 },
     },
     size = 40,
     position = "left", -- Can be "left", "right", "top", "bottom"
