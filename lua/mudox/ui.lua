@@ -1,3 +1,7 @@
+-- vim: fdm=marker fmr=〈,〉
+
+-- Powerline 〈
+
 -- stylua: ignore start
 local powerline = {
   t1 = {
@@ -20,15 +24,27 @@ local powerline = {
   },
 
 }
+-- stylua: ignore end
+
+-- 〉
 
 powerline.current = powerline.t3
 
+-- Tree 〈
+
+-- stylua: ignore start
 local tree = {
   top    = "│ ",
   middle = "├─",
   last   = "└─",
 }
+-- stylua: ignore end
 
+-- 〉
+
+-- LSP kinds 〈
+
+-- stylua: ignore start
 local lsp_kind_icons = {
   File          = " ",
   Folder        = " ",
@@ -68,7 +84,13 @@ local lsp_kind_icons = {
 
   Unit          = " ",
 }
+-- stylua: ignore end
 
+--〉
+
+-- Filetype 〈
+
+-- stylua: ignore start
 local filetype = {
   markdown = " ",
   git      = " ",
@@ -80,35 +102,101 @@ local filetype = {
   backup   = " ",
   script   = " ",
 }
+-- stylua: ignore end
 
-local icons = {
-  error     = " ",
-  warn      = " ",
-  info      = " ",
-  hint      = " ",
-  success   = " ",
+--〉
 
-  light_dot = "·",
-  heavy_dot = "",
+-- Folder 〈
 
-  check     = "✔",
-  ballot    = "✘",
+-- stylua: ignore start
+local folder = {
+  default      = " ",
+  open         = " ",
 
-  deleted   = " ",
+  empty        = " ",
+  empty_open   = " ",
 
-  expanded  = '',
-  collapsed = '',
-
-  lsp = {
-    kind = lsp_kind_icons,
-  },
-
-  powerline = powerline,
-  tree = tree,
-  filetype = filetype,
+  symlink      = " ",
+  symlink_open = " ",
 }
 -- stylua: ignore end
 
+-- 〉
+
+-- Icons 〈
+
+-- stylua: ignore start
+local icons = {
+  error         = " ",
+  warn          = " ",
+  info          = " ",
+  hint          = " ",
+  success       = " ",
+
+  light_dot     = "·",
+  heavy_dot     = "",
+
+  check         = "✔",
+  ballot        = "✘",
+
+  deleted       = " ",
+
+  expanded      = "",
+  collapsed     = "",
+
+  folder_closed = " ",
+  folder_open   = " ",
+
+  lsp           = {
+    kind        = lsp_kind_icons,
+  },
+
+  powerline     = powerline,
+  tree          = tree,
+  folder        = folder,
+  filetype      = filetype,
+}
+-- stylua: ignore end
+
+-- 〉
+
+-- Colors 〈
+
+local function hi(fg, bg)
+  return {
+    fg = fg or "NONE",
+    bg = bg or "NONE",
+  }
+end
+
+local function fg(c)
+  return {
+    fg = c,
+    bg = "NONE",
+  }
+end
+
+local function bg(c)
+  return {
+    fg = "NONE",
+    bg = c,
+  }
+end
+
+-- stylua: ignore start
+local colors = {
+  diff = {
+    add    = bg("#494d0e"),
+    delete = bg("NONE"),
+    change = hi("#bbbbee", "#3e5582"),
+    text   = fg("white"),
+  },
+}
+-- stylua: ignore end
+
+-- 〉
+
 return {
   icons = icons,
+  colors = colors,
 }
