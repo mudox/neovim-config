@@ -3,6 +3,7 @@
 vim.o.completeopt = "menuone,noselect"
 
 local cmp = require("cmp")
+local group = require("cmp.config").sources
 local luasnip = require("luasnip")
 
 -- Source 〈
@@ -36,11 +37,21 @@ local sources = {
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { sources = { { name = "buffer", keyword_length = 3, max_item_count = 20 } } })
+for _, mode in ipairs { "/", "?" } do
+  cmp.setup.cmdline(mode, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "cmdline_history", max_item_count = 20 },
+      { name = "buffer", keyword_length = 3, max_item_count = 30 },
+    },
+  })
+end
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
+    { name = "cmdline_history", max_item_count = 20 },
     { name = "cmdline", keyword_length = 3, max_item_count = 30 },
     { name = "path" },
   },
@@ -90,24 +101,27 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local mapping = {
+local mapping = cmp.mapping.preset.insert {
+
   -- Menu naviation
-  ["<C-k>"] = cmp.mapping.select_prev_item(),
-  ["<C-j>"] = cmp.mapping.select_next_item(),
-  ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-  ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+  ["<C-p>"] = cmp.mapping.select_prev_item(),
+  ["<C-n>"] = cmp.mapping.select_next_item(),
+
+  ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+  ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
   -- Force trigger completion menu to come up
-  ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+  ["<C-Space>"] = cmp.mapping.complete(),
 
   -- Disable Ctrl+Y in completion menu
   ["<C-y>"] = cmp.config.disable, -- Occupied by tmux
 
   -- Cancel completion
-  ["<C-e>"] = cmp.mapping {
-    i = cmp.mapping.abort(),
-    c = cmp.mapping.close(),
-  },
+  ["<C-e>"] = cmp.mapping.abort(),
+  -- ["<C-e>"] = cmp.mapping {
+  --   i = cmp.mapping.abort(),
+  --   c = cmp.mapping.close(),
+  -- },
 
   -- Accept currently selected item. If none selected, `select` first item.
   -- Set `select` to `false` to only confirm explicitly selected items.
