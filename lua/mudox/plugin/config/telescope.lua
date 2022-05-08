@@ -67,6 +67,17 @@ require("telescope").setup {
     -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 
     mappings = mappings,
+
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--trim", -- trim indentations
+    },
   },
 
   extensions = {
