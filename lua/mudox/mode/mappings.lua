@@ -151,6 +151,9 @@ local telescope = {
 
   -- Project
   ["w"] = { cmd("Telescope projects"), "Project" },
+
+  -- Todo
+  ["t"] = { cmd("TodoTelescope"), "Todo list" },
 }
 
 -- 〉
@@ -169,6 +172,8 @@ local trouble = {
   ["l"] = { cmd("TroubleToggle loclist"), "Trouble loclist" },
 
   ["r"] = { cmd("TroubleToggle lsp_references"), "Trouble lsp references" },
+
+  ["t"] = { cmd("TodoTrouble"), "Trouble todo" },
 }
 
 -- 〉

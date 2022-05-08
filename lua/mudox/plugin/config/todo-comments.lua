@@ -24,8 +24,3 @@ local opts = {
 -- stylua: ignore end
 
 require("todo-comments").setup(opts)
-
-local ncmd = require("mudox.keymap").ncmd
-
-ncmd(",xt", "TodoTrouble")
-ncmd(",tt", "TodoTelescope")
