@@ -1,4 +1,8 @@
-local function highlight_cursor(bufnr)
+local function highlight_cursor(client, bufnr)
+  if not client.resolved_capabilities.document_highlight then
+    return
+  end
+
   local gid = vim.api.nvim_create_augroup("MudoxLspHighlightCursor", { clear = true })
 
   -- NOTE: related plugin `FixCursorHold`
@@ -67,7 +71,11 @@ local function format_document_sync()
   end
 end
 
-local function format_on_save(bufnr)
+local function format_on_save(client, bufnr)
+  if not client.resolved_capabilities.document_formatting then
+    return
+  end
+
   local gid = vim.api.nvim_create_augroup("MudoxLspFormatOnSave", { clear = true })
 
   vim.api.nvim_create_autocmd("BufWritePre", {
@@ -84,23 +92,21 @@ local function format_on_save(bufnr)
 end
 
 return function(client, bufnr)
-  -- Use prettier by null-ls instead
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
+  local servers_to_disable_formattting = {
+    ["sumneko_lua"] = true, -- use stylua from null-ls
+    ["tsserver"] = true, -- use prettier from null-ls
+  }
 
-  -- Use stylua by null-ls instead
-  if client.name == "sumneko_lua" then
+  if servers_to_disable_formattting[client.name] then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
 
   lsp_mappings(bufnr)
 
-  highlight_cursor(bufnr)
+  highlight_cursor(client, bufnr)
 
-  format_on_save()
+  format_on_save(client, bufnr)
 
   require("aerial").on_attach(client, bufnr)
 end
