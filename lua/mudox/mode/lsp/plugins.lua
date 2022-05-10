@@ -126,6 +126,7 @@ return {
   "git-signs",
 
   -- Lua
+  "lua-ref",
   "lua-pad",
 
   -- Swift
