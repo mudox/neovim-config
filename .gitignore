@@ -16,3 +16,5 @@
 /tags
 
 /lua/packer_compiled
+
+/luapad.lua
