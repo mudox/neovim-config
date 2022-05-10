@@ -30,7 +30,6 @@ return {
   -- LSP
   "lsp",
 
-  "lsp-format",
   "null-ls",
 
   "project",
