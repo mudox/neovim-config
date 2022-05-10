@@ -24,6 +24,8 @@ return {
   "cmp",
 
   -- Editing
+  "capslock",
+
   "visual-multi",
 
   "comment",

@@ -50,6 +50,8 @@ return {
   "ultest",
 
   -- Editing
+  "capslock",
+
   "visual-multi",
 
   "comment",
