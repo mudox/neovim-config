@@ -130,7 +130,9 @@ local icons = {
   error         = " ",
   warn          = " ",
   info          = " ",
+  debug         = " ",
   hint          = " ",
+  trace         = " ",
   success       = " ",
 
   light_dot     = "·",
