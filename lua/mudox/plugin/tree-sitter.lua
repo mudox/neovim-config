@@ -6,7 +6,7 @@ run = ":TSUpdate"
 requires = {
   { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufRead" },
   { "p00f/nvim-ts-rainbow", event = "BufRead" },
-  { "nvim-treesitter/playground", event = "BufRead" },
+  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 }
 
 after = { "nvim-treesitter-textobjects", "nvim-ts-rainbow", "playground" }
