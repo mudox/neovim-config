@@ -50,6 +50,7 @@ vim.g.nvim_tree_icons = {
 
 local opts = {
   view = {
+    signcolumn = "no",
     hide_root_folder = true,
     width = 40,
   },
