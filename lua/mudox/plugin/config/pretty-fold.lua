@@ -1,5 +1,3 @@
--- local dash = '━'
-
 -- stylua: ignore start
 local open  = '┤'
 local dash  = '―'
@@ -29,4 +27,3 @@ local opts = {
 }
 
 require("pretty-fold").setup(opts)
-require("pretty-fold.preview").setup()
