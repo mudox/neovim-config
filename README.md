@@ -1,7 +1,10 @@
 # MY Neovim's Configuration
 
-## Neog
-![snapshot](screenshot/neorg.png)
+## Main
+![snapshot](screenshot/splits.png)
 
 ## DAP
 ![dap](screenshot/dap.png)
+
+## Neog
+![snapshot](screenshot/neorg.png)
