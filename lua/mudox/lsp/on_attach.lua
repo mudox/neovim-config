@@ -1,5 +1,5 @@
 local function highlight_cursor(client, bufnr)
-  if not client.resolved_capabilities.document_highlight then
+  if not client.server_capabilities.document_highlight then
     return
   end
 
@@ -72,7 +72,7 @@ local function format_document_sync()
 end
 
 local function format_on_save(client, bufnr)
-  if not client.resolved_capabilities.document_formatting then
+  if not client.server_capabilities.document_formatting then
     return
   end
 
@@ -98,8 +98,8 @@ return function(client, bufnr)
   }
 
   if servers_to_disable_formattting[client.name] then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   lsp_mappings(bufnr)
