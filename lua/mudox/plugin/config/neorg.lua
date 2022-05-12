@@ -122,15 +122,37 @@ local keybindings = function(k)
 
   k.map("norg", "n", ",ot", "<Cmd>Neorg journal today<Cr>")
 
+  k.map("norg", "n", ",nm", "<Cmd>Neorg inject-metadata<Cr>")
+
   k.remap_key("norg", "n", "<M-j>", "<M-]>")
   k.remap_key("norg", "n", "<M-k>", "<M-[>")
 end
 
 -- 〉
 
+local meta_template = {
+  { "title", "" },
+  { "description", "" },
+  { "authors", "mudox" },
+  { "categories", "" },
+  { "tags", "" },
+  {
+    "created",
+    function()
+      return os.date("%Y-%m-%d")
+    end,
+  },
+  { "review", "" },
+}
+
 require("neorg").setup {
   load = {
     ["core.defaults"] = {},
+    ["core.norg.esupports.metagen"] = {
+      config = {
+        template = meta_template,
+      },
+    },
     ["core.keybinds"] = {
       config = {
         nerog_leader = ",o",
