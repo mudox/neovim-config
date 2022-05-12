@@ -1,4 +1,14 @@
 local notify = require("notify")
+
+local i = require("mudox.ui").icons
+local icons = {
+  ERROR = i.error,
+  WARN = i.warn,
+  INFO = i.info,
+  DEBUG = i.debug,
+  TRACE = i.trace,
+}
+
 local opts = {
   -- Animation style (see below for details)
   stages = "static",
@@ -28,13 +38,7 @@ local opts = {
   minimum_width = 50,
 
   -- Icons for the different levels
-  icons = {
-    ERROR = " ",
-    WARN = " ",
-    INFO = " ",
-    DEBUG = " ",
-    TRACE = " ",
-  },
+  icons = icons,
 }
 
 notify.setup(opts)
