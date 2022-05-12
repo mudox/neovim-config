@@ -1,7 +1,14 @@
 # MY Neovim's Configuration
 
-## Main
-![snapshot](screenshot/splits.png)
+
+## Lua
+![dap](screenshot/lua.png)
+
+## Rust
+![dap](screenshot/rust.png)
+
+## Diff
+![dap](screenshot/diff.png)
 
 ## DAP
 ![dap](screenshot/dap.png)
