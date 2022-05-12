@@ -70,11 +70,11 @@ local style = {
   end,
 }
 
+-- 〉
+
 -- style.simple()
 -- style.fill()
 style.highlight()
 -- style.rainbow()
-
--- 〉
 
 require("mudox.keymap").ncmd("yoi", "IndentBlanklineToggle")
