@@ -1,5 +1,5 @@
 local function highlight_cursor(client, bufnr)
-  if not client.server_capabilities.document_highlight then
+  if not client.server_capabilities.documentHighlightProvider then
     return
   end
 
@@ -20,44 +20,7 @@ local function highlight_cursor(client, bufnr)
   })
 end
 
-local function lsp_mappings(bufnr)
-  local nlua = function(key, cmd)
-    local opts = { buffer = bufnr }
-    require("mudox.keymap").nlua(key, cmd, opts)
-  end
-
-  -- goto
-  nlua("gD", "vim.lsp.buf.declaration()")
-  nlua("gd", "vim.lsp.buf.definition()")
-  nlua("gT", "vim.lsp.buf.type_definition()")
-  nlua("gi", "vim.lsp.buf.implementation()")
-  nlua("gr", "vim.lsp.buf.references()")
-
-  -- help
-  nlua("K", "vim.lsp.buf.hover()")
-  nlua("J", "vim.lsp.buf.signature_help()")
-
-  -- refactor
-  nlua("\\rn", "vim.lsp.buf.rename()")
-  nlua("\\ca", "vim.lsp.buf.code_action()")
-  nlua("\\fm", "vim.lsp.buf.formatting()")
-
-  -- diagnostics
-  nlua("[d", "vim.diagnostic.goto_prev()")
-  nlua("]d", "vim.diagnostic.goto_next()")
-  nlua("gl", "vim.diagnostic.open_float()")
-end
-
---- For slow formatting
-local function format_document_async()
-  local enabled_filetypes = {
-    python = true,
-  }
-
-  if enabled_filetypes[vim.o.ft] then
-    vim.lsp.buf.formatting()
-  end
-end
+local clients_to_disable = { tsserver = true, sumneko_lua = true }
 
 -- For instant formatting
 local function format_document_sync()
@@ -67,12 +30,37 @@ local function format_document_sync()
   }
 
   if enabled_filetypes[vim.o.ft] then
-    vim.lsp.buf.formatting_sync(nil, 1000)
+    vim.lsp.buf.format {
+      async = false,
+      filter = function(clients)
+        return vim.tbl_filter(function(client)
+          return clients_to_disable[client.name] == nil
+        end, clients)
+      end,
+    }
+  end
+end
+
+--- For slow formatting
+local function format_document_async()
+  local enabled_filetypes = {
+    python = true,
+  }
+
+  if enabled_filetypes[vim.o.ft] then
+    vim.lsp.buf.format {
+      async = true,
+      filter = function(clients)
+        return vim.tbl_filter(function(client)
+          return clients_to_disable[client.name] == nil
+        end, clients)
+      end,
+    }
   end
 end
 
 local function format_on_save(client, bufnr)
-  if not client.server_capabilities.document_formatting then
+  if not client.server_capabilities.documentFormattingProvider then
     return
   end
 
@@ -91,21 +79,37 @@ local function format_on_save(client, bufnr)
   })
 end
 
-return function(client, bufnr)
-  local servers_to_disable_formattting = {
-    ["sumneko_lua"] = true, -- use stylua from null-ls
-    ["tsserver"] = true, -- use prettier from null-ls
-  }
-
-  if servers_to_disable_formattting[client.name] then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+local function lsp_mappings(bufnr)
+  local nlua = function(key, cmd)
+    local opts = { buffer = bufnr }
+    require("mudox.keymap").nlua(key, cmd, opts)
   end
+  local nmap = require("mudox.keymap").nmap
 
+  -- goto
+  nlua("gD", "vim.lsp.buf.declaration()")
+  nlua("gd", "vim.lsp.buf.definition()")
+  nlua("gT", "vim.lsp.buf.type_definition()")
+  nlua("gi", "vim.lsp.buf.implementation()")
+  nlua("gr", "vim.lsp.buf.references()")
+
+  -- help
+  nlua("K", "vim.lsp.buf.hover()")
+  nlua("J", "vim.lsp.buf.signature_help()")
+
+  -- refactor
+  nlua("\\rn", "vim.lsp.buf.rename()")
+  nlua("\\ca", "vim.lsp.buf.code_action()")
+  nmap("\\fm", format_document_sync)
+
+  -- diagnostics
+  nlua("[d", "vim.diagnostic.goto_prev()")
+  nlua("]d", "vim.diagnostic.goto_next()")
+  nlua("gl", "vim.diagnostic.open_float()")
+end
+return function(client, bufnr)
   lsp_mappings(bufnr)
-
   highlight_cursor(client, bufnr)
-
   format_on_save(client, bufnr)
 
   require("aerial").on_attach(client, bufnr)
