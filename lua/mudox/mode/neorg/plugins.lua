@@ -57,8 +57,7 @@ return {
 
   "git-signs",
 
-  -- TODO: wait Neorg add full fleged folding support
-  -- "pretty-fold",
+  "pretty-fold",
 
   "lualine",
   "tmuxline",
