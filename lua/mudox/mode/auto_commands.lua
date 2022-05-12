@@ -4,7 +4,11 @@
 local gid = vim.api.nvim_create_augroup("MudoxEqualPanes", { clear = true })
 vim.api.nvim_create_autocmd("VimResized", {
   group = gid,
-  command = "tabdo wincmd =",
+  callback = function()
+    local tab = vim.fn.tabpagenr()
+    vim.fn.execute("tabdo wincmd =")
+    vim.fn.execute('tabnext ' .. tab)
+  end
 })
 
 -- Press `q` to close buffer
