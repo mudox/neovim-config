@@ -1,3 +1,3 @@
-url = "chentau/marks.nvim"
+url = "chentoast/marks.nvim"
 
 event = "BufRead"
