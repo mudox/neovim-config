@@ -7,16 +7,29 @@ vim.api.nvim_create_autocmd("VimResized", {
   callback = function()
     local tab = vim.fn.tabpagenr()
     vim.fn.execute("tabdo wincmd =")
-    vim.fn.execute('tabnext ' .. tab)
-  end
+    vim.fn.execute("tabnext " .. tab)
+  end,
 })
 
 -- Press `q` to close buffer
 gid = vim.api.nvim_create_augroup("MudoxMisc", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = gid,
-  pattern = { "qf", "help", "man", "lspinfo", "null-ls-info" },
+  pattern = { "qf", "help", "lspinfo", "null-ls-info" },
   command = "nnoremap <silent> <buffer> q <Cmd>close<Cr>",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = gid,
+  pattern = "man",
+  callback = function()
+    local ncmd = require("mudox.keymap").ncmd
+    if vim.g.mdx_nvim_mode == "man" then
+      ncmd("q", "quitall!")
+    else
+      ncmd("q", "quit")
+    end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
