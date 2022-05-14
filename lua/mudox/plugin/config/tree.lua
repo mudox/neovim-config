@@ -18,6 +18,7 @@ local folder = {
   symlink        = i.folder.symlink,
   symlink_open   = i.folder.symlink_open,
 }
+-- stylua: ignore end
 
 for k, icon in pairs(folder) do
   icon = icon:gsub("^%s+", "") -- trim prefixing spaces
@@ -25,24 +26,29 @@ for k, icon in pairs(folder) do
   folder[k] = icon
 end
 
+-- stylua: ignore start
+local git = {
+  unstaged     = "!",
+  staged       = "+",
+  unmerged     = "u",
+  renamed      = "r",
+  untracked    = "?",
+  deleted      = "x",
+}
+-- stylua: ignore end
+
+for k, icon in pairs(git) do
+  icon = icon:gsub("^%s+", "") -- trim prefixing spaces
+  icon = icon:gsub("%s+$", "") -- trim trailing spaces
+  folder[k] = icon
+end
+
+-- stylua: ignore start
 vim.g.nvim_tree_icons = {
   default        = "",
   symlink        = "",
-  git            = {
-    unstaged     = "!",
-    staged       = "+",
-    unmerged     = "u",
-    renamed      = "r",
-    untracked    = "?",
-    deleted      = "x",
-  },
+  git            = git,
   folder         = folder,
-  lsp            = {
-    error        = i.error,
-    warning      = i.warn,
-    info         = i.info,
-    hint         = i.hint,
-  },
 }
 -- stylua: ignore end
 
