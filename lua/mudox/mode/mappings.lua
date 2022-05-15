@@ -278,6 +278,11 @@ local aerial = {
   ["L"] = { cmd("AerialOpen right"), "Right pane focused" },
   ["f"] = { cmd("AerialOpen float"), "Float window focused" },
 
+  ["A"] = { cmd("AerialOpenAll"), "Open aerial window for all visible windows" },
+  ["c"] = { cmd("AerialClose"), "Close current aerial window" },
+  ["C"] = { cmd("AerialCloseAll"), "Close all visible aerial windows" },
+  ["o"] = { cmd("AerialCloseAllButCurrent"), "Close all but current aerial window" },
+
   ["i"] = { cmd("AerialInfo"), "Aerial debug info" },
 }
 
