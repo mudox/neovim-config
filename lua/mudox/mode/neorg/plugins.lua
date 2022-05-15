@@ -32,6 +32,8 @@ return {
 
   "switch",
 
+  "neo-clip",
+
   -- Pairing
   "sandwich",
   "auto-pairs",

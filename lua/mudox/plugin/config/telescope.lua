@@ -115,4 +115,6 @@ load("projects")
 
 load("live_grep_raw")
 
+
+load("neoclip")
 -- 〉

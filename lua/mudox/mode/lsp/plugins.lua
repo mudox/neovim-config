@@ -62,6 +62,8 @@ return {
 
   "easy-align",
 
+  "neo-clip",
+
   -- Search & replace
   "spectre",
 
