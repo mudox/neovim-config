@@ -61,8 +61,6 @@ opt.fillchars = {
 }
 -- stylua: ignore end
 
-o.signcolumn = "auto:1-2"
-
 o.cursorline = false
 o.number = false
 
