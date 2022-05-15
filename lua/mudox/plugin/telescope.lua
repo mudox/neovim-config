@@ -11,3 +11,9 @@ requires = {
 }
 
 event = "UIEnter"
+
+for i = 1, #requires do
+  local spec = requires[i]
+  spec.event = event
+  spec.after = "telescope.nvim"
+end
