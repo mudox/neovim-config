@@ -94,6 +94,7 @@ require("telescope").setup {
 -- Extensions 〈
 
 local function load(name)
+  -- NOTE: `load_extension` must be after `telescope.setup`
   require("telescope").load_extension(name)
 end
 
@@ -115,6 +116,7 @@ load("projects")
 
 load("live_grep_raw")
 
+load("heading")
 
 load("neoclip")
 -- 〉
