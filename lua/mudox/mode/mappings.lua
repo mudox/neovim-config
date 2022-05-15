@@ -443,6 +443,7 @@ local wk = require("which-key")
 
 -- Normal mode keymaps
 wk.register {
+  ["t"] = telescope,
   ["<Space>"] = space,
   [","] = comma,
   ["\\"] = backslash,
