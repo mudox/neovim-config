@@ -45,8 +45,6 @@ return {
 
   -- Snippets
   "luasnip",
-  -- "ultisnips",
-  -- "snippets",
 
   -- UI
   "colorizer",
@@ -95,9 +93,6 @@ return {
 
   -- Text object
   "textobject/*",
-
-  -- File type
-  "filetype/*",
 
   -- Other
   "unimpaired",
