@@ -116,14 +116,13 @@ local telescope = {
 
   -- Vim
   ["h"] = { cmd("Telescope help_tags"), "Vim help" },
+  ["o"] = { cmd("Telescope vim_options"), "Vim options" },
 
   -- Files
-  ["f"] = { cmd("Telescope git_files"), "Git files" },
   ["c"] = { cmd("Telescope git_status"), "Git changed files" },
   ["R"] = { req("extensions.live_grep_raw.live_grep_raw()"), "Rg raw mode" },
 
   -- Grep
-  ["g"] = { cmd("Telescope live_grep"), "Live grep" },
   ["G"] = { cmd("Telescope grep_string"), "Grep cword" },
 
   -- LSP & Tree-Sitter
@@ -134,14 +133,13 @@ local telescope = {
   ["."] = { cmd("Telescope lsp_code_actions"), "Code actions" },
   ["r"] = { cmd("Telescope lsp_references"), "LSP references" },
 
-  -- Vim
-  ["o"] = { cmd("Telescope vim_options"), "Vim options" },
-
   -- Aerial
   ["a"] = { cmd("Telescope aerial"), "Aerial" },
 
   -- Packer
   ["p"] = { req("extensions.packer.packer()"), "Packer plugins" },
+
+  -- File browser
   ["/"] = { req("extensions.file_browser.file_browser()"), "File browser" },
 
   -- Notify
@@ -152,6 +150,12 @@ local telescope = {
 
   -- Todo
   ["t"] = { cmd("TodoTelescope"), "Todo list" },
+
+  -- Neoclip
+  ["v"] = { cmd("Telescope neoclip"), "Neoclip" },
+
+  -- Heading
+  ["l"] = { cmd("Telescope heading"), "Heading" },
 }
 
 -- 〉
