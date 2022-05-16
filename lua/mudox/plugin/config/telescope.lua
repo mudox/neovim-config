@@ -69,8 +69,16 @@ local mappings = {
 
 require("telescope").setup {
   defaults = {
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    -- borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    -- UI
+    selection_caret = " ",
+    prompt_prefix = " ",
+    multi_icon = "│",
+
+    -- Layout
+    layout_strategy = "flex",
+    layout_config = {
+      prompt_position = "top",
+    },
 
     mappings = mappings,
 
