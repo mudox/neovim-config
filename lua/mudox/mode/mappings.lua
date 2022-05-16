@@ -165,15 +165,16 @@ local telescope = {
 local trouble = {
   name = "Trouble",
 
-  ["<Space>"] = { cmd("TroubleToggle"), "Troubles toggle" },
+  ["<Space>"] = { cmd("TroubleToggle"), "Toggle" },
+  ["R"] = { cmd("TroubleRefresh"), "Refresh" },
 
-  ["w"] = { cmd("TroubleToggle workspace_diagnostics"), "Trouble workspace diagnostics" },
-  ["d"] = { cmd("TroubleToggle document_diagnostics"), "Trouble document diagnostics" },
+  ["d"] = { cmd("Trouble document_diagnostics"), "Document diagnostics" },
+  ["D"] = { cmd("Trouble workspace_diagnostics"), "Workspace diagnostics" },
 
-  ["q"] = { cmd("TroubleToggle quickfix"), "Trouble quickfix" },
-  ["l"] = { cmd("TroubleToggle loclist"), "Trouble loclist" },
+  ["q"] = { cmd("Trouble quickfix"), "Quickfix" },
+  ["l"] = { cmd("Trouble loclist"), "Loclist" },
 
-  ["r"] = { cmd("TroubleToggle lsp_references"), "Trouble lsp references" },
+  ["r"] = { cmd("Trouble lsp_references"), "LSP references" },
 
   ["t"] = { cmd("TodoTrouble"), "Trouble todo" },
 }
