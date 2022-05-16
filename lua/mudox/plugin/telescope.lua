@@ -17,3 +17,5 @@ for i = 1, #requires do
   spec.event = event
   spec.after = "telescope.nvim"
 end
+
+after = { "trouble.nvim" }

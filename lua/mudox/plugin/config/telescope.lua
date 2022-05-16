@@ -30,6 +30,7 @@ ncmd("<M-i>", "Telescope treesitter")
 
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
+local trouble = require("trouble.providers.telescope")
 local mappings = {
   -- Insert mode
   i = {
@@ -41,14 +42,19 @@ local mappings = {
 
     -- Preview
     ["?"] = actions_layout.toggle_preview,
+    ["<C-k>"] = actions.preview_scrolling_up,
+    ["<C-j>"] = actions.preview_scrolling_down,
 
     -- Scrolling
-    ["<C-f>"] = actions.results_scrolling_down,
     ["<C-b>"] = actions.results_scrolling_up,
+    ["<C-f>"] = actions.results_scrolling_down,
 
     -- Split open
-    -- By convention <C-x> and <C-s> are used for horizontal splitting
+    -- By convention <C-s> are used for horizontal splitting
     ["<C-s>"] = actions.select_horizontal,
+
+    ["<C-x>"] = trouble.open_with_trouble,
+    ["<C-q>"] = trouble.smart_send_to_qflist,
   },
 
   -- Normal mode
