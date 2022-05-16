@@ -18,6 +18,8 @@ return {
   -- Language
   "tree-sitter",
 
+  "aerial",
+
   "trouble",
 
   -- Completion
