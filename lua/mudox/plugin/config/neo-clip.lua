@@ -1,4 +1,7 @@
 local opts = {
+  enable_persistent_history = true,
+  continuous_sync = true,
+
   keys = {
     telescope = {
       i = {
