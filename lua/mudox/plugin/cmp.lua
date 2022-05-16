@@ -26,12 +26,12 @@ requires = {
   { "hrsh7th/cmp-nvim-lsp-signature-help" },
 }
 
+event = "BufRead"
+
 for i = 1, #requires do
   local spec = requires[i]
-  spec.event = "BufRead"
+  spec.event = event
   spec.after = "nvim-cmp"
 end
-
-event = "BufRead"
 
 -- after = { "L3MON4D3/LuaSnip" }
