@@ -8,6 +8,11 @@ requires = {
   { "nvim-telescope/telescope-rg.nvim" },
   { "nvim-telescope/telescope-dap.nvim" },
   { "crispgm/telescope-heading.nvim" },
+
+  -- ISSUE: curent not working with firefox
+  -- track: https://github.com/dhruvmanila/telescope-bookmarks.nvim/issues/5
+  -- track: https://github.com/tami5/sqlite.lua/pull/132
+  { "dhruvmanila/telescope-bookmarks.nvim", requires = "tami5/sqlite.lua" },
 }
 
 event = "UIEnter"

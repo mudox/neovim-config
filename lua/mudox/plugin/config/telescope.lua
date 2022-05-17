@@ -101,6 +101,11 @@ require("telescope").setup {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {},
     },
+
+    ["bookmarks"] = {
+      selected_browser = "firefox",
+      firefox_profile_name = "Mudox",
+    },
   },
 
   pickers = { hidden = true },
