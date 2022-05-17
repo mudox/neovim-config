@@ -66,34 +66,37 @@ local mappings = {
 -- 〉
 
 -- Setup 〈
+local defaults = {
+  -- UI
+  -- selection_caret = "❯ ",
+  -- prompt_prefix = " ",
+  selection_caret = " ",
+  prompt_prefix = " ",
+  multi_icon = "│",
 
-require("telescope").setup {
-  defaults = {
-    -- UI
-    selection_caret = " ",
-    prompt_prefix = " ",
-    multi_icon = "│",
-
-    -- Layout
-    layout_strategy = "flex",
-    layout_config = {
-      prompt_position = "top",
-    },
-
-    mappings = mappings,
-
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--trim", -- trim indentations
-    },
+  -- Layout
+  sorting_strategy = "ascending",
+  layout_strategy = "flex",
+  layout_config = {
+    prompt_position = "top",
   },
 
+  mappings = mappings,
+
+  vimgrep_arguments = {
+    "rg",
+    "--color=never",
+    "--no-heading",
+    "--with-filename",
+    "--line-number",
+    "--column",
+    "--smart-case",
+    "--trim", -- trim indentations
+  },
+}
+
+require("telescope").setup {
+  defaults = defaults,
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {},
