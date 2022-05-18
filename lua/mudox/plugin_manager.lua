@@ -194,6 +194,4 @@ end
 
 -- 〉
 
--- 〉
-
 load(stdpath("plugins"))
