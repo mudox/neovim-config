@@ -94,8 +94,8 @@ local function lsp_mappings(bufnr)
   nlua("gr", "vim.lsp.buf.references()")
 
   -- help
-  nlua("K", "vim.lsp.buf.hover()")
-  nlua("J", "vim.lsp.buf.signature_help()")
+  nlua("gh", "vim.lsp.buf.hover()")
+  nlua("gs", "vim.lsp.buf.signature_help()")
 
   -- refactor
   nlua("\\rn", "vim.lsp.buf.rename()")
