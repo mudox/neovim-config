@@ -1,15 +1,5 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- Keymaps 〈
-
-local ncmd = require("mudox.keymap").ncmd
-ncmd("]a", "AerialNext")
-ncmd("[a", "AerialPrev")
-
--- Keymaps 〉
-
--- Config 〈
-
 local i = require("mudox.ui").icons
 
 local float = {
@@ -34,12 +24,12 @@ local kinds = {
   -- "Constant",
 }
 
-local guides = {
-  mid_item = "├─",
-  last_item = "└─",
-  nested_top = "│ ",
-  whitespace = "",
-}
+local on_attach = function(bufnr)
+  local ncmd = require("mudox.keymap").ncmd
+
+  ncmd("J", "AerialNext", { buffer = bufnr })
+  ncmd("K", "AerialPrev", { buffer = bufnr })
+end
 
 require("aerial").setup {
   highlight_on_hover = true,
@@ -55,7 +45,6 @@ require("aerial").setup {
   filter_kind = kinds,
 
   show_guides = true,
-  guides = guides,
-}
 
--- Config 〉
+  on_attach = on_attach,
+}
