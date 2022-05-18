@@ -373,6 +373,21 @@ local second_comma = {
   ["e"] = { cmd("edit"), "Run command `:edit!`" },
   ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), "Reload my LuaSnip snippets" },
   ["o"] = { cmd("BufOnly"), "Close other buffers" },
+  ["w"] = {
+    function()
+      local function filter(ids)
+        return ids
+      end
+      local wid = require("window-picker").pick_window {
+        include_current_win = true,
+        filter_func = filter,
+      }
+      if type(wid) == "number" then
+        vim.api.nvim_set_current_win(wid)
+      end
+    end,
+    "Switch window",
+  },
 }
 
 -- Second comma 〉

@@ -89,8 +89,10 @@ return {
   -- Window & Panes
   "popup",
 
+  "window-picker",
+
   "which-key",
-  "legendary",
+  -- "legendary",
 
   "notify",
 
