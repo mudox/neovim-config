@@ -5,24 +5,28 @@ return function(bufnr)
   end
   local nmap = require("mudox.keymap").nmap
 
-  -- goto
+  -- Goto
   nlua("gD", "vim.lsp.buf.declaration()")
   nlua("gd", "vim.lsp.buf.definition()")
   nlua("gT", "vim.lsp.buf.type_definition()")
   nlua("gi", "vim.lsp.buf.implementation()")
   nlua("gr", "vim.lsp.buf.references()")
 
-  -- help
+  -- Help
   nlua("gh", "vim.lsp.buf.hover()")
   nlua("gs", "vim.lsp.buf.signature_help()")
 
-  -- refactor
+  -- Refactor
   nlua("\\rn", "vim.lsp.buf.rename()")
   nlua("\\ca", "vim.lsp.buf.code_action()")
   nmap("\\fm", require("mudox.lsp.formatting").sync)
 
-  -- diagnostics
+  -- Diagnostics
+  nlua("<d", "vim.diagnostic.hide()")
+  nlua(">d", "vim.diagnostic.show()")
+
   nlua("[d", "vim.diagnostic.goto_prev()")
   nlua("]d", "vim.diagnostic.goto_next()")
+
   nlua("gl", "vim.diagnostic.open_float()")
 end
