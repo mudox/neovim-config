@@ -55,7 +55,6 @@ local sections = {
 -- stylua: ignore end
 
 local buffers = {
-
   "buffers",
 
   show_filename_only = true,
@@ -65,6 +64,12 @@ local buffers = {
     TelescopePrompt = "[telescope]",
     packer = "[packer]",
     aerial = "[aerial]",
+  },
+
+  symbols = {
+    modified = " ●",
+    alternate_file = "# ",
+    directory = " ",
   },
 }
 
