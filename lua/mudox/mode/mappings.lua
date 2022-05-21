@@ -359,6 +359,9 @@ local refactoring = {
   ["p"] = { make_req("refactoring")("debug.printf({below = false})"), "Print function call" },
 
   ["c"] = { make_req("refactoring")("debug.cleanup({})"), "Cleanup debug print lines" },
+
+  -- Trev-J
+  ["j"] = { make_req("trevj")("format_at_cursor()"), "Reverse J" },
 }
 
 -- 〉
