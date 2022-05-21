@@ -1,6 +1,6 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- highlight 〈
+-- Highlight 〈
 
 local highlight = {
   -- `false` will disable the whole extension
@@ -18,7 +18,7 @@ local highlight = {
 
 -- 〉
 
--- textobjects 〈
+-- Textobjects 〈
 
 local textobjects = {
   select = {
@@ -79,7 +79,7 @@ local textobjects = {
 
 -- 〉
 
--- rainbow 〈
+-- Rainbow 〈
 
 local rainbow = {
   enable = true,
@@ -92,7 +92,8 @@ local rainbow = {
 
 -- 〉
 
--- Neog subparsers 〈
+-- Neog 〈
+
 -- NOTE: must be put before `require('nvim-treesitter.configs').setup()`
 
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
@@ -165,13 +166,9 @@ local opts = {
 
     "markdown",
 
-    "query",
+    "query", -- treesitter query
 
     "rust",
-
-    -- "scheme",
-    -- "scala",
-    -- "haskell",
   },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
@@ -183,7 +180,6 @@ local opts = {
     "d",
     "php",
     "phpdoc",
-    "swift",
   },
 
   -- Modules
