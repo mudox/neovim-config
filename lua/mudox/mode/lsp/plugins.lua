@@ -90,6 +90,7 @@ return {
   "popup",
 
   "window-picker",
+  "neo-zoom",
 
   "which-key",
   -- "legendary",

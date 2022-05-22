@@ -376,6 +376,7 @@ local second_comma = {
   ["e"] = { cmd("edit"), "Run command `:edit!`" },
   ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), "Reload my LuaSnip snippets" },
   ["o"] = { cmd("BufOnly"), "Close other buffers" },
+
   ["w"] = {
     function()
       local function filter(ids)
@@ -391,6 +392,8 @@ local second_comma = {
     end,
     "Switch window",
   },
+
+  ["z"] = { cmd("NeoZoomToggle"), "Zoom window" },
 }
 
 -- Second comma 〉
