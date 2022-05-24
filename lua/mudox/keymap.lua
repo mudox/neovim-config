@@ -38,7 +38,7 @@ local function normalize_options(options)
     -- Use with option `expr`
     replace_keycodes = options.replace_keycodes,
 
-    -- Default false for `vim.keymap.set`
+    -- Introduced by `vim.keymap.set`, defaults to `false`
     remap = options.remap or false,
   }
 end
@@ -47,9 +47,9 @@ end
   the core method to define mapping. it calls `vim.keymap.set` at the end
 ]]
 local function map(
-  mode, -- mode char, see `:h map`
+  mode, -- mode char, see `:h map-modes` and `:h map-table`
   from, -- key mapping string
-  to, -- action string
+  to, -- ex-command string or lua function
   options -- see {opts} in `:h nvim_set_keymap()`
 )
   options = options or {}
