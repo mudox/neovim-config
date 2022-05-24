@@ -75,6 +75,8 @@ ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 ncmd("yoL", "call mudox#lib#toggleLocList()")
 ncmd("yoq", "call mudox#lib#toggleQuickFix()")
 
+vim.cmd([[nmap <Space>s <Esc><Esc>:%s/]])
+
 -- 〉
 
 -- Insert mode mappings 〈
