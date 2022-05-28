@@ -2,9 +2,6 @@
 
 local i = require("mudox.ui").icons
 
-vim.g.nvim_tree_icon_padding = "  "
-vim.g.nvim_tree_special_files = {}
-
 -- Icons 〈
 
 -- stylua: ignore start
@@ -40,11 +37,11 @@ local git = {
 for k, icon in pairs(git) do
   icon = icon:gsub("^%s+", "") -- trim prefixing spaces
   icon = icon:gsub("%s+$", "") -- trim trailing spaces
-  folder[k] = icon
+  git[k] = icon
 end
 
 -- stylua: ignore start
-vim.g.nvim_tree_icons = {
+local glyphs = {
   default        = "",
   symlink        = "",
   git            = git,
@@ -53,6 +50,8 @@ vim.g.nvim_tree_icons = {
 -- stylua: ignore end
 
 -- 〉
+
+-- Config 〈
 
 local opts = {
   view = {
@@ -68,13 +67,40 @@ local opts = {
       enable = true,
     },
     icons = {
+      padding = "  ",
       git_placement = "after",
+      glyphs = glyphs,
     },
+    special_files = {},
   },
 }
 
 require("nvim-tree").setup(opts)
 
+-- 〉
+
+-- Keymaps 〈
+
 local ncmd = require("mudox.keymap").ncmd
 
 ncmd("<M-p>", "NvimTreeFindFileToggle")
+ncmd("<M-/><M-p>", "NvimTreeFindFile")
+
+-- 〉
+
+-- Auto commands 〈
+
+local gid = vim.api.nvim_create_augroup("MudoxNvimTree", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = gid,
+  pattern = "NvimTree",
+  callback = function(event)
+    local nnop = require("mudox.keymap").nnop
+    local keys = { "H", "L", "]b", "[b", "[f", "]f" }
+    for _, key in ipairs(keys) do
+      nnop(key, { buffer = event.buf })
+    end
+  end,
+})
+
+--〉
