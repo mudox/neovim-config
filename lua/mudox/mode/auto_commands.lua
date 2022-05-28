@@ -1,6 +1,7 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- Equal panes when window resized
+-- Auto equal panes 〈
+
 local gid = vim.api.nvim_create_augroup("MudoxEqualPanes", { clear = true })
 vim.api.nvim_create_autocmd("VimResized", {
   group = gid,
@@ -11,8 +12,12 @@ vim.api.nvim_create_autocmd("VimResized", {
   end,
 })
 
+-- 〉
+
+-- Close sepcial panes 〈
+
 -- Press `q` to close buffer
-gid = vim.api.nvim_create_augroup("MudoxMisc", { clear = true })
+gid = vim.api.nvim_create_augroup("MudoxQ", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = gid,
   pattern = { "qf", "help", "lspinfo", "null-ls-info" },
@@ -32,11 +37,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- 〉
+
+-- Nobuflisted 〈
+
 vim.api.nvim_create_autocmd("FileType", {
   group = gid,
   pattern = { "qf" },
   command = "setlocal nobuflisted",
 })
+
+-- 〉
 
 -- Colorscheme 〈
 
