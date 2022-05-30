@@ -16,9 +16,9 @@ require("mudox.plugin_manager")
 require(stdpath("post"))
 
 -- Mappings
-vim.api.nvim_create_augroup("Mudox", { clear = true })
+local gid = vim.api.nvim_create_augroup("MudoxKeymap", { clear = true })
 vim.api.nvim_create_autocmd("UIEnter", {
-  group = "Mudox",
+  group = gid,
   callback = function()
     require(stdpath("mappings"))
   end,
