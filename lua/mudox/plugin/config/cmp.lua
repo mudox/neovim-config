@@ -33,6 +33,17 @@ local sources = {
 
   -- Source from `rg`
   { name = "rg", max_item_count = 10 },
+
+  -- Words
+  {
+    name = "look",
+    keyword_length = 2,
+    option = {
+      convert_case = true,
+      loud = true,
+      dict = '/usr/share/dict/words'
+    },
+  },
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -75,6 +86,7 @@ local function menu_name(key)
     treesitter      = "[TeeSitter]",
     rg              = "[RG]",
     cmdline_history = "[History]",
+    look            = "[Words]",
   }
   -- stylua: ignore end
 
