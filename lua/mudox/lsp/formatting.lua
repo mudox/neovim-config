@@ -10,10 +10,8 @@ local function sync()
   if enabled_filetypes[vim.o.ft] then
     vim.lsp.buf.format {
       async = false,
-      filter = function(clients)
-        return vim.tbl_filter(function(client)
-          return clients_to_disable[client.name] == nil
-        end, clients)
+      filter = function(client)
+        return clients_to_disable[client.name] == nil
       end,
     }
   end
