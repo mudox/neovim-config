@@ -1,3 +1,4 @@
-local olua = require("mudox.keymap").olua
+local k = require("mudox.keymap")
 
-olua("m", 'require("tsht").nodes()')
+k.oreq("h", "tsht", "nodes()")
+k.vreq("h", "tsht", "nodes()")
