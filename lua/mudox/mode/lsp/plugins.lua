@@ -106,6 +106,7 @@ return {
 
   -- Navigation
   "light-speed",
+  "better-n",
   "tree-hopper",
   "marks",
   "reach",
