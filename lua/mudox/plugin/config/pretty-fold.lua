@@ -1,12 +1,14 @@
 -- stylua: ignore start
 local open  = '┤'
+-- local dash  = '―'
 local dash  = '―'
+local fill  = ' '
 local close = '├'
 -- stylua: ignore end
 
 local opts = {
   keep_indentation = false,
-  fill_char = dash,
+  fill_char = fill,
   sections = {
     left = {
       function()
@@ -14,10 +16,9 @@ local opts = {
       end,
       open,
       "content",
-      close,
     },
     right = {
-      open .. " ",
+      " ",
       "number_of_folded_lines",
       ": ",
       "percentage",
