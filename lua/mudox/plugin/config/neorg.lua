@@ -116,6 +116,7 @@ local keybindings = function(k)
   -- <C-Space> to check todo item
   k.remap_event("norg", "n", "<C-Space>", "core.norg.qol.todo_items.todo.task_done")
 
+  -- GTD
   k.map("norg", "n", ",oc", "<Cmd>Neorg keybind norg core.gtd.base.capture<Cr>")
   k.map("norg", "n", ",ov", "<Cmd>Neorg keybind norg core.gtd.base.views<Cr>")
   k.map("norg", "n", ",oe", "<Cmd>Neorg keybind norg core.gtd.base.edit<Cr>")
