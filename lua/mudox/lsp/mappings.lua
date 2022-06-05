@@ -3,7 +3,7 @@ return function(bufnr)
     local opts = { buffer = bufnr }
     require("mudox.keymap").nlua(key, cmd, opts)
   end
-  local nmap = require("mudox.keymap").nmap
+  local k = require("mudox.keymap")
 
   -- Goto
   nlua("gD", "vim.lsp.buf.declaration()")
@@ -18,8 +18,15 @@ return function(bufnr)
 
   -- Refactor
   nlua("\\rn", "vim.lsp.buf.rename()")
+  k.nexpr("\\ir", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, {silent = false})
+
   nlua("\\ca", "vim.lsp.buf.code_action()")
-  nmap("\\fm", require("mudox.lsp.formatting").sync)
+
+  k.nmap("\\fm", function()
+    require("mudox.lsp.formatting").sync()
+  end)
 
   -- Diagnostics
   nlua("<d", "vim.diagnostic.hide()")

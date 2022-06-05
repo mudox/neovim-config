@@ -34,7 +34,7 @@ return {
 
   "project",
 
-  "refactoring",
+  "inc-rename",
 
   -- Completion
   "cmp",
