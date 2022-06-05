@@ -18,6 +18,7 @@
 
   @usage: k.ncmd("<C-]>", [[echo "hello world"]])
 ]==]
+
 local Set = require("pl.Set")
 local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
 
@@ -25,22 +26,13 @@ local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
   `vim.keymap.set` does not like unknown keys
 --]]
 local function normalize_options(options)
-  return {
-    buffer = options.buffer,
+  local opts = options
 
-    nowait = options.nowait,
-    silent = options.silent or true,
-    script = options.script,
-    expr = options.expr,
-    unique = options.unique,
+  if opts.silent == nil then
+    opts.silent = true
+  end
 
-    -- Added by `vim.keymap.set`, default true
-    -- Use with option `expr`
-    replace_keycodes = options.replace_keycodes,
-
-    -- Introduced by `vim.keymap.set`, defaults to `false`
-    remap = options.remap or false,
-  }
+  return opts
 end
 
 --[[
@@ -60,6 +52,7 @@ end
 local function expr(mode, from, to, opts)
   opts = opts or {}
   opts.expr = true
+  opts.silent = false
   map(mode, from, to, opts)
 end
 
@@ -104,8 +97,8 @@ end
 --[[
   convenient method to clear mapping
 ]]
-local function nop(mode, from)
-  map(mode, from, "<Nop>")
+local function nop(mode, from, options)
+  map(mode, from, "<Nop>", options)
 end
 
 local bodys = {
