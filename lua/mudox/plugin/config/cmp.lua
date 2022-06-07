@@ -41,7 +41,7 @@ local sources = {
     option = {
       convert_case = true,
       loud = true,
-      dict = '/usr/share/dict/words'
+      dict = "/usr/share/dict/words",
     },
   },
 }
