@@ -15,6 +15,8 @@ return {
   "repeat",
   "startup-time",
 
+  "lua-pad",
+
   -- Language
   "tree-sitter",
 
@@ -46,7 +48,7 @@ return {
   "spectre",
 
   -- Snippets
-  "luasnip",
+  -- "luasnip",
 
   -- UI
   "colorizer",
@@ -75,13 +77,10 @@ return {
   "neo-zoom",
 
   "which-key",
-  "legendary",
 
   "notify",
 
   "toggle-term",
-
-  "zen-mode",
 
   -- Navigation
   "light-speed",

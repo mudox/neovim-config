@@ -1,11 +1,10 @@
 -- vim: fdm=marker fmr=〈,〉
 
 return {
-  "fix-cursor-hold", -- fix `updatetime`
 
   -- Boost startup time
-  "impatient", -- it will be merged into Neovim
-  "filetype", -- replace `runtime/filetype.vim`
+  "impatient", -- track https://github.com/neovim/neovim/pull/15436
+  "filetype", -- track https://github.com/neovim/neovim/issues/18604
 
   -- The Plugin manager
   "packer",
@@ -15,24 +14,22 @@ return {
   "repeat",
   "startup-time",
 
-  -- Language
+  -- Tree-sitter
   "tree-sitter",
 
   "context-vt",
   "aerial",
 
   "neogen",
+  "trev-j",
+  "refactoring",
 
   "neoformat",
 
-  "trouble",
-
   -- LSP
+  "fix-cursor-hold", -- For highlight cursor
   "lsp",
-
   "null-ls",
-
-  "project",
 
   "inc-rename",
 
@@ -64,27 +61,27 @@ return {
 
   "neo-clip",
 
-  -- Search & replace
   "spectre",
 
   -- Snippets
   "luasnip",
 
   -- UI
-  "colorizer",
-  "base16",
-
   "dev-icons",
+  "base16",
+  "colorizer",
+
   "dressing",
 
-  "pretty-fold",
-
   "lualine",
-  "tmuxline",
+
+  "pretty-fold",
 
   "indent-blank-line",
 
   "todo-comments",
+
+  "trouble",
 
   -- Window & Panes
   "popup",
@@ -92,54 +89,58 @@ return {
   "window-picker",
 
   "which-key",
-  -- "legendary",
 
   "notify",
 
   "toggle-term",
 
-  "zen-mode",
-
   -- File Explorer
   "nnn",
   "tree",
 
-  -- Navigation
+  -- -- Navigation
   "light-speed",
   "tree-hopper",
-  "marks",
-  "reach",
 
   "telescope",
 
+  -- "marks",
+  "reach",
+  "other",
+
+  -- Tmux
   "tmux-navigator",
+  -- "tmuxline",
 
-  -- Text object
-  "textobject/*",
+  -- -- Text object
+  -- "textobject/*",
 
-  -- File type
-  "filetype/*",
+  -- -- File type
+  -- "filetype/*",
 
-  -- Other
+  -- -- Other
   "unimpaired",
 
-  -- Git
+  -- -- Git
   "fugitive",
 
   "diff-view",
   "git-signs",
 
-  -- Lua
+  -- -- Language
+  -- "iron",
+
+  -- -- Lua
   "lua-ref",
   "lua-pad",
 
-  -- Swift
+  -- -- Swift
 
-  -- Rust
-  "rust-tools",
-  -- TODO: https://github.com/Saecki/crates.nvim
+  -- -- Rust
+  -- "rust-tools",
+  -- -- TODO: https://github.com/Saecki/crates.nvim
 
-  -- Python
+  -- -- Python
   "dap-python",
 
   -- JavaScript
