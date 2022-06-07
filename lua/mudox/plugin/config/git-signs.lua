@@ -12,26 +12,25 @@ local signs = {
 
 local on_attach = function(bufnr)
   -- Setup keymaps
-  local function bind(from, to)
-    local ncmd = require("mudox.keymap").ncmd
-    to = ([[lua require("gitsigns").%s]]):format(to)
-    ncmd(from, to, { buffer = bufnr })
+  local function map(from, to)
+    local nreq = require("mudox.keymap").nreq
+    nreq(from, "gitsigns", to, { buffer = bufnr })
   end
 
-  bind(",g<Space>", "toggle_signs()")
+  map(",g<Space>", "toggle_signs()")
 
-  bind(",gs", "stage_hunk()")
-  bind(",gu", "undo_stage_hunk()")
-  bind(",gD", "reset_hunk()")
+  map(",gs", "stage_hunk()")
+  map(",gu", "undo_stage_hunk()")
+  map(",gD", "reset_hunk()")
 
-  bind(",gd", "diffthis()")
-  bind(",gb", "blame_line()")
+  map(",gd", "diffthis()")
+  map(",gb", "blame_line()")
 
-  bind(",gv", "preview_hunk()")
-  bind("gG", "preview_hunk()")
+  map(",gv", "preview_hunk()")
+  map("gG", "preview_hunk()")
 
-  bind("]g", "next_hunk()")
-  bind("[g", "prev_hunk()")
+  map("]g", "next_hunk()")
+  map("[g", "prev_hunk()")
 end
 
 gitsigns.setup {
