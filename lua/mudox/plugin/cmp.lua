@@ -37,4 +37,5 @@ for i = 1, #requires do
   spec.after = "nvim-cmp"
 end
 
--- after = { "L3MON4D3/LuaSnip" }
+-- NOTE: critical
+after = { "LuaSnip" }
