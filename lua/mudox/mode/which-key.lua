@@ -378,7 +378,6 @@ local backslash = {
 
 --〉
 
--- vim.cmd([[PackerLoad which-key.nvim legendary.nvim]])
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
 
