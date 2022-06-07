@@ -22,8 +22,8 @@ local cmap = k.cmap
 -- Normal mode mappings 〈
 
 -- sensible `n, N`
-nmap("n", '"Nn"[v:searchforward]', { expr = true })
-nmap("N", '"Nn"[v:searchforward]', { expr = true })
+nmap("n", '"Nn"[v:searchforward]zvzz', { expr = true })
+nmap("N", '"Nn"[v:searchforward]zvzz', { expr = true })
 
 -- quick save file
 ncmd("<C-s>", "update")
@@ -54,10 +54,6 @@ nmap("zi", "zizz")
 -- command history
 -- `nvim_set_keymap` fails to handle `noremap` option
 cmap("<C-p>", "<Up>", { remap = true })
-
--- search
-nmap("n", "nzvzz", { remap = true })
-nmap("N", "Nzvzz", { remap = true })
 
 -- open fold
 nmap("zj", "zjzx", { remap = true })
