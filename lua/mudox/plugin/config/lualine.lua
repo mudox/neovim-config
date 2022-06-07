@@ -68,7 +68,7 @@ local buffers = {
 
   symbols = {
     modified = " ●",
-    alternate_file = "# ",
+    alternate_file = "⎇  ",
     directory = " ",
   },
 }
