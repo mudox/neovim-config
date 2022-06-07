@@ -35,7 +35,7 @@ local telescope = {
 
   -- Files
   ["c"] = { cmd("Telescope git_status"), "Git changed files" },
-  ["R"] = { req("extensions.live_grep_raw.live_grep_raw()"), "Rg raw mode" },
+  ["R"] = { req("extensions.live_grep_args.live_grep_raw()"), "Rg raw mode" },
 
   -- Grep
   ["G"] = { cmd("Telescope grep_string"), "Grep cword" },

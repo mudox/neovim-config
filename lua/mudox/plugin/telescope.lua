@@ -5,7 +5,7 @@ requires = {
   { "nvim-telescope/telescope-ui-select.nvim" },
   { "nvim-telescope/telescope-packer.nvim" },
   { "nvim-telescope/telescope-file-browser.nvim" },
-  { "nvim-telescope/telescope-rg.nvim" },
+  { "nvim-telescope/telescope-live-grep-args.nvim" },
   { "nvim-telescope/telescope-dap.nvim" },
   { "crispgm/telescope-heading.nvim" },
 
