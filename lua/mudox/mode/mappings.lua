@@ -22,8 +22,8 @@ local cmap = k.cmap
 -- Normal mode mappings 〈
 
 -- sensible `n, N`
-nmap("n", '"Nn"[v:searchforward]zvzz', { expr = true })
-nmap("N", '"Nn"[v:searchforward]zvzz', { expr = true })
+nmap("n", '"Nn"[v:searchforward] . "zvzz"', { expr = true })
+nmap("N", '"nN"[v:searchforward] . "zvzz"', { expr = true })
 
 -- quick save file
 ncmd("<C-s>", "update")
