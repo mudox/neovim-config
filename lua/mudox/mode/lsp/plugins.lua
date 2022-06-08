@@ -16,6 +16,7 @@ return {
 
   -- Tree-sitter
   "tree-sitter",
+  "context",
 
   "context-vt",
   "aerial",
