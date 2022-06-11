@@ -89,6 +89,7 @@ local function fallback_setup(path)
     return load(code)
   end
 end
+
 -- 〉
 
 -- Plugin spec DSL 〈
@@ -105,6 +106,7 @@ local function parse_spec(pattern)
     assert(chunk, "invalid spec path: " .. path)
 
     local env = {
+      mode = vim.g.mdx_nvim_mode,
       stdpath = stdpath,
       pl = pl,
     }

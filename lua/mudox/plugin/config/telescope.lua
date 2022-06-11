@@ -127,8 +127,6 @@ load("file_browser")
 
 load("notify")
 
-load("dap")
-
 -- load("projects")
 
 load("live_grep_args")
@@ -136,5 +134,9 @@ load("live_grep_args")
 load("heading")
 
 load("neoclip")
+
+if vim.g.mdx_nvim_mode == 'lsp' then
+  load('dap')
+end
 
 -- 〉

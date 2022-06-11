@@ -16,7 +16,8 @@
         "config",
         "ngx",
         "lock",
-        "commit"
+        "commit",
+        "mode",
     ],
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,

@@ -37,5 +37,7 @@ for i = 1, #requires do
   spec.after = "nvim-cmp"
 end
 
--- NOTE: critical
-after = { "LuaSnip" }
+if mode == "lsp" then
+  -- NOTE: critical
+  after = { "LuaSnip" }
+end
