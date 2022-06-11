@@ -142,7 +142,7 @@ local packer_opts = {
 
   -- HACK: fix `PackerSync` stucking issue
   -- track: https://github.com/wbthomason/packer.nvim/issues/756#issuecomment-1004258387
-  max_jobs = 32,
+  max_jobs = 10,
 
   display = {
 
