@@ -127,6 +127,11 @@ local keybindings = function(k)
 
   k.remap_key("norg", "n", "<M-j>", "<M-]>")
   k.remap_key("norg", "n", "<M-k>", "<M-[>")
+
+  -- Telescope
+  -- See `t: -> neorg` for available pickers
+  k.remap_event("norg", "i", "<C-l>", "core.integrations.telescope.insert_file_link")
+  k.remap_event("norg", "n", "tef", "core.integrations.telescope.insert_file_link")
 end
 
 -- 〉
@@ -181,6 +186,6 @@ require("neorg").setup {
         workspace = "home",
       },
     },
-    -- ["core.integrations.telescope"] = {},
+    ["core.integrations.telescope"] = {},
   },
 }
