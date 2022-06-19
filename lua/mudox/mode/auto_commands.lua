@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 gid = vim.api.nvim_create_augroup("MudoxQ", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = gid,
-  pattern = { "qf", "help", "lspinfo", "null-ls-info" },
+  pattern = { "qf", "help", "lspinfo", "null-ls-info", "notify" },
   command = "nnoremap <silent> <buffer> q <Cmd>close<Cr>",
 })
 
