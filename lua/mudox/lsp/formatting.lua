@@ -1,4 +1,7 @@
-local clients_to_disable = { tsserver = true, sumneko_lua = true }
+local clients = {
+  tsserver = true,
+  sumneko_lua = true,
+}
 
 -- For instant formatting
 local function sync()
@@ -11,7 +14,7 @@ local function sync()
     vim.lsp.buf.format {
       async = false,
       filter = function(client)
-        return clients_to_disable[client.name]
+        return clients[client.name]
       end,
     }
   end
@@ -27,7 +30,7 @@ local function async()
     vim.lsp.buf.format {
       async = true,
       filter = function(client)
-        return clients_to_disable[client.name]
+        return clients[client.name]
       end,
     }
   end
