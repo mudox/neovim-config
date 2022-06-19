@@ -125,8 +125,8 @@ dap["i"] = { req("hover()"), "Hover" }
 
 req = make_req("dapui")
 dap["t"] = { req("toggle()"), "Toggle panes" }
-dap["h"] = { req("toggle('sidebar')"), "Toggle sidebar" }
-dap["j"] = { req("toggle('tray')"), "Toggle tray" }
+dap["h"] = { req("toggle(1)"), "Toggle sidebar" }
+dap["j"] = { req("toggle(2)"), "Toggle tray" }
 
 req = make_req("dap-python")
 dap["C"] = { req("test_class()"), "Test current class" }
@@ -172,15 +172,10 @@ local test = {
   ["d"] = { cmd("UltestDebugNearest"), "Test debug nearest" },
 }
 
-req = make_req("dapui")
-dap["t"] = { req("toggle()"), "Toggle panes" }
-dap["h"] = { req("toggle('sidebar')"), "Toggle sidebar" }
-dap["j"] = { req("toggle('tray')"), "Toggle tray" }
-
 req = make_req("dap-python")
-dap["C"] = { req("test_class()"), "Test current class" }
-dap["M"] = { req("test_method()"), "Test current method" }
-dap["S"] = { req("debug_selection()"), "Debug selection" }
+test["C"] = { req("test_class()"), "Test current class" }
+test["M"] = { req("test_method()"), "Test current method" }
+test["S"] = { req("debug_selection()"), "Debug selection" }
 
 -- 〉
 
@@ -297,6 +292,7 @@ local second_comma = {
       local function filter(ids)
         return ids
       end
+
       local wid = require("window-picker").pick_window {
         include_current_win = true,
         filter_func = filter,
