@@ -45,7 +45,6 @@ return {
 
   -- Testing
   "vim-test",
-  "ultest",
   "neo-test",
 
   -- Editing
