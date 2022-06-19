@@ -19,7 +19,7 @@ local cmap = k.cmap
 ---@diagnostic enable: unused-local
 -- 〉
 
--- Normal mode mappings 〈
+-- Common mappings 〈
 
 -- sensible `n, N`
 nmap("n", '"Nn"[v:searchforward] . "zvzz"', { expr = true })
@@ -35,9 +35,12 @@ nmap("k", "gk")
 nnop("gj")
 nnop("gk")
 
--- `option-J,K,H,L` to jump among tabs
-ncmd("L", "bnext")
-ncmd("H", "bNext")
+-- buffers
+-- HACK: kitty.conf remap `ctrl+shift+[|]` to `ctrl+shift+f|g`
+ncmd("<C-S-f>", "bnext")
+ncmd("<C-S-g>", "bNext")
+
+-- tabs
 nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
