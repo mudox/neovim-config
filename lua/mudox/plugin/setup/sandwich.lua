@@ -7,6 +7,12 @@ local prefix = "<M-'>"
 k.nplug(prefix .. "a", "(sandwich-add)")
 k.xplug(prefix, "(sandwich-add)")
 
+local chars = [['"[](){}]]
+for i = 1, #chars do
+  local c = chars:sub(i, i)
+  k.xmap(c, "<Plug>(sandwich-add)" .. c)
+end
+
 -- Delete
 k.nplug(prefix .. "d", "(sandwich-delete)")
 k.nplug(prefix .. "db", "(sandwich-delete-auto)")
