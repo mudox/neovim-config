@@ -37,8 +37,8 @@ nnop("gk")
 
 -- buffers
 -- HACK: kitty.conf remap `ctrl+shift+[|]` to `ctrl+shift+f|g`
-ncmd("<C-S-f>", "bnext")
-ncmd("<C-S-g>", "bNext")
+ncmd("<C-S-g>", "bnext")
+ncmd("<C-S-f>", "bNext")
 
 -- tabs
 nmap("<M-l>", "gt")
