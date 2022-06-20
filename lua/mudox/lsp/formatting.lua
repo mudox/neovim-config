@@ -1,6 +1,8 @@
 local clients = {
-  tsserver = true,
-  sumneko_lua = true,
+  tsserver = false,
+  sumneko_lua = false,
+
+  ['null-ls'] = true,
 }
 
 -- For instant formatting
