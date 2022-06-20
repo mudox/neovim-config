@@ -28,7 +28,7 @@ local options = {
 }
 
 -- stylua: ignore start
-local sections = {
+local statusline = {
   lualine_a = {
     { "mode",         },
   },
@@ -82,7 +82,7 @@ local tabline = {
   lualine_z = { "tabs" },
 }
 
-local inactive_sections = {
+local inactive_statusline = {
   lualine_a = {},
   lualine_b = {},
   lualine_c = { "filename" },
@@ -95,8 +95,8 @@ require("lualine").setup {
   options = options,
 
   tabline = tabline,
-  sections = sections,
-  inactive_sections = inactive_sections, -- no need for global statusline
+  sections = statusline,
+  inactive_sections = inactive_statusline, -- no need for global statusline
 
   extensions = {},
 }

@@ -99,7 +99,7 @@ return {
   "nnn",
   "tree",
 
-  -- -- Navigation
+  -- Navigation
   "light-speed",
   "tree-hopper",
 
