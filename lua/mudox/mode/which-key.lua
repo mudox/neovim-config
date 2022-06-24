@@ -303,8 +303,6 @@ local second_comma = {
     end,
     "Switch window",
   },
-
-  -- ["z"] = { cmd("NeoZoomToggle"), "Zoom window" },
 }
 
 -- Second comma 〉
@@ -367,6 +365,9 @@ local backslash = {
 
   ["af"] = { cmd("Neoformat"), "Neoformat" },
   ["ef"] = { "m`gg=G``", "Format (=) entire file" },
+
+  ["sp"] = { cmd("lua require('spectre').open()"), "Spectre substitution" },
+  ["gs"] = { "<Esc><Esc>:%s/", "global substitution", silent = false },
 
   g = neogen,
   s = swap,

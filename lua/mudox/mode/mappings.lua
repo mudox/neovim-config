@@ -74,8 +74,6 @@ ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 ncmd("yoL", "call mudox#lib#toggleLocList()")
 ncmd("yoq", "call mudox#lib#toggleQuickFix()")
 
-nmap("<Space>s", "<Esc><Esc>:%s/", { silent = false })
-
 -- 〉
 
 -- Insert mode mappings 〈
