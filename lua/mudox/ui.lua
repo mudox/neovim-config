@@ -52,19 +52,21 @@ local lsp_kind_icons = {
   Module        = " ",
   Package       = " ",
 
-  -- Enum       = "🅴 ",
-  -- Class      = "🅲 ",
-  -- Struct     = "🆂 ",
-  -- Interface  = "🅸 ",
+  Enum          = "🅴 ",
+  Class         = "🅲 ",
+  Struct        = "🆂 ",
+  Interface     = "🅸 ",
 
-  Class         = "🄲 ",
-  Enum          = "🄴 ",
-  Interface     = "🄸 ",
-  Struct        = "🅂 ",
+  -- Class      = "🄲 ",
+  -- Enum       = "🄴 ",
+  -- Interface  = "🄸 ",
+  -- Struct     = "🅂 ",
 
 
-  Function      = "",
-  Method        = "",
+  Function      = "🄵 ",
+  Method        = "🄼 ",
+  -- Function   = "ƒ",
+  -- Method     = "",
 
   Event         = "",
 
@@ -79,13 +81,12 @@ local lsp_kind_icons = {
   Color         = " ",
   Constructor   = " ",
 
-  Keyword       = " ",
+  Keyword       = " ",
   Operator      = " ",
 
-  Property      = "⚑ ",
-  Reference     = " ",
+  Property      = "🄿 ",
+  Reference     = " ",
 
-  -- Snippet       = " "
   Snippet       = " ",
 
   TypeParameter = " ",
