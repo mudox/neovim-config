@@ -9,6 +9,7 @@ return {
   -- The Plugin manager
   "packer",
 
+  "hydra",
   -- Dev
   "plenary",
   "repeat",
