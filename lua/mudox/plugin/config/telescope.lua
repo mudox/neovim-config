@@ -135,8 +135,8 @@ load("heading")
 
 load("neoclip")
 
-if vim.g.mdx_nvim_mode == 'lsp' then
-  load('dap')
+if vim.g.mdx_nvim_mode == "lsp" then
+  load("dap")
 end
 
 -- 〉

@@ -15,10 +15,13 @@ end
 
 event = "UIEnter"
 
-for i = 1, #requires do
-  local spec = requires[i]
-  spec.event = event
-  spec.after = "telescope.nvim"
-end
-
-after = { "trouble.nvim" }
+after = {
+  "trouble.nvim",
+  "telescope-fzf-native.nvim",
+  "telescope-live-grep-args.nvim",
+  "telescope-ui-select.nvim",
+  "telescope-packer.nvim",
+  "telescope-file-browser.nvim",
+  "telescope-heading.nvim",
+  "nvim-neoclip.lua",
+}
