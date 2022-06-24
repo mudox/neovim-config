@@ -9,7 +9,10 @@ return {
   -- The Plugin manager
   "packer",
 
+  -- Keymap
+  "which-key",
   "hydra",
+
   -- Dev
   "plenary",
   "repeat",
@@ -90,8 +93,6 @@ return {
 
   "window-picker",
 
-  "which-key",
-
   "notify",
 
   "toggle-term",
@@ -114,35 +115,35 @@ return {
   "tmux-navigator",
   -- "tmuxline",
 
-  -- -- Text object
+  -- Text object
   -- "textobject/*",
 
-  -- -- File type
+  -- File type
   -- "filetype/*",
 
-  -- -- Other
+  -- Other
   "unimpaired",
 
-  -- -- Git
+  -- Git
   "fugitive",
 
   "diff-view",
   "git-signs",
 
-  -- -- Language
+  -- Language
   -- "iron",
 
-  -- -- Lua
+  -- Lua
   "lua-ref",
   "lua-pad",
 
-  -- -- Swift
+  -- Swift
 
-  -- -- Rust
+  -- Rust
   -- "rust-tools",
-  -- -- TODO: https://github.com/Saecki/crates.nvim
+  -- TODO: https://github.com/Saecki/crates.nvim
 
-  -- -- Python
+  -- Python
   "dap-python",
 
   -- JavaScript
