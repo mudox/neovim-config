@@ -1,14 +1,9 @@
 local function highlight_cursor()
-  local doit = false
   for _, client in ipairs(vim.lsp.get_active_clients {}) do
     if client.server_capabilities.documentHighlightProvider ~= nil and not client.is_stopped() then
-      doit = true
-      break
+      vim.lsp.buf.document_highlight()
+      return
     end
-  end
-
-  if doit then
-    vim.lsp.buf.document_highlight()
   end
 end
 
