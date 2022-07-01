@@ -1,3 +1,7 @@
-url = 'tpope/vim-capslock'
+url = "tpope/vim-capslock"
 
-event = 'InsertEnter'
+event = "InsertEnter"
+
+function setup()
+  require("mudox.keymap").iplug("<C-l>", "CapsLockToggle")
+end
