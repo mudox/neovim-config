@@ -5,7 +5,6 @@ return {
 
   -- Boost startup time
   "impatient", -- it will be merged into Neovim
-  "filetype", -- replace `runtime/filetype.vim`
 
   -- The Plugin manager
   "packer",

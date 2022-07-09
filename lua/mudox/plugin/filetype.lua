@@ -1,1 +1,0 @@
-url = "nathom/filetype.nvim"

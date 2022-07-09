@@ -18,11 +18,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
--- HACK: disable `filetype.vim` loading
--- track: https://github.com/nathom/filetype.nvim#usage
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 1
-
 -- Disable builtin plugins
 local builtins = {
   "gzip",

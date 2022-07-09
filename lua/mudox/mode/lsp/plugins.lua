@@ -4,7 +4,6 @@ return {
 
   -- Boost startup time
   "impatient", -- track https://github.com/neovim/neovim/pull/15436
-  "filetype", -- track https://github.com/neovim/neovim/issues/18604
 
   -- The Plugin manager
   "packer",
