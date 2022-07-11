@@ -2,12 +2,15 @@ local clients = {
   tsserver = false,
   sumneko_lua = false,
 
-  ['null-ls'] = true,
+  ["null-ls"] = true,
 }
 
 -- For instant formatting
 local function sync()
   local enabled_filetypes = {
+    html = true,
+    javascript = true,
+    css = true,
     lua = true,
     swift = true,
   }
@@ -16,7 +19,10 @@ local function sync()
     vim.lsp.buf.format {
       async = false,
       filter = function(client)
-        return clients[client.name]
+        local r = clients[client.name]
+
+        print(("format filter: %s -> %s"):format(client.name, r))
+        return r
       end,
     }
   end
