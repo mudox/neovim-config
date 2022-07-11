@@ -7,9 +7,7 @@ local a = null_ls.builtins.code_actions
 null_ls.setup {
   debug = false,
   sources = {
-    f.prettier.with {
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-    },
+    f.prettierd,
 
     -- Python
     f.black.with { extra_args = { "--fast" } },
