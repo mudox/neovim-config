@@ -137,6 +137,7 @@ return {
   "lua-pad",
 
   -- Swift
+  "xbase",
 
   -- Rust
   -- "rust-tools",

@@ -319,7 +319,6 @@ local comma = {
   g = gitsigns,
   p = packer,
   t = telescope,
-  x = trouble,
   m = trouble,
   l = lsp,
   r = refactoring,
