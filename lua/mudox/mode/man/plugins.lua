@@ -2,7 +2,6 @@ return {
   "packer",
 
   "impatient",
-  "filetype",
 
   "startup-time",
   "base16",
