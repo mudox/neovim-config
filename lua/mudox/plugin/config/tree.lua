@@ -73,6 +73,11 @@ local opts = {
     },
     special_files = {},
   },
+  actions = {
+    remove_file = {
+      close_window = false,
+    },
+  },
 }
 
 require("nvim-tree").setup(opts)
