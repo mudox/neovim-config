@@ -44,8 +44,51 @@ local tree = {
 
 -- LSP kinds 〈
 
+local lsp_kind_icons = {}
+
 -- stylua: ignore start
-local lsp_kind_icons = {
+lsp_kind_icons.sf = {
+  File          = "􀉆 ",
+  Folder        = "􀈖 ",
+
+  Module        = "􀐛 ",
+  Package       = "􀒮 ",
+
+  Enum          = "􀂝 ",
+  Class         = "􀀉 ",
+  Struct        = "􀂹 ",
+  Interface     = "􀧫 ",
+
+  Function      = "􀀎 ",
+  Method        = "􀂬 ",
+
+  Event         = "􀋦 ",
+
+  Constant      = "",
+  Variable      = "",
+  Value         = " ",
+  Text          = " ",
+
+  EnumMember    = "􀷾 ",
+  Field         = "􀋡 ",
+
+  Color         = " ",
+  Constructor   = " ",
+
+  Keyword       = "􀟕 ",
+  Operator      = "􀅺 ",
+
+  Property      = "􀀢 ",
+  Reference     = "􀉣 ",
+
+  Snippet       = "􀉈 ",
+
+  TypeParameter = "􀂺 ",
+
+  Unit          = " ",
+}
+
+lsp_kind_icons.default = {
   File          = " ",
   Folder        = " ",
 
@@ -57,16 +100,8 @@ local lsp_kind_icons = {
   Struct        = "🆂 ",
   Interface     = "🅸 ",
 
-  -- Class      = "🄲 ",
-  -- Enum       = "🄴 ",
-  -- Interface  = "🄸 ",
-  -- Struct     = "🅂 ",
-
-
-  Function      = "🄵 ",
-  Method        = "🄼 ",
-  -- Function   = "ƒ",
-  -- Method     = "",
+  Function      = "ƒ",
+  Method        = "",
 
   Event         = "",
 
@@ -159,7 +194,7 @@ local icons = {
   folder_open   = " ",
 
   lsp           = {
-    kind        = lsp_kind_icons,
+    kind        = lsp_kind_icons.sf,
   },
 
   powerline     = powerline,
