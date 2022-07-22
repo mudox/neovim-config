@@ -20,7 +20,7 @@ return function(bufnr)
   nlua("\\rn", "vim.lsp.buf.rename()")
   k.nexpr("\\ir", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
-  end, {silent = false})
+  end, { silent = false })
 
   nlua("\\ca", "vim.lsp.buf.code_action()")
 

@@ -19,10 +19,7 @@ local function sync()
     vim.lsp.buf.format {
       async = false,
       filter = function(client)
-        local r = clients[client.name]
-
-        print(("format filter: %s -> %s"):format(client.name, r))
-        return r
+        return clients[client.name]
       end,
     }
   end
@@ -44,12 +41,15 @@ local function async()
   end
 end
 
+local gid = vim.api.nvim_create_augroup("MudoxLspFormatOnSave", {})
+
+-- Add to LSP client `on_attach` function body
 local function on_save(client, bufnr)
-  if not client.server_capabilities.documentFormattingProvider then
+  if not client.supports_method("textDocument/formatting") then
     return
   end
 
-  local gid = vim.api.nvim_create_augroup("MudoxLspFormatOnSave", { clear = true })
+  vim.api.nvim_clear_autocmds { group = gid, buffer = bufnr }
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = gid,
