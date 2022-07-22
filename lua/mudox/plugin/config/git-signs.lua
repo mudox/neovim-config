@@ -37,7 +37,7 @@ gitsigns.setup {
   on_attach = on_attach,
 
   -- UI
-  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+  signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
   signs = signs,
   sign_priority = -100, -- show on leftmost sign column
 
