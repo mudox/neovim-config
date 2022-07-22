@@ -67,7 +67,8 @@ nmap("g,", "g,zv", { remap = true })
 -- quickly wipeout buffer
 ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 
--- quickfix/location list window toggle
+-- close current tabpage
+ncmd("<C-w><C-t>", "tabclose")
 
 -- Copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")
