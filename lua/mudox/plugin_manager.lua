@@ -102,8 +102,10 @@ local function parse_spec(pattern)
 
   local envs = {}
   for _, path in ipairs(paths) do
-    local chunk = loadfile(path)
-    assert(chunk, "invalid spec path: " .. path)
+    local chunk, error = loadfile(path)
+    if not chunk then
+      assert(false, ("Error: failed to load plugin spec from: %s, %s"):format(path, error))
+    end
 
     local env = {
       mode = vim.g.mdx_nvim_mode,
