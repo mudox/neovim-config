@@ -282,6 +282,26 @@ local refactoring = {
 
 -- 〉
 
+-- Toggle 〈
+
+local toggle = {
+  name = "Toggle / switch",
+
+  ["q"] = { cmd("call mudox#lib#toggleQuickFix()"), "Quickfix list" },
+  ["l"] = { cmd("call mudox#lib#toggleLocList()"), "Location list" },
+
+  ["L"] = { toggle_lsp_lines, "Toggle LSP lines" },
+
+  ["w"] = {
+    function()
+      vim.go.winbar = (vim.go.winbar == "") and "%=%m %t" or nil
+    end,
+    "Windown bar",
+  },
+}
+
+-- 〉
+
 -- Second comma 〈
 
 vim.cmd([[ command! BufOnly silent! execute "%bd|e#|bd#" ]])
@@ -389,6 +409,7 @@ wk.register {
   ["<Space>"] = space,
   [","] = comma,
   ["\\"] = backslash,
+  ["yo"] = toggle,
 }
 
 -- Refactoring 〈
