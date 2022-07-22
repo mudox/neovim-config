@@ -27,11 +27,13 @@ load("gitsigns.nvim")
 local gitsigns = require("gitsigns")
 
 hint = [[
- _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _K_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full 
- ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
- ^
- ^ ^              _<Enter>_: Fugitive           _q_: exit
+
+  _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
+  _K_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full  
+  ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
+  ^
+  ^ ^              _<Enter>_: Fugitive           _q_: exit
+
 ]]
 
 heads = {
@@ -85,7 +87,6 @@ Hydra {
     invoke_on_body = true,
     hint = {
       position = "bottom",
-      border = "rounded",
     },
     on_enter = function()
       vim.bo.modifiable = false
@@ -99,8 +100,8 @@ Hydra {
       vim.cmd("echo") -- clear the echo area
     end,
   },
-  mode = { "n", "x" },
-  body = ",,g",
+  mode = "n",
+  body = "<C-g>g",
   heads = heads,
 }
 
@@ -111,14 +112,31 @@ Hydra {
 load("winshift.nvim")
 
 hint = [[
- ^^^^^^     Move     ^^^^^^   ^^     Split         ^^^^    Size
- ^^^^^^--------------^^^^^^   ^^---------------    ^^^^------------- 
- ^ ^ _k_ ^ ^   ^ ^ _K_ ^ ^    _s_: horizontally    _+_ _-_: height
- _h_ ^ ^ _l_   _H_ ^ ^ _L_    _v_: vertically      _>_ _<_: width
- ^ ^ _j_ ^ ^   ^ ^ _J_ ^ ^    _x_: close           ^ _=_ ^: equalize
- focus^^^^^^   window^^^^^^
-      _b_: choose buffer   ^ ^ ^ ^  _<Esc>_ _q_: exit
+
+  ^^^^^^     Move     ^^^^^^    ^^     Split         ^^^^    Size
+  ^^^^^^――――――――――――――^^^^^^    ^^―――――――――――――――    ^^^^――――――――――――― 
+  ^ ^ _k_ ^ ^   ^ ^ _K_ ^ ^     _s_: horizontally    _+_ _-_: height
+  _h_ ^ ^ _l_   _H_ ^ ^ _L_     _v_: vertically      _>_ _<_: width
+  ^ ^ _j_ ^ ^   ^ ^ _J_ ^ ^     _x_: close           ^ _=_ ^: equalize  
+  focus^^^^^^   window^^^^^^
+ 
+   _?_: choose window _b_: choose buffer _<Esc>_ _q_: exit
+ 
 ]]
+
+local function pick_window()
+  local function filter(ids)
+    return ids
+  end
+
+  local wid = require("window-picker").pick_window {
+    include_current_win = true,
+    filter_func = filter,
+  }
+  if type(wid) == "number" then
+    vim.api.nvim_set_current_win(wid)
+  end
+end
 
 heads = {
   -- Move focus
@@ -126,6 +144,7 @@ heads = {
   { "j", "<C-w>j" },
   { "k", "<C-w>k" },
   { "l", "<C-w>l" },
+  { "?", pick_window, { exit = true } },
   -- Move window
   { "H", "<Cmd>WinShift left<CR>" },
   { "J", "<Cmd>WinShift down<CR>" },
@@ -150,14 +169,41 @@ heads = {
 Hydra {
   hint = hint,
   config = {
-    -- timeout = 4000,
-    hint = {
-      border = "rounded",
-    },
+    invoke_on_body = true,
   },
   mode = "n",
-  body = "<C-w>",
+  body = "<C-g>w",
   heads = heads,
 }
+
+-- 〉
+
+-- Dap (TODO) 〈
+
+-- TODO: add DAP submode
+
+-- 〉
+
+-- Navigation 〈
+
+local keys = { "a", "b", "c", "d", "e", "f", "g", "<Space>" }
+for _, key in ipairs(keys) do
+  Hydra {
+    name = ("[%s]"):format(key),
+    mode = "n",
+    body = "<BS>" .. key,
+    config = {
+      invoke_on_body = true,
+    },
+    heads = {
+      { "]", "]" .. key, { remap = true } },
+      { "[", "[" .. key, { remap = true } },
+    },
+  }
+end
+
+-- 〉
+
+-- Spell check (TODO) 〈
 
 -- 〉
