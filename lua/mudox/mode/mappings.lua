@@ -71,8 +71,9 @@ ncmd("<C-w><C-w>", "wincmd q")
 ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 
 -- quickfix/location list window toggle
-ncmd("yoL", "call mudox#lib#toggleLocList()")
-ncmd("yoq", "call mudox#lib#toggleQuickFix()")
+
+-- Copy entire buffer content into system pasteboard
+ncmd("yf", "0,$y +")
 
 -- 〉
 
