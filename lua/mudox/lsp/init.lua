@@ -17,10 +17,11 @@ local function setup()
   -- Diagnostic float window
 
   local config = {
-    virtual_text = false,
-    update_in_insert = false,
-    underline = true,
     severity_sort = true,
+    underline = false,
+    update_in_insert = false,
+    virtual_text = false,
+    virtual_lines = true, -- for `lsp_lines.nvim`
     float = {
       focusable = false,
       border = "rounded",

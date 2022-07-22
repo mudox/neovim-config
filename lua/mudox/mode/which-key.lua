@@ -244,11 +244,19 @@ local gitsigns = {
 
 -- LSP 〈
 
+local function toggle_lsp_lines()
+  local flag = not vim.diagnostic.config().virtual_lines
+  print("LSP lines has been " .. (flag and "enabled" or "disabled"))
+  vim.diagnostic.config { virtual_lines = flag }
+end
+
 local lsp = {
   name = "LSP",
 
   ["i"] = { cmd("LspInfo"), "LSP server info" },
   ["I"] = { cmd("LspInstallInfo"), "LSP install info" },
+
+  ["l"] = { toggle_lsp_lines, "Toggle LSP lines" },
 
   ["R"] = { cmd("LspRestart"), "Restart LSP server" },
   ["<Space>"] = { cmd("LspRestart"), "Restart LSP server" },

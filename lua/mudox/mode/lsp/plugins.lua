@@ -33,6 +33,7 @@ return {
   -- LSP
   "fix-cursor-hold", -- For highlight cursor
   "lsp",
+  "lsp-lines",
   "null-ls",
 
   "inc-rename",
