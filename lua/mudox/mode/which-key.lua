@@ -34,6 +34,7 @@ local telescope = {
   ["o"] = { cmd("Telescope vim_options"), "Vim options" },
 
   -- Files
+  ["f"] = { cmd("Telescope find_files"), "Files" },
   ["c"] = { cmd("Telescope git_status"), "Git changed files" },
   ["R"] = { req("extensions.live_grep_args.live_grep_raw()"), "Rg raw mode" },
 
@@ -59,9 +60,6 @@ local telescope = {
 
   -- Notify
   ["n"] = { cmd("Telescope notify"), "Notifications" },
-
-  -- Project
-  ["w"] = { cmd("Telescope projects"), "Project" },
 
   -- Todo
   ["t"] = { cmd("TodoTelescope"), "Todo list" },
