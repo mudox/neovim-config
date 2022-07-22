@@ -3,7 +3,7 @@
 local i = require("mudox.ui").icons
 
 local float = {
-  board = "none",
+  border = "none",
   max_height = { 20, 0.6 },
 }
 
