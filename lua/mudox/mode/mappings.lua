@@ -64,9 +64,6 @@ nmap("zk", "zkzx", { remap = true })
 nmap("g;", "g;zv", { remap = true })
 nmap("g,", "g,zv", { remap = true })
 
--- quickly close window
-ncmd("<C-w><C-w>", "wincmd q")
-
 -- quickly wipeout buffer
 ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
 
