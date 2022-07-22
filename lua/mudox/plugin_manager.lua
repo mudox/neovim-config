@@ -167,7 +167,7 @@ local packer_opts = {
     },
 
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require("packer.util").float { border = "none" }
     end,
   },
 }
