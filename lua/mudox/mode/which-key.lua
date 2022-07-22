@@ -290,7 +290,7 @@ local toggle = {
   ["q"] = { cmd("call mudox#lib#toggleQuickFix()"), "Quickfix list" },
   ["l"] = { cmd("call mudox#lib#toggleLocList()"), "Location list" },
 
-  ["L"] = { toggle_lsp_lines, "Toggle LSP lines" },
+  ["L"] = { toggle_lsp_lines, "LSP lines" },
 
   ["w"] = {
     function()
