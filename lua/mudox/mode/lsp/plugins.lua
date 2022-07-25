@@ -138,7 +138,8 @@ return {
   "lua-pad",
 
   -- Swift
-  "xbase",
+  -- INFO: compile failed with my tuist local plugin
+  -- "xbase",
 
   -- Rust
   -- "rust-tools",
