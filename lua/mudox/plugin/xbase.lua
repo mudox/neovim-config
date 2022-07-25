@@ -1,8 +1,6 @@
+-- NOTE: need to run `make install` manually to update binaries
+
 url = "xbase-lab/xbase"
-
-run = "make install"
-
-local = true -- `make install` takes long time
 
 requires = {
   "nvim-lua/plenary.nvim",
