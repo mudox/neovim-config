@@ -9,6 +9,10 @@ return {
   -- The Plugin manager
   "packer",
 
+  -- Keymap
+  "which-key",
+  "hydra",
+
   -- Dev
   "plenary",
   "repeat",
@@ -47,7 +51,7 @@ return {
   "spectre",
 
   -- Snippets
-  -- "luasnip",
+  "luasnip",
 
   -- UI
   "colorizer",
@@ -74,8 +78,6 @@ return {
 
   "window-picker",
   "neo-zoom",
-
-  "which-key",
 
   "notify",
 
