@@ -37,7 +37,7 @@ local sources = {
   -- Words
   {
     name = "look",
-    keyword_length = 2,
+    keyword_length = 3,
     option = {
       convert_case = true,
       loud = true,
