@@ -11,11 +11,13 @@ require("toggleterm").setup {
 
   start_in_insert = true,
 
+  highlights = {
+    border = "FloatBorder",
+    winblend = 0,
+  },
+
   float_opts = {
-    highlights = {
-      border = "FloatBorder",
-      winblend = 0,
-    },
+    -- border = "curved",
   },
 }
 
