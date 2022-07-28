@@ -29,6 +29,9 @@ null_ls.setup {
 
     -- Lint, diagnostics 〈
 
+    -- Lua
+    d.selene,
+
     -- TODO: try replacing flake8 with pylama which wraps more linters
     -- d.flake8.with {
     --   extra_args = {
