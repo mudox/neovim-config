@@ -1,6 +1,7 @@
 local lsp = require("mudox.lsp")
 
-local installer = require("nvim-lsp-installer")
+local mason = require("mason")
+local mason_lsp = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
 lsp.setup()
@@ -39,9 +40,10 @@ local servers = {
   "tsserver",
 }
 
-installer.setup {
+mason.setup()
+
+mason_lsp.setup {
   ensure_installed = servers,
-  automatic_installation = true,
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -61,6 +63,17 @@ local function setup(server)
   lspconfig[server].setup(opts)
 end
 
-for _, server in ipairs(servers) do
-  setup(server)
-end
+local handlers = {
+  function(server_name)
+    setup(server_name)
+  end,
+  -- ["rust_analyzer"] = function ()
+  --     require("rust-tools").setup {}
+  -- end
+}
+
+mason_lsp.setup_handlers(handlers)
+
+-- for _, server in ipairs(servers) do
+--   setup(server)
+-- end

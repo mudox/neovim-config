@@ -252,7 +252,7 @@ local lsp = {
   name = "LSP",
 
   ["i"] = { cmd("LspInfo"), "LSP server info" },
-  ["I"] = { cmd("LspInstallInfo"), "LSP install info" },
+  ["I"] = { cmd("Mason"), "LSP install info (Mason)" },
 
   ["l"] = { toggle_lsp_lines, "Toggle LSP lines" },
 
