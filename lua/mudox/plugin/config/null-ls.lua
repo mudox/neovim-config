@@ -2,6 +2,8 @@
 
 local null_ls = require("null-ls")
 
+-- Full list of builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+
 local f = null_ls.builtins.formatting
 local d = null_ls.builtins.diagnostics
 local a = null_ls.builtins.code_actions
@@ -24,6 +26,9 @@ null_ls.setup {
 
     -- Swift
     f.swiftformat,
+
+    -- Bash, Zsh, Sh
+    f.beautysh,
 
     -- 〉
 
