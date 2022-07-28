@@ -14,7 +14,7 @@ local function setup()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
   end
 
-  -- Diagnostic float window
+  -- Diagnostic configuration
 
   local config = {
     severity_sort = true,
