@@ -85,7 +85,6 @@ return {
   "indent-blank-line",
 
   "todo-comments",
-
   "trouble",
 
   -- Window & Panes
@@ -95,7 +94,10 @@ return {
 
   "notify",
 
+  -- Terminal & Tasks
   "toggle-term",
+
+  "overseer",
 
   -- File Explorer
   "nnn",
