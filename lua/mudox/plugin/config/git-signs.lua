@@ -64,7 +64,7 @@ gitsigns.setup {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "rounded",
+    border = "single",
     style = "minimal",
     relative = "cursor",
     row = 0,

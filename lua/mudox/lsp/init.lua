@@ -21,10 +21,10 @@ local function setup()
     underline = false,
     update_in_insert = false,
     virtual_text = false,
-    virtual_lines = true, -- for `lsp_lines.nvim`
+    virtual_lines = false, -- for `lsp_lines.nvim`
     float = {
       focusable = false,
-      border = "rounded",
+      border = "single",
       source = "always",
       header = " DIAGNOSTICS",
       prefix = "⋅ ",
@@ -36,11 +36,11 @@ local function setup()
   -- Float window border
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+    border = "single",
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
+    border = "single",
   })
 end
 

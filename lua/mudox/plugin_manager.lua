@@ -157,7 +157,7 @@ local packer_opts = {
 
     show_all_info = true,
 
-    prompt_border = "rounded",
+    prompt_border = "single",
 
     keybindings = {
       quit = "q",
