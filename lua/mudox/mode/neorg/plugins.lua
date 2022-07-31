@@ -77,7 +77,6 @@ return {
   "popup",
 
   "window-picker",
-  "neo-zoom",
 
   "notify",
 

@@ -1,42 +1,57 @@
--- TODO: move to which-key
--- Ref: https://github.com/folke/dot/blob/ed60f5b26ec8b7b938969024a16f4537d9ae5c6c/config/nvim/lua/config/lsp/keys.lua
+local wk = require("which-key")
 
 return function(bufnr)
-  local nlua = function(key, cmd)
-    local opts = { buffer = bufnr }
-    require("mudox.keymap").nlua(key, cmd, opts)
+  local function cmd(c)
+    return ("<Cmd>%s<Cr>"):format(c)
   end
-  local k = require("mudox.keymap")
 
-  -- Goto
-  nlua("gD", "vim.lsp.buf.declaration()")
-  nlua("gd", "vim.lsp.buf.definition()")
-  nlua("gT", "vim.lsp.buf.type_definition()")
-  nlua("gi", "vim.lsp.buf.implementation()")
-  nlua("gr", "vim.lsp.buf.references()")
+  local function lua(c)
+    return ("<Cmd>lua %s<Cr>"):format(c)
+  end
 
-  -- Help
-  nlua("gh", "vim.lsp.buf.hover()")
-  nlua("gs", "vim.lsp.buf.signature_help()")
+  local goto_keymaps = {
+    name = "Goto",
 
-  -- Refactor
-  nlua("\\rn", "vim.lsp.buf.rename()")
-  k.nexpr("\\ir", function()
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  end, { silent = false })
+    r = { cmd("Lspsaga lsp_finder"), "Lspsaga: finder" },
+    d = { lua("vim.lsp.buf.declaration()"), "Declaration" },
+    D = { lua("vim.lsp.buf.definition()"), "Definition" },
+    t = { lua("vim.lsp.buf.type_definition()"), "Type definition" },
+    i = { lua("vim.lsp.buf.implementation()"), "Implementation" },
+    R = { lua("vim.lsp.buf.references()"), "References" },
 
-  nlua("\\ca", "vim.lsp.buf.code_action()")
+    -- gh = { lua("vim.lsp.buf.hover()"), "Quick help" },
+    h = { cmd("Lspsaga hover_doc"), "Quick help" },
+    -- gs = { lua("vim.lsp.buf.signature_help()"), "Signature help" },
+    s = { cmd("Lspsaga signature_help"), "Lspsaga: signature" },
 
-  k.nmap("\\fm", function()
-    require("mudox.lsp.formatting").sync()
-  end)
+    l = { cmd("Lspsaga show_line_diagnostics"), "Lspsaga: line diagnostics" },
+    L = { lua("vim.diagnostic.open_float()"), "Line diagnostics" },
+  }
 
-  -- Diagnostics
-  nlua("<d", "vim.diagnostic.hide()")
-  nlua(">d", "vim.diagnostic.show()")
+  wk.register(goto_keymaps, { buffer = bufnr, prefix = "g" })
 
-  nlua("[d", "vim.diagnostic.goto_prev()")
-  nlua("]d", "vim.diagnostic.goto_next()")
+  local refactor_keymaps = {
+    name = "LSP Refactor",
 
-  nlua("gl", "vim.diagnostic.open_float()")
+    rn = { lua("vim.lsp.buf.rename()"), "Rename" },
+    rN = { cmd("Lspsage rename"), "Lspsaga: rename" },
+    ir = { cmd("IncRename"), "Inc rename", silent = false },
+
+    ca = { cmd("Lspsaga code_action"), "Lspsaga: code actions" },
+    cA = { lua("vim.lsp.buf.code_action()"), "Code actions" },
+
+    fm = {
+      function()
+        require("mudox.lsp.formatting").sync()
+      end,
+      "Lspsaga: code actions",
+    },
+  }
+
+  wk.register(refactor_keymaps, { buffer = bufnr, prefix = "\\" })
+
+  wk.register {
+    ["]d"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: next diagnostic" },
+    ["[d"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: previous diagnostic" },
+  }
 end

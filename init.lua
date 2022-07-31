@@ -1,7 +1,6 @@
 -- vim: fdm=marker fmr=〈,〉
 
 -- Luarocks
--- selene: allow(unused_variable)
 pl = require("mudox.luarocks")
 
 -- Mode
