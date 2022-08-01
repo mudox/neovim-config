@@ -20,7 +20,10 @@ local function setup()
     severity_sort = true,
     underline = false,
     update_in_insert = false,
-    virtual_text = false,
+    virtual_text = function(namespace, bufnr)
+      local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+      return ft == "mason.nvim"
+    end,
     virtual_lines = false, -- for `lsp_lines.nvim`
     float = {
       focusable = false,
