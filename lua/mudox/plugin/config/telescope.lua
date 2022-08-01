@@ -127,8 +127,6 @@ load("file_browser")
 
 load("notify")
 
--- load("projects")
-
 load("live_grep_args")
 
 load("heading")

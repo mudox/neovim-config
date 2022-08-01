@@ -176,7 +176,6 @@ local packer_opts = {
 
 -- Init packer.nvim 〈
 
---- @example: require('pluginmanager').load(stdpath('plugins'))
 local function load(path)
   require("packer").startup {
     function(use)

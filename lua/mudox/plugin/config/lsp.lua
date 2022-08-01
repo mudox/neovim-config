@@ -64,16 +64,10 @@ local function setup(server)
 end
 
 local handlers = {
-  function(server_name)
-    setup(server_name)
-  end,
+  setup, -- fallback
   -- ["rust_analyzer"] = function ()
   --     require("rust-tools").setup {}
   -- end
 }
 
 mason_lsp.setup_handlers(handlers)
-
--- for _, server in ipairs(servers) do
---   setup(server)
--- end
