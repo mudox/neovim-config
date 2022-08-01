@@ -137,8 +137,9 @@ return {
   -- "iron",
 
   -- Lua
-  "lua-ref",
-  "lua-pad",
+  "lua-dev", -- neovim lua api help, signature for lsp
+  "lua-ref", -- lua runtime, stdlib help, signature
+  "lua-pad", -- lua repl
 
   -- Swift
   -- INFO: compile failed with my tuist local plugin

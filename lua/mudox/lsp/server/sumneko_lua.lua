@@ -1,17 +1,8 @@
-return {
-  settings = {
-    Lua = {
-      -- Get the language server to recognize the `vim` global
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        },
-      },
-    },
-  },
-}
+if vim.env.MDX_NO_NVIM_LUA == "yes" then
+  return {}
+else
+  -- Configure sumneko for Neovim API
+  require("packer").loader("lua-dev.nvim")
+  local opts = require("lua-dev").setup {}
+  return opts
+end
