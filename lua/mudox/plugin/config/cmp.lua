@@ -185,6 +185,10 @@ local snippet = {
 -- 〉
 
 cmp.setup {
+  performance = {
+    -- debounce = 80, -- default: 80ms
+    throttle = 100, -- default: 40ms
+  },
   sources = sources,
   mapping = mapping,
   formatting = formatting,
