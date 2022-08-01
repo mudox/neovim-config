@@ -18,26 +18,36 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
--- Disable builtin plugins
+-- Disable builtin VimScript plugins
 local builtins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "tar",
-  "tarPlugin",
+  "2html_plugin",
+
   "getscript",
   "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "matchit",
-  "matchparen",
+
+  "gzip",
+
   "logiPat",
-  "rrhelper",
+
+  "matchit",
+
+  "matchparen",
+
   "netrw",
+  "netrwFileHandlers",
   "netrwPlugin",
   "netrwSettings",
-  "netrwFileHandlers",
+
+  "rrhelper",
+
+  "tar",
+  "tarPlugin",
+
+  "vimball",
+  "vimballPlugin",
+
+  "zip",
+  "zipPlugin",
 }
 
 for _, plugin in ipairs(builtins) do
