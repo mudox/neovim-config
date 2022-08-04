@@ -76,17 +76,17 @@ local kind_icons = require("mudox.ui").icons.lsp.kind
 local function menu_name(key)
   -- stylua: ignore start
   local map = {
-    nvim_lsp        = "[LSP]",
-    nvim_lua        = "[Nvim Lua]",
-    luasnip         = "[LuaSnip]",
-    buffer          = "[Buffer]",
-    path            = "[Path]",
-    cmdline         = "[Cmdline]",
-    cmp_tabnine     = "[TabNine]",
-    treesitter      = "[TeeSitter]",
-    rg              = "[RG]",
-    cmdline_history = "[History]",
-    look            = "[Words]",
+    nvim_lsp        = "􀂫  LSP",
+    nvim_lua        = "􀀚  Nvim Lua",
+    luasnip         = "􀡅  LuaSnip",
+    buffer          = "􀂖  Buffer",
+    path            = "􀈷  Path",
+    cmdline         = "􀆔  Cmdline",
+    cmp_tabnine     = "􀂻  TabNine",
+    treesitter      = "􀀫  TeeSitter",
+    rg              = "􀀦  RG",
+    cmdline_history = "􀐱  History",
+    look            = "􀤞  Words",
   }
   -- stylua: ignore end
 
