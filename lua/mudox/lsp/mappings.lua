@@ -12,16 +12,17 @@ return function(bufnr)
   local goto_keymaps = {
     name = "Goto",
 
-    r = { cmd("Lspsaga lsp_finder"), "Lspsaga: finder" },
+    R = { cmd("Lspsaga lsp_finder"), "Lspsaga: finder" },
+
     d = { lua("vim.lsp.buf.declaration()"), "Declaration" },
     D = { lua("vim.lsp.buf.definition()"), "Definition" },
     t = { lua("vim.lsp.buf.type_definition()"), "Type definition" },
-    i = { lua("vim.lsp.buf.implementation()"), "Implementation" },
-    R = { lua("vim.lsp.buf.references()"), "References" },
+    i = { lua("vim.lsp.buf.implementation()"), "Type implementation" },
+    r = { lua("vim.lsp.buf.references()"), "References" },
 
-    -- gh = { lua("vim.lsp.buf.hover()"), "Quick help" },
+    H = { lua("vim.lsp.buf.hover()"), "Quick help" },
     h = { cmd("Lspsaga hover_doc"), "Quick help" },
-    -- gs = { lua("vim.lsp.buf.signature_help()"), "Signature help" },
+    S = { lua("vim.lsp.buf.signature_help()"), "Signature help" },
     s = { cmd("Lspsaga signature_help"), "Lspsaga: signature" },
 
     l = { cmd("Lspsaga show_line_diagnostics"), "Lspsaga: line diagnostics" },
@@ -51,7 +52,10 @@ return function(bufnr)
   wk.register(refactor_keymaps, { buffer = bufnr, prefix = "\\" })
 
   wk.register {
-    ["]d"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: next diagnostic" },
-    ["[d"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: previous diagnostic" },
+    ["]D"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: next diagnostic" },
+    ["[D"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: previous diagnostic" },
+
+    ["]d"] = { lua("vim.diagnostic.goto_next()"), "Goto next diagnostic" },
+    ["[d"] = { lua("vim.diagnostic.goto_previous()"), "Goto previous diagnostic" },
   }
 end
