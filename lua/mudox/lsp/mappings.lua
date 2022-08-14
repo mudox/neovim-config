@@ -56,6 +56,6 @@ return function(bufnr)
     ["[D"] = { cmd("Lspsaga diagnostic_jump_next"), "Lspsaga: previous diagnostic" },
 
     ["]d"] = { lua("vim.diagnostic.goto_next()"), "Goto next diagnostic" },
-    ["[d"] = { lua("vim.diagnostic.goto_previous()"), "Goto previous diagnostic" },
+    ["[d"] = { lua("vim.diagnostic.goto_prev()"), "Goto previous diagnostic" },
   }
 end
