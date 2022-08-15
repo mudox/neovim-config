@@ -295,6 +295,8 @@ local zen = {
   ["m"] = { cmd("TZMinimalist"), "Hide decorations" },
 }
 
+-- 〉
+
 -- Toggle 〈
 
 local toggle = {
@@ -405,8 +407,8 @@ local backslash = {
   ["af"] = { cmd("Neoformat"), "Neoformat" },
   ["ef"] = { "m`gg=G``", "Format (=) entire file" },
 
-  ["sp"] = { cmd("lua require('spectre').open()"), "Spectre substitution" },
-  ["gs"] = { "<Esc><Esc>:%s/", "global substitution", silent = false },
+  ["sp"] = { cmd("lua require('spectre').open()"), "Spectre" },
+  ["gs"] = { "<Esc><Esc>:%s/", "Global substitution", silent = false },
 
   g = neogen,
   s = swap,
@@ -417,7 +419,7 @@ local backslash = {
 vim.cmd([[PackerLoad which-key.nvim]])
 local wk = require("which-key")
 
--- Normal mode keymaps
+-- Normal mode
 wk.register {
   ["t"] = telescope,
   ["<Space>"] = space,
@@ -453,7 +455,7 @@ end
 
 -- 〉
 
--- Visual mode keymaps
+-- Visual mode
 wk.register({
   r = refactoring,
 }, { mode = "v" })
