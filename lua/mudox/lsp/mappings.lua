@@ -14,8 +14,8 @@ return function(bufnr)
 
     R = { cmd("Lspsaga lsp_finder"), "Lspsaga: finder" },
 
-    d = { lua("vim.lsp.buf.declaration()"), "Declaration" },
-    D = { lua("vim.lsp.buf.definition()"), "Definition" },
+    d = { lua("vim.lsp.buf.definition()"), "Definition" },
+    D = { lua("vim.lsp.buf.declaration()"), "Declaration" },
     t = { lua("vim.lsp.buf.type_definition()"), "Type definition" },
     i = { lua("vim.lsp.buf.implementation()"), "Type implementation" },
     r = { lua("vim.lsp.buf.references()"), "References" },
