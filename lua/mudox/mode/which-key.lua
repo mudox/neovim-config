@@ -282,6 +282,19 @@ local refactoring = {
 
 -- 〉
 
+
+-- Zen 〈
+
+local zen = {
+  name = "Zen Mode",
+
+  ["<Space>"] = { cmd("TZAtaraxis"), "Zen" },
+
+  ["a"] = { cmd("TZAtaraxis"), "Zen" },
+  ["f"] = { cmd("TZFocus"), "Focus" },
+  ["m"] = { cmd("TZMinimalist"), "Hide decorations" },
+}
+
 -- Toggle 〈
 
 local toggle = {
@@ -348,6 +361,7 @@ local comma = {
   m = trouble,
   l = lsp,
   r = refactoring,
+  z = zen,
 
   [","] = second_comma,
 }

@@ -91,6 +91,8 @@ return {
   -- Window & Panes
   "popup",
 
+  "true-zen",
+
   "window-picker",
 
   "notify",
