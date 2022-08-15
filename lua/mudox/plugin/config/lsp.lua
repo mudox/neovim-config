@@ -2,7 +2,6 @@ local lsp = require("mudox.lsp")
 
 local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
-local lspconfig = require("lspconfig")
 
 lsp.setup()
 
@@ -60,7 +59,7 @@ local function setup(server)
     opts = vim.tbl_deep_extend("force", opts, custom_opts)
   end
 
-  lspconfig[server].setup(opts)
+  require("lspconfig")[server].setup(opts)
 end
 
 local handlers = {
@@ -71,3 +70,6 @@ local handlers = {
 }
 
 mason_lsp.setup_handlers(handlers)
+
+-- NOTE: mason does not support sourcekit-lsp yet
+setup("sourcekit")
