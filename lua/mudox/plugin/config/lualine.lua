@@ -64,6 +64,7 @@ local buffers = {
     TelescopePrompt = "[telescope]",
     packer = "[packer]",
     aerial = "[aerial]",
+    fugitive = "[fugitive]",
   },
 
   symbols = {
