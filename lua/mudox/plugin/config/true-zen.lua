@@ -9,9 +9,13 @@ end
 local opts = {
   modes = {
     ataraxis = {
+      minimum_writing_area = { -- minimum size of main window
+        width = 120,
+        height = 44,
+      },
       padding = { -- padding windows
-        left = 52,
-        right = 52,
+        left = 1000,
+        right = 1000,
         top = 2,
         bottom = 2,
       },
@@ -33,7 +37,7 @@ local opts = {
     -- socket-only` and `listen_on unix:/tmp/kitty` in your personal config
     -- (ataraxis)
     kitty = {
-      enabled = true,
+      enabled = false,
       font = "+3",
     },
     -- enable twilight (ataraxis)
