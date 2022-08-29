@@ -160,7 +160,7 @@ local opts = {
     "go",
     "java",
 
-    -- "swift", -- currently no maintainer
+    "swift",
     "kotlin",
 
     "norg",
