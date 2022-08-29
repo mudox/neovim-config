@@ -76,6 +76,8 @@ return {
   -- Window & Panes
   "popup",
 
+  "true-zen",
+
   "window-picker",
 
   "notify",
@@ -86,7 +88,6 @@ return {
   "light-speed",
   "tree-hopper",
   "reach",
-  "marks",
 
   "nnn",
   "tree",
