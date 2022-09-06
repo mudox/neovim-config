@@ -30,45 +30,45 @@ local telescope = {
   },
 
   -- Vim
-  ["h"] = { cmd("Telescope help_tags"), "Vim help" },
-  ["o"] = { cmd("Telescope vim_options"), "Vim options" },
+  h = { cmd("Telescope help_tags"), "Vim help" },
+  o = { cmd("Telescope vim_options"), "Vim options" },
 
   -- Files
-  ["f"] = { cmd("Telescope find_files"), "Files" },
-  ["c"] = { cmd("Telescope git_status"), "Git changed files" },
-  ["R"] = { req("extensions.live_grep_args.live_grep_raw()"), "Rg raw mode" },
+  f = { cmd("Telescope find_files"), "Files" },
+  c = { cmd("Telescope git_status"), "Git changed files" },
+  R = { req("extensions.live_grep_args.live_grep_raw()"), "Rg raw mode" },
 
   -- Grep
-  ["G"] = { cmd("Telescope grep_string"), "Grep cword" },
+  G = { cmd("Telescope grep_string"), "Grep cword" },
 
   -- LSP & Tree-Sitter
-  ["s"] = { cmd("Telescope treesitter"), "Tree-Sitter symbols" },
-  ["S"] = { cmd("Telescope lsp_dynamic_workspace_symbols"), "LSP (dynamic) workspace symbols" },
+  s = { cmd("Telescope treesitter"), "Tree-Sitter symbols" },
+  S = { cmd("Telescope lsp_dynamic_workspace_symbols"), "LSP (dynamic) workspace symbols" },
 
   ["?"] = { cmd("Telescope diagnostics bufnr=0"), "Diagnostics" },
   ["."] = { cmd("Telescope lsp_code_actions"), "Code actions" },
-  ["r"] = { cmd("Telescope lsp_references"), "LSP references" },
+  r = { cmd("Telescope lsp_references"), "LSP references" },
 
   -- Aerial
-  ["a"] = { cmd("Telescope aerial"), "Aerial" },
+  a = { cmd("Telescope aerial"), "Aerial" },
 
   -- Packer
-  ["p"] = { req("extensions.packer.packer()"), "Packer plugins" },
+  p = { req("extensions.packer.packer()"), "Packer plugins" },
 
   -- File browser
   ["/"] = { req("extensions.file_browser.file_browser()"), "File browser" },
 
   -- Notify
-  ["n"] = { cmd("Telescope notify"), "Notifications" },
+  n = { cmd("Telescope notify"), "Notifications" },
 
   -- Todo
-  ["t"] = { cmd("TodoTelescope"), "Todo list" },
+  t = { cmd("TodoTelescope"), "Todo list" },
 
   -- Neoclip
-  ["v"] = { cmd("Telescope neoclip"), "Neoclip" },
+  v = { cmd("Telescope neoclip"), "Neoclip" },
 
   -- Heading
-  ["l"] = { cmd("Telescope heading"), "Heading" },
+  l = { cmd("Telescope heading"), "Heading" },
 }
 
 -- 〉
@@ -79,17 +79,17 @@ local trouble = {
   name = "Trouble",
 
   ["<Space>"] = { cmd("TroubleToggle"), "Toggle" },
-  ["R"] = { cmd("TroubleRefresh"), "Refresh" },
+  R = { cmd("TroubleRefresh"), "Refresh" },
 
-  ["d"] = { cmd("Trouble document_diagnostics"), "Document diagnostics" },
-  ["D"] = { cmd("Trouble workspace_diagnostics"), "Workspace diagnostics" },
+  d = { cmd("Trouble document_diagnostics"), "Document diagnostics" },
+  D = { cmd("Trouble workspace_diagnostics"), "Workspace diagnostics" },
 
-  ["q"] = { cmd("Trouble quickfix"), "Quickfix" },
-  ["l"] = { cmd("Trouble loclist"), "Loclist" },
+  q = { cmd("Trouble quickfix"), "Quickfix" },
+  l = { cmd("Trouble loclist"), "Loclist" },
 
-  ["r"] = { cmd("Trouble lsp_references"), "LSP references" },
+  r = { cmd("Trouble lsp_references"), "LSP references" },
 
-  ["t"] = { cmd("TodoTrouble"), "Trouble todo" },
+  t = { cmd("TodoTrouble"), "Trouble todo" },
 }
 
 -- 〉
@@ -101,44 +101,44 @@ local dap = {
   name = "DAP",
 
   -- Breakpoint
-  ["b"] = { req("toggle_breakpoint()"), "Toggle breakpoint" },
-  ["c"] = { req("set_breakpoint(vim.fn.input('Breakpoint condition: '))"), "Add conditional breakpoint" },
-  ["p"] = { req("set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"), "Add log point" },
-  ["e"] = { req("set_exception_breakpoints({'all'})"), "Set breakpoint for all exceptions" },
-  ["X"] = { req("clear_breakpoint()"), "Clear all breakpoints" },
+  b = { req("toggle_breakpoint()"), "Toggle breakpoint" },
+  c = { req("set_breakpoint(vim.fn.input('Breakpoint condition: '))"), "Add conditional breakpoint" },
+  p = { req("set_breakpoint(nil, nil, vim.fn.input('Log point message: '))"), "Add log point" },
+  e = { req("set_exception_breakpoints({'all'})"), "Set breakpoint for all exceptions" },
+  X = { req("clear_breakpoint()"), "Clear all breakpoints" },
 
   -- Session control
   ["<Space>"] = { req("run_last()"), "Re-run last debug session" },
   ["."] = { req("terminate()"), "Terminate current debug session" },
   ["]"] = { req("run_to_cursor()"), "Continues execution to current currsor" },
-  ["u"] = { req("up()"), "Up a stack frame" },
-  ["d"] = { req("down()"), "Down a stack frame" },
+  u = { req("up()"), "Up a stack frame" },
+  d = { req("down()"), "Down a stack frame" },
 
   -- REPL
   [":"] = { req("repl.toggle()"), "Toggle REPL" },
 }
 
 req = make_req("dap.ui.widgets")
-dap["i"] = { req("hover()"), "Hover" }
+dapi = { req("hover()"), "Hover" }
 
 req = make_req("dapui")
-dap["t"] = { req("toggle()"), "Toggle panes" }
-dap["h"] = { req("toggle(1)"), "Toggle sidebar" }
-dap["j"] = { req("toggle(2)"), "Toggle tray" }
+dapt = { req("toggle()"), "Toggle panes" }
+daph = { req("toggle(1)"), "Toggle sidebar" }
+dapj = { req("toggle(2)"), "Toggle tray" }
 
 req = make_req("dap-python")
-dap["C"] = { req("test_class()"), "Test current class" }
-dap["M"] = { req("test_method()"), "Test current method" }
-dap["S"] = { req("debug_selection()"), "Debug selection" }
+dapC = { req("test_class()"), "Test current class" }
+dapM = { req("test_method()"), "Test current method" }
+dapS = { req("debug_selection()"), "Debug selection" }
 
 local telescope_dap = {
   name = "DAP",
 
   [":"] = { cmd("Telescope dap commands"), "DAP Commands" },
-  ["c"] = { cmd("Telescope dap configurations"), "DAP configurations" },
-  ["v"] = { cmd("Telescope dap variables"), "DAP variables" },
-  ["f"] = { cmd("Telescope dap frames"), "DAP frames" },
-  ["b"] = { cmd("Telescope dap list_breakpoints"), "DAP breakpoints" },
+  c = { cmd("Telescope dap configurations"), "DAP configurations" },
+  v = { cmd("Telescope dap variables"), "DAP variables" },
+  f = { cmd("Telescope dap frames"), "DAP frames" },
+  b = { cmd("Telescope dap list_breakpoints"), "DAP breakpoints" },
 }
 
 telescope.d = telescope_dap
@@ -151,29 +151,29 @@ local test = {
   name = "Test",
 
   -- Summary window
-  ["l"] = { cmd("UltestSummary"), "Summary window" },
-  ["L"] = { cmd("UltestSummary!"), "Summary window focused" },
-  ["s"] = { cmd("UltestSummary"), "Summary window" },
-  ["S"] = { cmd("UltestSummary!"), "Summary window focused" },
+  l = { cmd("UltestSummary"), "Summary window" },
+  L = { cmd("UltestSummary!"), "Summary window focused" },
+  s = { cmd("UltestSummary"), "Summary window" },
+  S = { cmd("UltestSummary!"), "Summary window focused" },
 
   -- Test
   ["<Space>"] = { cmd("UltestLast"), "Test last" },
 
-  ["f"] = { cmd("Ultest"), "Test file" },
-  ["n"] = { cmd("UltestNearest"), "Test nearest" },
+  f = { cmd("Ultest"), "Test file" },
+  n = { cmd("UltestNearest"), "Test nearest" },
 
   ["."] = { cmd("UltestStop"), "Stop all tests" },
-  ["c"] = { cmd("UltestClear"), "Clear test results" },
+  c = { cmd("UltestClear"), "Clear test results" },
 
   -- Debug
-  ["D"] = { cmd("UltestDebug"), "Debug file" },
-  ["d"] = { cmd("UltestDebugNearest"), "Test debug nearest" },
+  D = { cmd("UltestDebug"), "Debug file" },
+  d = { cmd("UltestDebugNearest"), "Test debug nearest" },
 }
 
 req = make_req("dap-python")
-test["C"] = { req("test_class()"), "Test current class" }
-test["M"] = { req("test_method()"), "Test current method" }
-test["S"] = { req("debug_selection()"), "Debug selection" }
+testC = { req("test_class()"), "Test current class" }
+testM = { req("test_method()"), "Test current method" }
+testS = { req("debug_selection()"), "Debug selection" }
 
 -- 〉
 
@@ -183,20 +183,20 @@ local aerial = {
   name = "Aerial",
 
   ["<Space>"] = { cmd("AerialToggle!"), "Toggle aerial window" },
-  ["a"] = { cmd("AerialOpen"), "Open aerial window" },
+  a = { cmd("AerialOpen"), "Open aerial window" },
 
-  ["h"] = { cmd("AerialOpen! left"), "Left pane" },
-  ["H"] = { cmd("AerialOpen left"), "Left pane focused" },
-  ["l"] = { cmd("AerialOpen! right"), "Right pane" },
-  ["L"] = { cmd("AerialOpen right"), "Right pane focused" },
-  ["f"] = { cmd("AerialOpen float"), "Float window focused" },
+  h = { cmd("AerialOpen! left"), "Left pane" },
+  H = { cmd("AerialOpen left"), "Left pane focused" },
+  l = { cmd("AerialOpen! right"), "Right pane" },
+  L = { cmd("AerialOpen right"), "Right pane focused" },
+  f = { cmd("AerialOpen float"), "Float window focused" },
 
-  ["A"] = { cmd("AerialOpenAll"), "Open aerial window for all visible windows" },
-  ["c"] = { cmd("AerialClose"), "Close current aerial window" },
-  ["C"] = { cmd("AerialCloseAll"), "Close all visible aerial windows" },
-  ["o"] = { cmd("AerialCloseAllButCurrent"), "Close all but current aerial window" },
+  A = { cmd("AerialOpenAll"), "Open aerial window for all visible windows" },
+  c = { cmd("AerialClose"), "Close current aerial window" },
+  C = { cmd("AerialCloseAll"), "Close all visible aerial windows" },
+  o = { cmd("AerialCloseAllButCurrent"), "Close all but current aerial window" },
 
-  ["i"] = { cmd("AerialInfo"), "Aerial debug info" },
+  i = { cmd("AerialInfo"), "Aerial debug info" },
 }
 
 -- 〉
@@ -206,11 +206,11 @@ local aerial = {
 local packer = {
   name = "Packer",
 
-  ["S"] = { cmd("PackerSync"), "`PackerUpdate` then `PackerSync`" },
-  ["s"] = { cmd("PackerStatus"), "Show packer status" },
-  ["c"] = { cmd("PackerClean"), "Clean packer plugins" },
-  ["C"] = { cmd("PackerCompile"), "Regenerate `packer_compiled` file" },
-  ["I"] = { cmd("PackerInstall"), "Install plugins" },
+  S = { cmd("PackerSync"), "`PackerUpdate` then `PackerSync`" },
+  s = { cmd("PackerStatus"), "Show packer status" },
+  c = { cmd("PackerClean"), "Clean packer plugins" },
+  C = { cmd("PackerCompile"), "Regenerate `packer_compiled` file" },
+  I = { cmd("PackerInstall"), "Install plugins" },
 }
 
 -- 〉
@@ -220,22 +220,22 @@ local packer = {
 req = make_req("gitsigns")
 
 local gitsigns = {
-  name = "Git (Fugitive, Gitsigns)",
+  name = "Git",
 
   ["<Space>"] = { req("toggle_signs()"), "Toggle GitSigns signs" },
 
   -- Stage
-  ["s"] = { req("stage_hunk()"), "Stage hunk" },
-  ["S"] = { req("stage_buffer()"), "Stage current file" },
-  ["u"] = { req("undo_stage_hunk()"), "Undo stage hunk" },
-  ["D"] = { req("reset_hunk()"), "Reset (discard) hunk" },
+  s = { req("stage_hunk()"), "Stage hunk" },
+  S = { req("stage_buffer()"), "Stage current file" },
+  u = { req("undo_stage_hunk()"), "Undo stage hunk" },
+  D = { req("reset_hunk()"), "Reset (discard) hunk" },
 
   -- Diff
-  ["d"] = { req("diffthis()"), "Diff this file" },
-  ["v"] = { req("preview_hunk()"), "Preview hunk changes" },
+  d = { req("diffthis()"), "Diff this file" },
+  v = { req("preview_hunk()"), "Preview hunk changes" },
 
   -- Blame
-  ["b"] = { req("blame_line()"), "Blame line" },
+  b = { req("blame_line()"), "Blame line" },
 }
 
 -- 〉
@@ -251,12 +251,12 @@ end
 local lsp = {
   name = "LSP",
 
-  ["i"] = { cmd("LspInfo"), "LSP server info" },
-  ["I"] = { cmd("Mason"), "LSP install info (Mason)" },
+  i = { cmd("LspInfo"), "LSP server info" },
+  I = { cmd("Mason"), "LSP install info (Mason)" },
 
-  ["l"] = { toggle_lsp_lines, "Toggle LSP lines" },
+  l = { toggle_lsp_lines, "Toggle LSP lines" },
 
-  ["R"] = { cmd("LspRestart"), "Restart LSP server" },
+  R = { cmd("LspRestart"), "Restart LSP server" },
   ["<Space>"] = { cmd("LspRestart"), "Restart LSP server" },
 }
 
@@ -265,19 +265,84 @@ local lsp = {
 -- Refactoring 〈
 
 local refactoring = {
-  name = "Refactoring",
+  normal = {
+    name = "Refactor",
 
-  ["b"] = { make_req("refactoring")('refactor("Extract Block")'), "Extract Block" },
-  ["B"] = { make_req("refactoring")('refactor("Extract Block To File")'), "Extract Block To File" },
+    b = {
+      function()
+        require("refactoring").refactor("Extract Block")
+      end,
+      "Extract Block",
+    },
+    B = {
+      function()
+        require("refactoring").refactor("Extract Block To File")
+      end,
+      "Extract Block To File",
+    },
 
-  ["i"] = { make_req("refactoring")('refactor("Inline Variable")'), "Inline Variable under cursor" },
+    i = {
+      function()
+        require("refactoring").refactor("Inline Variable")
+      end,
+      "Inline Variable",
+    },
 
-  ["p"] = { make_req("refactoring")("debug.printf({below = false})"), "Print function call" },
+    p = {
+      function()
+        require("refactoring").debug.printf { below = false }
+      end,
+      "Print function call",
+    },
+    c = {
+      function()
+        require("refactoring").debug.cleanup {}
+      end,
+      "Cleanup debug prints",
+    },
 
-  ["c"] = { make_req("refactoring")("debug.cleanup({})"), "Cleanup debug print lines" },
+    -- Trev-J
+    j = {
+      function()
+        require("trevj").format_at_cursor()
+      end,
+      "Reverse J",
+    },
+  },
 
-  -- Trev-J
-  ["j"] = { make_req("trevj")("format_at_cursor()"), "Reverse J" },
+  visual = {
+    name = "Refactor",
+
+    r = {
+      function()
+        require("refactoring").select_refactor()
+      end,
+      "Refactor selection",
+    },
+
+    p = {
+      function()
+        require("refactoring").debug.print_var {}
+      end,
+      "Print variable",
+    },
+  },
+}
+
+-- 〉
+
+-- Overseer 〈
+
+local overseer = {
+  name = "Over Seer",
+
+  ["<Space>"] = { cmd("OverseerToggle"), "Toggle task list" },
+
+  [":"] = { cmd("OverseerRun"), "Run" },
+  r = { cmd("OverseerRun"), "Run" },
+  c = { cmd("OverseerRunCmd"), "Run Command" },
+
+  b = { cmd("OverseerBuilder"), "Task builder" },
 }
 
 -- 〉
@@ -288,16 +353,16 @@ local sniprun = {
   normal = {
     name = "Snip Run",
 
-    ["i"] = { cmd("SnipInfo"), "Info" },
+    i = { cmd("SnipInfo"), "Info" },
 
     ["<Space>"] = { cmd("SnipRun"), "Run current line" },
-    ["l"] = { cmd("SnipRun"), "Run current line" },
-    ["x"] = { "<Plug>SnipRunOperator", "Run snip operator" },
+    l = { cmd("SnipRun"), "Run current line" },
+    x = { "<Plug>SnipRunOperator", "Run snip operator" },
 
     ["."] = { cmd("SnipReset"), "Stop running" },
-    ["r"] = { cmd("SnipReplMemoryClean"), "Clean REPL memory" },
+    r = { cmd("SnipReplMemoryClean"), "Clean REPL memory" },
 
-    ["c"] = { cmd("SnipClose"), "Clear results displaying" },
+    c = { cmd("SnipClose"), "Clear results displaying" },
   },
 
   visual = {
@@ -316,9 +381,9 @@ local zen = {
 
   ["<Space>"] = { cmd("TZAtaraxis"), "Zen" },
 
-  ["a"] = { cmd("TZAtaraxis"), "Zen" },
-  ["f"] = { cmd("TZFocus"), "Focus" },
-  ["m"] = { cmd("TZMinimalist"), "Hide decorations" },
+  a = { cmd("TZAtaraxis"), "Zen" },
+  f = { cmd("TZFocus"), "Focus" },
+  m = { cmd("TZMinimalist"), "Hide decorations" },
 }
 
 -- 〉
@@ -328,12 +393,12 @@ local zen = {
 local toggle = {
   name = "Toggle / switch",
 
-  ["q"] = { cmd("call mudox#lib#toggleQuickFix()"), "Quickfix list" },
-  ["l"] = { cmd("call mudox#lib#toggleLocList()"), "Location list" },
+  q = { cmd("call mudox#lib#toggleQuickFix()"), "Quickfix list" },
+  l = { cmd("call mudox#lib#toggleLocList()"), "Location list" },
 
-  ["L"] = { toggle_lsp_lines, "LSP lines" },
+  L = { toggle_lsp_lines, "LSP lines" },
 
-  ["w"] = {
+  w = {
     function()
       vim.go.winbar = (vim.go.winbar == "") and "%=%m %t" or nil
     end,
@@ -350,11 +415,11 @@ vim.cmd([[ command! BufOnly silent! execute "%bd|e#|bd#" ]])
 local second_comma = {
   name = "Misc",
 
-  ["e"] = { cmd("edit"), "Run command `:edit!`" },
-  ["s"] = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), "Reload my LuaSnip snippets" },
-  ["o"] = { cmd("BufOnly"), "Close other buffers" },
+  e = { cmd("edit"), "Run command `:edit!`" },
+  s = { cmd("lua _mdx_remerge_my_luasnip_snippets()"), "Reload my LuaSnip snippets" },
+  o = { cmd("BufOnly"), "Close other buffers" },
 
-  ["w"] = {
+  w = {
     function()
       local function filter(ids)
         return ids
@@ -388,7 +453,9 @@ local comma = {
   t = telescope,
   m = trouble,
   l = lsp,
-  r = refactoring,
+  r = refactoring.normal,
+  o = overseer,
+  x = sniprun.normal,
   z = zen,
 
   [","] = second_comma,
@@ -404,6 +471,7 @@ local space = {
   r = { cmd("Telescope oldfiles"), "File History" },
   g = { cmd("Git"), "Fugitive" },
   d = { cmd("DiffviewOpen"), "Diff view" },
+  z = { cmd("TZAtaraxis"), "Zen mode" },
 }
 
 --〉
@@ -430,11 +498,11 @@ local neogen = {
 local backslash = {
   name = "Refactoring",
 
-  ["af"] = { cmd("Neoformat"), "Neoformat" },
-  ["ef"] = { "m`gg=G``", "Format (=) entire file" },
+  af = { cmd("Neoformat"), "Neoformat" },
+  ef = { "m`gg=G``", "Format (=) entire file" },
 
-  ["sp"] = { cmd("lua require('spectre').open()"), "Spectre" },
-  ["gs"] = { "<Esc><Esc>:%s/", "Global substitution", silent = false },
+  sp = { cmd("lua require('spectre').open()"), "Spectre" },
+  gs = { "<Esc><Esc>:%s/", "Global substitution", silent = false },
 
   g = neogen,
   s = swap,
@@ -442,44 +510,18 @@ local backslash = {
 
 --〉
 
-vim.cmd([[PackerLoad which-key.nvim]])
+require("packer").loader("which-key.nvim")
 local wk = require("which-key")
 
 -- Normal mode
 wk.register {
-  ["t"] = telescope,
   ["<Space>"] = space,
   [","] = comma,
   ["\\"] = backslash,
-  ["yo"] = toggle,
+
+  t = telescope,
+  yo = toggle,
 }
-
--- Refactoring 〈
-
-local function refactor(c)
-  make_req("refactoring")(('refactor("%s")'):format(c))
-end
-
-refactoring = {
-  name = "Refactoring",
-
-  ["r"] = { make_req("refactoring")("select_refactor()"), "Refactor selection" },
-
-  ["p"] = { make_req("refactoring")("debug.print_var({})"), "Print variable" },
-}
-
-local cmds = {
-  e = "Extract Function",
-  f = "Extract Function To File",
-  v = "Extract Variable",
-  i = "Inline Variable",
-}
-
-for key, s in pairs(cmds) do
-  refactoring[key] = { refactor(s), s }
-end
-
--- 〉
 
 -- Visual mode
 wk.register({
