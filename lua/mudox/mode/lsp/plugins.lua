@@ -137,6 +137,7 @@ return {
 
   -- Language
   -- "iron",
+  "snip-run",
 
   -- Lua
   "lua-dev", -- neovim lua api help, signature for lsp

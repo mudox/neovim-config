@@ -282,6 +282,32 @@ local refactoring = {
 
 -- 〉
 
+-- SnipRun 〈
+
+local sniprun = {
+  normal = {
+    name = "Snip Run",
+
+    ["i"] = { cmd("SnipInfo"), "Info" },
+
+    ["<Space>"] = { cmd("SnipRun"), "Run current line" },
+    ["l"] = { cmd("SnipRun"), "Run current line" },
+    ["x"] = { "<Plug>SnipRunOperator", "Run snip operator" },
+
+    ["."] = { cmd("SnipReset"), "Stop running" },
+    ["r"] = { cmd("SnipReplMemoryClean"), "Clean REPL memory" },
+
+    ["c"] = { cmd("SnipClose"), "Clear results displaying" },
+  },
+
+  visual = {
+    name = "Snip Run",
+
+    ["<Space>"] = { cmd("SnipRun"), "Run selection" },
+  },
+}
+
+-- 〉
 
 -- Zen 〈
 
@@ -457,5 +483,10 @@ end
 
 -- Visual mode
 wk.register({
-  r = refactoring,
+  {
+    name = "Comman leader",
+
+    r = refactoring.visual,
+    x = sniprun.visual,
+  },
 }, { mode = "v" })
