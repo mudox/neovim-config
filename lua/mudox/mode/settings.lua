@@ -13,6 +13,7 @@ vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 -- 〉
 
 -- Helpers 〈
+
 local home = os.getenv("HOME")
 
 -- Access vim remote plugin api
@@ -30,14 +31,18 @@ local cmd = vim.cmd
 
 -- Call vim functions
 local fn = vim.fn
+
 -- 〉
 
 -- Indent 〈
+
 o.autoindent = true
 o.smartindent = true
+
 -- 〉
 
 -- UI 〈
+
 o.termguicolors = true
 
 o.mouse = "a"
@@ -87,43 +92,55 @@ o.sidescrolloff = 8
 -- 〉
 
 -- Tabs 〈
+
 o.tabstop = 8
 o.softtabstop = 4
 o.shiftwidth = 4
 o.smarttab = true
 o.expandtab = true
 o.listchars = [[tab:▸-,eol:¶]]
+
 -- 〉
 
 -- Pattern search 〈
+
 o.hlsearch = false
 o.wrapscan = true
 o.incsearch = true
 o.ignorecase = true
 o.smartcase = true
 o.inccommand = "nosplit"
+
 -- 〉
 
 -- Editing behavior 〈
+
 o.whichwrap = [[b,s,<,>,[,],h,l]]
 o.autochdir = false
 o.autowriteall = true -- Auto-save aggressively
+
 -- 〉
 
 -- Completion 〈
+
 o.completeopt = "menuone,noselect"
 o.dictionary = [[/usr/share/dict/words]]
 o.wildignorecase = true
+
 -- 〉
 
 -- Font 〈
+
 o.guifont = "Monaco for Powerline:h11"
 o.linespace = 0
+
 -- 〉
 
 -- Tmp file 〈
+
 o.hidden = true -- Many plugins need this feature
 o.backup = false
 o.writebackup = false
 o.swapfile = false
+
 -- 〉
