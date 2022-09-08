@@ -97,6 +97,8 @@ return {
 
   "notify",
 
+  "scroll-view",
+
   -- Terminal & Tasks
   "toggle-term",
 

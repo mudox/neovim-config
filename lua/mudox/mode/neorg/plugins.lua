@@ -84,6 +84,8 @@ return {
 
   "toggle-term",
 
+  "scroll-view",
+
   -- Navigation
   "light-speed",
   "tree-hopper",
