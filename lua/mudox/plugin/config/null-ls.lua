@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fdm=marker fmr=\ 〈,\ 〉
 
 local null_ls = require("null-ls")
 

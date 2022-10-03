@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fdm=marker fmr=\ 〈,\ 〉
 
 local Hydra = require("hydra")
 local load = require("packer").loader

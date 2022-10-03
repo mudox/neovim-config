@@ -1,18 +1,21 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fdm=marker fmr=\ 〈,\ 〉
 
 -- Keymaps 〈
 
 local builtin = require("telescope.builtin")
-local dropdown = require("telescope.themes").get_dropdown
-local cursor = require("telescope.themes").get_cursor
+-- local dropdown = require("telescope.themes").get_dropdown
+-- local cursor = require("telescope.themes").get_cursor
 
 local ncmd = require("mudox.keymap").ncmd
 local nmap = require("mudox.keymap").nmap
 
 -- Files
 nmap("<C-p>", function()
-  if not pcall(builtin.git_files, {}) then
-    builtin.find_files {}
+  local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+  if in_git_repo then
+    builtin.git_files()
+  else
+    builtin.find_files()
   end
 end)
 

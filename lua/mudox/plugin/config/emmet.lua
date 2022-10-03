@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fdm=marker fmr=\ 〈,\ 〉
 
 vim.g.user_emmet_leader_key = "<M-,>"
 
