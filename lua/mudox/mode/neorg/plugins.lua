@@ -32,6 +32,7 @@ return {
 
   -- Editing
   "capslock",
+  "rsi",
 
   "visual-multi",
 
