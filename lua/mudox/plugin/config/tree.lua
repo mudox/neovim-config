@@ -78,7 +78,9 @@ local opts = {
       close_window = false,
     },
   },
-  hijack_directories = false, -- for `dirbuf.nvim`
+  hijack_directories = {
+    enable = false,
+  }, -- for `dirbuf.nvim`
 }
 
 require("nvim-tree").setup(opts)
