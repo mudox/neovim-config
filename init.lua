@@ -1,40 +1,29 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
-
 -- Luarocks
 pl = require("mudox.luarocks")
 
 -- Mode
-require("mudox.resolve_mode")
+md = require("mudox.mode")
 
--- Common paths
-stdpath = require("mudox.path")
+-- Lazy
+require("mudox.lazy")
 
--- Config
-require(stdpath("settings"))
-require(stdpath("auto_commands"))
-require("mudox.plugin_manager")
-require(stdpath("post"))
+-- Settings
+local load = require("mudox.lib.load")
+load("settings")
 
--- Mappings
-local gid = vim.api.nvim_create_augroup("MudoxKeymap", { clear = true })
-vim.api.nvim_create_autocmd("UIEnter", {
-  group = gid,
-  callback = function()
-    require(stdpath("mappings"))
-  end,
-})
-
--- Packer
-local path = stdpath.packer_compiled
-if vim.fn.filereadable(path) == 1 then
-  dofile(path)
+-- Autocmds & Keymaps
+if vim.fn.argc(-1) == 0 then
+  -- delay loading till `VeryLazy`
+  vim.api.nvim_create_autocmd("User", {
+    group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
+    pattern = "VeryLazy",
+    callback = function()
+      load("autocmds")
+      load("keymaps")
+    end,
+  })
 else
-  require("mudox.plugin.config.notify")
-  local text = "Compiled file does not exists in"
-    .. ("\n%s\n"):format(path)
-    .. "\n1. Try to compile it"
-    .. "\n2. Now restart Neovim manually"
-  require("notify")(text, "warn", { title = "Packer", timeout = 100000 })
-
-  vim.cmd("PackerCompile")
+  -- load them immediately so they affect the opened buffers
+  load("autocmds")
+  load("keymaps")
 end

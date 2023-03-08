@@ -1,1 +1,0 @@
-url = "SirVer/ultisnips"

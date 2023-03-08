@@ -1,4 +1,0 @@
-std = "nvim-selene"
-
-[config.unused_variable]
-ignore_pattern = "^_|url|event|requires|after|keys|cmd|vim|pl|stdpath|ft|mode|opt"

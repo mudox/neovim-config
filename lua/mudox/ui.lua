@@ -44,10 +44,10 @@ local tree = {
 
 -- LSP kinds 〈
 
-local lsp_kind_icons = {}
+local kind = {}
 
 -- stylua: ignore start
-lsp_kind_icons.sf = {
+kind.sf = {
   File          = "􀉆 ",
   Folder        = "􀈖 ",
 
@@ -88,7 +88,7 @@ lsp_kind_icons.sf = {
   Unit          = " ",
 }
 
-lsp_kind_icons.default = {
+kind.default = {
   File          = " ",
   Folder        = " ",
 
@@ -193,9 +193,7 @@ local icons = {
   folder_closed = " ",
   folder_open   = " ",
 
-  lsp           = {
-    kind        = lsp_kind_icons.sf,
-  },
+  kind        = kind.sf,
 
   powerline     = powerline,
   tree          = tree,
@@ -246,3 +244,5 @@ return {
   icons = icons,
   colors = colors,
 }
+
+-- TODO: move `Colorscheme` autocmds here
