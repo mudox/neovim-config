@@ -1,1 +1,0 @@
-url = "wbthomason/packer.nvim"

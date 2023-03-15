@@ -109,7 +109,6 @@ o.wildignorecase = true
 
 -- Font 〈
 
-o.guifont = "Monaco for Powerline:h11"
 o.linespace = 0
 
 -- 〉

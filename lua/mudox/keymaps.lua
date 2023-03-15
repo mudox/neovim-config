@@ -17,6 +17,8 @@ local icmd = k.icmd
 local vmap = k.vmap
 
 local cmap = k.cmap
+
+local omap = k.omap
 ---@diagnostic enable: unused-local
 -- 〉
 
@@ -37,8 +39,8 @@ nnop("gk")
 
 -- buffers
 -- HACK: kitty.conf remap `ctrl+shift+[|]` to `ctrl+shift+f|g`
-ncmd("<C-S-g>", "bnext")
-ncmd("<C-S-f>", "bNext")
+ncmd("<M-[>71", "bnext")
+ncmd("<M-[>70", "bNext")
 
 -- tabs
 nmap("<M-l>", "gt")
@@ -97,3 +99,9 @@ imap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
 imap("<M-;>", "<Esc>A")
 
 -- 〉
+
+-- b for (
+omap("ir", "i[")
+omap("ar", "a[")
+omap("ia", "i<")
+omap("aa", "a<")

@@ -9,7 +9,7 @@ local function get_opts(name)
   if not plugin then
     return {}
   end
-  require("lazy.core.plugin").values(plugin, "opts", false)
+  return require("lazy.core.plugin").values(plugin, "opts", false)
 end
 
 return {

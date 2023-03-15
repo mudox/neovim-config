@@ -1,7 +1,0 @@
-url = "glts/vim-textobj-comment"
-
-requires = "kana/vim-textobj-user"
-
-after = "vim-textobj-user"
-
-event = "BufRead"
