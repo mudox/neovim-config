@@ -85,16 +85,16 @@ end
 
 local function config(_, options)
   require("nvim-tree").setup(options)
-
-  local k = require("mudox.lib.keymap")
-  k.ncmd("<M-p>", "NvimTreeFindFileToggle")
 end
 
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = "kyazdani42/nvim-web-devicons",
   cmd = { "NvimTreeToggle", "NvimTreeRefresh", "NvimTreeFindFile", "NvimTreeFindFileToggle" },
-  keys = "<M-p>",
+  keys = {
+    { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "Nvim Tree (Find File) Toggle" },
+    { "<M-/>e", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "Nvim Tree (Find File) Toggle" },
+  },
   opts = opts,
   config = config,
 }

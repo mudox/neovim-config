@@ -49,8 +49,14 @@ local opts = {
   on_attach = on_attach,
 }
 
+local keys = {
+  -- outline side pane
+  { "<M-/>o", "<Cmd>AerialToggle<Cr>", desc = "Toggle Outline (Aerial) Side Pane" },
+}
+
 return {
   "stevearc/aerial.nvim",
   cmd = { "AerialOpen", "AerialToggle", "AerialInfo", "AerialClose", "AerialCloseAll" },
+  keys = keys,
   opts = opts,
 }

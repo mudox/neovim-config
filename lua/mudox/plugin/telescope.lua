@@ -91,14 +91,9 @@ local keys = {
   { "o", cmd("vim_options"), desc = "Vim Options" },
   { "H", cmd("highlights"), desc = "Highlight Groups" },
   { "/", cmd("current_buffer_fuzzy_find"), desc = "Search in Buffer" },
-  { "k", cmd("keymaps"), desc = "Key Maps" },
+  { "k", cmd("keymaps"), desc = "Keymaps" },
   { "c", cmd("command_history"), desc = "Command History" },
   { "C", cmd("commands"), desc = "Commands" },
-
-  -- symbols
-  {"<M-8>", document_symbos, desc = "Document Symbols"},
-  {"<M-9>", workspace_symbols, desc = "Workspace Symbols"},
-  {"<M-i>", cmd("treesitter"), desc = "TreeSitter Symbols"},
 
   -- grep
   { "w", open("grep_string"), desc = "Grep <Word> Under Cursor" },
@@ -118,22 +113,37 @@ local keys = {
   { "gs", cmd("git_status"), desc = "status" },
 
   -- search
+  { "M", cmd("man_pages"), desc = "Man Pages" },
+  { "m", cmd("marks"), desc = "Jump to Mark" },
+  { "s", document_symbos(), desc = "Document Symbols" },
+  { "S", workspace_symbols(), desc = "Workspace Symbols" },
 
-  { "sM", cmd("man_pages"), desc = "Man Pages" },
-  { "sm", cmd("marks"), desc = "Jump to Mark" },
-  { "ss", document_symbos(), desc = "Document Symbols" },
-  { "sS", workspace_symbols(), desc = "Workspace Symbols" },
+  -- notify
+  { "n", cmd("notify"), desc = "Notifications" },
 }
 
 for _, key in pairs(keys) do
   key[1] = "<leader>t" .. key[1]
 end
 
+vim.list_extend(keys, {
+  -- symbols
+  { "<M-8>", document_symbos(), desc = "Document Symbols" },
+  { "<M-9>", workspace_symbols(), desc = "Workspace Symbols" },
+  { "<M-i>", cmd("treesitter"), desc = "TreeSitter Symbols" },
+})
+
+local function buffers()
+  require("telescope.builtin").buffers(require("telescope.themes").get_dropdown {
+    previewer = false,
+  })
+end
+
 local shortcuts = {
-  { "<C-p>", files, desc = "Smart Find Files (root dir, git_files or find_files)" },
-  { "", open("live_grep"), desc = "Find in Files (Grep)" }, -- <C-/>
-  { "<C-b>", cmd("buffers show_all_buffers=true"), desc = "Switch Buffer" },
-  { "<Space>r", cmd("oldfiles"), desc = "Recent" },
+  { "<C-p>", files, desc = "Smart Find Files" },
+  { "<Space>g", open("live_grep"), desc = "Live Grep" },
+  { "<C-S-N>", buffers, desc = "Switch Buffer" },
+  { "<Space>r", cmd("oldfiles"), desc = "Recent Files" },
 }
 
 vim.list_extend(keys, shortcuts)
@@ -152,6 +162,9 @@ local mappings = {
     ["?"] = function(...)
       require("telescope.actions.layout").toggle_preview(...)
     end,
+
+    -- scroll preview
+    ["<C-d>"] = false,
     ["<C-f>"] = function(...)
       return require("telescope.actions").preview_scrolling_down(...)
     end,
@@ -166,15 +179,9 @@ local mappings = {
       require("telescope.action").select_horizontal(...)
     end,
 
+    -- send to trouble
     ["<C-x>"] = function(...)
       return require("trouble.providers.telescope").open_with_trouble(...)
-    end,
-
-    ["<A-i>"] = function()
-      open("find_files", { no_ignore = true })()
-    end,
-    ["<a-h>"] = function()
-      open("find_files", { hidden = true })()
     end,
 
     -- history

@@ -1,14 +1,9 @@
 local dependencies = {
   { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-  { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+  { "folke/neodev.nvim", config = false },
   "mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    cond = function()
-      return require("mudox.lib.lazy").has("nvim-cmp")
-    end,
-  },
+  "hrsh7th/cmp-nvim-lsp",
 }
 
 ---@class PluginLspOpts
@@ -86,7 +81,7 @@ local function setup_signs()
 end
 
 ---@param opts PluginLspOpts
-local function config(plugin, opts)
+local function config(_, opts)
   setup_formatting()
   setup_signs()
 
@@ -118,6 +113,9 @@ local function config(plugin, opts)
     mappings.lspconfig_to_package.lua_ls = "lua-language-server"
     mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
   end
+
+  -- before lspconfig['lua_ls'].setup()
+  require("neodev").setup()
 
   local mlsp = require("mason-lspconfig")
   local available = mlsp.get_available_servers()

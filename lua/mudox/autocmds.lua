@@ -58,6 +58,7 @@ autocmd("FileType", {
     "qr_panel",
     "startuptime",
     "tsplayground",
+    "OverseerList",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

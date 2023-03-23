@@ -41,14 +41,20 @@ local function config(_, options)
       l = { name = "+lazy" },
       g = { name = "+git" },
       q = { name = "+quit/session" },
+      r = { name = "+run" },
       t = { name = "+telescope" },
       u = { name = "+ui" },
       w = { name = "+windows" },
       x = { name = "+diagnostics" },
+      yo = {
+        name = "+toggle",
+        i = { desc = "Ident Guidelines" },
+      },
     },
 
     ["<Space>"] = { name = "+common" },
-    ["<<M-/>"] = { name = "+panel" },
+    ["<M-/>"] = { name = "+panel" },
+    ["\\"] = { name = "+refactoring" },
   }
 
   wk.register(keymaps)

@@ -96,7 +96,8 @@ imap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
 
 -- Insert mode mappings 〈
 
-imap("<M-;>", "<Esc>A")
+imap("<M-.>", "<Esc>A")
+imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
 -- 〉
 

@@ -33,21 +33,21 @@ local function config()
   vim.notify = notify
 end
 
--- TODO: keymap to dismiss all notifications
--- keys = {
---   {
---     "<leader>un",
---     function()
---       require("notify").dismiss { silent = true, pending = true }
---     end,
---     desc = "Delete all Notifications",
---   },
--- }
+keys = {
+  {
+    "<leader>un",
+    function()
+      require("notify").dismiss { silent = true, pending = true }
+    end,
+    desc = "Delete all Notifications",
+  },
+}
 
 return {
   "rcarriga/nvim-notify",
   event = "VeryLazy",
   config = config,
+  keys = keys,
   -- init = function()
   --   -- when noice is not enabled, install notify on verylazy
   --   local util = require("lazyvim.util")
