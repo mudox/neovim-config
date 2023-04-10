@@ -31,7 +31,7 @@ autocmd({ "VimResized" }, {
 })
 
 -- Go to last loc when opening a buffer
-autocmd("BufReadPost", {
+autocmd("BufRead", {
   group = augroup("last_loc"),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -47,18 +47,19 @@ local close_with_q = augroup("close_with_q")
 autocmd("FileType", {
   group = close_with_q,
   pattern = {
+    "fugitive",
     "help",
     "lspinfo",
     "lspinfo",
     "man",
     "notify",
     "null-ls-info",
+    "OverseerList",
     "PlenaryTestPopup",
     "qf",
     "qr_panel",
     "startuptime",
     "tsplayground",
-    "OverseerList",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

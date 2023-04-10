@@ -43,8 +43,8 @@ local function mapping()
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      -- you could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-      -- they way you will only jump inside the snippet region
+        -- you could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- they way you will only jump inside the snippet region
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -95,6 +95,9 @@ local function sources()
     -- source from `rg`
     { name = "rg", max_item_count = 10 },
 
+    -- tag closing
+    { name = "nvim-cmp-ts-tag-close" },
+
     -- words
     {
       name = "look",
@@ -110,7 +113,6 @@ end
 
 -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
 local function formatting()
-  -- TODO: fancy menu appearance
   return {
     format = function(_, item)
       local icons = require("mudox.ui").icons.kind
@@ -120,6 +122,29 @@ local function formatting()
       return item
     end,
   }
+
+  -- fancy formatting
+  -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-get-types-on-the-left-and-offset-the-menu
+  -- return {
+  --   window = {
+  --     completion = {
+  --       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+  --       col_offset = -3,
+  --       side_padding = 0,
+  --     },
+  --   },
+  --   formatting = {
+  --     fields = { "kind", "abbr", "menu" },
+  --     format = function(entry, vim_item)
+  --       local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+  --       local strings = vim.split(kind.kind, "%s", { trimempty = true })
+  --       kind.kind = " " .. (strings[1] or "") .. " "
+  --       kind.menu = "    (" .. (strings[2] or "") .. ")"
+  --
+  --       return kind
+  --     end,
+  --   },
+  -- }
 end
 
 local function config()
@@ -127,25 +152,19 @@ local function config()
 
   local opts = {
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = "menu,menuone,noinsert,noselect",
     },
-
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
       end,
     },
-
     mapping = mapping(),
-
     sources = sources(),
-
     view = {
       entries = { name = "custom", selection_order = "near_cursor" }, -- can be "custom", "wildmenu" or "native" (experimental)
     },
-
     formatting = formatting(),
-
     experimental = {
       ghost_text = {
         hl_group = "LspCodeLens",
@@ -158,7 +177,6 @@ local function config()
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
-
     sources = {
       { name = "buffer" },
     },
@@ -167,7 +185,6 @@ local function config()
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
-
     sources = cmp.config.sources({
       { name = "path" },
     }, {
@@ -194,11 +211,13 @@ local dependencies = {
   "hrsh7th/cmp-nvim-lsp-signature-help",
 
   "octaltree/cmp-look",
+
+  "buschco/nvim-cmp-ts-tag-close",
 }
 
 return {
   "hrsh7th/nvim-cmp",
-  event = { "InsertEnter", "CmdWinEnter" },
+  event = { "InsertEnter", "CmdwinEnter" },
   dependencies = dependencies,
   config = config,
 }

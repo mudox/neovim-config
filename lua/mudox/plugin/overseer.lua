@@ -87,6 +87,7 @@ local opts = {
   templates = {
     "builtin",
     "mudox.run_script",
+    "mudox.run_neovim_lua_script",
   },
 }
 

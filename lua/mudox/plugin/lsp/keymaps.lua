@@ -14,7 +14,7 @@ local function get()
 
     -- stylua: ignore start
     keys =  {
-      { "<leader>cl", "<Cmd>LspInfo<Cr>", desc = "Lsp Info" },
+      { "<leader>ci", "<Cmd>LspInfo<Cr>", desc = "Lsp Info" },
 
       -- diagnostic
       { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
@@ -40,11 +40,12 @@ local function get()
       { "[w", diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
 
       -- code action
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+      -- { "\\a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+      -- Currently use plugin 'actions-preview'
 
       -- format
-      { "<leader>cf", format, desc = "Format Document", has = "documentFormatting" },
-      { "<leader>cf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
+      { "\\f", format, desc = "Format Document", has = "documentFormatting" },
+      { "\\f", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
     }
     -- stylua: ignore end
 
@@ -63,6 +64,7 @@ local function get()
       keys[#keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
     end
   end
+
   return keys
 end
 

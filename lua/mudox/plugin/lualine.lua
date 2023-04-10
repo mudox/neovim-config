@@ -37,7 +37,7 @@ local statusline = {
   },
   lualine_c = {
     { "filename" },
-    -- { "aerial", sep = "  ", depth = -2, dense = false },
+    { "b:toggle_number" },
   },
   lualine_x = {
     { "diagnostics" },
@@ -65,8 +65,8 @@ local buffers = {
   },
 
   symbols = {
-    modified = " ●",
-    alternate_file = "⎇  ",
+    modified = " ֯",
+    alternate_file = "⎇ ",
     directory = " ",
   },
 }

@@ -1,15 +1,6 @@
-local opts = {
-  ensure_installed = {
-    "stylua",
-    "shellcheck",
-    "shfmt",
-    "flake8",
-  },
-}
-
----@param opts MasonSettings | {ensure_installed: string[]}
-local function config(plugin, opts)
+local function config(_, opts)
   require("mason").setup(opts)
+
   local mr = require("mason-registry")
   for _, tool in ipairs(opts.ensure_installed) do
     local p = mr.get_package(tool)
@@ -19,10 +10,19 @@ local function config(plugin, opts)
   end
 end
 
+local opts = {
+  ensure_installed = {
+    "stylua",
+    "shellcheck",
+    "shfmt",
+    "flake8",
+  },
+}
+
 return {
   "williamboman/mason.nvim",
   cmd = "Mason",
-  keys = { { "<leader>cm", "<Cmd>Mason<Cr>", desc = "Mason" } },
+  keys = { { "<Space>m", "<Cmd>Mason<Cr>", desc = "Mason" } },
   opts = opts,
   config = config,
 }

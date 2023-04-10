@@ -36,6 +36,7 @@ local function config(_, options)
       name = "+leader",
 
       ["<tab>"] = { name = "+tabs" },
+      a = { name = "+aerial" },
       b = { name = "+buffer" },
       c = { name = "+code" },
       l = { name = "+lazy" },
@@ -45,7 +46,9 @@ local function config(_, options)
       t = { name = "+telescope" },
       u = { name = "+ui" },
       w = { name = "+windows" },
+      v = { name = "+view | inspect" },
       x = { name = "+diagnostics" },
+      z = { name = "+terminal" },
       yo = {
         name = "+toggle",
         i = { desc = "Ident Guidelines" },

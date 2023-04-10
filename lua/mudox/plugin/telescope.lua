@@ -1,152 +1,118 @@
-local function open(name, opts)
-  opts = vim.deepcopy(opts)
+local dependencies = {
+  -- plugins list
+  "tsakirist/telescope-lazy.nvim",
+
+  -- native sorter for performance
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+  -- advanced `find_files` with `rg` arguments
+  "nvim-telescope/telescope-live-grep-args.nvim",
+
+  -- symbols data library
+  "nvim-telescope/telescope-symbols.nvim",
+}
+
+local function open(picker, opts)
+  opts = vim.deepcopy(opts or {})
+
   return function()
-    local defaults = { cwd = require("mudox.lib.path").get_root() }
-    opts = vim.tbl_deep_extend("force", defaults, opts or {})
-    if name == "files" then
-      local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+    local dir = require("mudox.lib.path").get_root_dir()
+    if not dir then
+      dir = vim.loop.cwd()
+    end
+    print(("[Telescope %s] using root dir: %s"):format(picker, dir))
+    opts = vim.tbl_deep_extend("force", { cwd = dir }, opts)
+
+    if picker == "files" then
+      local cmd = ("git -C '%s' rev-parse --is-inside-work-tree"):format(dir)
+      local in_git_repo = vim.fn.systemlist(cmd)[1] == "true"
       if in_git_repo then
         opts.show_untracked = true
-        name = "git_files"
+        picker = "git_files"
       else
-        name = "find_files"
+        picker = "find_files"
       end
     end
-    require("telescope.builtin")[name](opts)
+
+    require("telescope.builtin")[picker](opts)
   end
 end
 
-local function cmd(subcmd)
-  return "<Cmd>Telescope " .. subcmd .. "<Cr>"
-end
-
-local function files()
-  local defaults = { cwd = require("mudox.lib.path").get_root() }
-  opts = vim.tbl_deep_extend("force", defaults, opts or {})
-
-  local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
-  if in_git_repo then
-    opts.show_untracked = true
-    name = "git_files"
+local function font_symbols()
+  local s = require("telescope.builtin").symbols
+  if vim.v.count ~= 0 then
+    s() -- list all symbols
   else
-    name = "find_files"
+    s { sources = { "nerd", "math" } }
   end
-
-  require("telescope.builtin")[name](opts)
 end
 
-local function builtins()
-  local opts = {
-    include_extensions = true,
-    preview = { hide_on_startup = true },
-  }
-  require("telescope.builtin").builtin(opts)
-end
-
-local function document_symbos()
-  return open("lsp_document_symbols", {
-    symbols = {
-      "Class",
-      "Function",
-      "Method",
-      "Constructor",
-      "Interface",
-      "Module",
-      "Struct",
-      "Trait",
-      "Field",
-      "Property",
-    },
-  })
-end
-
-local function workspace_symbols()
-  return open("lsp_workspace_symbols", {
-    symbols = {
-      "Class",
-      "Function",
-      "Method",
-      "Constructor",
-      "Interface",
-      "Module",
-      "Struct",
-      "Trait",
-      "Field",
-      "Property",
-    },
-  })
-end
-
+-- stylua: ignore start
 local keys = {
-  { ":", builtins, desc = "All Telescope Pickers" },
-  { "<Space>", cmd("resume"), desc = "Resume" },
+  { ":",        "builtin",                   "All Telescope Pickers"    },
+  { "<Space>",  "resume",                    "Resume"                   },
 
   -- lsp
-  { "?", cmd("diagnostics bufnr=0"), desc = "Document Diagnostics" },
-  { "!", cmd("diagnostics"), desc = "Workspace Diagnostics" },
-  { ".", cmd("lsp_code_actions"), desc = "Code Actions" },
+  { "?",        "diagnostics bufnr=0",       "Document Diagnostics"     },
+  { "!",        "diagnostics",               "Workspace Diagnostics"    },
+  { ".",        "lsp_code_actions",          "Code Actions"             },
+
+  -- symbols
+  { "<M-i>",    "treesitter",                "TreeSitter Symbols"       },
+  { "<M-9>",    "lsp_workspace_symbols",     "LSP Workspace Symbols"    },
+  { "<M-8>",    "lsp_document_symbols",      "LSP Document Symbols"     },
 
   -- vim
-  { "h", cmd("help_tags"), desc = "Vim Help" },
-  { "o", cmd("vim_options"), desc = "Vim Options" },
-  { "H", cmd("highlights"), desc = "Highlight Groups" },
-  { "/", cmd("current_buffer_fuzzy_find"), desc = "Search in Buffer" },
-  { "k", cmd("keymaps"), desc = "Keymaps" },
-  { "c", cmd("command_history"), desc = "Command History" },
-  { "C", cmd("commands"), desc = "Commands" },
+  { "<Space>r", "oldfiles",                  "Recent Files"             },
+  { "<C-S-n>",  "buffers",                   "Switch Buffer"            },
+  { "h",        "help_tags",                 "Vim Help"                 },
+  { "o",        "vim_options",               "Vim Options"              },
+  { "H",        "highlights",                "Highlight Groups"         },
+  { "/",        "current_buffer_fuzzy_find", "Search in Buffer"         },
+  { "k",        "keymaps",                   "Keymaps"                  },
+  { "c",        "command_history",           "Command History"          },
+  { "C",        "commands",                  "Commands"                 },
 
   -- grep
-  { "w", open("grep_string"), desc = "Grep <Word> Under Cursor" },
-  { "W", open("grep_string", { cwd = false }), desc = "Grep <Word> Under Cursor (from file dir)" },
-  { "g", open("live_grep"), desc = "Live Grep" },
-  { "G", open("live_grep", { cwd = false }), desc = "Live Grep (from file dir)" },
+  { "<Space>s", open("live_grep"),           "Live Grep"                },
+  { "w",        open("grep_string"),         "Grep <Word> Under Cursor" },
 
   -- files
-  { "f", open("files"), desc = "Find Files (root dir, find_files)" },
-  { "F", open("files", { cwd = false }), desc = "Find Files (from file dir, find_files)" },
+  { "<C-p>",    open("files"),               "Find Files"               },
 
   -- plugins
-  { "p", cmd("lazy"), desc = "Lazy" },
+  { "p",        "lazy",                      "Lazy"                     },
 
   -- git
-  { "gc", cmd("git_commits"), desc = "commits" },
-  { "gs", cmd("git_status"), desc = "status" },
+  { "gc",       "git_commits",               "Git Commits"              },
+  { "gb",       "git_bcommits",              "Git Buffer History"       },
+  { "gB",       "git_branches",              "Git Branches"             },
+  { "gs",       "git_status",                "Git Status"               },
 
   -- search
-  { "M", cmd("man_pages"), desc = "Man Pages" },
-  { "m", cmd("marks"), desc = "Jump to Mark" },
-  { "s", document_symbos(), desc = "Document Symbols" },
-  { "S", workspace_symbols(), desc = "Workspace Symbols" },
+  { "M",        "man_pages",                 "Man Pages"                },
+  { "m",        "marks",                     "Jump to Mark"             },
 
   -- notify
-  { "n", cmd("notify"), desc = "Notifications" },
+  { "n",        "notify",                    "Notifications"            },
+
+  -- misc
+  { "i",        font_symbols,                "Font Symbols"             },
 }
+-- stylua: ignore end
 
-for _, key in pairs(keys) do
-  key[1] = "<leader>t" .. key[1]
+for _, v in pairs(keys) do
+  if v[1]:sub(1, 1) ~= "<" then
+    v[1] = "<leader>t" .. v[1]
+  end
+
+  if type(v[2]) == "string" then
+    v[2] = "<Cmd>Telescope " .. v[2] .. "<Cr>"
+  end
+
+  v.desc = v[3]
+  v[3] = nil
 end
-
-vim.list_extend(keys, {
-  -- symbols
-  { "<M-8>", document_symbos(), desc = "Document Symbols" },
-  { "<M-9>", workspace_symbols(), desc = "Workspace Symbols" },
-  { "<M-i>", cmd("treesitter"), desc = "TreeSitter Symbols" },
-})
-
-local function buffers()
-  require("telescope.builtin").buffers(require("telescope.themes").get_dropdown {
-    previewer = false,
-  })
-end
-
-local shortcuts = {
-  { "<C-p>", files, desc = "Smart Find Files" },
-  { "<Space>g", open("live_grep"), desc = "Live Grep" },
-  { "<C-S-N>", buffers, desc = "Switch Buffer" },
-  { "<Space>r", cmd("oldfiles"), desc = "Recent Files" },
-}
-
-vim.list_extend(keys, shortcuts)
 
 local mappings = {
   i = {
@@ -176,7 +142,7 @@ local mappings = {
     -- <C-v> for vertical split open
     -- <C-t> for tabpage open
     ["<C-s>"] = function(...)
-      require("telescope.action").select_horizontal(...)
+      require("telescope.actions").select_horizontal(...)
     end,
 
     -- send to trouble
@@ -199,40 +165,110 @@ local mappings = {
   },
 }
 
-local opts = {
-  defaults = {
-    -- icons
-    selection_caret = " ",
-    prompt_prefix = " ",
-    multi_icon = "│",
+local defaults = {
+  -- icons
+  selection_caret = " ",
+  prompt_prefix = " ",
+  multi_icon = "│",
 
-    -- layout
-    sorting_strategy = "ascending",
-    layout_strategy = "flex",
-    layout_config = {
-      prompt_position = "top",
+  dynamic_preview_title = true,
+
+  -- layout
+  sorting_strategy = "ascending",
+  layout_strategy = "flex",
+  layout_config = {
+    prompt_position = "top",
+  },
+
+  -- files finder
+  vimgrep_arguments = {
+    "rg",
+    "--color=never",
+    "--no-heading",
+    "--with-filename",
+    "--line-number",
+    "--column",
+    "--smart-case",
+    "--trim", -- trim indentations
+  },
+
+  mappings = mappings,
+}
+
+local pickers = {
+  buffers = {
+    theme = "dropdown",
+    previewer = false,
+  },
+
+  symbols = {
+    theme = "dropdown",
+  },
+
+  builtin = {
+    include_extensions = true,
+    preview = { hide_on_startup = true },
+  },
+
+  treesitter = {
+    symbols = {
+      "Module",
+      "Interface",
+      "Trait",
+      "Class",
+      "Struct",
+      "Function",
+      "Method",
+      "Constructor",
+      "Field",
+      "Property",
+      "Variable",
+      "Constant",
     },
-
-    -- files finder
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--trim", -- trim indentations
+    theme = "dropdown",
+  },
+  lsp_document_symbols = {
+    symbols = {
+      "Module",
+      "Interface",
+      "Trait",
+      "Class",
+      "Struct",
+      "Function",
+      "Method",
+      "Constructor",
+      "Field",
+      "Property",
+      "Variable",
+      "Constant",
     },
-
-    mappings = mappings,
+    theme = "dropdown",
+  },
+  lsp_workspace_symbols = {
+    symbols = {
+      "Module",
+      "Interface",
+      "Trait",
+      "Class",
+      "Struct",
+      "Function",
+      "Method",
+      "Constructor",
+      "Field",
+      "Property",
+      -- "Variable",
+      -- "Constant",
+    },
+    theme = "dropdown",
   },
 }
 
-local dependencies = {
-  "tsakirist/telescope-lazy.nvim",
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  "nvim-telescope/telescope-live-grep-args.nvim",
+local extensions = {}
+
+local opts = {
+  defaults = defaults,
+  pickers = pickers,
+  extensions = extensions,
 }
 
 local function config(_, options)
@@ -240,22 +276,21 @@ local function config(_, options)
 
   telescope.setup(options)
 
-  local extensions = {
+  local names = {
     "lazy",
     "fzf",
     "live_grep_args",
     "notify",
   }
-  for _, name in ipairs(extensions) do
-    require("telescope").load_extension(name)
+  for _, name in ipairs(names) do
+    telescope.load_extension(name)
   end
 end
 
 return {
   "nvim-telescope/telescope.nvim",
-  cmd = "Telescope",
-  version = false, -- telescope did only one release, so use HEAD for now
   dependencies = dependencies,
+  cmd = "Telescope",
   keys = keys,
   opts = opts,
   config = config,

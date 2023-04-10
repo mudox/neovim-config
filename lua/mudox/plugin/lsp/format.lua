@@ -36,7 +36,6 @@ function M.format()
       return client.name ~= "null-ls"
     end,
   }, require("mudox.lib.lazy").get_opts("nvim-lspconfig").format or {}))
-  -- }, {}))
 end
 
 function M.on_attach(client, buf)

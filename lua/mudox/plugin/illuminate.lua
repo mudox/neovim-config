@@ -1,14 +1,21 @@
 return {
   "RRethy/vim-illuminate",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufRead", "BufNewFile" },
   opts = {
     delay = 200,
     filetypes_denylist = {
+      "DiffviewFiles",
+      "DressingInput",
+      "TelescopePrompt",
+      "aerial",
+      "aerial-nav",
       "dirvish",
       "fugitive",
-      "TelescopePrompt",
       "help",
+      "lazy",
       "man",
+      "mason",
+      "qf",
     },
   },
   config = function(_, opts)

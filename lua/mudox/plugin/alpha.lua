@@ -1,6 +1,9 @@
 return {
   "goolord/alpha-nvim",
   event = "VimEnter",
+  keys = {
+    { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
+  },
   opts = function()
     local dashboard = require("alpha.themes.dashboard")
     local logo = [[

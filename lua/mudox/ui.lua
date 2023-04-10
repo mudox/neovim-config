@@ -22,13 +22,12 @@ local powerline = {
     light_left  = "",
     light_right = "",
   },
-
 }
 -- stylua: ignore end
 
--- 〉
-
 powerline.current = powerline.t3
+
+-- 〉
 
 -- Tree 〈
 
@@ -42,6 +41,8 @@ local tree = {
 
 -- 〉
 
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+
 -- LSP kinds 〈
 
 local kind = {}
@@ -50,87 +51,63 @@ local kind = {}
 kind.sf = {
   File          = "􀉆 ",
   Folder        = "􀈖 ",
-
   Module        = "􀐛 ",
   Package       = "􀒮 ",
-
   Enum          = "􀂝 ",
   Class         = "􀀉 ",
   Struct        = "􀂹 ",
   Interface     = "􀧫 ",
-
   Function      = "􀀎 ",
   Method        = "􀂬 ",
-
   Event         = "􀋦 ",
-
-  Constant      = "",
-  Variable      = "",
+  Constant      = " ",
+  Variable      = " ",
   Value         = " ",
   Text          = " ",
-
   EnumMember    = "􀷾 ",
   Field         = "􀋡 ",
-
   Color         = " ",
   Constructor   = " ",
-
   Keyword       = "􀟕 ",
   Operator      = "􀅺 ",
-
   Property      = "􀀢 ",
   Reference     = "􀉣 ",
-
   Snippet       = "􀉈 ",
-
   TypeParameter = "􀂺 ",
-
   Unit          = " ",
 }
 
 kind.default = {
   File          = " ",
   Folder        = " ",
-
   Module        = " ",
   Package       = " ",
-
   Enum          = "🅴 ",
   Class         = "🅲 ",
   Struct        = "🆂 ",
   Interface     = "🅸 ",
-
-  Function      = "ƒ",
-  Method        = "",
-
-  Event         = "",
-
-  Constant      = "",
-  Variable      = "",
+  Function      = "ƒ ",
+  Method        = " ",
+  Event         = " ",
+  Constant      = " ",
+  Variable      = " ",
   Value         = " ",
   Text          = " ",
-
   EnumMember    = " ",
   Field         = " ",
-
   Color         = " ",
   Constructor   = " ",
-
   Keyword       = " ",
   Operator      = " ",
-
   Property      = "🄿 ",
   Reference     = " ",
-
   Snippet       = " ",
-
   TypeParameter = " ",
-
   Unit          = " ",
 }
 -- stylua: ignore end
 
---〉
+-- 〉
 
 -- Filetype 〈
 
@@ -148,7 +125,7 @@ local filetype = {
 }
 -- stylua: ignore end
 
---〉
+-- 〉
 
 -- Folder 〈
 
@@ -156,10 +133,8 @@ local filetype = {
 local folder = {
   default      = " ",
   open         = " ",
-
   empty        = " ",
   empty_open   = " ",
-
   symlink      = " ",
   symlink_open = " ",
 }
@@ -178,27 +153,21 @@ local icons = {
   hint          = " ",
   trace         = " ",
   success       = " ",
-
   light_dot     = "·",
   heavy_dot     = "",
-
   check         = "✔",
   ballot        = "✘",
-
   deleted       = " ",
-
   expanded      = "",
   collapsed     = "",
-
   folder_closed = " ",
   folder_open   = " ",
-
-  kind        = kind.sf,
-
+  kind          = kind.sf,
   powerline     = powerline,
   tree          = tree,
   folder        = folder,
   filetype      = filetype,
+  border        = border,
 }
 -- stylua: ignore end
 

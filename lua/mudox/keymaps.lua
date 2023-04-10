@@ -1,5 +1,3 @@
--- NOTE: plugin keymaps are defined in plugin spec files
-
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -17,6 +15,8 @@ local icmd = k.icmd
 local vmap = k.vmap
 
 local cmap = k.cmap
+
+local tmap = k.tmap
 
 local omap = k.omap
 ---@diagnostic enable: unused-local
@@ -38,7 +38,6 @@ nnop("gj")
 nnop("gk")
 
 -- buffers
--- HACK: kitty.conf remap `ctrl+shift+[|]` to `ctrl+shift+f|g`
 ncmd("<M-[>71", "bnext")
 ncmd("<M-[>70", "bNext")
 
@@ -47,8 +46,11 @@ nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
 -- `q` triggers macro recording too easily
-nmap("<C-g>q", "q")
 nnop("q")
+nmap("<C-g>", "q", { remap = true })
+nmap("Q:", "q:", { remap = true })
+nmap("Q/", "q/", { remap = true })
+nmap("Q?", "q?", { remap = true })
 
 -- `Q` triggers Ex mode too easily
 nnop("Q")
@@ -81,12 +83,12 @@ ncmd("<C-Left>", "vertical resize -2", { desc = "Decrease window width" })
 ncmd("<C-Right>", "vertical resize +2", { desc = "Increase window width" })
 
 -- move Lines
-nmap("<A-j>", "<Cmd>m .+1<Cr>==", { desc = "Move line down" })
-nmap("<A-k>", "<Cmd>m .-2<Cr>==", { desc = "Move line up" })
-imap("<A-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move line down" })
-imap("<A-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move line up" })
-vmap("<A-j>", ":m '>+1<Cr>gv=gv", { desc = "Move selection down" })
-vmap("<A-k>", ":m '<-2<Cr>gv=gv", { desc = "Move selection up" })
+nmap("<M-j>", "<Cmd>m .+1<Cr>==", { desc = "Move Current Line Down" })
+nmap("<M-k>", "<Cmd>m .-2<Cr>==", { desc = "Move Current Line Up" })
+imap("<M-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move Current Line Down" })
+imap("<M-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move Current Line Up" })
+vmap("<M-j>", ":m '>+1<Cr>gv=gv", { desc = "Move selection down" })
+vmap("<M-k>", ":m '<-2<Cr>gv=gv", { desc = "Move selection up" })
 
 -- clear search highlight with <Esc>
 nmap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
@@ -101,8 +103,15 @@ imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
 -- 〉
 
--- b for (
 omap("ir", "i[")
 omap("ar", "a[")
 omap("ia", "i<")
 omap("aa", "a<")
+
+-- terminal
+tmap("<Esc>", "<C-\\><C-n>")
+
+tmap("<C-h>", "<Cmd>wincmd h<Cr>")
+tmap("<C-j>", "<Cmd>wincmd j<Cr>")
+tmap("<C-k>", "<Cmd>wincmd k<Cr>")
+tmap("<C-l>", "<Cmd>wincmd l<Cr>")

@@ -1,64 +1,4 @@
-local dependencies = {
-  { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-  { "folke/neodev.nvim", config = false },
-  "mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "hrsh7th/cmp-nvim-lsp",
-}
-
----@class PluginLspOpts
-local opts = {
-  -- options for vim.diagnostic.config()
-  diagnostics = {
-    underline = true,
-    update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = "●" },
-    severity_sort = true,
-  },
-  -- Automatically format on save
-  autoformat = true,
-  -- options for vim.lsp.buf.format
-  -- `bufnr` and `filter` is handled by the LazyVim formatter,
-  -- but can be also overridden when specified
-  format = {
-    formatting_options = nil,
-    timeout_ms = nil,
-  },
-  -- LSP Server Settings
-  ---@type lspconfig.options
-  servers = {
-    jsonls = {},
-    lua_ls = {
-      -- mason = false, -- set to false if you don't want this server to be installed with mason
-      settings = {
-        Lua = {
-          workspace = {
-            checkThirdParty = false,
-          },
-          completion = {
-            callSnippet = "Replace",
-          },
-        },
-      },
-    },
-  },
-  -- you can do any additional lsp server setup here
-  -- return true if you don't want this server to be setup with lspconfig
-  ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-  setup = {
-    -- example to setup with typescript.nvim
-    -- tsserver = function(_, opts)
-    --   require("typescript").setup({ server = opts })
-    --   return true
-    -- end,
-    -- Specify * to use this function as a fallback for any server
-    -- ["*"] = function(server, opts) end,
-  },
-}
-
-local function setup_formatting()
-  -- setup autoformat
-  require("mudox.plugin.lsp.format").autoformat = opts.autoformat
+local function setup_keymaps_and_formatting_on_attach()
   -- setup formatting and keymaps
   require("mudox.lib").on_attach(function(client, buffer)
     require("mudox.plugin.lsp.format").on_attach(client, buffer)
@@ -80,67 +20,88 @@ local function setup_signs()
   end
 end
 
----@param opts PluginLspOpts
-local function config(_, opts)
-  setup_formatting()
-  setup_signs()
+local function setup_diagnostic()
+  vim.diagnostic.config {
+    update_in_insert = false,
+    severity_sort = true,
 
-  local servers = opts.servers
-  local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    sign = true,
+    underline = true,
+    virtual_text = { spacing = 4, prefix = "⏹" },
 
-  local function setup(server)
-    local server_opts = vim.tbl_deep_extend("force", {
-      capabilities = vim.deepcopy(capabilities),
-    }, servers[server] or {})
-
-    if opts.setup[server] then
-      if opts.setup[server](server, server_opts) then
-        return
-      end
-    elseif opts.setup["*"] then
-      if opts.setup["*"](server, server_opts) then
-        return
-      end
-    end
-
-    require("lspconfig")[server].setup(server_opts)
-  end
-
-  -- temp fix for lspconfig rename
-  -- https://github.com/neovim/nvim-lspconfig/pull/2439
-  local mappings = require("mason-lspconfig.mappings.server")
-  if not mappings.lspconfig_to_package.lua_ls then
-    mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-    mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
-  end
-
-  -- before lspconfig['lua_ls'].setup()
-  require("neodev").setup()
-
-  local mlsp = require("mason-lspconfig")
-  local available = mlsp.get_available_servers()
-
-  local ensure_installed = {} ---@type string[]
-  for server, server_opts in pairs(servers) do
-    if server_opts then
-      server_opts = server_opts == true and {} or server_opts
-      -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-      if server_opts.mason == false or not vim.tbl_contains(available, server) then
-        setup(server)
-      else
-        ensure_installed[#ensure_installed + 1] = server
-      end
-    end
-  end
-
-  require("mason-lspconfig").setup { ensure_installed = ensure_installed }
-  require("mason-lspconfig").setup_handlers { setup }
+    -- float = {
+    --   source = "always",
+    -- },
+  }
 end
+
+local function setup_servers()
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local function setup(server_name)
+    local res, server = pcall(require, "mudox.plugin.lsp.server." .. server_name)
+    if not res then
+      -- server = {}
+      return
+    end
+
+    local opts = vim.tbl_deep_extend("force", {
+      capabilities = vim.deepcopy(capabilities),
+    }, server.opts or {})
+
+    if server.setup then
+      if server.setup() then
+        -- returning `true` skips `lspconfig.setup`
+        return
+      end
+    end
+
+    require("lspconfig")[server_name].setup(opts)
+  end
+
+  local mlc = require("mason-lspconfig")
+  local available = mlc.get_available_servers()
+  local install_by_mason = {}
+
+  for name, type in vim.fs.dir("~/.config/nvim/lua/mudox/plugin/lsp/server") do
+    if type == "file" and name:sub(-4) == ".lua" then
+      local server_name = name:sub(1, -5)
+      local server = require("mudox.plugin.lsp.server." .. server_name)
+
+      if server.mason == false or not vim.tbl_contains(available, server) then
+        setup(server_name)
+      else
+        install_by_mason[#install_by_mason + 1] = server_name
+      end
+    end
+  end
+
+  mlc.setup { ensure_installed = install_by_mason }
+  mlc.setup_handlers { setup }
+end
+
+local function setup_mason() end
+
+local dependencies = {
+  { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+  { "folke/neodev.nvim", config = false },
+
+  "mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+
+  "hrsh7th/cmp-nvim-lsp",
+}
 
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = dependencies,
-  opts = opts,
-  config = config,
+  config = function()
+    require("neodev").setup {}
+
+    setup_signs()
+    setup_diagnostic()
+    setup_keymaps_and_formatting_on_attach()
+    setup_mason()
+    setup_servers()
+  end,
 }

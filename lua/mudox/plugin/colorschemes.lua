@@ -10,4 +10,10 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
   },
+
+  -- kanagawa
+  {
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa",
+  },
 }

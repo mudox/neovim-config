@@ -1,8 +1,13 @@
 local function resolve_mode()
   local mode
 
+  -- for neovide gui app
+  if vim.g.neovide then
+    return "neovide"
+  end
+
   -- for neovim extension inside vscode
-  if vim.fn.exists("g:vscode") == 1 then
+  if vim.g.vscode then
     return "vscode"
   end
 

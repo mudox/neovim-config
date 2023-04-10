@@ -1,29 +1,3 @@
-local textobjects = {
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  init = function()
-    -- PERF: no need to load the plugin, if we only need its queries for mini.ai
-    local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
-    local opts = require("lazy.core.plugin").values(plugin, "opts", false)
-    local enabled = false
-    if opts.textobjects then
-      for _, mod in ipairs { "move", "select", "swap", "lsp_interop" } do
-        if opts.textobjects[mod] and opts.textobjects[mod].enable then
-          enabled = true
-          break
-        end
-      end
-    end
-    if not enabled then
-      require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-    end
-  end,
-}
-
-local playground = {
-  "nvim-treesitter/playground",
-  cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },
-}
-
 local keys = {
   { "<c-space>", desc = "Increment selection" },
   { "<bs>", desc = "Decrement selection", mode = "x" },
@@ -65,6 +39,19 @@ opts.incremental_selection = {
   },
 }
 
+local playground = {
+  "nvim-treesitter/playground",
+  cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },
+}
+
+-- stylua: ignore start
+playground.keys = {
+  { "<leader>vh", "<Cmd>TSHighlightCapturesUnderCursor<Cr>", desc = "Show TreeSitter Highlight Captures Under Cursor" },
+  { "<leader>vc", "<Cmd>TSCaptureUnderCursor<Cr>", desc = "Show TreeSitter Capture Under Cursor" },
+  { "<leader>vn", "<Cmd>TSNodeUnderCursor<Cr>", desc = "Show TreeSitter Node Under Cursor" },
+}
+-- stylua: ignore end
+
 -- See: https://github.com/nvim-treesitter/playground#setup
 opts.playground = {
   enable = true,
@@ -91,12 +78,32 @@ opts.query_linter = {
   lint_events = { "BufWrite", "CursorHold" },
 }
 
+local textobjects = {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  init = function()
+    -- PERF: no need to load the plugin, if we only need its queries for mini.ai
+    local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
+    local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+    local enabled = false
+    if opts.textobjects then
+      for _, mod in ipairs { "move", "select", "swap", "lsp_interop" } do
+        if opts.textobjects[mod] and opts.textobjects[mod].enable then
+          enabled = true
+          break
+        end
+      end
+    end
+    if not enabled then
+      require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+    end
+  end,
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufRead", "BufNewFile" },
     dependencies = { textobjects, playground },
     keys = keys,
     opts = opts,

@@ -147,4 +147,5 @@ vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 
 -- Colorscheme
 require("tokyonight").load()
+-- require("kanagawa").load()
 -- require("catppuccin").load()

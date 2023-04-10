@@ -62,7 +62,16 @@ end
   convenient method for common patter `<Cmd>{ex command}<Cr>`
 ]]
 local function cmd(mode, from, to, options)
-  map(mode, from, "<Cmd>" .. to .. "<Cr>", options)
+  local right = "<Cmd>" .. to .. "<Cr>"
+
+  if mode == "i" then
+    right = "<Esc>" .. right
+  elseif mode == "t" then
+    right = "<C-\\><C-n>" .. right
+    options.remap = true
+  end
+
+  map(mode, from, right, options)
 end
 
 --[[

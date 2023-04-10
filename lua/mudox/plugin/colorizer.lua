@@ -1,9 +1,14 @@
-local function config()
-  require("colorizer").setup()
-end
+local opts = {
+  filetypes = {
+    "css",
+    "javascript",
+    "lua",
+    html = { mode = "foreground", }
+  },
+}
 
 return {
   "NvChad/nvim-colorizer.lua",
   event = { "BufRead", "BufNewFile" },
-  config = config,
+  opts = opts,
 }
