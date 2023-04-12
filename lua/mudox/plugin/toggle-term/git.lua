@@ -8,9 +8,9 @@ local function on_open()
   -- start insert mode
   vim.cmd("startinsert!")
 
-  -- disable mappings to leave insert mode
+  -- disable mappings to leave terminal mode
   local k = require("mudox.lib.keymap")
-  local keys = { "<Esc>", "<C-\\><C-n>", "<C-\\><C-\\>" }
+  local keys = { "<Esc>", "<C-\\><C-n>" }
   for _, key in ipairs(keys) do
     k.tmap(key, nop, { buffer = 0 })
   end

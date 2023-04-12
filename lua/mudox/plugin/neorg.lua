@@ -19,7 +19,7 @@ return {
   cmd = "Neorg",
   opts = opts,
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    "plenary.nvim",
     "nvim-neorg/neorg-telescope",
   },
 }

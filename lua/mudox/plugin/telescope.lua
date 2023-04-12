@@ -1,3 +1,7 @@
+-- vim: fdm=marker fmr=\ 〈,\ 〉
+
+-- Dependencies 〈
+
 local dependencies = {
   -- plugins list
   "tsakirist/telescope-lazy.nvim",
@@ -11,6 +15,10 @@ local dependencies = {
   -- symbols data library
   "nvim-telescope/telescope-symbols.nvim",
 }
+
+-- Dependencies 〉
+
+-- Keys 〈
 
 local function open(picker, opts)
   opts = vim.deepcopy(opts or {})
@@ -88,6 +96,7 @@ local keys = {
   { "gb",       "git_bcommits",              "Git Buffer History"       },
   { "gB",       "git_branches",              "Git Branches"             },
   { "gs",       "git_status",                "Git Status"               },
+  { "gS",       "git_stash",                 "Git Stash"                },
 
   -- search
   { "M",        "man_pages",                 "Man Pages"                },
@@ -114,6 +123,9 @@ for _, v in pairs(keys) do
   v[3] = nil
 end
 
+-- Keys 〉
+
+-- Mappings 〈
 local mappings = {
   i = {
     -- no normal mode
@@ -165,6 +177,10 @@ local mappings = {
   },
 }
 
+-- Mappings 〉
+
+-- Defaults 〈
+
 local defaults = {
   -- icons
   selection_caret = " ",
@@ -194,6 +210,10 @@ local defaults = {
 
   mappings = mappings,
 }
+
+-- Defaults 〉
+
+-- Pickers 〈
 
 local pickers = {
   buffers = {
@@ -263,7 +283,15 @@ local pickers = {
   },
 }
 
+-- Pickers 〉
+
+-- Extensions 〈
+
 local extensions = {}
+
+-- Extensions 〉
+
+-- Opts & Config 〈
 
 local opts = {
   defaults = defaults,
@@ -286,6 +314,8 @@ local function config(_, options)
     telescope.load_extension(name)
   end
 end
+
+-- Opts & Config 〉
 
 return {
   "nvim-telescope/telescope.nvim",

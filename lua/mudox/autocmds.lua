@@ -58,6 +58,7 @@ autocmd("FileType", {
     "PlenaryTestPopup",
     "qf",
     "qr_panel",
+    "query",
     "startuptime",
     "tsplayground",
   },

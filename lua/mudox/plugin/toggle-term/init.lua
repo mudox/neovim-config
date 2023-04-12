@@ -56,6 +56,7 @@ end
 -- stylua: ignore start
 local keys = {
   toggle_key,
+  -- ISSUE: can not close after open using the keymap
   { "<leader>gl", toggle_lazygit, desc = "LazyGit (ToggleTerm)", },
   { "<leader>gg", toggle_gitui, desc = "GitUI (ToggleTerm)", },
 
