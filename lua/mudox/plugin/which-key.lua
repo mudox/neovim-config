@@ -46,17 +46,16 @@ local function config(_, options)
       t = { name = "+telescope" },
       u = { name = "+ui" },
       w = { name = "+windows" },
-      v = { name = "+view | inspect" },
+      v = {
+        name = "+view | inspect",
+        l = { "<Cmd>Lazy<Cr>", "Lazy" },
+      },
       x = { name = "+diagnostics" },
       z = { name = "+terminal" },
-      yo = {
-        name = "+toggle",
-        i = { desc = "Ident Guidelines" },
-      },
+      yo = { name = "+toggle" },
     },
 
     ["<Space>"] = { name = "+common" },
-    ["<M-/>"] = { name = "+panel" },
     ["\\"] = { name = "+refactoring" },
   }
 

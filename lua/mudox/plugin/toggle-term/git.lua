@@ -14,6 +14,8 @@ local function on_open()
   for _, key in ipairs(keys) do
     k.tmap(key, nop, { buffer = 0 })
   end
+
+  k.tcmd("q", "wincmd q", { buffer = 0 })
 end
 
 function M:init_gitui()

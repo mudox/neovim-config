@@ -16,6 +16,6 @@ return {
   "aznhe21/actions-preview.nvim",
   opts = opts,
   keys = {
-    { "\\a", code_actions, desc = "Code Action" },
+    { "\\a", code_actions, desc = "Code Actions" },
   },
 }

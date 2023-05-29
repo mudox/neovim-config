@@ -38,7 +38,7 @@ function M.format()
   }, require("mudox.lib.lazy").get_opts("nvim-lspconfig").format or {}))
 end
 
-function M.on_attach(client, buf)
+local function on_attach(client, buf)
   -- dont format if client disabled it
   if
     client.config
@@ -59,6 +59,10 @@ function M.on_attach(client, buf)
       end,
     })
   end
+end
+
+function M.setup()
+  require("mudox.lib").on_lsp_attach(on_attach)
 end
 
 return M

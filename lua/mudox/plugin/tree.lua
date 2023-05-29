@@ -55,13 +55,13 @@ local function opts()
   return {
     view = {
       signcolumn = "no",
-      hide_root_folder = true,
       width = 40,
     },
     filters = {
       dotfiles = true,
     },
     renderer = {
+      root_folder_label = false,
       indent_markers = {
         enable = true,
       },
@@ -90,10 +90,10 @@ end
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = "kyazdani42/nvim-web-devicons",
-  cmd = { "NvimTreeToggle", "NvimTreeRefresh", "NvimTreeFindFile", "NvimTreeFindFileToggle" },
+  cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle", "NvimTreeFindFile", "NvimTreeRefresh" },
   keys = {
     { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "Nvim Tree (Find File) Toggle" },
-    { "<M-/>e", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "Nvim Tree (Find File) Toggle" },
+    { "<C-S-p>", "<Cmd>NvimTreeFindFile!<Cr>", desc = "Nvim Tree (Find File) (Update Root)" },
   },
   opts = opts,
   config = config,

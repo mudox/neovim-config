@@ -1,11 +1,3 @@
-local function setup_keymaps_and_formatting_on_attach()
-  -- setup formatting and keymaps
-  require("mudox.lib").on_attach(function(client, buffer)
-    require("mudox.plugin.lsp.format").on_attach(client, buffer)
-    require("mudox.plugin.lsp.keymaps").on_attach(client, buffer)
-  end)
-end
-
 local function setup_signs()
   local i = require("mudox.ui").icons
   local signs = {
@@ -15,19 +7,28 @@ local function setup_signs()
     { name = "DiagnosticSignHint", text = i.hint },
   }
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
+  for _, v in ipairs(signs) do
+    vim.fn.sign_define(v.name, { texthl = v.name, text = v.text })
   end
 end
 
 local function setup_diagnostic()
   vim.diagnostic.config {
     update_in_insert = false,
+
     severity_sort = true,
 
-    sign = true,
-    underline = true,
-    virtual_text = { spacing = 4, prefix = "⏹" },
+    signs = true,
+
+    underline = {
+      severity = vim.diagnostic.severity.WARN,
+    },
+
+    virtual_text = {
+      severity = vim.diagnostic.severity.WARN,
+      spacing = 4,
+      prefix = "󰅂",
+    },
 
     -- float = {
     --   source = "always",
@@ -93,14 +94,18 @@ local dependencies = {
 
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufRead", "BufNewFile" },
+  keys = {
+    { "<leader>vL", "<Cmd>LspInfo<Cr>", desc = "LSP Information" },
+  },
   dependencies = dependencies,
   config = function()
     require("neodev").setup {}
 
     setup_signs()
     setup_diagnostic()
-    setup_keymaps_and_formatting_on_attach()
+    require("mudox.plugin.lsp.formatting").setup()
+    require("mudox.plugin.lsp.keymaps").setup()
     setup_mason()
     setup_servers()
   end,

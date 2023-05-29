@@ -13,16 +13,13 @@ end
 local opts = {
   ensure_installed = {
     "stylua",
-    "shellcheck",
-    "shfmt",
-    "flake8",
   },
 }
 
 return {
   "williamboman/mason.nvim",
   cmd = "Mason",
-  keys = { { "<Space>m", "<Cmd>Mason<Cr>", desc = "Mason" } },
+  keys = { { "<leader>vm", "<Cmd>Mason<Cr>", desc = "Mason" } },
   opts = opts,
   config = config,
 }

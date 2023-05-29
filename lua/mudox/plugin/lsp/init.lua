@@ -4,4 +4,5 @@ return {
   require("mudox.plugin.lsp.lsp-config"),
   require("mudox.plugin.lsp.lsp-lines"),
   require("mudox.plugin.lsp.actions-preview"),
+  require("mudox.plugin.lsp.inc-rename"),
 }

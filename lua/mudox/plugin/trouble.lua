@@ -1,8 +1,12 @@
 local keys = {
+  { "<leader>x<Space>", "<Cmd>TroubleToggle<Cr>", desc = "Toggle Previous Trouble Window" },
+
   { "<leader>xx", "<Cmd>TroubleToggle document_diagnostics<Cr>", desc = "Document Diagnostics (Trouble)" },
   { "<leader>xX", "<Cmd>TroubleToggle workspace_diagnostics<Cr>", desc = "Workspace Diagnostics (Trouble)" },
-  { "<leader>xL", "<Cmd>TroubleToggle loclist<Cr>", desc = "Location List (Trouble)" },
-  { "<leader>xQ", "<Cmd>TroubleToggle quickfix<Cr>", desc = "Quickfix List (Trouble)" },
+  { "<leader>xl", "<cmd>troubletoggle loclist<cr>", desc = "Location List (trouble)" },
+  { "<leader>xq", "<cmd>troubletoggle quickfix<cr>", desc = "Quickfix List (trouble)" },
+
+  { "<leader>xr", "<Cmd>TroubleToggle lsp_references<Cr>", desc = "References List (Trouble)" },
 }
 
 return {

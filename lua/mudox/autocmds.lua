@@ -47,6 +47,7 @@ local close_with_q = augroup("close_with_q")
 autocmd("FileType", {
   group = close_with_q,
   pattern = {
+    "aerial-nav",
     "fugitive",
     "help",
     "lspinfo",

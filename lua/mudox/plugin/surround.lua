@@ -1,4 +1,5 @@
 local surrounds = {
+  -- fold
   z = {
     add = function()
       local input = require("nvim-surround.config").get_input
@@ -8,12 +9,21 @@ local surrounds = {
       return { open, close }
     end,
   },
+  -- stylue ignore lines
+  i = {
+    add = function()
+      local open = { "-- stylua: ignore start", "" }
+      local close = { "", "-- stylua: ignore end" }
+      return { open, close }
+    end,
+  },
 }
 
 opts = {
   keymaps = {
-    visual = ",s", -- `S` and `gs` conflicts with `leap.nvim`
-    visual_line = ",S",
+    -- `S` and `gs` conflicts with `leap.nvim`
+    visual = "q",
+    visual_line = "Q",
   },
   surrounds = surrounds,
 }

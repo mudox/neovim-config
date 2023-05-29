@@ -13,6 +13,42 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or install_path)
 
 -- Load lazy.nvim
+-- stylua: ignore start
+icons = {
+  cmd        = "🄲 ",
+  config     = " ",
+  event      = "🄴 ",
+  ft         = "🄵 ",
+  init       = "🄸 ",
+  source     = "🅂 ",
+  keys       = "🄺 ",
+  plugin     = "🄿 ",
+  import     = "🅁 ",
+
+  -- cmd = " ",
+  -- config = " ",
+  -- event = " ",
+  -- ft = " ",
+  -- init = " ",
+  -- source = " ",
+  -- keys = " ",
+  -- plugin = " ",
+  -- import = " ",
+
+  lazy       = " ",
+  loaded     = "●",
+  not_loaded = "○",
+  runtime    = " ",
+  start      = " ",
+  task       = "✔ ",
+  list       = {
+    "●",
+    "➜",
+    "★",
+    "‒",
+  },
+}
+-- stylua: ignore end
 
 local ui = {
   -- a number <1 is a percentage., >1 is a fixed size
@@ -20,29 +56,7 @@ local ui = {
   wrap = true, -- wrap the lines in the ui
   -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
   border = "none",
-  icons = {
-    cmd = " ",
-    config = " ",
-    event = " ",
-    ft = " ",
-    init = " ",
-    import = " ",
-    keys = " ",
-    lazy = " ",
-    loaded = "●",
-    not_loaded = "○",
-    plugin = " ",
-    runtime = " ",
-    source = " ",
-    start = " ",
-    task = "✔ ",
-    list = {
-      "●",
-      "➜",
-      "★",
-      "‒",
-    },
-  },
+  icons = icons,
   -- leave nil, to automatically select a browser depending on your OS.
   -- If you want to use a specific browser, you can define it here
   browser = nil, ---@type string?

@@ -25,11 +25,11 @@ local omap = k.omap
 -- Common mappings 〈
 
 -- sensible `n, N`
-k.expr({ "n", "x", "o" }, "n", '"Nn"[v:searchforward] . "zvzz"', { expr = true })
-k.expr({ "n", "x", "o" }, "N", '"nN"[v:searchforward] . "zvzz"', { expr = true })
+k.expr({ "n", "x", "o" }, "N", [[":set hlsearch<Cr>" . "nN"[v:searchforward] . "zv"]], { expr = true })
+k.expr({ "n", "x", "o" }, "n", [[":set hlsearch<Cr>" . "Nn"[v:searchforward] . "zv"]], { expr = true })
 
 -- save file
-k.cmd({ "n", "i", "x" }, "<C-s>", "update")
+k.cmd({ "n", "i" }, "<C-s>", "update")
 
 -- sensible `j, k`
 nmap("j", "gj")
@@ -37,17 +37,13 @@ nmap("k", "gk")
 nnop("gj")
 nnop("gk")
 
--- buffers
-ncmd("<M-[>71", "bnext")
-ncmd("<M-[>70", "bNext")
-
 -- tabs
 nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
 -- `q` triggers macro recording too easily
 nnop("q")
-nmap("<C-g>", "q", { remap = true })
+-- nmap("<C-g>", "q", { remap = true })
 nmap("Q:", "q:", { remap = true })
 nmap("Q/", "q/", { remap = true })
 nmap("Q?", "q?", { remap = true })
@@ -67,14 +63,8 @@ nmap("zk", "zkzx", { remap = true })
 nmap("g;", "g;zv", { remap = true })
 nmap("g,", "g,zv", { remap = true })
 
--- quickly wipeout buffer
-ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
-
 -- close current tabpage
 ncmd("<C-w><C-t>", "tabclose")
-
--- copy entire buffer content into system pasteboard
-ncmd("yf", "0,$y +")
 
 -- resize window using <ctrl> arrow keys
 ncmd("<C-Up>", "resize +2", { desc = "Increase window height" })
@@ -115,3 +105,22 @@ tmap("<C-h>", "<Cmd>wincmd h<Cr>")
 tmap("<C-j>", "<Cmd>wincmd j<Cr>")
 tmap("<C-k>", "<Cmd>wincmd k<Cr>")
 tmap("<C-l>", "<Cmd>wincmd l<Cr>")
+
+-- inspect
+ncmd("<leader>vi", "Inspect")
+ncmd("<leader>vt", "InspectTree")
+
+-- Buffer 〈
+
+-- buffer navigation
+-- <C-S-n> to open telescope to select buffers
+ncmd("»", "bnext") -- <C-S-]> remapped
+ncmd("«", "bNext") -- <C-S-[> remapped
+
+-- quickly wipeout buffer
+ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
+
+-- copy entire buffer content into system pasteboard
+ncmd("yf", "0,$y +")
+
+-- Buffer 〉

@@ -1,3 +1,5 @@
+local M = {}
+
 local function diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
@@ -6,73 +8,61 @@ local function diagnostic_goto(next, severity)
   end
 end
 
-local keys = nil
+local keys = (function()
+  local format = require("mudox.plugin.lsp.formatting").format
 
-local function get()
-  local format = require("mudox.plugin.lsp.format").format
-  if not keys then
+  return {
+    -- diagnostic
+    { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 
-    -- stylua: ignore start
-    keys =  {
-      { "<leader>ci", "<Cmd>LspInfo<Cr>", desc = "Lsp Info" },
+    -- goto d|D|td|i|r
+    { "gd", "<Cmd>Telescope lsp_definitions<Cr>", desc = "Goto Definition" },
+    { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+    { "gt", "<Cmd>Telescope lsp_type_definitions<Cr>", desc = "Goto Type Definitions" },
+    { "gI", "<Cmd>Telescope lsp_implementations<Cr>", desc = "Goto Implementations" },
+    { "gr", "<Cmd>Telescope lsp_references<Cr>", desc = "Goto References" },
 
-      -- diagnostic
-      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+    -- help
+    { "K", vim.lsp.buf.hover, desc = "Hover" },
+    { "gk", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+    { "<C-S-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
 
-      -- goto
-      { "gd", "<Cmd>Telescope lsp_definitions<Cr>", desc = "Goto Definition" },
-      { "gr", "<Cmd>Telescope lsp_references<Cr>", desc = "References" },
-      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-      { "gI", "<Cmd>Telescope lsp_implementations<Cr>", desc = "Goto Implementation" },
-      { "gt", "<Cmd>Telescope lsp_type_definitions<Cr>", desc = "Goto Type Definition" },
+    -- diagnostics
+    { "]d", diagnostic_goto(true), desc = "Goto Next Diagnostic" },
+    { "[d", diagnostic_goto(false), desc = "Goto Previous Diagnostic" },
+    -- { "]x", diagnostic_goto(true, "ERROR"), desc = "Next Error" },
+    -- { "[x", diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
+    -- { "]w", diagnostic_goto(true, "WARN"), desc = "Next Warning" },
+    -- { "[w", diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
 
-      -- help
-      { "K", vim.lsp.buf.hover, desc = "Hover" },
-      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-      { "<C-S-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+    -- code action
+    -- { "\\a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+    -- Currently use plugin 'actions-preview'
 
-      -- diagnostics
-      { "]d", diagnostic_goto(true), desc = "Next Diagnostic" },
-      { "[d", diagnostic_goto(false), desc = "Prev Diagnostic" },
-      { "]x", diagnostic_goto(true, "ERROR"), desc = "Next Error" },
-      { "[x", diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-      { "]w", diagnostic_goto(true, "WARN"), desc = "Next Warning" },
-      { "[w", diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
+    -- format
+    { "\\f", format, desc = "Format Document", has = "documentFormatting" },
+    { "\\f", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
 
-      -- code action
-      -- { "\\a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-      -- Currently use plugin 'actions-preview'
-
-      -- format
-      { "\\f", format, desc = "Format Document", has = "documentFormatting" },
-      { "\\f", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
-    }
-    -- stylua: ignore end
-
-    if require("mudox.lib.lazy").has("inc-rename.nvim") then
-      keys[#keys + 1] = {
-        "<leader>cr",
-        function()
-          require("inc_rename")
-          return ":IncRename " .. vim.fn.expand("<cword>")
-        end,
-        expr = true,
-        desc = "Rename",
-        has = "rename",
-      }
-    else
-      keys[#keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
-    end
-  end
-
-  return keys
-end
+    -- rename
+    { "\\r", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+    {
+      "\\R",
+      function()
+        require("inc_rename")
+        return ":IncRename " .. vim.fn.expand("<cword>")
+      end,
+      expr = true,
+      desc = "Inc Rename",
+      has = "rename",
+    },
+  }
+end)()
 
 function on_attach(client, buffer)
   local Keys = require("lazy.core.handler.keys")
   local keymaps = {}
 
-  for _, value in ipairs(get()) do
+  for _, value in ipairs(keys) do
     local keys = Keys.parse(value)
     if keys[2] == vim.NIL or keys[2] == false then
       keymaps[keys.id] = nil
@@ -93,6 +83,8 @@ function on_attach(client, buffer)
   end
 end
 
-return {
-  on_attach = on_attach,
-}
+function M.setup()
+  require("mudox.lib").on_lsp_attach(on_attach)
+end
+
+return M

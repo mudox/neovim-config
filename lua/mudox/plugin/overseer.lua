@@ -22,7 +22,8 @@ end
 
 vim.list_extend(keys, {
   -- task list side pane
-  { "<M-/>t", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List (Overseer) Side Pane" },
+  { "<leader>vr", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List (Overseer) Side Pane" },
+  { "<C-S-r>", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List (Overseer) Side Pane" },
 })
 
 -- restarts the most recent overseer task

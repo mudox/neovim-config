@@ -3,7 +3,10 @@ return {
   event = { "BufRead", "BufNewFile" },
   opts = {
     toggler = {
-      line = "<C-_>",
+      line = "<C-/>",
     },
+  },
+  keys = {
+    { "<C-/>", "gc", mode = "x", remap = true, desc = "Comment Selection" },
   },
 }

@@ -1,10 +1,28 @@
 local root_patterns = { ".git", "lua" }
 
+local logfile = vim.fn.stdpath("log") .. "/mudox.log"
+local function log(text, opts)
+  opts = opts or {}
+
+  local level = opts.level or "DEBUG"
+  level = ("[%s]"):format(level)
+
+  local list = vim.fn.split(text, "\n", true)
+  list = vim.tbl_map(function(line)
+    return string.rep(" ", 10) .. line
+  end, list)
+
+  vim.fn.writefile(list, logfile, "a")
+end
+
+---@return string|nil
 local function root_dir_from_lsp()
   ---@type string|nil
   local path = vim.api.nvim_buf_get_name(0)
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
+  log(("buffer name: %s"):format(path))
   if not path then
+    log("buffer has no path, return nil")
     return nil
   end
 
@@ -25,35 +43,37 @@ local function root_dir_from_lsp()
     for _, p in ipairs(paths) do
       local r = vim.loop.fs_realpath(p)
       if r and path:find(r, 1, true) then
+        log(("found lsp root dir: %s"):format(r))
         return r
       end
     end
   end
 end
 
+---@return string|nil
 local function root_dir_from_filename()
   ---@type string|nil
   local path = vim.api.nvim_buf_get_name(0)
-
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
-  if not path then
-    return nil
-  end
-
-  path = vim.fs.dirname(path)
-
-  return vim.fs.find(root_patterns, { path = path, upward = true })[1]
-end
-
-local function root_dir_from_cwd()
-  ---@type string|nil
-  local path = vim.loop.cwd()
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
   if not path then
     return nil
   end
 
   path = vim.fs.find(root_patterns, { path = path, upward = true })[1]
+  path = vim.fs.dirname(path)
+end
+
+---@return string|nil
+local function root_dir_from_cwd()
+  ---@type string|nil
+  local cwd = vim.loop.cwd()
+  cwd = cwd ~= "" and vim.loop.fs_realpath(cwd) or nil
+  if not cwd then
+    return nil
+  end
+
+  local path = vim.fs.find(root_patterns, { path = cwd, upward = true })[1]
+  path = path or cwd
   return vim.fs.dirname(path)
 end
 

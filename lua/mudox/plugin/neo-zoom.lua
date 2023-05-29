@@ -57,7 +57,6 @@ return {
   opts = opts,
   config = config,
   keys = {
-    { "<C-w>o", "<Cmd>NeoZoomToggle<Cr>", desc = "Toggle Zoom Current Window" },
-    { "z<Space>", "<Cmd>NeoZoomToggle<Cr>", desc = "Toggle Zoom Current Window" },
+    { "z<Space>", "<Cmd>NeoZoomToggle<Cr>", desc = "Neo Zoom" },
   },
 }

@@ -51,7 +51,6 @@ local opts = {
 
 local keys = {
   -- outline side pane
-  { "<M-/>o", "<Cmd>AerialToggle<Cr>", desc = "Toggle Outline (Aerial) Side Pane" },
   { "gO", "<Cmd>AerialToggle<Cr>", desc = "Toggle Outline (Aerial) Side Pane" },
 
   { "<leader>af", "<Cmd>AerialOpen float<Cr>", desc = "Open Outline (Aerial) Side Pane" },

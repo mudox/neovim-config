@@ -43,12 +43,12 @@ local function map(
   mode, -- mode char, see `:h map-modes` and `:h map-table`
   from, -- key mapping string
   to, -- ex-command string or lua function
-  options -- see {opts} in `:h nvim_set_keymap()`
+  opts -- see {opts} in `:h nvim_set_keymap()`
 )
-  options = options or {}
-  options = normalize_options(mode, options)
+  opts = opts or {}
+  opts = normalize_options(mode, opts)
 
-  vim.keymap.set(mode, from, to, options)
+  vim.keymap.set(mode, from, to, opts)
 end
 
 local function expr(mode, from, to, opts)
@@ -61,17 +61,18 @@ end
 --[[
   convenient method for common patter `<Cmd>{ex command}<Cr>`
 ]]
-local function cmd(mode, from, to, options)
-  local right = "<Cmd>" .. to .. "<Cr>"
+local function cmd(mode, from, to, opts)
+  to = "<Cmd>" .. to .. "<Cr>"
+  opts = opts or {}
 
-  if mode == "i" then
-    right = "<Esc>" .. right
-  elseif mode == "t" then
-    right = "<C-\\><C-n>" .. right
-    options.remap = true
-  end
+  -- if mode == "i" then
+  --   to = "<Esc>" .. to
+  -- elseif mode == "t" then
+  --   to = "<C-\\><C-n>" .. to
+  --   opts.remap = true
+  -- end
 
-  map(mode, from, right, options)
+  map(mode, from, to, opts)
 end
 
 --[[

@@ -18,4 +18,4 @@
 /lua/packer_compiled
 
 /luapad.lua
-lua/mudox/plugin
+lua/mudox/plugin/neorg/keybind.lua

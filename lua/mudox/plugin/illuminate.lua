@@ -4,18 +4,19 @@ return {
   opts = {
     delay = 200,
     filetypes_denylist = {
-      "DiffviewFiles",
-      "DressingInput",
-      "TelescopePrompt",
       "aerial",
       "aerial-nav",
+      "DiffviewFiles",
       "dirvish",
+      "DressingInput",
       "fugitive",
       "help",
       "lazy",
       "man",
       "mason",
+      "NvimTree",
       "qf",
+      "TelescopePrompt",
     },
   },
   config = function(_, opts)

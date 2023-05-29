@@ -48,62 +48,106 @@ local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 local kind = {}
 
 -- stylua: ignore start
-kind.sf = {
-  File          = "􀉆 ",
-  Folder        = "􀈖 ",
-  Module        = "􀐛 ",
-  Package       = "􀒮 ",
-  Enum          = "􀂝 ",
-  Class         = "􀀉 ",
-  Struct        = "􀂹 ",
-  Interface     = "􀧫 ",
-  Function      = "􀀎 ",
-  Method        = "􀂬 ",
-  Event         = "􀋦 ",
-  Constant      = " ",
-  Variable      = " ",
-  Value         = " ",
-  Text          = " ",
-  EnumMember    = "􀷾 ",
-  Field         = "􀋡 ",
-  Color         = " ",
-  Constructor   = " ",
-  Keyword       = "􀟕 ",
-  Operator      = "􀅺 ",
-  Property      = "􀀢 ",
-  Reference     = "􀉣 ",
-  Snippet       = "􀉈 ",
-  TypeParameter = "􀂺 ",
-  Unit          = " ",
-}
-
 kind.default = {
+  Class         = "🅲 ",
+  Color         = " ",
+  Constant      = " ",
+  Constructor   = " ",
+  Enum          = "🅴 ",
+  EnumMember    = " ",
+  Event         = " ",
+  Field         = " ",
   File          = " ",
   Folder        = " ",
-  Module        = " ",
-  Package       = " ",
-  Enum          = "🅴 ",
-  Class         = "🅲 ",
-  Struct        = "🆂 ",
-  Interface     = "🅸 ",
   Function      = "ƒ ",
-  Method        = " ",
-  Event         = " ",
-  Constant      = " ",
-  Variable      = " ",
-  Value         = " ",
-  Text          = " ",
-  EnumMember    = " ",
-  Field         = " ",
-  Color         = " ",
-  Constructor   = " ",
+  Interface     = "🅸 ",
   Keyword       = " ",
+  Method        = " ",
+  Module        = " ",
   Operator      = " ",
+  Package       = " ",
   Property      = "🄿 ",
   Reference     = " ",
   Snippet       = " ",
+  Struct        = "🆂 ",
+  Text          = " ",
   TypeParameter = " ",
   Unit          = " ",
+  Value         = " ",
+  Variable      = " ",
+}
+
+kind.sf = {
+  Class         = "􀀉 ",
+  Color         = " ",
+  Constant      = " ",
+  Constructor   = " ",
+  Enum          = "􀂝 ",
+  EnumMember    = "􀷾 ",
+  Event         = "􀋦 ",
+  Field         = "􀋡 ",
+  File          = "􀉆 ",
+  Folder        = "􀈖 ",
+  Function      = "􀀎 ",
+  Interface     = "􀧫 ",
+  Keyword       = "􀟕 ",
+  Method        = "􀂬 ",
+  Module        = "􀐛 ",
+  Operator      = "􀅺 ",
+  Package       = "􀒮 ",
+  Property      = "􀀢 ",
+  Reference     = "􀉣 ",
+  Snippet       = "􀉈 ",
+  Struct        = "􀂹 ",
+  Text          = " ",
+  TypeParameter = "􀂺 ",
+  Unit          = " ",
+  Value         = " ",
+  Variable      = " ",
+}
+
+kind.vscode       = {
+  File            = ' ',
+
+  Event           = ' ',
+
+  Function        = '󰊕 ',
+  Method          = '󰊕 ',
+  Constructor     = '󰊕 ',
+  KeywordFunction = '󰊕 ',
+
+  Key             = ' ',
+  String          = '󰝗 ',
+  Text            = '󰦨 ',
+
+  Package         = ' ',
+  Module          = '󰰏 ',
+  Namespace       = '󰰔 ',
+
+  Interface       = ' ',
+  Class           = ' ',
+  Struct          = ' ',
+
+  Array           = ' ',
+  Object          = ' ',
+
+  Null            = '󰟢 ',
+  Boolean         = '󰔡 ',
+  Number          = ' ',
+  Operator        = ' ',
+  TypeParameter   = ' ',
+
+  Constant        = ' ',
+  Variable        = '󱗿 ',
+
+  Enum            = ' ',
+  EnumMember      = ' ',
+
+  Property        = ' ',
+  Field           = ' ',
+
+  Snippet         = " ",
+  TabNine         = ' ',
 }
 -- stylua: ignore end
 
@@ -146,12 +190,14 @@ local folder = {
 
 -- stylua: ignore start
 local icons = {
+  -- diagnostics
   error         = " ",
   warn          = " ",
   info          = " ",
   debug         = " ",
   hint          = " ",
   trace         = " ",
+
   success       = " ",
   light_dot     = "·",
   heavy_dot     = "",
@@ -162,7 +208,8 @@ local icons = {
   collapsed     = "",
   folder_closed = " ",
   folder_open   = " ",
-  kind          = kind.sf,
+
+  kind          = kind.vscode,
   powerline     = powerline,
   tree          = tree,
   folder        = folder,

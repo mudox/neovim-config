@@ -32,10 +32,10 @@ opts.ensure_installed = {
 opts.incremental_selection = {
   enable = true,
   keymaps = {
-    init_selection = "<C-space>",
-    node_incremental = "<C-space>",
-    scope_incremental = "<nop>",
-    node_decremental = "<bs>",
+    init_selection = "<C-Space>",
+    node_incremental = "<C-Space>",
+    scope_incremental = "<Nop>",
+    node_decremental = "<Bs>",
   },
 }
 
@@ -46,9 +46,8 @@ local playground = {
 
 -- stylua: ignore start
 playground.keys = {
-  { "<leader>vh", "<Cmd>TSHighlightCapturesUnderCursor<Cr>", desc = "Show TreeSitter Highlight Captures Under Cursor" },
-  { "<leader>vc", "<Cmd>TSCaptureUnderCursor<Cr>", desc = "Show TreeSitter Capture Under Cursor" },
-  { "<leader>vn", "<Cmd>TSNodeUnderCursor<Cr>", desc = "Show TreeSitter Node Under Cursor" },
+  { "<leader>vc", "<Cmd>TSCaptureUnderCursor<Cr>", desc = "TreeSitter Capture" },
+  { "<leader>vn", "<Cmd>TSNodeUnderCursor<Cr>", desc = "TreeSitter Node" },
 }
 -- stylua: ignore end
 

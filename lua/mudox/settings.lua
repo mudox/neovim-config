@@ -11,7 +11,7 @@ o.mouse = "a"
 
 -- stylua: ignore start
 opt.fillchars = {
-  eob = " ",
+  eob       = " ",
 
   -- Pane separators
   horiz     = "━",
@@ -24,7 +24,11 @@ opt.fillchars = {
 
   verthoriz = "╋",
 
-  diff      = '╱'
+  diff      = '╱',
+
+  foldopen  = '',
+  foldsep   = ' ',
+  foldclose = ''
 }
 -- stylua: ignore end
 
@@ -82,6 +86,7 @@ o.inccommand = "nosplit"
 -- Editor 〈
 
 o.whichwrap = [[b,s,<,>,[,],h,l]]
+
 o.autochdir = false
 
 o.autowriteall = true
@@ -133,6 +138,9 @@ o.updatetime = 200
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+-- Disable perl provider
+vim.g.loaded_perl_provider = 0
 
 -- Language clients 〈
 

@@ -7,7 +7,7 @@ local keys = {
   { "p", function() require("refactoring").debug.printf { below = false } end, desc = "Print function call", },
   { "c", function() require("refactoring").debug.cleanup {} end, desc = "Cleanup debug prints", },
   -- visual mode
-  { "r", function() require("refactoring").select_refactor() end, desc = "Refactor selection", },
+  { "R", function() require("refactoring").select_refactor() end, desc = "Refactor selection", },
   { "p", function() require("refactoring").debug.print_var {} end, desc = "Print variable", },
 }
 -- stylua: ignore end
