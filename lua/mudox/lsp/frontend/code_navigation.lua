@@ -28,16 +28,10 @@ local keys = (function()
     { "<C-S-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
 
     -- diagnostics
-    { "]d", diagnostic_goto(true), desc = "Goto Next Diagnostic" },
-    { "[d", diagnostic_goto(false), desc = "Goto Previous Diagnostic" },
-    -- { "]x", diagnostic_goto(true, "ERROR"), desc = "Next Error" },
-    -- { "[x", diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-    -- { "]w", diagnostic_goto(true, "WARN"), desc = "Next Warning" },
-    -- { "[w", diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-
-    -- code action
-    -- { "\\a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-    -- Currently use plugin 'actions-preview'
+    { "]d", diagnostic_goto(true), desc = "Goto Next Issue" },
+    { "[d", diagnostic_goto(false), desc = "Goto Previous Issue" },
+    { "]D", diagnostic_goto(true, "ERROR"), desc = "Goto Next Error" },
+    { "[D", diagnostic_goto(false, "ERROR"), desc = "Goto Previous Error" },
 
     -- format
     { "\\f", format, desc = "Format Document", has = "documentFormatting" },
@@ -45,20 +39,10 @@ local keys = (function()
 
     -- rename
     { "\\r", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
-    {
-      "\\R",
-      function()
-        require("inc_rename")
-        return ":IncRename " .. vim.fn.expand("<cword>")
-      end,
-      expr = true,
-      desc = "Inc Rename",
-      has = "rename",
-    },
   }
 end)()
 
-function on_attach(client, buffer)
+function setup_code_navigation(client, buffer)
   local Keys = require("lazy.core.handler.keys")
   local keymaps = {}
 
@@ -84,8 +68,9 @@ function on_attach(client, buffer)
 end
 
 function M.setup()
-  local gid = vim.api.nvim_create_augroup("mdx_lsp_setup_keymaps_old", { clear = true })
-  require("mudox.lib").on_lsp_attach(gid, on_attach)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("mdx_lsp_setup_code_navigation", { clear = true }),
+    callback = setup_code_navigation,
+  })
 end
-
 return M

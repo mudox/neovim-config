@@ -116,13 +116,13 @@ kind.vscode       = {
   Constructor     = '󰊕 ',
   KeywordFunction = '󰊕 ',
 
-  Key             = ' ',
-  String          = '󰝗 ',
+  Key             = '󰌋 ',
+  String          = ' ',
   Text            = '󰦨 ',
 
   Package         = ' ',
-  Module          = '󰰏 ',
-  Namespace       = '󰰔 ',
+  Module          = '󰋺 ',
+  Namespace       = '󰕋 ',
 
   Interface       = ' ',
   Class           = ' ',
@@ -132,13 +132,13 @@ kind.vscode       = {
   Object          = ' ',
 
   Null            = '󰟢 ',
-  Boolean         = '󰔡 ',
-  Number          = ' ',
+  Boolean         = ' ',
+  Number          = '# ',
   Operator        = ' ',
   TypeParameter   = ' ',
 
-  Constant        = ' ',
-  Variable        = '󱗿 ',
+  Constant        = ' ',
+  Variable        = ' ',
 
   Enum            = ' ',
   EnumMember      = ' ',
