@@ -59,25 +59,25 @@ local function setup_servers()
     require("lspconfig")[server_name].setup(opts)
   end
 
-  local mlc = require("mason-lspconfig")
-  local available = mlc.get_available_servers()
-  local install_by_mason = {}
+  local mason_lspconfig = require("mason-lspconfig")
+  local mason_installed_servers = mason_lspconfig.get_available_servers()
+  local config_by_mason = {}
 
   for name, type in vim.fs.dir("~/.config/nvim/lua/mudox/plugin/lsp/server") do
     if type == "file" and name:sub(-4) == ".lua" then
       local server_name = name:sub(1, -5)
       local server = require("mudox.plugin.lsp.server." .. server_name)
 
-      if server.mason == false or not vim.tbl_contains(available, server) then
+      if server.mason == false or not vim.tbl_contains(mason_installed_servers, server) then
         setup(server_name)
       else
-        install_by_mason[#install_by_mason + 1] = server_name
+        config_by_mason[#config_by_mason + 1] = server_name
       end
     end
   end
 
-  mlc.setup { ensure_installed = install_by_mason }
-  mlc.setup_handlers { setup }
+  mason_lspconfig.setup { ensure_installed = config_by_mason }
+  mason_lspconfig.setup_handlers { setup }
 end
 
 local function setup_mason() end

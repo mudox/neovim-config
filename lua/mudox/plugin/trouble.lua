@@ -3,8 +3,9 @@ local keys = {
 
   { "<leader>xx", "<Cmd>TroubleToggle document_diagnostics<Cr>", desc = "Document Diagnostics (Trouble)" },
   { "<leader>xX", "<Cmd>TroubleToggle workspace_diagnostics<Cr>", desc = "Workspace Diagnostics (Trouble)" },
-  { "<leader>xl", "<cmd>troubletoggle loclist<cr>", desc = "Location List (trouble)" },
-  { "<leader>xq", "<cmd>troubletoggle quickfix<cr>", desc = "Quickfix List (trouble)" },
+
+  { "<leader>xl", "<cmd>troubletoggle loclist<cr>", desc = "Location List (Trouble)" },
+  { "<leader>xq", "<cmd>troubletoggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
 
   { "<leader>xr", "<Cmd>TroubleToggle lsp_references<Cr>", desc = "References List (Trouble)" },
 }

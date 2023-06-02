@@ -75,7 +75,7 @@ local buffers = {
   },
 
   symbols = {
-    modified = "",
+    modified = " 󰴓 ",
     alternate_file = "⎇  ",
     directory = " ",
   },
@@ -97,6 +97,5 @@ return {
     options = options,
     sections = statusline,
     tabline = tabline,
-    winbar = winbar,
   },
 }

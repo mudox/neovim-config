@@ -60,21 +60,17 @@ local function setup_format_on_save()
 end
 
 local function setup_format_on_key()
+  local gid = augroup("mdx_lsp_setup_format_on_key", { clear = true })
   autocmd("LspAttach", {
-    group = augroup("mdx_setup_lsp_format_on_key", { clear = true }),
-    desc = "Setup Format Buffer on Key (\\f)",
+    group = gid,
+    desc = "Setup format buffer on key `\\f`",
     callback = function(event)
       vim.keymap.set({ "n", "x" }, "\\f", format, { buffer = event.buf, desc = "LSP Format" })
     end,
   })
 end
 
-function M.setup()
-  setup_format_on_save()
-  setup_format_on_key()
-end
-
-function M.check(server)
+local function check(server)
   local bufnr = vim.api.nvim_get_current_buf()
   local client = vim.lsp.get_active_clients({ bufnr = bufnr, name = server })[1]
 
@@ -100,6 +96,23 @@ function M.check(server)
   -- vim.notify(msg:format(server))
 
   return true
+end
+
+local function setup_keymaps(bufnr)
+  local function b(t)
+    t.buffer = bufnr
+  end
+
+  -- TODO: toggle autoformat for current buffer
+  -- TODO: check formatting capabilities
+end
+
+local function setup_keymaps_on_attach() end
+
+function M.setup()
+  setup_format_on_save()
+  setup_format_on_key()
+  setup_keymaps_on_attach()
 end
 
 return M
