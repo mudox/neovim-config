@@ -1,8 +1,12 @@
+local function r(name)
+  return require("mudox.plugin.lsp." .. name)
+end
+
 return {
-  require("mudox.plugin.lsp.mason"),
-  require("mudox.plugin.lsp.null-ls"),
-  require("mudox.plugin.lsp.lsp-config"),
-  require("mudox.plugin.lsp.lsp-lines"),
-  require("mudox.plugin.lsp.actions-preview"),
-  require("mudox.plugin.lsp.inc-rename"),
+  r "lsp-config", -- LSP configuration
+
+  r "mason",
+  r "null-ls",
+  r "lsp-lines",
+  r "actions-preview",
 }

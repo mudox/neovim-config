@@ -3,6 +3,7 @@ local M = {}
 local function setup_keymaps(bufnr)
   local function b(t)
     t.buffer = bufnr
+    return t
   end
 
   -- stylua: ignore start

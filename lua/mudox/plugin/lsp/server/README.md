@@ -1,4 +1,0 @@
-- the filename must be server name
-- `setup` - function for additional manual setup besides `lspconfig` setup, returning `true` skips `lspconfig` setup
-- `opts` - dictionary for `require(lspconfig)[{name}].setup { ... }` method
-- `mason = false` to skip mason management
