@@ -10,7 +10,7 @@ md = require("mudox.mode")
 require("mudox.lazy")
 
 -- Settings
-local load = require("mudox.lib.load")
+local load = require("mudox.util.load")
 load("settings")
 
 -- Autocmds & Keymaps

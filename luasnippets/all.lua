@@ -1,4 +1,4 @@
-require("mudox.lib.luasnip").setup_env()
+require("mudox.util.luasnip").setup_env()
 
 local function _fold_mode_line()
   local body = "vim: fdm=marker fmr=〈,〉"

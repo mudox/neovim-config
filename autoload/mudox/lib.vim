@@ -3,7 +3,7 @@ if exists('g:autoloaded_mudox_lib')
 endif
 let g:autoloaded_mudox_lib = 1
 
-function! mudox#lib#toggleQuickFix()
+function! mudox#util#toggleQuickFix()
   if empty(filter(getwininfo(), 'v:val.quickfix'))
     copen
   else
@@ -11,7 +11,7 @@ function! mudox#lib#toggleQuickFix()
   endif
 endfunction
 
-function! mudox#lib#toggleLocList()
+function! mudox#util#toggleLocList()
   try
     if empty(filter(getwininfo(), 'v:val.loclist'))
       lopen
@@ -27,7 +27,7 @@ function! mudox#lib#toggleLocList()
   endtry
 endfunction
 
-function! mudox#lib#wipeoutBuffer()
+function! mudox#util#wipeoutBuffer()
   try
     bwipeout
   catch /E444\|E5601/

@@ -3,7 +3,7 @@ vim.g.maplocalleader = ","
 
 -- Keymap helpers 〈
 ---@diagnostic disable: unused-local
-local k = require("mudox.lib.keymap")
+local k = require("mudox.util.keymap")
 
 local nmap = k.nmap
 local nnop = k.nnop
@@ -118,7 +118,7 @@ ncmd("»", "bnext") -- <C-S-]> remapped
 ncmd("«", "bNext") -- <C-S-[> remapped
 
 -- quickly wipeout buffer
-ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
+ncmd("<C-w>r", "call mudox#util#wipeoutBuffer()")
 
 -- copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")

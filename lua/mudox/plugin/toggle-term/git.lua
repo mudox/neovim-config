@@ -9,7 +9,7 @@ local function on_open()
   vim.cmd("startinsert!")
 
   -- disable mappings to leave terminal mode
-  local k = require("mudox.lib.keymap")
+  local k = require("mudox.util.keymap")
   local keys = { "<Esc>", "<C-\\><C-n>" }
   for _, key in ipairs(keys) do
     k.tmap(key, nop, { buffer = 0 })

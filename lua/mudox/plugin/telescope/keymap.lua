@@ -6,7 +6,7 @@ local function open(picker, opts)
   opts = vim.deepcopy(opts or {})
 
   return function()
-    local dir = require("mudox.lib.path").get_root_dir()
+    local dir = require("mudox.util.path").get_root_dir()
     if not dir then
       dir = vim.loop.cwd()
     end

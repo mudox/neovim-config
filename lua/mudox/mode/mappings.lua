@@ -65,7 +65,7 @@ nmap("g;", "g;zv", { remap = true })
 nmap("g,", "g,zv", { remap = true })
 
 -- quickly wipeout buffer
-ncmd("<C-w>r", "call mudox#lib#wipeoutBuffer()")
+ncmd("<C-w>r", "call mudox#util#wipeoutBuffer()")
 
 -- close current tabpage
 ncmd("<C-w><C-t>", "tabclose")
