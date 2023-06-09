@@ -1,6 +1,6 @@
 icon = " "
 
 # required
-kitle = "Format all lua files with `stylua`"
+title = "Format all lua files with `stylua`"
 
 # description = ""

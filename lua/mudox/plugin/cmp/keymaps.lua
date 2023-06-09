@@ -5,26 +5,28 @@ local has_words_before = function()
 end
 
 return function()
+  -- NOTE: see https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
+  -- for exmaples
+
   local cmp = require("cmp")
-  local luasnip = require("luasnip")
+  -- local luasnip = require("luasnip")
 
   return cmp.mapping.preset.insert {
-    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    -- ["<C-n>"] trigger completion or select next item
+    -- ["<C-p>"] trigger completion or select previous item
 
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    -- documentation window scrolling
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-    -- trigger completion menu
-    ["<C-Space>"] = cmp.mapping.complete(),
-    -- dismiss completion menu without selection
-    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-Space>"] = cmp.mapping.complete(), -- trigger
+    ["<C-e>"] = cmp.mapping.abort(), -- abort
 
-    -- safely select entries with <CR>
+    -- Enter
     -- - if nothing is selected (including preselections) add a newline as usual.
     -- - if something has explicitly been selected by the user, select it.
     -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
-    ["<CR>"] = cmp.mapping {
+    ["<Cr>"] = cmp.mapping {
       i = function(fallback)
         if cmp.visible() and cmp.get_active_entry() then
           cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
@@ -36,17 +38,15 @@ return function()
       c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
     },
 
-    -- the super tab
-    -- select next item -> expand or jump snippet -> trigger completion before word -> fallback
+    -- Tab
+    -- select next item -> trigger completion before word -> fallback
     -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
-    -- IDEA: remap snippet jumping to <M-[|]>?
+    -- - use <C-f|b> to jump between snippet placeholders
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
         -- you could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- they way you will only jump inside the snippet region
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+        -- this way you will only jump inside the snippet region
       elseif has_words_before() then
         cmp.complete()
       else
@@ -57,8 +57,6 @@ return function()
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
