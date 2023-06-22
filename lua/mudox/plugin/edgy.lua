@@ -37,15 +37,6 @@ local bottom = {
     ft = "qf",
     size = { height = 0.3 },
   },
-  {
-    title = "Help",
-    ft = "help",
-    size = { height = 0.3 },
-    -- only show help buffers
-    filter = function(buf)
-      return vim.bo[buf].buftype == "help"
-    end,
-  },
 }
 
 local right = {
@@ -54,22 +45,42 @@ local right = {
     ft = "spectre_panel",
     size = { width = 0.4 },
   },
+  {
+    title = "Neovim Help",
+    ft = "help",
+    size = { width = 99 },
+    filter = function(buf)
+      return vim.bo[buf].buftype == "help"
+    end,
+  },
+  {
+    title = "Man Page",
+    ft = "man",
+    size = { width = 99 },
+    filter = function(buf)
+      return vim.bo[buf].buftype == "nofile"
+    end,
+  },
 }
 
 -- stylua: ignore start
-local opts  = {
-  left      = left,
-  right     = right,
-  bottom    = bottom,
+local function opts()
+  local i = require("mudox.ui").icons
 
-  icons     = {
-    closed  = "",
-    open    = "",
-  },
-  animate   = {
-    enabled = false,
-  },
-}
+  return {
+    left      = left,
+    right     = right,
+    bottom    = bottom,
+
+    icons     = {
+      closed  = i.collapsed,
+      open    = i.expanded,
+    },
+    animate   = {
+      enabled = false,
+    }
+  }
+end
 -- stylua: ignore end
 
 return {

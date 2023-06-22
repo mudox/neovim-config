@@ -46,7 +46,7 @@ local statusline = {
   lualine_c = {
     { "filename" },
     { "b:toggle_number" },
-    navic,
+    -- navic, -- prefer `dropbar.nvim` instead
   },
 
   lualine_x = {

@@ -7,6 +7,9 @@ local opts = {
       completion = {
         callSnippet = "Replace",
       },
+      hint = {
+        enable = true,
+      },
     },
   },
 }

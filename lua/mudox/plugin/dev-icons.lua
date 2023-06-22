@@ -14,9 +14,6 @@ local function config()
   icons["md"].icon = i.markdown
   icons["md"].color = "#ffffff"
 
-  icons["toml"].icon = i.config
-  icons["toml"].color = "#9c4221"
-
   icons["yml"].icon = i.config
   icons["yml"].color = "#cb171d"
 

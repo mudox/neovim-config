@@ -39,7 +39,7 @@ return function()
     },
 
     -- Tab
-    -- select next item -> trigger completion before word -> fallback
+    -- select next cmp item -> trigger completion before word -> fallback
     -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
     -- - use <C-f|b> to jump between snippet placeholders
     ["<Tab>"] = cmp.mapping(function(fallback)

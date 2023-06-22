@@ -6,7 +6,17 @@ end
 
 -- Dependencies 〈
 
+local smart_open = {
+  "danielfalk/smart-open.nvim",
+  branch = "0.2.x",
+  dependencies = {
+    "kkharji/sqlite.lua",
+  },
+}
+
 local dependencies = {
+  smart_open,
+
   -- plugins list
   "tsakirist/telescope-lazy.nvim",
 
@@ -54,7 +64,7 @@ local defaults = {
     "--trim", -- trim indentations
   },
 
-  mappings = s("keymap").mappings,
+  mappings = s("keymaps").mappings,
 }
 
 -- Default Settings 〉
@@ -133,7 +143,14 @@ local pickers = {
 
 -- Extension Settings 〈
 
-local extensions = {}
+local extensions = {
+  smart_open = {
+    show_scores = true,
+    ignore_patterns = { "*.git/*", "*/tmp/*" },
+    match_algorithm = "fzf",
+    disable_devicons = false,
+  },
+}
 
 -- Extension Settings 〉
 
@@ -143,38 +160,24 @@ local opts = {
   defaults = defaults,
   pickers = pickers,
   extensions = extensions,
-
-  update_events = { "TextChanged", "TextChangedI" },
-  region_check_events = "InsertEnter",
-  delete_check_events = { "TextChanged", "InsertLeave" },
-
-  store_selection_keys = "<C-f>",
 }
 
-local function config(_, options)
+local function config(_, o)
   local telescope = require("telescope")
 
-  telescope.setup(options)
+  telescope.setup(o)
 
   local names = {
-    "lazy",
     "fzf",
+    "lazy",
     "live_grep_args",
-    "notify",
     "luasnip",
+    "notify",
+    "smart_open",
   }
   for _, name in ipairs(names) do
     telescope.load_extension(name)
   end
-
-  -- HACK: for bug: https://github.com/nvim-telescope/telescope.nvim/issues/2027#issuecomment-1510001730
-  vim.api.nvim_create_autocmd("WinLeave", {
-    callback = function()
-      if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
-      end
-    end,
-  })
 end
 
 -- Opts & Config 〉
@@ -183,7 +186,7 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = dependencies,
   cmd = "Telescope",
-  keys = s("keymap").keys,
+  keys = s("keymaps").keys,
   opts = opts,
   config = config,
 }

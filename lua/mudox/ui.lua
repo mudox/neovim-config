@@ -117,6 +117,7 @@ kind.vscode       = {
   KeywordFunction = '󰊕 ',
 
   Key             = '󰌋 ',
+  Keyword         = '󰌋 ',
   String          = ' ',
   Text            = '󰦨 ',
 
@@ -147,7 +148,9 @@ kind.vscode       = {
   Field           = ' ',
 
   Snippet         = " ",
-  TabNine         = ' ',
+  TabNine         = '󰋙 ',
+
+  Error           = ' ',
 }
 -- stylua: ignore end
 
@@ -162,7 +165,7 @@ local filetype = {
   apple    = " ",
   java     = " ",
   neorg    = " ",
-  config   = " ",
+  config   = "󰣖 ",
   compiled = " ",
   backup   = " ",
   script   = " ",
@@ -191,21 +194,26 @@ local folder = {
 -- stylua: ignore start
 local icons = {
   -- diagnostics
+  -- TODO: put into sub-table `diagnostic`
   error         = " ",
   warn          = " ",
   info          = " ",
   debug         = " ",
   hint          = " ",
   trace         = " ",
-
   success       = " ",
+
   light_dot     = "·",
   heavy_dot     = "",
+
   check         = "✔",
   ballot        = "✘",
+
   deleted       = " ",
+
   expanded      = "",
   collapsed     = "",
+
   folder_closed = " ",
   folder_open   = " ",
 

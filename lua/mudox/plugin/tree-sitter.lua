@@ -14,6 +14,7 @@ opts.ensure_installed = {
   "c",
   "help",
   "html",
+  "http",
   "javascript",
   "json",
   "lua",

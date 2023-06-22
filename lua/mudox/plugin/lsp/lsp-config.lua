@@ -17,9 +17,9 @@ local function config()
   setup("backend")
 
   -- frontend
+  setup("frontend.browsing")
   setup("frontend.diagnostic")
   setup("frontend.formatting")
-  setup("frontend.code_navigation")
   setup("frontend.refactoring")
 end
 

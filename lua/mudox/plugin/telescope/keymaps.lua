@@ -72,6 +72,7 @@ local keys = {
 
   -- files
   { "<C-p>",            open("files"),               "Find Files"               },
+  { "<Space><Space>",   "smart_open",                "Smart Open"               },
 
   -- plugins
   { "p",                "lazy",                      "Lazy Plugins"             },

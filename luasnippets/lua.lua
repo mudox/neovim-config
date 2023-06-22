@@ -1,8 +1,11 @@
+-- vim: fdm=marker fmr=〈,〉
 ---@diagnostic disable: undefined-global
 
-local inline_fmt = s("sf", fmt([[("{1}"):format({2})]], { i(1, "format"), i(2, "args") }))
+local inline_string_format = s("sf", fmt([[("{1}"):format({2})]], { i(1, "format"), i(2, "args") }))
 
-local autocmd = s(
+-- lsp attach 〈
+
+local au_lsp_attach = s(
   "au",
   fmt(
     [[
@@ -24,7 +27,41 @@ local autocmd = s(
   )
 )
 
-return {
-  inline_fmt,
-  autocmd,
+-- lsp attach 〉
+
+-- local function 〈
+
+local head = c(1, {
+  fmt("local {name} = function()", { name = i(1, "name") }),
+  fmt("local function {name}", { name = i(1, "name") }),
+})
+
+local format = [[
+  {head}
+    {body}
+  end
+  ]]
+
+local local_funtion = s(
+  "lf",
+  fmt(format, {
+    head = head,
+    body = i(0),
+  })
+)
+
+-- local function 〉
+
+local test_auto = s("name!", t("mudox"))
+
+local manual = {
+  au_lsp_attach,
+  inline_string_format,
+  local_funtion,
 }
+
+local auto = {
+  test_auto,
+}
+
+return manual, auto

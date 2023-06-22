@@ -1,8 +1,13 @@
----@param group_id number
+local on = {}
+
 ---@param fn fun(client, bufnr)
-local function on_lsp_attach(group_id, fn)
+---@param opts table|nil
+function on.lsp_attach(fn, opts)
+  opts = opts or {}
+
   vim.api.nvim_create_autocmd("LspAttach", {
-    group = group_id,
+    group = opts.gid,
+    desc = opts.desc,
     callback = function(event)
       local bufnr = event.buf
       local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -11,15 +16,19 @@ local function on_lsp_attach(group_id, fn)
   })
 end
 
----@param cb fun()
-local function on_very_lazy(cb)
+---@param fn fun()
+---@param opts table|nil
+function on.very_lazy(fn, opts)
+  opts = opts or {}
+
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
-    callback = cb,
+    group = opts.gid,
+    desc = opts.desc,
+    callback = fn,
   })
 end
 
 return {
-  on_lsp_attach = on_lsp_attach,
-  on_very_lazy = on_very_lazy,
+  on = on,
 }

@@ -12,26 +12,22 @@ end
 
 local function edit_snippet()
   require("luasnip.loaders").edit_snippet_files {
-    format = function(file, source_name)
+    format = function(file, _)
       return file
         :gsub("/Users/mudox/Git/neovim%-config/luasnippets", "[MY]")
         :gsub("/Users/mudox/.local/share/nvim/lazy/friendly%-snippets/snippets", "[FRIENDLY]")
     end,
     edit = function(file)
-      vim.cmd("vnew " .. file)
+      vim.cmd("vsplit " .. file)
     end,
   }
 end
 
 -- stylua: ignore start
 local keys = {
-  -- jump by tab
-  -- { "<tab>", smart_tab, expr = true, mode = "i" },
-  -- { "<tab>", function() require("luasnip").jump(1) end, mode = "s", },
-  -- { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
-
   -- expand & juamp
-  { "<C-f>", function() require("luasnip").expand_or_jump() end, mode = { "i", "s" }, },
+  { "<C-f>", function() require("luasnip").expand_or_jump() end, mode = "i", },
+  { "<C-f>", function() require("luasnip").jump(1) end, mode = "s", },
   { "<C-b>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
 
   -- choices
@@ -41,35 +37,48 @@ local keys = {
   -- edit
   { "<leader>es", edit_snippet, desc = "Edit Snippet" },
 
-
   -- on the fly snippet
   { "<C-o>", [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode = "v", desc = "On-The-Fly Snippet" },
   { "<C-o>", function() require("luasnip.extras.otf").on_the_fly("o") end, mode = "i", desc = "On-The-Fly Snippet" },
-
-  -- log
-  { '<space>v', }
 }
 -- stylua: ignore end
 
 -- Keys 〉
 
-local function config(_, opts)
-  require("luasnip").setup(opts)
+local function opts()
+  local t = require("luasnip.util.types")
+
+  return {
+    enable_autosnippets = true, -- performance alert
+
+    history = true,
+
+    update_events = "TextChanged, TextChangedI",
+    region_check_events = "CursorMoved, CursorHold, InsertLeave",
+    delete_check_events = "TextChanged, InsertLeave",
+
+    store_selection_keys = "<C-f>",
+
+    ext_opts = {
+      [t.choiceNode] = {
+        active = {
+          virt_text = { { " ", "LspInfoTip" } },
+        },
+      },
+    },
+  }
+end
+
+local function config(_, o)
+  require("luasnip").setup(o)
 
   require("luasnip.loaders.from_lua").lazy_load()
   require("luasnip.loaders.from_vscode").lazy_load()
   require("luasnip.loaders.from_snipmate").lazy_load()
 end
 
-local opts = {
-  history = true,
-  delete_check_events = "TextChanged",
-  store_selection_keys = "<C-f>",
-}
-
 return {
   "L3MON4D3/LuaSnip",
-  version = "v1.*",
   build = "make install_jsregexp",
   dependencies = {
     "rafamadriz/friendly-snippets",

@@ -37,7 +37,7 @@ local opts = {
   min_width = 30,
   float = float,
 
-  close_on_select = true,
+  close_on_select = false,
   post_jump_cmd = "normal! zzzv",
 
   icons = i.kind,

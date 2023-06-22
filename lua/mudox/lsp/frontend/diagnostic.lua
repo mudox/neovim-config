@@ -48,6 +48,16 @@ local function jump(next, severity)
   end
 end
 
+local function toggle()
+  if vim.diagnostic.is_disabled() then
+    vim.diagnostic.enable()
+    print('Disgnostic enabled')
+  else
+    vim.diagnostic.disable()
+    print('Disgnostic disabled')
+  end
+end
+
 local function setup_keymaps(bufnr)
   local function b(t)
     t.buffer = bufnr
@@ -63,7 +73,7 @@ local function setup_keymaps(bufnr)
 
     ["gl"] = b { vim.diagnostic.open_float, "Show Issue(s) of Current Line" },
 
-    -- TODO: show / hide, toggle diagnostic feature
+    ["yod"] = b { toggle, "Toggle Diagnostic" },
   }
   -- stylua: ignore end
 

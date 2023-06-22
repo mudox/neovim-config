@@ -92,9 +92,6 @@ local function check(server)
     return false
   end
 
-  -- local msg = "%s has formatting capabilities"
-  -- vim.notify(msg:format(server))
-
   return true
 end
 

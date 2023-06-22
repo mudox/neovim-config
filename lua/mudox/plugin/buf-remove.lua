@@ -8,7 +8,6 @@ local keys = {
 
 return {
   "echasnovski/mini.bufremove",
-  version = false,
   event = { "BufRead, BufNewFile" },
   config = function()
     require("mini.bufremove").setup()
