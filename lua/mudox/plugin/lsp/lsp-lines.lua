@@ -2,7 +2,7 @@ return {
   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   keys = {
     {
-      "gl",
+      "gL",
       function()
         require("lsp_lines").toggle()
       end,

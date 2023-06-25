@@ -52,23 +52,29 @@ opt.wildmode = "longest:full,full"
 
 -- message
 opt.shortmess:append("I") -- Not show `:intro` on startup
-opt.shortmess:append("c") -- Not show insert completion menu message
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.shortmess:append("C")
-end
+opt.shortmess:append("c") -- Not show insert completion menu messages
+opt.shortmess:append("s") -- Not show `Hit Bottom / Top ...` messages
+opt.shortmess:append("C") -- Not show `scanning tags` messages
+
+opt.guicursor = "n-v-c-sm:block-blinkwait300-blinkon200"
+opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
+opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
 -- 〉
 
 -- Tab & indent 〈
 
-o.tabstop = 8
-o.softtabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
 o.smarttab = true
 o.expandtab = true
 
 o.autoindent = true
 o.smartindent = true
+
+o.breakindent = true
+o.copyindent = true
 
 -- 〉
 
@@ -93,12 +99,15 @@ o.autowriteall = true
 
 o.scrolloff = 8
 o.sidescrolloff = 8
+o.smoothscroll = true
 
 o.splitright = true
 o.splitbelow = true
-if vim.fn.has("nvim-0.9.0") == 1 then
-  o.splitkeep = "screen"
-end
+o.splitkeep = "screen"
+
+o.virtualedit = "block"
+
+o.selection = "old"
 
 -- 〉
 
@@ -127,6 +136,8 @@ o.swapfile = false
 
 -- 〉
 
+opt.diffopt:append("linematch:60")
+
 -- Grep
 o.grepformat = "%f:%l:%c:%m"
 o.grepprg = "rg --vimgrep"
@@ -140,7 +151,7 @@ o.updatetime = 200
 vim.g.markdown_recommended_style = 0
 
 -- Disable perl provider
-vim.g.loaded_perl_provider = 0
+-- vim.g.loaded_perl_provider = 0
 
 -- Language clients 〈
 

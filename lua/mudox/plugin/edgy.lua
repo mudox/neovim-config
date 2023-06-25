@@ -87,6 +87,9 @@ return {
   "folke/edgy.nvim",
   event = "VeryLazy",
   keys = keys,
+  cond = function()
+    return md ~= "man"
+  end,
   init = init,
   opts = opts,
 }

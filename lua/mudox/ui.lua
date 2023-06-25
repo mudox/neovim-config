@@ -214,8 +214,8 @@ local icons = {
   expanded      = "",
   collapsed     = "",
 
-  folder_closed = " ",
   folder_open   = " ",
+  folder_closed = " ",
 
   kind          = kind.vscode,
   powerline     = powerline,

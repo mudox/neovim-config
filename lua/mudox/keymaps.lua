@@ -25,8 +25,8 @@ local omap = k.omap
 -- Common mappings 〈
 
 -- sensible `n, N`
-k.expr({ "n", "x", "o" }, "N", [[":set hlsearch<Cr>" . "nN"[v:searchforward] . "zv"]], { expr = true })
-k.expr({ "n", "x", "o" }, "n", [[":set hlsearch<Cr>" . "Nn"[v:searchforward] . "zv"]], { expr = true })
+-- k.expr({ "n", "x", "o" }, "N", [[":set hlsearch<Cr>" . "nN"[v:searchforward] . "zv"]], { expr = true })
+-- k.expr({ "n", "x", "o" }, "n", [[":set hlsearch<Cr>" . "Nn"[v:searchforward] . "zv"]], { expr = true })
 
 -- save file
 k.cmd({ "n", "i" }, "<C-s>", "update")

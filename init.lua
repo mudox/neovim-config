@@ -1,10 +1,8 @@
 -- Luarocks
----@diagnostic disable-next-line: lowercase-global
-pl = require("mudox.luarocks")
+_G.pl = require("mudox.luarocks")
 
 -- Mode
----@diagnostic disable-next-line: lowercase-global
-md = require("mudox.mode")
+_G.md = require("mudox.mode")
 
 -- Lazy
 require("mudox.lazy")

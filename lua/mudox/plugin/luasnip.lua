@@ -32,7 +32,7 @@ local keys = {
 
   -- choices
   { "<C-e>", change_choice, expr = true, mode = { "i", "s" }, desc = "Change Choice" },
-  { "<C-S-s>", select_choice, expr = true, mode = { "i", "s" }, desc = "Select Choice" },
+  { "<C-u>", select_choice, expr = true, mode = { "i", "s" }, desc = "Select Choice" },
 
   -- edit
   { "<leader>es", edit_snippet, desc = "Edit Snippet" },
@@ -62,7 +62,12 @@ local function opts()
     ext_opts = {
       [t.choiceNode] = {
         active = {
-          virt_text = { { " ", "LspInfoTip" } },
+          virt_text = { { " ", "@symbol" } },
+        },
+      },
+      [t.insertNode] = {
+        active = {
+          virt_text = { { "󰴓 ", "@field" } },
         },
       },
     },

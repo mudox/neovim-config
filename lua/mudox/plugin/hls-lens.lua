@@ -1,10 +1,11 @@
+local cmd = [[<Cmd>set hls<Cr><Cmd>lua require('hlslens').start()<Cr>]]
 local keys = {
-  { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<Cr><Cmd>lua require('hlslens').start()<Cr>]] },
-  { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<Cr><Cmd>lua require('hlslens').start()<Cr>]] },
-  { "*", [[*<Cmd>lua require('hlslens').start()<Cr>]] },
-  { "#", [[#<Cmd>lua require('hlslens').start()<Cr>]] },
-  { "g*", [[g*<Cmd>lua require('hlslens').start()<Cr>]] },
-  { "g#", [[g#<Cmd>lua require('hlslens').start()<Cr>]] },
+  { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<Cr>]] .. cmd },
+  { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<Cr>]] .. cmd },
+  { "*", "*" .. cmd },
+  { "#", "#" .. cmd },
+  { "g*", "g*" .. cmd },
+  { "g#", "g#" .. cmd },
 }
 
 return {
