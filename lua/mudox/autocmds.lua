@@ -1,28 +1,42 @@
--- TODO: move my autocmds
+-- vim: fdm=marker fmr=〈,〉
+-- TODO: move in my autocmds
 
-local function augroup(name)
-  return vim.api.nvim_create_augroup("mudox_" .. name, { clear = true })
-end
+-- References
+-- -> autocmds.lua from LazyVim
+-- -> 3-autocmds.lua from NormalView
 
 local autocmd = vim.api.nvim_create_autocmd
 
--- Check if we need to reload the file when it changed
+local augroup = function(name)
+  return vim.api.nvim_create_augroup("mudox_" .. name, { clear = true })
+end
+
+-- Checktime 〈
+
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
   command = "checktime",
 })
 
--- Highlight on yank
+-- Check if we 〉
+
+-- Flash on yanking 〈
+
 autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
+  desc = "Flash on yanking",
   callback = function()
-    vim.highlight.on_yank()
+    vim.highlight.on_yank { timeout = 250 }
   end,
 })
 
--- Resize splits if window got resized
-autocmd({ "VimResized" }, {
+-- Flash on yanking 〉
+
+-- Auto resize windows 〈
+
+autocmd("VimResized", {
   group = augroup("resize_splits"),
+  desc = "Auto-resize (re-equalize) windows when needed",
   callback = function()
     local tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
@@ -30,9 +44,13 @@ autocmd({ "VimResized" }, {
   end,
 })
 
--- Go to last loc when opening a buffer
+-- Auto resize window 〉
+
+-- Go to last loc when opening a buffer 〈
+
 autocmd("BufRead", {
   group = augroup("last_loc"),
+  desc = "Jump to last known location after opening a file",
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -42,10 +60,14 @@ autocmd("BufRead", {
   end,
 })
 
--- Close some filetypes with <q>
+-- Go to last loc when opening a buffer 〉
+
+-- Close with `q` 〈
+
 local close_with_q = augroup("close_with_q")
 autocmd("FileType", {
   group = close_with_q,
+  desc = "Close specific filetypes using `q`",
   pattern = {
     "aerial-nav",
     "fugitive",
@@ -69,9 +91,13 @@ autocmd("FileType", {
   end,
 })
 
--- Wrap lines and check for spell in text filetypes
+-- Close with `q` 〉
+
+-- Wrap & spell 〈
+
 autocmd("FileType", {
   group = augroup("wrap_spell"),
+  desc = "Wrap lines and enable spell checking for specific filetypes",
   pattern = {
     "gitcommit",
     "markdown",
@@ -82,6 +108,8 @@ autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- Wrap & spell 〉
 
 -- Colorscheme 〈
 

@@ -1,7 +1,3 @@
-local function code_actions()
-  require("actions-preview").code_actions()
-end
-
 local opts = function()
   return {
     diff = {
@@ -15,7 +11,4 @@ end
 return {
   "aznhe21/actions-preview.nvim",
   opts = opts,
-  keys = {
-    { "\\a", code_actions, desc = "Code Actions" },
-  },
 }

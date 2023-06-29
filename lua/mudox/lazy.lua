@@ -40,7 +40,7 @@ vim.opt.rtp:prepend(lazypath)
 -- stylua: ignore start
 local icons = {
   cmd        = "🄲 ",
-  config     = " ",
+  config     = "🅒 ",
   event      = "🄴 ",
   ft         = "🄵 ",
   init       = "🄸 ",
@@ -49,19 +49,11 @@ local icons = {
   plugin     = "🄿 ",
   import     = "🅁 ",
 
-  -- cmd = " ",
-  -- config = " ",
-  -- event = " ",
-  -- ft = " ",
-  -- init = " ",
-  -- source = " ",
-  -- keys = " ",
-  -- plugin = " ",
-  -- import = " ",
-
   lazy       = " ",
+
   loaded     = "●",
   not_loaded = "○",
+
   runtime    = " ",
   start      = " ",
   task       = "✔ ",
@@ -110,6 +102,7 @@ local performance = {
     -- disable some rtp plugins
     disabled_plugins = {
       "gzip",
+      "perl_provider",
       "matchit",
       "matchparen",
       "netrw",
@@ -118,7 +111,6 @@ local performance = {
       "tohtml",
       "tutor",
       "zipPlugin",
-      "loaded_perl_provider",
     },
   },
 }

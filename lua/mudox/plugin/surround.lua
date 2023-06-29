@@ -4,8 +4,8 @@ local surrounds = {
     add = function()
       local input = require("nvim-surround.config").get_input
       local label = input("Enter fold label: ")
-      local open = { ("-- %s 〈"):format(label), "", "" }
-      local close = { "", "", ("-- %s 〉"):format(label) }
+      local open = { ("-- %s 〈"):format(label), "" }
+      local close = { "", ("-- %s 〉"):format(label) }
       return { open, close }
     end,
   },

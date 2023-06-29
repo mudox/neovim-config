@@ -80,7 +80,7 @@ o.copyindent = true
 
 -- Search 〈
 
-o.hlsearch = false
+o.hlsearch = true
 o.wrapscan = true
 o.incsearch = true
 o.ignorecase = true

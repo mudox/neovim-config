@@ -1,5 +1,6 @@
 return {
   "ggandor/leap.nvim",
+  cond = false, -- trying `flash.nvim`
   keys = {
     { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
     { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },

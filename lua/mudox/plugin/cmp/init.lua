@@ -1,3 +1,6 @@
+-- References:
+-- ->> https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/after/plugin/completion.lua
+
 local dependencies = {
   -- Basics
   "hrsh7th/cmp-buffer",
@@ -42,17 +45,15 @@ local function config()
       completeopt = "menu,menuone,noinsert,noselect",
     },
 
-    -- sources
     sources = r("sources").common,
+    sorting = r("sources").sorting,
 
-    -- snippet
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
       end,
     },
 
-    -- keymaps
     mapping = r("keymaps")(),
 
     -- appearance
@@ -71,10 +72,10 @@ local function config()
   cmp.setup(opts)
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ "/", "?" }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = r("sources").search,
-  })
+  -- cmp.setup.cmdline({ "/", "?" }, {
+  --   mapping = cmp.mapping.preset.cmdline(),
+  --   sources = r("sources").search,
+  -- })
 
   -- Use cmdline & path sources for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(":", {
@@ -85,7 +86,7 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
-  event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
+  event = { "InsertEnter" },
   dependencies = dependencies,
   config = config,
 }

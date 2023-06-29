@@ -1,5 +1,9 @@
 local M = {}
 
+local function code_actions()
+  require("actions-preview").code_actions()
+end
+
 local function setup_keymaps(bufnr)
   local function b(t)
     t.buffer = bufnr
@@ -9,8 +13,8 @@ local function setup_keymaps(bufnr)
   -- stylua: ignore start
   local keys = {
     ['\\'] = {
-      r = b { vim.lsp.buf.rename,                   "LSP rename" },
-      -- `a` for actions-preview plugin
+      r = b { vim.lsp.buf.rename, "LSP rename" },
+      a = b { code_actions,       "Code Actions" },
     },
   }
   -- stylua: ignore end

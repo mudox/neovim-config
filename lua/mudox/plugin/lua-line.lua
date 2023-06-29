@@ -98,4 +98,5 @@ return {
     sections = statusline,
     tabline = tabline,
   },
+  cond = false, -- for bufferline.nvim
 }

@@ -1,4 +1,4 @@
-local cmd = [[<Cmd>set hls<Cr><Cmd>lua require('hlslens').start()<Cr>]]
+local cmd = [[<Cmd>lua require('hlslens').start()<Cr>]]
 local keys = {
   { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<Cr>]] .. cmd },
   { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<Cr>]] .. cmd },
@@ -14,4 +14,5 @@ return {
   opts = {
     calm_down = true,
   },
+  cond = false,
 }

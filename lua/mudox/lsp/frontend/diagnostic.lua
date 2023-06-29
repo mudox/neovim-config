@@ -1,3 +1,5 @@
+local d9 = vim.diagnostic
+
 local M = {}
 
 local function setup_signs()
@@ -17,7 +19,7 @@ local function setup_signs()
 end
 
 local function config()
-  vim.diagnostic.config {
+  d9.config {
     update_in_insert = false,
 
     severity_sort = true,
@@ -25,11 +27,11 @@ local function config()
     signs = true,
 
     underline = {
-      severity = vim.diagnostic.severity.WARN,
+      severity = d9.severity.WARN,
     },
 
     virtual_text = {
-      severity = vim.diagnostic.severity.WARN,
+      severity = d9.severity.WARN,
       spacing = 4,
       prefix = "󰅂",
     },
@@ -41,21 +43,29 @@ local function config()
 end
 
 local function jump(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
+  local go = next and d9.goto_next or d9.goto_prev
+  severity = severity and d9.severity[severity] or nil
   return function()
     go { severity = severity }
   end
 end
 
 local function toggle()
-  if vim.diagnostic.is_disabled() then
-    vim.diagnostic.enable()
-    print('Disgnostic enabled')
-  else
-    vim.diagnostic.disable()
-    print('Disgnostic disabled')
+  local function notify(msg)
+    vim.notify(msg, vim.log.levels.INFO, { title = "LSP" })
   end
+
+  if d9.is_disabled() then
+    d9.enable()
+    notify("Disgnostic enabled")
+  else
+    d9.disable()
+    notify("Disgnostic disabled")
+  end
+end
+
+local function lsp_lines()
+  require("lsp_lines").toggle()
 end
 
 local function setup_keymaps(bufnr)
@@ -66,14 +76,15 @@ local function setup_keymaps(bufnr)
 
   -- stylua: ignore start
   local keys = {
-    ["]d"] = b { jump(true),            "Goto Next Issue" },
-    ["[d"] = b { jump(false),           "Goto Previous Issue" },
-    ["]E"] = b { jump(true, "ERROR"),   "Goto Next Error" },
-    ["[E"] = b { jump(false, "ERROR"),  "Goto Previous Error" },
+    ["]d"]  = b { jump(true),             "Goto next issue" },
+    ["[d"]  = b { jump(false),            "Goto previous issue" },
+    ["]E"]  = b { jump(true, "ERROR"),    "Goto next error" },
+    ["[E"]  = b { jump(false, "ERROR"),   "Goto previous error" },
 
-    ["gl"] = b { vim.diagnostic.open_float, "Show Issue(s) of Current Line" },
+    ["gl"]  = b { d9.open_float,          "Show issue(s) of current line" },
+    ["gL"]  = b { lsp_lines,              "Togle LSP lines" },
 
-    ["yod"] = b { toggle, "Toggle Diagnostic" },
+    ["yod"] = b { toggle,                 "Toggle diagnostic" },
   }
   -- stylua: ignore end
 

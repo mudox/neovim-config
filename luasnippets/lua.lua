@@ -32,7 +32,7 @@ local au_lsp_attach = s(
 -- local function 〈
 
 local head = c(1, {
-  fmt("local function {name}", { name = i(1, "name") }),
+  fmt("local function {name}()", { name = i(1, "name") }),
   fmt("local {name} = function()", { name = i(1, "name") }),
 })
 
