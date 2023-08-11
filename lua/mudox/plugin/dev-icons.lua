@@ -14,9 +14,6 @@ local function config()
   icons["md"].icon = i.markdown
   icons["md"].color = "#ffffff"
 
-  icons["yml"].icon = i.config
-  icons["yml"].color = "#cb171d"
-
   icons["java"].icon = i.java
   icons["java"].color = "#d60200"
 
@@ -37,8 +34,6 @@ local function config()
     icon = i.backup,
     color = "#666666",
   }
-
-  icons["zsh"].icon = i.script
 
   icons["m"] = {
     name = "ObjectiveCSourceFile",

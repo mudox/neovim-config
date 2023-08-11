@@ -1,7 +1,7 @@
 local opts = {
-  cmdline = {
-    view = "cmdline",
-  },
+  -- cmdline = {
+  --   view = "cmdline",
+  -- },
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
@@ -23,14 +23,10 @@ local opts = {
 return {
   "folke/noice.nvim",
   dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
     "nvim-notify",
   },
-  cond = false,
+  -- cond = false,
   event = "VeryLazy",
   opts = opts,
 }

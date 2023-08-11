@@ -102,7 +102,6 @@ local performance = {
     -- disable some rtp plugins
     disabled_plugins = {
       "gzip",
-      "perl_provider",
       "matchit",
       "matchparen",
       "netrw",

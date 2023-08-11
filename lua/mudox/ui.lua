@@ -175,51 +175,52 @@ kind.sf = {
   Variable      = " ",
 }
 
+-- TODO: move alternative icons above into comments
 kind.vscode       = {
-  File            = ' ',
+  File            = " ",
 
-  Event           = ' ',
+  Event           = " ",
 
-  Function        = '󰊕 ',
-  Method          = '󰊕 ',
-  Constructor     = '󰊕 ',
-  KeywordFunction = '󰊕 ',
+  Function        = "󰊕 ",
+  Method          = "󰊕 ",
+  Constructor     = "󰊕 ",
+  KeywordFunction = "󰊕 ",
 
-  Key             = '󰌋 ',
-  Keyword         = '󰌋 ',
-  String          = ' ',
-  Text            = '󰦨 ',
+  Key             = "󰌋 ",
+  Keyword         = "󰌋 ",
+  String          = " ",
+  Text            = "󰦨 ",
 
-  Package         = ' ',
-  Module          = '󰋺 ',
-  Namespace       = '󰕋 ',
+  Package         = " ",
+  Module          = "󰋺 ",
+  Namespace       = "󰕋 ",
 
-  Interface       = ' ',
-  Class           = ' ',
-  Struct          = ' ',
+  Interface       = " ",
+  Class           = " ",
+  Struct          = " ",
 
-  Array           = ' ',
-  Object          = ' ',
+  Array           = " ",
+  Object          = " ",
 
-  Null            = '󰟢 ',
-  Boolean         = ' ',
-  Number          = '# ',
-  Operator        = ' ',
-  TypeParameter   = ' ',
+  Null            = "󰟢 ",
+  Boolean         = " ",
+  Number          = "# ",
+  Operator        = " ",
+  TypeParameter   = " ",
 
-  Constant        = ' ',
-  Variable        = ' ',
+  Constant        = " ",
+  Variable        = " ",
 
-  Enum            = ' ',
-  EnumMember      = ' ',
+  Enum            = " ",
+  EnumMember      = " ",
 
-  Property        = ' ',
-  Field           = ' ',
+  Property        = " ",
+  Field           = " ",
 
   Snippet         = " ",
-  TabNine         = '󰋙 ',
+  TabNine         = "󰋙 ",
 
-  Error           = ' ',
+  Error           = " ",
 }
 -- stylua: ignore end
 
@@ -237,7 +238,6 @@ local filetype = {
   config   = "󰣖 ",
   compiled = " ",
   backup   = " ",
-  script   = " ",
 }
 -- stylua: ignore end
 

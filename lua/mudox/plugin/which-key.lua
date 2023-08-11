@@ -26,8 +26,7 @@ local function config(_, options)
   local keymaps = {
     mode = { "n", "v" },
 
-    ["g"] = { name = "+goto" },
-    ["gz"] = { name = "+surround" },
+    ["g"] = { name = "+g" },
 
     ["]"] = { name = "+next" },
     ["["] = { name = "+prev" },
@@ -37,7 +36,6 @@ local function config(_, options)
 
       ["<tab>"] = { name = "+tabs" },
       a = { name = "+aerial" },
-      b = { name = "+buffer" },
       c = { name = "+code" },
       l = { name = "+lazy" },
       g = { name = "+git" },
@@ -45,13 +43,12 @@ local function config(_, options)
       r = { name = "+run" },
       t = { name = "+telescope" },
       u = { name = "+ui" },
-      w = { name = "+windows" },
+      w = { name = "+windows|buffer" },
       v = {
-        name = "+view | inspect",
+        name = "+view",
         l = { "<Cmd>Lazy<Cr>", "Lazy" },
       },
       x = { name = "+diagnostics" },
-      z = { name = "+terminal" },
       yo = { name = "+toggle" },
     },
 

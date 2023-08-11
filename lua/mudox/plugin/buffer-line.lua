@@ -6,7 +6,7 @@ local function name_formatter(buf)
   -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
   -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
 
-  return vim.fn.fnamemodify(buf.name, ":t:r")
+  return vim.fn.fnamemodify(buf.name, ":t:r") -- remove file extension
 end
 
 local function opts()
@@ -26,17 +26,14 @@ local function opts()
 
   -- stylua: ignore start
   local icons = {
-    buffer_close_icon  = "󰅖 ",
-    modified_icon      = "󰴓 ",
-    close_icon         = " ",
-    left_trunc_marker  = " ",
-    right_trunc_marker = " ",
+    buffer_close_icon  = "󰅖",
+    modified_icon      = "󰴓",
+    close_icon         = "",
+    left_trunc_marker  = "",
+    right_trunc_marker = "",
   }
-  for i = 1, #icons do
-    icons[i] = icons[i]:sub(1, 1)
-  end
   -- stylua: ignore end
-  vim.list_extend(o, icons)
+  o = vim.tbl_extend("force", o, { options = icons })
 
   return o
 end
@@ -57,8 +54,9 @@ local function init()
       end,
     })
   else
-    vim.api.nvim_create_autocmd("VeryLazy", {
+    vim.api.nvim_create_autocmd("User", {
       group = gid,
+      pattern = "VeryLazy",
       desc = "Load bufferline.nvim on 1st buffer load",
       callback = function()
         require("bufferline")
@@ -67,8 +65,16 @@ local function init()
   end
 end
 
+local keys = {
+  { "<M-o>", "<Cmd>BufferLinePick<Cr>", desc = "[Buffer Line] Pick a buffer" },
+  { "<leader>w<", "<Cmd>BufferLineCloseLeft<Cr>", desc = "[Buffer Line] Close left buffers" },
+  { "<leader>w>", "<Cmd>BufferLineCloseRight<Cr>", desc = "[Buffer Line] Close right buffers" },
+  { "<leader>w.", "<Cmd>BufferLineCloseOthers<Cr>", desc = "[Buffer Line] Close other buffers" },
+}
+
 return {
   "akinsho/bufferline.nvim",
   init = init,
+  keys = keys,
   opts = opts,
 }

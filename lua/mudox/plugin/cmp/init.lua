@@ -57,10 +57,8 @@ local function config()
     mapping = r("keymaps")(),
 
     -- appearance
-    view = {
-      entries = { name = "custom", selection_order = "near_cursor" }, -- can be "custom", "wildmenu" or "native" (experimental)
-    },
     formatting = r("appearance").formatting,
+    view = r("appearance").view,
 
     experimental = {
       ghost_text = {

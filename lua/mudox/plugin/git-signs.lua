@@ -27,8 +27,7 @@ local function on_attach(buffer)
   map("n", "<leader>gb", function() gs.blame_line { full = true } end, "Blame Line")
 
   -- diff
-  map("n", "<leader>gd", gs.diffthis, "Diff Against Index")
-  map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff Against Last Commit")
+  -- use diffview.nvim instead
   map("n", "<leader>gv", gs.preview_hunk, "Preview Hunk")
 
   -- goto

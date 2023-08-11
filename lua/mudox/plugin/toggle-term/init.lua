@@ -23,7 +23,7 @@ local opts = {
 
   float_opts = {
     -- border = "single",
-    winblend = 10,
+    winblend = 0, -- transparency makes double width symbol display incorrectly
   },
 
   winbar = {

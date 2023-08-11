@@ -9,7 +9,7 @@ return {
   },
   event = { "BufRead", "BufNewFile" },
   keys = {
-    { "<M-i>", "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
+    { require("mudox.keys").ctrl_i, "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
   },
   opts = {
     lsp = { auto_attach = true },

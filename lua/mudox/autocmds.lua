@@ -152,3 +152,28 @@ autocmd("FileType", {
 -- })
 
 -- 〉
+
+-- User event MdxSessionStart 〈
+
+local gid = vim.api.nvim_create_augroup("mudox_session_start_event", { clear = true })
+if vim.fn.argc(-1) == 0 then
+  vim.api.nvim_create_autocmd("User", {
+    group = gid,
+    pattern = "AlphaClosed",
+    desc = "Start session after Alpha closed",
+    callback = function()
+      vim.api.nvim_exec_autocmds("User", { pattern = "MdxSessionStart" })
+    end,
+  })
+else
+  vim.api.nvim_create_autocmd("User", {
+    group = gid,
+    pattern = "VeryLazy",
+    desc = "Start session on 1st buffer load",
+    callback = function()
+      vim.api.nvim_exec_autocmds("User", { pattern = "MdxSessionStart" })
+    end,
+  })
+end
+
+-- User event MdxSessionStart 〉

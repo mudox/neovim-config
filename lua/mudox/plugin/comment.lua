@@ -1,12 +1,14 @@
+local main_key = require("mudox.keys").ctrl_slash
+
 return {
   "numToStr/Comment.nvim",
   event = { "BufRead", "BufNewFile" },
   opts = {
     toggler = {
-      line = "<C-/>",
+      line = main_key,
     },
   },
   keys = {
-    { "<C-/>", "gc", mode = "x", remap = true, desc = "Comment Selection" },
+    { main_key, "gc", mode = "x", remap = true, desc = "Comment Selection" },
   },
 }

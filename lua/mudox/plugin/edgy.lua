@@ -1,8 +1,8 @@
 -- stylua: ignore start
 local keys = {
-  {'<leader>we', function() require("edgy").select() end,    'Goto Edgy Window' },
-  {'<leader>wm', function() require("edgy").goto_main() end, 'Goto Main Area' },
-  {'<leader>wx', function() require("edgy").close() end, 'Close All Edgy Windows' },
+  {'<leader>we', function() require("edgy").select() end,    desc = 'Goto Edgy Window' },
+  {'<leader>wm', function() require("edgy").goto_main() end, desc = 'Goto Main Area' },
+  {'<leader>wx', function() require("edgy").close() end,     desc = 'Close All Edgy Windows' },
 }
 -- stylua: ignore end
 

@@ -1,42 +1,70 @@
+-- NOTE:
+-- ASCII generator: https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=mudox
+-- Use font `ANSI Shadow`
+
+local function logo()
+  local default = [[
+  ███╗   ███╗ ██╗   ██╗ ██████╗   ██████╗  ██╗  ██╗
+  ████╗ ████║ ██║   ██║ ██╔══██╗ ██╔═══██╗ ╚██╗██╔╝
+  ██╔████╔██║ ██║   ██║ ██║  ██║ ██║   ██║  ╚███╔╝
+  ██║╚██╔╝██║ ██║   ██║ ██║  ██║ ██║   ██║  ██╔██╗
+  ██║ ╚═╝ ██║ ╚██████╔╝ ██████╔╝ ╚██████╔╝ ██╔╝ ██╗
+  ╚═╝     ╚═╝  ╚═════╝  ╚═════╝   ╚═════╝  ╚═╝  ╚═╝
+  ]]
+
+  local filename = ".ascii-art.txt"
+  local err, lines = pcall(vim.fn.readfile, filename)
+  lines = err and lines or vim.split(default, "\n")
+
+  return lines
+end
+
+local function opts()
+  local db = require("alpha.themes.dashboard")
+
+  -- Header
+  db.section.header.val = logo()
+  db.section.header.opts.hl = "AlphaHeader"
+
+  -- Menu
+  local b = db.button
+  -- stylua: ignore start
+  db.section.buttons.val = {
+    b("f", " " .. " Find file",       [[<Cmd>Telescope find_files<Cr>]]),
+    b("o", " " .. " Smart Open",      [[<Cmd>Telescope smart_open<Cr>]]),
+    b("n", " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]),
+    b("g", "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]),
+    b("s", "󰦛 " .. " Restore Session", [[<Cmd>lua require("persistence").load()<Cr>]]),
+    b("l", "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]),
+    b("m", "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]),
+    b("c", " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]),
+    b("r", " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]),
+    b("q", " " .. " Quit",            [[<Cmd>qa<Cr>]]),
+  }
+  -- stylua: ignore end
+
+  for _, button in ipairs(db.section.buttons.val) do
+    button.opts.hl = "AlphaButtons"
+    button.opts.hl_shortcut = "AlphaShortcut"
+    button.opts.width = 66
+  end
+  db.section.buttons.opts.hl = "AlphaButtons"
+
+  -- Footer
+  db.section.footer.opts.hl = "Type"
+
+  db.opts.layout[1].val = 8
+
+  return db
+end
+
 return {
   "goolord/alpha-nvim",
   event = "VimEnter",
   keys = {
     { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
   },
-  opts = function()
-    local dashboard = require("alpha.themes.dashboard")
-    local logo = [[
-  ███╗   ███╗ ██╗   ██╗ ██████╗   ██████╗  ██╗  ██╗
-  ████╗ ████║ ██║   ██║ ██╔══██╗ ██╔═══██╗ ╚██╗██╔╝  
-  ██╔████╔██║ ██║   ██║ ██║  ██║ ██║   ██║  ╚███╔╝ 
-  ██║╚██╔╝██║ ██║   ██║ ██║  ██║ ██║   ██║  ██╔██╗ 
-  ██║ ╚═╝ ██║ ╚██████╔╝ ██████╔╝ ╚██████╔╝ ██╔╝ ██╗
-  ╚═╝     ╚═╝  ╚═════╝  ╚═════╝   ╚═════╝  ╚═╝  ╚═╝
-  ]]
-
-    dashboard.section.header.val = vim.split(logo, "\n")
-    dashboard.section.buttons.val = {
-      dashboard.button("f", " " .. " Find file", ":Telescope find_files <Cr>"),
-      dashboard.button("n", " " .. " New file", ":ene <Bar> startinsert <Cr>"),
-      dashboard.button("g", "󱉶 " .. " Find text", ":Telescope live_grep <Cr>"),
-      dashboard.button("s", "󰦛 " .. " Restore Session", [[:lua require("persistence").load() <Cr>]]),
-      dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<Cr>"),
-      dashboard.button("m", "󰈏 " .. " Mason", ":Mason<Cr>"),
-      dashboard.button("c", " " .. " ChatGPT", ":ChatGPT<Cr>"),
-      dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <Cr>"),
-      dashboard.button("q", " " .. " Quit", ":qa<Cr>"),
-    }
-    for _, button in ipairs(dashboard.section.buttons.val) do
-      button.opts.hl = "AlphaButtons"
-      button.opts.hl_shortcut = "AlphaShortcut"
-    end
-    dashboard.section.footer.opts.hl = "Type"
-    dashboard.section.header.opts.hl = "AlphaHeader"
-    dashboard.section.buttons.opts.hl = "AlphaButtons"
-    dashboard.opts.layout[1].val = 8
-    return dashboard
-  end,
+  opts = opts,
   config = function(_, dashboard)
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == "lazy" then
@@ -56,7 +84,7 @@ return {
       callback = function()
         local stats = require("lazy").stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+        dashboard.section.footer.val = " Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
         pcall(vim.cmd.AlphaRedraw)
       end,
     })

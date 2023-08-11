@@ -56,7 +56,7 @@ opt.shortmess:append("c") -- Not show insert completion menu messages
 opt.shortmess:append("s") -- Not show `Hit Bottom / Top ...` messages
 opt.shortmess:append("C") -- Not show `scanning tags` messages
 
-opt.guicursor = "n-v-c-sm:block-blinkwait300-blinkon200"
+opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
 opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
@@ -150,8 +150,9 @@ o.updatetime = 200
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
--- Disable perl provider
--- vim.g.loaded_perl_provider = 0
+-- Disable language providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 -- Language clients 〈
 

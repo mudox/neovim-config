@@ -27,14 +27,16 @@ local options = {
   always_divide_middle = true,
 }
 
-local navic = {
-  function()
-    return require("nvim-navic").get_location()
-  end,
-  cond = function()
-    return require("nvim-navic").is_available()
-  end,
-}
+-- use dropbar.nvim instead
+--
+-- local navic = {
+--   function()
+--     return require("nvim-navic").get_location()
+--   end,
+--   cond = function()
+--     return require("nvim-navic").is_available()
+--   end,
+-- }
 
 local statusline = {
   lualine_a = {
@@ -81,14 +83,16 @@ local buffers = {
   },
 }
 
-local tabline = {
-  lualine_a = { buffers },
-  lualine_b = {},
-  lualine_c = {},
-  lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
-  lualine_y = {},
-  lualine_z = { "tabs" },
-}
+-- use bufferline.nvim instead
+--
+-- local tabline = {
+--   lualine_a = { buffers },
+--   lualine_b = {},
+--   lualine_c = {},
+--   lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
+--   lualine_y = {},
+--   lualine_z = { "tabs" },
+-- }
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -96,7 +100,6 @@ return {
   opts = {
     options = options,
     sections = statusline,
-    tabline = tabline,
+    -- tabline = tabline, -- use bufferline.nvim instead
   },
-  cond = false, -- for bufferline.nvim
 }

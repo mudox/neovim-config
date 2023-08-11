@@ -1,5 +1,9 @@
 -- vim: fdm=marker fmr=\ 〈,\ 〉
 
+local function setup_highlights()
+  vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { fg = "#FFFFFF" })
+end
+
 local function opts()
   local i = require("mudox.ui").icons
 
@@ -53,6 +57,7 @@ local function opts()
   -- 〉
 
   return {
+    sort_by = "extension",
     view = {
       signcolumn = "no",
       width = 40,
@@ -61,6 +66,8 @@ local function opts()
       dotfiles = true,
     },
     renderer = {
+      group_empty = true,
+      highlight_opened_files = "name",
       root_folder_label = false,
       indent_markers = {
         enable = true,
@@ -85,6 +92,7 @@ end
 
 local function config(_, options)
   require("nvim-tree").setup(options)
+  setup_highlights()
 end
 
 return {

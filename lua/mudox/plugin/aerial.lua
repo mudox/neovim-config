@@ -51,11 +51,8 @@ local opts = {
 
 local keys = {
   -- outline side pane
-  { "gO", "<Cmd>AerialToggle<Cr>", desc = "Toggle Outline (Aerial) Side Pane" },
-
-  { "<leader>af", "<Cmd>AerialOpen float<Cr>", desc = "Open Outline (Aerial) Side Pane" },
-  { "<leader>an", "<Cmd>AerialNavToggle<Cr>", desc = "Toggle Outline (Aerial) Navigator" },
-  { "<leader>aX", "<Cmd>AerialCloseAll<Cr>", desc = "Close All Outline (Aerial) Windows" },
+  { "gO", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle outline side pane" },
+  { "<leader>aX", "<Cmd>AerialCloseAll<Cr>", desc = "[Aerial] Close all outline windows" },
 }
 
 -- stylua: ignore start

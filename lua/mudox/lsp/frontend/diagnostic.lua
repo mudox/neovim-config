@@ -82,7 +82,7 @@ local function setup_keymaps(bufnr)
     ["[E"]  = b { jump(false, "ERROR"),   "Goto previous error" },
 
     ["gl"]  = b { d9.open_float,          "Show issue(s) of current line" },
-    ["gL"]  = b { lsp_lines,              "Togle LSP lines" },
+    ["gL"]  = b { lsp_lines,              "Toggle LSP lines" },
 
     ["yod"] = b { toggle,                 "Toggle diagnostic" },
   }

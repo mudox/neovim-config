@@ -1,3 +1,5 @@
+-- vim: fdm=marker fmr=〈,〉
+
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -21,6 +23,8 @@ local tmap = k.tmap
 local omap = k.omap
 ---@diagnostic enable: unused-local
 -- 〉
+
+local key = require("mudox.keys")
 
 -- Common mappings 〈
 
@@ -98,13 +102,16 @@ omap("ar", "a[")
 omap("ia", "i<")
 omap("aa", "a<")
 
--- terminal
+-- Terminal 〈
+
 tmap("<Esc>", "<C-\\><C-n>")
 
 tmap("<C-h>", "<Cmd>wincmd h<Cr>")
 tmap("<C-j>", "<Cmd>wincmd j<Cr>")
 tmap("<C-k>", "<Cmd>wincmd k<Cr>")
 tmap("<C-l>", "<Cmd>wincmd l<Cr>")
+
+-- Terminal 〉
 
 -- inspect
 ncmd("<leader>vi", "Inspect")
@@ -113,12 +120,8 @@ ncmd("<leader>vt", "InspectTree")
 -- Buffer 〈
 
 -- buffer navigation
--- <C-S-n> to open telescope to select buffers
-ncmd("»", "bnext") -- <C-S-]> remapped
-ncmd("«", "bNext") -- <C-S-[> remapped
-
--- quickly wipeout buffer
-ncmd("<C-w>r", "call mudox#util#wipeoutBuffer()")
+ncmd(key.ctrl_shift_right_square_bracket, "bnext")
+ncmd(key.ctrl_shift_left_square_bracket, "bNext")
 
 -- copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")

@@ -26,7 +26,6 @@ local function opts()
 
       -- Bash, Zsh, Sh
       f.beautysh,
-
     },
   }
 end

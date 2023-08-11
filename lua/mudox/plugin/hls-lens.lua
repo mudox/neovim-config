@@ -14,5 +14,4 @@ return {
   opts = {
     calm_down = true,
   },
-  cond = false,
 }
