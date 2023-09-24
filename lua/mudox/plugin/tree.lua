@@ -95,14 +95,17 @@ local function config(_, options)
   setup_highlights()
 end
 
+local kb = require("mudox.keys")
+local keys = {
+  { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[Tree] Toggle pane" },
+  { kb.ctrl_shift_p, "<Cmd>NvimTreeFindFile!<Cr>", desc = "[Tree] Highlight current file" },
+}
+
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = "kyazdani42/nvim-web-devicons",
   cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle", "NvimTreeFindFile", "NvimTreeRefresh" },
-  keys = {
-    { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "Nvim Tree (Find File) Toggle" },
-    { "<C-S-p>", "<Cmd>NvimTreeFindFile!<Cr>", desc = "Nvim Tree (Find File) (Update Root)" },
-  },
+  keys = keys,
   opts = opts,
   config = config,
 }

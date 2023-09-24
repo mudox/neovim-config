@@ -6,56 +6,79 @@ local opts = {
     char = {
       -- `,` conflict with `<leader>` settings and `which-key.nvim`
       keys = { "f", "F", "t", "T" },
+      jump_labels = true,
+      char_actions = function(motion)
+        return {
+          [";"] = "right",
+          [","] = "left",
+          [motion:lower()] = "right",
+          [motion:upper()] = "next",
+        }
+      end,
     },
   },
 }
 
 local keys = {
+  -- jump
   {
     "s",
     mode = { "n", "x", "o" },
     function()
       require("flash").jump()
     end,
-    desc = "Flash",
+    desc = "[Flash] Jump",
   },
+
+  -- epxand selection
   {
     "S",
-    mode = { "n", "x", "o" },
+    mode = { "n" },
     function()
       require("flash").treesitter()
     end,
-    desc = "Flash Treesitter",
+    desc = "[Flash] Treesitter mode",
   },
+  {
+    ";",
+    mode = { "x", "o" },
+    function()
+      require("flash").treesitter()
+    end,
+    desc = "[Flash] Treesitter mode",
+  },
+
+  -- jump and ...
   {
     "r",
     mode = "o",
     function()
       require("flash").remote()
     end,
-    desc = "Remote Flash",
+    desc = "[Flash] Remote mdoe",
   },
+  -- jump and then expand selection
   {
-    "v",
+    "R",
     mode = { "o", "x" },
     function()
       require("flash").treesitter_search()
     end,
-    desc = "Flash Treesitter Search",
+    desc = "[Flash] Treesitter search",
   },
+
   {
     "<C-s>",
     mode = { "c" },
     function()
       require("flash").toggle()
     end,
-    desc = "Toggle Flash Search",
+    desc = "[Flash] Toggle flash search",
   },
 }
 
 return {
   "folke/flash.nvim",
-  -- init = init,
   event = "VeryLazy",
   keys = keys,
   opts = opts,

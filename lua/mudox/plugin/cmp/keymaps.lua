@@ -42,17 +42,17 @@ return function()
     -- select next cmp item -> trigger completion before word -> fallback
     -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
     -- - use <C-f|b> to jump between snippet placeholders
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-        -- you could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- this way you will only jump inside the snippet region
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --     -- you could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+    --     -- this way you will only jump inside the snippet region
+    --   elseif has_words_before() then
+    --     cmp.complete()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then

@@ -19,6 +19,8 @@ return {
       "oil",
       "qf",
       "TelescopePrompt",
+      "OverseerForm",
+      "OverseerList",
     },
     -- filetypes_allowlist = {
     --   "c",
@@ -36,8 +38,8 @@ return {
 
     local function map(key, dir, buffer)
       vim.keymap.set("n", key, function()
-        require("illuminate")["goto_" .. dir .. "_reference"](false)
-      end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+        require("illuminate")["goto_" .. dir .. "_reference"](true)
+      end)
     end
 
     map("]]", "next")
@@ -53,7 +55,7 @@ return {
     })
   end,
   keys = {
-    { "]]", desc = "Next Reference" },
-    { "[[", desc = "Prev Reference" },
+    { "]]", desc = "Goto next reference" },
+    { "[[", desc = "Goto prev reference" },
   },
 }

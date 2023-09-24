@@ -22,10 +22,10 @@ local opts = {
   },
 }
 
-local function config(_, opts)
+local function config(_, o)
   local pairs = require("nvim-autopairs")
 
-  pairs.setup(opts)
+  pairs.setup(o)
 
   -- map <Cr> integrate with `nvim-cmp`
   local cmp = require("cmp")
@@ -36,7 +36,7 @@ end
 
 return {
   "windwp/nvim-autopairs",
-  event = { "BufRead", "BufNewFile" },
+  event = { "InsertEnter", "CmdlineEnter" },
   opts = opts,
   config = config,
 }

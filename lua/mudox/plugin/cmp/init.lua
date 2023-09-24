@@ -84,7 +84,7 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
-  event = { "InsertEnter" },
+  event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   dependencies = dependencies,
   config = config,
 }

@@ -1,8 +1,8 @@
 -- stylua: ignore start
 local keys = {
-  {'<leader>we', function() require("edgy").select() end,    desc = 'Goto Edgy Window' },
-  {'<leader>wm', function() require("edgy").goto_main() end, desc = 'Goto Main Area' },
-  {'<leader>wx', function() require("edgy").close() end,     desc = 'Close All Edgy Windows' },
+  { "<leader>we",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window" },
+  { "<leader>wm",       function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area" },
+  { "<leader>wx",       function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
 }
 -- stylua: ignore end
 
@@ -19,23 +19,45 @@ local left = {
   {
     title = "Files",
     ft = "NvimTree",
-    size = { height = 0.5 },
   },
   {
     title = "Outline",
     ft = "aerial",
-    pinned = true,
-    open = "AerialOpen",
   },
 }
 
+-- ISSUE: this crack the term window char changle
+local term = {
+  title = "Terminal",
+  ft = "toggleterm",
+  filter = function(_, win)
+    local term = require("toggleterm.terminal").fink(function(term)
+      term.win = win
+    end)
+    if term then
+      return term.direction == "horizontal"
+    else
+      return false
+    end
+  end,
+}
+
 local bottom = {
-  -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
+  {
+    title = "Git (Fugitive)",
+    ft = "fugitive",
+  },
   "Trouble",
   {
     title = "QuickFix / LocList",
     ft = "qf",
-    size = { height = 0.3 },
+  },
+  {
+    title = "Noice",
+    ft = "noice",
+    filter = function(_, win)
+      return vim.api.nvim_win_get_config(win).relative == ""
+    end,
   },
 }
 
@@ -43,12 +65,17 @@ local right = {
   {
     title = "Search & Replace",
     ft = "spectre_panel",
-    size = { width = 0.4 },
+  },
+  {
+    title = "Markdown Help",
+    ft = "markdown",
+    filter = function(buf)
+      return vim.bo[buf].buftype == "help"
+    end,
   },
   {
     title = "Neovim Help",
     ft = "help",
-    size = { width = 99 },
     filter = function(buf)
       return vim.bo[buf].buftype == "help"
     end,
@@ -56,10 +83,13 @@ local right = {
   {
     title = "Man Page",
     ft = "man",
-    size = { width = 99 },
     filter = function(buf)
       return vim.bo[buf].buftype == "nofile"
     end,
+  },
+  {
+    title = "Tasks",
+    ft = "OverseerList",
   },
 }
 
@@ -72,12 +102,21 @@ local function opts()
     right     = right,
     bottom    = bottom,
 
+    options   = {
+      left    = { size = 30 },
+      bottom  = { size = 0.3 },
+      right   = { size = 83 },
+      top     = { size = 0.3 },
+    },
     icons     = {
       closed  = i.collapsed,
       open    = i.expanded,
     },
     animate   = {
       enabled = false,
+    },
+    wo = {
+      winhighlight = "", -- disable for clear window separator line
     }
   }
 end

@@ -31,6 +31,9 @@ local dependencies = {
 
   -- luasnip snippets list
   "benfowler/telescope-luasnip.nvim",
+
+  -- headings
+  "crispgm/telescope-heading.nvim",
 }
 
 -- Dependencies 〉
@@ -150,6 +153,9 @@ local extensions = {
     match_algorithm = "fzf",
     disable_devicons = false,
   },
+  heading = {
+    treesitter = true,
+  }
 }
 
 -- Extension Settings 〉
@@ -174,6 +180,7 @@ local function config(_, o)
     "luasnip",
     "notify",
     "smart_open",
+    "heading",
   }
   for _, name in ipairs(names) do
     telescope.load_extension(name)

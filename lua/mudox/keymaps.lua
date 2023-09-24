@@ -28,12 +28,9 @@ local key = require("mudox.keys")
 
 -- Common mappings 〈
 
--- sensible `n, N`
--- k.expr({ "n", "x", "o" }, "N", [[":set hlsearch<Cr>" . "nN"[v:searchforward] . "zv"]], { expr = true })
--- k.expr({ "n", "x", "o" }, "n", [[":set hlsearch<Cr>" . "Nn"[v:searchforward] . "zv"]], { expr = true })
-
 -- save file
-k.cmd({ "n", "i" }, "<C-s>", "update")
+ncmd("<C-s>", "update")
+icmd("<C-s>", "update")
 
 -- sensible `j, k`
 nmap("j", "gj")
@@ -77,30 +74,49 @@ ncmd("<C-Left>", "vertical resize -2", { desc = "Decrease window width" })
 ncmd("<C-Right>", "vertical resize +2", { desc = "Increase window width" })
 
 -- move Lines
-nmap("<M-j>", "<Cmd>m .+1<Cr>==", { desc = "Move Current Line Down" })
-nmap("<M-k>", "<Cmd>m .-2<Cr>==", { desc = "Move Current Line Up" })
-imap("<M-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move Current Line Down" })
-imap("<M-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move Current Line Up" })
-vmap("<M-j>", ":m '>+1<Cr>gv=gv", { desc = "Move selection down" })
-vmap("<M-k>", ":m '<-2<Cr>gv=gv", { desc = "Move selection up" })
+-- nmap("<M-j>", "<Cmd>m .+1<Cr>==", { desc = "Move Current Line Down" })
+-- nmap("<M-k>", "<Cmd>m .-2<Cr>==", { desc = "Move Current Line Up" })
+-- imap("<M-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move Current Line Down" })
+-- imap("<M-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move Current Line Up" })
+-- vmap("<M-j>", ":m '>+1<Cr>gv=gv", { desc = "Move selection down" })
+-- vmap("<M-k>", ":m '<-2<Cr>gv=gv", { desc = "Move selection up" })
 
 -- clear search highlight with <Esc>
 nmap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
 imap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
 
+-- smart close
+-- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
+nmap("<C-q>", function()
+  -- close current win if there are more than 1 win
+  -- else close current tab if there are more than 1 tab
+  -- else close current vim
+  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+    vim.cmd([[close]])
+  elseif #vim.api.nvim_list_tabpages() > 1 then
+    vim.cmd([[tabclose]])
+  else
+    vim.cmd([[qa]])
+  end
+end, { desc = "Smart close" })
+
 -- 〉
 
--- Insert mode mappings 〈
+-- Insert 〈
 
 imap("<M-.>", "<Esc>A")
 imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
--- 〉
+-- Insert 〉
+
+-- Operator 〈
 
 omap("ir", "i[")
 omap("ar", "a[")
 omap("ia", "i<")
 omap("aa", "a<")
+
+-- Operator 〉
 
 -- Terminal 〈
 

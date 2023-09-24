@@ -1,49 +1,50 @@
 local M = {}
 
 local function toggle_inlay_hint()
-  vim.lsp.buf.inlay_hint(0)
+  vim.lsp.inlay_hint(0)
 end
 
 local function setup_keymaps(bufnr)
-  local function b(t)
-    t.buffer = bufnr
-    return t
-  end
-
   -- stylua: ignore start
   local keys = {
     g = {
-      x = b { vim.lsp.buf.declaration,                   "Goto Declaration" },
+      x = { vim.lsp.buf.declaration,                   "Goto declaration" },
 
-      d = b { "<Cmd>Telescope lsp_definitions<Cr>",      "Goto Definitions" },
-      y = b { "<Cmd>Telescope lsp_type_definitions<Cr>", "Goto Type Definitions" },
-      m = b { "<Cmd>Telescope lsp_implementations<Cr>",  "Goto Implementations" },
-      r = b { "<Cmd>Telescope lsp_references<Cr>",       "Goto References" },
+      d = { "<Cmd>Telescope lsp_definitions<Cr>",      "Goto definitions" },
+      y = { "<Cmd>Telescope lsp_type_definitions<Cr>", "Goto type definitions" },
+      m = { "<Cmd>Telescope lsp_implementations<Cr>",  "Goto implementations" },
+      r = { "<Cmd>Telescope lsp_references<Cr>",       "Goto references" },
 
-      D = b { "<Cmd>Glance definitions<Cr>",             "Glance: Goto Definitions" },
-      Y = b { "<Cmd>Glance type_definitions<Cr>",        "Glance: Goto Type Definitions" },
-      M = b { "<Cmd>Glance implementations<Cr>",         "Glance: Goto Implementations" },
-      R = b { "<Cmd>Glance references<Cr>",              "Glance: Goto References" },
+      D = { "<Cmd>Glance definitions<Cr>",             "Glance: goto definitions" },
+      Y = { "<Cmd>Glance type_definitions<Cr>",        "Glance: goto type definitions" },
+      M = { "<Cmd>Glance implementations<Cr>",         "Glance: goto implementations" },
+      R = { "<Cmd>Glance references<Cr>",              "Glance: goto references" },
     },
 
-    K   = b { vim.lsp.buf.hover,                         "LSP Hover" },
-    gk  = b { vim.lsp.buf.signature_help,                "LSP Signature Help" },
+    K   = { vim.lsp.buf.hover,                         "LSP hover" },
+    gk  = { vim.lsp.buf.signature_help,                "LSP signature help" },
 
-    gh  = b { toggle_inlay_hint,                         "Toggle LSP Inlay Hint" },
+    gh  = { toggle_inlay_hint,                         "Toggle LSP inlay hint" },
   }
 
-  require("which-key").register(keys)
-
-  keys = {
-    ["<C-k>"] = b { vim.lsp.buf.signature_help,          "LSP Signature Help" },
+  local ikeys = {
+    ["<C-k>"] = { vim.lsp.buf.signature_help,          "LSP Signature Help" },
   }
   -- stylua: ignore end
 
-  require("which-key").register(keys, { mode = "i" })
+  for _, v in pairs(keys) do
+    v.buffer = bufnr
+  end
+  require("which-key").register(keys)
+
+  for _, v in pairs(ikeys) do
+    v.buffer = bufnr
+  end
+  require("which-key").register(ikeys, { mode = "i" })
 end
 
 local function setup_on_attach()
-  require("mudox.util").on.lsp_attach(function(client, bufnr)
+  require("mudox.util").on.lsp_attach(function(_, bufnr)
     setup_keymaps(bufnr)
   end)
 end

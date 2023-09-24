@@ -15,6 +15,11 @@ M.ctrl_shift_l                    = "󰶻 "
 M.ctrl_shift_k                    = "󰶼 "
 M.ctrl_shift_j                    = "󰶹 "
 
+M.ctrl_enter                      = "␍ "
+M.ctrl_shift_enter                = "⏎ "
+
+M.ctrl_shift_p                    = "󱁖 "
+
 -- stylua: ignore end
 
 for k, v in pairs(M) do

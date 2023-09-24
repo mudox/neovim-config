@@ -2,14 +2,10 @@ local toggle_key = "<C-t>"
 
 local opts = {
   open_mapping = toggle_key,
-  -- insert_mappings = false,
 
-  shade_terminals = true,
-  shading_factor = -20,
+  shade_terminals = false, -- disable for clear window separator line
 
-  direction = "float",
-  -- direction = "horizontal",
-  -- direction = "vertical",
+  direction = "horizontal",
 
   size = function(term)
     if term.direction == "horizontal" then
@@ -22,7 +18,7 @@ local opts = {
   start_in_insert = true,
 
   float_opts = {
-    -- border = "single",
+    border = require("mudox.ui").icons.border.box,
     winblend = 0, -- transparency makes double width symbol display incorrectly
   },
 
@@ -41,7 +37,7 @@ end
 
 local function move(direction)
   return function()
-    require("mudox.plugin.toggle-term.utils").move(direction)
+    require("mudox.plugin.toggle-term.util").move(direction)
   end
 end
 
@@ -53,17 +49,31 @@ local function toggle_lazygit()
   require("mudox.plugin.toggle-term.git").lazygit:toggle()
 end
 
+local function change_layout()
+  require("mudox.plugin.toggle-term.util").change_layout()
+end
+
 -- stylua: ignore start
 local keys = {
   toggle_key,
-  -- ISSUE: can not close after open using the keymap
+
+  -- prefer to use tmux popup when in tmux
   { "<leader>gl", toggle_lazygit, desc = "LazyGit (ToggleTerm)", },
   { "<leader>gg", toggle_gitui, desc = "GitUI (ToggleTerm)", },
 
-  { "<C-\\><Space>", move("horizontal"), mode = { "n", "t" }, desc = "Move Terminal Window To Bottom" },
-  { "<C-\\><C-\\>", move("vertical"), mode = { "n", "t" }, desc = "Move Terminal Window To Right" },
-  { "<C-\\><Tab>", move("tab"), mode = { "n", "t" }, desc = "Move Terminal Window To New Tabpage" },
-  { "<C-\\><Cr>", move("float"), mode = { "n", "t" }, desc = "Move Terminal Window To Float" },
+  -- layout
+  { "<C-\\>s", move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to bottom" },
+  { "<C-\\>v", move("vertical"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to right" },
+  { "<C-\\>t", move("tab"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to new tabpage" },
+  { "<C-\\>f", move("float"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to float" },
+  { "<C-\\><C-\\>", change_layout, mode = { "n", "t" }, desc = "[ToggleTerm] Change layout" },
+
+  -- rename
+  { "<C-\\>r", "<Cmd>ToggleTermSetName<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Rename" },
+
+  -- select terminal
+  { "<leader>wt", "<Cmd>TermSelect<Cr>", desc = "[ToggleTerm] Select terminal" },
+  { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Select terminal" },
 }
 -- stylua: ignore end
 

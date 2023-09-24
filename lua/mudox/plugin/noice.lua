@@ -1,3 +1,43 @@
+local views = {
+  cmdline_popup = {
+    border = {
+      style = "single",
+    },
+  },
+  popupmenu = {
+    border = {
+      style = "none",
+    },
+  },
+}
+
+local routes = {
+  -- remove 'written' messages
+  {
+    filter = {
+      event = "msg_show",
+      kind = "",
+      find = "written",
+    },
+    opts = { skip = true },
+  },
+  -- {
+  --   filter = {
+  --     any = {
+  --       {
+  --         event = "msg_show",
+  --         min_height = 15,
+  --       },
+  --       {
+  --         event = "msg_show",
+  --         min_width = 30,
+  --       },
+  --     },
+  --   },
+  --   view = "split",
+  -- },
+}
+
 local cmdline = {
   format = {
     cmdline = { pattern = "^:", icon = "", lang = "vim" },
@@ -18,17 +58,33 @@ local lsp = {
 }
 
 local opts = {
+  views = views,
+  routes = routes,
+
   cmdline = cmdline,
   lsp = lsp,
-  -- you can enable a preset for easier configuration
+
   presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
+    bottom_search = true,
+    command_palette = true,
+    long_message_to_split = true,
+    inc_rename = false,
+    lsp_doc_border = false,
   },
 }
+
+-- stylua: ignore start
+
+local keys = {
+  { "<leader>tN",       "<Cmd>Noice telescope<Cr>", desc = "[Noice] History in telescope" },
+  { "<leader>m<Space>", "<Cmd>Noice<Cr>",           desc = "[Noice] History" },
+  { "<leader>m.",       "<Cmd>Noice last<Cr>",      desc = "[Noice] Last message" },
+  { "<leader>me",       "<Cmd>Noice errors<Cr>",    desc = "[Noice] Errors" },
+  { "<leader>m[",       "<Cmd>Noice disable<Cr>",    desc = "[Noice] Disable" },
+  { "<leader>m]",       "<Cmd>Noice enable<Cr>",    desc = "[Noice] Enable" },
+}
+
+-- stylua: ignore end
 
 return {
   "folke/noice.nvim",
@@ -36,8 +92,9 @@ return {
     "nui.nvim",
     "nvim-notify",
   },
-  -- cond = false,
+  cond = false,
   event = "VeryLazy",
+  keys = keys,
   opts = opts,
   config = function(_, o)
     require("noice").setup(o)

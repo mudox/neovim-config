@@ -2,6 +2,11 @@ local function opts()
   local util = require("formatter.util")
 
   local filetype = {
+    json = {
+      require("formatter.filetypes.json").fixjson,
+      require("formatter.filetypes.json").jq,
+    },
+
     lua = {
       require("formatter.filetypes.lua").stylua,
     },
@@ -26,8 +31,8 @@ local function opts()
 end
 
 local keys = {
-  { "\\q", "<Cmd>FormatLock<Cr>", desc = "Format by formatter.nvim" },
-  { "\\w", "<Cmd>FormatWriteLock<Cr>", desc = "Format and write by formatter.nvim" },
+  { "\\q", "<Cmd>FormatLock<Cr>", desc = "[Formatter] Format document" },
+  { "\\w", "<Cmd>FormatWriteLock<Cr>", desc = "[Formatter] Format and write" },
 }
 
 return {

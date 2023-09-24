@@ -1,6 +1,6 @@
 -- vim: fdm=marker fmr=〈,〉
 
--- Keys 〈
+-- Keymaps to invoke telescope 〈
 
 local function open(picker, opts)
   opts = vim.deepcopy(opts or {})
@@ -37,69 +37,72 @@ local function font_symbols()
 end
 
 -- stylua: ignore start
-local keys = {
-  { ":",                "builtin",                   "All Telescope Pickers"    },
-  { "<leader>t<Space>", "resume",                    "Resume Telescope"         },
+local keymaps = {
+  { ":",                "builtin",                   "All telescope pickers"    },
+  { ".",                "resume",                    "Resume telescope"         },
 
   -- lsp
-  { "?",                "diagnostics bufnr=0",       "Document Diagnostics"     },
-  { "!",                "diagnostics",               "Workspace Diagnostics"    },
-  { ".",                "lsp_code_actions",          "Code Actions"             },
+  { "?",                "diagnostics bufnr=0",       "Document diagnostics"     },
+  { "!",                "diagnostics",               "Workspace diagnostics"    },
 
   -- symbols
-  { "<M-7>",            "treesitter",                "TreeSitter Symbols"       },
-  { "<M-9>",            "lsp_workspace_symbols",     "LSP Workspace Symbols"    },
-  { "<M-8>",            "lsp_document_symbols",      "LSP Document Symbols"     },
+  { "<M-7>",            "treesitter",                "Treesitter symbols"       },
+  { "<M-9>",            "lsp_workspace_symbols",     "LSP workspace symbols"    },
+  { "<M-8>",            "lsp_document_symbols",      "LSP document symbols"     },
 
   -- vim
-  { "<Space>r",         "oldfiles",                  "Recent Files"             },
-  { "<C-S-n>",          "buffers",                   "Switch Buffer"            },
-  { "o",                "vim_options",               "Vim Options"              },
-  { "H",                "highlights",                "Highlight Groups"         },
+  { "<Space>r",         "oldfiles",                  "Recent files"             },
+  { "<C-S-n>",          "buffers",                   "Switch buffer"            },
+  { "o",                "vim_options",               "Vim options"              },
+  { "H",                "highlights",                "Highlight groups"         },
   { "k",                "keymaps",                   "Keymaps"                  },
-  { "c",                "command_history",           "Command History"          },
+  { "c",                "command_history",           "Command history"          },
   { "C",                "commands",                  "Commands"                 },
 
-  { "h",                "help_tags",                 "Vim Help"                 },
-  { "<Space>h",         "help_tags",                 "Vim Help"                 },
+  { "h",                "help_tags",                 "Vim help"                 },
+  { "<Space>h",         "help_tags",                 "Vim help"                 },
 
-  { "/",                "current_buffer_fuzzy_find", "Search in Buffer"         },
-  { "<M-/>",            "current_buffer_fuzzy_find", "Search in Buffer"         },
+  { "/",                "current_buffer_fuzzy_find", "Search in buffer"         },
+  { "<M-/>",            "current_buffer_fuzzy_find", "Search in buffer"         },
 
   -- grep
-  { "<Space>s",         open("live_grep"),           "Live Grep"                },
-  { "w",                open("grep_string"),         "Grep <Word> Under Cursor" },
+  { "<Space>s",         open("live_grep"),           "Live grep"                },
+  { "w",                open("grep_string"),         "Grep <word> under cursor" },
+  { "G",                open("live_grep_args"),      "Live grep args (rg raw)"  },
 
   -- files
-  { "<C-p>",            open("files"),               "Find Files"               },
-  { "<Space><Space>",   "smart_open",                "Smart Open"               },
+  { "<C-p>",            open("files"),               "Find files"               },
+  { "<Space><Space>",   "smart_open",                "Smart open"               },
 
   -- plugins
-  { "p",                "lazy",                      "Lazy Plugins"             },
+  { "p",                "lazy",                      "Lazy plugins"             },
 
   -- git
-  { "gc",               "git_commits",               "Git Commits"              },
-  { "gb",               "git_bcommits",              "Git Buffer History"       },
-  { "gB",               "git_branches",              "Git Branches"             },
-  { "gs",               "git_status",                "Git Status"               },
-  { "gS",               "git_stash",                 "Git Stash"                },
+  { "gc",               "git_commits",               "Git commits"              },
+  { "gb",               "git_bcommits",              "Git buffer history"       },
+  { "gB",               "git_branches",              "Git branches"             },
+  { "gs",               "git_status",                "Git status"               },
+  { "gS",               "git_stash",                 "Git stash"                },
 
   -- search
-  { "M",                "man_pages",                 "Man Pages"                },
-  { "m",                "marks",                     "Jump to Mark"             },
+  { "M",                "man_pages",                 "Man pages"                },
+  { "m",                "marks",                     "Jump to mark"             },
 
   -- notify
   { "n",                "notify",                    "Notifications"            },
 
   -- misc
-  { "i",                font_symbols,                "Font Symbols"             },
+  { "i",                font_symbols,                "Font symbols"             },
 
   -- luasnip snippets list
-  { "s",                "luasnip theme=dropdown",    "Font Symbols"             },
+  { "s",                "luasnip theme=dropdown",    "Font symbols"             },
+
+  -- heading
+  { "O",                "heading",                   "Heading"                  },
 }
 -- stylua: ignore end
 
-for _, v in pairs(keys) do
+for _, v in pairs(keymaps) do
   if v[1]:sub(1, 1) ~= "<" then
     v[1] = "<leader>t" .. v[1]
   end
@@ -112,11 +115,11 @@ for _, v in pairs(keys) do
   v[3] = nil
 end
 
--- keys 〉
+-- Keymaps to invoke telescope 〉
 
 -- Mappings 〈
 
-local mappings = {
+local picker_keymaps = {
   i = {
     -- no normal mode
     ["<Esc>"] = function(...)
@@ -160,6 +163,12 @@ local mappings = {
     ["<C-k>"] = function(...)
       return require("telescope.actions").cycle_history_prev(...)
     end,
+
+    -- <C-/>
+    [""] = function(...)
+      return require("telescope.actions").which_key(...)
+    end,
+
   },
 
   n = {
@@ -172,6 +181,6 @@ local mappings = {
 -- Mappings 〉
 
 return {
-  keys = keys,
-  mappings = mappings,
+  keys = keymaps,
+  mappings = picker_keymaps,
 }

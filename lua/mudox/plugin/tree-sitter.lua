@@ -12,7 +12,6 @@ local opts = {
 opts.ensure_installed = {
   "bash",
   "c",
-  "help",
   "html",
   "http",
   "javascript",
@@ -37,38 +36,6 @@ opts.incremental_selection = {
     node_incremental = "<C-Space>",
     scope_incremental = "<Nop>",
     node_decremental = "<Bs>",
-  },
-}
-
-local playground = {
-  "nvim-treesitter/playground",
-  cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor", "TSNodeUnderCursor" },
-}
-
--- stylua: ignore start
-playground.keys = {
-  { "<leader>vc", "<Cmd>TSCaptureUnderCursor<Cr>", desc = "TreeSitter Capture" },
-  { "<leader>vn", "<Cmd>TSNodeUnderCursor<Cr>", desc = "TreeSitter Node" },
-}
--- stylua: ignore end
-
--- See: https://github.com/nvim-treesitter/playground#setup
-opts.playground = {
-  enable = true,
-  disable = {},
-  updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-  persist_queries = false, -- Whether the query persists across vim sessions
-  keybindings = {
-    toggle_query_editor = "o",
-    toggle_hl_groups = "i",
-    toggle_injected_languages = "t",
-    toggle_anonymous_nodes = "a",
-    toggle_language_display = "I",
-    focus_language = "f",
-    unfocus_language = "F",
-    update = "R",
-    goto_node = "<cr>",
-    show_help = "?",
   },
 }
 
@@ -104,7 +71,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufRead", "BufNewFile" },
-    dependencies = { textobjects, playground },
+    dependencies = { textobjects, },
     keys = keys,
     opts = opts,
     config = function(_, opts)

@@ -7,18 +7,36 @@ local function change_choice()
 end
 
 local function select_choice()
-  require("luasnip.extras.select_choice")()
+  if require("luasnip").choice_active() then
+    require("luasnip.extras.select_choice")()
+  end
 end
 
 local function edit_snippet()
+  local my_pattern = vim.pesc("/Users/mudox/Git/neovim-config/luasnippets")
+  local friendly_pattern = vim.pesc("/Users/mudox/.local/share/nvim/lazy/friendly-snippets/snippets")
+
   require("luasnip.loaders").edit_snippet_files {
     format = function(file, _)
-      return file
-        :gsub("/Users/mudox/Git/neovim%-config/luasnippets", "[MY]")
-        :gsub("/Users/mudox/.local/share/nvim/lazy/friendly%-snippets/snippets", "[FRIENDLY]")
+      return file:gsub(my_pattern, "[MY] "):gsub(friendly_pattern, "[FRIENDLY] ")
     end,
+
     edit = function(file)
       vim.cmd("vsplit " .. file)
+    end,
+
+    extend = function(ft, _)
+      local my_file = ("/Users/mudox/Git/neovim-config/luasnippets/%s.lua"):format(ft)
+      if vim.fn.filereadable(my_file) == 0 then
+        return {
+          {
+            ("[NEW] %s.lua"):format(ft),
+            ("%s/%s.lua"):format("/Users/mudox/Git/neovim-config/luasnippets", ft),
+          },
+        }
+      else
+        return {}
+      end
     end,
   }
 end
@@ -26,49 +44,48 @@ end
 -- stylua: ignore start
 local keys = {
   -- expand & juamp
-  { "<C-f>", function() require("luasnip").expand_or_jump() end, mode = "i", },
-  { "<C-f>", function() require("luasnip").jump(1) end, mode = "s", },
-  { "<C-b>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
+  { "<C-f>", function() require("luasnip").expand_or_jump() end, mode = "i", desc = "[LuaSnip] Expand or jump to next placeholder" },
+  { "<C-f>", function() require("luasnip").jump(1) end, mode = "s",  desc = "[LuaSnip] Jump to next placeholder" },
+  { "<C-b>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, desc = "[LuaSnip] Jump to next placeholder" },
 
   -- choices
-  { "<C-e>", change_choice, expr = true, mode = { "i", "s" }, desc = "Change Choice" },
-  { "<C-u>", select_choice, expr = true, mode = { "i", "s" }, desc = "Select Choice" },
+  { "<C-e>", change_choice, expr = true, mode = { "i", "s" }, desc = "[LuaSnip] Change choice" },
+  { "<C-c>", select_choice, mode = { "i", "s" }, desc = "[LuaSnip] Select choice" },
+
 
   -- edit
-  { "<leader>es", edit_snippet, desc = "Edit Snippet" },
+  { "<leader>es", edit_snippet, desc = "[LuaSnip] Edit Snippet" },
 
   -- on the fly snippet
-  { "<C-o>", [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode = "v", desc = "On-The-Fly Snippet" },
-  { "<C-o>", function() require("luasnip.extras.otf").on_the_fly("o") end, mode = "i", desc = "On-The-Fly Snippet" },
+  { "<C-o>", [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode = "v", desc = "[LuaSnip] On-The-Fly snippet" },
+  { "<C-o>", function() require("luasnip.extras.otf").on_the_fly("o") end, mode = "i", desc = "[LuaSnip] On-The-Fly snippet" },
 }
 -- stylua: ignore end
 
 -- Keys 〉
 
-local function opts()
+local function opts(o)
   local t = require("luasnip.util.types")
 
-  return {
-    enable_autosnippets = true, -- performance alert
+  o.enable_autosnippets = true -- performance alert
 
-    history = true,
+  o.history = true
 
-    update_events = "TextChanged, TextChangedI",
-    region_check_events = "CursorMoved, CursorHold, InsertLeave",
-    delete_check_events = "TextChanged, InsertLeave",
+  o.update_events = "TextChanged, TextChangedI"
+  o.region_check_events = "CursorMoved, CursorHold, InsertLeave"
+  o.delete_check_events = "TextChanged, InsertLeave"
 
-    store_selection_keys = "<C-f>",
+  o.store_selection_keys = "<C-f>"
 
-    ext_opts = {
-      [t.choiceNode] = {
-        active = {
-          virt_text = { { " ", "@symbol" } },
-        },
+  o.ext_opts = {
+    [t.choiceNode] = {
+      active = {
+        virt_text = { { " ", "@symbol" } },
       },
-      [t.insertNode] = {
-        active = {
-          virt_text = { { "󰴓 ", "@field" } },
-        },
+    },
+    [t.insertNode] = {
+      active = {
+        virt_text = { { "󰴓 ", "@field" } },
       },
     },
   }

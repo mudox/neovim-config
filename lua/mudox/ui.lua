@@ -94,7 +94,7 @@ local powerline = {
 }
 -- stylua: ignore end
 
-powerline.current = powerline.t3
+powerline.current = powerline.t1
 
 -- 〉
 
@@ -110,7 +110,10 @@ local tree = {
 
 -- 〉
 
-local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+local border = {
+  box = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+  corner = { "🭽", " ", "🭾", " ", "🭿", " ", "🭼", " " },
+}
 
 -- LSP kinds 〈
 
@@ -234,7 +237,7 @@ local filetype = {
   git      = " ",
   apple    = " ",
   java     = " ",
-  neorg    = " ",
+  neorg    = "󰏪 ",
   config   = "󰣖 ",
   compiled = " ",
   backup   = " ",
@@ -291,6 +294,7 @@ local icons = {
   tree          = tree,
   folder        = folder,
   filetype      = filetype,
+
   border        = border,
 }
 -- stylua: ignore end

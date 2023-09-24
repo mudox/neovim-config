@@ -1,30 +1,40 @@
+-- stylua: ignore start
 local keys = {
-  { "<Space>", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List" },
+  -- task list
+  { "<Space>", "Toggle",         "Toggle task list" },
 
-  { "i", "<Cmd>OverseerInfo<Cr>", desc = "Overseer Info" },
+  -- info
+  { "i",       "Info",           "Diagnostic info" },
 
-  { "r", "<Cmd>OverseerRun<Cr>", desc = "Run Task From Template" },
-  { "R", "<Cmd>OverseerRunCmd<Cr>", desc = "Run Shell Command" },
-  { "b", "<Cmd>OverseerBuild<Cr>", desc = "Build New Task" },
+  -- launch task
+  { ".",       "RestartLast",    "Run last task" },
+  { "r",       "Run",            "Run task template" },
+  { "c",       "RunCmd",         "Run shell command" },
+  { "n",       "Build",          "Build new task" },
+  { "w",       "WatchRun",       "Watch & run" },
 
-  { "a", "<Cmd>OverseerQuickAction<Cr>", desc = "Overseer Quick Action" },
-  { "a", "<Cmd>OverseerTaskAction<Cr>", desc = "Overseer Task Action" },
+  -- manage task
+  { "a",       "QuickAction",    "Perform quick action" },
+  { "A",       "TaskAction",     "Perform task action" },
 
-  { "s", "<Cmd>OverseerSaveBundle<Cr>", desc = "Save Task Bundle" },
-  { "l", "<Cmd>OverseerLoadBundle<Cr>", desc = "Load & Run Task Bundle" },
-  { "L", "<Cmd>OverseerLoadBundle!<Cr>", desc = "Load Task Bundle" },
-  { "d", "<Cmd>OverseerDeleteBundle<Cr>", desc = "Delete Task Bundle" },
+  -- save / restore tasks
+  { "s",       "SaveBundle",     "Save task bundle" },
+  { "l",       "LoadBundle",     "Load & run task bundle" },
+  { "L",       "LoadBundle!",    "Load task bundle" },
+  { "d",       "DeleteBundle",   "Delete task bundle" },
 }
+-- stylua: ignore end
 
 for _, k in ipairs(keys) do
   k[1] = "<leader>r" .. k[1]
+  k[2] = "<Cmd>Overseer" .. k[2] .. "<Cr>"
+  k.desc = "[Overseer] " .. k[3]
+  k[3] = nil
 end
 
-vim.list_extend(keys, {
-  -- task list side pane
-  { "<leader>vr", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List (Overseer) Side Pane" },
-  { "<C-S-r>", "<Cmd>OverseerToggle<Cr>", desc = "Toggle Task List (Overseer) Side Pane" },
-})
+local kb = require("mudox.keys")
+table.insert(keys, { kb.ctrl_enter, "<Cmd>OverseerRun<Cr>", "[Overseer] Select and run task template" })
+table.insert(keys, { kb.ctrl_shift_enter, "<Cmd>OverseerToggle<Cr>", "[Overseer] Run toggle task list" })
 
 -- restarts the most recent overseer task
 local function run_last_command()
@@ -39,8 +49,30 @@ local function run_last_command()
   end, {})
 end
 
+local function watch_run()
+  vim.api.nvim_create_user_command("OverseerWatchRun", function()
+    local overseer = require("overseer")
+    overseer.run_template({ name = "run script" }, function(task)
+      if task then
+        task:add_component { "restart_on_save", paths = { vim.fn.expand("%:p") } }
+        local main_win = vim.api.nvim_get_current_win()
+        overseer.run_action(task, "open vsplit")
+        vim.api.nvim_set_current_win(main_win)
+      else
+        vim.notify(
+          'Template "run script" currently does not supports filetype ' .. vim.bo.filetype,
+          vim.log.levels.ERROR
+        )
+      end
+    end)
+  end, {})
+end
+
 -- this template provider will find all shell scripts in the current directory and create tasks for them
+-- https://github.com/stevearc/overseer.nvim/blob/master/doc/recipes.md#run-shell-scripts-in-the-current-directory
 local function local_shell_scripts()
+  local files = require("overseer.files")
+
   return {
     generator = function(opts, cb)
       local scripts = vim.tbl_filter(function(filename)
@@ -67,30 +99,89 @@ local function local_shell_scripts()
   }
 end
 
-local function config(_, opts)
-  require("overseer").setup(opts)
+local templates = {
+  "builtin",
+
+  "mudox.run_script",
+  "mudox.run_neovim_lua_script",
+}
+
+local border = require("mudox.ui").icons.border.corner
+
+local task_list = {
+  direction = "right",
+  bindings = {
+    -- open
+    -- ["o"] = "Open",
+    -- ["<C-f>"] = "OpenFloat",
+    -- ["<C-v>"] = "OpenVsplit",
+    -- ["<C-s>"] = "OpenSplit",
+
+    -- navigate
+    ["C-j"] = "NextTask",
+    ["C-k"] = "PrevTask",
+
+    -- window width
+    -- ["]"] = "IncreaseWidth",
+    -- ["["] = "DecreaseWidth",
+
+    -- scroll
+    -- ["C-j"] = "ScrollOutputDown",
+    -- ["C-k"] = "ScrollOutputUp",
+
+    -- detail
+    ["<C-l>"] = false,
+    ["<C-h>"] = false,
+    ["]"] = "IncreaseDetail",
+    ["["] = "DecreaseDetail",
+    ["L"] = false,
+    ["H"] = false,
+    ["}"] = "IncreaseAllDetail",
+    ["{"] = "DecreaseAllDetail",
+  },
+}
+
+local opts = {
+  templates = templates,
+
+  task_list = task_list,
+  confirm = {
+    border = border,
+    win_opts = {
+      winblend = 0,
+    },
+  },
+  task_launcher = {
+    border = border,
+    win_opts = {
+      winblend = 0,
+    },
+  },
+  form = {
+    border = border,
+    win_opts = {
+      winblend = 0,
+    },
+  },
+  task_win = {
+    padding = 4,
+    border = border,
+    win_opts = {
+      winblend = 0,
+    },
+  },
+}
+
+local function config(_, o)
+  require("overseer").setup(o)
 
   -- recipes from https://github.com/stevearc/overseer.nvim/blob/master/doc/recipes.md
   run_last_command()
-  local_shell_scripts()
-end
+  -- local_shell_scripts()
 
-local opts = {
-  confirm = {
-    border = "single",
-  },
-  form = {
-    border = "single",
-  },
-  task_win = {
-    border = "single",
-  },
-  templates = {
-    "builtin",
-    "mudox.run_script",
-    "mudox.run_neovim_lua_script",
-  },
-}
+  -- https://github.com/stevearc/overseer.nvim/blob/master/doc/tutorials.md#build-a-c-file
+  watch_run()
+end
 
 return {
   "stevearc/overseer.nvim",

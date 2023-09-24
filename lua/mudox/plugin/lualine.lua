@@ -97,7 +97,6 @@ local buffers = {
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  cond = false,
   opts = {
     options = options,
     sections = statusline,

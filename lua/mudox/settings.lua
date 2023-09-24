@@ -14,15 +14,24 @@ opt.fillchars = {
   eob       = " ",
 
   -- Pane separators
-  horiz     = "━",
-  horizup   = "┻",
-  horizdown = "┳",
+  horiz     = "─",
+  horizup   = "┴",
+  horizdown = "┬",
+  vert      = "│",
+  vertleft  = "┤",
+  vertright = "├",
+  verthoriz = "┼",
 
-  vert      = "┃",
-  vertleft  = "┫",
-  vertright = "┣",
-
-  verthoriz = "╋",
+  -- Pane separators
+  -- horiz     = "━",
+  -- horizup   = "┻",
+  -- horizdown = "┳",
+  --
+  -- vert      = "┃",
+  -- vertleft  = "┫",
+  -- vertright = "┣",
+  --
+  -- verthoriz = "╋",
 
   diff      = '╱',
 
@@ -51,10 +60,11 @@ o.cmdheight = 2
 opt.wildmode = "longest:full,full"
 
 -- message
-opt.shortmess:append("I") -- Not show `:intro` on startup
-opt.shortmess:append("c") -- Not show insert completion menu messages
-opt.shortmess:append("s") -- Not show `Hit Bottom / Top ...` messages
-opt.shortmess:append("C") -- Not show `scanning tags` messages
+-- see: https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#handling-hit-enter-messages
+opt.shortmess:append("I") -- `:into` at startup
+opt.shortmess:append("A") -- swap file messages
+opt.shortmess:append("cC") -- completion menu messages
+opt.shortmess:append("s") -- search messages
 
 opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")

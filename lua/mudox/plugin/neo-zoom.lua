@@ -24,11 +24,11 @@ local preset_dap_panes = {
 local opts = {
   winopts = {
     offset = {
-      width = 130,
-      height = 0.85,
+      width = 140,
+      height = 0.75,
     },
     -- check :help nvim_open_win() for possible border values.
-    border = "single",
+    border = "none",
   },
 
   exclude_filetypes = { "lspinfo", "mason", "lazy", "fzf", "qf" },

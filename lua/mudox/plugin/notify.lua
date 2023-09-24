@@ -23,8 +23,6 @@ local function config()
     max_height = nil,
     minimum_width = 50,
 
-    -- background_colour = "#000000",
-
     icons = icons,
   }
 
@@ -33,13 +31,13 @@ local function config()
   vim.notify = notify
 end
 
-keys = {
+local keys = {
   {
     "<leader>un",
     function()
       require("notify").dismiss { silent = true, pending = true }
     end,
-    desc = "Delete all Notifications",
+    desc = "Dismiss all notifications",
   },
 }
 

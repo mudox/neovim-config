@@ -10,7 +10,8 @@ local keys = {
 }
 
 local opts = {
-  selection_chars = 'ASFGHJKLQWERUIOPZXCVNM',
+  -- hint = "floating-big-letter",
+  selection_chars = "ASFGHJKLQWERUIOPZXCVNM",
   filter_rules = {
     include_current_win = true,
     bo = {

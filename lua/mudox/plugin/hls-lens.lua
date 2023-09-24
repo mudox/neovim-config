@@ -14,4 +14,5 @@ return {
   opts = {
     calm_down = true,
   },
+  cond = true, -- noice.nvim has the same features
 }

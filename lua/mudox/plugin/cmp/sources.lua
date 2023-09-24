@@ -49,12 +49,11 @@ M.search = {
   { name = "cmdline_history", keyword_length = 2 },
 }
 
-M.cmdline = group({
-  { name = "path", keyword_length = 2 },
-}, {
-  { name = "cmdline_history", keyword_length = 2 },
+M.cmdline = {
+  { name = "path", keyword_length = 2, max_item_count = 4 },
+  { name = "cmdline_history", keyword_length = 2, max_item_count = 3 },
   { name = "cmdline", keyword_length = 2 },
-})
+}
 
 local c6 = cmp.config.compare
 M.sorting = {

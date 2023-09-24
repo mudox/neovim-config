@@ -6,7 +6,7 @@ return {
       function()
         require("spectre").open()
       end,
-      desc = "Replace in files (Spectre)",
+      desc = "[Spectre] Replace in files",
     },
   },
 }
