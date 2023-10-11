@@ -5,7 +5,7 @@ local function setup_highlights()
 end
 
 local function opts()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons")
 
   -- Icons 〈
 
@@ -95,7 +95,7 @@ local function config(_, options)
   setup_highlights()
 end
 
-local kb = require("mudox.keys")
+local kb = require("mudox.keyboard")
 local keys = {
   { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[Tree] Toggle pane" },
   { kb.ctrl_shift_p, "<Cmd>NvimTreeFindFile!<Cr>", desc = "[Tree] Highlight current file" },

@@ -1,5 +1,5 @@
 local function opts()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons")
   local g = require("glance")
   local a = g.actions
 

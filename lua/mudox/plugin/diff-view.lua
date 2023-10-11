@@ -1,5 +1,5 @@
 local opts = function()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons")
 
   return {
     enhanced_diff_hl = false,
@@ -12,15 +12,6 @@ local opts = function()
     signs = {
       fold_closed = i.collapsed,
       fold_open = i.expanded,
-    },
-
-    hooks = {
-      diff_buf_read = function()
-        -- ISSUE: right window guidlines remain after disabling.
-        vim.cmd([[
-      IndentBlanklineDisable 
-      ]])
-      end,
     },
   }
 end

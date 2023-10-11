@@ -52,6 +52,7 @@ local function config(_, options)
       v = {
         name = "+view",
         l = { "<Cmd>Lazy<Cr>", "Lazy" },
+        v = { "<Cmd>messages<Cr>", "Neovim messages" },
       },
       x = { name = "+diagnostics" },
       yo = { name = "+toggle" },

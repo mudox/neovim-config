@@ -1,8 +1,8 @@
-local on = {}
+local M = {}
 
 ---@param fn fun(client, bufnr)
 ---@param opts table|nil
-function on.lsp_attach(fn, opts)
+function M.lsp_attach(fn, opts)
   opts = opts or {}
 
   vim.api.nvim_create_autocmd("LspAttach", {
@@ -18,7 +18,7 @@ end
 
 ---@param fn fun()
 ---@param opts table|nil
-function on.very_lazy(fn, opts)
+function M.very_lazy(fn, opts)
   opts = opts or {}
 
   vim.api.nvim_create_autocmd("User", {
@@ -31,7 +31,7 @@ end
 
 ---@param fn fun()
 ---@param opts table|nil
-function on.colorscheme(fn, opts)
+function M.colorscheme(fn, opts)
   opts = opts or {}
 
   vim.api.nvim_create_autocmd("ColorScheme", {
@@ -41,6 +41,4 @@ function on.colorscheme(fn, opts)
   })
 end
 
-return {
-  on = on,
-}
+return M

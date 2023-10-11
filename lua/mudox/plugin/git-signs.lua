@@ -34,7 +34,7 @@ local function on_attach(buffer)
   map("n", "]h", gs.next_hunk, "Next Hunk")
   map("n", "[h", gs.prev_hunk, "Previous Hunk")
   map("n", "]g", gs.next_hunk, "Next Hunk")
-  map("n", "[g", gs.prev_hunk, "Prevous Hunk")
+  map("n", "[g", gs.prev_hunk, "Previous Hunk")
   -- stylua: ignore end
 end
 
@@ -86,6 +86,6 @@ return {
   event = { "BufRead", "BufNewFile" },
   opts = opts,
   keys = {
-    { "<leader>g<Space>", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "Toggle GitSigns Signs" },
+    { "<leader>g<Space>", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "[GitSigns] Toggle signs" },
   },
 }

@@ -3,7 +3,6 @@
 return {
   "stevearc/stickybuf.nvim",
   event = "VeryLazy",
-  -- ISSUE: it causes telescope to open file in insert mode
-  cond = false,
   opts = {},
+  cond = false,
 }

@@ -1,11 +1,12 @@
 local formatters_by_ft = {
-  lua = { "stylua" },
   -- Conform will run multiple formatters sequentially
-  python = { "isort", "black" },
   -- Use a sub-list to run only the first available formatter
+  lua = { "stylua" },
+  python = { "isort", "black" },
   javascript = { "prettierd" },
+
   -- Use the "*" filetype to run formatters on all filetypes.
-  ["*"] = { "codespell" },
+  ["*"] = { "codespell", "trim_whitespace" },
   -- Use the "_" filetype to run formatters on filetypes that don't
   -- have other formatters configured.
   ["_"] = { "trim_whitespace" },
@@ -70,25 +71,23 @@ local function format_command()
   end, { range = true })
 end
 
-local opts = {
-  formatters_by_ft = formatters_by_ft,
-  format_on_save = format_on_save,
-  format_after_save = format_after_save,
-}
-
-local function config(_, o)
-  require("conform").setup(o)
+local function config()
+  require("conform").setup {
+    formatters_by_ft = formatters_by_ft,
+    format_on_save = format_on_save,
+    format_after_save = format_after_save,
+  }
 
   format_command()
 end
 
 local keys = {
-  { "\\\\", "<Cmd>Conformat<Cr>", desc = "[Conform] Format document" },
+  { "\\\\", "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
 }
 
 return {
   "stevearc/conform.nvim",
-  event = { "BufRead", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile" },
   keys = keys,
   opts = opts,
   config = config,

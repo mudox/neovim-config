@@ -9,10 +9,10 @@ return {
   },
   event = { "BufRead", "BufNewFile" },
   keys = {
-    { require("mudox.keys").ctrl_i, "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
+    { require("mudox.keyboard").ctrl_i, "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
   },
   opts = {
     lsp = { auto_attach = true },
-    icons = require("mudox.ui").icons.kind,
+    icons = require("mudox.ui.icons").kind,
   },
 }

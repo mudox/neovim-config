@@ -20,6 +20,11 @@ M.ctrl_shift_enter                = "⏎ "
 
 M.ctrl_shift_p                    = "󱁖 "
 
+M.ctrl_semicolon                  = "ǫ "
+M.ctrl_shift_semicolon            = "󰜎 "
+
+M.ctrl_shift_period               = " "
+
 -- stylua: ignore end
 
 for k, v in pairs(M) do

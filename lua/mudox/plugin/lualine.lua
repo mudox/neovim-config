@@ -1,4 +1,4 @@
-local i = require("mudox.ui").icons
+local i = require("mudox.ui.icons")
 local sep = i.powerline.current
 
 local options = {

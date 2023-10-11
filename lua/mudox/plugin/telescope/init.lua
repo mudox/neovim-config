@@ -80,6 +80,10 @@ local pickers = {
     previewer = false,
   },
 
+  command_history = {
+    theme = "dropdown",
+  },
+
   symbols = {
     theme = "dropdown",
   },
@@ -155,7 +159,7 @@ local extensions = {
   },
   heading = {
     treesitter = true,
-  }
+  },
 }
 
 -- Extension Settings 〉

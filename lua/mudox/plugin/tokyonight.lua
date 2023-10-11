@@ -1,5 +1,4 @@
 local function borderless_telescope(hl, c)
-  local prompt = "#2d3149"
   hl.TelescopeNormal = {
     bg = c.bg_dark,
     fg = c.fg_dark,
@@ -8,6 +7,9 @@ local function borderless_telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
+
+  -- prompt
+  local prompt = "#2d3149"
   hl.TelescopePromptNormal = {
     bg = prompt,
   }
@@ -19,27 +21,18 @@ local function borderless_telescope(hl, c)
     bg = prompt,
     fg = prompt,
   }
+
+  -- preview
   hl.TelescopePreviewTitle = {
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
+
+  -- results
   hl.TelescopeResultsTitle = {
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
-
-  -- hl.EdgyTitle = {
-  --   fg = c.blue,
-  --   bg = c.bg_dark,
-  -- }
-  -- hl.EdgyIcon = {
-  --   fg = c.blue,
-  --   bg = c.bg_dark,
-  -- }
-  -- hl.EdgyIconActive = {
-  --   fg = c.orange,
-  --   bg = c.bg_dark,
-  -- }
 end
 
 local opts = {

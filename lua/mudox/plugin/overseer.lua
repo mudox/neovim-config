@@ -32,7 +32,7 @@ for _, k in ipairs(keys) do
   k[3] = nil
 end
 
-local kb = require("mudox.keys")
+local kb = require("mudox.keyboard")
 table.insert(keys, { kb.ctrl_enter, "<Cmd>OverseerRun<Cr>", "[Overseer] Select and run task template" })
 table.insert(keys, { kb.ctrl_shift_enter, "<Cmd>OverseerToggle<Cr>", "[Overseer] Run toggle task list" })
 
@@ -106,7 +106,7 @@ local templates = {
   "mudox.run_neovim_lua_script",
 }
 
-local border = require("mudox.ui").icons.border.corner
+local border = require("mudox.ui.icons").border.corner
 
 local task_list = {
   direction = "right",

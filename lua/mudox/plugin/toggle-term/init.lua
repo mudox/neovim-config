@@ -18,16 +18,12 @@ local opts = {
   start_in_insert = true,
 
   float_opts = {
-    border = require("mudox.ui").icons.border.box,
+    border = require("mudox.ui.icons").border.box,
     winblend = 0, -- transparency makes double width symbol display incorrectly
   },
 
-  winbar = {
-    enabled = true,
-    name_formatter = function(term) --  term: Terminal
-      return term.name
-    end,
-  },
+  -- dropbar provides winbar for both toggleterm and builtin term
+  -- winbar = { enabled = false },
 }
 
 local function config(_, options)
@@ -62,23 +58,33 @@ local keys = {
   { "<leader>gg", toggle_gitui, desc = "GitUI (ToggleTerm)", },
 
   -- layout
-  { "<C-\\>s", move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to bottom" },
-  { "<C-\\>v", move("vertical"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to right" },
-  { "<C-\\>t", move("tab"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to new tabpage" },
-  { "<C-\\>f", move("float"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to float" },
-  { "<C-\\><C-\\>", change_layout, mode = { "n", "t" }, desc = "[ToggleTerm] Change layout" },
+  { "<C-\\>s",      move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to bottom" },
+  { "<C-\\>v",      move("vertical"),   mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to right" },
+  { "<C-\\>t",      move("tab"),        mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to new tabpage" },
+  { "<C-\\>f",      move("float"),      mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to float" },
+  { "<C-\\><C-\\>", change_layout,      mode = { "n", "t" }, desc = "[ToggleTerm] Change layout" },
 
   -- rename
   { "<C-\\>r", "<Cmd>ToggleTermSetName<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Rename" },
 
   -- select terminal
-  { "<leader>wt", "<Cmd>TermSelect<Cr>", desc = "[ToggleTerm] Select terminal" },
-  { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Select terminal" },
+  { "<leader>wt",  "<Cmd>TermSelect<Cr>",                         desc = "[ToggleTerm] Select terminal" },
+  { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>",   mode = { "n", "t" },  desc = "[ToggleTerm] Select terminal" },
 }
 -- stylua: ignore end
 
+local cmd = {
+  "ToggleTerm",
+  "ToggleTermSendCurrentLine",
+  "ToggleTermSendVisualLines",
+  "ToggleTermSendVisualSelection",
+  "ToggleTermSetName",
+  "ToggleTermToggleAll",
+}
+
 return {
   "akinsho/toggleterm.nvim",
+  cmd = cmd,
   keys = keys,
   opts = opts,
   config = config,

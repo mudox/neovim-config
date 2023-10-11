@@ -24,7 +24,7 @@ local omap = k.omap
 ---@diagnostic enable: unused-local
 -- 〉
 
-local key = require("mudox.keys")
+local key = require("mudox.keyboard")
 
 -- Common mappings 〈
 

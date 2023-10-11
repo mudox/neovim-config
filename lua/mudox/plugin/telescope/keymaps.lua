@@ -36,69 +36,75 @@ local function font_symbols()
   end
 end
 
+local kb = require("mudox.keyboard")
+
 -- stylua: ignore start
 local keymaps = {
-  { ":",                "builtin",                   "All telescope pickers"    },
-  { ".",                "resume",                    "Resume telescope"         },
+  { ":",                     "builtin",                   "All telescope pickers"    },
+  { ".",                     "resume",                    "Resume telescope"         },
 
   -- lsp
-  { "?",                "diagnostics bufnr=0",       "Document diagnostics"     },
-  { "!",                "diagnostics",               "Workspace diagnostics"    },
+  { "?",                     "diagnostics bufnr=0",       "Document diagnostics"     },
+  { "!",                     "diagnostics",               "Workspace diagnostics"    },
 
   -- symbols
-  { "<M-7>",            "treesitter",                "Treesitter symbols"       },
-  { "<M-9>",            "lsp_workspace_symbols",     "LSP workspace symbols"    },
-  { "<M-8>",            "lsp_document_symbols",      "LSP document symbols"     },
+  { "<M-7>",                 "treesitter",                "Treesitter symbols"       },
+  { "<M-8>",                 "lsp_document_symbols",      "LSP document symbols"     },
+  { "<M-9>",                 "lsp_workspace_symbols",     "LSP workspace symbols"    },
 
   -- vim
-  { "<Space>r",         "oldfiles",                  "Recent files"             },
-  { "<C-S-n>",          "buffers",                   "Switch buffer"            },
-  { "o",                "vim_options",               "Vim options"              },
-  { "H",                "highlights",                "Highlight groups"         },
-  { "k",                "keymaps",                   "Keymaps"                  },
-  { "c",                "command_history",           "Command history"          },
-  { "C",                "commands",                  "Commands"                 },
+  { "<Space>r",              "oldfiles",                  "Recent files"             },
+  { "b",                     "buffers",                   "Switch buffer"            },
+  { "o",                     "vim_options",               "Vim options"              },
+  { "H",                     "highlights",                "Highlight groups"         },
 
-  { "h",                "help_tags",                 "Vim help"                 },
-  { "<Space>h",         "help_tags",                 "Vim help"                 },
+  { "k",                     "keymaps",                   "Keymaps"                  },
 
-  { "/",                "current_buffer_fuzzy_find", "Search in buffer"         },
-  { "<M-/>",            "current_buffer_fuzzy_find", "Search in buffer"         },
+  { "C",                     "command_history",           "Command history"          },
+  { kb.ctrl_shift_semicolon, "command_history",           "Command history"          },
+  { "c",                     "commands",                  "Commands"                 },
+  { "<M-;>",                 "commands",                  "Commands"                 },
+
+  { "h",                     "help_tags",                 "Vim help"                 },
+  { "<Space>h",              "help_tags",                 "Vim help"                 },
+
+  { "/",                     "current_buffer_fuzzy_find", "Search in buffer"         },
+  { "<M-/>",                 "current_buffer_fuzzy_find", "Search in buffer"         },
 
   -- grep
-  { "<Space>s",         open("live_grep"),           "Live grep"                },
-  { "w",                open("grep_string"),         "Grep <word> under cursor" },
-  { "G",                open("live_grep_args"),      "Live grep args (rg raw)"  },
+  { "<Space>s",              open("live_grep"),           "Live grep"                },
+  { "w",                     open("grep_string"),         "Grep <word> under cursor" },
+  { "G",                     open("live_grep_args"),      "Live grep args (rg raw)"  },
 
   -- files
-  { "<C-p>",            open("files"),               "Find files"               },
-  { "<Space><Space>",   "smart_open",                "Smart open"               },
+  { "<C-p>",                 open("files"),               "Find files"               },
+  { "<Space><Space>",        "smart_open",                "Smart open"               },
 
   -- plugins
-  { "p",                "lazy",                      "Lazy plugins"             },
+  { "p",                     "lazy",                      "Lazy plugins"             },
 
   -- git
-  { "gc",               "git_commits",               "Git commits"              },
-  { "gb",               "git_bcommits",              "Git buffer history"       },
-  { "gB",               "git_branches",              "Git branches"             },
-  { "gs",               "git_status",                "Git status"               },
-  { "gS",               "git_stash",                 "Git stash"                },
+  { "gc",                    "git_commits",               "Git commits"              },
+  { "gb",                    "git_bcommits",              "Git buffer history"       },
+  { "gB",                    "git_branches",              "Git branches"             },
+  { "gs",                    "git_status",                "Git status"               },
+  { "gS",                    "git_stash",                 "Git stash"                },
 
   -- search
-  { "M",                "man_pages",                 "Man pages"                },
-  { "m",                "marks",                     "Jump to mark"             },
+  { "M",                     "man_pages",                 "Man pages"                },
+  { "m",                     "marks",                     "Jump to mark"             },
 
   -- notify
-  { "n",                "notify",                    "Notifications"            },
+  { "n",                     "notify",                    "Notifications"            },
 
   -- misc
-  { "i",                font_symbols,                "Font symbols"             },
+  { "i",                     font_symbols,                "Font symbols"             },
 
   -- luasnip snippets list
-  { "s",                "luasnip theme=dropdown",    "Font symbols"             },
+  { "s",                     "luasnip theme=dropdown",    "Font symbols"             },
 
   -- heading
-  { "O",                "heading",                   "Heading"                  },
+  { "O",                     "heading",                   "Heading"                  },
 }
 -- stylua: ignore end
 
@@ -168,7 +174,6 @@ local picker_keymaps = {
     [""] = function(...)
       return require("telescope.actions").which_key(...)
     end,
-
   },
 
   n = {

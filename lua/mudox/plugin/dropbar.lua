@@ -1,8 +1,8 @@
 local function opts()
-  local symbols = vim.tbl_deep_extend("force", require("mudox.ui").icons.kind, {
+  local symbols = vim.tbl_deep_extend("force", require("mudox.ui.icons").kind, {
     File = "󰈔 ",
-    Folder = "",
-    Terminal = " ",
+    Folder = " ",
+    Terminal = "  ",
   })
 
   return {
@@ -26,11 +26,25 @@ local function opts()
           require("toggleterm")
           local term = select(2, require("toggleterm.terminal").identify(name))
           if term then
-            return term.display_name or term.name
+            local s = term.display_name or term.name
+
+            if s:match("#toggleterm#%d") then
+              return "ToggleTerm #" .. s:sub(-1)
+            end
+
+            return s
           else
             return name
           end
         end,
+      },
+    },
+    bar = {
+      padding = { left = 0, right = 0 },
+    },
+    menu = {
+      keymaps = {
+        q = "<Cmd>close<Cr>",
       },
     },
   }
@@ -45,7 +59,14 @@ return {
       function()
         require("dropbar.api").pick()
       end,
-      desc = "Enter Dropbar Pick Mode",
+      desc = "[Dropbar] Open menu",
+    },
+    {
+      require("mudox.keyboard").ctrl_shift_period,
+      function()
+        require("dropbar.api").select_next_context()
+      end,
+      desc = "[Dropbar] Reveal context",
     },
   },
   opts = opts,

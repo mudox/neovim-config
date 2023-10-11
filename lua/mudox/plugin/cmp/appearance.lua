@@ -1,7 +1,7 @@
 local M = {}
 
 local function format(entry, item)
-  local icons = require("mudox.ui").icons.kind
+  local icons = require("mudox.ui.icons").kind
   item.kind = icons[item.kind] or item.kind
 
   local menu = ({

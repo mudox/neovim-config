@@ -1,5 +1,5 @@
 local function config()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons")
   local icons = {
     ERROR = i.error,
     WARN = i.warn,
@@ -10,18 +10,23 @@ local function config()
 
   -- TODO: review notify options
   local opts = {
-    stages = "static",
+    -- stages = "static",
 
-    on_open = nil,
+    -- render = "default",
+
+    on_open = function(win)
+      vim.api.nvim_win_set_config(win, {
+        -- border = require("mudox.ui.icons").border.box,
+        border = "single", -- 'rounded' by default
+      })
+    end,
     on_close = nil,
-
-    render = "default",
 
     timeout = 5000,
 
-    max_width = nil,
-    max_height = nil,
-    minimum_width = 50,
+    max_width = 70,
+    minimum_width = 47,
+    max_height = 16,
 
     icons = icons,
   }
@@ -33,11 +38,11 @@ end
 
 local keys = {
   {
-    "<leader>un",
+    "<leader>wN",
     function()
       require("notify").dismiss { silent = true, pending = true }
     end,
-    desc = "Dismiss all notifications",
+    desc = "[Notify] Dismiss all",
   },
 }
 

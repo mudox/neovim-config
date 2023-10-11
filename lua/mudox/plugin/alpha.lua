@@ -30,15 +30,20 @@ local function opts()
   local b = db.button
   -- stylua: ignore start
   db.section.buttons.val = {
+    b("o", " " .. " Smart open",      [[<Cmd>Telescope smart_open<Cr>]]),
     b("f", " " .. " Find file",       [[<Cmd>Telescope find_files<Cr>]]),
-    b("o", " " .. " Smart Open",      [[<Cmd>Telescope smart_open<Cr>]]),
+    b("r", " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]),
     b("n", " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]),
-    b("g", "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]),
-    b("s", "󰦛 " .. " Restore Session", [[<Cmd>lua require("persistence").load()<Cr>]]),
+
+    b("s", "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]),
+
     b("l", "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]),
     b("m", "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]),
+
     b("c", " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]),
-    b("r", " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]),
+    b("t", " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]),
+
+    b("R", "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]),
     b("q", " " .. " Quit",            [[<Cmd>qa<Cr>]]),
   }
   -- stylua: ignore end

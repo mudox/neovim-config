@@ -59,4 +59,5 @@ return {
   keys = {
     { "z<Space>", "<Cmd>NeoZoomToggle<Cr>", desc = "Neo Zoom" },
   },
+  cond = false,
 }

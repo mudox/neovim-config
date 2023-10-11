@@ -2,7 +2,7 @@ local function config()
   local dev_icons = require("nvim-web-devicons")
   dev_icons.setup {}
 
-  local i = require("mudox.ui").icons.filetype
+  local i = require("mudox.ui.icons").filetype
   local icons = dev_icons.get_icons()
 
   -- NOTE: do not put spaces in `name` field

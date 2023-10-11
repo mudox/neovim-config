@@ -53,6 +53,10 @@ local bottom = {
     ft = "qf",
   },
   {
+    title = "Test output",
+    ft = "neotest-output-panel",
+  },
+  {
     title = "Noice",
     ft = "noice",
     filter = function(_, win)
@@ -62,6 +66,10 @@ local bottom = {
 }
 
 local right = {
+  {
+    title = "Tests",
+    ft = "neotest-summary",
+  },
   {
     title = "Search & Replace",
     ft = "spectre_panel",
@@ -95,7 +103,7 @@ local right = {
 
 -- stylua: ignore start
 local function opts()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons")
 
   return {
     left      = left,

@@ -3,7 +3,7 @@ local d9 = vim.diagnostic
 local M = {}
 
 local function setup_signs()
-  local i = require("mudox.ui").icons
+  local i = require("mudox.ui.icons").diagnostics
   -- stylua: ignore start
   local signs = {
     { "DiagnosticSignError", i.error },
@@ -57,10 +57,10 @@ local function toggle()
 
   if d9.is_disabled() then
     d9.enable()
-    notify("Disgnostic enabled")
+    notify("Diagnostic enabled")
   else
     d9.disable()
-    notify("Disgnostic disabled")
+    notify("Diagnostic disabled")
   end
 end
 

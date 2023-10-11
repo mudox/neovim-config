@@ -32,20 +32,36 @@ local keys = {
 
   -- epxand selection
   {
-    "S",
+    "vv",
     mode = { "n" },
     function()
       require("flash").treesitter()
     end,
-    desc = "[Flash] Treesitter mode",
+    desc = "[Flash] Expand selection",
   },
   {
-    ";",
+    "v<Space>",
+    mode = { "n" },
+    function()
+      require("flash").treesitter()
+    end,
+    desc = "[Flash] Expand selection",
+  },
+  {
+    "v",
     mode = { "x", "o" },
     function()
       require("flash").treesitter()
     end,
-    desc = "[Flash] Treesitter mode",
+    desc = "[Flash] Expand selection",
+  },
+  {
+    "<Space>",
+    mode = { "x", "o" },
+    function()
+      require("flash").treesitter()
+    end,
+    desc = "[Flash] Expand selection",
   },
 
   -- jump and ...
@@ -57,16 +73,18 @@ local keys = {
     end,
     desc = "[Flash] Remote mdoe",
   },
+
   -- jump and then expand selection
   {
     "R",
-    mode = { "o", "x" },
+    mode = { "x", "o" },
     function()
       require("flash").treesitter_search()
     end,
     desc = "[Flash] Treesitter search",
   },
 
+  -- search
   {
     "<C-s>",
     mode = { "c" },
