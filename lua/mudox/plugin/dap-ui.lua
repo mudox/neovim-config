@@ -40,12 +40,10 @@ local opts = {
   },
 }
 
-local function config()
-  require("dapui").setup(opts)
-
+local function setup_sings()
   -- stylua: ignore start
   local signs = {
-    { "DapBreakPoint",          " " },
+    { "DapBreakpoint",          " " },
     { "DapBreakpointCondition", " " },
     { "DapLogPoint",            " " },
     { "DapStopped",             " " },
@@ -58,7 +56,27 @@ local function config()
   end
 end
 
+local function config()
+  require("dapui").setup(opts)
+
+  setup_sings()
+end
+
+local function w()
+  return require("dap.ui.widgets")
+end
+
+-- stylua: ignore start
+local keys = {
+  {'<leader>dk', function() w().hover() end, desc = '[DapUI] Hover'},
+  {'<leader>dv', function() w().preview() end, desc = '[DapUI] Preview'},
+  {'<leader>df', function() w().centered_float(w().frames) end, desc = '[DapUI] Popup'},
+  {'<leader>ds', function() w().centered_float(w().scopes) end, desc = '[DapUI] Popup'},
+}
+-- stylua: ignore end
+
 return {
   "rcarriga/nvim-dap-ui",
+  keys = keys,
   config = config,
 }

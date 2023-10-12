@@ -6,10 +6,8 @@ local dependencies = {
   "jbyuki/one-small-step-for-vimkind", -- Neovim lua
 }
 
-local keys = {}
-
 -- Neovim lua
-local function neovim_lua_debugging()
+local function neovim_lua()
   local dap = require("dap")
 
   dap.configurations.lua = {
@@ -25,7 +23,7 @@ local function neovim_lua_debugging()
   end
 end
 
-local function c_debugging()
+local function c()
   local dap = require("dap")
 
   dap.adapters.codelldb = {
@@ -58,11 +56,11 @@ local function c_debugging()
   }
 end
 
-local function python_debugging() end
+local function python() end
 
-local function javascript_debugging() end
+local function javascript() end
 
-local function rust_debugging() end
+local function rust() end
 
 local function setup_ui()
   local dap = require("dap")
@@ -81,14 +79,40 @@ local function setup_ui()
 end
 
 local function config()
-  c_debugging()
-  javascript_debugging()
-  neovim_lua_debugging()
-  python_debugging()
-  rust_debugging()
+  c()
+  javascript()
+  neovim_lua()
+  python()
+  rust()
 
   setup_ui()
 end
+
+local function r()
+  return require("dap")
+end
+
+-- stylua: ignore start
+local keys = {
+  {"<F5>",  function() r().continue() end,                                                    "Continue"},
+  {"<F10>", function() r().step_over() end,                                                   "Step over"},
+  {"<F11>", function() r().step_into() end,                                                   "Step into"},
+  {"<F12>", function() r().step_out() end,                                                    "Step out"},
+  {".",     function() r().run_last() end,                                                    "Re-debug"},
+  {"r",     function() r().run_last() end,                                                    "Re-debug"},
+
+  {"b",     function() r().toggle_breakpoint() end,                                           "Toggle breakpoint"},
+  {"B",     function() r().set_breakpoint() end,                                              "Set breakpoint"},
+  {"p",     function() r().set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, "Set log point"},
+
+  {":",     function() r().repl.open() end,                                                   "Open repl"},
+}
+-- stylua: ignore
+
+keys = require("mudox.util.keymap").lazy_keys(keys, {
+  key_prefix = '<leader>d',
+  desc_prefix = 'Dap',
+})
 
 return {
   "mfussenegger/nvim-dap",

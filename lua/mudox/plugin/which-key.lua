@@ -39,9 +39,10 @@ local function config(_, options)
     ["<leader>"] = {
       name = "+leader",
 
-      ["<tab>"] = { name = "+tabs" },
       a = { name = "+aerial" },
-      c = { name = "+code" },
+      c = { name = "+test" },
+      d = { name = "+debug" },
+      e = { name = "+edit" },
       l = { name = "+lazy" },
       g = { name = "+git" },
       q = { name = "+quit/session" },
@@ -54,8 +55,7 @@ local function config(_, options)
         l = { "<Cmd>Lazy<Cr>", "Lazy" },
         v = { "<Cmd>messages<Cr>", "Neovim messages" },
       },
-      x = { name = "+diagnostics" },
-      yo = { name = "+toggle" },
+      x = { name = "+trouble" },
 
       ["."] = { name = "+toggle" },
     },

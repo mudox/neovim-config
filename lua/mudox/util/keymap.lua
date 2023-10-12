@@ -59,7 +59,7 @@ local function expr(mode, from, to, opts)
 end
 
 --[[
-  convenient method for common patter `<Cmd>{ex command}<Cr>`
+  convenient method for common pattern `<Cmd>{ex command}<Cr>`
 ]]
 local function cmd(mode, from, to, opts)
   to = "<Cmd>" .. to .. "<Cr>"
@@ -76,21 +76,21 @@ local function cmd(mode, from, to, opts)
 end
 
 --[[
-  convenient method for common patter `<Cmd>lua {lua code}<Cr>`
+  convenient method for common pattern `<Cmd>lua {lua code}<Cr>`
 ]]
 local function lua(mode, from, to, options)
   map(mode, from, "<Cmd>lua " .. to .. "<Cr>", options)
 end
 
 --[[
-  convenient method for common patter `<Cmd>call {vim function}<Cr>`
+  convenient method for common pattern `<Cmd>call {vim function}<Cr>`
 ]]
 local function call(mode, from, to, options)
   map(mode, from, "<Cmd>call " .. to .. "<Cr>", options)
 end
 
 --[[
-  convenient method for common patter `<Plug>(...)`
+  convenient method for common pattern `<Plug>(...)`
   NOTE: parentheses are not added automatically
   ]]
 local function plug(mode, from, to, options)
@@ -100,7 +100,7 @@ local function plug(mode, from, to, options)
 end
 
 --[[
-  convenient method for common patter `<Cmd>lua require(...)...<Cr>`
+  convenient method for common pattern `<Cmd>lua require(...)...<Cr>`
 ]]
 local function req(mode, from, module, to, options)
   map(mode, from, ("<Cmd>lua require('%s').%s<Cr>"):format(module, to), options)
@@ -161,5 +161,43 @@ M.__index = function(tbl, name)
 end
 
 setmetatable(M, M)
+
+function M.lazy_keys(tbl, opts)
+  for _, v in pairs(tbl) do
+    -- lhs
+    if opts.key_prefix then
+      local c1 = v[1]:sub(1, 1)
+      if c1 ~= "<" and c1 ~= "-" then
+        v[1] = opts.key_prefix .. v[1]
+      end
+
+      if c1 == "-" then
+        v[1] = v[1]:sub(2)
+      end
+    end
+
+    -- rhs
+    if opts.main_cmd then
+      if type(v[2] == "string") then
+        v[2] = ("<Cmd>%s %s<Cr>"):format(opts.main_cmd, v[2])
+      end
+    end
+
+    if opts.cmd_fmt then
+      if type(v[2] == "string") then
+        v[2] = (opts.cmd_fmt):format(v[2])
+      end
+    end
+
+    -- desc
+    v.desc = v[3]
+    v[3] = nil
+    if opts.desc_prefix then
+      v.desc = ("[%s] %s"):format(opts.desc_prefix, v.desc)
+    end
+  end
+
+  return tbl
+end
 
 return M
