@@ -12,14 +12,14 @@ local surrounds = {
   -- stylue ignore lines
   i = {
     add = function()
-      local open = { "-- stylua: ignore start", "" }
-      local close = { "", "-- stylua: ignore end" }
+      local open = { "-- stylua: ignore start" }
+      local close = { "-- stylua: ignore end" }
       return { open, close }
     end,
   },
 }
 
-opts = {
+local opts = {
   keymaps = {
     -- `S` and `gs` conflicts with `leap.nvim`
     visual = "q",

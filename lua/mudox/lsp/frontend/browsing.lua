@@ -44,7 +44,7 @@ local function setup_keymaps(bufnr)
 end
 
 local function setup_on_attach()
-  require("mudox.util").on.lsp_attach(function(_, bufnr)
+  require("mudox.util.on").lsp_attach(function(_, bufnr)
     setup_keymaps(bufnr)
   end)
 end

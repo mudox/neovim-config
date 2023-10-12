@@ -83,6 +83,7 @@ end
 
 local keys = {
   { "\\\\", "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
+  { "<leader>vc", "<Cmd>ConformInfo<Cr>", desc = "Conform" },
 }
 
 return {

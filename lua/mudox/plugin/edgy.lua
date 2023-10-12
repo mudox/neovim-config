@@ -53,6 +53,10 @@ local bottom = {
     ft = "qf",
   },
   {
+    title = "Dap Console",
+    ft = "dap-repl",
+  },
+  {
     title = "Test output",
     ft = "neotest-output-panel",
   },

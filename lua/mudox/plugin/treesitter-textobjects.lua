@@ -5,8 +5,8 @@ local select = {
     -- https://github.com/josean-dev/dev-environment-files/blob/1bcf8bfd532c1fe549798a0f4a3ab351970de3d3/.config/nvim/lua/josean/plugins/nvim-treesitter-text-objects.lua
     ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
     ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
-    ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
-    ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
+    -- ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+    -- ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
 
     -- works for javascript/typescript files (custom capture I created in after/queries/ecma/textobjects.scm)
     -- ["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },

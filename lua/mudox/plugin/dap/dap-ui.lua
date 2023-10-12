@@ -41,7 +41,7 @@ local opts = {
 }
 
 local function setup_sings()
-  -- stylua: ignore start
+  -- stylua: ignore
   local signs = {
     { "DapBreakpoint",          " " },
     { "DapBreakpointCondition", " " },
@@ -49,7 +49,6 @@ local function setup_sings()
     { "DapStopped",             " " },
     { "DapBreakPointRejected",  " " },
   }
-  -- stylua: ignore end
 
   for _, v in ipairs(signs) do
     vim.fn.sign_define(v[1], { text = v[2] })
@@ -62,21 +61,15 @@ local function config()
   setup_sings()
 end
 
-local function w()
-  return require("dap.ui.widgets")
-end
-
--- stylua: ignore start
+-- stylua: ignore
 local keys = {
-  {'<leader>dk', function() w().hover() end, desc = '[DapUI] Hover'},
-  {'<leader>dv', function() w().preview() end, desc = '[DapUI] Preview'},
-  {'<leader>df', function() w().centered_float(w().frames) end, desc = '[DapUI] Popup'},
-  {'<leader>ds', function() w().centered_float(w().scopes) end, desc = '[DapUI] Popup'},
+  { "<leader>dv", function() require("dapui").toggle({ }) end, desc = "[Dap] Toggle UI" },
+  { "<leader>de", function() require("dapui").eval() end, mode = { "n", "v" }, desc = "[Dap] Eval" },
 }
--- stylua: ignore end
 
 return {
   "rcarriga/nvim-dap-ui",
+  dependencies = "nvim-dap",
   keys = keys,
   config = config,
 }
