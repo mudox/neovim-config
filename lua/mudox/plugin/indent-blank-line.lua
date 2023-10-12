@@ -21,21 +21,19 @@ local function config()
       enabled = false,
       highlight = highlight,
     },
-    exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+    exclude = { filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "NvimTree" } },
   }
 
   ibl.setup(opts)
 
-  vim.g.rainbow_delimiters = { highlight = highlight }
-
-  local hooks = require("ibl.hooks")
-  hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+  -- local hooks = require("ibl.hooks")
+  -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 end
 
 return {
   "lukas-reineke/indent-blankline.nvim",
   keys = {
-    { "yoi", "<Cmd>IBLToggle<Cr>", desc = "[IBL] Toggle ident guidelines" },
+    { "yoi", "<Cmd>IBLToggle<Cr>", desc = "[IBL] Toggle" },
   },
   config = config,
 }

@@ -3,12 +3,12 @@ local opts = {
     "css",
     "javascript",
     "lua",
-    html = { mode = "foreground", }
+    html = { mode = "foreground" },
   },
 }
 
 return {
   "NvChad/nvim-colorizer.lua",
-  event = { "BufRead", "BufNewFile" },
+  cmd = { "ColorizerToggle" },
   opts = opts,
 }

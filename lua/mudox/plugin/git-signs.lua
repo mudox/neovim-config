@@ -1,12 +1,16 @@
--- stylua: ignore start
+local bar = "┃"
+-- local bar = "▕"
+-- local bar = "▐"
+
+-- stylua: ignore
 local signs = {
-  add          = { hl = "GitSignsAdd",    text = "┃", numhl = "GitSignsAddNr",    linehl = "GitSignsAddLn"    },
-  change       = { hl = "GitSignsChange", text = "┃", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-  delete       = { hl = "GitSignsDelete", text = "┃", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-  topdelete    = { hl = "GitSignsDelete", text = "┃", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-  changedelete = { hl = "GitSignsChange", text = "┃", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+  add          = {  text = bar },
+  change       = {  text = bar },
+  delete       = {  text = bar },
+  topdelete    = {  text = bar },
+  changedelete = {  text = bar },
+  untracked    = {  text = bar },
 }
--- stylua: ignore end
 
 local function on_attach(buffer)
   local gs = require("gitsigns")
@@ -44,7 +48,6 @@ local opts = {
   -- UI
   signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
   signs = signs,
-  sign_priority = -100, -- show on leftmost sign column
 
   numhl = true,
   linehl = false,
