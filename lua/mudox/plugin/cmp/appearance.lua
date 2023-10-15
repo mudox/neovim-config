@@ -27,7 +27,7 @@ M.formatting = {
   format = format,
 }
 
--- HACK: disable blending to avoid kitty icon size inconsistency
+-- disable blending to avoid kitty icon size inconsistency
 vim.o.pumblend = 0
 
 M.view = {

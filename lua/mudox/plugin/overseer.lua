@@ -1,40 +1,38 @@
--- stylua: ignore start
+local kb = require("mudox.keyboard")
+
+-- stylua: ignore
 local keys = {
   -- task list
-  { "<Space>", "Toggle",         "Toggle task list" },
+  { "<Space>",          "Toggle",         "Toggle task list"       },
+  { "-" .. kb.cs["cr"], "Toggle",         "Toggle task list"       },
 
   -- info
-  { "i",       "Info",           "Diagnostic info" },
+  { "i",                "Info",           "Diagnostic info"        },
 
   -- launch task
-  { ".",       "RestartLast",    "Run last task" },
-  { "r",       "Run",            "Run task template" },
-  { "c",       "RunCmd",         "Run shell command" },
-  { "n",       "Build",          "Build new task" },
-  { "w",       "WatchRun",       "Watch & run" },
+  { "r",                "Run",            "Run task template"      },
+  { "-" .. kb.c["cr"],  "Run",            "Run task template"      },
+  { ".",                "RestartLast",    "Run last task"          },
+  { "c",                "RunCmd",         "Run shell command"      },
+  { "n",                "Build",          "Build new task"         },
+  { "w",                "WatchRun",       "Watch & run"            },
 
   -- manage task
-  { "a",       "QuickAction",    "Perform quick action" },
-  { "A",       "TaskAction",     "Perform task action" },
+  { "a",                "QuickAction",    "Perform quick action"   },
+  { "A",                "TaskAction",     "Perform task action"    },
 
   -- save / restore tasks
-  { "s",       "SaveBundle",     "Save task bundle" },
-  { "l",       "LoadBundle",     "Load & run task bundle" },
-  { "L",       "LoadBundle!",    "Load task bundle" },
-  { "d",       "DeleteBundle",   "Delete task bundle" },
+  { "S",                "SaveBundle",     "Save task bundle"       },
+  { "R",                "LoadBundle",     "Load & run task bundle" },
+  { "L",                "LoadBundle!",    "Load task bundle"       },
+  { "D",                "DeleteBundle",   "Delete task bundle"     },
 }
--- stylua: ignore end
 
-for _, k in ipairs(keys) do
-  k[1] = "<leader>r" .. k[1]
-  k[2] = "<Cmd>Overseer" .. k[2] .. "<Cr>"
-  k.desc = "[Overseer] " .. k[3]
-  k[3] = nil
-end
-
-local kb = require("mudox.keyboard")
-table.insert(keys, { kb.ctrl_enter, "<Cmd>OverseerRun<Cr>", "[Overseer] Select and run task template" })
-table.insert(keys, { kb.ctrl_shift_enter, "<Cmd>OverseerToggle<Cr>", "[Overseer] Run toggle task list" })
+keys = require("mudox.util.keymap").lazy_keys(keys, {
+  key_prefix = "<leader>r",
+  cmd_fmt = "<Cmd>Overseer%s<Cr>",
+  desc_prefix = "Overseer",
+})
 
 -- restarts the most recent overseer task
 local function run_last_command()

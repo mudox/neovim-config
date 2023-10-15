@@ -1,3 +1,5 @@
+-- see symbols.txt for more icons
+
 -- stylua: ignore start
 return {
   File            = " ",
@@ -10,9 +12,9 @@ return {
   Constructor     = "󰊕 ",
   KeywordFunction = "󰊕 ",
 
-  Key             = "󰌋 ",
-  Keyword         = "󰌋 ",
-  String          = " ",
+  Key             = " ",
+  Keyword         = " ",
+  String          = " ",
   Text            = "󰦨 ",
 
   Package         = " ",
@@ -27,8 +29,8 @@ return {
   Object          = " ",
 
   Null            = "󰟢 ",
-  Boolean         = " ",
-  Number          = "# ",
+  Boolean         = "󰨙 ",
+  Number          = "󰎠 ",
   Operator        = " ",
   TypeParameter   = " ",
 
@@ -38,8 +40,8 @@ return {
   Enum            = " ",
   EnumMember      = " ",
 
-  Property        = " ",
-  Field           = " ",
+  Property        = " ",
+  Field           = "󰓼 ",
 
   Snippet         = " ",
   TabNine         = "󰋙 ",

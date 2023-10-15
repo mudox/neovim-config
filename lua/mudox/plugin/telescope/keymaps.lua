@@ -2,31 +2,6 @@
 
 -- Keymaps to invoke telescope 〈
 
-local function open(picker, opts)
-  opts = vim.deepcopy(opts or {})
-
-  return function()
-    local dir = require("mudox.util.path").get_root_dir()
-    if not dir then
-      dir = vim.loop.cwd()
-    end
-    opts = vim.tbl_deep_extend("force", { cwd = dir }, opts)
-
-    if picker == "files" then
-      local cmd = ("git -C '%s' rev-parse --is-inside-work-tree"):format(dir)
-      local in_git_repo = vim.fn.systemlist(cmd)[1] == "true"
-      if in_git_repo then
-        opts.show_untracked = true
-        picker = "git_files"
-      else
-        picker = "find_files"
-      end
-    end
-
-    require("telescope.builtin")[picker](opts)
-  end
-end
-
 local function font_symbols()
   local s = require("telescope.builtin").symbols
   if vim.v.count ~= 0 then
@@ -55,13 +30,14 @@ local keymaps = {
   -- vim
   { "<Space>r",                     "oldfiles",                  "Recent files"             },
   { "b",                            "buffers",                   "Switch buffer"            },
+  { '-' .. kb.cs.o,                 "buffers",                   "Switch buffer"            },
   { "o",                            "vim_options",               "Vim options"              },
   { "H",                            "highlights",                "Highlight groups"         },
 
   { "k",                            "keymaps",                   "Keymaps"                  },
 
   { "C",                            "command_history",           "Command history"          },
-  { "-" .. kb.ctrl_shift_semicolon, "command_history",           "Command history"          },
+  { "-" .. kb.cs[";"],              "command_history",           "Command history"          },
   { "c",                            "commands",                  "Commands"                 },
   { "<M-;>",                        "commands",                  "Commands"                 },
 
@@ -72,13 +48,15 @@ local keymaps = {
   { "<M-/>",                        "current_buffer_fuzzy_find", "Search in buffer"         },
 
   -- grep
-  { "<Space>s",                     open("live_grep"),           "Live grep"                },
-  { "w",                            open("grep_string"),         "Grep <word> under cursor" },
-  { "G",                            open("live_grep_args"),      "Live grep args (rg raw)"  },
+  { "<Space>s",                     "live_grep",                 "Live grep"                },
+  { "w",                            "grep_string",               "Grep <word> under cursor" },
+  { "G",                            "live_grep_args",            "Live grep args (rg raw)"  },
 
   -- files
-  { "<C-p>",                        open("files"),               "Find files"               },
+  { "f",                            "find_files",                "Smart open"               },
+  { "F",                            "git_files",                 "Smart open"               },
   { "<Space><Space>",               "smart_open",                "Smart open"               },
+  { "<C-p>",                        "smart_open",                "Smart open"               },
 
   -- plugins
   { "p",                            "lazy",                      "Lazy plugins"             },
@@ -117,61 +95,68 @@ keymaps = require("mudox.util.keymap").lazy_keys(keymaps, {
 
 -- Mappings 〈
 
+local function a()
+  return require("telescope.actions")
+end
+
+local function flash(prompt_bufnr)
+  require("flash").jump {
+    pattern = "^",
+    label = { before = false, after = true, rainbow = { enabled = true } },
+    highlight = { matches = false },
+    search = {
+      mode = "search",
+      exclude = {
+        function(win)
+          return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
+        end,
+      },
+    },
+    action = function(match)
+      local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+      picker:set_selection(match.pos[1] - 1)
+    end,
+  }
+end
+
+-- stylua: ignore
 local picker_keymaps = {
   i = {
     -- no normal mode
-    ["<Esc>"] = function(...)
-      return require("telescope.actions").close(...)
-    end,
+    ["<Esc>"]       = function(...) return a().close(...) end,
 
     -- clear prompt input
-    ["<C-u>"] = false,
+    ["<C-u>"]       = false,
 
     -- preview
-    ["?"] = function(...)
-      require("telescope.actions.layout").toggle_preview(...)
-    end,
+    ["?"]           = function(...) require("telescope.actions.layout").toggle_preview(...) end,
 
     -- scroll preview
-    ["<C-d>"] = false,
-    ["<C-f>"] = function(...)
-      return require("telescope.actions").preview_scrolling_down(...)
-    end,
-    ["<C-b>"] = function(...)
-      return require("telescope.actions").preview_scrolling_up(...)
-    end,
+    -- ["<C-d>"]    = false,
+    ["<C-f>"]       = function(...) return a().preview_scrolling_down(...) end,
+    ["<C-b>"]       = function(...) return a().preview_scrolling_up(...) end,
 
     -- <Cr> for edit in current window
     -- <C-s> for horizontal split open
     -- <C-v> for vertical split open
     -- <C-t> for tabpage open
-    ["<C-s>"] = function(...)
-      require("telescope.actions").select_horizontal(...)
-    end,
+    ["<C-s>"]       = function(...) a().select_horizontal(...) end,
 
     -- send to trouble
-    ["<C-x>"] = function(...)
-      return require("trouble.providers.telescope").open_with_trouble(...)
-    end,
+    ["<C-x>"]       = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
 
     -- history
-    ["<C-j>"] = function(...)
-      return require("telescope.actions").cycle_history_next(...)
-    end,
-    ["<C-k>"] = function(...)
-      return require("telescope.actions").cycle_history_prev(...)
-    end,
+    ["<C-j>"]       = function(...) return a().cycle_history_next(...) end,
+    ["<C-k>"]       = function(...) return a().cycle_history_prev(...) end,
 
     -- <C-/>
-    [""] = function(...)
-      return require("telescope.actions").which_key(...)
-    end,
+    [kb.c["/"]]     = function(...) return a().which_key(...) end,
+
+    ["<C-d>"]       = flash,
   },
 
   n = {
-    ["q"] = function(...)
-      return require("telescope.actions").close(...)
-    end,
+    ["q"]           = function(...) return a().close(...) end,
   },
 }
 

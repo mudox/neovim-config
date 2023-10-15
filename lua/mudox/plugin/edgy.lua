@@ -1,10 +1,13 @@
--- stylua: ignore start
+-- stylua: ignore
 local keys = {
   { "<leader>we",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window" },
   { "<leader>wm",       function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area" },
   { "<leader>wx",       function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
 }
--- stylua: ignore end
+
+local function is_not_floating(_, win)
+  return vim.api.nvim_win_get_config(win).relative == ""
+end
 
 local function init()
   -- views can only be fully collapsed with the global statusline
@@ -24,22 +27,28 @@ local left = {
     title = "Outline",
     ft = "aerial",
   },
-}
 
--- ISSUE: this crack the term window char changle
-local term = {
-  title = "Terminal",
-  ft = "toggleterm",
-  filter = function(_, win)
-    local term = require("toggleterm.terminal").fink(function(term)
-      term.win = win
-    end)
-    if term then
-      return term.direction == "horizontal"
-    else
-      return false
-    end
-  end,
+  -- DAP
+  {
+    title = "Breakpoints",
+    ft = "dapui_breakpoints",
+    filter = is_not_floating,
+  },
+  {
+    title = "Watches",
+    ft = "dapui_watches",
+    filter = is_not_floating,
+  },
+  {
+    title = "Scopes",
+    ft = "dapui_scopes",
+    filter = is_not_floating,
+  },
+  {
+    title = "Stacks",
+    ft = "dapui_stacks",
+    filter = is_not_floating,
+  },
 }
 
 local bottom = {
@@ -53,7 +62,11 @@ local bottom = {
     ft = "qf",
   },
   {
-    title = "Dap Console",
+    title = "DAPUI Console",
+    ft = "dapui_console",
+  },
+  {
+    title = "DAP REPL",
     ft = "dap-repl",
   },
   {

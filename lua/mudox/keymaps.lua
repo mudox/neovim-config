@@ -24,7 +24,7 @@ local omap = k.omap
 ---@diagnostic enable: unused-local
 -- 〉
 
-local key = require("mudox.keyboard")
+local kb = require("mudox.keyboard")
 
 -- Common mappings 〈
 
@@ -136,8 +136,8 @@ ncmd("<leader>vt", "InspectTree")
 -- Buffer 〈
 
 -- buffer navigation
-ncmd(key.ctrl_shift_right_square_bracket, "bnext")
-ncmd(key.ctrl_shift_left_square_bracket, "bNext")
+ncmd(kb.cs["]"], "bnext")
+ncmd(kb.cs["["], "bNext")
 
 -- copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")

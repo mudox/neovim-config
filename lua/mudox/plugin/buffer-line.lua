@@ -21,19 +21,21 @@ local function opts()
         delay = 150,
         reveal = { "close" },
       },
+
+      -- icons
+      buffer_close_icon = "󰅖",
+      modified_icon = "󰴓",
+      close_icon = "",
+      left_trunc_marker = "",
+      right_trunc_marker = "",
+
+      groups = {
+        items = {
+          require("bufferline.groups").builtin.pinned:with { icon = "◌" },
+        },
+      },
     },
   }
-
-  -- stylua: ignore start
-  local icons = {
-    buffer_close_icon  = "󰅖",
-    modified_icon      = "󰴓",
-    close_icon         = "",
-    left_trunc_marker  = "",
-    right_trunc_marker = "",
-  }
-  -- stylua: ignore end
-  o = vim.tbl_extend("force", o, { options = icons })
 
   return o
 end
@@ -65,12 +67,34 @@ local function init()
   end
 end
 
+-- stylua: ignore
 local keys = {
-  { "<M-o>", "<Cmd>BufferLinePick<Cr>", desc = "[Buffer Line] Pick a buffer" },
-  { "<leader>w<", "<Cmd>BufferLineCloseLeft<Cr>", desc = "[Buffer Line] Close left buffers" },
-  { "<leader>w>", "<Cmd>BufferLineCloseRight<Cr>", desc = "[Buffer Line] Close right buffers" },
-  { "<leader>w.", "<Cmd>BufferLineCloseOthers<Cr>", desc = "[Buffer Line] Close other buffers" },
+  { "<M-o>", "Pick",                 "Pick"           },
+
+  { "<",     "CloseLeft",            "Close left"     },
+  { ">",     "CloseRight",           "Close right"    },
+  { ".",     "CloseOthers",          "Close other"    },
+  { "c",     "PickClose",            "Pick & close"   },
+  { ";",     "GroupClose ungrouped", "Close unpinned" },
+
+  { "~",     "TogglePin",            "Pin"            },
 }
+
+keys = require("mudox.util.keymap").lazy_keys(keys, {
+  key_prefix = "<leader>w",
+  cmd_prefix = "BufferLine",
+  desc_prefix = "BufferLine",
+})
+
+-- <leader>1~9 to switch to visually displayed buffer on buffer line
+for i = 1, 9 do
+  table.insert(
+    keys,
+    { "<leader>" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Goto buffer " .. i }
+  )
+end
+
+table.insert(keys, { "<leader>$", "<Cmd>BufferLineGoToBuffer -1<Cr>", desc = "[BufferLine] Goto last buffer" })
 
 return {
   "akinsho/bufferline.nvim",

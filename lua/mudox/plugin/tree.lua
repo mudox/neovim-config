@@ -98,7 +98,7 @@ end
 local kb = require("mudox.keyboard")
 local keys = {
   { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[Tree] Toggle pane" },
-  { kb.ctrl_shift_p, "<Cmd>NvimTreeFindFile!<Cr>", desc = "[Tree] Highlight current file" },
+  { kb.cs["p"], "<Cmd>NvimTreeFindFile!<Cr>", desc = "[Tree] Highlight current file" },
 }
 
 return {

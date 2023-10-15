@@ -30,6 +30,12 @@ local opts = {
 
 return {
   "kylechui/nvim-surround",
-  event = "BufRead, BufNewFile",
+  keys = {
+    "ys",
+    "cs",
+    "ds",
+    { "q", mode = "v" },
+    { "Q", mode = "v" },
+  },
   opts = opts,
 }

@@ -1,7 +1,10 @@
 return {
   "mg979/vim-visual-multi",
-  keys = { "<C-n>", mode = { "n", "i", "v" } },
+  event = { "BufEnter" },
+  init = function()
+    -- vim.api.nvim_set_var("VM_leader", "\\")
+  end,
   config = function()
-    vim.cmd [[silent! VMTheme neon]]
+    vim.cmd([[silent! VMTheme neon]])
   end,
 }

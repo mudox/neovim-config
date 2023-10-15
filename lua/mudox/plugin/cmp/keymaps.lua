@@ -6,9 +6,10 @@ end
 
 return function()
   -- NOTE: see https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
-  -- for exmaples
+  -- for examples
 
   local cmp = require("cmp")
+
   -- local luasnip = require("luasnip")
 
   return cmp.mapping.preset.insert {
@@ -19,7 +20,7 @@ return function()
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-    ["<C-Space>"] = cmp.mapping.complete(), -- trigger
+    -- ["<C-Space>"] = false,
     ["<C-e>"] = cmp.mapping.abort(), -- abort
 
     -- Enter

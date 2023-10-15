@@ -62,7 +62,7 @@ return {
       desc = "[Dropbar] Open menu",
     },
     {
-      require("mudox.keyboard").ctrl_shift_period,
+      require("mudox.keyboard").cs["."],
       function()
         require("dropbar.api").select_next_context()
       end,

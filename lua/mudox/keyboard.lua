@@ -1,34 +1,44 @@
-local M = {}
+-- stylua: ignore
+local ctrl = {
+  ["/"]  = " ",
+  ["cr"] = "␍ ",
+  [";"]  = "ǫ ",
 
--- stylua: ignore start
+  i      = " ",
+}
 
-M.ctrl_i                          = " "
-
-M.ctrl_slash                      = " "
-M.ctrl_shift_slash                = " "
-
-M.ctrl_shift_left_square_bracket  = "󰜱 "
-M.ctrl_shift_right_square_bracket = "󰜴 "
-
-M.ctrl_shift_h                    = "󰶺 "
-M.ctrl_shift_l                    = "󰶻 "
-M.ctrl_shift_k                    = "󰶼 "
-M.ctrl_shift_j                    = "󰶹 "
-
-M.ctrl_enter                      = "␍ "
-M.ctrl_shift_enter                = "⏎ "
-
-M.ctrl_shift_p                    = "󱁖 "
-
-M.ctrl_semicolon                  = "ǫ "
-M.ctrl_shift_semicolon            = "󰜎 "
-
-M.ctrl_shift_period               = " "
-
--- stylua: ignore end
-
-for k, v in pairs(M) do
-  M[k] = v:gsub("%s+", "")
+for k, v in pairs(ctrl) do
+  ctrl[k] = v:gsub("%s+", "")
 end
 
-return M
+-- stylua: ignore
+local ctrl_shift = {
+  ["/"]  = " ",
+
+  ["["]  = "󰜱 ",
+  ["]"]  = "󰜴 ",
+
+  h      = "󰶺 ",
+  l      = "󰶻 ",
+  k      = "󰶼 ",
+  j      = "󰶹 ",
+
+  ["cr"] = "⏎ ",
+
+  p      = "󱁖 ",
+
+  [";"]  = "󰜎 ",
+
+  ["."]  = " ",
+
+  o      = " "
+}
+
+for k, v in pairs(ctrl_shift) do
+  ctrl_shift[k] = v:gsub("%s+", "")
+end
+
+return {
+  c = ctrl, -- ctrl
+  cs = ctrl_shift, -- ctrl+shift
+}

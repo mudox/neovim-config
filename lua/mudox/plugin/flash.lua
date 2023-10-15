@@ -1,7 +1,23 @@
 local opts = {
-  jump = {
-    autojump = true,
+  search = {
+    multi_window = true,
   },
+  label = {
+    current = false, -- use <Cr> to jump to 1st match
+    after = false,
+    before = true,
+  },
+  highlight = {
+    backdrop = false, -- improve drawing speed
+  },
+  jump = {
+    autojump = false,
+    nohlsearch = true,
+  },
+  prompt = {
+    prefix = { { " ", "FlashPromptIcon" } },
+  },
+
   modes = {
     char = {
       -- `,` conflict with `<leader>` settings and `which-key.nvim`
@@ -12,92 +28,41 @@ local opts = {
           [";"] = "right",
           [","] = "left",
           [motion:lower()] = "right",
-          [motion:upper()] = "next",
+          [motion:upper()] = "left",
         }
       end,
     },
   },
 }
 
+local function f()
+  return require("flash")
+end
+
+-- stylua: ignore
 local keys = {
   -- jump
-  {
-    "s",
-    mode = { "n", "x", "o" },
-    function()
-      require("flash").jump()
-    end,
-    desc = "[Flash] Jump",
-  },
+  { "s",       mode = { "n", "x", "o" }, function() f().jump() end,              "Jump", },
 
-  -- epxand selection
-  {
-    "vv",
-    mode = { "n" },
-    function()
-      require("flash").treesitter()
-    end,
-    desc = "[Flash] Expand selection",
-  },
-  {
-    "v<Space>",
-    mode = { "n" },
-    function()
-      require("flash").treesitter()
-    end,
-    desc = "[Flash] Expand selection",
-  },
-  {
-    "v",
-    mode = { "x", "o" },
-    function()
-      require("flash").treesitter()
-    end,
-    desc = "[Flash] Expand selection",
-  },
-  {
-    "<Space>",
-    mode = { "x", "o" },
-    function()
-      require("flash").treesitter()
-    end,
-    desc = "[Flash] Expand selection",
-  },
+  -- expand selection
+  { "v",       mode = { "x", "o" },      function() f().treesitter() end,        "Expand selection", },
+  { "<Space>", mode = { "x", "o" },      function() f().treesitter() end,        "Expand selection", },
 
   -- jump and ...
-  {
-    "r",
-    mode = "o",
-    function()
-      require("flash").remote()
-    end,
-    desc = "[Flash] Remote mdoe",
-  },
-
+  { "\\",      mode = { "o" },           function() f().remote() end,            "Remote mode", },
   -- jump and then expand selection
-  {
-    "R",
-    mode = { "x", "o" },
-    function()
-      require("flash").treesitter_search()
-    end,
-    desc = "[Flash] Treesitter search",
-  },
+  { "/",       mode = { "o" },           function() f().treesitter_search() end, "Remote treesitter mode", },
 
   -- search
-  {
-    "<C-s>",
-    mode = { "c" },
-    function()
-      require("flash").toggle()
-    end,
-    desc = "[Flash] Toggle flash search",
-  },
+  { "<C-s>",   mode = { "c" },           function() f().toggle() end,            "Toggle flash search", },
 }
+
+keys = require("mudox.util.keymap").lazy_keys(keys, {
+  desc_prefix = "Flash",
+})
 
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
   keys = keys,
   opts = opts,
 }

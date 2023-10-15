@@ -7,4 +7,6 @@ return {
 
   r("dap-ui"),
   r("dap-virtual-text"),
+
+  r("osv"), -- Neovim lua
 }

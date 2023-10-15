@@ -11,13 +11,14 @@ end
 local keys = {
   { "<C-w>r",     delete_buffer(false, false), desc = "Delete buffer",                },
   { "<C-w><C-r>", delete_buffer(false, true),  desc = "Delete buffer & close window", },
+  { "<C-q>",      delete_buffer(false, true),  desc = "Delete buffer & close window", },
   { "<C-w>R",     delete_buffer(true, false),  desc = "Force delete buffer", },
 }
 -- stylua: ignore end
 
 return {
   "echasnovski/mini.bufremove",
-  event = { "BufRead, BufNewFile" },
+  event = { "BufRead", "BufNewFile" },
   config = function()
     require("mini.bufremove").setup()
   end,
