@@ -18,8 +18,7 @@ local function config(_, o)
 end
 
 local keys = {
-  { "<leader>wo", "<Cmd>Other<Cr>", desc = "[Other] Open alternative file" },
-  { "<leader>wv", "<Cmd>Other<Cr>", desc = "[Other] Open alternative file in vsplit" },
+  { "<leader>eo", "<Cmd>OtherVSplit<Cr>", desc = "[Other] VSplit" },
 }
 
 return {

@@ -42,6 +42,10 @@ nnop("gk")
 nmap("<M-l>", "gt")
 nmap("<M-h>", "gT")
 
+for i = 1, 9 do
+  nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
+end
+
 -- `q` triggers macro recording too easily
 nnop("q")
 -- nmap("<C-g>", "q", { remap = true })
@@ -136,8 +140,9 @@ ncmd("<leader>vt", "InspectTree")
 -- Buffer 〈
 
 -- buffer navigation
-ncmd(kb.cs["]"], "bnext")
-ncmd(kb.cs["["], "bNext")
+-- bufferline uses them
+-- ncmd(kb.cs["]"], "bnext")
+-- ncmd(kb.cs["["], "bNext")
 
 -- copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")

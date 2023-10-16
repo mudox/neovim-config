@@ -26,12 +26,12 @@ local function opts()
       buffer_close_icon = "󰅖",
       modified_icon = "󰴓",
       close_icon = "",
-      left_trunc_marker = "",
-      right_trunc_marker = "",
+      left_trunc_marker = "┄",
+      right_trunc_marker = "┄",
 
       groups = {
         items = {
-          require("bufferline.groups").builtin.pinned:with { icon = "◌" },
+          require("bufferline.groups").builtin.pinned:with { icon = " " },
         },
       },
     },
@@ -67,17 +67,22 @@ local function init()
   end
 end
 
+local kb = require("mudox.keyboard")
+
 -- stylua: ignore
 local keys = {
-  { "<M-o>", "Pick",                 "Pick"           },
+  { "<M-o>",    "Pick",                 "Pick",             l = false  },
 
-  { "<",     "CloseLeft",            "Close left"     },
-  { ">",     "CloseRight",           "Close right"    },
-  { ".",     "CloseOthers",          "Close other"    },
-  { "c",     "PickClose",            "Pick & close"   },
-  { ";",     "GroupClose ungrouped", "Close unpinned" },
+  { "<",        "CloseLeft",            "Close left"                   },
+  { ">",        "CloseRight",           "Close right"                  },
+  { ".",        "CloseOthers",          "Close other"                  },
+  { "c",        "PickClose",            "Pick & close"                 },
+  { ";",        "GroupClose ungrouped", "Close unpinned"               },
 
-  { "~",     "TogglePin",            "Pin"            },
+  { "~",        "TogglePin",            "Pin"                          },
+
+  { kb.cs["]"], "CycleNext",            "Cycle next",       l  = false },
+  { kb.cs["["], "CyclePrev",            "Cycle previous",   l  = false },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {

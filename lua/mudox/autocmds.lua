@@ -35,7 +35,7 @@ autocmd("TextYankPost", {
 -- Auto resize windows 〈
 
 autocmd("VimResized", {
-  group = augroup("resize_splits"),
+  group = augroup("mdx_resize_splits"),
   desc = "Auto-resize (re-equalize) windows when needed",
   callback = function()
     local tab = vim.fn.tabpagenr()
@@ -49,7 +49,7 @@ autocmd("VimResized", {
 -- Go to last loc when opening a buffer 〈
 
 autocmd("BufRead", {
-  group = augroup("last_loc"),
+  group = augroup("mdx_last_loc"),
   desc = "Jump to last known location after opening a file",
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -64,7 +64,7 @@ autocmd("BufRead", {
 
 -- Close with `q` 〈
 
-local close_with_q = augroup("close_with_q")
+local close_with_q = augroup("mdx_close_with_q")
 autocmd("FileType", {
   group = close_with_q,
   desc = "Close specific filetypes using `q`",
@@ -96,7 +96,7 @@ autocmd("FileType", {
 -- Wrap & spell 〈
 
 autocmd("FileType", {
-  group = augroup("wrap_spell"),
+  group = augroup("mdx_wrap_spell"),
   desc = "Wrap lines and enable spell checking for specific filetypes",
   pattern = {
     "gitcommit",
@@ -113,10 +113,8 @@ autocmd("FileType", {
 
 -- User event MdxSessionStart 〈
 
-local gid = vim.api.nvim_create_augroup("mudox_session_start_event", { clear = true })
 if vim.fn.argc(-1) == 0 then
   vim.api.nvim_create_autocmd("User", {
-    group = gid,
     pattern = "AlphaClosed",
     desc = "Start session after Alpha closed",
     callback = function()
@@ -125,7 +123,6 @@ if vim.fn.argc(-1) == 0 then
   })
 else
   vim.api.nvim_create_autocmd("User", {
-    group = gid,
     pattern = "VeryLazy",
     desc = "Start session on 1st buffer load",
     callback = function()

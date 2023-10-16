@@ -33,7 +33,7 @@ M.common = cmp.config.sources({
   { name = "nvim-cmp-ts-tag-close" },
 
   -- AI engines
-  { name = "cmp_tabnine", max_item_count = 4 },
+  -- { name = "cmp_tabnine", max_item_count = 4 },
   -- TODO: copilot
 }, {
   { name = "path", keyword_length = 3 },

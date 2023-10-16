@@ -1,4 +1,4 @@
 return {
   "NoahTheDuke/vim-just",
-  event = { "BufReadPre", "BufNew" },
+  event = { "BufReadPre", "BufNewFile" },
 }

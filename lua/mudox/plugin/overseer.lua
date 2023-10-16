@@ -4,14 +4,14 @@ local kb = require("mudox.keyboard")
 local keys = {
   -- task list
   { "<Space>",          "Toggle",         "Toggle task list"       },
-  { "-" .. kb.cs["cr"], "Toggle",         "Toggle task list"       },
+  { kb.cs.cr,           "Toggle",         "Toggle task list"       ,l = false },
 
   -- info
   { "i",                "Info",           "Diagnostic info"        },
 
   -- launch task
   { "r",                "Run",            "Run task template"      },
-  { "-" .. kb.c["cr"],  "Run",            "Run task template"      },
+  { kb.c.cr,            "Run",            "Run task template"      ,l = false},
   { ".",                "RestartLast",    "Run last task"          },
   { "c",                "RunCmd",         "Run shell command"      },
   { "n",                "Build",          "Build new task"         },

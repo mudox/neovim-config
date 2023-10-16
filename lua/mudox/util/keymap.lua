@@ -165,16 +165,10 @@ setmetatable(M, M)
 function M.lazy_keys(tbl, opts)
   for _, v in pairs(tbl) do
     -- lhs
-    if opts.key_prefix then
-      local c1 = v[1]:sub(1, 1)
-      if c1 ~= "<" and c1 ~= "-" then
-        v[1] = opts.key_prefix .. v[1]
-      end
-
-      if c1 == "-" then
-        v[1] = v[1]:sub(2)
-      end
+    if opts.key_prefix and v.l ~= false then
+      v[1] = opts.key_prefix .. v[1]
     end
+    v.l = nil
 
     -- rhs
     if type(v[2] == "string") then

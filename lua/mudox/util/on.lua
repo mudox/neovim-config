@@ -31,6 +31,19 @@ end
 
 ---@param fn fun()
 ---@param opts table|nil
+function M.start(fn, opts)
+  opts = opts or {}
+
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "MdxSessionStart",
+    group = opts.gid,
+    desc = opts.desc,
+    callback = fn,
+  })
+end
+
+---@param fn fun()
+---@param opts table|nil
 function M.colorscheme(fn, opts)
   opts = opts or {}
 
