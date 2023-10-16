@@ -1,14 +1,7 @@
 -- See https://github.com/folke/which-key.nvim#%EF%B8%8F-configuration
 local opts = {
-  show_help = false,
+  show_help = true,
   show_keys = true,
-
-  plugins = {
-    spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
-    },
-  },
 
   icons = {
     breadcrumb = "➠ ", -- symbol used in the command line area that shows your active key combo
@@ -22,11 +15,15 @@ local opts = {
     spacing = 6, -- spacing between columns
     align = "center", -- align columns left, center or right
   },
+
+  operators = {
+    gc = "+comments",
+  },
 }
 
-local function config(_, options)
+local function config()
   local wk = require("which-key")
-  wk.setup(options)
+  wk.setup(opts)
 
   local keymaps = {
     mode = { "n", "v" },
@@ -70,6 +67,9 @@ end
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = opts,
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
   config = config,
 }
