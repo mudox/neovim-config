@@ -3,7 +3,7 @@ local d9 = vim.diagnostic
 local M = {}
 
 local function setup_signs()
-  local i = require("mudox.ui.icons").diagnostics
+  local i = require("mudox.ui.icon").diagnostics
   -- stylua: ignore start
   local signs = {
     { "DiagnosticSignError", i.error },
@@ -76,15 +76,15 @@ local function setup_keymaps(bufnr)
 
   -- stylua: ignore start
   local keys = {
-    ["]d"]  = b { jump(true),             "Goto next issue" },
-    ["[d"]  = b { jump(false),            "Goto previous issue" },
-    ["]E"]  = b { jump(true, "ERROR"),    "Goto next error" },
-    ["[E"]  = b { jump(false, "ERROR"),   "Goto previous error" },
+    ["]d"]  = b { jump(true),             "[Diagnostic] Next issue" },
+    ["[d"]  = b { jump(false),            "[Diagnostic] Previous issue" },
+    ["]E"]  = b { jump(true, "ERROR"),    "[Diagnostic] Next error" },
+    ["[E"]  = b { jump(false, "ERROR"),   "[Diagnostic] Previous error" },
 
-    ["gl"]  = b { d9.open_float,          "Show issue(s) of current line" },
-    ["gL"]  = b { lsp_lines,              "Toggle LSP lines" },
+    ["gl"]  = b { d9.open_float,          "[Diagnostic] Show issue(s)" },
+    ["gL"]  = b { lsp_lines,              "[Diagnostic] Toggle LSP lines" },
 
-    ["yod"] = b { toggle,                 "Toggle diagnostic" },
+    ["yod"] = b { toggle,                 "[Diagnostic] Toggle" },
   }
   -- stylua: ignore end
 

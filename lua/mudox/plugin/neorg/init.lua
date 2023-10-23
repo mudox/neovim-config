@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 local dirman = {
   config = {

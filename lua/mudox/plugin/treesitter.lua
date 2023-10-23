@@ -11,7 +11,6 @@ opts.highlight = {
 
 opts.indent = {
   enable = true,
-  disable = { "python" },
 }
 
 opts.context_commentstring = {
@@ -60,9 +59,19 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "nvim-treesitter-textobjects" },
+    dependencies = {
+      "nvim-treesitter-textobjects",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
     keys = keys,
     opts = opts,
+    init = function()
+      vim.o.foldmethod = "expr"
+      vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.o.foldtext = "v:lua.require('mudox.ui').foldtext()"
+      vim.o.foldminlines = 6
+      vim.o.foldnestmax = 3
+    end,
     config = function(_, o)
       require("nvim-treesitter.configs").setup(o)
     end,

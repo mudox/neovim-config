@@ -1,6 +1,6 @@
 local opts = {
   floating = {
-    border = require("mudox.ui.icons").border.corner,
+    border = require("mudox.ui.icon").border.corner,
   },
 }
 

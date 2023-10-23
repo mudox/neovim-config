@@ -1,14 +1,21 @@
+-- stylua: ignore
 local keys = {
-  { "<leader>x<Space>", "<Cmd>TroubleToggle<Cr>", desc = "[Trouble] Toggle previous" },
+  { "<Space>", "<Cmd>TroubleToggle<Cr>",              "Toggle previous",       k = "r", },
 
-  { "<leader>xx", "<Cmd>TroubleToggle document_diagnostics<Cr>", desc = "[Trouble] Document diagnostics" },
-  { "<leader>xX", "<Cmd>TroubleToggle workspace_diagnostics<Cr>", desc = "[Trouble] Workspace diagnostics" },
+  { "x",       "TroubleToggle document_diagnostics",  "Document diagnostics",           },
+  { "X",       "TroubleToggle workspace_diagnostics", "Workspace diagnostics",          },
 
-  { "<leader>xl", "<Cmd>TroubleToggle loclist<Cr>", desc = "[Trouble] Loclist" },
-  { "<leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", desc = "[Trouble] Quickfix" },
+  { "l",       "TroubleToggle loclist",               "Loclist",                        },
+  { "q",       "TroubleToggle quickfix",              "Quickfix",                       },
 
-  { "<leader>xr", "<Cmd>TroubleToggle lsp_references<Cr>", desc = "[Trouble] References" },
+  { "r",       "TroubleToggle lsp_references",        "References",                     },
 }
+
+keys = require("mudox.util.keymap").lazy_keys(keys, {
+  key_prefix = "<leader>x",
+  main_cmd = "TroubleToggle",
+  desc_prefix = "Trouble",
+})
 
 return {
   "folke/trouble.nvim",

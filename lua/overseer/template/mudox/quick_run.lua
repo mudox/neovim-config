@@ -1,5 +1,5 @@
 return {
-  name = "run script",
+  name = "quick run",
 
   builder = function()
     local file = vim.fn.expand("%:p")
@@ -12,7 +12,7 @@ return {
     elseif vim.bo.filetype == "python" then
       cmd = { "python", file }
     elseif vim.bo.filetype == "lua" then
-      cmd = { "lua", file }
+      cmd = { "nvim", "-l", file } -- run by Neovim
     elseif vim.bo.filetype == "go" then
       cmd = { "go", "run", file }
     end

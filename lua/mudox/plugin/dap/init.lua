@@ -1,12 +1,19 @@
-local function r(name)
-  return require("mudox.plugin.dap." .. name)
-end
+-- stylua: ignore
+local function r(name) return require("mudox.plugin.dap." .. name) end
 
+-- stylua: ignore
+local function a(name) return require("mudox.plugin.dap.lang." .. name).adapter end
+
+-- stylua: ignore
 return {
-  r("dap"),
+  -- Core
+  r "dap",
 
-  r("dap-ui"),
-  r("dap-virtual-text"),
+  -- UI
+  r "dap-ui",
+  r "dap-virtual-text",
 
-  r("osv"), -- Neovim lua
+  -- Adapters
+  a "neovim_lua", -- Neovim lua
+  a "javascript", -- JavaScript, TypeScript ...
 }

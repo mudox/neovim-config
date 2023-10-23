@@ -84,6 +84,10 @@ local bottom = {
 
 local right = {
   {
+    title = "Query",
+    ft = "query",
+  },
+  {
     title = "Tests",
     ft = "neotest-summary",
   },
@@ -120,7 +124,7 @@ local right = {
 
 -- stylua: ignore start
 local function opts()
-  local i = require("mudox.ui.icons")
+  local i = require("mudox.ui.icon")
 
   return {
     left      = left,

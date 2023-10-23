@@ -1,11 +1,11 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 local function setup_highlights()
   vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { fg = "#FFFFFF" })
 end
 
 local function opts()
-  local i = require("mudox.ui.icons")
+  local i = require("mudox.ui.icon")
 
   -- Icons 〈
 

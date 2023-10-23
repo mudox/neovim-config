@@ -39,7 +39,7 @@ local function setup_listeners()
   dap.listeners.after.event_initialized["mudox"] = function()
     print("DAP started")
     open_dap_tabpage()
-    ui.open()
+    ui.open { reset = true }
   end
 
   dap.listeners.before.event_terminated["mudox"] = function()
@@ -54,19 +54,24 @@ local function setup_listeners()
 end
 
 local function config()
+  -- patch nvim-dap
+  require("overseer").setup()
+  -- support launchjs.json written in JSON5
+  require("dap.ext.vscode").json_decode = require("overseer.json").decode
+
   setup_sings()
   setup_listeners()
 
   -- language setups
-  local function lang(name)
-    require("mudox.plugin.dap.lang." .. name)()
+  local function setup(name)
+    require("mudox.plugin.dap.lang." .. name).setup()
   end
 
-  lang("neovim_lua")
-  -- lang("python")
-  -- lang("rust")
-  -- lang("javascript")
-  -- lang("c")
+  setup("neovim_lua")
+  setup("javascript") -- as well as typescript ...
+  -- setup("rust")
+  -- setup("python")
+  -- setup("c")
 end
 
 return {

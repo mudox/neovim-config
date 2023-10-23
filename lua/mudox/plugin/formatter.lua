@@ -40,4 +40,5 @@ return {
   cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
   keys = keys,
   opts = opts,
+  cond = false, -- use `conform` instead
 }

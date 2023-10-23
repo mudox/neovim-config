@@ -1,6 +1,6 @@
 -- see symbols.txt for more icons
 
--- stylua: ignore start
+-- stylua: ignore
 return {
   File            = " ",
   Folder          = " ",
@@ -28,8 +28,8 @@ return {
   Array           = " ",
   Object          = " ",
 
-  Null            = "󰟢 ",
-  Boolean         = "󰨙 ",
+  Null            = "∅ ",
+  Boolean         = "Ө ",
   Number          = "󰎠 ",
   Operator        = " ",
   TypeParameter   = " ",
@@ -48,4 +48,3 @@ return {
 
   Error           = " ",
 }
--- stylua: ignore end

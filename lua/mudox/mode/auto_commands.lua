@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 -- Auto equal panes 〈
 
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 
 -- 〉
 
--- Close sepcial panes 〈
+-- Close special panes 〈
 
 -- Press `q` to close buffer
 gid = vim.api.nvim_create_augroup("MudoxQ", { clear = true })

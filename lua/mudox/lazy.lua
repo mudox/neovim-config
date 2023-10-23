@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 -- Bootstrap 〈
 
@@ -16,7 +16,7 @@ if not vim.loop.fs_stat(lazypath) then
     vim.api.nvim_err_writeln("Error cloning lazy.nvim repository...\n\n" .. output)
   end
   local oldcmdheight = vim.opt.cmdheight:get()
-  vim.opt.cmdheight = 1
+  vim.opt.cmdheight = 2
   vim.notify("Please wait while plugins are installed...")
   vim.api.nvim_create_autocmd("User", {
     desc = "Load Mason and Treesitter after Lazy installs plugins",
@@ -37,7 +37,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Bootstrap 〉
 
 -- Load lazy.nvim
--- stylua: ignore start
+
+-- stylua: ignore
 local icons = {
   cmd        = "🄲 ",
   config     = "🅒 ",
@@ -64,7 +65,6 @@ local icons = {
     "‒",
   },
 }
--- stylua: ignore end
 
 local ui = {
   -- a number <1 is a percentage., >1 is a fixed size
@@ -114,7 +114,7 @@ local performance = {
   },
 }
 
-vim.g.mapleader = "," -- surpress `lazy.nvim` warning message at startup
+vim.g.mapleader = "," -- suppress `lazy.nvim` warning message at startup
 require("lazy").setup {
   spec = "mudox.plugin",
   defaults = {

@@ -22,7 +22,7 @@ local dependencies = {
   "lukas-reineke/cmp-rg",
 
   -- AI
-  { "tzachar/cmp-tabnine", build = "./install.sh" },
+  -- { "tzachar/cmp-tabnine", build = "./install.sh" },
 
   -- Language specific
   "octaltree/cmp-look",

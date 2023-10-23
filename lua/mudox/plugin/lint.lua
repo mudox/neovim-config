@@ -12,7 +12,7 @@ local function config()
     python = { "ruff" },
   }
 
-  local gid = vim.api.nvim_create_augroup("mudox_lint", { clear = true })
+  local gid = vim.api.nvim_create_augroup("mdx_lint", { clear = true })
   vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
     group = gid,
     desc = "Lint document by nvim-lint",

@@ -291,7 +291,7 @@ function lapp.process_options_string(str,args)
                     defval,vtype = process_default(res.rest,vtype)
                 end
             else -- must be a plain flag, no extra parameter required
-                defval = false
+                defvak = "l",
                 vtype = 'boolean'
             end
             local ps = {

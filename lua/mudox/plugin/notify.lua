@@ -1,5 +1,5 @@
 local function config()
-  local i = require("mudox.ui.icons")
+  local i = require("mudox.ui.icon")
   local icons = {
     ERROR = i.error,
     WARN = i.warn,
@@ -16,7 +16,7 @@ local function config()
 
     on_open = function(win)
       vim.api.nvim_win_set_config(win, {
-        -- border = require("mudox.ui.icons").border.box,
+        -- border = require("mudox.ui.icon").border.box,
         border = "single", -- 'rounded' by default
       })
     end,

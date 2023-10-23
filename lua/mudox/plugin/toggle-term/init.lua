@@ -18,7 +18,7 @@ local opts = {
   start_in_insert = true,
 
   float_opts = {
-    border = require("mudox.ui.icons").border.box,
+    border = require("mudox.ui.icon").border.box,
     winblend = 0, -- transparency makes double width symbol display incorrectly
   },
 

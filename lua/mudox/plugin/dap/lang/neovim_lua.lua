@@ -1,5 +1,11 @@
+local adapter = {
+  "jbyuki/one-small-step-for-vimkind",
+  ft = "lua",
+  dependencies = "nvim-dap",
+}
+
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/dap/nlua.lua
-return function()
+local function setup()
   local dap = require("dap")
 
   dap.adapters.nlua = function(callback, conf)
@@ -22,16 +28,21 @@ return function()
 
   dap.configurations.lua = {
     {
+      name = "Run this file in new Neovim instance",
       type = "nlua",
       request = "attach",
-      name = "Run this file",
       start_neovim = {},
     },
     {
+      name = "Attach to running Neovim instance (port = 8086)",
       type = "nlua",
       request = "attach",
-      name = "Attach to running Neovim instance (port = 8086)",
       port = 8086,
     },
   }
 end
+
+return {
+  adapter = adapter,
+  setup = setup,
+}

@@ -42,11 +42,12 @@ local function config()
       e = { name = "+edit" },
       l = { name = "+lazy" },
       g = { name = "+git" },
+      p = { name = "+profile" },
       q = { name = "+quit/session" },
       r = { name = "+run" },
       t = { name = "+telescope" },
       u = { name = "+ui" },
-      w = { name = "+windows|buffer" },
+      w = { name = "+window|buffer" },
       v = {
         name = "+view",
         l = { "<Cmd>Lazy<Cr>", "Lazy" },

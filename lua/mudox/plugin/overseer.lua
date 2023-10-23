@@ -3,29 +3,30 @@ local kb = require("mudox.keyboard")
 -- stylua: ignore
 local keys = {
   -- task list
-  { "<Space>",          "Toggle",         "Toggle task list"       },
-  { kb.cs.cr,           "Toggle",         "Toggle task list"       ,l = false },
-
-  -- info
-  { "i",                "Info",           "Diagnostic info"        },
+  { "<Space>",          "Toggle",         "Toggle list",                       },
+  { kb.cs.cr,           "Toggle",         "Toggle list",            k =  "l",  },
 
   -- launch task
-  { "r",                "Run",            "Run task template"      },
-  { kb.c.cr,            "Run",            "Run task template"      ,l = false},
-  { ".",                "RestartLast",    "Run last task"          },
-  { "c",                "RunCmd",         "Run shell command"      },
-  { "n",                "Build",          "Build new task"         },
-  { "w",                "WatchRun",       "Watch & run"            },
+  { "<Cr>",             "Run",            "Run template",                      },
+  { kb.c.cr,            "Run",            "Run template",           k =  "l",  },
+  { "c",                "RunCmd",         "Run shell command",                 },
+  { ".",                "RestartLast",    "Run last",                          },
+  { "n",                "Build",          "Build new task",                    },
+
+  { "w",                "WatchRun",       "Watch & run",                       },
 
   -- manage task
-  { "a",                "QuickAction",    "Perform quick action"   },
-  { "A",                "TaskAction",     "Perform task action"    },
+  { "a",                "QuickAction",    "Perform on last",                   },
+  { "A",                "TaskAction",     "Perform on ...",                    },
 
   -- save / restore tasks
-  { "S",                "SaveBundle",     "Save task bundle"       },
-  { "R",                "LoadBundle",     "Load & run task bundle" },
-  { "L",                "LoadBundle!",    "Load task bundle"       },
-  { "D",                "DeleteBundle",   "Delete task bundle"     },
+  { "S",                "SaveBundle",     "Save task bundle",                  },
+  { "R",                "LoadBundle",     "Load & run task bundle",            },
+  { "L",                "LoadBundle!",    "Load task bundle",                  },
+  { "D",                "DeleteBundle",   "Delete task bundle",                },
+
+  -- info
+  { "<leader>vo",       "Info",           "Overseer",               k =  "ld", },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {
@@ -35,9 +36,11 @@ keys = require("mudox.util.keymap").lazy_keys(keys, {
 })
 
 -- restarts the most recent overseer task
-local function run_last_command()
+-- https://github.com/stevearc/overseer.nvim/blob/master/doc/recipes.md
+local function run_last()
   vim.api.nvim_create_user_command("OverseerRestartLast", function()
     local overseer = require("overseer")
+
     local tasks = overseer.list_tasks { recent_first = true }
     if vim.tbl_isempty(tasks) then
       vim.notify("No tasks found", vim.log.levels.INFO)
@@ -47,10 +50,12 @@ local function run_last_command()
   end, {})
 end
 
+-- https://github.com/stevearc/overseer.nvim/blob/master/doc/tutorials.md#build-a-c-file
 local function watch_run()
   vim.api.nvim_create_user_command("OverseerWatchRun", function()
     local overseer = require("overseer")
-    overseer.run_template({ name = "run script" }, function(task)
+
+    overseer.run_template({ name = "quick run" }, function(task)
       if task then
         task:add_component { "restart_on_save", paths = { vim.fn.expand("%:p") } }
         local main_win = vim.api.nvim_get_current_win()
@@ -58,7 +63,7 @@ local function watch_run()
         vim.api.nvim_set_current_win(main_win)
       else
         vim.notify(
-          'Template "run script" currently does not supports filetype ' .. vim.bo.filetype,
+          'Template "quick run" currently does not supports filetype ' .. vim.bo.filetype,
           vim.log.levels.ERROR
         )
       end
@@ -74,12 +79,13 @@ local function local_shell_scripts()
   return {
     generator = function(opts, cb)
       local scripts = vim.tbl_filter(function(filename)
-        return filename:match("%.sh$")
+        return filename:match("%.z?sh$")
       end, files.list_files(opts.dir))
-      local ret = {}
+
+      local templates = {}
       for _, filename in ipairs(scripts) do
-        table.insert(ret, {
-          name = filename,
+        table.insert(templates, {
+          name = "Run " .. filename,
           params = {
             args = { optional = true, type = "list", delimiter = " " },
           },
@@ -92,7 +98,7 @@ local function local_shell_scripts()
         })
       end
 
-      cb(ret)
+      cb(templates)
     end,
   }
 end
@@ -100,11 +106,11 @@ end
 local templates = {
   "builtin",
 
-  "mudox.run_script",
+  "mudox.quick_run",
   "mudox.run_neovim_lua_script",
 }
 
-local border = require("mudox.ui.icons").border.corner
+local border = require("mudox.ui.icon").border.corner
 
 local task_list = {
   direction = "right",
@@ -170,14 +176,12 @@ local opts = {
   },
 }
 
-local function config(_, o)
-  require("overseer").setup(o)
+local function config()
+  require("dap")
+  require("overseer").setup(opts)
+  require("dap.ext.vscode").json_decode = require("overseer.json").decode
 
-  -- recipes from https://github.com/stevearc/overseer.nvim/blob/master/doc/recipes.md
-  run_last_command()
-  -- local_shell_scripts()
-
-  -- https://github.com/stevearc/overseer.nvim/blob/master/doc/tutorials.md#build-a-c-file
+  run_last()
   watch_run()
 end
 
@@ -190,6 +194,5 @@ return {
     "OverseerBuild",
   },
   keys = keys,
-  opts = opts,
   config = config,
 }

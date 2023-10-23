@@ -15,7 +15,7 @@ local opts = {
     -- trim white spaces
     text = text:gsub("^%s*(.-)%s*$", "%1")
 
-    return "   " .. text
+    return "of " .. text
   end,
 }
 

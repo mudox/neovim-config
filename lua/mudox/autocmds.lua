@@ -1,20 +1,20 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 -- TODO: move in my autocmds
 
 -- References
--- -> autocmds.lua from LazyVim
--- -> 3-autocmds.lua from NormalView
+--   autocmds.lua from LazyVim
+--   3-autocmds.lua from NormalView
 
-local autocmd = vim.api.nvim_create_autocmd
+local on = vim.api.nvim_create_autocmd
 
-local augroup = function(name)
-  return vim.api.nvim_create_augroup("mudox_" .. name, { clear = true })
+local g = function(name)
+  return vim.api.nvim_create_augroup("mdx_" .. name, { clear = true })
 end
 
 -- Checktime 〈
 
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+on({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = g("checktime"),
   command = "checktime",
 })
 
@@ -22,8 +22,8 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Flash on yanking 〈
 
-autocmd("TextYankPost", {
-  group = augroup("highlight_yank"),
+on("TextYankPost", {
+  group = g("highlight_yank"),
   desc = "Flash on yanking",
   callback = function()
     vim.highlight.on_yank { timeout = 250 }
@@ -34,13 +34,13 @@ autocmd("TextYankPost", {
 
 -- Auto resize windows 〈
 
-autocmd("VimResized", {
-  group = augroup("mdx_resize_splits"),
-  desc = "Auto-resize (re-equalize) windows when needed",
+on("VimResized", {
+  group = g("equalize_splits"),
+  desc = "Auto-re-equalize windows",
   callback = function()
     local tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
-    vim.fn.execute("tabnext " .. tab)
+    vim.cmd("tabnext " .. tab)
   end,
 })
 
@@ -48,12 +48,18 @@ autocmd("VimResized", {
 
 -- Go to last loc when opening a buffer 〈
 
-autocmd("BufRead", {
-  group = augroup("mdx_last_loc"),
+on("BufReadPost", {
+  group = g("last_loc"),
   desc = "Jump to last known location after opening a file",
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
+  callback = function(event)
+    local exclude = { "gitcommit" }
+    local buf = event.buf
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+      return
+    end
+    vim.b[buf].lazyvim_last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
@@ -64,17 +70,20 @@ autocmd("BufRead", {
 
 -- Close with `q` 〈
 
-local close_with_q = augroup("mdx_close_with_q")
-autocmd("FileType", {
+local close_with_q = g("close_with_q")
+on("FileType", {
   group = close_with_q,
-  desc = "Close specific filetypes using `q`",
+  desc = "Close using `q`",
   pattern = {
     "aerial-nav",
+    "checkhealth",
     "fugitive",
     "help",
     "lspinfo",
-    "lspinfo",
     "man",
+    "neotest-output",
+    "neotest-output-panel",
+    "neotest-summary",
     "notify",
     "null-ls-info",
     "OverseerList",
@@ -82,6 +91,7 @@ autocmd("FileType", {
     "qf",
     "qr_panel",
     "query",
+    "spectre_panel",
     "startuptime",
     "tsplayground",
   },
@@ -93,11 +103,11 @@ autocmd("FileType", {
 
 -- Close with `q` 〉
 
--- Wrap & spell 〈
+-- Wrap & check spell 〈
 
-autocmd("FileType", {
-  group = augroup("mdx_wrap_spell"),
-  desc = "Wrap lines and enable spell checking for specific filetypes",
+on("FileType", {
+  group = g("wrap_spell"),
+  desc = "Wrap lines and check spelling",
   pattern = {
     "gitcommit",
     "markdown",
@@ -109,7 +119,7 @@ autocmd("FileType", {
   end,
 })
 
--- Wrap & spell 〉
+-- Wrap & check spell 〉
 
 -- User event MdxSessionStart 〈
 

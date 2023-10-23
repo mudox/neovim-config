@@ -1,7 +1,7 @@
 require("mudox.util.luasnip").setup_env()
 
 local function _fold_mode_line()
-  local body = "vim: fdm=marker fmr=〈,〉"
+  local body = "vim: fml& fdn& fdm=marker fmr=〈,〉"
   local cs = vim.bo.commentstring
   if cs ~= "" then
     return cs:format(body)

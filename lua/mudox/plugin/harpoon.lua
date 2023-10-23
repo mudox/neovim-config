@@ -13,28 +13,25 @@ local function add_file()
   print(("Add %s to harpoon"):format(vim.fn.expand("%:t")))
 end
 
-local function e(s)
-  return "<leader>e" .. s
-end
-
 -- stylua: ignore
 local keys = {
-  { e"a",       add_file,                                 "Add file"      },
+  { "a",       add_file,                                 "Add file"                 },
 
-  { e"<Space>", function () ui().toggle_quick_menu() end, "Menu"          },
-  { "M",        function () ui().toggle_quick_menu() end, "Menu"          },
+  { "<Space>", function () ui().toggle_quick_menu() end, "Menu"                     },
+  { "M",       function () ui().toggle_quick_menu() end, "Menu",          k =  "l", },
 
-  { kb.cs.l,    function () ui().nav_next() end,          "Next file"     },
-  { kb.cs.h,    function () ui().nav_prev() end,          "Previous file" },
+  { kb.cs.l,   function () ui().nav_next() end,          "Next file",     k =  "l", },
+  { kb.cs.h,   function () ui().nav_prev() end,          "Previous file", k =  "l", },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {
+  key_prefix = "<leader>e",
   desc_prefix = "Harpoon",
 })
 
 for i = 1, 9 do
   -- stylua: ignore
-  table.insert(keys, { "[" .. i, function () ui().nav_file(i) end, desc = "[Harpoon] Goto file " .. i })
+  table.insert(keys, { "<leader>" .. i, function () ui().nav_file(i) end, desc = "[Harpoon] Goto file " .. i })
 end
 
 local opts = {

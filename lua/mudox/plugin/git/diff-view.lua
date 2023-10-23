@@ -1,5 +1,5 @@
 local opts = function()
-  local i = require("mudox.ui.icons")
+  local i = require("mudox.ui.icon")
 
   return {
     enhanced_diff_hl = false,

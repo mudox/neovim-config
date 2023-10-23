@@ -1,6 +1,4 @@
-local M = {}
 local cmp = require("cmp")
-local group = cmp.config.sources
 
 -- you can configure:
 -- - keyword_length
@@ -18,7 +16,7 @@ local words = {
 }
 
 -- see: https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
-M.common = cmp.config.sources({
+local common = cmp.config.sources({
   { name = "nvim_lsp_signature_help" },
 
   -- LSP & TreeSitter
@@ -34,7 +32,9 @@ M.common = cmp.config.sources({
 
   -- AI engines
   -- { name = "cmp_tabnine", max_item_count = 4 },
+  -- TODO: tabnine
   -- TODO: copilot
+  -- TODO: codium
 }, {
   { name = "path", keyword_length = 3 },
   { name = "buffer", keyword_length = 4 },
@@ -44,19 +44,19 @@ M.common = cmp.config.sources({
   words,
 })
 
-M.search = {
+local search = {
   { name = "buffer", keyword_length = 3 },
   { name = "cmdline_history", keyword_length = 2 },
 }
 
-M.cmdline = {
+local cmdline = {
   { name = "path", keyword_length = 2, max_item_count = 4 },
   { name = "cmdline_history", keyword_length = 2, max_item_count = 3 },
   { name = "cmdline", keyword_length = 2 },
 }
 
 local c6 = cmp.config.compare
-M.sorting = {
+local sorting = {
   comparators = {
     c6.offset,
     c6.exact,
@@ -84,4 +84,9 @@ M.sorting = {
   },
 }
 
-return M
+return {
+  common = common,
+  search = search,
+  cmdline = cmdline,
+  sorting = sorting,
+}

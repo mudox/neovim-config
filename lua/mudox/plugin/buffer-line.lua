@@ -45,21 +45,16 @@ local function init()
   vim.o.mousemoveevent = true -- hover to show close icon
   vim.o.laststatus = 3
 
-  local gid = vim.api.nvim_create_augroup("mudox_load_buffer_line", { clear = true })
   if vim.fn.argc(-1) == 0 then
     vim.api.nvim_create_autocmd("User", {
-      group = gid,
       pattern = "AlphaClosed",
-      desc = "Load bufferline.nvim after Alpha closed",
       callback = function()
         require("bufferline")
       end,
     })
   else
     vim.api.nvim_create_autocmd("User", {
-      group = gid,
       pattern = "VeryLazy",
-      desc = "Load bufferline.nvim on 1st buffer load",
       callback = function()
         require("bufferline")
       end,
@@ -71,18 +66,18 @@ local kb = require("mudox.keyboard")
 
 -- stylua: ignore
 local keys = {
-  { "<M-o>",    "Pick",                 "Pick",             l = false  },
+  { "<M-o>",    "Pick",                 "Pick",           k =  "l", },
 
-  { "<",        "CloseLeft",            "Close left"                   },
-  { ">",        "CloseRight",           "Close right"                  },
-  { ".",        "CloseOthers",          "Close other"                  },
-  { "c",        "PickClose",            "Pick & close"                 },
-  { ";",        "GroupClose ungrouped", "Close unpinned"               },
+  { "<",        "CloseLeft",            "Close left"                },
+  { ">",        "CloseRight",           "Close right"               },
+  { ".",        "CloseOthers",          "Close other"               },
+  { "c",        "PickClose",            "Pick & close"              },
+  { ";",        "GroupClose ungrouped", "Close unpinned"            },
 
-  { "~",        "TogglePin",            "Pin"                          },
+  { "~",        "TogglePin",            "Pin"                       },
 
-  { kb.cs["]"], "CycleNext",            "Cycle next",       l  = false },
-  { kb.cs["["], "CyclePrev",            "Cycle previous",   l  = false },
+  { kb.cs["]"], "CycleNext",            "Cycle next",     k =  "l"  },
+  { kb.cs["["], "CyclePrev",            "Cycle previous", k =  "l"  },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {
@@ -93,13 +88,10 @@ keys = require("mudox.util.keymap").lazy_keys(keys, {
 
 -- <leader>1~9 to switch to visually displayed buffer on buffer line
 for i = 1, 9 do
-  table.insert(
-    keys,
-    { "<leader>" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Goto buffer " .. i }
-  )
+  table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Buffer " .. i })
 end
 
-table.insert(keys, { "<leader>$", "<Cmd>BufferLineGoToBuffer -1<Cr>", desc = "[BufferLine] Goto last buffer" })
+table.insert(keys, { "[$", "<Cmd>BufferLineGoToBuffer -1<Cr>", desc = "[BufferLine] Last buffer" })
 
 return {
   "akinsho/bufferline.nvim",

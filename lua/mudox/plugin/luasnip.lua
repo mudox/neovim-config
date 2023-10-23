@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 -- Keys 〈
 
@@ -41,11 +41,13 @@ local function edit_snippet()
   }
 end
 
+local main_key = "<C-f>"
+
 -- stylua: ignore
 local keys = {
   -- expand & juamp
-  { "<C-f>",      function() require("luasnip").expand_or_jump() end,                mode =  "i",          desc =  "[LuaSnip] Expand or jump to next placeholder" },
-  { "<C-f>",      function() require("luasnip").jump(1) end,                         mode =  { "v", "s" }, desc =  "[LuaSnip] Jump to next placeholder" },
+  { main_key,     function() require("luasnip").expand_or_jump() end,                mode =  "i",          desc =  "[LuaSnip] Expand or jump to next placeholder" },
+  { main_key,     function() require("luasnip").jump(1) end,                         mode =  { "v", "s" }, desc =  "[LuaSnip] Jump to next placeholder" },
   { "<C-b>",      function() require("luasnip").jump(-1) end,                        mode =  { "i", "s" }, desc =  "[LuaSnip] Jump to next placeholder" },
 
   -- choices
@@ -66,7 +68,7 @@ local keys = {
 local function opts(o)
   local t = require("luasnip.util.types")
 
-  o.enable_autosnippets = true -- performance alert
+  o.enable_autosnippets = false -- impact performance
 
   o.history = true
 
@@ -74,7 +76,7 @@ local function opts(o)
   o.region_check_events = "CursorMoved, CursorHold, InsertLeave"
   o.delete_check_events = "TextChanged, InsertLeave"
 
-  o.store_selection_keys = "<C-f>"
+  o.store_selection_keys = main_key
 
   o.ext_opts = {
     [t.choiceNode] = {

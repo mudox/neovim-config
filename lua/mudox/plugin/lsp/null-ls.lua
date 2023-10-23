@@ -33,5 +33,6 @@ end
 return {
   "nvimtools/none-ls.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  keys = { { "<leader>vn", "<Cmd>NullLsInfo<Cr>", desc = "Null" } },
   opts = opts,
 }

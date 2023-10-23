@@ -1,88 +1,80 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 -- Keymaps to invoke telescope 〈
-
-local function font_symbols()
-  local s = require("telescope.builtin").symbols
-  if vim.v.count ~= 0 then
-    s() -- list all symbols
-  else
-    s { sources = { "nerd", "math" } }
-  end
-end
 
 local kb = require("mudox.keyboard")
 
 -- stylua: ignore start
 local keymaps = {
-  { ":",              "builtin",                   "All telescope pickers"    },
-  { ".",              "resume",                    "Resume telescope"         },
-
-  -- lsp
-  { "?",              "diagnostics bufnr=0",       "Document diagnostics"     },
-  { "!",              "diagnostics",               "Workspace diagnostics"    },
-
-  -- symbols
-  { "<M-7>",          "treesitter",                "Treesitter symbols"       ,l = false },
-  { "<M-8>",          "lsp_document_symbols",      "LSP document symbols"     ,l = false },
-  { "<M-9>",          "lsp_workspace_symbols",     "LSP workspace symbols"    ,l = false },
-
-  -- vim
-  { "<Space>r",       "oldfiles",                  "Recent files"             ,l = false },
-  { "b",              "buffers",                   "Switch buffer"            },
-  { kb.cs.o,          "buffers",                   "Switch buffer"            ,l = false },
-  { "o",              "vim_options",               "Vim options"              },
-  { "H",              "highlights",                "Highlight groups"         },
-
-  { "k",              "keymaps",                   "Keymaps"                  },
-
-  { "C",              "command_history",           "Command history"          },
-  { kb.cs[";"],       "command_history",           "Command history"          ,l = false },
-  { "c",              "commands",                  "Commands"                 },
-  { "<M-;>",          "commands",                  "Commands"                 },
-
-  { "h",              "help_tags",                 "Vim help"                 },
-  { "<Space>h",       "help_tags",                 "Vim help"                 ,l = false },
-
-  { "/",              "current_buffer_fuzzy_find", "Search in buffer"         },
-  { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer"         ,l = false },
-
-  -- grep
-  { "<Space>s",       "live_grep",                 "Live grep"                ,l = false },
-  { "w",              "grep_string",               "Grep <word> under cursor" },
-  { "G",              "live_grep_args",            "Live grep args (rg raw)"  },
+  { ":",              "builtin",                   "All telescope pickers",             },
+  { ".",              "resume",                    "Resume telescope",                  },
 
   -- files
-  { "f",              "find_files",                "Smart open"               },
-  { "F",              "git_files",                 "Smart open"               },
-  { "<Space><Space>", "smart_open",                "Smart open"               ,l = false },
-  { "<C-p>",          "smart_open",                "Smart open"               ,l = false },
+  { "f",              "find_files",                "Find files",                        },
+  { "F",              "git_files",                 "Git files",                         },
+  { "<Space><Space>", "smart_open",                "Smart open",               k = "l", },
+  { "<C-p>",          "smart_open",                "Smart open",               k = "l", },
+
+  -- lsp
+  { "?",              "diagnostics bufnr=0",       "Document diagnostics",              },
+  { "!",              "diagnostics",               "Workspace diagnostics",             },
+
+  -- symbols
+  { "<M-7>",          "treesitter",                "Treesitter symbols",       k = "l", },
+  { "<M-8>",          "lsp_document_symbols",      "LSP document symbols",     k = "l", },
+  { "<M-9>",          "lsp_workspace_symbols",     "LSP workspace symbols",    k = "l", },
+
+  -- vim
+  { "<Space>r",       "oldfiles",                  "Recent files",             k = "l", },
+  { "b",              "buffers",                   "Switch buffer",                     },
+  { kb.cs.o,          "buffers",                   "Switch buffer",            k = "l", },
+  { "o",              "vim_options",               "Vim options",                       },
+  { "H",              "highlights",                "Highlight groups",                  },
+
+  { "k",              "keymaps",                   "Keymaps",                           },
+
+  { "C",              "command_history",           "Command history",                   },
+  { kb.cs[";"],       "command_history",           "Command history",          k = "l", },
+  { "c",              "commands",                  "Commands",                          },
+  { "<M-;>",          "commands",                  "Commands",                 k = "l", },
+
+  { "h",              "help_tags",                 "Vim help",                          },
+  { "<Space>h",       "help_tags",                 "Vim help",                 k = "l", },
+
+  { "/",              "current_buffer_fuzzy_find", "Search in buffer",                  },
+  { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer",         k = "l", },
+
+  -- grep
+  { "<Space>s",       "live_grep",                 "Live grep",                k = "l", },
+  { "w",              "grep_string",               "Grep <word> under cursor",          },
+  { "G",              "live_grep_args",            "Live grep args (rg raw)",           },
 
   -- plugins
-  { "p",              "lazy",                      "Lazy plugins"             },
+  { "p",              "lazy",                      "Lazy plugins",                      },
 
   -- git
-  { "gc",             "git_commits",               "Git commits"              },
-  { "gb",             "git_bcommits",              "Git buffer history"       },
-  { "gB",             "git_branches",              "Git branches"             },
-  { "gs",             "git_status",                "Git status"               },
-  { "gS",             "git_stash",                 "Git stash"                },
+  { "gc",             "git_commits",               "Git commits",                       },
+  { "gb",             "git_bcommits",              "Git buffer history",                },
+  { "gB",             "git_branches",              "Git branches",                      },
+  { "gs",             "git_status",                "Git status",                        },
+  { "gS",             "git_stash",                 "Git stash",                         },
 
   -- search
-  { "M",              "man_pages",                 "Man pages"                },
-  { "m",              "marks",                     "Jump to mark"             },
+  { "M",              "man_pages",                 "Man pages",                         },
+  { "m",              "marks",                     "Jump to mark",                      },
 
   -- notify
-  { "n",              "notify",                    "Notifications"            },
+  { "n",              "notify",                    "Notifications",                     },
 
   -- misc
-  { "i",              font_symbols,                "Font symbols"             },
+  { "i",              "symbols",                   "Font symbols",                      },
 
   -- luasnip snippets list
-  { "s",              "luasnip theme=dropdown",    "Font symbols"             },
+  { "s",              "luasnip theme=dropdown",    "Snippets",                          },
 
   -- heading
-  { "O",              "heading",                   "Heading"                  },
+  { "O",              "heading",                   "Heading",                           },
+  { "go",             "heading",                   "Heading",                  k = "l", },
 }
 -- stylua: ignore end
 
@@ -93,7 +85,7 @@ keymaps = require("mudox.util.keymap").lazy_keys(keymaps, {
 
 -- Keymaps to invoke telescope 〉
 
--- Mappings 〈
+-- Picker UI keymaps 〈
 
 local function a()
   return require("telescope.actions")
@@ -160,7 +152,7 @@ local picker_keymaps = {
   },
 }
 
--- Mappings 〉
+-- Picker UI keymaps 〉
 
 return {
   keys = keymaps,

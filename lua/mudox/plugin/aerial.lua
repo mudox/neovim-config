@@ -1,6 +1,6 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
-local i = require("mudox.ui.icons")
+local i = require("mudox.ui.icon")
 
 local float = {
   border = "none",

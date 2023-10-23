@@ -65,7 +65,7 @@ local function setup_format_on_key()
     group = gid,
     desc = "Setup format buffer on key `\\f`",
     callback = function(event)
-      vim.keymap.set({ "n", "x" }, "\\f", format, { buffer = event.buf, desc = "LSP format" })
+      vim.keymap.set({ "n", "x" }, "\\f", format, { buffer = event.buf, desc = "[LSP] Format" })
     end,
   })
 end

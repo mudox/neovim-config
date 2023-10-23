@@ -13,6 +13,6 @@ return {
   },
   opts = {
     lsp = { auto_attach = true },
-    icons = require("mudox.ui.icons").kind,
+    icons = require("mudox.ui.icon").kind,
   },
 }

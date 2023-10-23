@@ -1,11 +1,13 @@
--- vim: fdm=marker fmr=〈,〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- Keymap helpers 〈
+
 ---@diagnostic disable: unused-local
 local k = require("mudox.util.keymap")
+local kb = require("mudox.keyboard")
 
 local nmap = k.nmap
 local nnop = k.nnop
@@ -22,9 +24,8 @@ local tmap = k.tmap
 
 local omap = k.omap
 ---@diagnostic enable: unused-local
--- 〉
 
-local kb = require("mudox.keyboard")
+-- 〉
 
 -- Common mappings 〈
 
@@ -133,9 +134,12 @@ tmap("<C-l>", "<Cmd>wincmd l<Cr>")
 
 -- Terminal 〉
 
--- inspect
+-- Inspect 〈
+
 ncmd("<leader>vi", "Inspect")
 ncmd("<leader>vt", "InspectTree")
+
+-- Inspect 〉
 
 -- Buffer 〈
 
@@ -148,3 +152,22 @@ ncmd("<leader>vt", "InspectTree")
 ncmd("yf", "0,$y +")
 
 -- Buffer 〉
+
+-- Profiling 〈
+
+nmap("<leader>ps", function()
+  vim.cmd([[
+    :profile start /tmp/nvim-profile.log
+    :profile func *
+    :profile file *
+    ]])
+end, { desc = "Start profiling" })
+
+nmap("<leader>pe", function()
+  vim.cmd([[
+    :profile stop
+    :edit /tmp/nvim-profile.log
+    ]])
+end, { desc = "End profiling" })
+
+-- Profiling 〉

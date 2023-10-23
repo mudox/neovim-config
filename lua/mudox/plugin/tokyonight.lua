@@ -1,4 +1,4 @@
-local function borderless_telescope(hl, c)
+local function telescope(hl, c)
   hl.TelescopeNormal = {
     bg = c.bg_dark,
     fg = c.fg_dark,
@@ -35,6 +35,30 @@ local function borderless_telescope(hl, c)
   }
 end
 
+---@diagnostic disable-next-line: unused-local
+local function diagnostic(hl, c)
+  local s = require("mudox.ui.color").sign
+  hl.DiagnosticSignError = { fg = s.red }
+  hl.DiagnosticSignWarn = { fg = s.yellow }
+  hl.DiagnosticSignDebug = { fg = s.blue }
+  hl.DiagnosticSignInfo = { fg = s.green }
+  hl.DiagnosticSignHint = { fg = s.gray }
+end
+
+---@diagnostic disable-next-line: unused-local
+local function gitsigns(hl, c)
+  local s = require("mudox.ui.color").sign
+  hl.GitSignsAdd = { fg = s.green }
+  hl.GitSignsChange = { fg = s.blue }
+  hl.GitSignsUntracked = { fg = s.gray }
+end
+
+---@diagnostic disable-next-line: unused-local
+local function folding(hl, c)
+  local s = require("mudox.ui.color").sign
+  hl.Folded = { bg = "None" }
+end
+
 local opts = {
   -- For transparent background to take effect, the style name here must be same as that
   -- applied to current terminal app (e.g. in kitty.conf)
@@ -46,7 +70,10 @@ local opts = {
   },
 
   on_highlights = function(hl, c)
-    borderless_telescope(hl, c)
+    telescope(hl, c)
+    diagnostic(hl, c)
+    gitsigns(hl, c)
+    folding(hl, c)
   end,
 }
 

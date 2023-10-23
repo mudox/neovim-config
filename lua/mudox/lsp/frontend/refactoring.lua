@@ -13,8 +13,8 @@ local function setup_keymaps(bufnr)
   -- stylua: ignore start
   local keys = {
     ['\\'] = {
-      r = b { vim.lsp.buf.rename, "LSP rename" },
-      a = b { code_actions,       "Code Actions" },
+      r = b { vim.lsp.buf.rename, "[LSP] Rename" },
+      a = b { code_actions,       "[LSP] Code actions" },
     },
   }
   -- stylua: ignore end

@@ -22,6 +22,7 @@ return {
       "OverseerList",
       "qf",
       "TelescopePrompt",
+      "toggleterm",
     },
     -- filetypes_allowlist = {
     --   "c",

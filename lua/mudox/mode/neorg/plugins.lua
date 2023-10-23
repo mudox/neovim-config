@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 return {
   "fix-cursor-hold", -- fix `updatetime`

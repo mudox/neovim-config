@@ -11,14 +11,20 @@ local opts = {
     backdrop = false, -- improve drawing speed
   },
   jump = {
-    autojump = false,
-    nohlsearch = true,
+    autojump = true,
+    nohlsearch = false,
   },
   prompt = {
     prefix = { { " ", "FlashPromptIcon" } },
   },
 
   modes = {
+    search = {
+      jump = {
+        autojump = false,
+      },
+    },
+
     char = {
       -- `,` conflict with `<leader>` settings and `which-key.nvim`
       keys = { "f", "F", "t", "T" },
@@ -35,9 +41,8 @@ local opts = {
   },
 }
 
-local function f()
-  return require("flash")
-end
+-- stylua: ignore
+local function f() return require("flash") end
 
 -- stylua: ignore
 local keys = {

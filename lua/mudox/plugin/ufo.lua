@@ -1,8 +1,8 @@
 local ft_providers_map = {
-  vim = "indent",
-  python = "indent",
   git = "",
   lua = "treesitter",
+  python = "treesitter",
+  vim = "treesitter",
 }
 
 local function fallback_selector(bufnr)
@@ -56,64 +56,73 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
+local function setup_lsp_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
+  local servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+  for _, ls in ipairs(servers) do
+    require("lspconfig")[ls].setup {
+      capabilities = capabilities,
+    }
+  end
+end
+
+local opts = {
+  open_fold_hl_timeout = 0, -- disable
+  ---@diagnostic disable-next-line: unused-local
+  provider_selector = function(bufnr, filetype, buftype)
+    return ft_providers_map[filetype] or fallback_selector
+  end,
+  fold_virt_text_handler = handler,
+  close_fold_kinds = { "imports", "comment" },
+  preview = {
+    win_config = {
+      border = { "", "─", "", "", "", "─", "", "" },
+      -- winhighlight = "Normal:Folded",
+      winblend = 0,
+    },
+    mappings = {
+      scrollU = "<C-u>",
+      scrollD = "<C-d>",
+      jumpTop = "[",
+      jumpBot = "]",
+    },
+  },
+}
+
 local function config()
+  vim.o.foldenable = true
   vim.o.foldcolumn = "1" -- '0' is not bad
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
-  vim.o.foldenable = true
+  vim.o.foldminlines = 6
 
-  vim.cmd([[
-  hi Folded guibg=None
-  ]])
+  setup_lsp_capabilities()
 
-  vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-  vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-  vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
-  vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-
-  require("ufo").setup {
-    provider_selector = function(bufnr, filetype, buftype)
-      return ft_providers_map[filetype] or fallback_selector
-    end,
-    fold_virt_text_handler = handler,
-    open_fold_hl_timeout = 400,
-    close_fold_kinds = { "imports", "comment" },
-    preview = {
-      win_config = {
-        border = { "", "─", "", "", "", "─", "", "" },
-        -- winhighlight = "Normal:Folded",
-        winblend = 0,
-      },
-      mappings = {
-        scrollU = "<C-u>",
-        scrollD = "<C-d>",
-        jumpTop = "[",
-        jumpBot = "]",
-      },
-    },
-  }
+  require("ufo").setup(opts)
 end
 
-local statuscol = {
-  "luukvbaal/statuscol.nvim",
-  config = function()
-    local builtin = require("statuscol.builtin")
-    require("statuscol").setup {
-      relculright = true,
-      segments = {
-        { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-        { text = { " " } },
-        { text = { "%s" }, click = "v:lua.ScSa" },
-        { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-      },
-    }
-  end,
+-- stylua: ignore
+local keys = {
+  { "zR", function() require("ufo").openAllFolds() end, desc = "[UFO] Open all folds", },
+  { "zM", function() require("ufo").closeAllFolds() end, desc = "[UFO] Close all folds", },
+  { "zx", "zMzv", remap = true, desc = "[UFO] Close all folds", },
+  -- vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+  -- vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 }
 
 return {
   "kevinhwang91/nvim-ufo",
   event = { "BufRead", "BufNewFile" },
-  dependencies = { "kevinhwang91/promise-async", statuscol },
+  keys = keys,
+  dependencies = {
+    "kevinhwang91/promise-async",
+    "statuscol.nvim",
+  },
   config = config,
-  cond = false, -- TODO: config later
+  cond = false,
 }

@@ -1,5 +1,5 @@
 local function opts()
-  local symbols = vim.tbl_deep_extend("force", require("mudox.ui.icons").kind, {
+  local symbols = vim.tbl_deep_extend("force", require("mudox.ui.icon").kind, {
     File = "󰈔 ",
     Folder = " ",
     Terminal = "  ",
@@ -50,24 +50,15 @@ local function opts()
   }
 end
 
+-- stylua: ignore
+local keys = {
+    { "<M-.>",                           function() require("dropbar.api").pick() end,                desc = "[Dropbar] Open menu", },
+    { require("mudox.keyboard").cs["."], function() require("dropbar.api").select_next_context() end, desc = "[Dropbar] Reveal context", },
+}
+
 return {
   "Bekaboo/dropbar.nvim",
   event = { "BufRead", "BufNewFile", "TermOpen" },
-  keys = {
-    {
-      "<M-.>",
-      function()
-        require("dropbar.api").pick()
-      end,
-      desc = "[Dropbar] Open menu",
-    },
-    {
-      require("mudox.keyboard").cs["."],
-      function()
-        require("dropbar.api").select_next_context()
-      end,
-      desc = "[Dropbar] Reveal context",
-    },
-  },
+  keys = keys,
   opts = opts,
 }

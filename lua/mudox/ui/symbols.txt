@@ -26,6 +26,8 @@ BookMark                
 Bookmarks               
 Boolean                 
 Boolean                 󰨙
+Boolean                 󰔡
+Boolean                 
 BoxChecked              
 Branch                  
 BreakStatement          󰙧

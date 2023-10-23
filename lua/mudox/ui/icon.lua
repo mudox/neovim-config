@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 -- Powerline 〈
 
@@ -54,18 +54,18 @@ local border = {
 
 -- Filetype 〈
 
--- stylua: ignore start
+-- stylua: ignore
 local filetype = {
-  markdown = " ",
-  git      = " ",
-  apple    = " ",
-  java     = " ",
-  neorg    = "󰏪 ",
-  config   = "󰣖 ",
-  compiled = " ",
-  backup   = " ",
+  markdown   = " ",
+  git        = " ",
+  apple      = " ",
+  java       = " ",
+  neorg      = "󰏪 ",
+  config     = "󰣖 ",
+  compiled   = " ",
+  backup     = " ",
+  javascript = " ",
 }
--- stylua: ignore end
 
 -- 〉
 
@@ -86,17 +86,22 @@ local folder = {
 
 -- Diagnostics 〈
 
--- stylua: ignore start
+-- stylua: ignore
 local diagnostics = {
-  error         = " ",
-  warn          = " ",
-  info          = " ",
-  debug         = " ",
-  hint          = " ",
-  trace         = " ",
-  success       = " ",
+  error         = "󰉁",
+  warn          = "",
+  info          = "ℹ",
+  debug         = "󰊥",
+  hint          = "󰙎",
+
+  -- error         = " ",
+  -- warn          = " ",
+  -- info          = " ",
+  -- debug         = " ",
+  -- hint          = " ",
+  -- trace         = " ",
+  -- success       = " ",
 }
--- stylua: ignore end
 
 -- Diagnostics 〉
 

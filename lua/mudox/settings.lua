@@ -1,4 +1,4 @@
--- vim: fdm=marker fmr=\ 〈,\ 〉
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 local o = vim.o
 local opt = vim.opt
@@ -9,18 +9,18 @@ o.termguicolors = true
 
 o.mouse = "a"
 
--- stylua: ignore start
+-- stylua: ignore
 opt.fillchars = {
   eob       = " ",
 
   -- Pane separators
-  horiz     = "─",
-  horizup   = "┴",
-  horizdown = "┬",
-  vert      = "│",
-  vertleft  = "┤",
-  vertright = "├",
-  verthoriz = "┼",
+  -- horiz     = "─",
+  -- horizup   = "┴",
+  -- horizdown = "┬",
+  -- vert      = "│",
+  -- vertleft  = "┤",
+  -- vertright = "├",
+  -- verthoriz = "┼",
 
   -- Pane separators
   -- horiz     = "━",
@@ -35,11 +35,11 @@ opt.fillchars = {
 
   diff      = '╱',
 
+  fold      = ' ',
   foldopen  = '',
+  foldclose = '',
   foldsep   = ' ',
-  foldclose = ''
 }
--- stylua: ignore end
 
 o.listchars = [[tab:▸-,eol:¶]]
 
@@ -133,7 +133,7 @@ o.wildignorecase = true
 
 -- Font 〈
 
-o.linespace = 0
+-- o.linespace = 0
 
 -- 〉
 
