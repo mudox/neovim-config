@@ -87,7 +87,7 @@ local function smart_root_dir()
 end
 
 ---@return string|nil
-function get_root_dir()
+local function get_root_dir()
   if vim.v.count == 1 then
     return root_dir_from_filename()
   elseif vim.v.count == 2 then

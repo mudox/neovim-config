@@ -26,7 +26,7 @@ local keys = {
   { "D",                "DeleteBundle",   "Delete task bundle",                },
 
   -- info
-  { "<leader>vo",       "Info",           "Overseer",               k =  "ld", },
+  { "<leader>vO",       "Info",           "Overseer",               k =  "ld", },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {

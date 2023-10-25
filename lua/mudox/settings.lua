@@ -60,15 +60,20 @@ o.cmdheight = 2
 opt.wildmode = "longest:full,full"
 
 -- message
--- see: https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#handling-hit-enter-messages
-opt.shortmess:append("I") -- `:into` at startup
-opt.shortmess:append("A") -- swap file messages
-opt.shortmess:append("cC") -- completion menu messages
-opt.shortmess:append("s") -- search messages
+-- stylua: ignore
+opt.shortmess:append {
+  I  = true, -- `:into` at startup
+  A  = true, -- swap file messages
+  cC = true, -- completion menu messages
+  s  = true, -- search messages
+  W  = true, -- bytes written messages
+}
 
 opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
 opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
+
+-- o.signcolumn = "yes" -- always show the signcolumn, otherwise it would shift the text each time
 
 -- 〉
 
@@ -76,13 +81,14 @@ opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
 o.tabstop = 2
 o.softtabstop = 2
-o.shiftwidth = 2
 o.smarttab = true
 o.expandtab = true
 
+o.shiftwidth = 2
+o.shiftround = true
+
 o.autoindent = true
 o.smartindent = true
-
 o.breakindent = true
 o.copyindent = true
 
@@ -99,7 +105,7 @@ o.inccommand = "nosplit"
 
 -- 〉
 
--- Editor 〈
+-- Editing 〈
 
 o.whichwrap = [[b,s,<,>,[,],h,l]]
 
@@ -146,9 +152,33 @@ o.swapfile = false
 
 -- 〉
 
+-- Languages 〈
+
+-- JavaScript
+vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
+
+-- Python
+vim.g.loaded_python_provider = 0
+vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
+
+-- Disable language providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- 〉
+
+-- TreeSitter 〈
+
+-- disable injection queries for better performance
+vim.treesitter.query.set("lua", "injections", "")
+
+-- TreeSitter 〉
+
+-- Misc 〈
+
 opt.diffopt:append("linematch:60")
 
--- Grep
+-- grep
 o.grepformat = "%f:%l:%c:%m"
 o.grepprg = "rg --vimgrep"
 
@@ -160,20 +190,7 @@ o.updatetime = 200
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
--- Disable language providers
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-
--- Language clients 〈
-
--- JavaScript
-vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
-
--- Python
-vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
-
--- 〉
+-- Misc 〉
 
 -- Colorscheme
 require("tokyonight").load()

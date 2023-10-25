@@ -23,11 +23,13 @@ local function opts()
       },
 
       -- icons
-      buffer_close_icon = "󰅖",
-      modified_icon = "󰴓",
-      close_icon = "",
-      left_trunc_marker = "┄",
+      -- stylua: ignore start
+      buffer_close_icon  = "󰅖",
+      modified_icon      = "󰴓",
+      close_icon         = "",
+      left_trunc_marker  = "┄",
       right_trunc_marker = "┄",
+      -- stylua: ignore end
 
       groups = {
         items = {

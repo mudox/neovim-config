@@ -1,13 +1,14 @@
 return {
   "SmiteshP/nvim-navbuddy",
   dependencies = {
+    "Comment.nvim",
+    "nui.nvim",
+    "nvim-lspconfig",
     "nvim-navic",
-    "neovim/nvim-lspconfig",
-    "MunifTanjim/nui.nvim",
-    "numToStr/Comment.nvim",
-    "nvim-telescope/telescope.nvim",
+    "telescope.nvim",
   },
   event = { "BufRead", "BufNewFile" },
+  cmd = "Navbuddy",
   keys = {
     { require("mudox.keyboard").c["i"], "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
   },

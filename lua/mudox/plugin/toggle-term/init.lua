@@ -49,7 +49,7 @@ local function change_layout()
   require("mudox.plugin.toggle-term.util").change_layout()
 end
 
--- stylua: ignore start
+-- stylua: ignore
 local keys = {
   toggle_key,
 
@@ -58,10 +58,10 @@ local keys = {
   { "<leader>gg", toggle_gitui, desc = "GitUI (ToggleTerm)", },
 
   -- layout
-  { "<C-\\>s",      move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to bottom" },
-  { "<C-\\>v",      move("vertical"),   mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to right" },
-  { "<C-\\>t",      move("tab"),        mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to new tabpage" },
-  { "<C-\\>f",      move("float"),      mode = { "n", "t" }, desc = "[ToggleTerm] Move terminal window to float" },
+  { "<C-\\>s",      move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move to bottom" },
+  { "<C-\\>v",      move("vertical"),   mode = { "n", "t" }, desc = "[ToggleTerm] Move to right" },
+  { "<C-\\>t",      move("tab"),        mode = { "n", "t" }, desc = "[ToggleTerm] Move to new tabpage" },
+  { "<C-\\>f",      move("float"),      mode = { "n", "t" }, desc = "[ToggleTerm] Move to float" },
   { "<C-\\><C-\\>", change_layout,      mode = { "n", "t" }, desc = "[ToggleTerm] Change layout" },
 
   -- rename
@@ -71,7 +71,6 @@ local keys = {
   { "<leader>wt",  "<Cmd>TermSelect<Cr>",                         desc = "[ToggleTerm] Select terminal" },
   { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>",   mode = { "n", "t" },  desc = "[ToggleTerm] Select terminal" },
 }
--- stylua: ignore end
 
 local cmd = {
   "ToggleTerm",

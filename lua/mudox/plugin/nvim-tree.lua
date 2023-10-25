@@ -1,5 +1,3 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
 local function setup_highlights()
   vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { fg = "#FFFFFF" })
 end
@@ -7,9 +5,7 @@ end
 local function opts()
   local i = require("mudox.ui.icon")
 
-  -- Icons 〈
-
-  -- stylua: ignore start
+  -- stylua: ignore
   local folder = {
     arrow_open     = i.expanded,
     arrow_closed   = i.collapsed,
@@ -20,7 +16,6 @@ local function opts()
     symlink        = i.folder.symlink,
     symlink_open   = i.folder.symlink_open,
   }
-  -- stylua: ignore end
 
   for k, icon in pairs(folder) do
     icon = icon:gsub("^%s+", "") -- trim prefixing spaces
@@ -28,7 +23,7 @@ local function opts()
     folder[k] = icon
   end
 
-  -- stylua: ignore start
+  -- stylua: ignore
   local git = {
     unstaged     = "!",
     staged       = "+",
@@ -37,7 +32,6 @@ local function opts()
     untracked    = "?",
     deleted      = "x",
   }
-  -- stylua: ignore end
 
   for k, icon in pairs(git) do
     icon = icon:gsub("^%s+", "") -- trim prefixing spaces
@@ -45,16 +39,13 @@ local function opts()
     git[k] = icon
   end
 
-  -- stylua: ignore start
+  -- stylua: ignore
   local glyphs = {
     default        = "",
     symlink        = "",
     git            = git,
     folder         = folder,
   }
-  -- stylua: ignore end
-
-  -- 〉
 
   return {
     sort_by = "extension",
@@ -90,22 +81,22 @@ local function opts()
   }
 end
 
-local function config(_, options)
-  require("nvim-tree").setup(options)
+local function config()
+  require("nvim-tree").setup(opts())
   setup_highlights()
 end
 
 local kb = require("mudox.keyboard")
+-- stylua: ignore
 local keys = {
-  { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[Tree] Toggle pane" },
-  { kb.cs["p"], "<Cmd>NvimTreeFindFile!<Cr>", desc = "[Tree] Highlight current file" },
+  { "<M-p>",    "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
+  { kb.cs["p"], "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
 }
 
 return {
   "kyazdani42/nvim-tree.lua",
-  dependencies = "kyazdani42/nvim-web-devicons",
-  cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle", "NvimTreeFindFile", "NvimTreeRefresh" },
+  dependencies = "nvim-web-devicons",
+  event = "VeryLazy", -- HACK: fix keymap load failure after restoring session
   keys = keys,
-  opts = opts,
   config = config,
 }

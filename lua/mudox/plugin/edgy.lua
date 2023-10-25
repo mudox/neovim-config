@@ -92,10 +92,6 @@ local right = {
     ft = "neotest-summary",
   },
   {
-    title = "Search & Replace",
-    ft = "spectre_panel",
-  },
-  {
     title = "Markdown Help",
     ft = "markdown",
     filter = function(buf)
@@ -107,6 +103,13 @@ local right = {
     ft = "help",
     filter = function(buf)
       return vim.bo[buf].buftype == "help"
+    end,
+  },
+  {
+    title = "Neovim Options",
+    ft = "vim",
+    filter = function()
+      return vim.fn.bufname("%") == "option-window"
     end,
   },
   {
@@ -122,34 +125,49 @@ local right = {
   },
 }
 
--- stylua: ignore start
-local function opts()
-  local i = require("mudox.ui.icon")
+local s = 4
+local ui_keys = {
+  ["<C-Right>"] = function(win)
+    win:resize("width", s)
+  end,
+  ["<C-Left>"] = function(win)
+    win:resize("width", -s)
+  end,
+  ["<C-Up>"] = function(win)
+    win:resize("height", s)
+  end,
+  ["<C-Down>"] = function(win)
+    win:resize("height", -s)
+  end,
+}
 
-  return {
-    left      = left,
-    right     = right,
-    bottom    = bottom,
+-- stylua: ignore
+local opts = {
+  left      = left,
+  right     = right,
+  bottom    = bottom,
 
-    options   = {
-      left    = { size = 30 },
-      bottom  = { size = 0.3 },
-      right   = { size = 83 },
-      top     = { size = 0.3 },
-    },
-    icons     = {
-      closed  = i.collapsed,
-      open    = i.expanded,
-    },
-    animate   = {
-      enabled = false,
-    },
-    wo = {
-      winhighlight = "", -- disable for clear window separator line
-    }
+  keys      = ui_keys,
+
+  options   = {
+    left    = { size = 36 },
+    bottom  = { size = 0.3 },
+    right   = { size = 88 },
+    top     = { size = 0.3 },
+  },
+
+  icons     = {
+    -- use `title` to show distinct icon for each pane
+    closed  = "󱂬 ",
+    open    = "󱂬 ",
+  },
+
+  animate   = { enabled = false },
+
+  wo = {
+    winhighlight = "", -- remove winhl
   }
-end
--- stylua: ignore end
+}
 
 return {
   "folke/edgy.nvim",

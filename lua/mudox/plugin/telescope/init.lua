@@ -68,6 +68,12 @@ local defaults = {
   },
 
   mappings = s("keymaps").mappings,
+
+  -- avoid opening files in edgy panes
+  get_selection_window = function()
+    require("edgy").goto_main()
+    return 0
+  end,
 }
 
 -- Default Settings 〉

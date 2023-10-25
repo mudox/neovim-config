@@ -51,13 +51,15 @@ function M.setup()
   local manually = {}
   local by_mason = {}
   for name, _ in vim.fs.dir("~/.config/nvim/lua/mudox/lsp/backend/server") do
-    local server_name = name:sub(1, -5)
-    local server = require("mudox.lsp.backend.server." .. server_name)
+    if name:sub(-4) == ".lua" then
+      local server_name = name:sub(1, -5)
+      local server = require("mudox.lsp.backend.server." .. server_name)
 
-    if server.mason == false then
-      table.insert(manually, server_name)
-    else
-      table.insert(by_mason, server_name)
+      if server.mason == false then
+        table.insert(manually, server_name)
+      else
+        table.insert(by_mason, server_name)
+      end
     end
   end
 

@@ -9,6 +9,7 @@ vim.g.maplocalleader = ","
 local k = require("mudox.util.keymap")
 local kb = require("mudox.keyboard")
 
+local map = k.map
 local nmap = k.nmap
 local nnop = k.nnop
 local ncmd = k.ncmd
@@ -30,14 +31,15 @@ local omap = k.omap
 -- Common mappings 〈
 
 -- save file
-ncmd("<C-s>", "update")
-icmd("<C-s>", "update")
+map({ "n", "i", "x", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
+
+-- shift while keep selection
+vmap("<", "<gv")
+vmap(">", ">gv")
 
 -- sensible `j, k`
-nmap("j", "gj")
-nmap("k", "gk")
-nnop("gj")
-nnop("gk")
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- tabs
 nmap("<M-l>", "gt")
@@ -73,35 +75,27 @@ nmap("g,", "g,zv", { remap = true })
 ncmd("<C-w><C-t>", "tabclose")
 
 -- resize window using <ctrl> arrow keys
-ncmd("<C-Up>", "resize +2", { desc = "Increase window height" })
-ncmd("<C-Down>", "resize -2", { desc = "Decrease window height" })
-ncmd("<C-Left>", "vertical resize -2", { desc = "Decrease window width" })
-ncmd("<C-Right>", "vertical resize +2", { desc = "Increase window width" })
-
--- move Lines
--- nmap("<M-j>", "<Cmd>m .+1<Cr>==", { desc = "Move Current Line Down" })
--- nmap("<M-k>", "<Cmd>m .-2<Cr>==", { desc = "Move Current Line Up" })
--- imap("<M-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move Current Line Down" })
--- imap("<M-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move Current Line Up" })
--- vmap("<M-j>", ":m '>+1<Cr>gv=gv", { desc = "Move selection down" })
--- vmap("<M-k>", ":m '<-2<Cr>gv=gv", { desc = "Move selection up" })
+local s = 4
+ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
+ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
+ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
+ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
 
 -- clear search highlight with <Esc>
-nmap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
-imap("<Esc>", "<Cmd>noh<Cr><Esc>", { desc = "Escape and clear hlsearch" })
+map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
 -- smart close
 -- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
 nmap("<C-q>", function()
-  -- close current win if there are more than 1 win
+  -- close current window if there are more than 1 window
   -- else close current tab if there are more than 1 tab
   -- else close current vim
   if #vim.api.nvim_tabpage_list_wins(0) > 1 then
-    vim.cmd([[close]])
+    vim.cmd.close()
   elseif #vim.api.nvim_list_tabpages() > 1 then
-    vim.cmd([[tabclose]])
+    vim.cmd.tabclose()
   else
-    vim.cmd([[qa]])
+    vim.cmd("confirm qall")
   end
 end, { desc = "Smart close" })
 
@@ -125,8 +119,6 @@ omap("aa", "a<")
 
 -- Terminal 〈
 
-tmap("<Esc>", "<C-\\><C-n>")
-
 tmap("<C-h>", "<Cmd>wincmd h<Cr>")
 tmap("<C-j>", "<Cmd>wincmd j<Cr>")
 tmap("<C-k>", "<Cmd>wincmd k<Cr>")
@@ -134,19 +126,7 @@ tmap("<C-l>", "<Cmd>wincmd l<Cr>")
 
 -- Terminal 〉
 
--- Inspect 〈
-
-ncmd("<leader>vi", "Inspect")
-ncmd("<leader>vt", "InspectTree")
-
--- Inspect 〉
-
 -- Buffer 〈
-
--- buffer navigation
--- bufferline uses them
--- ncmd(kb.cs["]"], "bnext")
--- ncmd(kb.cs["["], "bNext")
 
 -- copy entire buffer content into system pasteboard
 ncmd("yf", "0,$y +")

@@ -40,15 +40,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- stylua: ignore
 local icons = {
-  cmd        = "🄲 ",
-  config     = "🅒 ",
-  event      = "🄴 ",
-  ft         = "🄵 ",
-  init       = "🄸 ",
-  source     = "🅂 ",
-  keys       = "🄺 ",
-  plugin     = "🄿 ",
-  import     = "🅁 ",
+  cmd        = "",
+  config     = "",
+  event      = "",
+  ft         = "",
+  init       = "",
+  source     = "",
+  keys       = "",
+  plugin     = "",
+  import     = "",
 
   lazy       = " ",
 

@@ -39,23 +39,41 @@ local function config()
       a = { name = "+aerial" },
       c = { name = "+test" },
       d = { name = "+debug" },
-      e = { name = "+edit" },
+      e = {
+        name = "+edit",
+        t = { vim.treesitter.dev, "[Neovim] TreeSitter playground" },
+      },
       l = { name = "+lazy" },
       g = { name = "+git" },
       p = { name = "+profile" },
-      q = { name = "+quit/session" },
+      -- stylua: ignore
+      q = {
+        name = "+quit/session",
+        q = { "<Cmd>confirm qall<Cr>", "[Neovim] Quit all"          },
+        Q = { "<Cmd>qall!<Cr>",        "[Neovim] Quit all forcibly" },
+      },
       r = { name = "+run" },
       t = { name = "+telescope" },
       u = { name = "+ui" },
       w = { name = "+window|buffer" },
+      -- stylua: ignore
       v = {
         name = "+view",
-        l = { "<Cmd>Lazy<Cr>", "Lazy" },
-        v = { "<Cmd>messages<Cr>", "Neovim messages" },
-      },
-      x = { name = "+trouble" },
+        l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
 
-      ["."] = { name = "+toggle" },
+        i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
+        o = { "<Cmd>options<Cr>",         "[Neovim] Options"        },
+        s = { "<Cmd>scriptnames<Cr>",     "[Neovim] Loaded scripts" },
+        t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
+        v = { "<Cmd>messages<Cr>",        "[Neovim] Messages"       },
+        V = { "<Cmd>verbose version<Cr>", "[Neovim] Inspect tree"   },
+      },
+      -- stylua: ignore
+      x = {
+        name = "+trouble",
+        L = { "<Cmd>lopen<Cr>", "[Neovim] Location list" },
+        Q = { "<Cmd>copen<Cr>", "[Neovim] Quickfix list" },
+      },
     },
 
     ["<Space>"] = { name = "+common" },

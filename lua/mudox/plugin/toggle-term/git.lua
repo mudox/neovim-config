@@ -6,16 +6,16 @@ end
 
 local function on_open()
   -- start insert mode
-  vim.cmd("startinsert!")
+  vim.cmd.startinsert()
 
   -- disable mappings to leave terminal mode
-  local k = require("mudox.util.keymap")
-  local keys = { "<Esc>", "<C-\\><C-n>" }
-  for _, key in ipairs(keys) do
-    k.tmap(key, nop, { buffer = 0 })
-  end
+  -- local k = require("mudox.util.keymap")
+  -- local keys = { "<Esc>", "<C-\\><C-n>" }
+  -- for _, key in ipairs(keys) do
+  --   k.tmap(key, nop, { buffer = 0 })
+  -- end
 
-  k.tcmd("q", "wincmd q", { buffer = 0 })
+  -- k.tcmd("q", "wincmd q", { buffer = 0 })
 end
 
 function M:init_gitui()

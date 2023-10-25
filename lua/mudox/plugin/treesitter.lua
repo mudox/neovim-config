@@ -5,19 +5,6 @@ local keys = {
 
 local opts = {}
 
-opts.highlight = {
-  enable = true,
-}
-
-opts.indent = {
-  enable = true,
-}
-
-opts.context_commentstring = {
-  enable = true,
-  enable_autocmd = false,
-}
-
 opts.ensure_installed = {
   "bash",
   "c",
@@ -36,6 +23,19 @@ opts.ensure_installed = {
   "typescript",
   "vim",
   "yaml",
+}
+
+opts.highlight = {
+  enable = true,
+}
+
+opts.indent = {
+  enable = true,
+}
+
+opts.context_commentstring = {
+  enable = true,
+  enable_autocmd = false,
 }
 
 opts.incremental_selection = {
@@ -61,7 +61,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
+      -- "JoosepAlviste/nvim-ts-context-commentstring",
     },
     keys = keys,
     opts = opts,
@@ -69,7 +69,7 @@ return {
       vim.o.foldmethod = "expr"
       vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       vim.o.foldtext = "v:lua.require('mudox.ui').foldtext()"
-      vim.o.foldminlines = 6
+      -- vim.o.foldminlines = 6
       vim.o.foldnestmax = 3
     end,
     config = function(_, o)

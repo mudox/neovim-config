@@ -15,5 +15,5 @@ return {
 
   -- Adapters
   a "neovim_lua", -- Neovim lua
-  a "javascript", -- JavaScript, TypeScript ...
+  a "python",
 }

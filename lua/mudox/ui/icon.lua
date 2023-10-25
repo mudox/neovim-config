@@ -115,8 +115,8 @@ return {
 
   deleted       = " ",
 
-  expanded      = "",
-  collapsed     = "",
+  expanded      = "",
+  collapsed     = "󰅂",
 
   folder_open   = " ",
   folder_closed = " ",

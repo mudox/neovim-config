@@ -19,7 +19,7 @@ local function opts()
       d.pylama,
 
       -- Lua
-      f.stylua,
+      -- f.stylua, -- use conform.nvim instead
 
       -- Swift
       f.swiftformat,
