@@ -52,10 +52,6 @@ local left = {
 }
 
 local bottom = {
-  {
-    title = "Git (Fugitive)",
-    ft = "fugitive",
-  },
   "Trouble",
   {
     title = "QuickFix / LocList",
