@@ -167,13 +167,6 @@ vim.g.loaded_ruby_provider = 0
 
 -- 〉
 
--- TreeSitter 〈
-
--- disable injection queries for better performance
-vim.treesitter.query.set("lua", "injections", "")
-
--- TreeSitter 〉
-
 -- Misc 〈
 
 opt.diffopt:append("linematch:60")

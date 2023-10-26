@@ -54,6 +54,13 @@ opts.query_linter = {
   lint_events = { "BufWrite", "CursorHold" },
 }
 
+local function config()
+  require("nvim-treesitter.configs").setup(opts)
+
+  -- disable injection queries for better performance
+  vim.treesitter.query.set("lua", "injections", "")
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -61,10 +68,10 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter-textobjects",
+      -- rarely used currently
       -- "JoosepAlviste/nvim-ts-context-commentstring",
     },
     keys = keys,
-    opts = opts,
     init = function()
       vim.o.foldmethod = "expr"
       vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -72,8 +79,6 @@ return {
       -- vim.o.foldminlines = 6
       vim.o.foldnestmax = 3
     end,
-    config = function(_, o)
-      require("nvim-treesitter.configs").setup(o)
-    end,
+    config = config,
   },
 }
