@@ -2,6 +2,6 @@ return {
   "tpope/vim-fugitive",
   cmd = { "G", "Git" },
   keys = {
-    { "<Space>g", "<Cmd>Git<Cr>", desc = "Fugitive" },
+    { "<Space>g", "<Cmd>tab Git<Cr>", desc = "Fugitive" },
   },
 }
