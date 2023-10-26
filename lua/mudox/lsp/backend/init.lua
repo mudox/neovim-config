@@ -1,5 +1,3 @@
-local M = {}
-
 local function capabilities()
   return vim.tbl_deep_extend(
     "force",
@@ -38,7 +36,18 @@ local function setup_neodev()
   require("neodev").setup {}
 end
 
-function M.setup()
+local function on_attch()
+  require("mudox.util.on").lsp_attach(function(client, bufnr)
+    local ft = vim.bo[bufnr].filetype
+
+    if ft == "lua" then
+      -- disable lsp syntax highlighting
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end)
+end
+
+local function setup()
   -- NOTE: order matters
   -- 1. setup neodev
   -- 2. setup mason
@@ -71,6 +80,10 @@ function M.setup()
   for _, server_name in ipairs(manually) do
     config_server(server_name)
   end
+
+  on_attch()
 end
 
-return M
+return {
+  setup = setup,
+}
