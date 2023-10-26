@@ -18,6 +18,7 @@ local function config_server(server_name)
   end
 
   if server.setup then
+    -- in case the language/server has its own setup flow, e.g. rust-tools, typescript-tools ...
     if server.setup() then
       -- returning `true` skips `lspconfig[server].setup`
       return
