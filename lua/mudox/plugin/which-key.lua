@@ -21,64 +21,65 @@ local opts = {
   },
 }
 
+local leader = {
+  name = "+leader",
+
+  a = { name = "+aerial" },
+  c = { name = "+test" },
+  d = { name = "+debug" },
+  -- stylua: ignore
+  e = {
+    name = "+edit",
+    q = { "<Cmd>EditQuery<Cr>", "[Neovim] Edit query"  },
+    e = { "<Cmd>edit!<Cr>",     "[Neovim] Reload file" },
+  },
+  l = { name = "+lazy" },
+  g = { name = "+git" },
+  p = { name = "+profile" },
+  -- stylua: ignore
+  q = {
+    name = "+quit/session",
+    q = { "<Cmd>confirm qall<Cr>", "[Neovim] Quit all"          },
+    Q = { "<Cmd>qall!<Cr>",        "[Neovim] Quit all forcibly" },
+  },
+  r = { name = "+run" },
+  t = { name = "+telescope" },
+  u = { name = "+ui" },
+  w = { name = "+window|buffer" },
+  -- stylua: ignore
+  v = {
+    name = "+view",
+    l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
+
+    i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
+    o = { "<Cmd>options<Cr>",         "[Neovim] Options"        },
+    s = { "<Cmd>scriptnames<Cr>",     "[Neovim] Loaded scripts" },
+    t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
+    v = { "<Cmd>messages<Cr>",        "[Neovim] Messages"       },
+    V = { "<Cmd>verbose version<Cr>", "[Neovim] Inspect tree"   },
+  },
+  -- stylua: ignore
+  x = {
+    name = "+trouble",
+    L = { "<Cmd>lopen<Cr>", "[Neovim] Location list" },
+    Q = { "<Cmd>copen<Cr>", "[Neovim] Quickfix list" },
+  },
+}
+
+local keymaps = {
+  mode = { "n", "v" },
+
+  ["<leader>"] = leader,
+  ["<Space>"] = { name = "+common" },
+
+  ["]"] = { name = "+next" },
+  ["["] = { name = "+prev" },
+  ["\\"] = { name = "+refactoring" },
+}
+
 local function config()
   local wk = require("which-key")
   wk.setup(opts)
-
-  local keymaps = {
-    mode = { "n", "v" },
-
-    ["g"] = { name = "+g" },
-
-    ["]"] = { name = "+next" },
-    ["["] = { name = "+prev" },
-
-    ["<leader>"] = {
-      name = "+leader",
-
-      a = { name = "+aerial" },
-      c = { name = "+test" },
-      d = { name = "+debug" },
-      e = {
-        name = "+edit",
-        t = { vim.treesitter.dev, "[Neovim] TreeSitter playground" },
-      },
-      l = { name = "+lazy" },
-      g = { name = "+git" },
-      p = { name = "+profile" },
-      -- stylua: ignore
-      q = {
-        name = "+quit/session",
-        q = { "<Cmd>confirm qall<Cr>", "[Neovim] Quit all"          },
-        Q = { "<Cmd>qall!<Cr>",        "[Neovim] Quit all forcibly" },
-      },
-      r = { name = "+run" },
-      t = { name = "+telescope" },
-      u = { name = "+ui" },
-      w = { name = "+window|buffer" },
-      -- stylua: ignore
-      v = {
-        name = "+view",
-        l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
-
-        i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
-        o = { "<Cmd>options<Cr>",         "[Neovim] Options"        },
-        s = { "<Cmd>scriptnames<Cr>",     "[Neovim] Loaded scripts" },
-        t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
-        v = { "<Cmd>messages<Cr>",        "[Neovim] Messages"       },
-        V = { "<Cmd>verbose version<Cr>", "[Neovim] Inspect tree"   },
-      },
-      -- stylua: ignore
-      x = {
-        name = "+trouble",
-        L = { "<Cmd>lopen<Cr>", "[Neovim] Location list" },
-        Q = { "<Cmd>copen<Cr>", "[Neovim] Quickfix list" },
-      },
-    },
-
-    ["<Space>"] = { name = "+common" },
-    ["\\"] = { name = "+refactoring" },
-  }
 
   wk.register(keymaps)
 end
