@@ -7,7 +7,6 @@ vim.g.maplocalleader = ","
 
 ---@diagnostic disable: unused-local
 local k = require("mudox.util.keymap")
-local kb = require("mudox.keyboard")
 
 local map = k.map
 local nmap = k.nmap

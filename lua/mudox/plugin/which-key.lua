@@ -49,7 +49,6 @@ local leader = {
   -- stylua: ignore
   v = {
     name = "+view",
-    l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
 
     i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
     I = { "<Cmd>Inspect!<Cr>",        "[Neovim] Inspect!"       },
@@ -58,6 +57,8 @@ local leader = {
     t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
     v = { "<Cmd>messages<Cr>",        "[Neovim] Messages"       },
     V = { "<Cmd>verbose version<Cr>", "[Neovim] Inspect tree"   },
+    q = { "<Cmd>copen<Cr>",           "[Neovim] Quickfix"       },
+    Q = { "<Cmd>lopen<Cr>",           "[Neovim] Loclist"        },
   },
   -- stylua: ignore
   x = {

@@ -102,11 +102,10 @@ local function config()
   setup_highlights()
 end
 
-local kb = require("mudox.keyboard")
 -- stylua: ignore
 local keys = {
   { "<M-p>",    "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
-  { kb.cs["p"], "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
+  { "<C-S-p>",  "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
 }
 
 return {

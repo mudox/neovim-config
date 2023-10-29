@@ -2,22 +2,20 @@
 
 -- Keymaps to invoke telescope 〈
 
-local kb = require("mudox.keyboard")
-
 -- stylua: ignore start
 local keymaps = {
-  { ":",              "builtin",                   "All telescope pickers",             },
-  { ".",              "resume",                    "Resume telescope",                  },
+  { ":",              "builtin",                   "All telescope pickers",    },
+  { ".",              "resume",                    "Resume telescope",         },
 
   -- files
-  { "f",              "find_files",                "Find files",                        },
-  { "F",              "git_files",                 "Git files",                         },
+  { "f",              "find_files",                "Find files",               },
+  { "F",              "git_files",                 "Git files",                },
   { "<Space><Space>", "smart_open",                "Smart open",               k = "l", },
   { "<C-p>",          "smart_open",                "Smart open",               k = "l", },
 
   -- lsp
-  { "?",              "diagnostics bufnr=0",       "Document diagnostics",              },
-  { "!",              "diagnostics",               "Workspace diagnostics",             },
+  { "?",              "diagnostics bufnr=0",       "Document diagnostics",     },
+  { "!",              "diagnostics",               "Workspace diagnostics",    },
 
   -- symbols
   { "<M-7>",          "treesitter",                "Treesitter symbols",       k = "l", },
@@ -26,54 +24,54 @@ local keymaps = {
 
   -- vim
   { "<Space>r",       "oldfiles",                  "Recent files",             k = "l", },
-  { "b",              "buffers",                   "Switch buffer",                     },
-  { kb.cs.o,          "buffers",                   "Switch buffer",            k = "l", },
-  { "o",              "vim_options",               "Vim options",                       },
-  { "H",              "highlights",                "Highlight groups",                  },
+  { "b",              "buffers",                   "Switch buffer",            },
+  { "<C-S-o>",        "buffers",                   "Switch buffer",            k = "l", },
+  { "o",              "vim_options",               "Vim options",              },
+  { "H",              "highlights",                "Highlight groups",         },
 
-  { "k",              "keymaps",                   "Keymaps",                           },
+  { "k",              "keymaps",                   "Keymaps",                  },
 
-  { "C",              "command_history",           "Command history",                   },
-  { kb.cs[";"],       "command_history",           "Command history",          k = "l", },
-  { "c",              "commands",                  "Commands",                          },
+  { "C",              "command_history",           "Command history",          },
+  { "<C-S-;>",        "command_history",           "Command history",          k = "l", },
+  { "c",              "commands",                  "Commands",                 },
   { "<M-;>",          "commands",                  "Commands",                 k = "l", },
 
-  { "h",              "help_tags",                 "Vim help",                          },
+  { "h",              "help_tags",                 "Vim help",                 },
   { "<Space>h",       "help_tags",                 "Vim help",                 k = "l", },
 
-  { "/",              "current_buffer_fuzzy_find", "Search in buffer",                  },
+  { "/",              "current_buffer_fuzzy_find", "Search in buffer",         },
   { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer",         k = "l", },
 
   -- grep
   { "<Space>s",       "live_grep",                 "Live grep",                k = "l", },
-  { "w",              "grep_string",               "Grep <word> under cursor",          },
-  { "G",              "live_grep_args",            "Live grep args (rg raw)",           },
+  { "w",              "grep_string",               "Grep <word> under cursor", },
+  { "G",              "live_grep_args",            "Live grep args (rg raw)",  },
 
   -- plugins
-  { "p",              "lazy",                      "Lazy plugins",                      },
+  { "p",              "lazy",                      "Lazy plugins",             },
 
   -- git
-  { "gc",             "git_commits",               "Git commits",                       },
-  { "gb",             "git_bcommits",              "Git buffer history",                },
-  { "gB",             "git_branches",              "Git branches",                      },
-  { "gs",             "git_status",                "Git status",                        },
-  { "gS",             "git_stash",                 "Git stash",                         },
+  { "gc",             "git_commits",               "Git commits",              },
+  { "gb",             "git_bcommits",              "Git buffer history",       },
+  { "gB",             "git_branches",              "Git branches",             },
+  { "gs",             "git_status",                "Git status",               },
+  { "gS",             "git_stash",                 "Git stash",                },
 
   -- search
-  { "M",              "man_pages",                 "Man pages",                         },
-  { "m",              "marks",                     "Jump to mark",                      },
+  { "M",              "man_pages",                 "Man pages",                },
+  { "m",              "marks",                     "Jump to mark",             },
 
   -- notify
-  { "n",              "notify",                    "Notifications",                     },
+  { "n",              "notify",                    "Notifications",            },
 
   -- misc
-  { "i",              "symbols",                   "Font symbols",                      },
+  { "i",              "symbols",                   "Font symbols",             },
 
   -- luasnip snippets list
-  { "s",              "luasnip theme=dropdown",    "Snippets",                          },
+  { "s",              "luasnip theme=dropdown",    "Snippets",                 },
 
   -- heading
-  { "O",              "heading",                   "Heading",                           },
+  { "O",              "heading",                   "Heading",                  },
   { "go",             "heading",                   "Heading",                  k = "l", },
 }
 -- stylua: ignore end
@@ -141,8 +139,7 @@ local picker_keymaps = {
     ["<C-j>"]       = function(...) return a().cycle_history_next(...) end,
     ["<C-k>"]       = function(...) return a().cycle_history_prev(...) end,
 
-    -- <C-/>
-    [kb.c["/"]]     = function(...) return a().which_key(...) end,
+    ["<C-/>"]       = function(...) return a().which_key(...) end,
 
     ["<C-d>"]       = flash,
   },

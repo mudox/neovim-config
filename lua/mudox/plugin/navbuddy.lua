@@ -10,7 +10,7 @@ return {
   event = { "BufRead", "BufNewFile" },
   cmd = "Navbuddy",
   keys = {
-    { require("mudox.keyboard").c["i"], "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
+    { "<C-;>", "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
   },
   opts = {
     lsp = { auto_attach = true },

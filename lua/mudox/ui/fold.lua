@@ -21,17 +21,21 @@ local function foldline()
     end
   end
 
-  return { { line, "Keyword" }, { dots } }
+  return { { line, "Keyword" }, { dots, "Normal" } }
 end
 
 local function foldtext()
+  if vim.o.foldmethod == "marker" then
+    return foldline()
+  end
+
   local ok = pcall(vim.treesitter.get_parser, vim.api.nvim_get_current_buf())
   local ret = ok and vim.treesitter.foldtext()
 
   if not ret or type(ret) == "string" then
     return foldline()
   else
-    table.insert(ret, { dots })
+    table.insert(ret, { dots, "Normal" })
     return ret
   end
 end

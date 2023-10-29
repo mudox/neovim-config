@@ -1,14 +1,12 @@
-local kb = require("mudox.keyboard")
-
 -- stylua: ignore
 local keys = {
   -- task list
   { "<Space>",          "Toggle",         "Toggle list",                       },
-  { kb.cs.cr,           "Toggle",         "Toggle list",            k =  "l",  },
+  { "<C-S-Cr>",         "Toggle",         "Toggle list",            k =  "l",  },
 
   -- launch task
   { "<Cr>",             "Run",            "Run template",                      },
-  { kb.c.cr,            "Run",            "Run template",           k =  "l",  },
+  { "<C-Cr>",           "Run",            "Run template",           k =  "l",  },
   { "c",                "RunCmd",         "Run shell command",                 },
   { ".",                "RestartLast",    "Run last",                          },
   { "n",                "Build",          "Build new task",                    },

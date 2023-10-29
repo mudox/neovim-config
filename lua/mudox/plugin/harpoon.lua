@@ -6,8 +6,6 @@ local function ui()
   return require("harpoon.ui")
 end
 
-local kb = require("mudox.keyboard")
-
 local function add_file()
   mark().add_file()
   print(("Add %s to harpoon"):format(vim.fn.expand("%:t")))
@@ -15,13 +13,13 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "a",       add_file,                                 "Add file"                 },
+  { "a",       add_file,                                 "Add file",      },
 
-  { "<Space>", function () ui().toggle_quick_menu() end, "Menu"                     },
+  { "<Space>", function () ui().toggle_quick_menu() end, "Menu",          },
   { "M",       function () ui().toggle_quick_menu() end, "Menu",          k =  "l", },
 
-  { kb.cs.l,   function () ui().nav_next() end,          "Next file",     k =  "l", },
-  { kb.cs.h,   function () ui().nav_prev() end,          "Previous file", k =  "l", },
+  { "<C-S-l>", function () ui().nav_next() end,          "Next file",     k =  "l", },
+  { "<C-S-h>", function () ui().nav_prev() end,          "Previous file", k =  "l", },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {

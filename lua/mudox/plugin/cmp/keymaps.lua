@@ -2,8 +2,6 @@
 
 local cmp = require("cmp")
 local cm = cmp.mapping
-local kb = require("mudox.keyboard")
-local ctrl_enter = kb.c.cr
 
 local function isc(fn)
   return cm(fn, { "i", "s", "c" })
@@ -20,7 +18,7 @@ local base = {
 
   -- abort
   ["<C-e>"] = isc(cm.abort()),
-  [ctrl_enter] = isc(cm.abort()),
+  ["<C-Cr>"] = isc(cm.abort()),
 
   -- confirm
   --   if nothing is selected (including preselections) add a newline as usual.

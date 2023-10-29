@@ -55,8 +55,7 @@ end
 
 ---@diagnostic disable-next-line: unused-local
 local function folding(hl, c)
-  local s = require("mudox.ui.color").sign
-  hl.Folded = { bg = "None" }
+  hl.Folded.bg = "NONE"
 end
 
 local opts = {
@@ -74,6 +73,8 @@ local opts = {
     diagnostic(hl, c)
     gitsigns(hl, c)
     folding(hl, c)
+
+    -- hl.FloatBorder.bg = "NONE"
   end,
 }
 

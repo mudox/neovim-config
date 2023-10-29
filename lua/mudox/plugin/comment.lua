@@ -1,4 +1,4 @@
-local main_key = require("mudox.keyboard").c["/"]
+local main_key = "<C-/>"
 
 return {
   "numToStr/Comment.nvim",
