@@ -27,17 +27,6 @@ local options = {
   always_divide_middle = true,
 }
 
--- use dropbar.nvim instead
---
--- local navic = {
---   function()
---     return require("nvim-navic").get_location()
---   end,
---   cond = function()
---     return require("nvim-navic").is_available()
---   end,
--- }
-
 local statusline = {
   lualine_a = {
     { "mode" },
@@ -83,20 +72,19 @@ local buffers = {
   },
 }
 
--- use bufferline.nvim instead
---
--- local tabline = {
---   lualine_a = { buffers },
---   lualine_b = {},
---   lualine_c = {},
---   lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
---   lualine_y = {},
---   lualine_z = { "tabs" },
--- }
+---@diagnostic disable-next-line: unused-local
+local tabline = {
+  lualine_a = { buffers },
+  lualine_b = {},
+  lualine_c = {},
+  lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
+  lualine_y = {},
+  lualine_z = { "tabs" },
+}
 
 return {
   "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
+  -- event = "VeryLazy", -- loaded by `dashboard.nvim` as its dependency
   opts = {
     options = options,
     sections = statusline,

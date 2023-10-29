@@ -27,12 +27,12 @@ local select = {
     ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
 
     -- function call
-    ["af"] = { query = "@call.outer", desc = "Select outer part of a function call" },
-    ["if"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+    ["ak"] = { query = "@call.outer", desc = "Select outer part of a function call" },
+    ["ik"] = { query = "@call.inner", desc = "Select inner part of a function call" },
 
     -- function definition
-    ["am"] = { query = "@function.outer", desc = "Select outer part of a method/function definition" },
-    ["im"] = { query = "@function.inner", desc = "Select inner part of a method/function definition" },
+    ["af"] = { query = "@function.outer", desc = "Select outer part of a method/function definition" },
+    ["if"] = { query = "@function.inner", desc = "Select inner part of a method/function definition" },
 
     -- class
     ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },

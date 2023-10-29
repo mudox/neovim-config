@@ -52,6 +52,7 @@ local leader = {
     l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
 
     i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
+    I = { "<Cmd>Inspect!<Cr>",        "[Neovim] Inspect!"       },
     o = { "<Cmd>options<Cr>",         "[Neovim] Options"        },
     s = { "<Cmd>scriptnames<Cr>",     "[Neovim] Loaded scripts" },
     t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
@@ -66,11 +67,19 @@ local leader = {
   },
 }
 
-local keymaps = {
-  mode = { "n", "v" },
+local tabpage = {
+  name = "+tabpage",
 
+  ["."] = { "<Cmd>tabnext 1<Bar>tabonly<Cr>", "[Neovim] Main tabpage only" },
+  ["<Tab>"] = { "<Cmd>tabnext 1<Cr>", "[Neovim] Goto main tabpage" },
+}
+
+local keymaps = {
   ["<leader>"] = leader,
+
   ["<Space>"] = { name = "+common" },
+
+  ["<Tab>"] = tabpage,
 
   ["]"] = { name = "+next" },
   ["["] = { name = "+prev" },

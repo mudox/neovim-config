@@ -97,6 +97,7 @@ table.insert(keys, { "[$", "<Cmd>BufferLineGoToBuffer -1<Cr>", desc = "[BufferLi
 
 return {
   "akinsho/bufferline.nvim",
+  -- event = "VeryLazy", -- loaded by `dashboard.nvim` as its dependency
   init = init,
   keys = keys,
   opts = opts,

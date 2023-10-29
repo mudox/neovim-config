@@ -1,8 +1,6 @@
--- NOTE:
--- ASCII generator: https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=mudox
--- Use font `ANSI Shadow`
-
 local function logo()
+  -- ASCII generator: https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=mudox
+  -- Use font `ANSI Shadow`
   local default = [[
   ███╗   ███╗ ██╗   ██╗ ██████╗   ██████╗  ██╗  ██╗
   ████╗ ████║ ██║   ██║ ██╔══██╗ ██╔═══██╗ ╚██╗██╔╝
@@ -19,34 +17,40 @@ local function logo()
   return lines
 end
 
-local function opts()
+-- stylua: ignore
+local items = {
+  { "<Space>", " " .. " Open",            [[<Cmd>Telescope smart_open<Cr>]]              },
+  { "f",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]              },
+  { "g",       " " .. " Git files",       [[<Cmd>Telescope git_files<Cr>]]               },
+  { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]               },
+  { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]             },
+
+  { "s",       "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]               },
+
+  { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                              },
+  { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                             },
+
+  { "c",       " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                           },
+  { "t",       " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]                        },
+
+  { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]] },
+  { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                },
+}
+
+local function dashboard()
   local db = require("alpha.themes.dashboard")
 
-  -- Header
+  -- top margin
+  db.opts.layout[1].val = 8
+
+  -- header
   db.section.header.val = logo()
   db.section.header.opts.hl = "AlphaHeader"
 
-  -- Menu
-  local b = db.button
-  -- stylua: ignore start
-  db.section.buttons.val = {
-    b("o", " " .. " Open",            [[<Cmd>Telescope smart_open<Cr>]]),
-    -- b("f", " " .. " Find file",       [[<Cmd>Telescope find_files<Cr>]]),
-    -- b("R", " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]),
-    b("n", " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]),
-
-    b("s", "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]),
-
-    b("l", "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]),
-    b("m", "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]),
-
-    b("c", " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]),
-    b("t", " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]),
-
-    b("r", "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]),
-    b("q", " " .. " Quit",            [[<Cmd>qa<Cr>]]),
-  }
-  -- stylua: ignore end
+  -- menu
+  db.section.buttons.val = vim.tbl_map(function(v)
+    return db.button(unpack(v))
+  end, items)
 
   for _, button in ipairs(db.section.buttons.val) do
     button.opts.hl = "AlphaButtons"
@@ -55,43 +59,47 @@ local function opts()
   end
   db.section.buttons.opts.hl = "AlphaButtons"
 
-  -- Footer
+  -- footer
   db.section.footer.opts.hl = "Type"
-
-  db.opts.layout[1].val = 8
 
   return db
 end
 
+local function config()
+  -- close Lazy and re-open when the dashboard is ready
+  -- if vim.o.filetype == "lazy" then
+  --   vim.cmd.close()
+  --   vim.api.nvim_create_autocmd("User", {
+  --     pattern = "AlphaReady",
+  --     callback = function()
+  --       require("lazy").show()
+  --     end,
+  --   })
+  -- end
+
+  local db = dashboard()
+  require("alpha").setup(db.config)
+
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyVimStarted",
+    callback = function()
+      local stats = require("lazy").stats()
+      local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      db.section.footer.val = " Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+      pcall(vim.cmd.AlphaRedraw)
+    end,
+  })
+end
+
 return {
   "goolord/alpha-nvim",
+  dependencies = {
+    -- `lualine` needs to be loaded BEFORE `alpha`
+    "lualine.nvim",
+  },
   event = "VimEnter",
   keys = {
     { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
   },
-  opts = opts,
-  config = function(_, dashboard)
-    -- close Lazy and re-open when the dashboard is ready
-    if vim.o.filetype == "lazy" then
-      vim.cmd.close()
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "AlphaReady",
-        callback = function()
-          require("lazy").show()
-        end,
-      })
-    end
-
-    require("alpha").setup(dashboard.opts)
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "LazyVimStarted",
-      callback = function()
-        local stats = require("lazy").stats()
-        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        dashboard.section.footer.val = " Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-        pcall(vim.cmd.AlphaRedraw)
-      end,
-    })
-  end,
+  config = config,
 }

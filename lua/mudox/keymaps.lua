@@ -33,10 +33,6 @@ local omap = k.omap
 -- save file
 map({ "n", "i", "x", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
 
--- shift while keep selection
-vmap("<", "<gv")
-vmap(">", ">gv")
-
 -- sensible `j, k`
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })

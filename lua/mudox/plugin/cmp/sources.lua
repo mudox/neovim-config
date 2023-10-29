@@ -1,9 +1,12 @@
+-- common options:
+--   keyword_length
+--   priority
+--   max_item_count
+-- for list of sourds see
+--   https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
+
 local cmp = require("cmp")
 
--- you can configure:
--- - keyword_length
--- - priority
--- - max_item_count
 local words = {
   name = "look",
   keyword_length = 2,
@@ -15,28 +18,24 @@ local words = {
   },
 }
 
--- see: https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
 local common = cmp.config.sources({
+  -- path
+  { name = "path", keyword_length = 3 },
+  -- lsp
   { name = "nvim_lsp_signature_help" },
-
-  -- LSP & TreeSitter
   { name = "nvim_lsp", max_item_count = 8 },
-
-  -- Snippet
+  -- snippet
   { name = "luasnip", keyword_length = 2 },
-
-  -- Neovim Lua API
-  { name = "nvim_lua", max_item_count = 6 },
-  -- Markup languages tags
+  -- nvim lua api
+  { name = "nvim_lua", max_item_count = 5 },
+  -- markup languages tags
   { name = "nvim-cmp-ts-tag-close" },
-
-  -- AI engines
+  -- ai
   -- { name = "cmp_tabnine", max_item_count = 4 },
   -- TODO: tabnine
   -- TODO: copilot
   -- TODO: codium
 }, {
-  { name = "path", keyword_length = 3 },
   { name = "buffer", keyword_length = 4 },
   { name = "treesitter", keyword_length = 2 },
   { name = "rg", max_item_count = 10 },
@@ -55,12 +54,12 @@ local cmdline = {
   { name = "cmdline", keyword_length = 2 },
 }
 
-local c6 = cmp.config.compare
+local c = cmp.config.compare
 local sorting = {
   comparators = {
-    c6.offset,
-    c6.exact,
-    c6.score,
+    c.offset,
+    c.exact,
+    c.score,
 
     -- refs: https://github.com/lukas-reineke/cmp-under-comparator
     -- > In most languages, especially Python, items that start with one or more underlines
@@ -77,10 +76,10 @@ local sorting = {
       end
     end,
 
-    c6.kind,
-    c6.sort_text,
-    c6.length,
-    c6.order,
+    c.kind,
+    c.sort_text,
+    c.length,
+    c.order,
   },
 }
 

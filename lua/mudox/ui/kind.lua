@@ -34,8 +34,8 @@ return {
   Operator        = " ",
   TypeParameter   = " ",
 
-  Constant        = " ",
-  Variable        = " ",
+  Constant        = "󰏿 ",
+  Variable        = "𝜈 ",
 
   Enum            = " ",
   EnumMember      = " ",

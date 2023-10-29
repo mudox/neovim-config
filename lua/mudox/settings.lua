@@ -185,7 +185,4 @@ vim.g.markdown_recommended_style = 0
 
 -- Misc 〉
 
--- Colorscheme
 require("tokyonight").load()
--- require("kanagawa").load()
--- require("catppuccin").load()

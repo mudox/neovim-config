@@ -19,8 +19,8 @@ local function opts()
       },
     },
     folds = {
-      fold_closed = i.collapsed,
-      fold_open = i.expanded,
+      fold_closed = i.chevron.right,
+      fold_open = i.chevron.down,
       folded = true, -- Automatically fold list on startup
     },
   }

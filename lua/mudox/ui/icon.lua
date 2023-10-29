@@ -43,12 +43,11 @@ local tree = {
 
 -- Border 〈
 
--- stylua: ignore start
+-- stylua: ignore
 local border = {
   box =    { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
   corner = { "🭽", " ", "🭾", " ", "🭿", " ", "🭼", " " },
 }
--- stylua: ignore end
 
 -- Border 〉
 
@@ -71,16 +70,17 @@ local filetype = {
 
 -- Folder 〈
 
--- stylua: ignore start
+-- stylua: ignore
 local folder = {
-  default      = " ",
-  open         = " ",
-  empty        = " ",
-  empty_open   = " ",
+  closed       = "󰉋 ",
+  open         = "󰝰 ",
+
+  empty        = " ",
+  empty_open   = "󰷏 ",
+
   symlink      = " ",
   symlink_open = " ",
 }
--- stylua: ignore end
 
 -- 〉
 
@@ -105,8 +105,16 @@ local diagnostics = {
 
 -- Diagnostics 〉
 
+-- stylua: ignore
+local chevron = {
+  down  = "",
+  right = "󰅂",
+}
+
 -- stylua: ignore start
 return {
+  chevron       = chevron,
+
   light_dot     = "·",
   heavy_dot     = "",
 
@@ -114,12 +122,6 @@ return {
   ballot        = "✘",
 
   deleted       = " ",
-
-  expanded      = "",
-  collapsed     = "󰅂",
-
-  folder_open   = " ",
-  folder_closed = " ",
 
   diagnostics   = diagnostics,
   kind          = require("mudox.ui.kind"),

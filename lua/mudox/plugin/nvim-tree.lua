@@ -7,12 +7,15 @@ local function opts()
 
   -- stylua: ignore
   local folder = {
-    arrow_open     = i.expanded,
-    arrow_closed   = i.collapsed,
-    default        = i.folder.default,
+    arrow_open     = i.chevron.down,
+    arrow_closed   = i.chevron.right,
+
+    default        = i.folder.closed,
     open           = i.folder.open,
+
     empty          = i.folder.empty,
     empty_open     = i.folder.empty_open,
+
     symlink        = i.folder.symlink,
     symlink_open   = i.folder.symlink_open,
   }
@@ -33,29 +36,31 @@ local function opts()
     deleted      = "x",
   }
 
-  for k, icon in pairs(git) do
-    icon = icon:gsub("^%s+", "") -- trim prefixing spaces
-    icon = icon:gsub("%s+$", "") -- trim trailing spaces
-    git[k] = icon
-  end
+  -- for k, icon in pairs(git) do
+  --   icon = icon:gsub("^%s+", "") -- trim prefixing spaces
+  --   icon = icon:gsub("%s+$", "") -- trim trailing spaces
+  --   git[k] = icon
+  -- end
 
   -- stylua: ignore
   local glyphs = {
-    default        = "",
-    symlink        = "",
-    git            = git,
-    folder         = folder,
+    default = "",
+    symlink = "⤵",
+    git     = git,
+    folder  = folder,
   }
 
   return {
     sort_by = "extension",
+
     view = {
       signcolumn = "no",
-      width = 40,
     },
+
     filters = {
       dotfiles = true,
     },
+
     renderer = {
       group_empty = true,
       highlight_opened_files = "name",
@@ -63,18 +68,29 @@ local function opts()
       indent_markers = {
         enable = true,
       },
+
       icons = {
-        padding = "  ",
+        show = {
+          folder = false,
+          folder_arrow = true,
+        },
+
+        padding = " ", -- 2 spaces
+
         git_placement = "after",
+
+        symlink_arrow = "  ",
         glyphs = glyphs,
       },
       special_files = {},
     },
+
     actions = {
       remove_file = {
         close_window = false,
       },
     },
+
     hijack_directories = {
       enable = false,
     }, -- for `dirbuf.nvim`
@@ -96,7 +112,7 @@ local keys = {
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = "nvim-web-devicons",
-  event = "VeryLazy", -- HACK: fix keymap load failure after restoring session
+  event = "CursorHold", -- HACK: fix keymap load failure after restoring session
   keys = keys,
   config = config,
 }

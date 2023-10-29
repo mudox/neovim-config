@@ -20,10 +20,6 @@ local function opts()
       icon = i.java,
       color = "#d60200",
     },
-    js = {
-      icon = i.javascript,
-      color = "#FFFF00",
-    },
     class = {
       name = "JavaCompiledFile",
       icon = i.compiled,

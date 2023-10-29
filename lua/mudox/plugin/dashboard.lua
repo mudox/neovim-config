@@ -78,5 +78,5 @@ return {
     "bufferline.nvim",
     "lualine.nvim",
   },
-  cond = false,
+  cond = false, -- `alpha.nvim` is newer
 }

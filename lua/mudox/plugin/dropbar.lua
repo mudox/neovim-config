@@ -2,7 +2,7 @@ local function opts()
   local symbols = vim.tbl_deep_extend("force", require("mudox.ui.icon").kind, {
     File = "󰈔 ",
     Folder = " ",
-    Terminal = "  ",
+    Terminal = " ",
   })
 
   return {
@@ -18,6 +18,12 @@ local function opts()
       },
     },
     sources = {
+      path = {
+        relative_to = function()
+          -- always use global `cwd`
+          return vim.fn.getcwd()
+        end,
+      },
       terminal = {
         -- see: https://github.com/Bekaboo/dropbar.nvim#terminal
         name = function(buf)

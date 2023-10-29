@@ -110,8 +110,6 @@ local templates = {
   "mudox.run_neovim_lua_script",
 }
 
-local border = require("mudox.ui.icon").border.corner
-
 local task_list = {
   direction = "right",
   bindings = {
@@ -144,6 +142,8 @@ local task_list = {
     ["{"] = "DecreaseAllDetail",
   },
 }
+
+local border = require("mudox.ui.icon").border.corner
 
 local opts = {
   templates = templates,

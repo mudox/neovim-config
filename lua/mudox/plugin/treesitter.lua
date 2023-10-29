@@ -58,7 +58,7 @@ local function config()
   require("nvim-treesitter.configs").setup(opts)
 
   -- disable injection queries for better performance
-  vim.treesitter.query.set("lua", "injections", "")
+  -- vim.treesitter.query.set("lua", "injections", "")
 end
 
 return {
@@ -69,13 +69,13 @@ return {
     dependencies = {
       "nvim-treesitter-textobjects",
       -- rarely used currently
-      -- "JoosepAlviste/nvim-ts-context-commentstring",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     keys = keys,
     init = function()
       vim.o.foldmethod = "expr"
       vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.o.foldtext = "v:lua.require('mudox.ui').foldtext()"
+      vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
       -- vim.o.foldminlines = 6
       vim.o.foldnestmax = 3
     end,

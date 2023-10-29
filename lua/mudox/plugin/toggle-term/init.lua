@@ -26,8 +26,8 @@ local opts = {
   -- winbar = { enabled = false },
 }
 
-local function config(_, options)
-  require("toggleterm").setup(options)
+local function config()
+  require("toggleterm").setup(opts)
   require("mudox.plugin.toggle-term.git"):init()
 end
 
@@ -85,6 +85,5 @@ return {
   "akinsho/toggleterm.nvim",
   cmd = cmd,
   keys = keys,
-  opts = opts,
   config = config,
 }
