@@ -66,7 +66,7 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<M-o>",   "Pick",                 "Pick",           k =  "l",    },
+  { "<M-o>",   "Pick",                 "Pick",           k =  "l" },
 
   { "<",       "CloseLeft",            "Close left",     },
   { ">",       "CloseRight",           "Close right",    },
@@ -76,8 +76,8 @@ local keys = {
 
   { "~",       "TogglePin",            "Pin",            },
 
-  { "<C-S-[>", "CycleNext",            "Cycle next",     k =  "l"  },
-  { "<C-S-]>", "CyclePrev",            "Cycle previous", k =  "l"  },
+  { "L",       "CycleNext",            "Cycle next",     k =  "l" },
+  { "H",       "CyclePrev",            "Cycle previous", k =  "l" },
 }
 
 keys = require("mudox.util.keymap").lazy_keys(keys, {

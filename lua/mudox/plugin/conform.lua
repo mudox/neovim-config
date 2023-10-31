@@ -4,6 +4,7 @@ local formatters_by_ft = {
   lua = { "stylua" },
   python = { "isort", "black" },
   javascript = { "prettierd" },
+  sh = { "shfmt" },
 
   -- Use the "*" filetype to run formatters on all filetypes.
   ["*"] = { "codespell", "trim_whitespace" },
@@ -15,6 +16,7 @@ local formatters_by_ft = {
 local fast_fts = {
   lua = true,
   rust = true,
+  bash = true,
 }
 
 local slow_fts = {

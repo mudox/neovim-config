@@ -66,9 +66,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = { "TSUpdate", "TSInstallInfo" },
     dependencies = {
       "nvim-treesitter-textobjects",
-      -- rarely used currently
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     keys = keys,

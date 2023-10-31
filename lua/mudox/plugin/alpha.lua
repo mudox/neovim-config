@@ -19,22 +19,23 @@ end
 
 -- stylua: ignore
 local items = {
-  { "<Space>", " " .. " Open",            [[<Cmd>Telescope smart_open<Cr>]]              },
-  { "f",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]              },
-  { "g",       " " .. " Git files",       [[<Cmd>Telescope git_files<Cr>]]               },
-  { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]               },
-  { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]             },
+  { "f",       " " .. " Smart open",      [[<Cmd>lua require"mudox.plugin.telescope.util".smart_open()<Cr>]] },
+  { "F",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]                                  },
+  { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]                                   },
+  { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]                                 },
 
-  { "s",       "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]               },
+  { "s",       "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]                                   },
 
-  { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                              },
-  { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                             },
+  { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                                                  },
+  { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                                                 },
 
-  { "c",       " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                           },
-  { "t",       " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]                        },
+  { "c",       " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
+  { "t",       " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]                                            },
 
-  { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]] },
-  { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                },
+  { "h",       "󰘥 " .. " Help",            [[<Cmd>Telescope help_tags<Cr>]]                                   },
+
+  { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]                     },
+  { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                                    },
 }
 
 local function dashboard()

@@ -44,6 +44,7 @@ local keys = {
     end,
     desc = "[Notify] Dismiss all",
   },
+  { "<leader>tn", "<Cmd>Telescope notify<Cr>", desc = "Notifications" },
 }
 
 return {

@@ -33,6 +33,7 @@ local leader = {
     q = { "<Cmd>EditQuery<Cr>", "[Neovim] Edit query"  },
     e = { "<Cmd>edit!<Cr>",     "[Neovim] Reload file" },
   },
+  f = { name = "+files" },
   l = { name = "+lazy" },
   g = { name = "+git" },
   p = { name = "+profile" },
@@ -49,6 +50,8 @@ local leader = {
   -- stylua: ignore
   v = {
     name = "+view",
+
+    l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
 
     i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
     I = { "<Cmd>Inspect!<Cr>",        "[Neovim] Inspect!"       },

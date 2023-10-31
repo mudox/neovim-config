@@ -1,7 +1,3 @@
-local function setup_highlights()
-  vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { fg = "#FFFFFF" })
-end
-
 local function opts()
   local i = require("mudox.ui.icon")
 
@@ -97,15 +93,10 @@ local function opts()
   }
 end
 
-local function config()
-  require("nvim-tree").setup(opts())
-  setup_highlights()
-end
-
 -- stylua: ignore
 local keys = {
-  { "<M-p>",    "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
-  { "<C-S-p>",  "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
+  { "<M-p>",      "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
+  { "<leader>fv", "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
 }
 
 return {
@@ -113,5 +104,5 @@ return {
   dependencies = "nvim-web-devicons",
   event = "CursorHold", -- HACK: fix keymap load failure after restoring session
   keys = keys,
-  config = config,
+  opts = opts,
 }

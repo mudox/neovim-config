@@ -58,6 +58,10 @@ local function folding(hl, c)
   hl.Folded.bg = "NONE"
 end
 
+local function nvim_tree(hl, c)
+  hl.NvimTreeOpenedFile.fg = "#FFFFFF"
+end
+
 local opts = {
   -- For transparent background to take effect, the style name here must be same as that
   -- applied to current terminal app (e.g. in kitty.conf)
@@ -69,12 +73,11 @@ local opts = {
   },
 
   on_highlights = function(hl, c)
-    telescope(hl, c)
     diagnostic(hl, c)
-    gitsigns(hl, c)
     folding(hl, c)
-
-    -- hl.FloatBorder.bg = "NONE"
+    gitsigns(hl, c)
+    nvim_tree(hl, c)
+    telescope(hl, c)
   end,
 }
 

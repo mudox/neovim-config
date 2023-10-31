@@ -1,17 +1,11 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
--- Keymaps to invoke telescope 〈
-
--- stylua: ignore start
-local keymaps = {
+-- stylua: ignore
+local open_keymaps = {
   { ":",              "builtin",                   "All telescope pickers",    },
   { ".",              "resume",                    "Resume telescope",         },
 
   -- files
   { "f",              "find_files",                "Find files",               },
   { "F",              "git_files",                 "Git files",                },
-  { "<Space><Space>", "smart_open",                "Smart open",               k = "l", },
-  { "<C-p>",          "smart_open",                "Smart open",               k = "l", },
 
   -- lsp
   { "?",              "diagnostics bufnr=0",       "Document diagnostics",     },
@@ -45,10 +39,6 @@ local keymaps = {
   -- grep
   { "<Space>s",       "live_grep",                 "Live grep",                k = "l", },
   { "w",              "grep_string",               "Grep <word> under cursor", },
-  { "G",              "live_grep_args",            "Live grep args (rg raw)",  },
-
-  -- plugins
-  { "p",              "lazy",                      "Lazy plugins",             },
 
   -- git
   { "gc",             "git_commits",               "Git commits",              },
@@ -63,31 +53,12 @@ local keymaps = {
 
   -- notify
   { "n",              "notify",                    "Notifications",            },
-
-  -- misc
-  { "i",              "symbols",                   "Font symbols",             },
-
-  -- luasnip snippets list
-  { "s",              "luasnip theme=dropdown",    "Snippets",                 },
-
-  -- heading
-  { "O",              "heading",                   "Heading",                  },
-  { "go",             "heading",                   "Heading",                  k = "l", },
 }
--- stylua: ignore end
 
-keymaps = require("mudox.util.keymap").lazy_keys(keymaps, {
+open_keymaps = require("mudox.util.keymap").lazy_keys(open_keymaps, {
   key_prefix = "<leader>t",
   main_cmd = "Telescope",
 })
-
--- Keymaps to invoke telescope 〉
-
--- Picker UI keymaps 〈
-
-local function a()
-  return require("telescope.actions")
-end
 
 local function flash(prompt_bufnr)
   require("flash").jump {
@@ -109,49 +80,55 @@ local function flash(prompt_bufnr)
   }
 end
 
--- stylua: ignore
-local picker_keymaps = {
-  i = {
+local function picker_keymaps()
+  local a = require("telescope.actions")
+
+  local insert = {
     -- no normal mode
-    ["<Esc>"]       = function(...) return a().close(...) end,
+    ["<Esc>"] = a.close,
 
     -- clear prompt input
-    ["<C-u>"]       = false,
+    ["<C-u>"] = false,
 
     -- preview
-    ["?"]           = function(...) require("telescope.actions.layout").toggle_preview(...) end,
+    ["?"] = require("telescope.actions.layout").toggle_preview,
 
     -- scroll preview
-    -- ["<C-d>"]    = false,
-    ["<C-f>"]       = function(...) return a().preview_scrolling_down(...) end,
-    ["<C-b>"]       = function(...) return a().preview_scrolling_up(...) end,
+    ["<C-f>"] = a.preview_scrolling_down,
+    ["<C-b>"] = a.preview_scrolling_up,
+
+    -- scroll results
+    ["<Down>"] = a.results_scrolling_down,
+    ["<Up>"] = a.results_scrolling_up,
 
     -- <Cr> for edit in current window
     -- <C-s> for horizontal split open
     -- <C-v> for vertical split open
     -- <C-t> for tabpage open
-    ["<C-s>"]       = function(...) a().select_horizontal(...) end,
+    ["<C-s>"] = a.select_horizontal,
 
     -- send to trouble
-    ["<C-x>"]       = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
+    ["<C-x>"] = require("trouble.providers.telescope").open_with_trouble,
 
     -- history
-    ["<C-j>"]       = function(...) return a().cycle_history_next(...) end,
-    ["<C-k>"]       = function(...) return a().cycle_history_prev(...) end,
+    ["<C-j>"] = a.cycle_history_next,
+    ["<C-k>"] = a.cycle_history_prev,
 
-    ["<C-/>"]       = function(...) return a().which_key(...) end,
+    ["<C-/>"] = a.which_key,
 
-    ["<C-d>"]       = flash,
-  },
+    ["<C-d>"] = flash,
+  }
 
-  n = {
-    ["q"]           = function(...) return a().close(...) end,
-  },
-}
+  local normal = {
+    ["q"] = function(...)
+      return a().close(...)
+    end,
+  }
 
--- Picker UI keymaps 〉
+  return { i = insert, n = normal }
+end
 
 return {
-  keys = keymaps,
-  mappings = picker_keymaps,
+  open = open_keymaps,
+  picker = picker_keymaps,
 }

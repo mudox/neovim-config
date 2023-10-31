@@ -37,8 +37,8 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- tabs
-nmap("<M-l>", "gt")
-nmap("<M-h>", "gT")
+nmap("<C-S-]>", "gt")
+nmap("<C-S-[>", "gT")
 
 for i = 1, 9 do
   nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
