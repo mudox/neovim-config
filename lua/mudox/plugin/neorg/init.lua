@@ -98,5 +98,5 @@ return {
     "plenary.nvim",
     "nvim-neorg/neorg-telescope",
   },
-  cond = false,
+  -- cond = false,
 }

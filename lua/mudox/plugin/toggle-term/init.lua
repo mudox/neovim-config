@@ -68,6 +68,7 @@ local keys = {
   { "<C-\\>r", "<Cmd>ToggleTermSetName<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Rename" },
 
   -- select terminal
+  { "<leader>tx",  "<Cmd>TermSelect<Cr>",                         desc = "Terminals" },
   { "<leader>wt",  "<Cmd>TermSelect<Cr>",                         desc = "[ToggleTerm] Select terminal" },
   { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>",   mode = { "n", "t" },  desc = "[ToggleTerm] Select terminal" },
 }

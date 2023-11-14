@@ -41,7 +41,10 @@ local statusline = {
   },
 
   lualine_x = {
-    { "diagnostics" },
+    {
+      "diagnostics",
+      symbols = i.diagnostics.single,
+    },
     { "filetype" },
   },
   lualine_y = {

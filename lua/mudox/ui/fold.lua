@@ -1,7 +1,11 @@
 -- refs
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/ui.lua `function foldtext()`
 
+local head = require("mudox.ui.icon").chevron.right .. " "
+local head_hl = "Normal"
 local dots = "  "
+local dots_hl = "Normal"
+local text_hl = "Constant"
 
 local function foldline()
   local line = vim.api.nvim_buf_get_lines(0, vim.v.foldstart - 1, vim.v.foldstart, false)[1]
@@ -21,7 +25,11 @@ local function foldline()
     end
   end
 
-  return { { line, "Keyword" }, { dots, "Normal" } }
+  return {
+    { head, head_hl },
+    { line, text_hl },
+    { dots, dots_hl },
+  }
 end
 
 local function foldtext()
@@ -35,7 +43,7 @@ local function foldtext()
   if not ret or type(ret) == "string" then
     return foldline()
   else
-    table.insert(ret, { dots, "Normal" })
+    table.insert(ret, { dots, dots_hl })
     return ret
   end
 end

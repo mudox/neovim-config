@@ -5,7 +5,7 @@ local function init()
     group = gid,
     desc = "Add local rest.nvim keymaps for http filetype",
     callback = function(event)
-      local nplug = require("mudox.util.keymap").nplug
+      local nplug = K.nplug
 
       -- stylua: ignore start
       local keymaps = {

@@ -1,15 +1,14 @@
--- Luarocks
-_G.pl = require("mudox.luarocks")
+-- Globals
+U = require("mudox.util")
+K = U.keymap
 
--- Mode
-_G.md = require("mudox.mode")
+require("mudox.lab.renav").setup()
 
 -- Lazy
 require("mudox.lazy")
 
 -- Settings
-local load = require("mudox.util.load")
-load("settings")
+U.load("settings")
 
 -- Autocmds & Keymaps
 if vim.fn.argc(-1) == 0 then
@@ -18,12 +17,12 @@ if vim.fn.argc(-1) == 0 then
     group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
     pattern = "VeryLazy",
     callback = function()
-      load("autocmds")
-      load("keymaps")
+      U.load("autocmds")
+      U.load("keymaps")
     end,
   })
 else
   -- load them immediately so they affect the opened buffers
-  load("autocmds")
-  load("keymaps")
+  U.load("autocmds")
+  U.load("keymaps")
 end

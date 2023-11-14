@@ -27,7 +27,7 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufRead", "BufNewFile" },
   keys = {
-    { "<leader>vL", "<Cmd>LspInfo<Cr>", desc = "LSP Information" },
+    { "<leader>vl", "<Cmd>LspInfo<Cr>", desc = "LSP information" },
   },
   dependencies = dependencies,
   config = config,

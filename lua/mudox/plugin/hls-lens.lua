@@ -11,8 +11,5 @@ local keys = {
 return {
   "kevinhwang91/nvim-hlslens",
   keys = keys,
-  opts = {
-    calm_down = true,
-  },
-  cond = true, -- noice.nvim has the same features
+  opts = {},
 }

@@ -1,18 +1,20 @@
-local function config()
-  local i = require("mudox.ui.icon")
+local function opts()
+  local i = require("mudox.ui.icon").diagnostics.double
+  -- stylua: ignore
   local icons = {
     ERROR = i.error,
-    WARN = i.warn,
-    INFO = i.info,
+    WARN  = i.warn,
+    INFO  = i.info,
     DEBUG = i.debug,
     TRACE = i.trace,
   }
 
-  -- TODO: review notify options
-  local opts = {
-    -- stages = "static",
-
+  return {
+    -- top_down = true,
     -- render = "default",
+    icons = icons,
+    stages = "static",
+    timeout = 5000,
 
     on_open = function(win)
       vim.api.nvim_win_set_config(win, {
@@ -22,29 +24,28 @@ local function config()
     end,
     on_close = nil,
 
-    timeout = 5000,
-
     max_width = 70,
     minimum_width = 47,
-    max_height = 16,
-
-    icons = icons,
+    max_height = 12,
   }
-
-  local notify = require("notify")
-  notify.setup(opts)
-  vim.notify = notify
 end
 
+local function config()
+  local m = require("notify")
+
+  m.setup(opts())
+  vim.notify = m
+end
+
+local function dismiss_all()
+  require("notify").dismiss { silent = true, pending = true }
+end
+
+-- stylua: ignore
 local keys = {
-  {
-    "<leader>wN",
-    function()
-      require("notify").dismiss { silent = true, pending = true }
-    end,
-    desc = "[Notify] Dismiss all",
-  },
-  { "<leader>tn", "<Cmd>Telescope notify<Cr>", desc = "Notifications" },
+  { "<Bs>n",      dismiss_all,                 desc = "[Notify] Dismiss all",     },
+  { "<leader>tn", "<Cmd>Telescope notify<Cr>", desc = "[Telescope] Notifications" },
+  { "<leader>vv",        "<Cmd>Notifications<Cr>",    desc = "[Notify] Notifications"    },
 }
 
 return {

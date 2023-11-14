@@ -80,7 +80,7 @@ local keys = {
   { "H",       "CyclePrev",            "Cycle previous", k =  "l" },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   key_prefix = "<leader>w",
   cmd_prefix = "BufferLine",
   desc_prefix = "BufferLine",

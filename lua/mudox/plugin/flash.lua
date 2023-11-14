@@ -3,7 +3,7 @@ local opts = {
     multi_window = true,
   },
   label = {
-    current = false, -- use <Cr> to jump to 1st match
+    current = true, -- for foldline
     after = false,
     before = true,
   },
@@ -62,7 +62,7 @@ local keys = {
   { "<C-s>",   mode = { "c" },           function() f().toggle() end,            "Toggle flash search", },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   desc_prefix = "Flash",
 })
 

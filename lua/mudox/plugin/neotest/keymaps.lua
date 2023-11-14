@@ -64,7 +64,7 @@ local keys = {
   { "[T",      goto_prev_failed_test, "Previous failed test", k =  "l", },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   key_prefix = "<leader>c",
   desc_prefix = "Neotest",
 })

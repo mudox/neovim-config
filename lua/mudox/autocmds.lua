@@ -1,5 +1,4 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
--- TODO: move in my autocmds
 
 -- References
 --   autocmds.lua from LazyVim
@@ -48,31 +47,30 @@ on("VimResized", {
 
 -- Go to last loc when opening a buffer 〈
 
-on("BufReadPost", {
-  group = g("last_loc"),
-  desc = "Jump to last known location after opening a file",
-  callback = function(event)
-    local exclude = { "gitcommit" }
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
-      return
-    end
-    vim.b[buf].lazyvim_last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-})
-
+-- on("BufRead", {
+--   group = g("last_loc"),
+--   desc = "Jump to last known location after opening a file",
+--   callback = function(event)
+--     local exclude = { "gitcommit" }
+--     local buf = event.buf
+--     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+--       return
+--     end
+--     vim.b[buf].lazyvim_last_loc = true
+--     local mark = vim.api.nvim_buf_get_mark(buf, '"')
+--     local lcount = vim.api.nvim_buf_line_count(buf)
+--     if mark[1] > 0 and mark[1] <= lcount then
+--       pcall(vim.api.nvim_win_set_cursor, 0, mark)
+--     end
+--   end,
+-- })
+--
 -- Go to last loc when opening a buffer 〉
 
 -- Close with `q` 〈
 
-local close_with_q = g("close_with_q")
 on("FileType", {
-  group = close_with_q,
+  group = g("close_with_q"),
   desc = "Close using `q`",
   pattern = {
     "aerial-nav",
@@ -124,7 +122,7 @@ on("FileType", {
 -- User event MdxSessionStart 〈
 
 if vim.fn.argc(-1) == 0 then
-  vim.api.nvim_create_autocmd("User", {
+  on("User", {
     pattern = "AlphaClosed",
     desc = "Start session after Alpha closed",
     callback = function()
@@ -132,7 +130,7 @@ if vim.fn.argc(-1) == 0 then
     end,
   })
 else
-  vim.api.nvim_create_autocmd("User", {
+  on("User", {
     pattern = "VeryLazy",
     desc = "Start session on 1st buffer load",
     callback = function()
@@ -142,3 +140,17 @@ else
 end
 
 -- User event MdxSessionStart 〉
+
+-- Unfold for small files 〈
+
+on("BufRead", {
+  group = g("unfold_for_small_file"),
+  desc = "No fold for small files",
+  callback = function(event)
+    if vim.fn.line("$") < 20 then
+      vim.wo.foldenable = false
+    end
+  end,
+})
+
+-- Unfold for small files 〉

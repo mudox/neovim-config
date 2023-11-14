@@ -27,7 +27,7 @@ local keys = {
   { "<leader>vO",       "Info",           "Overseer",               k =  "ld", },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   key_prefix = "<leader>r",
   cmd_fmt = "<Cmd>Overseer%s<Cr>",
   desc_prefix = "Overseer",

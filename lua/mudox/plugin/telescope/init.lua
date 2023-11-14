@@ -8,6 +8,7 @@ return {
 
   r "file-browser",
   r "heading",
+  r "help-grep",
   r "lazy",
   r "live-grep-args",
   r "luasnip",

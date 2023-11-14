@@ -15,10 +15,10 @@ local function init()
   }
 end
 
+-- stylua: ignore
 local keys = {
-  { "ga", "<Plug>(EasyAlign)", desc = "Easy Align" },
-  { "<Enter>", "<Plug>(EasyAlign)", mode = "x", desc = "Easy Align" },
-  { "ga", "<Plug>(EasyAlign)", mode = "x", desc = "Easy Align" },
+  { "g<Enter>", "gv<Plug>(EasyAlign)", desc = "[EasyAlign] Align on last visual area" },
+  { "<Enter>", "<Plug>(EasyAlign)",    desc = "[EasyAlign] Align", mode = "x"         },
 }
 
 return {

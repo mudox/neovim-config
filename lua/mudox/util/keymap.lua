@@ -1,67 +1,56 @@
---[==[
-  Utility lib for defining common mappings.
+---Utility lib for defining keymaps.
+---
+---Base helper functions:
+---  - map     ->  vim.keymap.set(...)
+---  - cmd     ->  <Cmd>%s<Cr>
+---  - plug    ->  <Plug>%s with `remap` = true
+---  - nop     ->  <Nop>
+---  - call    ->  <Cmd>call %s<Cr>
+---  - expr    ->  %s with `expr` = true
+---  - lua     ->  <Cmd>lua %s<Cr>
+---  - req     ->  <Cmd>lua require(%s).%s<Cr>
+---All of which need a map mode char as its 1st character (`help map-modes`).
+---
+---Defaults:
+---  - remap = false (by default for `vim.keymap.set`), true for `plug`
+---  - silent = true if not in `c` mode
 
-  The module provides follow basic functions:
-    - map     ->  vim.keymap.set(...)
-    - cmd     ->  <Cmd>%s<Cr>
-    - plug    ->  <Plug>(%s) with `remap` = true
-    - nop     ->  <Nop>
-    - call    ->  <Cmd>call %s
-    - expr    ->  %s with `expr` = true
-    - lua     ->  <Cmd>lua %s
-    - req     ->  <Cmd>lua require(%s).%s<Cr>
-  All of which need a map mode char as its 1st character (`help map-modes`).
-
-  By default
-    - remap = false (by default for `vim.keymap.set`)
-    - silent = true if not in `c` mode
-
-  @usage: k.ncmd("<C-]>", [[echo "hello world"]])
-]==]
-
-local Set = require("pl.Set")
-local modes = Set { "n", "i", "v", "o", "c", "s", "l", "t", "x" }
-
---[[
-  `vim.keymap.set` does not like unknown keys
---]]
-local function normalize_options(mode, options)
+---Fix opts
+---`vim.keymap.set` does not like unknown keys
+local function normalize_opts(mode, opts)
   -- `remap` default `false` in `vim.keymap.set`
 
   -- `cmap` needs echoing (`silent = false` ) in most cases
-  if options.silent == nil then
-    options.silent = mode ~= "c"
+  if opts.silent == nil then
+    opts.silent = mode ~= "c"
   end
 
-  return options
+  return opts
 end
 
---[[
-  the core method to define mapping. it calls `vim.keymap.set` at the end
-]]
-local function map(
-  mode, -- mode char, see `:h map-modes` and `:h map-table`
-  from, -- key mapping string
-  to, -- ex-command string or lua function
-  opts -- see {opts} in `:h nvim_set_keymap()`
-)
+local bodys = {}
+
+---The foundation method. it calls `vim.keymap.set` at the end
+---@param mode string|string[] Mode character(s), see help of `map-modes`
+---@param from string          Keymap string, see help `key-notation`
+---@param to   string|function Normal command string or lua function
+---@param opts table           opts, see help of `vim.keymap.set()`
+function bodys.map(mode, from, to, opts)
   opts = opts or {}
-  opts = normalize_options(mode, opts)
+  opts = normalize_opts(mode, opts)
 
   vim.keymap.set(mode, from, to, opts)
 end
 
-local function expr(mode, from, to, opts)
+function bodys.expr(mode, from, to, opts)
   opts = opts or {}
   opts.expr = true
   opts.silent = false
-  map(mode, from, to, opts)
+  bodys.map(mode, from, to, opts)
 end
 
---[[
-  convenient method for common pattern `<Cmd>{ex command}<Cr>`
-]]
-local function cmd(mode, from, to, opts)
+---For pattern `<Cmd>{ex command}<Cr>`
+function bodys.cmd(mode, from, to, opts)
   to = "<Cmd>" .. to .. "<Cr>"
   opts = opts or {}
 
@@ -72,66 +61,56 @@ local function cmd(mode, from, to, opts)
   --   opts.remap = true
   -- end
 
-  map(mode, from, to, opts)
+  bodys.map(mode, from, to, opts)
 end
 
---[[
-  convenient method for common pattern `<Cmd>lua {lua code}<Cr>`
-]]
-local function lua(mode, from, to, options)
-  map(mode, from, "<Cmd>lua " .. to .. "<Cr>", options)
+---For pattern `<Cmd>lua {lua code}<Cr>`
+function bodys.lua(mode, from, to, opts)
+  bodys.map(mode, from, "<Cmd>lua " .. to .. "<Cr>", opts)
 end
 
---[[
-  convenient method for common pattern `<Cmd>call {vim function}<Cr>`
-]]
-local function call(mode, from, to, options)
-  map(mode, from, "<Cmd>call " .. to .. "<Cr>", options)
+---For pattern `<Cmd>call {vim function}<Cr>`
+function bodys.call(mode, from, to, opts)
+  bodys.map(mode, from, "<Cmd>call " .. to .. "<Cr>", opts)
 end
 
---[[
-  convenient method for common pattern `<Plug>(...)`
-  NOTE: parentheses are not added automatically
-  ]]
-local function plug(mode, from, to, options)
-  options = options or {}
-  options.remap = true
-  map(mode, from, ("<Plug>%s"):format(to), options)
+---For pattern `<Plug>(...)`
+---Note: Parentheses are not added automatically
+function bodys.plug(mode, from, to, opts)
+  opts = opts or {}
+  opts.remap = true
+  bodys.map(mode, from, ("<Plug>%s"):format(to), opts)
 end
 
---[[
-  convenient method for common pattern `<Cmd>lua require(...)...<Cr>`
-]]
-local function req(mode, from, module, to, options)
-  map(mode, from, ("<Cmd>lua require('%s').%s<Cr>"):format(module, to), options)
+---For pattern `<Cmd>lua require(...)...<Cr>`
+function bodys.req(mode, from, module, to, opts)
+  bodys.map(mode, from, ("<Cmd>lua require('%s').%s<Cr>"):format(module, to), opts)
 end
 
---[[
-  convenient method to clear mapping
-]]
-local function nop(mode, from, options)
-  map(mode, from, "<Nop>", options)
+---Clear mapping
+function bodys.nop(mode, from, opts)
+  bodys.map(mode, from, "<Nop>", opts)
 end
 
-local bodys = {
-  map = map,
-  cmd = cmd,
-  plug = plug,
-  nop = nop,
-  lua = lua,
-  call = call,
-  expr = expr,
-  req = req,
+local modes = {
+  n = true,
+  i = true,
+  v = true,
+  o = true,
+  c = true,
+  s = true,
+  l = true,
+  t = true,
+  x = true,
 }
 
---[[
-  compose mapping defining functions from parameter `name`.
-  the 1st char in `name` is mode char, the remaining is one of string in `bodys` above
-
-  @param name the name of the function invoked
-  @return composed convenient mapping defining function
-]]
-local function parse(name)
+---Compose mapping defining functions from parameter `name`.
+---
+---The 1st char in `name` is mode char, the remaining is one of keys in `bodys` above
+---
+---@param name string The name of the function invoked
+---@return function Composed convenient mapping defining function
+local function get(name)
   assert(type(name) == "string")
 
   -- mode char
@@ -143,24 +122,20 @@ local function parse(name)
   local fn = bodys[body]
   assert(fn, ("invalid body name `%s`"):format(body))
 
-  return pl.func.bind1(fn, mode)
+  return function(...)
+    fn(mode, ...)
+  end
 end
 
--- module
+local M = vim.deepcopy(bodys)
 
-M = {}
-
-for k, v in pairs(bodys) do
-  M[k] = v
-end
-
-M.__index = function(tbl, name)
-  local fn = parse(name)
-  tbl[name] = fn
-  return fn
-end
-
-setmetatable(M, M)
+setmetatable(M, {
+  __index = function(tbl, name)
+    local fn = get(name)
+    tbl[name] = fn
+    return fn
+  end,
+})
 
 function M.lazy_keys(tbl, opts)
   local function lhs(v)

@@ -1,17 +1,14 @@
-local d9 = vim.diagnostic
-
-local M = {}
+local d = vim.diagnostic
 
 local function setup_signs()
-  local i = require("mudox.ui.icon").diagnostics
-  -- stylua: ignore start
+  local i = require("mudox.ui.icon").diagnostics.nerd
+  -- stylua: ignore
   local signs = {
     { "DiagnosticSignError", i.error },
     { "DiagnosticSignWarn",  i.warn },
     { "DiagnosticSignInfo",  i.info },
     { "DiagnosticSignHint",  i.hint },
   }
-  -- stylua: ignore end
 
   for _, v in ipairs(signs) do
     vim.fn.sign_define(v[1], { texthl = v[1], text = v[2] })
@@ -19,7 +16,7 @@ local function setup_signs()
 end
 
 local function config()
-  d9.config {
+  d.config {
     update_in_insert = false,
 
     severity_sort = true,
@@ -27,24 +24,28 @@ local function config()
     signs = true,
 
     underline = {
-      severity = d9.severity.WARN,
+      severity = d.severity.ERROR,
     },
 
-    virtual_text = {
-      severity = d9.severity.WARN,
-      spacing = 4,
-      prefix = "󰅂",
-    },
+    virtual_text = false,
+    -- virtual_text = {
+    --   severity = d.severity.WARN,
+    --
+    --   spacing = 4,
+    --   prefix = " 󰅂 ",
+    --   suffix = " ",
+    -- },
 
     float = {
-      source = "always",
+      source = "if_many",
+      prefix = " ",
     },
   }
 end
 
 local function jump(next, severity)
-  local go = next and d9.goto_next or d9.goto_prev
-  severity = severity and d9.severity[severity] or nil
+  local go = next and d.goto_next or d.goto_prev
+  severity = severity and d.severity[severity] or nil
   return function()
     go { severity = severity }
   end
@@ -55,11 +56,11 @@ local function toggle()
     vim.notify(msg, vim.log.levels.INFO, { title = "LSP" })
   end
 
-  if d9.is_disabled() then
-    d9.enable()
+  if d.is_disabled() then
+    d.enable()
     notify("Diagnostic enabled")
   else
-    d9.disable()
+    d.disable()
     notify("Diagnostic disabled")
   end
 end
@@ -68,44 +69,32 @@ local function lsp_lines()
   require("lsp_lines").toggle()
 end
 
-local function setup_keymaps(bufnr)
-  local function b(t)
-    t.buffer = bufnr
-    return t
-  end
-
-  -- stylua: ignore start
+local function setup_keymaps(event)
+  -- stylua: ignore
   local keys = {
-    ["]d"]  = b { jump(true),             "[Diagnostic] Next issue" },
-    ["[d"]  = b { jump(false),            "[Diagnostic] Previous issue" },
-    ["]E"]  = b { jump(true, "ERROR"),    "[Diagnostic] Next error" },
-    ["[E"]  = b { jump(false, "ERROR"),   "[Diagnostic] Previous error" },
+    ["]d"]  = { jump(true),                "[Diagnostic] Next issue"       },
+    ["[d"]  = { jump(false),               "[Diagnostic] Previous issue"   },
+    ["]E"]  = { jump(true, "ERROR"),       "[Diagnostic] Next error"       },
+    ["[E"]  = { jump(false, "ERROR"),      "[Diagnostic] Previous error"   },
 
-    ["gl"]  = b { d9.open_float,          "[Diagnostic] Show issue(s)" },
-    ["gL"]  = b { lsp_lines,              "[Diagnostic] Toggle LSP lines" },
+    ["gl"]  = { d.open_float,              "[Diagnostic] Show issue(s)"    },
+    ["gL"]  = { lsp_lines,                 "[Diagnostic] Toggle LSP lines" },
 
-    ["yod"] = b { toggle,                 "[Diagnostic] Toggle" },
+    ["yod"] = { toggle,                    "[Diagnostic] Toggle"           },
+
+    ["gQ"]  = { vim.diagnostic.setloclist, "[Diagnostic] Set loclist"      },
   }
-  -- stylua: ignore end
 
-  require("which-key").register(keys)
+  require("which-key").register(keys, { bufnr = event.buf })
 end
 
-local function setup_keymaps_on_attach()
-  local gid = vim.api.nvim_create_augroup("mdx_lsp_setup_diagnostic_keymaps", { clear = true })
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = gid,
-    desc = "Setup buffer local keymaps for LSP diagnostic",
-    callback = function(event)
-      setup_keymaps(event.buf)
-    end,
-  })
-end
-
-function M.setup()
+local function setup()
   config()
   setup_signs()
-  setup_keymaps_on_attach()
+
+  require("mudox.util.on").lsp_attach(setup_keymaps)
 end
 
-return M
+return {
+  setup = setup,
+}

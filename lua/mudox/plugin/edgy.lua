@@ -170,8 +170,10 @@ return {
   event = "VeryLazy",
   keys = keys,
   cond = function()
-    return md ~= "man"
+    return vim.g.mdx_nvim_mode ~= "man"
   end,
   init = init,
   opts = opts,
+
+  branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
 }

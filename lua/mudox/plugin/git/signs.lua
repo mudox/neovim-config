@@ -1,4 +1,5 @@
 local bar = "┃"
+-- local bar = "▕"
 
 -- stylua: ignore
 local signs = {

@@ -21,80 +21,120 @@ local opts = {
   },
 }
 
-local leader = {
-  name = "+leader",
+-- stylua: ignore start
 
-  a = { name = "+aerial" },
-  c = { name = "+test" },
-  d = { name = "+debug" },
-  -- stylua: ignore
-  e = {
-    name = "+edit",
-    q = { "<Cmd>EditQuery<Cr>", "[Neovim] Edit query"  },
-    e = { "<Cmd>edit!<Cr>",     "[Neovim] Reload file" },
-  },
-  f = { name = "+files" },
-  l = { name = "+lazy" },
-  g = { name = "+git" },
-  p = { name = "+profile" },
-  -- stylua: ignore
-  q = {
-    name = "+quit/session",
-    q = { "<Cmd>confirm qall<Cr>", "[Neovim] Quit all"          },
-    Q = { "<Cmd>qall!<Cr>",        "[Neovim] Quit all forcibly" },
-  },
-  r = { name = "+run" },
-  t = { name = "+telescope" },
-  u = { name = "+ui" },
-  w = { name = "+window|buffer" },
-  -- stylua: ignore
-  v = {
-    name = "+view",
+local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
-    l = { "<Cmd>Lazy<Cr>",            "Lazy"                    },
+local nvim_view = {
+  name = "+neovim view",
 
-    i = { "<Cmd>Inspect<Cr>",         "[Neovim] Inspect"        },
-    I = { "<Cmd>Inspect!<Cr>",        "[Neovim] Inspect!"       },
-    o = { "<Cmd>options<Cr>",         "[Neovim] Options"        },
-    s = { "<Cmd>scriptnames<Cr>",     "[Neovim] Loaded scripts" },
-    t = { "<Cmd>InspectTree<Cr>",     "[Neovim] Inspect tree"   },
-    v = { "<Cmd>messages<Cr>",        "[Neovim] Messages"       },
-    V = { "<Cmd>verbose version<Cr>", "[Neovim] Inspect tree"   },
-    q = { "<Cmd>copen<Cr>",           "[Neovim] Quickfix"       },
-    Q = { "<Cmd>lopen<Cr>",           "[Neovim] Loclist"        },
-  },
-  -- stylua: ignore
-  x = {
-    name = "+trouble",
-    L = { "<Cmd>lopen<Cr>", "[Neovim] Location list" },
-    Q = { "<Cmd>copen<Cr>", "[Neovim] Quickfix list" },
-  },
+  a = { c "args",            "Arguments"      },
+  B = { c "buffers!",        "Buffers!"       },
+  b = { c "buffers",         "Buffers"        },
+  I = { c "Inspect!",        "Inspect!"       },
+  i = { c "Inspect",         "Inspect"        },
+  j = { c "jumps",           "Jumps"          },
+  l = { c "lopen",           "Loclist"        },
+  m = { c "marks",           "Marks"          },
+  o = { c "options",         "Options"        },
+  q = { c "copen",           "Quickfix"       },
+  r = { c "registers",       "Registers"      },
+  s = { c "scriptnames",     "Loaded scripts" },
+  t = { c "InspectTree",     "Inspect tree"   },
+  u = { c "undolist",        "Undo list"      },
+  v = { c "messages",        "Messages"       },
+  V = { c "verbose version", "Inspect tree"   },
+}
+
+local plugin_view = {
+  name = "+plugin view",
+
+  z = { c "Lazy" , "Lazy" },
+}
+
+local quit = {
+  name = "+quit/session",
+
+  a = { c "confirm qall", "[Neovim] Quit all"          },
+  A = { c "qall!",        "[Neovim] Quit all forcibly" },
+}
+
+local edit = {
+  name = "+edit",
+
+  q    = { c "EditQuery", "[Neovim] Edit query"  },
+  e    = { c "edit!",     "[Neovim] Reload file" },
+}
+
+local refactoring = {
+  name = "+refactoring",
+
+  ["<Space>"] = { c "%s/\\n\\(\\s*\\n\\)\\{2,}/\\r\\r", "Squeeze empty lines" },
 }
 
 local tabpage = {
   name = "+tabpage",
 
-  ["."] = { "<Cmd>tabnext 1<Bar>tabonly<Cr>", "[Neovim] Main tabpage only" },
-  ["<Tab>"] = { "<Cmd>tabnext 1<Cr>", "[Neovim] Goto main tabpage" },
+  n = { c "tabnew",   "[Neovim] New tabpage"   },
+  K = { c "tabclose", "[Neovim] Close tabpage" },
+  l = { c "tablast",  "[Neovim] Last tabpage"  },
+
+  ["."]     = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
+  ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage" },
 }
 
-local keymaps = {
-  ["<leader>"] = leader,
-
-  ["<Space>"] = { name = "+common" },
-
-  ["<Tab>"] = tabpage,
-
-  ["]"] = { name = "+next" },
-  ["["] = { name = "+prev" },
-  ["\\"] = { name = "+refactoring" },
+local toggle = {
+  name = "+toggle",
 }
+
+K.nnop(";")
+local semicolon = {
+  name = "alternative leader",
+
+  v = nvim_view,
+  t = toggle,
+}
+
+K.nnop(",")
+local comma = {
+  name   = "+leader",
+
+  a      = "+aerial",
+  c      = "+test",
+  d      = "+debug",
+  e      = edit,
+  f      = "+files",
+  l      = "+lazy",
+  g      = "+git",
+  p      = "+profile",
+  r      = "+run",
+  t      = "+telescope",
+  u      = "+ui",
+  w      = "+window|buffer",
+  v      = plugin_view,
+  x      = "+trouble",
+}
+
+local root = {
+  [","]        = comma,
+  [";"]        = semicolon,
+
+  ["<Space>"]  = "+common",
+  ["<Tab>"]    = tabpage,
+  ["<Bslash>"] = refactoring,
+  ["<Bs>"]     = quit,
+
+  ["]"]        = "+next",
+  ["["]        = "+prev",
+}
+
+-- stylua: ignore end
 
 local function config()
   local wk = require("which-key")
   wk.setup(opts)
 
-  wk.register(keymaps)
+  wk.register(root)
 end
 
 return {

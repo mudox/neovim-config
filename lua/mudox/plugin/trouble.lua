@@ -1,17 +1,17 @@
 -- stylua: ignore
 local keys = {
-  { "<Space>", "<Cmd>TroubleToggle<Cr>",              "Toggle previous",       k = "r", },
+  { "<Space>", "",                      "Toggle previous",       },
 
-  { "x",       "TroubleToggle document_diagnostics",  "Document diagnostics",           },
-  { "X",       "TroubleToggle workspace_diagnostics", "Workspace diagnostics",          },
+  { "x",       "document_diagnostics",  "Document diagnostics",  },
+  { "X",       "workspace_diagnostics", "Workspace diagnostics", },
 
-  { "l",       "TroubleToggle loclist",               "Loclist",                        },
-  { "q",       "TroubleToggle quickfix",              "Quickfix",                       },
+  { "l",       "loclist",               "Loclist",               },
+  { "q",       "quickfix",              "Quickfix",              },
 
-  { "r",       "TroubleToggle lsp_references",        "References",                     },
+  { "r",       "lsp_references",        "References",            },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   key_prefix = "<leader>x",
   main_cmd = "TroubleToggle",
   desc_prefix = "Trouble",

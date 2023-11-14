@@ -1,9 +1,5 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
--- Bootstrap 〈
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local output = vim.fn.system {
     "git",
     "clone",
@@ -32,11 +28,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
-
--- Bootstrap 〉
-
--- Load lazy.nvim
 
 -- stylua: ignore
 local icons = {
@@ -114,7 +105,7 @@ local performance = {
   },
 }
 
-vim.g.mapleader = "," -- suppress `lazy.nvim` warning message at startup
+vim.g.mapleader = "," -- lazy spec `keys` depends on this
 require("lazy").setup {
   spec = "mudox.plugin",
   defaults = {

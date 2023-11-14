@@ -19,7 +19,7 @@ end
 local function root_dir_from_lsp()
   ---@type string|nil
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
+  path = path ~= "" and vim.uv.fs_realpath(path) or nil
   log(("buffer name: %s"):format(path))
   if not path then
     log("buffer has no path, return nil")
@@ -41,7 +41,7 @@ local function root_dir_from_lsp()
     end
 
     for _, p in ipairs(paths) do
-      local r = vim.loop.fs_realpath(p)
+      local r = vim.uv.fs_realpath(p)
       if r and path:find(r, 1, true) then
         log(("found lsp root dir: %s"):format(r))
         return r
@@ -54,7 +54,7 @@ end
 local function root_dir_from_filename()
   ---@type string|nil
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
+  path = path ~= "" and vim.uv.fs_realpath(path) or nil
   if not path then
     return nil
   end
@@ -66,8 +66,8 @@ end
 ---@return string|nil
 local function root_dir_from_cwd()
   ---@type string|nil
-  local cwd = vim.loop.cwd()
-  cwd = cwd ~= "" and vim.loop.fs_realpath(cwd) or nil
+  local cwd = vim.uv.cwd()
+  cwd = cwd ~= "" and vim.uv.fs_realpath(cwd) or nil
   if not cwd then
     return nil
   end
@@ -83,7 +83,7 @@ end
 -- * (v:count 2) root pattern in cwd
 -- * cwd
 local function smart_root_dir()
-  return root_dir_from_lsp() or root_dir_from_filename() or root_dir_from_cwd() or vim.loop.cwd()
+  return root_dir_from_lsp() or root_dir_from_filename() or root_dir_from_cwd() or vim.uv.cwd()
 end
 
 ---@return string|nil

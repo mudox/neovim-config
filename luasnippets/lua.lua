@@ -41,15 +41,15 @@ end)()
 
 local local_function = (function()
   local head = c(1, {
-    fmt("local function {name}({args})", { name = i(1, "name"), args = i(2, "args") }),
-    fmt("local {name} = function({args})", { name = i(1, "name"), args = i(2, "args") }),
+    fmt("local function {name}({args})", { name = i(1, "name"), args = i(2) }),
+    fmt("local {name} = function({args})", { name = i(1, "name"), args = i(2) }),
   })
 
   local format = [[
-  {head}
-    {body}
-  end
-]]
+    {head}
+      {body}
+    end
+  ]]
 
   return s(
     "lf",
@@ -64,8 +64,8 @@ local lambda = (function()
   return s(
     "la",
     c(1, {
-      fmt("function() {body} end", { body = i(1, "body") }),
-      fmt("function()\n  {body}\nend", { body = i(1, "body") }),
+      fmt("function({args}) {body} end", { args = i(1), body = i(2, "body") }),
+      fmt("function({args})\n  {body}\nend", { args = i(1), body = i(2, "body") }),
     })
   )
 end)()

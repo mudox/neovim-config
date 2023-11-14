@@ -17,7 +17,7 @@ return function(name)
   end
 
   pload("mudox." .. name)
-  pload(("mudox.%s.%s"):format(md, name))
+  pload(("mudox.%s.%s"):format(vim.g.mdx_nvim_mode, name))
 
   -- HACK: LazyVim may have overwritten options of the Lazy ui, so reset this here
   if vim.bo.filetype == "lazy" then

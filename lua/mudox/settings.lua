@@ -56,7 +56,7 @@ o.showcmd = false
 o.ruler = false
 
 -- command line
-o.cmdheight = 2
+o.cmdheight = 1
 opt.wildmode = "longest:full,full"
 
 -- message
@@ -73,7 +73,7 @@ opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
 opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
--- o.signcolumn = "yes" -- always show the signcolumn, otherwise it would shift the text each time
+o.signcolumn = "auto:1"
 
 -- 〉
 
@@ -169,7 +169,7 @@ vim.g.loaded_ruby_provider = 0
 
 -- Misc 〈
 
-opt.diffopt:append("linematch:60")
+-- opt.diffopt:append("linematch:60")
 
 -- grep
 o.grepformat = "%f:%l:%c:%m"

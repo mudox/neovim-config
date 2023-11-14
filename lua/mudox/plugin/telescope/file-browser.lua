@@ -3,6 +3,7 @@ local function mappings()
   return {
     i = {
       ["<C-,>"] = a.toggle_browser,
+      ["<M-/>"] = a.toggle_browser,
     },
   }
 end
@@ -47,16 +48,17 @@ local function open_buffer()
   }
 end
 
+-- stylua: ignore
+local keys = {
+  { "<leader>t\\", open_buffer, desc = "[TFB] Open buffer path" },
+  { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD" },
+}
+
 return {
   "nvim-telescope/telescope-file-browser.nvim",
-  dependencies = {
-    "telescope.nvim",
-    "plenary.nvim",
-  },
-  -- stylua: ignore
-  keys = {
-    { "<leader>t\\", open_buffer, desc = "[TFB] Open buffer path" },
-    { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD"        },
-  },
+  dependencies = { "telescope.nvim", "plenary.nvim" },
+  keys = keys,
   config = config,
+
+  branch = "mudox", -- add space padding for double width nerd symbols
 }

@@ -39,7 +39,7 @@ end
 local function diagnostic(hl, c)
   local s = require("mudox.ui.color").sign
   hl.DiagnosticSignError = { fg = s.red }
-  hl.DiagnosticSignWarn = { fg = s.yellow }
+  hl.DiagnosticSignWarn = { fg = s.violet }
   hl.DiagnosticSignDebug = { fg = s.blue }
   hl.DiagnosticSignInfo = { fg = s.green }
   hl.DiagnosticSignHint = { fg = s.gray }
@@ -72,12 +72,12 @@ local opts = {
     floats = "dark",
   },
 
-  on_highlights = function(hl, c)
-    diagnostic(hl, c)
-    folding(hl, c)
-    gitsigns(hl, c)
-    nvim_tree(hl, c)
-    telescope(hl, c)
+  on_highlights = function(...)
+    diagnostic(...)
+    folding(...)
+    gitsigns(...)
+    nvim_tree(...)
+    telescope(...)
   end,
 }
 

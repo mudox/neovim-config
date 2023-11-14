@@ -75,7 +75,7 @@ local keys = {
   { "=",       function() u().eval() end,                               "[DAPUI] Eval",                          },
 }
 
-keys = require("mudox.util.keymap").lazy_keys(keys, {
+keys = K.lazy_keys(keys, {
   key_prefix = "<leader>d",
   desc_prefix = "DAP",
 })

@@ -25,7 +25,7 @@ local kinds = {
 }
 
 local on_attach = function(bufnr)
-  local ncmd = require("mudox.util.keymap").ncmd
+  local ncmd = K.ncmd
 
   ncmd("]i", "AerialNext", { buffer = bufnr })
   ncmd("[i", "AerialPrev", { buffer = bufnr })

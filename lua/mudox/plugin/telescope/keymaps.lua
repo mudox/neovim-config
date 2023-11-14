@@ -17,9 +17,9 @@ local open_keymaps = {
   { "<M-9>",          "lsp_workspace_symbols",     "LSP workspace symbols",    k = "l", },
 
   -- vim
-  { "<Space>r",       "oldfiles",                  "Recent files",             k = "l", },
-  { "b",              "buffers",                   "Switch buffer",            },
-  { "<C-S-o>",        "buffers",                   "Switch buffer",            k = "l", },
+  { "<Space>r",       "oldfiles",                  "[Telescope] Recent files", k = "l", },
+  { "b",              "buffers",                   "Buffers",                  },
+  { "<C-S-o>",        "buffers",                   "[Telescope] Buffers",      k = "l", },
   { "o",              "vim_options",               "Vim options",              },
   { "H",              "highlights",                "Highlight groups",         },
 
@@ -30,14 +30,12 @@ local open_keymaps = {
   { "c",              "commands",                  "Commands",                 },
   { "<M-;>",          "commands",                  "Commands",                 k = "l", },
 
-  { "h",              "help_tags",                 "Vim help",                 },
-  { "<Space>h",       "help_tags",                 "Vim help",                 k = "l", },
+  { "<M-h>",          "help_tags",                 "[Telescope] Vim help",     k = "l", },
 
-  { "/",              "current_buffer_fuzzy_find", "Search in buffer",         },
   { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer",         k = "l", },
 
   -- grep
-  { "<Space>s",       "live_grep",                 "Live grep",                k = "l", },
+  { "<Space>s",       "live_grep",                 "[Telescope] Live grep",    k = "l", },
   { "w",              "grep_string",               "Grep <word> under cursor", },
 
   -- git
@@ -55,7 +53,7 @@ local open_keymaps = {
   { "n",              "notify",                    "Notifications",            },
 }
 
-open_keymaps = require("mudox.util.keymap").lazy_keys(open_keymaps, {
+open_keymaps = K.lazy_keys(open_keymaps, {
   key_prefix = "<leader>t",
   main_cmd = "Telescope",
 })

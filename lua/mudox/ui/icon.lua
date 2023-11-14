@@ -88,19 +88,32 @@ local folder = {
 
 -- stylua: ignore
 local diagnostics = {
-  error         = "󰉁",
-  warn          = "",
-  info          = "ℹ",
-  debug         = "󰊥",
-  hint          = "󰙎",
+  single = {
+    error = "󰉁",
+    warn  = "",
+    info  = "ℹ",
+    debug = "󰊥",
+    hint  = "󰙎",
+    trace = "𝛵",
+  },
 
-  -- error         = " ",
-  -- warn          = " ",
-  -- info          = " ",
-  -- debug         = " ",
-  -- hint          = " ",
-  -- trace         = " ",
-  -- success       = " ",
+  double = {
+    error = " ",
+    warn  = " ",
+    info  = " ",
+    debug = " ",
+    hint  = "󰏪 ",
+    trace = "󰩷 ",
+  },
+
+  nerd = {
+    error = " ",
+    warn  = " ",
+    info  = " ",
+    debug = " ",
+    hint  = "󰨄 ",
+    trace = "󰛐 ",
+  }
 }
 
 -- Diagnostics 〉
@@ -111,7 +124,7 @@ local chevron = {
   right = "󰅂",
 }
 
--- stylua: ignore start
+-- stylua: ignore
 return {
   chevron       = chevron,
 
@@ -132,4 +145,3 @@ return {
 
   border        = border,
 }
--- stylua: ignore end

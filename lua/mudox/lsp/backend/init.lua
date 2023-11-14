@@ -7,7 +7,7 @@ local function capabilities()
 end
 
 -- default, shared server settings
-local base = {
+local base_opts = {
   capabilities = capabilities(),
 }
 
@@ -25,7 +25,7 @@ local function config_server(server_name)
     end
   end
 
-  local opts = vim.tbl_deep_extend("force", base, server.opts or {})
+  local opts = vim.tbl_deep_extend("force", base_opts, server.opts or {})
   require("lspconfig")[server_name].setup(opts)
 end
 
@@ -34,28 +34,39 @@ local function setup_mason()
 end
 
 local function setup_neodev()
-  require("neodev").setup {}
+  require("neodev").setup {
+    library = {
+      -- PERF: list plugins only needed in `neovim-config` to reduce server initialization time and
+      -- reduce memory overhead
+      plugins = {
+        "lazy.nvim",
+        "nvim-treesitter",
+        "plenary.nvim",
+      },
+    },
+  }
 end
 
 local function on_attch()
   require("mudox.util.on").lsp_attach(function(client, bufnr)
     local ft = vim.bo[bufnr].filetype
 
-    if ft == "lua" then
-      -- disable lsp syntax highlighting
-      client.server_capabilities.semanticTokensProvider = nil
-    end
+    -- if ft == "lua" then
+    -- disable lsp syntax highlighting
+    -- client.server_capabilities.semanticTokensProvider = nil
+    -- end
   end)
 end
 
 local function setup()
-  -- NOTE: order matters
+  -- Order matters
   -- 1. setup neodev
   -- 2. setup mason
   -- 3. setup mason-lspconfig
-  -- 4. lspconfig[server].setup { ... }
+  -- 4. setup servers
 
   setup_neodev()
+
   setup_mason()
 
   local manually = {}
@@ -73,9 +84,19 @@ local function setup()
     end
   end
 
+  local function skip() end
+
+  -- `setup` would IMMEDIATELY setup every installled server with handler found from `handlers`
   require("mason-lspconfig").setup {
     ensure_installed = by_mason,
-    handlers = { config_server },
+
+    -- stylua: ignore
+    handlers = {
+      config_server,
+
+      -- Note: set `skip` to servers that will be setup by other plugins
+      ["rust_analyzer"] = skip,
+    },
   }
 
   for _, server_name in ipairs(manually) do

@@ -3,85 +3,58 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
--- Keymap helpers 〈
-
----@diagnostic disable: unused-local
-local k = require("mudox.util.keymap")
-
-local map = k.map
-local nmap = k.nmap
-local nnop = k.nnop
-local ncmd = k.ncmd
-
-local imap = k.imap
-local icmd = k.icmd
-
-local vmap = k.vmap
-
-local cmap = k.cmap
-
-local tmap = k.tmap
-
-local omap = k.omap
----@diagnostic enable: unused-local
-
--- 〉
-
 -- Common mappings 〈
 
 -- save file
-map({ "n", "i", "x", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
+K.map({ "n", "i", "x", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
 
 -- sensible `j, k`
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-
--- tabs
-nmap("<C-S-]>", "gt")
-nmap("<C-S-[>", "gT")
+K.map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+K.map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 for i = 1, 9 do
-  nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
+  K.nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
 end
 
 -- `q` triggers macro recording too easily
-nnop("q")
--- nmap("<C-g>", "q", { remap = true })
-nmap("Q:", "q:", { remap = true })
-nmap("Q/", "q/", { remap = true })
-nmap("Q?", "q?", { remap = true })
+-- nnop("q")
+-- nmap("Q:", "q:", { remap = true })
+-- nmap("Q/", "q/", { remap = true })
+-- nmap("Q?", "q?", { remap = true })
 
 -- `Q` triggers Ex mode too easily
-nnop("Q")
+-- nnop("Q")
 
 -- sensible `zi`
-nmap("zi", "zizz")
+K.nmap("zi", "zizz")
 
 -- command history
-cmap("<C-p>", "<Up>")
+K.cmap("<C-p>", "<Up>")
 
--- open fold
-nmap("zj", "zjzx", { remap = true })
-nmap("zk", "zkzx", { remap = true })
-nmap("g;", "g;zv", { remap = true })
-nmap("g,", "g,zv", { remap = true })
+-- folding
+K.nmap("zj", "zjzx", { remap = true })
+K.nmap("zk", "zkzx", { remap = true })
+K.nmap("g;", "g;zv", { remap = true })
+K.nmap("g,", "g,zv", { remap = true })
+K.nmap("z<Space>", "zMzA", { remap = true })
+-- K.nmap("z<Space>", "zCzA", { remap = true })
 
 -- close current tabpage
-ncmd("<C-w><C-t>", "tabclose")
+K.ncmd("<C-w><C-t>", "tabclose")
 
 -- resize window using <ctrl> arrow keys
 local s = 4
-ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
-ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
-ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
-ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
+K.ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
+K.ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
+K.ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
+K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
 
 -- clear search highlight with <Esc>
-map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
+K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
 -- smart close
 -- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
-nmap("<C-q>", function()
+K.nmap("<C-q>", function()
   -- close current window if there are more than 1 window
   -- else close current tab if there are more than 1 tab
   -- else close current vim
@@ -94,43 +67,47 @@ nmap("<C-q>", function()
   end
 end, { desc = "Smart close" })
 
+K.nnop("gs") -- sleep
+
+K.nmap("'", "`")
+
 -- 〉
 
 -- Insert 〈
 
-imap("<M-.>", "<Esc>A")
-imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
+K.imap("<M-.>", "<Esc>A")
+K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
 -- Insert 〉
 
 -- Operator 〈
 
-omap("ir", "i[")
-omap("ar", "a[")
-omap("ia", "i<")
-omap("aa", "a<")
+K.omap("ir", "i[")
+K.omap("ar", "a[")
+K.omap("ia", "i<")
+K.omap("aa", "a<")
 
 -- Operator 〉
 
 -- Terminal 〈
 
-tmap("<C-h>", "<Cmd>wincmd h<Cr>")
-tmap("<C-j>", "<Cmd>wincmd j<Cr>")
-tmap("<C-k>", "<Cmd>wincmd k<Cr>")
-tmap("<C-l>", "<Cmd>wincmd l<Cr>")
+K.tmap("<C-h>", "<Cmd>wincmd h<Cr>")
+K.tmap("<C-j>", "<Cmd>wincmd j<Cr>")
+K.tmap("<C-k>", "<Cmd>wincmd k<Cr>")
+K.tmap("<C-l>", "<Cmd>wincmd l<Cr>")
 
 -- Terminal 〉
 
 -- Buffer 〈
 
 -- copy entire buffer content into system pasteboard
-ncmd("yf", "0,$y +")
+K.ncmd("yf", "0,$y +")
 
 -- Buffer 〉
 
 -- Profiling 〈
 
-nmap("<leader>ps", function()
+K.nmap("<leader>ps", function()
   vim.cmd([[
     :profile start /tmp/nvim-profile.log
     :profile func *
@@ -138,7 +115,7 @@ nmap("<leader>ps", function()
     ]])
 end, { desc = "Start profiling" })
 
-nmap("<leader>pe", function()
+K.nmap("<leader>pe", function()
   vim.cmd([[
     :profile stop
     :edit /tmp/nvim-profile.log

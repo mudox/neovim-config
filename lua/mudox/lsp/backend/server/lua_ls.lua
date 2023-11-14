@@ -13,6 +13,11 @@ local opts = {
       hint = {
         enable = true,
       },
+      semantic = {
+        enable = false,
+        annotation = false,
+        keyword = false,
+      },
     },
   },
 }

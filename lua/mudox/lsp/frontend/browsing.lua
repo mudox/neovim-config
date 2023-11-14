@@ -5,42 +5,32 @@ local function toggle_inlay_hint()
 end
 
 local function setup_keymaps(bufnr)
-  -- stylua: ignore start
+  -- stylua: ignore
   local keys = {
-    g = {
-      x = { vim.lsp.buf.declaration,                   "Goto declaration" },
+    gx        = { vim.lsp.buf.declaration,                   "[LSP] Goto declaration"           },
 
-      d = { "<Cmd>Telescope lsp_definitions<Cr>",      "Goto definitions" },
-      y = { "<Cmd>Telescope lsp_type_definitions<Cr>", "Goto type definitions" },
-      m = { "<Cmd>Telescope lsp_implementations<Cr>",  "Goto implementations" },
-      r = { "<Cmd>Telescope lsp_references<Cr>",       "Goto references" },
+    gd        = { "<Cmd>Telescope lsp_definitions<Cr>",      "[LSP] Goto definitions"           },
+    gy        = { "<Cmd>Telescope lsp_type_definitions<Cr>", "[LSP] Goto type definitions"      },
+    gm        = { "<Cmd>Telescope lsp_implementations<Cr>",  "[LSP] Goto implementations"       },
+    gr        = { "<Cmd>Telescope lsp_references<Cr>",       "[LSP] Goto references"            },
 
-      D = { "<Cmd>Glance definitions<Cr>",             "Glance: goto definitions" },
-      Y = { "<Cmd>Glance type_definitions<Cr>",        "Glance: goto type definitions" },
-      M = { "<Cmd>Glance implementations<Cr>",         "Glance: goto implementations" },
-      R = { "<Cmd>Glance references<Cr>",              "Glance: goto references" },
-    },
+    gD        = { "<Cmd>Glance definitions<Cr>",             "[Glance] Goto definitions"        },
+    gY        = { "<Cmd>Glance type_definitions<Cr>",        "[Glance] Goto type definitions"   },
+    gM        = { "<Cmd>Glance implementations<Cr>",         "[Glance] Goto implementations"    },
+    gR        = { "<Cmd>Glance references<Cr>",              "[Glance] Goto references"         },
 
-    K   = { vim.lsp.buf.hover,                         "LSP hover" },
-    gk  = { vim.lsp.buf.signature_help,                "LSP signature help" },
+    K         = { vim.lsp.buf.hover,                         "[LSP] Hover"                      },
+    gk        = { vim.lsp.buf.signature_help,                "[LSP] Signature help"             },
 
-    gh  = { toggle_inlay_hint,                         "Toggle LSP inlay hint" },
+    [";th"]   = { toggle_inlay_hint,                         "[LSP] Toggle inlay hint"          },
+
+    ["<C-k>"] = { vim.lsp.buf.signature_help,                "[LSP] Signature Help", mode = "i" },
   }
-
-  local ikeys = {
-    ["<C-k>"] = { vim.lsp.buf.signature_help,          "LSP Signature Help" },
-  }
-  -- stylua: ignore end
 
   for _, v in pairs(keys) do
     v.buffer = bufnr
   end
   require("which-key").register(keys)
-
-  for _, v in pairs(ikeys) do
-    v.buffer = bufnr
-  end
-  require("which-key").register(ikeys, { mode = "i" })
 end
 
 local function setup_on_attach()

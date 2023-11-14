@@ -134,7 +134,10 @@ end
 
 return {
   "nvim-telescope/telescope.nvim",
-  dependencies = { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  dependencies = {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
   cmd = "Telescope",
   keys = r("keymaps").open,
   config = config,
