@@ -8,14 +8,14 @@ local function title(name)
 end
 
 -- action to open selected plugin in separate tmux window
-local function open_plugin_window(...)
+local function open_plugin_window(prompt_buf)
   local state = require("telescope.actions.state")
   local entry = state.get_selected_entry()
 
   local name = title(entry.name)
   local path = entry.path
 
-  require("telescope.actions").close(...)
+  require("telescope.actions").close(prompt_buf)
   vim.system {
     vim.env.MDX_NVIM_DIR .. "/scripts/tmux_plugin_win.sh",
     name,

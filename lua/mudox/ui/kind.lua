@@ -30,8 +30,8 @@ return {
 
   Null            = "∅ ",
   Boolean         = "Ө ",
-  Number          = "󰎠 ",
-  Operator        = " ",
+  Number          = "# ",
+  Operator        = "󰦒 ",
   TypeParameter   = " ",
 
   Constant        = "󰏿 ",

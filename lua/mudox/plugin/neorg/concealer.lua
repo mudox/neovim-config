@@ -58,7 +58,7 @@ local icons      = {
 
 return {
   config = {
-    icons = icons,
-    folds = false,
+    -- icons = icons,
+    folds = true,
   },
 }

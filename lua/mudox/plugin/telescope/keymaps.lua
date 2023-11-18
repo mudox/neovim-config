@@ -18,6 +18,7 @@ local open_keymaps = {
 
   -- vim
   { "<Space>r",       "oldfiles",                  "[Telescope] Recent files", k = "l", },
+  { "a",              "autocommands",              "autocommands",             },
   { "b",              "buffers",                   "Buffers",                  },
   { "<C-S-o>",        "buffers",                   "[Telescope] Buffers",      k = "l", },
   { "o",              "vim_options",               "Vim options",              },

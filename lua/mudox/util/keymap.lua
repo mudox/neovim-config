@@ -74,7 +74,7 @@ function bodys.call(mode, from, to, opts)
   bodys.map(mode, from, "<Cmd>call " .. to .. "<Cr>", opts)
 end
 
----For pattern `<Plug>(...)`
+---For pattern  `<Plug>xxx` or `<Plug>(xxx)`
 ---Note: Parentheses are not added automatically
 function bodys.plug(mode, from, to, opts)
   opts = opts or {}
@@ -130,9 +130,9 @@ end
 local M = vim.deepcopy(bodys)
 
 setmetatable(M, {
-  __index = function(tbl, name)
+  __index = function(t, name)
     local fn = get(name)
-    tbl[name] = fn
+    t[name] = fn
     return fn
   end,
 })

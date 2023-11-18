@@ -22,7 +22,7 @@ local function setup_keymaps(bufnr)
     K         = { vim.lsp.buf.hover,                         "[LSP] Hover"                      },
     gk        = { vim.lsp.buf.signature_help,                "[LSP] Signature help"             },
 
-    [";th"]   = { toggle_inlay_hint,                         "[LSP] Toggle inlay hint"          },
+    ["yoH"]   = { toggle_inlay_hint,                         "LSP inlay hint"                   },
 
     ["<C-k>"] = { vim.lsp.buf.signature_help,                "[LSP] Signature Help", mode = "i" },
   }
@@ -34,7 +34,7 @@ local function setup_keymaps(bufnr)
 end
 
 local function setup_on_attach()
-  require("mudox.util.on").lsp_attach(function(_, bufnr)
+  U.on.lsp_attach(function(_, bufnr)
     setup_keymaps(bufnr)
   end)
 end

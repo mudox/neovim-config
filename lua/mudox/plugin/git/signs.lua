@@ -14,31 +14,27 @@ local signs = {
 local function on_attach(buffer)
   local gs = require("gitsigns")
 
-  local function map(mode, l, r, desc)
-    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-  end
+  -- stylua: ignore
+  local keys = {
+    ["ih"]         = { "<Cmd>Gitsigns select_hunk<CR>",              "GitSigns Select Hunk", mode = { "x", "o" } },
 
-  -- stylua: ignore start
-  map({ "o", "x" }, "ih", "<Cmd>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+    -- stage
+    ["<leader>gs"] = { gs.stage_hunk,                                "Stage Hunk"                                },
+    ["<leader>gu"] = { gs.undo_stage_hunk,                           "Unstage Hunk"                              },
+    ["<leader>gD"] = { gs.reset_hunk,                                "Reset Hunk (Discard Changes)"              },
 
-  -- stage
-  map("n", "<leader>gs", gs.stage_hunk, "Stage Hunk")
-  map("n", "<leader>gu", gs.undo_stage_hunk, "Unstage Hunk")
-  map("n", "<leader>gD", gs.reset_hunk, "Reset Hunk (Discard Changes)")
+    -- blame
+    ["<leader>gb"] = { function() gs.blame_line { full = true } end, "Blame Line"                                },
 
-  -- blame
-  map("n", "<leader>gb", function() gs.blame_line { full = true } end, "Blame Line")
+    -- diff
+    ["<leader>gv"] = { gs.preview_hunk,                              "Preview Hunk"                              },
 
-  -- diff
-  -- use diffview.nvim instead
-  map("n", "<leader>gv", gs.preview_hunk, "Preview Hunk")
+    -- goto
+    ["󰅂g"]         = { gs.next_hunk,                                 "Next Hunk"                                 },
+    ["󰅁g"]         = { gs.prev_hunk,                                 "Previous Hunk"                             },
+  }
 
-  -- goto
-  map("n", "]h", gs.next_hunk, "Next Hunk")
-  map("n", "[h", gs.prev_hunk, "Previous Hunk")
-  map("n", "]g", gs.next_hunk, "Next Hunk")
-  map("n", "[g", gs.prev_hunk, "Previous Hunk")
-  -- stylua: ignore end
+  require("which-key").register(keys, { buffer = buffer })
 end
 
 local opts = {

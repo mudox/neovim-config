@@ -21,35 +21,79 @@ local opts = {
   },
 }
 
+local blank_up = X.renav.wrap("<Space>", function()
+  vim.cmd("put! =repeat(nr2char(10), v:count1)|silent ']+")
+end)
+
+local blank_down = X.renav.wrap("<Space>", function()
+  vim.cmd("put  =repeat(nr2char(10), v:count1)|silent '[-")
+end)
+
+local swap_line_up = X.renav.wrap("e", function()
+  vim.cmd("silent! move --" .. vim.v.count1)
+  vim.cmd.normal("==")
+end)
+
+local swap_line_down = X.renav.wrap("e", function()
+  vim.cmd("silent! move +" .. vim.v.count1)
+  vim.cmd.normal("==")
+end)
+
+local function nav_cmd(target, cmd)
+  return X.renav.wrap(target, function()
+    vim.cmd("silent! " .. cmd)
+  end)
+end
+
+local function t(o)
+  return { "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>", o }
+end
+
+local function toggle_treesitter_highlighting()
+  local function notify(msg)
+    vim.notify(msg, vim.log.levels.INFO, { title = "TreeSitter" })
+  end
+
+  if vim.b.ts_highlight then
+    vim.treesitter.stop()
+    notify("Highlighting is disabled")
+  else
+    vim.treesitter.start()
+    notify("Highlighting is enabled")
+  end
+end
+
 -- stylua: ignore start
 
 local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 local nvim_view = {
-  name = "+neovim view",
+  name      = "+neovim view",
 
-  a = { c "args",            "Arguments"      },
-  B = { c "buffers!",        "Buffers!"       },
-  b = { c "buffers",         "Buffers"        },
-  I = { c "Inspect!",        "Inspect!"       },
-  i = { c "Inspect",         "Inspect"        },
-  j = { c "jumps",           "Jumps"          },
-  l = { c "lopen",           "Loclist"        },
-  m = { c "marks",           "Marks"          },
-  o = { c "options",         "Options"        },
-  q = { c "copen",           "Quickfix"       },
-  r = { c "registers",       "Registers"      },
-  s = { c "scriptnames",     "Loaded scripts" },
-  t = { c "InspectTree",     "Inspect tree"   },
-  u = { c "undolist",        "Undo list"      },
-  v = { c "messages",        "Messages"       },
-  V = { c "verbose version", "Inspect tree"   },
+  a         = { c"args",            "Arguments"      },
+  B         = { c"buffers!",        "Buffers!"       },
+  b         = { c"buffers",         "Buffers"        },
+  I         = { c"Inspect!",        "Inspect!"       },
+  i         = { c"Inspect",         "Inspect"        },
+  j         = { c"jumps",           "Jumps"          },
+  l         = { c"lopen",           "Loclist"        },
+  m         = { c"marks",           "Marks"          },
+  o         = { c"options",         "Options"        },
+  q         = { c"copen",           "Quickfix"       },
+  r         = { c"registers",       "Registers"      },
+  s         = { c"scriptnames",     "Loaded scripts" },
+  t         = { c"InspectTree",     "Inspect tree"   },
+  u         = { c"undolist",        "Undo list"      },
+  v         = { c"messages",        "Messages"       },
+  V         = { c"verbose version", "Inspect tree"   },
+
+  ["<Tab>"] = { c"tabs",            "Tabpages"       },
 }
 
 local plugin_view = {
   name = "+plugin view",
 
-  z = { c "Lazy" , "Lazy" },
+  p = { c "Lazy" , "Plugins" },
 }
 
 local quit = {
@@ -83,49 +127,95 @@ local tabpage = {
   ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage" },
 }
 
-local toggle = {
-  name = "+toggle",
+local nvim_toggle = {
+  name = "+nvim toggle",
+
+  h = t"hlsearch",
+  l = t"list",
+  n = t"number",
+  r = t"relativenumber",
+  s = t"spell",
+  w = t"wrap",
+  t = { toggle_treesitter_highlighting, "TreeSitter highlighting" },
 }
 
-K.nnop(";")
-local semicolon = {
-  name = "alternative leader",
-
-  v = nvim_view,
-  t = toggle,
+local plugin_toggle = {
+  name = "+plugin toggle",
 }
 
 K.nnop(",")
-local comma = {
+local plugin = {
   name   = "+leader",
 
   a      = "+aerial",
+  b      = "+buffer",
   c      = "+test",
   d      = "+debug",
   e      = edit,
   f      = "+files",
-  l      = "+lazy",
   g      = "+git",
+  l      = "+lazy",
   p      = "+profile",
   r      = "+run",
   t      = "+telescope",
   u      = "+ui",
-  w      = "+window|buffer",
   v      = plugin_view,
+  w      = "+window",
   x      = "+trouble",
 }
 
-local root = {
-  [","]        = comma,
-  [";"]        = semicolon,
+K.nnop(";")
+local nvim = {
+  name = "alternative leader",
 
-  ["<Space>"]  = "+common",
+  v = nvim_view,
+}
+
+local next = {
+  name = "+next",
+
+  a            = { nav_cmd("a",     "next"),        "Next argument file"     },
+  q            = { nav_cmd("q",     "cnext"),       "Next quickfix item"     },
+  Q            = { nav_cmd("Q",     "cnfile"),      "Next quickfix file"     },
+  l            = { nav_cmd("l",     "lnext"),       "Next loclist item"      },
+  L            = { nav_cmd("L",     "lnfile"),      "Next loclist file"      },
+  ["<Tab>"]    = { nav_cmd("<Tab>", "tabnext"),     "Next tabpage"           },
+
+  e            = { swap_line_down,                  "Swap line down"         },
+  ["<Space>"]  = { blank_down,                      "Add line(s) below"      },
+}
+
+local previous = {
+  name         = "+previous",
+
+  a            = { nav_cmd("a",     "previous"),    "Previous argument file" },
+  q            = { nav_cmd("q",     "cprevious"),   "Previous quickfix item" },
+  Q            = { nav_cmd("Q",     "cpfile"),      "Previous quickfix file" },
+  l            = { nav_cmd("l",     "lprevious"),   "Previous loclist item"  },
+  L            = { nav_cmd("L",     "lpfile"),      "Previous loclist file"  },
+  ["<Tab>"]    = { nav_cmd("<Tab>", "tabprevious"), "Previous tabpage"       },
+
+  e            = { swap_line_up,                    "Swap line up"           },
+  ["<Space>"]  = { blank_up,                        "Add line(s) above"      },
+}
+
+local common = {
+  name = "+common",
+}
+
+local root = {
+  [","]        = plugin,
+  [";"]        = nvim,
+
+  ["<Space>"]  = common,
   ["<Tab>"]    = tabpage,
   ["<Bslash>"] = refactoring,
   ["<Bs>"]     = quit,
 
-  ["]"]        = "+next",
-  ["["]        = "+prev",
+  ["]"]        = next,
+  ["["]        = previous,
+  yo           = nvim_toggle,
+  co           = plugin_toggle,
 }
 
 -- stylua: ignore end

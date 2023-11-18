@@ -1,20 +1,20 @@
 -- Globals
 U = require("mudox.util")
+X = require("mudox.lab")
 K = U.keymap
 
-require("mudox.lab.renav").setup()
+X.renav.setup()
 
--- Lazy
+-- Plugin manager
 require("mudox.lazy")
 
 -- Settings
 U.load("settings")
 
--- Autocmds & Keymaps
+-- Autocmds & keymaps
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
   vim.api.nvim_create_autocmd("User", {
-    group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
     pattern = "VeryLazy",
     callback = function()
       U.load("autocmds")

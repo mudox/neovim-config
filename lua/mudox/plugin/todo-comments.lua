@@ -1,10 +1,18 @@
+local next = X.renav.wrap("t", function()
+  require("todo-comments").jump_next()
+end)
+
+local previous = X.renav.wrap("t", function()
+  require("todo-comments").jump_prev()
+end)
+
 -- stylua: ignore
 local keys = {
-  { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment",        },
-  { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment",    },
-  { "<leader>xt", "<Cmd>TodoTrouble<Cr>",                              desc = "[Trouble] Todo",           },
-  { "<leader>xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>",      desc = "[Trouble] Todo|Fix|Fixme", },
-  { "<leader>tt", "<Cmd>TodoTelescope<Cr>",                            desc = "Todo",                     },
+  { "]t",         next,                                           desc = "Next todo comment",        },
+  { "[t",         previous,                                       desc = "Previous todo comment",    },
+  { "<leader>xt", "<Cmd>TodoTrouble<Cr>",                         desc = "[Trouble] Todo",           },
+  { "<leader>xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "[Trouble] Todo|Fix|Fixme", },
+  { "<leader>tt", "<Cmd>TodoTelescope<Cr>",                       desc = "Todo",                     },
 }
 
 -- stylua: ignore

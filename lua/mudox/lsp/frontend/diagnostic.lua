@@ -69,30 +69,30 @@ local function lsp_lines()
   require("lsp_lines").toggle()
 end
 
-local function setup_keymaps(event)
+local function setup_keymaps(_, bufnr)
   -- stylua: ignore
   local keys = {
-    ["]d"]  = { jump(true),                "[Diagnostic] Next issue"       },
-    ["[d"]  = { jump(false),               "[Diagnostic] Previous issue"   },
-    ["]E"]  = { jump(true, "ERROR"),       "[Diagnostic] Next error"       },
-    ["[E"]  = { jump(false, "ERROR"),      "[Diagnostic] Previous error"   },
+    ["󰅂d"]  = { jump(true),                "[Diagnostic] Next issue"       },
+    ["󰅁d"]  = { jump(false),               "[Diagnostic] Previous issue"   },
+    ["󰅂E"]  = { jump(true, "ERROR"),       "[Diagnostic] Next error"       },
+    ["󰅁E"]  = { jump(false, "ERROR"),      "[Diagnostic] Previous error"   },
 
     ["gl"]  = { d.open_float,              "[Diagnostic] Show issue(s)"    },
-    ["gL"]  = { lsp_lines,                 "[Diagnostic] Toggle LSP lines" },
+    ["col"] = { lsp_lines,                 "[Lsp Lines] Toggle"            },
 
     ["yod"] = { toggle,                    "[Diagnostic] Toggle"           },
 
     ["gQ"]  = { vim.diagnostic.setloclist, "[Diagnostic] Set loclist"      },
   }
 
-  require("which-key").register(keys, { bufnr = event.buf })
+  require("which-key").register(keys, { buffer = bufnr })
 end
 
 local function setup()
   config()
   setup_signs()
 
-  require("mudox.util.on").lsp_attach(setup_keymaps)
+  U.on.lsp_attach(setup_keymaps)
 end
 
 return {

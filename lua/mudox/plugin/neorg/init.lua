@@ -51,7 +51,7 @@ local metagen = {
 }
 -- stylua: ignore end
 
-local function s(name)
+local function r(name)
   return require("mudox.plugin.neorg." .. name)
 end
 
@@ -61,11 +61,11 @@ local opts = {
     -- default modules
     ["core.defaults"]               = {},
     ["core.esupports.metagen"]      = metagen,
-    ["core.keybinds"]               = s"keybinds",
+    ["core.keybinds"]               = r"keybinds",
 
     -- non-default modules
     ["core.completion"]             = completion,
-    ["core.concealer"]              = s"concealer",
+    ["core.concealer"]              = r"concealer",
     ["core.dirman"]                 = dirman,
     ["core.journal"]                = journal,
     ["core.qol.toc"]                = toc,

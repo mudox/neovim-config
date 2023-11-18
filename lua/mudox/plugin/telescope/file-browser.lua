@@ -51,7 +51,10 @@ end
 -- stylua: ignore
 local keys = {
   { "<leader>t\\", open_buffer, desc = "[TFB] Open buffer path" },
-  { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD" },
+  { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD"        },
+
+  { "<leader>f/",  open_cwd,    desc = "[TFB] Open $CWD"        },
+  { "<leader>f.",  open_buffer, desc = "[TFB] Open buffer path" },
 }
 
 return {
@@ -60,5 +63,6 @@ return {
   keys = keys,
   config = config,
 
-  branch = "mudox", -- add space padding for double width nerd symbols
+  -- branch = "mudox", -- add space padding for double width nerd symbols
+  -- lock = true,
 }

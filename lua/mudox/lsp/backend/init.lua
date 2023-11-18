@@ -48,7 +48,7 @@ local function setup_neodev()
 end
 
 local function on_attch()
-  require("mudox.util.on").lsp_attach(function(client, bufnr)
+  U.on.lsp_attach(function(client, bufnr)
     local ft = vim.bo[bufnr].filetype
 
     -- if ft == "lua" then

@@ -3,56 +3,37 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
--- Common mappings 〈
+-- Save file
+K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
 
--- save file
-K.map({ "n", "i", "x", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
-
--- sensible `j, k`
+-- Sensible `j, k`
 K.map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 K.map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
+-- Tabpage navigation
 for i = 1, 9 do
   K.nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
 end
 
--- `q` triggers macro recording too easily
--- nnop("q")
--- nmap("Q:", "q:", { remap = true })
--- nmap("Q/", "q/", { remap = true })
--- nmap("Q?", "q?", { remap = true })
-
--- `Q` triggers Ex mode too easily
--- nnop("Q")
-
--- sensible `zi`
+-- Sensible `zi`
 K.nmap("zi", "zizz")
 
--- command history
-K.cmap("<C-p>", "<Up>")
-
--- folding
+-- Folding
 K.nmap("zj", "zjzx", { remap = true })
 K.nmap("zk", "zkzx", { remap = true })
-K.nmap("g;", "g;zv", { remap = true })
-K.nmap("g,", "g,zv", { remap = true })
 K.nmap("z<Space>", "zMzA", { remap = true })
--- K.nmap("z<Space>", "zCzA", { remap = true })
 
--- close current tabpage
-K.ncmd("<C-w><C-t>", "tabclose")
-
--- resize window using <ctrl> arrow keys
+-- Resize window using <Ctrl>+arrow keys
 local s = 4
 K.ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
 K.ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
 K.ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
 K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
 
--- clear search highlight with <Esc>
+-- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
--- smart close
+-- Smart close
 -- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
 K.nmap("<C-q>", function()
   -- close current window if there are more than 1 window
@@ -67,18 +48,24 @@ K.nmap("<C-q>", function()
   end
 end, { desc = "Smart close" })
 
-K.nnop("gs") -- sleep
+-- Useless legacy `sleep` function
+K.nnop("gs")
 
+-- Let ' acts as `
 K.nmap("'", "`")
 
--- 〉
+-- Change list
+K.nmap("g;", "g;zv", { remap = true })
+K.nmap("g,", "g,zv", { remap = true })
+K.nmap("<C-S-j>", "g;", { remap = true })
+K.nmap("<C-S-k>", "g,", { remap = true })
 
--- Insert 〈
-
+-- Insert mode keymaps
 K.imap("<M-.>", "<Esc>A")
 K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
--- Insert 〉
+-- Copy entire buffer content into system pasteboard
+K.ncmd("yf", "0,$y +")
 
 -- Operator 〈
 
@@ -98,13 +85,6 @@ K.tmap("<C-l>", "<Cmd>wincmd l<Cr>")
 
 -- Terminal 〉
 
--- Buffer 〈
-
--- copy entire buffer content into system pasteboard
-K.ncmd("yf", "0,$y +")
-
--- Buffer 〉
-
 -- Profiling 〈
 
 K.nmap("<leader>ps", function()
@@ -123,3 +103,6 @@ K.nmap("<leader>pe", function()
 end, { desc = "End profiling" })
 
 -- Profiling 〉
+
+-- Experiment!!!
+K.nreq(";<Space>", "mudox.lab.rootdir", "info()")

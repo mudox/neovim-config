@@ -1,6 +1,5 @@
 ActiveLSP               
 ActiveTS                
-added                   
 Array                   
 Array                   󰅪
 ArrowCircleDown         
@@ -25,9 +24,9 @@ BoldWarning             
 BookMark                
 Bookmarks               
 Boolean                 
-Boolean                 󰨙
-Boolean                 󰔡
 Boolean                 
+Boolean                 󰔡
+Boolean                 󰨙
 BoxChecked              
 Branch                  
 BreakStatement          󰙧
@@ -88,9 +87,8 @@ DiagnosticWarn          
 Diff                    
 DividerLeft             
 DividerRight            
-Docs                    
 DoStatement             󰑖
-dots                    󰇘
+Docs                    
 DoubleChevronRight      »
 Ellipsis                …
 Ellipsis                
@@ -121,16 +119,18 @@ FileModified            
 FileNew                 
 FileReadOnly            
 FileRenamed             
-Files                   
 FileStaged              S
 FileSymlink             
 FileUnmerged            
 FileUnstaged            
 FileUntracked           U
+Files                   
 FindFile                
 FindText                
 Fire                    
 FoldClosed              
+FoldOpened              
+FoldSeparator
 Folder                  
 Folder                  
 Folder                  
@@ -141,8 +141,6 @@ FolderEmpty             
 FolderOpen              
 FolderOpen              
 FolderSymlink           
-FoldOpened              
-FoldSeparator
 ForStatement            󰑖
 Forward                 
 Function                ƒ
@@ -183,6 +181,10 @@ Keyword                 
 Keyword                 
 Keyword                 󰌋
 Keyword                 􀟕
+LSPLoaded               
+LSPLoading1             
+LSPLoading2             󰀚
+LSPLoading3             
 Lightbulb               
 LineAdded               
 LineLeft                ▏
@@ -194,10 +196,6 @@ List                    󰅪
 Lock                    
 Log                     󰦪
 Lsp                     
-LSPLoaded               
-LSPLoading1             
-LSPLoading2             󰀚
-LSPLoading3             
 Macro                   󰁌
 MacroRecording          
 MarkdownH1              󰉫
@@ -211,7 +209,7 @@ Method                  
 Method                  󰆧
 Method                  󰊕
 Method                  􀂬
-modified                
+Module                  
 Module                  
 Module                  
 Module                  󰏗
@@ -222,6 +220,7 @@ Namespace               󰦮
 NewFile                 
 Note                    
 Null                    
+Null                    
 Null                    󰢤
 Number                  
 Number                  󰎠
@@ -253,7 +252,6 @@ Reference               󰦾
 Reference               􀉣
 Refresh                 
 Regex                   
-removed                 
 Repeat                  󰑖
 Repo                    
 Scope                   󰅩
@@ -287,8 +285,8 @@ SwitchStatement         󰺟
 Tab                     
 Tab                     󰓩
 TabClose                󰅙
-Table                   
 TabNine                 󰏚
+Table                   
 Tag                     
 Target                  
 Telescope               
@@ -325,3 +323,7 @@ Watches                 
 WhileStatement          󰑖
 Window                  
 WordFile                󰈭
+added                   
+dots                    󰇘
+modified                
+removed                 

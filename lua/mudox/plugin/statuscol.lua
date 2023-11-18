@@ -1,7 +1,20 @@
 local function opts()
   local builtin = require("statuscol.builtin")
 
-  local signs = {
+  local test_debug = {
+    sign = {
+      name = {
+        "Dap",
+        "neotest",
+      },
+      maxwidth = 1,
+      colwidth = 2,
+      auto = true,
+    },
+    click = "v:lua.ScSa",
+  }
+
+  local diagnostics = {
     sign = {
       name = {
         "Diagnostic",
@@ -13,7 +26,10 @@ local function opts()
     click = "v:lua.ScSa",
   }
 
-  local space = { text = { " " } }
+  local gap = {
+    text = { " " },
+    condition = builtin.not_empty,
+  }
 
   local line_num = {
     text = { builtin.lnumfunc },
@@ -32,24 +48,10 @@ local function opts()
 
   return {
     segments = {
-      signs,
+      diagnostics,
+      test_debug,
       line_num,
       gitsigns,
-    },
-
-    relculright = false,
-    setopt = true,
-    ft_ignore = {
-      "help",
-      "vim",
-      "fugitive",
-      "alpha",
-      "dashboard",
-      "neo-tree",
-      "Trouble",
-      "noice",
-      "lazy",
-      "toggleterm",
     },
   }
 end

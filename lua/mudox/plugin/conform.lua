@@ -18,7 +18,6 @@ local fast_fts = {
   lua = true,
   rust = true,
   bash = true,
-  rust = true,
 }
 
 local slow_fts = {
@@ -61,7 +60,7 @@ local format_after_save = function(bufnr)
   return { lsp_fallback = true }
 end
 
-local function format_command()
+local function setup_commands()
   vim.api.nvim_create_user_command("Conformat", function(args)
     local range = nil
     if args.count ~= -1 then
@@ -73,6 +72,24 @@ local function format_command()
     end
     require("conform").format { async = true, lsp_fallback = true, range = range }
   end, { range = true })
+
+  vim.api.nvim_create_user_command("FOSDisable", function(args)
+    if args.bang then
+      vim.b.disable_autoformat = true
+    else
+      vim.g.disable_autoformat = true
+    end
+  end, {
+    desc = "Disable autoformat-on-save",
+    bang = true,
+  })
+
+  vim.api.nvim_create_user_command("FOSEnable", function()
+    vim.b.disable_autoformat = false
+    vim.g.disable_autoformat = false
+  end, {
+    desc = "Re-enable autoformat-on-save",
+  })
 end
 
 local function config()
@@ -82,18 +99,34 @@ local function config()
     format_after_save = format_after_save,
   }
 
-  format_command()
+  setup_commands()
 end
 
+local function toggle(global)
+  return function()
+    local s = global and "g" or "b"
+    vim[s].disable_autoformat = not vim[s].disable_autoformat
+
+    local msg = ("Format on %s %s"):format(
+      vim[s].disable_autoformat and "enabled" or "disabled",
+      global and "globally" or "for current buffer"
+    )
+    vim.notify(msg, vim.log.levels.INFO, { title = "Conform" })
+  end
+end
+
+-- stylua: ignore
 local keys = {
-  { "\\q", "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
-  { "<leader>vc", "<Cmd>ConformInfo<Cr>", desc = "Conform" },
+  { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
+  { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
+  { "coq",        toggle(false),                             desc = "[Conform] Toggle FOS globally", },
+  { "coQ",        toggle(true),                              desc = "[Conform] Toggle FOS locally", },
 }
 
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "BufWritePre",
+  cmds = { "Conformat", "ConformInfo" },
   keys = keys,
-  opts = opts,
   config = config,
 }

@@ -68,20 +68,20 @@ end
 local keys = {
   { "<M-o>",   "Pick",                 "Pick",           k =  "l" },
 
+  { "x",       "PickClose",            "Pick & close",   },
   { "<",       "CloseLeft",            "Close left",     },
   { ">",       "CloseRight",           "Close right",    },
   { ".",       "CloseOthers",          "Close other",    },
-  { "c",       "PickClose",            "Pick & close",   },
   { ";",       "GroupClose ungrouped", "Close unpinned", },
 
-  { "~",       "TogglePin",            "Pin",            },
+  { "-",       "TogglePin",            "Pin",            },
 
   { "L",       "CycleNext",            "Cycle next",     k =  "l" },
   { "H",       "CyclePrev",            "Cycle previous", k =  "l" },
 }
 
 keys = K.lazy_keys(keys, {
-  key_prefix = "<leader>w",
+  key_prefix = "<leader>b",
   cmd_prefix = "BufferLine",
   desc_prefix = "BufferLine",
 })

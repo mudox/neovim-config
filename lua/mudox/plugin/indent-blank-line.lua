@@ -33,7 +33,7 @@ end
 return {
   "lukas-reineke/indent-blankline.nvim",
   keys = {
-    { "yoi", "<Cmd>IBLToggle<Cr>", desc = "[IBL] Toggle" },
+    { "coi", "<Cmd>IBLToggle<Cr>", desc = "[Ident Blank Line] Toggle" },
   },
   config = config,
 }

@@ -12,7 +12,7 @@ end
 
 -- Checktime 〈
 
-on({ "FocusGained", "TermClose", "TermLeave" }, {
+on({ "CusorHold", "FocusGained", "TermClose", "TermLeave" }, {
   group = g("checktime"),
   command = "checktime",
 })

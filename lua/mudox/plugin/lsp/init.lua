@@ -10,4 +10,5 @@ return {
   r("lsp-lines"),
   r("actions-preview"),
   r("glance"),
+  r("lightbulb"),
 }

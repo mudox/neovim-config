@@ -24,7 +24,7 @@ local keys = {
   { "D",                "DeleteBundle",   "Delete task bundle",                },
 
   -- info
-  { "<leader>vO",       "Info",           "Overseer",               k =  "ld", },
+  { "<leader>vo",       "Info",           "Overseer",               k =  "ld", },
 }
 
 keys = K.lazy_keys(keys, {
