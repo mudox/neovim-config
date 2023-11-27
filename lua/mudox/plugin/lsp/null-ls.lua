@@ -18,14 +18,8 @@ local function opts()
       f.isort,
       d.pylama,
 
-      -- Lua
-      -- f.stylua, -- use conform.nvim instead
-
       -- Swift
       f.swiftformat,
-
-      -- Bash, Zsh, Sh
-      f.beautysh,
     },
   }
 end

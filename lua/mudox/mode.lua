@@ -1,4 +1,4 @@
-local function resolve_mode()
+local function get()
   local mode
 
   -- for neovide gui app
@@ -12,7 +12,7 @@ local function resolve_mode()
   end
 
   -- usage: `MDX_NVIM_MODE=python nvim`
-  mode = vim.trim(os.getenv("MDX_NVIM_MODE") or "")
+  mode = vim.trim(vim.env.MDX_NVIM_MODE or "")
   if #mode > 0 then
     return mode
   end
@@ -21,8 +21,6 @@ local function resolve_mode()
   return "main"
 end
 
-local mode = resolve_mode()
+local mode = get()
 vim.g.mdx_nvim_mode = mode
 vim.cmd([[ lockvar g:mdx_nvim_mode ]])
-
-return mode

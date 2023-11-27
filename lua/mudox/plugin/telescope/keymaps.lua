@@ -22,7 +22,7 @@ local open_keymaps = {
   { "b",              "buffers",                   "Buffers",                  },
   { "<C-S-o>",        "buffers",                   "[Telescope] Buffers",      k = "l", },
   { "o",              "vim_options",               "Vim options",              },
-  { "H",              "highlights",                "Highlight groups",         },
+  { "h",              "highlights",                "Highlight groups",         },
 
   { "k",              "keymaps",                   "Keymaps",                  },
 

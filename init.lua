@@ -5,6 +5,9 @@ K = U.keymap
 
 X.renav.setup()
 
+-- Neovim mode
+require("mudox.mode")
+
 -- Plugin manager
 require("mudox.lazy")
 

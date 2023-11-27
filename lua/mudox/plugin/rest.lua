@@ -15,7 +15,7 @@ local function init()
       }
       -- stylua: ignore end
       for _, k in ipairs(keymaps) do
-        nplug(k[1], k[2], { desc = k[3] })
+        nplug(k[1], k[2], { desc = k[3], buffer = event.buf })
       end
     end,
   })

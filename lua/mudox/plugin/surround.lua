@@ -25,6 +25,7 @@ local opts = {
     visual = "q",
     visual_line = "Q",
   },
+
   surrounds = surrounds,
 }
 

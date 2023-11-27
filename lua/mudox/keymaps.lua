@@ -7,8 +7,8 @@ vim.g.maplocalleader = ","
 K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
 
 -- Sensible `j, k`
-K.map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-K.map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+K.nmap("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+K.nmap("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Tabpage navigation
 for i = 1, 9 do

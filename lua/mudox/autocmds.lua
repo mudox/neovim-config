@@ -12,7 +12,7 @@ end
 
 -- Checktime 〈
 
-on({ "CusorHold", "FocusGained", "TermClose", "TermLeave" }, {
+on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
   group = g("checktime"),
   command = "checktime",
 })
@@ -21,13 +21,13 @@ on({ "CusorHold", "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Flash on yanking 〈
 
-on("TextYankPost", {
-  group = g("highlight_yank"),
-  desc = "Flash on yanking",
-  callback = function()
-    vim.highlight.on_yank { timeout = 250 }
-  end,
-})
+-- on("TextYankPost", {
+--   group = g("highlight_yank"),
+--   desc = "Flash on yanking",
+--   callback = function()
+--     vim.highlight.on_yank { timeout = 250 }
+--   end,
+-- })
 
 -- Flash on yanking 〉
 
@@ -88,7 +88,6 @@ on("FileType", {
     "PlenaryTestPopup",
     "qf",
     "qr_panel",
-    "query",
     "spectre_panel",
     "startuptime",
     "tsplayground",
@@ -146,7 +145,7 @@ end
 on("BufRead", {
   group = g("unfold_for_small_file"),
   desc = "No fold for small files",
-  callback = function(event)
+  callback = function()
     if vim.fn.line("$") < 20 then
       vim.wo.foldenable = false
     end

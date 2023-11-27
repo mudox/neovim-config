@@ -1,23 +1,29 @@
 local formatters_by_ft = {
-  -- Conform will run multiple formatters sequentially
-  -- Use a sub-list to run only the first available formatter
   lua = { "stylua" },
   python = { "isort", "black" },
-  javascript = { "prettierd" },
-  sh = { "shfmt" },
   rust = { "rustfmt" },
 
-  -- Use the "*" filetype to run formatters on all filetypes.
+  javascript = { "prettierd" },
+  typescript = { "prettierd" },
+
+  sh = { "shfmt" },
+  bash = { "shfmt" },
+  zsh = { "shfmt" },
+
+  -- for all filetypes
   ["*"] = { "codespell", "trim_whitespace" },
-  -- Use the "_" filetype to run formatters on filetypes that don't
-  -- have other formatters configured.
+
+  -- fallback
   ["_"] = { "trim_whitespace" },
 }
 
 local fast_fts = {
   lua = true,
   rust = true,
+
   bash = true,
+  zsh = true,
+  sh = true,
 }
 
 local slow_fts = {

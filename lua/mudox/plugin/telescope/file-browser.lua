@@ -2,7 +2,13 @@ local function mappings()
   local a = require("telescope").extensions.file_browser.actions
   return {
     i = {
-      ["<C-,>"] = a.toggle_browser,
+      ["<C-,>c"] = a.create,
+      ["<C-,>d"] = a.remove,
+      ["<C-,>r"] = a.rename,
+      ["<C-,>y"] = a.copy,
+      ["<C-,>m"] = a.move,
+      ["<C-,>o"] = a.open,
+
       ["<M-/>"] = a.toggle_browser,
     },
   }

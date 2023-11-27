@@ -78,8 +78,8 @@ local folder = {
   empty        = " ",
   empty_open   = "󰷏 ",
 
-  symlink      = " ",
-  symlink_open = " ",
+  symlink      = " ",
+  symlink_open = " ",
 }
 
 -- 〉

@@ -41,7 +41,7 @@ local function opts()
   -- stylua: ignore
   local glyphs = {
     default = "",
-    symlink = "⤵",
+    symlink = "󰿨",
     git     = git,
     folder  = folder,
   }

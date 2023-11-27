@@ -80,10 +80,6 @@ local bottom = {
 
 local right = {
   {
-    title = "Query",
-    ft = "query",
-  },
-  {
     title = "Tests",
     ft = "neotest-summary",
   },
@@ -169,11 +165,11 @@ return {
   "folke/edgy.nvim",
   event = "VeryLazy",
   keys = keys,
-  cond = function()
-    return vim.g.mdx_nvim_mode ~= "man"
-  end,
   init = init,
   opts = opts,
 
+  cond = function()
+    return vim.g.mdx_nvim_mode ~= "man"
+  end,
   branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
 }

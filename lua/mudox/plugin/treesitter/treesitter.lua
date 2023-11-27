@@ -33,11 +33,6 @@ opts.indent = {
   enable = true,
 }
 
-opts.context_commentstring = {
-  enable = true,
-  enable_autocmd = false,
-}
-
 opts.incremental_selection = {
   enable = true,
   keymaps = {
@@ -61,24 +56,22 @@ local function config()
   -- vim.treesitter.query.set("lua", "injections", "")
 end
 
+local function init()
+  vim.o.foldmethod = "expr"
+  vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
+  -- vim.o.foldminlines = 6
+  vim.o.foldnestmax = 3
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "TSUpdate", "TSInstallInfo" },
-    dependencies = {
-      "nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
     keys = keys,
-    init = function()
-      vim.o.foldmethod = "expr"
-      vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
-      -- vim.o.foldminlines = 6
-      vim.o.foldnestmax = 3
-    end,
+    init = init,
     config = config,
   },
 }

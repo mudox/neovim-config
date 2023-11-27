@@ -1,3 +1,7 @@
+local function t(name)
+  return require("mudox.plugin.toggleterm." .. name)
+end
+
 local toggle_key = "<C-t>"
 
 local opts = {
@@ -28,25 +32,25 @@ local opts = {
 
 local function config()
   require("toggleterm").setup(opts)
-  require("mudox.plugin.toggle-term.git"):init()
+  t("git"):init()
 end
 
 local function move(direction)
   return function()
-    require("mudox.plugin.toggle-term.util").move(direction)
+    t("util").move(direction)
   end
 end
 
 local function toggle_gitui()
-  require("mudox.plugin.toggle-term.git").gitui:toggle()
+  t("git").gitui:toggle()
 end
 
 local function toggle_lazygit()
-  require("mudox.plugin.toggle-term.git").lazygit:toggle()
+  t("git").lazygit:toggle()
 end
 
 local function change_layout()
-  require("mudox.plugin.toggle-term.util").change_layout()
+  t("util").change_layout()
 end
 
 -- stylua: ignore
