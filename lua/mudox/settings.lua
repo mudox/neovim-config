@@ -36,8 +36,8 @@ opt.fillchars = {
   diff      = '╱',
 
   fold      = ' ',
-  foldopen  = '',
-  foldclose = '',
+  foldopen  = '󰅀',
+  foldclose = '',
   foldsep   = ' ',
 }
 
@@ -56,7 +56,7 @@ o.showcmd = false
 o.ruler = false
 
 -- command line
-o.cmdheight = 1
+o.cmdheight = 2
 opt.wildmode = "longest:full,full"
 
 -- message
@@ -73,7 +73,7 @@ opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
 opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
-o.signcolumn = "auto:1"
+o.foldcolumn = "1"
 
 -- 〉
 

@@ -51,9 +51,6 @@ end, { desc = "Smart close" })
 -- Useless legacy `sleep` function
 K.nnop("gs")
 
--- Let ' acts as `
-K.nmap("'", "`")
-
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
 K.nmap("g,", "g,zv", { remap = true })
@@ -66,15 +63,6 @@ K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" }
 
 -- Copy entire buffer content into system pasteboard
 K.ncmd("yf", "0,$y +")
-
--- Operator 〈
-
-K.omap("ir", "i[")
-K.omap("ar", "a[")
-K.omap("ia", "i<")
-K.omap("aa", "a<")
-
--- Operator 〉
 
 -- Terminal 〈
 

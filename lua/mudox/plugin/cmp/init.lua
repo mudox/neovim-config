@@ -73,7 +73,7 @@ end
 return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
-  keys = { { "<leader>vC", "<Cmd>CmpStatus<Cr>", desc = "Cmp" } },
+  keys = { { "<leader>vc", "<Cmd>CmpStatus<Cr>", desc = "Cmp" } },
   dependencies = dependencies,
   config = config,
 }

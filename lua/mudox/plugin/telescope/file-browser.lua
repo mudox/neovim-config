@@ -68,7 +68,4 @@ return {
   dependencies = { "telescope.nvim", "plenary.nvim" },
   keys = keys,
   config = config,
-
-  -- branch = "mudox", -- add space padding for double width nerd symbols
-  -- lock = true,
 }

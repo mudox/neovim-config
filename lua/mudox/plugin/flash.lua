@@ -42,24 +42,20 @@ local opts = {
 }
 
 -- stylua: ignore
-local function f() return require("flash") end
-
--- stylua: ignore
 local keys = {
   -- jump
-  { "s",       mode = { "n", "x", "o" }, function() f().jump() end,              "Jump", },
+  { "s",        mode = { "o", "x", "n" }, function() require("flash").jump() end,              "Jump",                   },
 
   -- expand selection
-  { "v",       mode = { "x", "o" },      function() f().treesitter() end,        "Expand selection", },
-  { "<Space>", mode = { "x", "o" },      function() f().treesitter() end,        "Expand selection", },
+  { "<Space>",  mode = { "o", "x" },      function() require("flash").treesitter() end,        "Expand selection",       },
 
-  -- jump and ...
-  { "\\",      mode = { "o" },           function() f().remote() end,            "Remote mode", },
-  -- jump and then expand selection
-  { "/",       mode = { "o" },           function() f().treesitter_search() end, "Remote treesitter mode", },
+  -- jump + motion
+  { "<Bslash>", mode = { "o" },           function() require("flash").remote() end,            "Remote mode",            },
+  -- jump + expand selection
+  { "/",        mode = { "o" },           function() require("flash").treesitter_search() end, "Remote treesitter mode", },
 
   -- search
-  { "<C-s>",   mode = { "c" },           function() f().toggle() end,            "Toggle flash search", },
+  { "<C-s>",    mode = { "c" },           function() require("flash").toggle() end,            "Toggle flash search",    },
 }
 
 keys = K.lazy_keys(keys, {

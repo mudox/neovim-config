@@ -42,12 +42,6 @@ local function opts()
     },
   }
 
-  -- for k, v in pairs(icons) do
-  --   local icon = v.icon
-  --   icon = icon:gsub("^%s+", "") -- trim prefixing spaces
-  --   icon = icon:gsub("%s+$", "") -- trim trailing spaces
-  --   icons[k].icon = icon
-  -- end
   return ret
 end
 

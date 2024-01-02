@@ -132,7 +132,7 @@ local keys = {
 return {
   "stevearc/conform.nvim",
   event = "BufWritePre",
-  cmds = { "Conformat", "ConformInfo" },
+  cmd = { "Conformat", "ConformInfo" },
   keys = keys,
   config = config,
 }

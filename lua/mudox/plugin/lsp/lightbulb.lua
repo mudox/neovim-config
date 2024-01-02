@@ -4,6 +4,7 @@ local opts = {
   },
   virtual_text = {
     enabled = true,
+    text = "",
   },
   autocmds = {
     enabled = true,

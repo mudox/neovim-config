@@ -65,7 +65,7 @@ local keys = {
 
 -- Keys 〉
 
-local function opts(o)
+local function opts(_, o)
   local t = require("luasnip.util.types")
 
   o.enable_autosnippets = false -- impact performance

@@ -62,6 +62,12 @@ local function nvim_tree(hl, c)
   hl.NvimTreeOpenedFile.fg = "#FFFFFF"
 end
 
+local function dropbar(hl, c)
+  -- TRACK: track: https://github.com/Bekaboo/dropbar.nvim/issues/118
+  hl.StatusLine = { fg = "white", bg = "NONE" }
+  hl.StatusLineNC = { fg = "#828bb8", bg = "NONE" }
+end
+
 local opts = {
   -- For transparent background to take effect, the style name here must be same as that
   -- applied to current terminal app (e.g. in kitty.conf)
@@ -78,6 +84,7 @@ local opts = {
     gitsigns(...)
     nvim_tree(...)
     telescope(...)
+    dropbar(...)
   end,
 }
 

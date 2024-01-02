@@ -150,6 +150,7 @@ end
 -- * lsp root_dir
 -- * root pattern of filename of the current buffer
 -- * root pattern of cwd
+-- * cwd
 ---@return string
 local function get()
   local bufnr = vim.api.nvim_get_current_buf()

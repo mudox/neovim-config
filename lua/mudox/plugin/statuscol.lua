@@ -1,6 +1,18 @@
 local function opts()
   local builtin = require("statuscol.builtin")
 
+  local fold = { text = { builtin.foldfunc }, click = "v:lua.ScFa" }
+
+  local todo = {
+    sign = {
+      name = { "todo" },
+      maxwidth = 1,
+      colwidth = 2,
+      auto = true,
+    },
+    click = "v:lua.ScSa",
+  }
+
   local test_debug = {
     sign = {
       name = {
@@ -14,21 +26,14 @@ local function opts()
     click = "v:lua.ScSa",
   }
 
-  local diagnostics = {
-    sign = {
-      name = {
-        "Diagnostic",
-      },
-      maxwidth = 1,
-      colwidth = 2,
-      auto = true,
-    },
+  local diagnostic = {
+    sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 2, auto = true },
     click = "v:lua.ScSa",
   }
 
   local gap = {
     text = { " " },
-    condition = builtin.not_empty,
+    condition = { builtin.not_empty },
   }
 
   local line_num = {
@@ -46,12 +51,24 @@ local function opts()
     click = "v:lua.ScSa",
   }
 
+  local fallback = {
+    sign = {
+      name = { ".*" },
+      maxwidth = 2,
+      colwidth = 1,
+      auto = true,
+    },
+  }
+
   return {
     segments = {
-      diagnostics,
+      -- fold,
+      todo,
+      diagnostic,
       test_debug,
       line_num,
       gitsigns,
+      fallback,
     },
   }
 end

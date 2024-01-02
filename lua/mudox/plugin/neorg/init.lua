@@ -1,9 +1,7 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
 local dirman = {
   config = {
     workspaces = {
-      home = "/Users/mudox/OneDrive/Neorg/home",
+      home = "/Users/mudox/Documents/Neorg/home",
     },
     default_workspace = "home",
   },
@@ -29,10 +27,10 @@ local toc = {
   },
 }
 
--- stylua: ignore start
 local metagen = {
   config = {
     type = "empty",
+    -- stylua: ignore
     template = {
       { "title",       "" },
       { "description", "" },
@@ -49,23 +47,22 @@ local metagen = {
     },
   },
 }
--- stylua: ignore end
 
 local function r(name)
   return require("mudox.plugin.neorg." .. name)
 end
 
--- stylua: ignore start
 local opts = {
+  -- stylua: ignore
   load = {
     -- default modules
     ["core.defaults"]               = {},
     ["core.esupports.metagen"]      = metagen,
-    ["core.keybinds"]               = r"keybinds",
+    ["core.keybinds"]               = r "keybinds",
 
     -- non-default modules
     ["core.completion"]             = completion,
-    ["core.concealer"]              = r"concealer",
+    ["core.concealer"]              = r "concealer",
     ["core.dirman"]                 = dirman,
     ["core.journal"]                = journal,
     ["core.qol.toc"]                = toc,
@@ -74,7 +71,6 @@ local opts = {
     ["core.integrations.telescope"] = {},
   },
 }
--- stylua: ignore end
 
 local keys = {
   { "<Space>e", "<Cmd>Neorg workspace home<Cr>", desc = "Open Neorg Home Workspace" },

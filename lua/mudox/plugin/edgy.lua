@@ -1,8 +1,8 @@
 -- stylua: ignore
 local keys = {
-  { "<leader>we",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window" },
-  { "<leader>wm",       function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area" },
-  { "<leader>wx",       function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
+  { "<leader>w/",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window" },
+  { "<leader>w<Cr>",    function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area" },
+  { "<leader>w<Bs>",    function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
 }
 
 local function is_not_floating(_, win)

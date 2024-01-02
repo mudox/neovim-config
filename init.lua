@@ -29,3 +29,5 @@ else
   U.load("autocmds")
   U.load("keymaps")
 end
+
+local a = 1

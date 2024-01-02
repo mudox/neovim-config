@@ -1,7 +1,7 @@
 local cmd = [[<Cmd>lua require('hlslens').start()<Cr>]]
 local keys = {
-  { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<Cr>]] .. cmd },
-  { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<Cr>]] .. cmd },
+  { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<Cr>zv]] .. cmd },
+  { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<Cr>zv]] .. cmd },
   { "*", "*" .. cmd },
   { "#", "#" .. cmd },
   { "g*", "g*" .. cmd },

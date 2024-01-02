@@ -55,7 +55,7 @@ end
 
 local function config()
   -- patch nvim-dap
-  require("overseer").setup()
+  require("overseer") -- let lazy to setup overseer if not
   -- support launchjs.json written in JSON5
   require("dap.ext.vscode").json_decode = require("overseer.json").decode
 

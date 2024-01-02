@@ -1,7 +1,7 @@
 local M = {}
 
 local function toggle_inlay_hint()
-  vim.lsp.inlay_hint(0)
+  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
 end
 
 local function setup_keymaps(bufnr)

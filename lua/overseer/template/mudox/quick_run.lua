@@ -1,3 +1,4 @@
+print("load quick run template")
 return {
   name = "quick run",
 

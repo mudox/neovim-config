@@ -46,13 +46,15 @@ local function nav_cmd(target, cmd)
 end
 
 local function t(o)
-  return { "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>", o }
+  return { "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>", "[Option] " .. o }
 end
 
 local function toggle_treesitter_highlighting()
   local function notify(msg)
     vim.notify(msg, vim.log.levels.INFO, { title = "TreeSitter" })
   end
+
+  -- `b:ts_highlight` will be set automatically by `vim.treesitter.[start|stop]`
 
   if vim.b.ts_highlight then
     vim.treesitter.stop()
@@ -73,6 +75,8 @@ local nvim_view = {
   a         = { c "args",            "Arguments"             },
   B         = { c "buffers!",        "Buffers!"              },
   b         = { c "buffers",         "Buffers"               },
+  -- TODO: my own custom info dashboards
+  g         = {   "<C-G>",           "File information",     remap = true },
   I         = { c "Inspect!",        "Inspect!"              },
   i         = { c "Inspect",         "Inspect"               },
   j         = { c "jumps",           "Jumps"                 },
@@ -131,13 +135,13 @@ local tabpage = {
 local nvim_toggle = {
   name = "+nvim toggle",
 
-  h = t"hlsearch",
-  l = t"list",
-  n = t"number",
-  r = t"relativenumber",
-  s = t"spell",
-  w = t"wrap",
-  t = { toggle_treesitter_highlighting, "TreeSitter highlighting" },
+  h = t "hlsearch",
+  l = t "list",
+  n = t "number",
+  r = t "relativenumber",
+  s = t "spell",
+  w = t "wrap",
+  t = { toggle_treesitter_highlighting, "[TreeSitter] highlighting" },
 }
 
 local plugin_toggle = {

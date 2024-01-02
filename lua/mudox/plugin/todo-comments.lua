@@ -18,15 +18,27 @@ local keys = {
 -- stylua: ignore
 local keywords = {
   FIX  = { icon = " ", color = "error",   alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-  TODO = { icon = " ", color = "info",    alt = { "LATER", "IDEA" } },
-  HACK = { icon = " ", color = "warning", alt = { "DANGER" } },
+  TODO = { icon = "﫠", color = "info",    alt = { "LATER", "IDEA" } },
+  HACK = { icon = " ", color = "warning", alt = { "DANGER", "TRACK" } },
   WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
   PERF = { icon = "󰓅 ", color = "info",    alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
   NOTE = { icon = "󰍪 ", color = "hint",    alt = { "INFO" } },
 }
 
+local search = {
+  args = {
+    "--color=never",
+    "--no-heading",
+    "--with-filename",
+    "--line-number",
+    "--column",
+    "--glob=!lua/rocks/", -- exluce luarocks source files
+  },
+}
+
 local opts = {
   keywords = keywords,
+  search = search,
 }
 
 return {

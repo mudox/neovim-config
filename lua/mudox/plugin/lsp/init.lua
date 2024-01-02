@@ -11,4 +11,5 @@ return {
   r("actions-preview"),
   r("glance"),
   r("lightbulb"),
+  r("garbage-day"),
 }

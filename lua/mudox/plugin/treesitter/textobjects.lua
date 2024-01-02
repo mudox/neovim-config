@@ -1,14 +1,14 @@
 -- DO NOT use l, r in omap or xmap which conflict with moving keymaps
 
--- : 󰅂 key-value pair
--- = 󰅂 assignment
--- a 󰅂 argument / parameter
--- c 󰅂 class
--- f 󰅂 function
--- i 󰅂 condition
--- k 󰅂 function call
--- l 󰅂 loop
--- s 󰅂 scope
+-- :  󰅂 key-value pair
+-- =  󰅂 assignment
+-- a  󰅂 argument / parameter
+-- c  󰅂 class
+-- f  󰅂 function
+-- i  󰅂 condition
+-- k  󰅂 function call
+-- @  󰅂 loop
+-- s  󰅂 scope
 
 -- stylua: ignore start
 
@@ -39,8 +39,8 @@ select.keymaps = {
   ["ii"] = { query = "@conditional.inner", desc = "Inner of a conditional" },
 
   -- loop
-  ["al"] = { query = "@loop.outer",        desc = "Outer of a loop" },
-  ["il"] = { query = "@loop.inner",        desc = "Inner of a loop" },
+  ["a@"] = { query = "@loop.outer",        desc = "Outer of a loop" },
+  ["i@"] = { query = "@loop.inner",        desc = "Inner of a loop" },
 
   -- function call
   ["ak"] = { query = "@call.outer",        desc = "Outer of a function call" },
@@ -65,7 +65,7 @@ move.goto_next_start = {
   ["󰅂f"] = { query = "@function.outer",    desc = "Next method/function def start" },
   ["󰅂c"] = { query = "@class.outer",       desc = "Next class start" },
   ["󰅂i"] = { query = "@conditional.outer", desc = "Next conditional start" },
-  ["󰅂l"] = { query = "@loop.outer",        desc = "Next loop start" },
+  ["󰅂@"] = { query = "@loop.outer",        desc = "Next loop start" },
   ["󰅂s"] = { query = "@scope",             desc = "Next scope",     query_group  = "locals" },
 }
 
@@ -83,7 +83,7 @@ move.goto_previous_start = {
   ["󰅁f"] = { query = "@function.outer",    desc = "Previous method/function def start" },
   ["󰅁c"] = { query = "@class.outer",       desc = "Previous class start" },
   ["󰅁i"] = { query = "@conditional.outer", desc = "Previous conditional start" },
-  ["󰅁l"] = { query = "@loop.outer",        desc = "Previous loop start" },
+  ["󰅁@"] = { query = "@loop.outer",        desc = "Previous loop start" },
   ["󰅁s"] = { query = "@scope",             desc = "Previous scope", query_group  = "locals" },
 }
 

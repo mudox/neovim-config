@@ -6,27 +6,26 @@ local keys = {
 local opts = {}
 
 opts.ensure_installed = {
-  "bash",
   "c",
-  "html",
-  "http",
-  "javascript",
-  "json",
   "lua",
-  "luap",
-  "markdown",
-  "markdown_inline",
-  "python",
-  "query", -- TreeSitter query language
-  "regex",
-  "tsx",
-  "typescript",
+  "query",
   "vim",
-  "yaml",
+  "vimdoc",
 }
+
+opts.auto_install = true
 
 opts.highlight = {
   enable = true,
+
+  ---@diagnostic disable-next-line: unused-local
+  disable = function(lang, buf)
+    local max_filesize = 50 * 1024 -- 50 KB
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    if ok and stats and stats.size > max_filesize then
+      return true
+    end
+  end,
 }
 
 opts.indent = {
@@ -34,7 +33,7 @@ opts.indent = {
 }
 
 opts.incremental_selection = {
-  enable = true,
+  enable = false, -- use flash.nvim instead
   keymaps = {
     init_selection = "<C-Space>",
     node_incremental = "<C-Space>",
