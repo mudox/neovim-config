@@ -19,9 +19,21 @@ local surrounds = {
   },
 }
 
+local keys = {
+  "ys", -- add
+  "cs", -- change
+  "ds", -- delete
+  { "q", mode = "v" },
+  { "Q", mode = "v" },
+}
+
+local chars = { "(", ")", "[", "]", "{", "}", "'", '"' }
+for _, char in pairs(chars) do
+  table.insert(keys, { char, "<Plug>(nvim-surround-visual)" .. char, mode = "v", remap = true })
+end
+
 local opts = {
   keymaps = {
-    -- `S` and `gs` conflicts with `leap.nvim`
     visual = "q",
     visual_line = "Q",
   },
@@ -31,12 +43,6 @@ local opts = {
 
 return {
   "kylechui/nvim-surround",
-  keys = {
-    "ys",
-    "cs",
-    "ds",
-    { "q", mode = "v" },
-    { "Q", mode = "v" },
-  },
+  keys = keys,
   opts = opts,
 }

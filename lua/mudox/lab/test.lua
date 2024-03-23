@@ -1,5 +1,5 @@
 local api = vim.api
-local fn = vim.fn
+-- local fn = vim.fn
 
 local lines = {}
 
@@ -20,7 +20,7 @@ api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
 -- window
 local float_scale = 0.7
-local float_win = api.nvim_open_win(buf, true, {
+_ = api.nvim_open_win(buf, true, {
   relative = "editor",
   height = math.floor(vim.o.lines * float_scale + 0.5),
   width = math.floor(vim.o.columns * float_scale + 0.5),

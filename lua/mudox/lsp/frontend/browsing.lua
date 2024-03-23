@@ -1,10 +1,10 @@
 local M = {}
 
-local function toggle_inlay_hint()
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
-end
+local function setup_keymaps(_, bufnr)
+  local function toggle_inlay_hint()
+    vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+  end
 
-local function setup_keymaps(bufnr)
   -- stylua: ignore
   local keys = {
     gx        = { vim.lsp.buf.declaration,                   "[LSP] Goto declaration"           },
@@ -22,7 +22,7 @@ local function setup_keymaps(bufnr)
     K         = { vim.lsp.buf.hover,                         "[LSP] Hover"                      },
     gk        = { vim.lsp.buf.signature_help,                "[LSP] Signature help"             },
 
-    ["yoH"]   = { toggle_inlay_hint,                         "LSP inlay hint"                   },
+    ["yoH"]   = { toggle_inlay_hint,                         "[LSP] inlay hint"                 },
 
     ["<C-k>"] = { vim.lsp.buf.signature_help,                "[LSP] Signature Help", mode = "i" },
   }
@@ -33,14 +33,8 @@ local function setup_keymaps(bufnr)
   require("which-key").register(keys)
 end
 
-local function setup_on_attach()
-  U.on.lsp_attach(function(_, bufnr)
-    setup_keymaps(bufnr)
-  end)
-end
-
 function M.setup()
-  setup_on_attach()
+  U.on.lsp_attach(setup_keymaps)
 end
 
 return M

@@ -13,7 +13,9 @@ return {
     { "<C-;>", "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
   },
   opts = {
+    window = { border = "none" },
     lsp = { auto_attach = true },
     icons = require("mudox.ui.icon").kind,
+    node_markers = { enabled = false },
   },
 }

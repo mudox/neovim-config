@@ -121,7 +121,7 @@ local diagnostics = {
 -- stylua: ignore
 local chevron = {
   down  = "",
-  right = "󰅂",
+  right = "",
 }
 
 -- stylua: ignore

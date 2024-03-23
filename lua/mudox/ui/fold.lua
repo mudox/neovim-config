@@ -1,5 +1,8 @@
 -- refs
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/ui.lua `function foldtext()`
+--
+-- foldline composition feature was removed in https://github.com/neovim/neovim/pull/20750
+-- now is not unable to customize foldline
 
 local head = require("mudox.ui.icon").chevron.right .. " "
 local head_hl = "Normal"

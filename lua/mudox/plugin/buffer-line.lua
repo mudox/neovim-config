@@ -68,11 +68,12 @@ end
 local keys = {
   { "<M-o>",   "Pick",                 "Pick",           k =  "l" },
 
+  -- close buffer
   { "x",       "PickClose",            "Pick & close",   },
   { "<",       "CloseLeft",            "Close left",     },
   { ">",       "CloseRight",           "Close right",    },
-  { ".",       "CloseOthers",          "Close other",    },
-  { ";",       "GroupClose ungrouped", "Close unpinned", },
+  { "o",       "CloseOthers",          "Close other",    },
+  { "O",       "GroupClose ungrouped", "Close unpinned", },
 
   { "-",       "TogglePin",            "Pin",            },
 

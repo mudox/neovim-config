@@ -73,7 +73,7 @@ opt.guicursor = "n-v-c-sm:block-blinkwait1300-blinkon200"
 opt.guicursor:append("i-ci-ve:ver25-Cursor-blinkon200-blinkoff150")
 opt.guicursor:append("r-cr-o:hor20-blinkwait300-blinkon200")
 
-o.foldcolumn = "1"
+o.foldcolumn = "auto:1"
 
 -- 〉
 

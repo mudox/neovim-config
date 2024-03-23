@@ -19,18 +19,6 @@ on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Check if we 〉
 
--- Flash on yanking 〈
-
--- on("TextYankPost", {
---   group = g("highlight_yank"),
---   desc = "Flash on yanking",
---   callback = function()
---     vim.highlight.on_yank { timeout = 250 }
---   end,
--- })
-
--- Flash on yanking 〉
-
 -- Auto resize windows 〈
 
 on("VimResized", {

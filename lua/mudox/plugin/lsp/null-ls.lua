@@ -10,13 +10,10 @@ local function opts()
     sources = {
       -- JavaScript, TypeScript
       f.prettierd,
-      d.eslint_d,
-      a.eslint_d,
 
       -- Python
       f.black.with { extra_args = { "--fast" } },
       f.isort,
-      d.pylama,
 
       -- Swift
       f.swiftformat,

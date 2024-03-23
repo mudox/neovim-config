@@ -62,6 +62,8 @@ keys = K.lazy_keys(keys, {
   desc_prefix = "Flash",
 })
 
+vim.list_extend(keys, { "f", "F", "t", "T" })
+
 return {
   "folke/flash.nvim",
   keys = keys,

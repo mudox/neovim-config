@@ -10,6 +10,6 @@ end
 
 return {
   "aznhe21/actions-preview.nvim",
-  event = "LspAttach",
+  -- event = "LspAttach", -- required in keymap `\a`
   opts = opts,
 }

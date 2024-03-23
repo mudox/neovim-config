@@ -42,23 +42,25 @@ local opts = {
 local function config()
   require("illuminate").configure(opts)
 
-  local function map(key, dir)
-    vim.keymap.set("n", key, function()
-      require("illuminate")["goto_" .. dir .. "_reference"](true)
-    end)
+  local op = {
+    name = "illuminate",
+    next = function()
+      require("illuminate").goto_next_reference(true)
+    end,
+    prev = function()
+      require("illuminate").goto_prev_reference(true)
+    end,
+  }
+
+  local function setup_keymaps()
+    K.nmap("]]", X.dirop.wrap(op, "next"))
+    K.nmap("[[", X.dirop.wrap(op, "prev"))
   end
 
-  map("]]", "next")
-  map("[[", "prev")
+  setup_keymaps()
 
   -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-  vim.api.nvim_create_autocmd("FileType", {
-    callback = function()
-      local buffer = vim.api.nvim_get_current_buf()
-      map("]]", "next", buffer)
-      map("[[", "prev", buffer)
-    end,
-  })
+  vim.api.nvim_create_autocmd("FileType", { callback = setup_keymaps })
 end
 
 return {

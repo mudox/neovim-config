@@ -1,18 +1,19 @@
-local keys = {
-  { "<C-Space>", desc = "Begin / expand selection", mode = { "n", "x" } },
-  { "<Bs>", desc = "Shrink selection", mode = "x" },
-}
+-- local keys = {
+--   { "<C-Space>", desc = "Begin / expand selection", mode = { "n", "x" } },
+--   { "<Bs>", desc = "Shrink selection", mode = "x" },
+-- }
 
 local opts = {}
 
 opts.ensure_installed = {
   "c",
   "lua",
-  "query",
   "vim",
   "vimdoc",
+  "query",
 }
 
+-- tree-sitter-cli is installed by mason
 opts.auto_install = true
 
 opts.highlight = {
@@ -20,8 +21,9 @@ opts.highlight = {
 
   ---@diagnostic disable-next-line: unused-local
   disable = function(lang, buf)
+    --- disable for big buffer
     local max_filesize = 50 * 1024 -- 50 KB
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
     if ok and stats and stats.size > max_filesize then
       return true
     end
@@ -34,12 +36,6 @@ opts.indent = {
 
 opts.incremental_selection = {
   enable = false, -- use flash.nvim instead
-  keymaps = {
-    init_selection = "<C-Space>",
-    node_incremental = "<C-Space>",
-    scope_incremental = "<Nop>",
-    node_decremental = "<Bs>",
-  },
 }
 
 opts.query_linter = {
@@ -56,9 +52,11 @@ local function config()
 end
 
 local function init()
+  -- treesitter folding
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-  vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
+  vim.o.foldtext = "" -- use default transparent foldtext
+  -- vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
   -- vim.o.foldminlines = 6
   vim.o.foldnestmax = 3
 end
@@ -69,7 +67,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "TSUpdate", "TSInstallInfo" },
-    keys = keys,
+    -- keys = keys,
     init = init,
     config = config,
   },

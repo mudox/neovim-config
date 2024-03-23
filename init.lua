@@ -2,13 +2,14 @@
 U = require("mudox.util")
 X = require("mudox.lab")
 K = U.keymap
+F = vim.fn
 
-X.renav.setup()
+X.dirop.setup()
 
--- Neovim mode
+-- Neovim mode - g:mdx_nvim_mode
 require("mudox.mode")
 
--- Plugin manager
+-- Plugin manager - lazy.nvim
 require("mudox.lazy")
 
 -- Settings
@@ -29,5 +30,3 @@ else
   U.load("autocmds")
   U.load("keymaps")
 end
-
-local a = 1

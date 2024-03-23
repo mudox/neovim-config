@@ -1,20 +1,21 @@
+-- stylua: ignore
 local formatters_by_ft = {
-  lua = { "stylua" },
-  python = { "isort", "black" },
-  rust = { "rustfmt" },
+  lua        = { "stylua" },
+  python     = { "isort", "black" },
+  rust       = { "rustfmt" },
 
   javascript = { "prettierd" },
   typescript = { "prettierd" },
 
-  sh = { "shfmt" },
-  bash = { "shfmt" },
-  zsh = { "shfmt" },
+  sh         = { "shfmt" },
+  bash       = { "shfmt" },
+  zsh        = { "shfmt" },
 
   -- for all filetypes
-  ["*"] = { "codespell", "trim_whitespace" },
+  ["*"]      = { "trim_whitespace" },
 
   -- fallback
-  ["_"] = { "trim_whitespace" },
+  ["_"]      = { "trim_whitespace" },
 }
 
 local fast_fts = {

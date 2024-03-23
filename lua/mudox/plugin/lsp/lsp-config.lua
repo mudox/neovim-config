@@ -5,7 +5,7 @@ local dependencies = {
   "mason.nvim",
   { "williamboman/mason-lspconfig.nvim", config = false }, -- setup run in `mudox.lsp.backend.init`
 
-  "hrsh7th/cmp-nvim-lsp", -- for composing starting capabilities for completion
+  "hrsh7th/cmp-nvim-lsp", -- for composing base lsp capabilities
 }
 
 local function config()
@@ -19,7 +19,6 @@ local function config()
   -- frontend
   setup("frontend.browsing")
   setup("frontend.diagnostic")
-  setup("frontend.formatting")
   setup("frontend.refactoring")
 end
 

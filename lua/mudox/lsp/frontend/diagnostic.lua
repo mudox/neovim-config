@@ -43,46 +43,60 @@ local function config()
   }
 end
 
-local function jump(next, severity)
-  local go = next and d.goto_next or d.goto_prev
-  severity = severity and d.severity[severity] or nil
-  return function()
-    go { severity = severity }
-  end
-end
-
-local function toggle()
-  local function notify(msg)
-    vim.notify(msg, vim.log.levels.INFO, { title = "LSP" })
-  end
-
-  if d.is_disabled() then
-    d.enable()
-    notify("Diagnostic enabled")
-  else
-    d.disable()
-    notify("Diagnostic disabled")
-  end
-end
-
-local function lsp_lines()
-  require("lsp_lines").toggle()
-end
-
 local function setup_keymaps(_, bufnr)
+  local function jump(next, severity)
+    local go = next and d.goto_next or d.goto_prev
+    severity = severity and d.severity[severity] or nil
+    return function()
+      go { severity = severity }
+    end
+  end
+
+  local jump_dirop = {
+    name = "diagnostic issue (d)",
+    next = jump(true),
+    prev = jump(false),
+  }
+
+  local jump_error_dirop = {
+    name = "diagnostic error (E)",
+    next = jump(true, "ERROR"),
+    prev = jump(false, "ERROR"),
+  }
+
+  local function toggle()
+    local function notify(msg)
+      vim.notify(msg, vim.log.levels.INFO, { title = "LSP" })
+    end
+
+    if d.is_disabled() then
+      d.enable()
+      notify("Diagnostic enabled")
+    else
+      d.disable()
+      notify("Diagnostic disabled")
+    end
+  end
+
+  local function lsp_lines()
+    require("lsp_lines").toggle()
+  end
+
+  local dirop = X.dirop.wrap
+
   -- stylua: ignore
   local keys = {
-    ["󰅂d"]  = { jump(true),                "[Diagnostic] Next issue"       },
-    ["󰅁d"]  = { jump(false),               "[Diagnostic] Previous issue"   },
-    ["󰅂E"]  = { jump(true, "ERROR"),       "[Diagnostic] Next error"       },
-    ["󰅁E"]  = { jump(false, "ERROR"),      "[Diagnostic] Previous error"   },
+    ["]d"]  = { dirop(jump_dirop, 'next'),        "[Diagnostic] Next issue"     },
+    ["[d"]  = { dirop(jump_dirop, 'prev'),        "[Diagnostic] Previous issue" },
+    ["]E"]  = { dirop(jump_error_dirop, 'next'),  "[Diagnostic] Next error"     },
+    ["[E"]  = { dirop(jump_error_dirop, 'prev'),  "[Diagnostic] Previous error" },
 
-    ["gl"]  = { d.open_float,              "[Diagnostic] Show issue(s)"    },
-    ["col"] = { lsp_lines,                 "[Lsp Lines] Toggle"            },
+    ["gl"]  = { d.open_float,              "[Diagnostic] Show issue(s)" },
+    ["col"] = { lsp_lines,                 "[Lsp Lines] Toggle" },
 
-    ["yod"] = { toggle,                    "[Diagnostic] Toggle"           },
+    ["yod"] = { toggle,                    "[Diagnostic] Toggle" },
 
-    ["gQ"]  = { vim.diagnostic.setloclist, "[Diagnostic] Set loclist"      },
+    ["gQ"]  = { vim.diagnostic.setloclist, "[Diagnostic] Set loclist" },
   }
 
   require("which-key").register(keys, { buffer = bufnr })

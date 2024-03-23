@@ -1,7 +1,22 @@
 local function opts()
   local builtin = require("statuscol.builtin")
 
-  local fold = { text = { builtin.foldfunc }, click = "v:lua.ScFa" }
+  local fold = {
+    text = {
+      builtin.foldfunc,
+      " ",
+    },
+    condition = {
+      function()
+        return vim.wo.foldenable
+      end,
+      function(args)
+        return vim.wo.foldenable
+        -- return args.fold.width > 0
+      end,
+    },
+    click = "v:lua.ScFa",
+  }
 
   local todo = {
     sign = {
@@ -27,13 +42,10 @@ local function opts()
   }
 
   local diagnostic = {
+    -- use `:=vim.api.nvim_buf_get_extmarks(0, -1, 0, -1, { details = true})` to get all placed
+    -- extmarks with their namespaces
     sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 2, auto = true },
     click = "v:lua.ScSa",
-  }
-
-  local gap = {
-    text = { " " },
-    condition = { builtin.not_empty },
   }
 
   local line_num = {
@@ -62,8 +74,8 @@ local function opts()
 
   return {
     segments = {
-      -- fold,
-      todo,
+      fold,
+      -- todo,
       diagnostic,
       test_debug,
       line_num,
@@ -75,6 +87,6 @@ end
 
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VeryLazy",
+  event = { "BufNewFile", "BufRead" },
   opts = opts,
 }

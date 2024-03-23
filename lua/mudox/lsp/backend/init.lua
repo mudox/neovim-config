@@ -16,9 +16,9 @@ local function setup_neodev()
       -- PERF: list plugins only needed in `neovim-config` to reduce server initialization time and
       -- reduce memory overhead
       plugins = {
-        "lazy.nvim",
-        "nvim-treesitter",
-        "plenary.nvim",
+        -- "lazy.nvim",
+        -- "nvim-treesitter",
+        -- "plenary.nvim",
       },
     },
   }
