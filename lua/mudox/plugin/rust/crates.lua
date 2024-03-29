@@ -1,7 +1,7 @@
 local function setup_keymaps(bufnr) end
 
 local function init()
-  vim.api.nvim_create_autocmd("BufRead", {
+  U.on("BufRead", {
     pattern = "Cargo.toml",
     callback = function(event)
       require("lazy").load("crates.nvim")

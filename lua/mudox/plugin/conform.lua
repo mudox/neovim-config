@@ -1,15 +1,15 @@
 -- stylua: ignore
 local formatters_by_ft = {
-  lua        = { "stylua" },
-  python     = { "isort", "black" },
-  rust       = { "rustfmt" },
+  lua        = { "stylua"          },
+  python     = { "ruff"            },
+  rust       = { "rustfmt"         },
 
-  javascript = { "prettierd" },
-  typescript = { "prettierd" },
+  javascript = { "prettierd"       },
+  typescript = { "prettierd"       },
 
-  sh         = { "shfmt" },
-  bash       = { "shfmt" },
-  zsh        = { "shfmt" },
+  sh         = { "shfmt"           },
+  bash       = { "shfmt"           },
+  zsh        = { "shfmt"           },
 
   -- for all filetypes
   ["*"]      = { "trim_whitespace" },

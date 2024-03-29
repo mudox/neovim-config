@@ -98,6 +98,53 @@ move.goto_previous_end = {
 
 -- stylua: ignore end
 
+local function setup_keymaps()
+  local function d(name, postfix)
+    -- stylua: ignore
+    return {
+      name = name,
+      next = function() vim.cmd.normal("󰅂" .. postfix) end,
+      prev = function() vim.cmd.normal("󰅁" .. postfix) end,
+    }
+  end
+
+  local function next(name, postfix)
+    return X.dirop.wrap(d(name, postfix), "next")
+  end
+
+  local function prev(name, postfix)
+    return X.dirop.wrap(d(name, postfix), "prev")
+  end
+
+  local keys = { ["]"] = {}, ["["] = {} }
+
+  for k, v in pairs(move.goto_next_start) do
+    local name = v.desc:sub(6)
+    local postfix = k:sub(-1)
+    keys["]"][postfix] = { next(name, postfix), v.desc }
+  end
+
+  for k, v in pairs(move.goto_previous_start) do
+    local name = v.desc:sub(9)
+    local postfix = k:sub(-1)
+    keys["["][postfix] = { prev(name, postfix), v.desc }
+  end
+
+  for k, v in pairs(move.goto_next_end) do
+    local name = v.desc:sub(6)
+    local postfix = k:sub(-1)
+    keys["]"][postfix] = { next(name, postfix), v.desc }
+  end
+
+  for k, v in pairs(move.goto_previous_end) do
+    local name = v.desc:sub(9)
+    local postfix = k:sub(-1)
+    keys["["][postfix] = { prev(name, postfix), v.desc }
+  end
+
+  require("which-key").register(keys)
+end
+
 local config = function()
   ---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup {
@@ -107,6 +154,8 @@ local config = function()
       swap = { enable = false }, -- use iswap.nvim instead
     },
   }
+
+  setup_keymaps()
 end
 
 return {

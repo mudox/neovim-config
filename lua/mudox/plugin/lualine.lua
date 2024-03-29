@@ -75,6 +75,7 @@ local buffers = {
   },
 }
 
+---use bufferline.nvim instead
 ---@diagnostic disable-next-line: unused-local
 local tabline = {
   lualine_a = { buffers },

@@ -1,3 +1,5 @@
+-- TODO: favor nvim-lint & conform over null-ls
+
 local function opts()
   local null = require("null-ls")
 
@@ -12,8 +14,8 @@ local function opts()
       f.prettierd,
 
       -- Python
-      f.black.with { extra_args = { "--fast" } },
-      f.isort,
+      -- f.black.with { extra_args = { "--fast" } },
+      -- f.isort,
 
       -- Swift
       f.swiftformat,

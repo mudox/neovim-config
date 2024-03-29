@@ -4,15 +4,13 @@
 --   autocmds.lua from LazyVim
 --   3-autocmds.lua from NormalView
 
-local on = vim.api.nvim_create_autocmd
-
 local g = function(name)
   return vim.api.nvim_create_augroup("mdx_" .. name, { clear = true })
 end
 
 -- Checktime 〈
 
-on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
+U.on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
   group = g("checktime"),
   command = "checktime",
 })
@@ -21,7 +19,7 @@ on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Auto resize windows 〈
 
-on("VimResized", {
+U.on("VimResized", {
   group = g("equalize_splits"),
   desc = "Auto-re-equalize windows",
   callback = function()
@@ -57,7 +55,7 @@ on("VimResized", {
 
 -- Close with `q` 〈
 
-on("FileType", {
+U.on("FileType", {
   group = g("close_with_q"),
   desc = "Close using `q`",
   pattern = {
@@ -90,7 +88,7 @@ on("FileType", {
 
 -- Wrap & check spell 〈
 
-on("FileType", {
+U.on("FileType", {
   group = g("wrap_spell"),
   desc = "Wrap lines and check spelling",
   pattern = {
@@ -109,7 +107,7 @@ on("FileType", {
 -- User event MdxSessionStart 〈
 
 if vim.fn.argc(-1) == 0 then
-  on("User", {
+  U.on("User", {
     pattern = "AlphaClosed",
     desc = "Start session after Alpha closed",
     callback = function()
@@ -117,7 +115,7 @@ if vim.fn.argc(-1) == 0 then
     end,
   })
 else
-  on("User", {
+  U.on("User", {
     pattern = "VeryLazy",
     desc = "Start session on 1st buffer load",
     callback = function()
@@ -130,7 +128,7 @@ end
 
 -- Unfold for small files 〈
 
-on("BufRead", {
+U.on("BufRead", {
   group = g("unfold_for_small_file"),
   desc = "No fold for small files",
   callback = function()
@@ -141,3 +139,7 @@ on("BufRead", {
 })
 
 -- Unfold for small files 〉
+
+U.on.filetype("qf", function()
+  -- vim.opt_local.number = false
+end)

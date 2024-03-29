@@ -1,7 +1,8 @@
+local tabman_id = "Git"
 -- stylua: ignore
 local keys = {
-  { "<Tab>g", function() require("mudox.lab.tabman").open("tab Git", "fugitive") end,     desc = "[Fugitive] Open",     },
-  { "<Tab>G", function() require("mudox.lab.tabman").recreate("tab Git", "fugitive") end, desc = "[Fugitive] Recreate", },
+  { "<Tab>g", function() X.tabman.open(tabman_id, "tab Git") end,     desc = "[Fugitive] Open",     },
+  { "<Tab>G", function() X.tabman.recreate(tabman_id, "tab Git") end, desc = "[Fugitive] Recreate", },
 }
 
 return {

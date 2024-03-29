@@ -5,14 +5,14 @@ end
 local config = function()
   vim.cmd.VMTheme("neon")
 
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     pattern = "visual_multi_start",
     callback = function()
       require("lualine").hide()
     end,
   })
 
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     pattern = "visual_multi_exit",
     callback = function()
       require("lualine").hide { unhide = true }

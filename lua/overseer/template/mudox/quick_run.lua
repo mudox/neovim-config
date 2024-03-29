@@ -19,7 +19,7 @@ return {
     end
 
     return {
-      name = "Run script " .. vim.fn.expand("%"),
+      name = "quick run " .. vim.fn.expand("%:t"),
       cmd = cmd,
       components = {
         "on_result_diagnostics",

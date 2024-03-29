@@ -1,6 +1,10 @@
 return {
   name = "run neovim lua script",
 
+  condition = {
+    filetype = { "lua" },
+  },
+
   builder = function()
     local file = vim.fn.expand("%:p")
     local cmd = { "nvim", "-l", file }
@@ -14,8 +18,4 @@ return {
       },
     }
   end,
-
-  condition = {
-    filetype = { "lua" },
-  },
 }

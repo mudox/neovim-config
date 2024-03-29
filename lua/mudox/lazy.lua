@@ -14,7 +14,7 @@ if not vim.uv.fs_stat(lazypath) then
   local oldcmdheight = vim.opt.cmdheight:get()
   vim.opt.cmdheight = 2
   vim.notify("Please wait while plugins are installed...")
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     desc = "Load Mason and Treesitter after Lazy installs plugins",
     once = true,
     pattern = "LazyInstall",
@@ -47,7 +47,7 @@ local icons = {
   not_loaded = "○",
 
   runtime    = " ",
-  start      = " ",
+  start      = "",
   task       = "✔ ",
   list       = {
     "●",
@@ -58,6 +58,7 @@ local icons = {
 }
 
 local ui = {
+  backdrop = 100, -- remove backdrop
   -- a number <1 is a percentage., >1 is a fixed size
   size = { width = 0.8, height = 0.8 },
   wrap = true, -- wrap the lines in the ui

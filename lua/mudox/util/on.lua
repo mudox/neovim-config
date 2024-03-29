@@ -5,7 +5,7 @@ local M = {}
 function M.lsp_attach(fn, opts)
   opts = opts or {}
 
-  vim.api.nvim_create_autocmd("LspAttach", {
+  U.on("LspAttach", {
     group = opts.gid,
     desc = opts.desc,
     callback = function(event)
@@ -21,7 +21,7 @@ end
 function M.very_lazy(fn, opts)
   opts = opts or {}
 
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     pattern = "VeryLazy",
     group = opts.gid,
     desc = opts.desc,
@@ -34,7 +34,7 @@ end
 function M.start(fn, opts)
   opts = opts or {}
 
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     pattern = "MdxSessionStart",
     group = opts.gid,
     desc = opts.desc,
@@ -47,7 +47,7 @@ end
 function M.colorscheme(fn, opts)
   opts = opts or {}
 
-  vim.api.nvim_create_autocmd("ColorScheme", {
+  U.on("ColorScheme", {
     group = opts.gid,
     desc = opts.desc,
     callback = fn,
@@ -60,7 +60,7 @@ end
 function M.filetype(pattern, fn, opts)
   opts = opts or {}
 
-  vim.api.nvim_create_autocmd("FileType", {
+  U.on("FileType", {
     pattern = pattern,
     group = opts.gid,
     desc = opts.desc,
@@ -68,4 +68,8 @@ function M.filetype(pattern, fn, opts)
   })
 end
 
-return M
+return setmetatable(M, {
+  __call = function(_, ...)
+    vim.api.nvim_create_autocmd(...)
+  end,
+})

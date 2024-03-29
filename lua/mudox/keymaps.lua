@@ -15,13 +15,21 @@ for i = 1, 9 do
   K.nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
 end
 
--- Sensible `zi`
-K.nmap("zi", "zizz")
-
 -- Folding
-K.nmap("zj", "zjzx", { remap = true })
-K.nmap("zk", "zkzx", { remap = true })
+K.nmap("zi", "zizz")
+-- stylua: ignore
+local zjk = {
+  name = "fold",
+  next = function() vim.cmd.normal { "zjzx", bang = true } end,
+  prev = function() vim.cmd.normal { "zkzx", bang = true } end,
+}
+K.nmap("zj", X.dirop.wrap(zjk, "next"))
+K.nmap("zk", X.dirop.wrap(zjk, "prev"))
 K.nmap("z<Space>", "zMzA", { remap = true })
+K.nmap("zn", function()
+  vim.opt_local.foldenable = false
+  U.redraw_status_column()
+end)
 
 -- Resize window using <Ctrl>+arrow keys
 local s = 4
@@ -63,6 +71,7 @@ K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" }
 
 -- Copy entire buffer content into system pasteboard
 K.ncmd("yf", "0,$y +")
+-- K.nmap("p", [["_p]])
 
 -- Terminal 〈
 

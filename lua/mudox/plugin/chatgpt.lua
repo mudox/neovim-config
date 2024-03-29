@@ -9,8 +9,7 @@ return {
   keys = {
     { "<Space>c", "<Cmd>ChatGPT<Cr>", desc = "ChatGPT" },
   },
-  config = function()
-    vim.cmd([[ let $OPENAI_API_KEY = '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' ]])
-    require("chatgpt").setup()
-  end,
+  opts = {
+    api_key_cmd = "op read op://Personal/OpenAI/ChatGPT.nvim",
+  },
 }

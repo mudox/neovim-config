@@ -7,12 +7,11 @@ local function opts()
       " ",
     },
     condition = {
-      function()
-        return vim.wo.foldenable
+      function(args)
+        return vim.wo[args.win].foldenable
       end,
       function(args)
-        return vim.wo.foldenable
-        -- return args.fold.width > 0
+        return vim.wo[args.win].foldenable
       end,
     },
     click = "v:lua.ScFa",
@@ -44,7 +43,7 @@ local function opts()
   local diagnostic = {
     -- use `:=vim.api.nvim_buf_get_extmarks(0, -1, 0, -1, { details = true})` to get all placed
     -- extmarks with their namespaces
-    sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 2, auto = true },
+    sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, colwidth = 1, auto = true },
     click = "v:lua.ScSa",
   }
 
@@ -63,11 +62,11 @@ local function opts()
     click = "v:lua.ScSa",
   }
 
-  local fallback = {
+  local other = {
     sign = {
-      name = { ".*" },
-      maxwidth = 2,
-      colwidth = 1,
+      namespace = { ".*" },
+      maxwidth = 1,
+      colwidth = 2,
       auto = true,
     },
   }
@@ -76,17 +75,18 @@ local function opts()
     segments = {
       fold,
       -- todo,
-      diagnostic,
-      test_debug,
+      -- diagnostic,
+      -- test_debug,
+      other,
       line_num,
       gitsigns,
-      fallback,
     },
+    ft_ignore = { "alpha", "qf" },
   }
 end
 
 return {
   "luukvbaal/statuscol.nvim",
-  event = { "BufNewFile", "BufRead" },
+  event = "VeryLazy", -- `BufRead` is too late
   opts = opts,
 }

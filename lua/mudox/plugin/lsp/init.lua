@@ -3,7 +3,7 @@ local function r(name)
 end
 
 return {
-  r("lsp-config"),
+  r("lspconfig"),
 
   r("mason"),
   r("null-ls"),

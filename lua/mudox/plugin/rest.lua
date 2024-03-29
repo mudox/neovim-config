@@ -1,6 +1,6 @@
 local function init()
   local gid = vim.api.nvim_create_augroup("mdx_rest_mapping", { clear = true })
-  vim.api.nvim_create_autocmd("FileType", {
+  U.on("FileType", {
     pattern = "http",
     group = gid,
     desc = "Add local rest.nvim keymaps for http filetype",
@@ -23,7 +23,8 @@ end
 
 return {
   "rest-nvim/rest.nvim",
-  dependencies = { "vhyrro/luarocks.nvim" },
+  tag = "v1.2.1",
+  -- dependencies = { "luarocks.nvim" },
   ft = "http",
   init = init,
   opts = true,

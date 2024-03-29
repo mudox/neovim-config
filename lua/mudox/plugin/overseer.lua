@@ -28,7 +28,6 @@ local keys = {
   -- info
   { "<leader>vo",       "Info",           "Overseer",               k =  "ld", },
 }
-
 keys = K.lazy_keys(keys, {
   key_prefix = "<leader>r",
   cmd_prefix = "Overseer",
@@ -54,7 +53,13 @@ local function watch_run()
   vim.api.nvim_create_user_command("OverseerWatchRun", function()
     local overseer = require("overseer")
 
-    overseer.run_template({ name = "quick run" }, function(task)
+    local ft = vim.bo.filetype
+    local name = "quick run"
+    if ft == "lua" then
+      name = "run neovim lua script"
+    end
+
+    overseer.run_template({ name = name }, function(task)
       if task then
         task:add_component { "restart_on_save", paths = { vim.fn.expand("%:p") } }
 
@@ -62,7 +67,7 @@ local function watch_run()
         overseer.run_action(task, "open vsplit")
         vim.api.nvim_set_current_win(main_win)
       else
-        vim.notify("Failed to run task: quick run", vim.log.levels.ERROR)
+        vim.notify("Failed to run task: quick run, unspported filetype?", vim.log.levels.ERROR)
       end
     end)
   end, {})

@@ -1,7 +1,9 @@
 local dependencies = {
+  -- required
+  "nvim-neotest/nvim-nio",
   "nvim-lua/plenary.nvim",
-  "nvim-treesitter/nvim-treesitter",
   "antoinemadec/FixCursorHold.nvim",
+  "nvim-treesitter/nvim-treesitter",
 
   -- language bindings
   "nvim-neotest/neotest-jest", -- JavaScript, TypeScript
@@ -9,15 +11,16 @@ local dependencies = {
   "nvim-neotest/neotest-python",
   "rouge8/neotest-rust",
 
+  -- for those languages that do not have corresponding neotest adapters
   "vim-test/vim-test",
-  "nvim-neotest/neotest-vim-test", -- for those do not have adapters
+  "nvim-neotest/neotest-vim-test",
 }
 
 local function opts()
   return {
     adapters = {
-      require("neotest-jest"),
       require("neotest-plenary"),
+      require("neotest-jest"),
       require("neotest-python"),
       require("neotest-rust"),
     },
@@ -26,6 +29,10 @@ local function opts()
     },
     consumers = {
       overseer = require("neotest.consumers.overseer"),
+    },
+    icons = {
+      passed = require("mudox.ui.icon").check,
+      failed = require("mudox.ui.icon").ballot,
     },
   }
 end

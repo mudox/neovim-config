@@ -1,14 +1,11 @@
 local dirop = X.dirop.wrap
 
 local function cmd_dirop(name, next, prev)
+  -- stylua: ignore
   return {
     name = name,
-    next = function()
-      vim.cmd("silent! " .. next)
-    end,
-    prev = function()
-      vim.cmd("silent! " .. prev)
-    end,
+    next = function() vim.cmd("silent! " .. next) end,
+    prev = function() vim.cmd("silent! " .. prev) end,
   }
 end
 

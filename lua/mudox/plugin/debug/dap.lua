@@ -13,43 +13,23 @@ local function setup_sings()
   end
 end
 
-local function open_dap_tabpage()
-  local varname = "mdx_is_dap_tabpage"
-
-  -- create new one
-  vim.cmd.tabedit("%")
-  vim.api.nvim_tabpage_set_var(0, varname, true)
-  local id = vim.api.nvim_get_current_tabpage()
-
-  -- close all old dap tabpages if any
-  for _, v in ipairs(vim.api.nvim_list_tabpages()) do
-    if v ~= id and pcall(vim.api.nvim_tabpage_get_var, v, varname) then
-      vim.api.nvim_set_current_tabpage(v)
-      vim.cmd.tabclose()
-    end
-  end
-
-  return vim.api.nvim_get_current_tabpage()
-end
-
 local function setup_listeners()
   local dap = require("dap")
   local ui = require("dapui")
 
   dap.listeners.after.event_initialized["mudox"] = function()
     print("DAP started")
-    open_dap_tabpage()
+    -- IDEA: % may not be a valid source file
+    X.tabman.open("Dap", "tabedit %")
     ui.open { reset = true }
   end
 
   dap.listeners.before.event_terminated["mudox"] = function()
-    print("DAP will terminate")
-    -- ui.close()
+    print("DAP terminated")
   end
 
   dap.listeners.before.event_exited["mudox"] = function()
-    print("DAP will exit")
-    -- ui.close()
+    print("DAP exited")
   end
 end
 

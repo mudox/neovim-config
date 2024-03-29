@@ -1,8 +1,11 @@
 -- Globals
+
+---mudox.util
 U = require("mudox.util")
+---mudox.lab
 X = require("mudox.lab")
+---mudox.util.keymap
 K = U.keymap
-F = vim.fn
 
 X.dirop.setup()
 
@@ -18,7 +21,7 @@ U.load("settings")
 -- Autocmds & keymaps
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
-  vim.api.nvim_create_autocmd("User", {
+  U.on("User", {
     pattern = "VeryLazy",
     callback = function()
       U.load("autocmds")

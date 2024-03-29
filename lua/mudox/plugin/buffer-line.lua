@@ -48,14 +48,14 @@ local function init()
   vim.o.laststatus = 3
 
   if vim.fn.argc(-1) == 0 then
-    vim.api.nvim_create_autocmd("User", {
+    U.on("User", {
       pattern = "AlphaClosed",
       callback = function()
         require("bufferline")
       end,
     })
   else
-    vim.api.nvim_create_autocmd("User", {
+    U.on("User", {
       pattern = "VeryLazy",
       callback = function()
         require("bufferline")

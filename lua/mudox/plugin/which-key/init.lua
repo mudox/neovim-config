@@ -59,8 +59,10 @@ local tabpage = {
   ["<Bs>"]  = { c "tabclose",              "[Neovim] Close tabpage"     },
   l         = { c "tablast",               "[Neovim] Last tabpage"      },
 
-  ["."]     = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
+  ["o"]     = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
   ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage" },
+
+  ["."]     = { X.tabman.recreate_current, "[Tabman] Recreate current"  },
 }
 
 K.nnop(",")

@@ -137,7 +137,7 @@ local cache = {}
 local function setup()
   -- vim.api.nvim_create_user_command("RootDirInfo", info, { desc = "[RootDir] Info" })
 
-  vim.api.nvim_create_autocmd({ "LspAttach", "BufWritePost" }, {
+  U.on({ "LspAttach", "BufWritePost" }, {
     group = vim.api.nvim_create_augroup("mdx_rootdir_cache", { clear = true }),
     callback = function(event)
       cache[event.buf] = nil
