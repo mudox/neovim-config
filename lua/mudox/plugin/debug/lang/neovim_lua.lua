@@ -8,6 +8,22 @@ local adapter = {
 local function setup()
   local dap = require("dap")
 
+  -- dap.configurations.lua = {
+  --   {
+  --     type = "nlua",
+  --     request = "attach",
+  --     name = "Attach to running Neovim instance",
+  --   },
+  -- }
+  --
+  -- dap.adapters.nlua = function(callback, config)
+  --   callback {
+  --     type = "server",
+  --     host = config.host or "127.0.0.1",
+  --     port = config.port or 8086,
+  --   }
+  -- end
+
   dap.adapters.nlua = function(callback, conf)
     local adapter = {
       type = "server",
@@ -28,18 +44,33 @@ local function setup()
 
   dap.configurations.lua = {
     {
-      name = "Run this file in new Neovim instance",
       type = "nlua",
       request = "attach",
+      name = "Run this file",
       start_neovim = {},
     },
     {
-      name = "Attach to running Neovim instance (port = 8086)",
       type = "nlua",
       request = "attach",
+      name = "Attach to running Neovim instance (port = 8086)",
       port = 8086,
     },
   }
+
+  -- dap.adapters.nlua = function(callback, config)
+  --   callback { type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }
+  -- end
+  --
+  -- dap.configurations.lua = {
+  --   {
+  --     type = "nlua",
+  --     request = "attach",
+  --     name = "Attach to running Neovim instance",
+  --     program = function()
+  --       pcall(require("osv").launch { port = 8086 })
+  --     end,
+  --   },
+  -- }
 end
 
 return {

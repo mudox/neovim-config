@@ -62,6 +62,7 @@ U.on("FileType", {
     "aerial-nav",
     "checkhealth",
     "fugitive",
+    "fugitiveblame",
     "help",
     "lspinfo",
     "man",

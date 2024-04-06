@@ -45,7 +45,7 @@ end
 local keys = {
   { "<Bs>n",      dismiss_all,                 desc = "[Notify] Dismiss all",     },
   { "<leader>tn", "<Cmd>Telescope notify<Cr>", desc = "[Telescope] Notifications" },
-  { "<leader>vv",        "<Cmd>Notifications<Cr>",    desc = "[Notify] Notifications"    },
+  { "<leader>vv", "<Cmd>Notifications<Cr>",    desc = "[Notify] Notifications"    },
 }
 
 return {

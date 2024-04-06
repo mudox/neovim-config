@@ -35,8 +35,8 @@ end
 local tabman_id = "Diff"
 -- stylua: ignore
 local keys = {
-  { "<Tab>d", function() require("mudox.lab.tabman").open(tabman_id, "DiffviewOpen") end,     desc = "[Diffview] Open",     },
-  { "<Tab>D", function() require("mudox.lab.tabman").recreate(tabman_id, "DiffviewOpen") end, desc = "[Diffview] Recreate", },
+  { "d", function() require("mudox.lab.tabman").open(tabman_id, "DiffviewOpen") end,     desc = "[Diffview] Open",     },
+  { "D", function() require("mudox.lab.tabman").recreate(tabman_id, "DiffviewOpen") end, desc = "[Diffview] Recreate", },
 }
 
 return {

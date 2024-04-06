@@ -45,7 +45,6 @@ local keys = {
   { ".",       function() d().run_last() end,                           "Run last",                              },
   { "R",       function() d().restart() end,                            "Restart",                               },
   { "q",       function() d().terminate() end,                          "Quit",                                  },
-  { "<Bs>",    function() d().terminate() end,                          "Quit",                                  },
 
   -- stepping
   { "<F10>",   function() d().step_over() end,                          "Step over",                   k =  "l", },

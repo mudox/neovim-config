@@ -43,18 +43,18 @@ K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearc
 
 -- Smart close
 -- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
-K.nmap("<C-q>", function()
-  -- close current window if there are more than 1 window
-  -- else close current tab if there are more than 1 tab
-  -- else close current vim
-  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
-    vim.cmd.close()
-  elseif #vim.api.nvim_list_tabpages() > 1 then
-    vim.cmd.tabclose()
-  else
-    vim.cmd("confirm qall")
-  end
-end, { desc = "Smart close" })
+-- K.nmap("<C-q>", function()
+--   -- close current window if there are more than 1 window
+--   -- else close current tab if there are more than 1 tab
+--   -- else close current vim
+--   if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+--     vim.cmd.close()
+--   elseif #vim.api.nvim_list_tabpages() > 1 then
+--     vim.cmd.tabclose()
+--   else
+--     vim.cmd("confirm qall")
+--   end
+-- end, { desc = "Smart close" })
 
 -- Useless legacy `sleep` function
 K.nnop("gs")
@@ -72,6 +72,10 @@ K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" }
 -- Copy entire buffer content into system pasteboard
 K.ncmd("yf", "0,$y +")
 -- K.nmap("p", [["_p]])
+
+-- Macro
+K.nnop("q")
+K.nmap(";q", "q", { desc = "Macro" })
 
 -- Terminal 〈
 
@@ -102,4 +106,4 @@ end, { desc = "End profiling" })
 -- Profiling 〉
 
 -- Experiment!!!
-K.nreq(";<Space>", "mudox.lab.rootdir", "info()")
+K.nreq(";xr", "mudox.lab.rootdir", "info()", { desc = "Root dir" })

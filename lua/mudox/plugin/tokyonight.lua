@@ -58,6 +58,12 @@ local function folding(hl, c)
   hl.Folded.bg = "NONE"
 end
 
+---@diagnostic disable-next-line: unused-local
+local function winbar(hl, c)
+  hl.WinBar = { bg = "NONE" }
+  hl.WinBarNC = { bg = "NONE" }
+end
+
 local function nvim_tree(hl, c)
   hl.NvimTreeOpenedFile.fg = "#FFFFFF"
 end
@@ -85,6 +91,7 @@ local opts = {
     nvim_tree(...)
     telescope(...)
     dropbar(...)
+    winbar(...)
   end,
 }
 

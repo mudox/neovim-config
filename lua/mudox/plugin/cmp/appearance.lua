@@ -31,7 +31,11 @@ M.formatting = {
 vim.o.pumblend = 0
 
 M.view = {
-  entries = { name = "custom", selection_order = "near_cursor" },
+  entries = {
+    name = "custom",
+    selection_order = "near_cursor",
+    follow_cursor = true,
+  },
 }
 
 return M

@@ -1,15 +1,36 @@
-local dirop = X.dirop.wrap
+local next = {}
+local prev = {}
 
-local function cmd_dirop(name, next, prev)
+local function register(key, t)
+  next[key] = { X.dirop.wrap(t, "next"), t.name }
+  prev[key] = { X.dirop.wrap(t, "prev"), t.name }
+end
+
+local function cmd_dirop(name, n, p)
   -- stylua: ignore
   return {
     name = name,
-    next = function() vim.cmd("silent! " .. next) end,
-    prev = function() vim.cmd("silent! " .. prev) end,
+    next = function() vim.cmd("silent! " .. n) end,
+    prev = function() vim.cmd("silent! " .. p) end,
   }
 end
 
-local insert_blankline = {
+local function key_dirop(name, n, p, bang)
+  -- stylua: ignore
+  return {
+    name = name,
+    next = function()
+      pcall(vim.cmd.normal, { vim.keycode(n), bang = bang })
+      -- vim.cmd.normal { vim.keycode(n), bang = bang }
+    end,
+    prev = function()
+      pcall(vim.cmd.normal, { vim.keycode(p), bang = bang })
+      -- vim.cmd.normal { vim.keycode(p), bang = bang }
+    end,
+  }
+end
+
+register("<Space>", {
   name = "insert blankline",
   next = function()
     vim.cmd("put  =repeat(nr2char(10), v:count1)|silent '[-")
@@ -17,9 +38,9 @@ local insert_blankline = {
   prev = function()
     vim.cmd("put! =repeat(nr2char(10), v:count1)|silent ']+")
   end,
-}
+})
 
-local swap_line = {
+register("x", {
   name = "swap line",
   next = function()
     vim.cmd("silent! move +" .. vim.v.count1)
@@ -29,60 +50,21 @@ local swap_line = {
     vim.cmd("silent! move --" .. vim.v.count1)
     vim.cmd.normal("==")
   end,
-}
-
-local change_point = {
-  name = "change point",
-  next = function()
-    vim.cmd.normal { "g,", bang = true }
-  end,
-  prev = function()
-    vim.cmd.normal { "g;", bang = true }
-  end,
-}
+})
 
 -- stylua: ignore start
-local afile    = cmd_dirop("argument file", "next",    "previous")
-local quickfix = cmd_dirop("quickfix item", "cnext",   "cprevious")
-local qfile    = cmd_dirop("quickfix file", "cnfile",  "cpfile")
-local loclist  = cmd_dirop("loclist",       "lnext",   "lprevious")
-local lfile    = cmd_dirop("loclist file",  "lnfile",  "lpfile")
-local tabpage  = cmd_dirop("tabpage",       "tabnext", "tabprevious")
+register("a",     cmd_dirop("argument file", "next",    "previous"))
+
+register(",",     key_dirop("change point",  "g,",      "g;",        true))
+-- register("j",     key_dirop("jump point",    "<C-i>",   "<C-o>",     true))
+
+register("q",     cmd_dirop("quickfix item", "cnext",   "cprevious"))
+register("Q",     cmd_dirop("quickfix file", "cnfile",  "cpfile"))
+register("l",     cmd_dirop("loclist",       "lnext",   "lprevious"))
+register("L",     cmd_dirop("loclist file",  "lnfile",  "lpfile"))
+
+register("<Tab>", cmd_dirop("tabpage",       "tabnext", "tabprevious"))
 -- stylua: ignore end
-
--- stylua: ignore
-local next = {
-  name = "+next",
-
-  [";"]       = { dirop(change_point,     "next"), "Next change point"  },
-
-  a           = { dirop(afile,            "next"), "Next argument file" },
-  q           = { dirop(quickfix,         "next"), "Next quickfix item" },
-  Q           = { dirop(qfile,            "next"), "Next quickfix file" },
-  l           = { dirop(loclist,          "next"), "Next loclist item"  },
-  L           = { dirop(lfile,            "next"), "Next loclist file"  },
-  ["<Tab>"]   = { dirop(tabpage,          "next"), "Next tabpage"       },
-
-  e           = { dirop(swap_line,        "next"), "Swap line down"     },
-  ["<Space>"] = { dirop(insert_blankline, "next"), "Add line(s) below"  },
-}
-
--- stylua: ignore
-local prev = {
-  name = "+previous",
-
-  [";"]       = { dirop(change_point,     "prev"), "Previous change point"  },
-
-  a           = { dirop(afile,            "prev"), "Previous argument file" },
-  q           = { dirop(quickfix,         "prev"), "Previous quickfix item" },
-  Q           = { dirop(qfile,            "prev"), "Previous quickfix file" },
-  l           = { dirop(loclist,          "prev"), "Previous loclist item"  },
-  L           = { dirop(lfile,            "prev"), "Previous loclist file"  },
-  ["<Tab>"]   = { dirop(tabpage,          "prev"), "Previous tabpage"       },
-
-  e           = { dirop(swap_line,        "prev"), "Swap line up"           },
-  ["<Space>"] = { dirop(insert_blankline, "prev"), "Add line(s) above"      },
-}
 
 return {
   next = next,

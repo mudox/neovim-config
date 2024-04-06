@@ -7,8 +7,6 @@ X = require("mudox.lab")
 ---mudox.util.keymap
 K = U.keymap
 
-X.dirop.setup()
-
 -- Neovim mode - g:mdx_nvim_mode
 require("mudox.mode")
 
@@ -26,6 +24,8 @@ if vim.fn.argc(-1) == 0 then
     callback = function()
       U.load("autocmds")
       U.load("keymaps")
+
+      X.dirop.setup()
     end,
   })
 else

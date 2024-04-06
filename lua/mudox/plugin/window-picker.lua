@@ -1,12 +1,12 @@
-local function goto()
-  local id = require("window-picker").pick_window({
+local function pick()
+  local id = require("window-picker").pick_window {
     -- hint = "floating-big-letter",
-  })
+  }
   pcall(vim.api.nvim_set_current_win, id)
 end
 
 local keys = {
-  { "<leader>ww", goto, desc = "[Window Picker] Goto window" },
+  { "<leader>ww", pick, desc = "[Window Picker] Goto window" },
 }
 
 local opts = {
@@ -17,15 +17,12 @@ local opts = {
     bo = {
       filetype = {},
       buftype = {},
-    }
-  }
+    },
+  },
 }
 
 return {
   "s1n7ax/nvim-window-picker",
   keys = keys,
   opts = opts,
-  config = function(_, o)
-    require("window-picker").setup(o)
-  end,
 }

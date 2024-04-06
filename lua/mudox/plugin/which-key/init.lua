@@ -11,7 +11,7 @@ local opts = {
   icons = {
     breadcrumb = require("mudox.ui.icon").chevron.right,
     separator = "",
-    group = "+",
+    group = "",
   },
 
   layout = {
@@ -22,7 +22,7 @@ local opts = {
   },
 
   operators = {
-    gc = "+comments",
+    gc = "comments",
   },
 }
 
@@ -31,7 +31,7 @@ local opts = {
 local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 local close = {
-  name = "+quit/session",
+  name = "quit/session",
 
   v         = { c "confirm qall", "[Neovim] Quit all"          },
   V         = { c "qall!",        "[Neovim] Quit all forcibly" },
@@ -40,26 +40,26 @@ local close = {
 }
 
 local edit = {
-  name = "+edit",
+  name = "edit",
 
   q    = { c "EditQuery", "[Neovim] Edit query"  },
   e    = { c "edit!",     "[Neovim] Reload file" },
 }
 
 local refactoring = {
-  name = "+refactoring",
+  name = "refactoring",
 
   ["<Space>"] = { c "%s/\\n\\(\\s*\\n\\)\\{2,}/\\r\\r", "Squeeze empty lines" },
 }
 
 local tabpage = {
-  name = "+tabpage",
+  name = "tabpage",
 
   n         = { c "tabnew",                "[Neovim] New tabpage"       },
-  ["<Bs>"]  = { c "tabclose",              "[Neovim] Close tabpage"     },
+  c         = { c "tabclose",              "[Neovim] Close tabpage"     },
   l         = { c "tablast",               "[Neovim] Last tabpage"      },
 
-  ["o"]     = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
+  o         = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
   ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage" },
 
   ["."]     = { X.tabman.recreate_current, "[Tabman] Recreate current"  },
@@ -67,35 +67,35 @@ local tabpage = {
 
 K.nnop(",")
 local plugin = {
-  name   = "+plugin",
+  name   = "plugin",
 
-  a      = "+aerial",
-  b      = "+buffer",
-  c      = "+test",
-  d      = "+debug",
+  a      = "aerial",
+  b      = "buffer",
+  c      = "test",
+  d      = "debug",
   e      = edit,
-  f      = "+files",
-  g      = "+git",
-  l      = "+lazy",
-  p      = "+profile",
-  r      = "+run",
-  t      = "+telescope",
-  u      = "+ui",
+  f      = "files",
+  g      = "git",
+  l      = "lazy",
+  p      = "profile",
+  r      = "run",
+  t      = "telescope",
+  u      = "ui",
   v      = r("view").plugin,
-  w      = "+window",
-  x      = "+trouble",
+  w      = "window",
+  x      = "trouble",
 }
 
 K.nnop(";")
 local nvim = {
-  name = "+nvim",
+  name = "nvim",
 
   v = r("view").nvim,
-  -- w = nvim_window,
+  x = { name = "lab" },
 }
 
 local common = {
-  name = "+common",
+  name = "common",
 }
 
 local root = {
