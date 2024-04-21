@@ -56,6 +56,7 @@ local function config()
 
     formatting = r("appearance").formatting,
     view = r("appearance").view,
+    window = r("appearance").window,
 
     experimental = {
       ghost_text = {
@@ -63,6 +64,7 @@ local function config()
       },
     },
   }
+
   cmp.setup(opts)
 
   cmp.setup.cmdline(":", {

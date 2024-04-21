@@ -5,8 +5,8 @@ end
 -- stylua: ignore
 return {
   r "fugitive",
-  r "diff-view",
-  r "git-signs",
+  r "diffview",
+  r "gitsigns",
   r "neogit",
   r "conflict",
 }

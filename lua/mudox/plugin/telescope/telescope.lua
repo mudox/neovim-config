@@ -37,7 +37,17 @@ local function defaults()
 
     -- avoid opening files in edgy panes
     get_selection_window = function()
-      require("edgy").goto_main()
+      local e = require("edgy.editor")
+      if vim.tbl_isempty(e.list_wins().main) then
+        vim.cmd.new()
+      end
+
+      -- return first found main window
+      local m = e.list_wins().main
+      for id, _ in pairs(m) do
+        return id
+      end
+
       return 0
     end,
   }

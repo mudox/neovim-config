@@ -6,11 +6,12 @@ end
 local nvim = {
   name = "+neovim view",
 
+  -- TODO: my own custom info dashboards
   a         = { c "args",            "Arguments"             },
   B         = { c "buffers!",        "Buffers!"              },
   b         = { c "buffers",         "Buffers"               },
-  -- TODO: my own custom info dashboards
-  g         = {   "<C-G>",           "File information",     remap = true },
+  c         = { c "ascii",           "ASCII"                 },
+  g         = {   "8<C-G>",          "Buffer info"           },
   I         = { c "Inspect!",        "Inspect!"              },
   i         = { c "Inspect",         "Inspect"               },
   j         = { c "jumps",           "Jumps"                 },
@@ -33,7 +34,8 @@ local nvim = {
 local plugin = {
   name = "+plugin view",
 
-  p = { c "Lazy" , "Plugins" },
+  p = { c "Lazy",     "Plugins"          },
+  k = { c "WhichKey", "WhichKey keymaps" },
 }
 
 return {

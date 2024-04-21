@@ -10,8 +10,8 @@ local op = {
 
 -- stylua: ignore
 local keys = {
-  { "]j",  X.dirop.wrap(op, "next"),  desc = '[TreeSJ] Split'  },
-  { "[j",  X.dirop.wrap(op, "prev"),  desc = '[TreeSJ] Join'   },
+  { "<Bslash>J",  X.dirop.wrap(op, "next"),  desc = '[TreeSJ] Split'  },
+  { "<Bslash>j",  X.dirop.wrap(op, "prev"),  desc = '[TreeSJ] Join'   },
   { "<Bslash><Bslash>", function() require('treesj').toggle() end, desc = '[TreeSJ] Toggle' },
 }
 

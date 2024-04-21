@@ -119,22 +119,14 @@ local diagnostics = {
 -- Diagnostics 〉
 
 -- stylua: ignore
-local chevron = {
-  down  = "",
-  right = "",
-}
-
--- stylua: ignore
 return {
-  chevron       = chevron,
-
-  light_dot     = "·",
-  heavy_dot     = "",
+  chevron       = {
+    down        = "󰅀",
+    right       = "󰅂",
+  },
 
   check         = "✔",
   ballot        = "✘",
-
-  deleted       = " ",
 
   diagnostics   = diagnostics,
   kind          = require("mudox.ui.kind"),

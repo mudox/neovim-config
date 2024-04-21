@@ -59,7 +59,6 @@ end
 -- stylua: ignore
 local keys = {
     { "<M-.>",   function() require("dropbar.api").pick() end,                desc = "[Dropbar] Open menu",      },
-    -- { "<C-S-.>", function() require("dropbar.api").select_next_context() end, desc = "[Dropbar] Reveal context", },
 }
 
 return {

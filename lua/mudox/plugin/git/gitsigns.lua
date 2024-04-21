@@ -14,9 +14,15 @@ local signs = {
 local function on_attach(buffer)
   local gs = require("gitsigns")
 
+  local jump = {
+    name = "Gitsigns Hunk",
+    next = gs.next_hunk,
+    prev = gs.prev_hunk,
+  }
+
   -- stylua: ignore
   local keys = {
-    ["ih"]         = { "<Cmd>Gitsigns select_hunk<CR>",              "GitSigns Select Hunk", mode = { "x", "o" } },
+    ["ih"]         = { "<Cmd>Gitsigns select_hunk<CR>",              "Select hunk",          mode = { "x", "o" } },
 
     -- stage
     ["<leader>gs"] = { gs.stage_hunk,                                "Stage Hunk"                                },
@@ -30,8 +36,8 @@ local function on_attach(buffer)
     ["<leader>gv"] = { gs.preview_hunk,                              "Preview Hunk"                              },
 
     -- goto
-    ["󰅂g"]         = { gs.next_hunk,                                 "Next Hunk"                                 },
-    ["󰅁g"]         = { gs.prev_hunk,                                 "Previous Hunk"                             },
+    ["]c"]         = { X.dirop.wrap(jump, "next"),                   "Next Git hunk"                             },
+    ["[c"]         = { X.dirop.wrap(jump, "prev"),                   "Prev Git hunk"                             },
   }
 
   require("which-key").register(keys, { buffer = buffer })
@@ -41,7 +47,7 @@ local opts = {
   on_attach = on_attach,
 
   -- UI
-  signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+  signcolumn = false, -- disabled initially, toggle with `:Gitsigns toggle_signs`
   signs = signs,
 
   numhl = true,
@@ -81,5 +87,6 @@ return {
   opts = opts,
   keys = {
     { "<leader>g<Space>", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "[GitSigns] Toggle signs" },
+    { "cog", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "[GitSigns] Toggle signs" },
   },
 }

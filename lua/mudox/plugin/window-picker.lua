@@ -11,14 +11,18 @@ local keys = {
 
 local opts = {
   -- hint = "floating-big-letter",
-  selection_chars = "ASFGHJKLQWERUIOPZXCVNM",
-  filter_rules = {
-    include_current_win = true,
-    bo = {
-      filetype = {},
-      buftype = {},
+  picker_config = {
+    statusline_winbar_picker = {
+      -- use_winbar = "always",
+      -- selection_display = function(char, windowid)
+      --   return "%=" .. char .. "%="
+      -- end,
     },
   },
+  selection_chars = "ASFGHJKLQWERUIOPZXCVNM",
+  filter_func = function()
+    return vim.tbl_keys(require("edgy.editor").list_wins().main)
+  end,
 }
 
 return {

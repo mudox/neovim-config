@@ -66,6 +66,7 @@ local function recreate_current()
   end
 
   recreate(info.id, info.cmd)
+  vim.notify("Recreated tabpage: " .. info.id, vim.log.levels.INFO)
 end
 
 ---create the tabman page to jump to if it already exists

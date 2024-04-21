@@ -19,7 +19,7 @@ end
 K.nmap("zi", "zizz")
 -- stylua: ignore
 local zjk = {
-  name = "fold",
+  name = "Fold",
   next = function() vim.cmd.normal { "zjzx", bang = true } end,
   prev = function() vim.cmd.normal { "zkzx", bang = true } end,
 }
@@ -104,6 +104,3 @@ K.nmap("<leader>pe", function()
 end, { desc = "End profiling" })
 
 -- Profiling 〉
-
--- Experiment!!!
-K.nreq(";xr", "mudox.lab.rootdir", "info()", { desc = "Root dir" })

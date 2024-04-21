@@ -53,13 +53,13 @@ local function setup_keymaps(_, bufnr)
   end
 
   local jump_dirop = {
-    name = "diagnostic issue (d)",
+    name = "Diagnostic issue",
     next = jump(true),
     prev = jump(false),
   }
 
   local jump_error_dirop = {
-    name = "diagnostic error (E)",
+    name = "Diagnostic error",
     next = jump(true, "ERROR"),
     prev = jump(false, "ERROR"),
   }

@@ -25,7 +25,7 @@ return {
   Class           = " ",
   Struct          = " ",
 
-  Array           = " ",
+  Array           = "󰅪 ",
   Object          = " ",
 
   Null            = "∅ ",

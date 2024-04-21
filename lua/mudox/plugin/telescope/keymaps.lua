@@ -1,57 +1,57 @@
 -- stylua: ignore
 local open_keymaps = {
-  { ":",              "builtin",                   "All telescope pickers",    },
-  { ".",              "resume",                    "Resume telescope",         },
+  { ":",              "builtin",                   "All telescope pickers",               },
+  { ".",              "resume",                    "Resume telescope",                    },
 
   -- files
-  { "f",              "find_files",                "Find files",               },
-  { "F",              "git_files",                 "Git files",                },
+  { "f",              "find_files",                "Find files",                          },
+  { "F",              "git_files",                 "Git files",                           },
 
   -- lsp
-  { "?",              "diagnostics bufnr=0",       "Document diagnostics",     },
-  { "!",              "diagnostics",               "Workspace diagnostics",    },
+  { "?",              "diagnostics bufnr=0",       "Document diagnostics",                },
+  { "!",              "diagnostics",               "Workspace diagnostics",               },
 
   -- symbols
-  { "<M-7>",          "treesitter",                "Treesitter symbols",       k = "l", },
-  { "<M-8>",          "lsp_document_symbols",      "LSP document symbols",     k = "l", },
-  { "<M-9>",          "lsp_workspace_symbols",     "LSP workspace symbols",    k = "l", },
+  { "<M-7>",          "treesitter",                "Treesitter symbols",         k = "l", },
+  { "<M-8>",          "lsp_document_symbols",      "LSP document symbols",       k = "l", },
+  { "<M-9>",          "lsp_workspace_symbols",     "LSP workspace symbols",      k = "l", },
 
   -- vim
-  { "<Space>r",       "oldfiles",                  "[Telescope] Recent files", k = "l", },
-  { "a",              "autocommands",              "autocommands",             },
-  { "b",              "buffers",                   "Buffers",                  },
-  { "<C-S-o>",        "buffers",                   "[Telescope] Buffers",      k = "l", },
-  { "o",              "vim_options",               "Vim options",              },
-  { "h",              "highlights",                "Highlight groups",         },
+  { "<Space>r",       "oldfiles",                  "[Telescope] Recent files",   k = "l", },
+  { "a",              "autocommands",              "autocommands",                        },
+  { "b",              "buffers",                   "Buffers",                             },
+  { "<C-S-o>",        "buffers",                   "[Telescope] Buffers",        k = "l", },
+  { "o",              "vim_options",               "Vim options",                         },
+  { "h",              "highlights",                "Highlight groups",                    },
 
-  { "k",              "keymaps",                   "Keymaps",                  },
+  { "k",              "keymaps",                   "Keymaps",                             },
 
-  { "C",              "command_history",           "Command history",          },
-  { "<C-S-;>",        "command_history",           "Command history",          k = "l", },
-  { "c",              "commands",                  "Commands",                 },
-  { "<M-;>",          "commands",                  "Commands",                 k = "l", },
+  { "C",              "command_history",           "Command history",                     },
+  { "<C-S-;>",        "command_history",           "Command history",            k = "l", },
+  { "c",              "commands",                  "Commands",                            },
+  { "<M-;>",          "commands",                  "Commands",                   k = "l", },
 
-  { "<M-h>",          "help_tags",                 "[Telescope] Vim help",     k = "l", },
+  { "<M-h>",          "help_tags",                 "[Telescope] Vim help",       k = "l", },
 
-  { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer",         k = "l", },
+  { "<M-/>",          "current_buffer_fuzzy_find", "Search in buffer",           k = "l", },
 
   -- grep
-  { "<Space>s",       "live_grep",                 "[Telescope] Live grep",    k = "l", },
-  { "w",              "grep_string",               "Grep <word> under cursor", },
+  { "<Space>s",       "live_grep",                 "[Telescope] Live grep",      k = "l", },
+  { "w",              "grep_string",               "Grep <cword> under cursor",           },
 
   -- git
-  { "gc",             "git_commits",               "Git commits",              },
-  { "gb",             "git_bcommits",              "Git buffer history",       },
-  { "gB",             "git_branches",              "Git branches",             },
-  { "gs",             "git_status",                "Git status",               },
-  { "gS",             "git_stash",                 "Git stash",                },
+  { "gc",             "git_commits",               "Git commits",                         },
+  { "gb",             "git_bcommits",              "Git buffer history",                  },
+  { "gB",             "git_branches",              "Git branches",                        },
+  { "gs",             "git_status",                "Git status",                          },
+  { "gS",             "git_stash",                 "Git stash",                           },
 
   -- search
-  { "M",              "man_pages",                 "Man pages",                },
-  { "m",              "marks",                     "Jump to mark",             },
+  { "M",              "man_pages",                 "Man pages",                           },
+  { "m",              "marks",                     "Jump to mark",                        },
 
   -- notify
-  { "n",              "notify",                    "Notifications",            },
+  { "n",              "notify",                    "Notifications",                       },
 }
 
 open_keymaps = K.lazy_keys(open_keymaps, {

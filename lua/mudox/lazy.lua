@@ -11,7 +11,7 @@ if not vim.uv.fs_stat(lazypath) then
   if vim.api.nvim_get_vvar("shell_error") ~= 0 then
     vim.api.nvim_err_writeln("Error cloning lazy.nvim repository...\n\n" .. output)
   end
-  local oldcmdheight = vim.opt.cmdheight:get()
+  local oldcmdheight = vim.o.cmdheight
   vim.opt.cmdheight = 2
   vim.notify("Please wait while plugins are installed...")
   U.on("User", {
@@ -41,12 +41,12 @@ local icons = {
   plugin     = "",
   import     = "",
 
-  lazy       = " ",
+  lazy       = "",
 
   loaded     = "●",
   not_loaded = "○",
 
-  runtime    = " ",
+  runtime    = " ",
   start      = "",
   task       = "✔ ",
   list       = {
@@ -108,7 +108,7 @@ local performance = {
 
 vim.g.mapleader = "," -- lazy spec `keys` depends on this
 require("lazy").setup {
-  spec = "mudox.plugin",
+  spec = "mudox.mode." .. vim.g.mdx_nvim_mode .. ".plugin",
   defaults = {
     lazy = true,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,

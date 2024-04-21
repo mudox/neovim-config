@@ -12,7 +12,7 @@ end
 
 U.on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
   group = g("checktime"),
-  command = "checktime",
+  command = "silent! checktime",
 })
 
 -- Check if we 〉
@@ -140,7 +140,3 @@ U.on("BufRead", {
 })
 
 -- Unfold for small files 〉
-
-U.on.filetype("qf", function()
-  -- vim.opt_local.number = false
-end)

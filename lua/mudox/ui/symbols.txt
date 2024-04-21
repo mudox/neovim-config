@@ -46,7 +46,6 @@ CircuitBoard            
 Class                   
 Class                   🅲
 Class                   􀀉
-Close                   
 CloudDownload           
 Code                    
 Codeium                 󰘦
@@ -247,7 +246,6 @@ Property                🄿
 Property                􀀢
 Question                
 Reference               
-Reference               
 Reference               󰦾
 Reference               􀉣
 Refresh                 
@@ -298,7 +296,6 @@ Text                    
 Text                    
 Trace                   ✎
 Tree                    
-Triangle                契
 TriangleShortArrowDown  
 TriangleShortArrowLeft  
 TriangleShortArrowRight 
@@ -319,7 +316,6 @@ Variable                󰀫
 Warn                    
 Warning                 
 Watch                   
-Watches                 
 WhileStatement          󰑖
 Window                  
 WordFile                󰈭

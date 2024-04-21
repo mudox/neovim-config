@@ -55,14 +55,14 @@ local refactoring = {
 local tabpage = {
   name = "tabpage",
 
-  n         = { c "tabnew",                "[Neovim] New tabpage"       },
-  c         = { c "tabclose",              "[Neovim] Close tabpage"     },
-  l         = { c "tablast",               "[Neovim] Last tabpage"      },
+  n         = { c "tabnew",                "[Neovim] New tabpage"           },
+  c         = { c "tabclose",              "[Neovim] Close tabpage"         },
+  l         = { "g<Tab>",                  "[Neovim] Last accessed tabpage" },
 
-  o         = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only" },
-  ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage" },
+  o         = { c "tabnext 1<Bar>tabonly", "[Neovim] Main tabpage only"     },
+  ["<Tab>"] = { c "tabnext 1",             "[Neovim] Goto main tabpage"     },
 
-  ["."]     = { X.tabman.recreate_current, "[Tabman] Recreate current"  },
+  ["."]     = { X.tabman.recreate_current, "[Tabman] Recreate current"      },
 }
 
 K.nnop(",")
@@ -91,7 +91,7 @@ local nvim = {
   name = "nvim",
 
   v = r("view").nvim,
-  x = { name = "lab" },
+  x = r("lab"),
 }
 
 local common = {
@@ -120,6 +120,7 @@ local function config()
   wk.setup(opts)
 
   wk.register(root)
+  wk.register(r("insert"), { prefix = "<C-,>", mode = "i" })
 end
 
 return {

@@ -17,6 +17,30 @@ local function toggle_treesitter_highlighting()
   end
 end
 
+local function toggle_quickfix()
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      vim.cmd("cclose")
+      return
+    end
+  end
+  vim.cmd("copen")
+end
+
+local function toggle_loclist()
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["loclist"] == 1 then
+      vim.cmd("lclose")
+      return
+    end
+  end
+  if not vim.tbl_isempty(vim.fn.getloclist(0)) then
+    vim.cmd("lopen")
+  else
+    print("loclist is empty")
+  end
+end
+
 -- stylua: ignore
 local nvim = {
   name = "+nvim toggle",
@@ -27,7 +51,11 @@ local nvim = {
   r = t "relativenumber",
   s = t "spell",
   w = t "wrap",
-  t = { toggle_treesitter_highlighting, "[TreeSitter] highlighting" },
+
+  t = { toggle_treesitter_highlighting, "treesitter highlighting" },
+
+  q = { toggle_quickfix,                "quickfix"                },
+  L = { toggle_loclist,                 "loclist"                 },
 }
 
 local plugin = {

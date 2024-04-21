@@ -27,14 +27,20 @@ M.formatting = {
   format = format,
 }
 
--- disable blending to avoid kitty icon size inconsistency
-vim.o.pumblend = 0
-
 M.view = {
   entries = {
     name = "custom",
     selection_order = "near_cursor",
     follow_cursor = true,
+  },
+}
+
+M.window = {
+  completion = {
+    winblend = 0,
+  },
+  documentation = {
+    winblend = 0,
   },
 }
 

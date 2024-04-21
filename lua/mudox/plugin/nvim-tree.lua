@@ -1,3 +1,22 @@
+local function on_attach(bufnr)
+  local api = require("nvim-tree.api")
+
+  local function add(lhs, rhs, desc)
+    local opts = {
+      desc = "nvim-tree: " .. desc,
+      buffer = bufnr,
+      noremap = true,
+      silent = true,
+      nowait = true,
+    }
+    vim.keymap.set("n", lhs, rhs, opts)
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+  vim.keymap.del("n", "<Tab>", { buffer = bufnr }) -- preview or open fold
+  vim.keymap.del("n", "<C-e>", { buffer = bufnr }) -- open in place
+end
+
 local function opts()
   local i = require("mudox.ui.icon")
 
@@ -46,7 +65,37 @@ local function opts()
     folder  = folder,
   }
 
+  local renderer = {
+    group_empty = true,
+
+    highlight_opened_files = "name",
+
+    root_folder_label = false,
+
+    indent_markers = {
+      enable = false,
+    },
+
+    icons = {
+      show = {
+        folder = false,
+        folder_arrow = true,
+      },
+
+      padding = " ", -- 2 spaces
+
+      git_placement = "after",
+
+      symlink_arrow = "  ",
+      glyphs = glyphs,
+    },
+
+    special_files = {},
+  }
+
   return {
+    on_attach = on_attach,
+
     sort_by = "extension",
 
     view = {
@@ -57,29 +106,7 @@ local function opts()
       dotfiles = true,
     },
 
-    renderer = {
-      group_empty = true,
-      highlight_opened_files = "name",
-      root_folder_label = false,
-      indent_markers = {
-        enable = true,
-      },
-
-      icons = {
-        show = {
-          folder = false,
-          folder_arrow = true,
-        },
-
-        padding = " ", -- 2 spaces
-
-        git_placement = "after",
-
-        symlink_arrow = "  ",
-        glyphs = glyphs,
-      },
-      special_files = {},
-    },
+    renderer = renderer,
 
     actions = {
       remove_file = {

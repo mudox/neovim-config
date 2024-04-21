@@ -27,6 +27,8 @@ local function opts()
     max_width = 70,
     minimum_width = 47,
     max_height = 12,
+
+    -- render = "wrapped-compact",
   }
 end
 

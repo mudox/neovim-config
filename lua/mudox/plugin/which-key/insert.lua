@@ -1,5 +1,9 @@
 -- TODO: insert mode keymaps
 
-local insert = {}
+-- stylua: ignore
+local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
-return insert
+-- stylua: ignore
+return {
+  ['ti'] = { c "Telescope symbols", "[Telescope] Symbols" },
+}

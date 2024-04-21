@@ -11,6 +11,7 @@ local options = {
   -- theme = "gruvbox",
   -- theme = "horizon",
   -- theme = "ayu_mirage",
+  -- theme = "tokyonight",
   theme = "molokai",
 
   -- Separators
