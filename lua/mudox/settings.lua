@@ -5,8 +5,6 @@ local opt = vim.opt
 
 -- UI 〈
 
-o.termguicolors = true
-
 o.winblend = 0 -- pseudo-transparent makes kitty renders icon in half width
 
 o.mouse = "a"
@@ -160,17 +158,21 @@ o.swapfile = false
 -- 〉
 
 -- Languages 〈
+-- disable providers to reduce startup time unless is needed
 
 -- JavaScript
-vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
+vim.g.loaded_node_provider = 0
+-- vim.g.node_host_prog = "/Users/mudox/Library/pnpm/neovim-node-host"
 
 -- Python
-vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
+vim.g.loaded_python3_provider = 0
+-- vim.g.python3_host_prog = "/Users/mudox/.pyenv/shims/python"
 
--- Disable language providers
-vim.g.loaded_perl_provider = 0
+-- Ruby
 vim.g.loaded_ruby_provider = 0
+
+-- Perl
+vim.g.loaded_perl_provider = 0
 
 -- 〉
 

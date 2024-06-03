@@ -1,5 +1,4 @@
-local bar = "┃"
--- local bar = "▕"
+local bar = require("mudox.ui.icon").bar
 
 -- stylua: ignore
 local signs = {

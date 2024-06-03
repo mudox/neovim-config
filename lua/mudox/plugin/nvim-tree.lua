@@ -1,20 +1,21 @@
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
-  local function add(lhs, rhs, desc)
-    local opts = {
-      desc = "nvim-tree: " .. desc,
-      buffer = bufnr,
-      noremap = true,
-      silent = true,
-      nowait = true,
-    }
-    vim.keymap.set("n", lhs, rhs, opts)
-  end
+  -- local function add(lhs, rhs, desc)
+  --   local opts = {
+  --     desc = "nvim-tree: " .. desc,
+  --     buffer = bufnr,
+  --     noremap = true,
+  --     silent = true,
+  --     nowait = true,
+  --   }
+  --   vim.keymap.set("n", lhs, rhs, opts)
+  -- end
 
   api.config.mappings.default_on_attach(bufnr)
-  vim.keymap.del("n", "<Tab>", { buffer = bufnr }) -- preview or open fold
   vim.keymap.del("n", "<C-e>", { buffer = bufnr }) -- open in place
+  vim.keymap.del("n", "<Tab>", { buffer = bufnr }) -- preview or open fold
+  vim.keymap.del("n", "<C-t>", { buffer = bufnr }) -- tab open or open fold
 end
 
 local function opts()
@@ -67,26 +68,19 @@ local function opts()
 
   local renderer = {
     group_empty = true,
-
     highlight_opened_files = "name",
-
     root_folder_label = false,
-
     indent_markers = {
-      enable = false,
+      enable = true,
     },
-
     icons = {
       show = {
-        folder = false,
-        folder_arrow = true,
+        folder = true,
+        folder_arrow = false,
       },
-
-      padding = " ", -- 2 spaces
-
+      padding = " ",
       git_placement = "after",
-
-      symlink_arrow = "  ",
+      symlink_arrow = " 󰅂 ",
       glyphs = glyphs,
     },
 
@@ -95,25 +89,19 @@ local function opts()
 
   return {
     on_attach = on_attach,
-
     sort_by = "extension",
-
     view = {
       signcolumn = "no",
     },
-
     filters = {
       dotfiles = true,
     },
-
     renderer = renderer,
-
     actions = {
       remove_file = {
         close_window = false,
       },
     },
-
     hijack_directories = {
       enable = false,
     }, -- for `dirbuf.nvim`
@@ -123,6 +111,7 @@ end
 -- stylua: ignore
 local keys = {
   { "<M-p>",      "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
+  { "<leader>fe", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
   { "<leader>fv", "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
 }
 

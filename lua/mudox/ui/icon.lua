@@ -55,14 +55,13 @@ local border = {
 
 -- stylua: ignore
 local filetype = {
-  markdown   = " ",
-  git        = " ",
+  markdown   = "",
+  git        = " ",
   apple      = " ",
   java       = " ",
   neorg      = "󰏪 ",
   config     = "󰣖 ",
-  compiled   = " ",
-  backup     = " ",
+  backup     = " ",
   javascript = " ",
 }
 
@@ -74,8 +73,7 @@ local filetype = {
 local folder = {
   closed       = "󰉋 ",
   open         = "󰝰 ",
-
-  empty        = " ",
+  empty        = "󰉖 ",
   empty_open   = "󰷏 ",
 
   symlink      = " ",
@@ -116,24 +114,28 @@ local diagnostics = {
   }
 }
 
+local chevron = {
+  down = "󰅀",
+  right = "󰅂",
+}
+
 -- Diagnostics 〉
 
 -- stylua: ignore
 return {
-  chevron       = {
-    down        = "󰅀",
-    right       = "󰅂",
-  },
+  bar           = "┃",
+  border        = border,
 
   check         = "✔",
   ballot        = "✘",
 
+  chevron       = chevron,
+
   diagnostics   = diagnostics,
-  kind          = require("mudox.ui.kind"),
   powerline     = powerline,
   tree          = tree,
   folder        = folder,
   filetype      = filetype,
 
-  border        = border,
+  kind          = require("mudox.ui.kind"),
 }

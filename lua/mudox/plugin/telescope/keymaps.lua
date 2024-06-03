@@ -83,10 +83,10 @@ local function picker_keymaps()
   local a = require("telescope.actions")
 
   local insert = {
-    -- no normal mode
+    -- disable normal mode
     ["<Esc>"] = a.close,
 
-    -- clear prompt input
+    -- restore nvim default
     ["<C-u>"] = false,
 
     -- preview
@@ -107,7 +107,7 @@ local function picker_keymaps()
     ["<C-s>"] = a.select_horizontal,
 
     -- send to trouble
-    ["<C-x>"] = require("trouble.providers.telescope").open_with_trouble,
+    ["<C-x>"] = require("trouble.sources.telescope").open,
 
     -- history
     ["<C-j>"] = a.cycle_history_next,

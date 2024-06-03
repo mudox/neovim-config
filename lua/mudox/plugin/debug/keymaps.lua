@@ -51,7 +51,7 @@ local keys = {
   { "<F11>",   function() d().step_into() end,                          "Step into",                   k =  "l", },
   { "<F12>",   function() d().step_out() end,                           "Step out",                    k =  "l", },
   { "u",       function() d().step_back() end,                          "Step back",                             },
-  { "<",       function() d().reverse_continue() end,                   "Reverse continue",            k =  "l", },
+  { "<",       function() d().reverse_continue() end,                   "Reverse continue",                      },
   { "g",       function() d().run_to_cursor() end,                      "Run to cursor",                         },
 
   -- thread

@@ -42,4 +42,5 @@ return {
   dependencies = "plenary.nvim",
   keys = keys,
   opts = opts,
+  cond = false, -- testing grapple.nvim
 }

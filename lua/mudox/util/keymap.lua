@@ -146,7 +146,7 @@ function M.lazy_keys(tbl, opts)
   end
 
   local function rhs(v)
-    if type(v[2] == "string") then
+    if type(v[2]) == "string" then
       if opts.main_cmd then
         v[2] = ("<Cmd>%s %s<Cr>"):format(opts.main_cmd, v[2])
       elseif opts.cmd_prefix then

@@ -10,13 +10,10 @@ local keys = {
 }
 
 local opts = {
-  -- hint = "floating-big-letter",
+  hint = "statusline-winbar",
   picker_config = {
     statusline_winbar_picker = {
-      -- use_winbar = "always",
-      -- selection_display = function(char, windowid)
-      --   return "%=" .. char .. "%="
-      -- end,
+      use_winbar = "always",
     },
   },
   selection_chars = "ASFGHJKLQWERUIOPZXCVNM",

@@ -1,8 +1,7 @@
 return {
   "TimUntersberger/neogit",
-  dependencies = { "plenary.nvim" },
+  branch = "nightly",
+  dependencies = { "plenary.nvim", "diffview.nvim", "telescope.nvim" },
   cmd = { "Neogit" },
-  keys = {
-    { "<Space>G", "<Cmd>Neogit<Cr>", desc = "Neogit" },
-  },
+  config = true,
 }

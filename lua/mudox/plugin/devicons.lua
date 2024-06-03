@@ -11,33 +11,34 @@ local function opts()
     [".gitignore"] = { icon = i.git },
   }
 
+  -- stylua: ignore
   ret.override = {
     md = {
-      icon = i.markdown,
+      icon  = i.markdown,
       color = "#ffffff",
     },
     java = {
-      icon = i.java,
+      icon  = i.java,
       color = "#d60200",
     },
     class = {
-      name = "JavaCompiledFile",
-      icon = i.compiled,
+      name  = "JavaCompiledFile",
+      icon  = i.compiled,
       color = "#666666",
     },
     norg = {
-      name = "Neorg",
-      icon = i.neorg,
+      name  = "Neorg",
+      icon  = i.neorg,
       color = "#18b63a",
     },
     bak = {
-      name = "BackupFile",
-      icon = i.backup,
+      name  = "BackupFile",
+      icon  = i.backup,
       color = "#666666",
     },
     m = {
-      name = "ObjectiveCSourceFile",
-      icon = i.apple,
+      name  = "ObjectiveCSourceFile",
+      icon  = i.apple,
       color = "#d17cff",
     },
   }

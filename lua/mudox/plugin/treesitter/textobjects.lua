@@ -9,6 +9,7 @@
 -- k  󰅂 function call
 -- @  󰅂 loop
 -- s  󰅂 scope
+-- /  󰅂 comment
 
 -- stylua: ignore start
 
@@ -53,6 +54,10 @@ select.keymaps = {
   -- class
   ["ac"] = { query = "@class.outer",       desc = "Outer of a class" },
   ["ic"] = { query = "@class.inner",       desc = "Inner of a class" },
+
+  -- comment
+  ["a/"] = { query = "@comment.outer",     desc = "Outer of a comment" },
+  ["i/"] = { query = "@comment.inner",     desc = "Inner of a comment" },
 }
 
 local move = {

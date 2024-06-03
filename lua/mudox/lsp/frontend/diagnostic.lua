@@ -1,54 +1,43 @@
 local d = vim.diagnostic
 
-local function setup_signs()
-  local i = require("mudox.ui.icon").diagnostics.nerd
-  -- stylua: ignore
+local function config()
+  local E = vim.diagnostic.severity.ERROR
+  local W = vim.diagnostic.severity.WARN
+  local I = vim.diagnostic.severity.INFO
+  local H = vim.diagnostic.severity.HINT
+  local bar = require("mudox.ui.icon").bar
   local signs = {
-    { "DiagnosticSignError", i.error },
-    { "DiagnosticSignWarn",  i.warn },
-    { "DiagnosticSignInfo",  i.info },
-    { "DiagnosticSignHint",  i.hint },
+    text = {
+      [E] = bar,
+      [W] = bar,
+      [I] = bar,
+      [H] = bar,
+    },
   }
 
-  for _, v in ipairs(signs) do
-    vim.fn.sign_define(v[1], { texthl = v[1], text = v[2] })
-  end
-end
+  local float = {
+    source = "if_many",
+    prefix = " ",
+  }
 
-local function config()
   d.config {
-    update_in_insert = false,
-
-    severity_sort = true,
-
-    signs = true,
-
     underline = {
       severity = d.severity.ERROR,
     },
-
-    virtual_text = false,
-    -- virtual_text = {
-    --   severity = d.severity.WARN,
-    --
-    --   spacing = 4,
-    --   prefix = " 󰅂 ",
-    --   suffix = " ",
-    -- },
-
-    float = {
-      source = "if_many",
-      prefix = " ",
-    },
+    -- virtual_text = true,
+    update_in_insert = false,
+    severity_sort = true,
+    signs = signs,
+    float = float,
   }
 end
 
 local function setup_keymaps(_, bufnr)
   local function jump(next, severity)
-    local go = next and d.goto_next or d.goto_prev
+    local count = next and 1 or -1
     severity = severity and d.severity[severity] or nil
     return function()
-      go { severity = severity }
+      d.jump { count = count, severity = severity }
     end
   end
 
@@ -65,17 +54,9 @@ local function setup_keymaps(_, bufnr)
   }
 
   local function toggle()
-    local function notify(msg)
-      vim.notify(msg, vim.log.levels.INFO, { title = "LSP" })
-    end
-
-    if d.is_disabled() then
-      d.enable()
-      notify("Diagnostic enabled")
-    else
-      d.disable()
-      notify("Diagnostic disabled")
-    end
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    local enabled = d.is_enabled() and "enabled" or "disabled"
+    vim.notify("Diagnostic is " .. enabled, vim.log.levels.INFO, { title = "LSP" })
   end
 
   local function lsp_lines()
@@ -104,7 +85,7 @@ end
 
 local function setup()
   config()
-  setup_signs()
+  -- setup_signs()
 
   U.on.lsp_attach(setup_keymaps)
 end

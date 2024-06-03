@@ -75,7 +75,7 @@ K.ncmd("yf", "0,$y +")
 
 -- Macro
 K.nnop("q")
-K.nmap(";q", "q", { desc = "Macro" })
+K.nmap(";q", "q", { desc = "macro" })
 
 -- Terminal 〈
 

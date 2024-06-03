@@ -1,6 +1,7 @@
 local dependencies = {
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
+  -- TODO: replace with lazydev.nvim
   { "folke/neodev.nvim", config = false }, -- setup run in `mudox.lsp.backend.init`
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
 
   "mason.nvim",
   { "williamboman/mason-lspconfig.nvim", config = false }, -- setup run in `mudox.lsp.backend.init`
