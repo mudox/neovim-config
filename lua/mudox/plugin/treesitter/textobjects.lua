@@ -147,7 +147,7 @@ local function setup_keymaps()
     keys["["][postfix] = { prev(name, postfix), v.desc }
   end
 
-  require("which-key").register(keys)
+  require("which-key").add(keys)
 end
 
 local config = function()

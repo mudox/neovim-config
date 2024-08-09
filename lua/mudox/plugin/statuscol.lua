@@ -48,7 +48,7 @@ local function opts()
   }
 
   local line_num = {
-    text = { builtin.lnumfunc },
+    text = { builtin.lnumfunc, " " },
     click = "v:lua.ScLa",
   }
 

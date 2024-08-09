@@ -4,9 +4,11 @@ local opts = {
   },
   virtual_text = {
     enabled = true,
-    text = "",
+    -- text = "💡",
+    text = "󰛕",
+    -- text = " ",
   },
-  autocmds = {
+  autocmd = {
     enabled = true,
     events = { "CursorHold" },
   },
@@ -14,6 +16,6 @@ local opts = {
 
 return {
   "kosayoda/nvim-lightbulb",
-  event = "VeryLazy",
+  event = "LspAttach",
   opts = opts,
 }

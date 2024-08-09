@@ -1,44 +1,32 @@
-local function c(cmd)
-  return "<Cmd>" .. cmd .. "<Cr>"
-end
+-- stylua: ignore
+local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 -- stylua: ignore
-local nvim = {
-  name = "+neovim view",
-
-  -- TODO: my own custom info dashboards
-  a         = { c "args",            "Arguments"             },
-  B         = { c "buffers!",        "Buffers!"              },
-  b         = { c "buffers",         "Buffers"               },
-  c         = { c "ascii",           "ASCII"                 },
-  g         = {   "8<C-G>",          "Buffer info"           },
-  I         = { c "Inspect!",        "Inspect!"              },
-  i         = { c "Inspect",         "Inspect"               },
-  j         = { c "jumps",           "Jumps"                 },
-  l         = { c "lopen",           "Loclist"               },
-  m         = { c "marks",           "Marks"                 },
-  o         = { c "options",         "Options"               },
-  q         = { c "copen",           "Quickfix"              },
-  r         = { c "registers",       "Registers"             },
-  s         = { c "scriptnames",     "Loaded scripts"        },
-  t         = { c "InspectTree",     "Inspect tree"          },
-  u         = { c "undolist",        "Undo list"             },
-  v         = { c "messages",        "Messages"              },
-  V         = { c "verbose version", "Version"               },
-
-  ["<Tab>"] = { c "tabs",            "Tabpages"              },
-  ["="]     = { c "EditQuery",       "TreeSitter playground" },
-}
-
--- stylua: ignore
-local plugin = {
-  name = "+plugin view",
-
-  p = { c "Lazy",     "Plugins"          },
-  k = { c "WhichKey", "WhichKey keymaps" },
-}
-
 return {
-  nvim = nvim,
-  plugin = plugin,
+  { ";v", group = "neovim views" },
+
+  { ";va",     c"args",            desc = "Arguments"             },
+  { ";vB",     c"buffers!",        desc = "Buffers!"              },
+  { ";vb",     c"buffers",         desc = "Buffers"               },
+  { ";vc",     c"ascii",           desc = "ASCII"                 },
+  { ";vg",     "8<C-G>",           desc = "Buffer info"           },
+  { ";vI",     c"Inspect!",        desc = "Inspect!"              },
+  { ";vi",     c"Inspect",         desc = "Inspect"               },
+  { ";vj",     c"jumps",           desc = "Jumps"                 },
+  { ";vl",     c"lopen",           desc = "Loclist"               },
+  { ";vm",     c"marks",           desc = "Marks"                 },
+  { ";vo",     c"options",         desc = "Options"               },
+  { ";vq",     c"copen",           desc = "Quickfix"              },
+  { ";vr",     c"registers",       desc = "Registers"             },
+  { ";vs",     c"scriptnames",     desc = "Loaded scripts"        },
+  { ";vt",     c"InspectTree",     desc = "Inspect tree"          },
+  { ";vu",     c"undolist",        desc = "Undo list"             },
+  { ";vv",     c"messages",        desc = "Messages"              },
+  { ";vV",     c"verbose version", desc = "Version"               },
+
+  { ";v<Tab>", c"tabs",            desc = "Tabpages"              },
+  { ";v=",     c"EditQuery",       desc = "TreeSitter playground" },
+
+  { "<leader>v", group = "plugin views" },
+  { "<leader>vz", c"Lazy", desc = "Lazy" },
 }

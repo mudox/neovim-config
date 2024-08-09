@@ -39,7 +39,7 @@ local function on_attach(buffer)
     ["[c"]         = { X.dirop.wrap(jump, "prev"),                   "Prev Git hunk"                             },
   }
 
-  require("which-key").register(keys, { buffer = buffer })
+  require("which-key").add(keys, { buffer = buffer })
 end
 
 local opts = {
@@ -59,9 +59,6 @@ local opts = {
     virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
-  },
-  current_line_blame_formatter_opts = {
-    relative_time = true,
   },
 
   update_debounce = 100,

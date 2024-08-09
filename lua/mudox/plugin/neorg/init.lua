@@ -94,6 +94,5 @@ return {
     "plenary.nvim",
     "nvim-neorg/neorg-telescope",
   },
-  -- NOTE: currently is migrating to rocks.nvim, unstable
-  cond = false,
+  cond = false, -- wait for rocks.nvim
 }

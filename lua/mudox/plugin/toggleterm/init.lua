@@ -2,10 +2,8 @@ local function t(name)
   return require("mudox.plugin.toggleterm." .. name)
 end
 
-local toggle_key = "<C-t>"
-
 local opts = {
-  open_mapping = toggle_key,
+  open_mapping = "<C-t>",
 
   shade_terminals = false, -- disable for clear window separator line
 
@@ -55,26 +53,24 @@ end
 
 -- stylua: ignore
 local keys = {
-  toggle_key,
-
-  -- prefer to use tmux popup when in tmux
-  { "<leader>gl", toggle_lazygit, desc = "LazyGit (ToggleTerm)", },
-  { "<leader>gg", toggle_gitui, desc = "GitUI (ToggleTerm)", },
+  { "<C-t>", desc = "[ToggleTerm] toggle" },
 
   -- layout
-  { "<C-\\>s",      move("horizontal"), mode = { "n", "t" }, desc = "[ToggleTerm] Move to bottom" },
-  { "<C-\\>v",      move("vertical"),   mode = { "n", "t" }, desc = "[ToggleTerm] Move to right" },
-  { "<C-\\>t",      move("tab"),        mode = { "n", "t" }, desc = "[ToggleTerm] Move to new tabpage" },
-  { "<C-\\>f",      move("float"),      mode = { "n", "t" }, desc = "[ToggleTerm] Move to float" },
-  { "<C-\\><C-\\>", change_layout,      mode = { "n", "t" }, desc = "[ToggleTerm] Change layout" },
-
+  { "<C-\\>s",      move("horizontal"),           desc = "[ToggleTerm] Move to bottom",      mode = { "n", "t" } },
+  { "<C-\\>v",      move("vertical"),             desc = "[ToggleTerm] Move to right",       mode = { "n", "t" } },
+  { "<C-\\>t",      move("tab"),                  desc = "[ToggleTerm] Move to new tabpage", mode = { "n", "t" } },
+  { "<C-\\>f",      move("float"),                desc = "[ToggleTerm] Move to float",       mode = { "n", "t" } },
+  { "<C-\\><C-\\>", change_layout,                desc = "[ToggleTerm] Change layout",       mode = { "n", "t" } },
   -- rename
-  { "<C-\\>r", "<Cmd>ToggleTermSetName<Cr>", mode = { "n", "t" }, desc = "[ToggleTerm] Rename" },
-
+  { "<C-\\>r",      "<Cmd>ToggleTermSetName<Cr>", desc = "[ToggleTerm] Rename"               },
+  -- switch
+  { "<C-\\><Tab>",  "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
   -- select terminal
-  { "<leader>tx",  "<Cmd>TermSelect<Cr>",                         desc = "Terminals" },
-  { "<leader>wt",  "<Cmd>TermSelect<Cr>",                         desc = "[ToggleTerm] Select terminal" },
-  { "<C-\\><Tab>", "<Cmd>TermSelect<Cr>",   mode = { "n", "t" },  desc = "[ToggleTerm] Select terminal" },
+  { "<leader>tx",   "<Cmd>TermSelect<Cr>",        desc = "Terminals"                         },
+  { "<leader>wt",   "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
+  -- prefer to use tmux popup when in tmux
+  { "<leader>gl",   toggle_lazygit,               desc = "[ToggleTerm] LazyGit"              },
+  { "<leader>gg",   toggle_gitui,                 desc = "[ToggleTerm] GitUI"                },
 }
 
 local cmd = {
@@ -90,5 +86,6 @@ return {
   "akinsho/toggleterm.nvim",
   cmd = cmd,
   keys = keys,
-  config = config,
+  -- config = config,
+  config = true,
 }

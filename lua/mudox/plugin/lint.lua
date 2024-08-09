@@ -12,7 +12,7 @@ local function config()
   }
 
   local gid = vim.api.nvim_create_augroup("mdx_lint", { clear = true })
-  U.on({ "BufWritePost", "BufEnter" }, {
+  U.on({ "BufEnter", "BufWritePost" }, {
     group = gid,
     desc = "Lint document by nvim-lint",
     callback = function()
@@ -24,5 +24,14 @@ end
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
+  keys = {
+    {
+      "\\l",
+      function()
+        require("lint").try_lint()
+      end,
+      desc = "[Lint] lint",
+    },
+  },
   config = config,
 }

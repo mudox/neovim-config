@@ -27,7 +27,7 @@ local function config()
   ibl.setup(opts)
 
   -- local hooks = require("ibl.hooks")
-  -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+  -- hooks.add(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 end
 
 return {

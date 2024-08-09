@@ -1,8 +1,9 @@
 -- stylua: ignore
 local keys = {
-  { "<leader>w/",    function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window" },
-  { "<leader>w<Cr>", function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area" },
-  { "<leader>w-",    function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
+  { "<leader>w<Space>", function() require("edgy").toggle() end,    desc = "[Edgy] Toggle"                 },
+  { "<leader>w/",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window"       },
+  { "<leader>w<Cr>",    function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area"         },
+  { "<leader>w-",       function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
 }
 
 local function is_not_floating(_, win)
@@ -16,6 +17,13 @@ local function init()
   -- To prevent this, set `splitkeep` to either `screen` or `topline`.
   vim.opt.splitkeep = "screen"
 end
+
+-- stylua: ignore
+local trouble = {
+  { title = "[Trouble] Symbols",     mode = "symbols",     pos = "left"   },
+  { title = "[Trouble] Diagnostics", mode = "diagnostics", pos = "bottom" },
+  { title = "[Trouble] Todo",        mode = "todo",        pos = "bottom" },
+}
 
 local left = {
   -- NvimTree filesystem always takes half the screen height
@@ -52,7 +60,6 @@ local left = {
 }
 
 local bottom = {
-  "Trouble",
   {
     title = "QuickFix / LocList",
     ft = "qf",
@@ -142,7 +149,7 @@ local opts = {
   keys      = ui_keys,
 
   options   = {
-    left    = { size = 36 },
+    left    = { size = 46 },
     bottom  = { size = 0.3 },
     right   = { size = 88 },
     top     = { size = 0.3 },
@@ -161,15 +168,25 @@ local opts = {
   }
 }
 
+for _, v in ipairs(trouble) do
+  opts[v.pos] = opts[v.pos] or {}
+  table.insert(opts[v.pos], {
+    title = v.title,
+    ft = "trouble",
+    filter = function(_, win)
+      return vim.w[win].trouble
+        and vim.w[win].trouble.mode == v.mode
+        and vim.w[win].trouble.type == "split"
+        and not vim.w[win].trouble_preview
+    end,
+  })
+end
+
 return {
   "folke/edgy.nvim",
   event = "VeryLazy",
   keys = keys,
   init = init,
   opts = opts,
-
-  cond = function()
-    return vim.g.mdx_nvim_mode ~= "man"
-  end,
   branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
 }

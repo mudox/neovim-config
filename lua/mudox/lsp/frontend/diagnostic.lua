@@ -5,7 +5,7 @@ local function config()
   local W = vim.diagnostic.severity.WARN
   local I = vim.diagnostic.severity.INFO
   local H = vim.diagnostic.severity.HINT
-  local bar = require("mudox.ui.icon").bar
+  local bar = require("mudox.ui.icon").short_bar
   local signs = {
     text = {
       [E] = bar,
@@ -20,12 +20,19 @@ local function config()
     prefix = " ",
   }
 
+  local virtual_text = {
+    severity = vim.diagnostic.severity.ERROR,
+    prefix = "",
+    suffix = " ",
+    source = false,
+  }
+
   d.config {
     underline = {
       severity = d.severity.ERROR,
     },
-    -- virtual_text = true,
     update_in_insert = false,
+    virtual_text = virtual_text,
     severity_sort = true,
     signs = signs,
     float = float,
@@ -37,7 +44,7 @@ local function setup_keymaps(_, bufnr)
     local count = next and 1 or -1
     severity = severity and d.severity[severity] or nil
     return function()
-      d.jump { count = count, severity = severity }
+      d.jump { count = count, severity = severity, float = true }
     end
   end
 
@@ -67,20 +74,20 @@ local function setup_keymaps(_, bufnr)
 
   -- stylua: ignore
   local keys = {
-    ["]d"]  = { dirop(jump_dirop, 'next'),        "[Diagnostic] Next issue"     },
-    ["[d"]  = { dirop(jump_dirop, 'prev'),        "[Diagnostic] Previous issue" },
-    ["]E"]  = { dirop(jump_error_dirop, 'next'),  "[Diagnostic] Next error"     },
-    ["[E"]  = { dirop(jump_error_dirop, 'prev'),  "[Diagnostic] Previous error" },
+    { "]d",  dirop(jump_dirop, 'next'),       desc = "[Diagnostic] Next issue"     },
+    { "[d",  dirop(jump_dirop, 'prev'),       desc = "[Diagnostic] Previous issue" },
+    { "]E",  dirop(jump_error_dirop, 'next'), desc = "[Diagnostic] Next error"     },
+    { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
 
-    ["gl"]  = { d.open_float,              "[Diagnostic] Show issue(s)" },
-    ["col"] = { lsp_lines,                 "[Lsp Lines] Toggle" },
+    { "gl",  d.open_float,                    desc =  "[Diagnostic] Show issue(s)" },
+    { "col", lsp_lines,                       desc =  "[Lsp Lines] Toggle"         },
 
-    ["yod"] = { toggle,                    "[Diagnostic] Toggle" },
+    { "yod", toggle,                          desc =  "[Diagnostic] Toggle"        },
 
-    ["gQ"]  = { vim.diagnostic.setloclist, "[Diagnostic] Set loclist" },
+    { "gQ",  vim.diagnostic.setloclist,       desc =  "[Diagnostic] Set loclist"   },
   }
 
-  require("which-key").register(keys, { buffer = bufnr })
+  require("which-key").add(keys, { buffer = bufnr })
 end
 
 local function setup()

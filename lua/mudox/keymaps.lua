@@ -59,6 +59,13 @@ K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearc
 -- Useless legacy `sleep` function
 K.nnop("gs")
 
+-- `;w` = `<C-w>`
+K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")')
+
+-- remove default diagnostic float keymaps
+K.nnop("<C-w>d")
+K.nnop("<C-w><C-d>")
+
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
 K.nmap("g,", "g,zv", { remap = true })
@@ -66,16 +73,19 @@ K.nmap("<C-S-j>", "g;", { remap = true })
 K.nmap("<C-S-k>", "g,", { remap = true })
 
 -- Insert mode keymaps
-K.imap("<M-.>", "<Esc>A")
+K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })
 K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
 
 -- Copy entire buffer content into system pasteboard
 K.ncmd("yf", "0,$y +")
--- K.nmap("p", [["_p]])
 
 -- Macro
 K.nnop("q")
 K.nmap(";q", "q", { desc = "macro" })
+
+-- Digraph
+K.inop("<C-k>")
+K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
 -- Terminal 〈
 

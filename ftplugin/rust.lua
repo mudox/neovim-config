@@ -40,4 +40,4 @@ local keymaps = {
   },
 }
 
-require("which-key").register(keymaps, { buffer = vim.api.nvim_get_current_buf() })
+require("which-key").add(keymaps, { buffer = vim.api.nvim_get_current_buf() })

@@ -10,6 +10,6 @@ end
 
 return {
   "aznhe21/actions-preview.nvim",
-  -- event = "LspAttach", -- required in keymap `\a`
+  -- event = "LspAttach", -- required in frontend/refactoring.lua
   opts = opts,
 }

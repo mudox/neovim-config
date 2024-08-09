@@ -29,20 +29,28 @@ local function telescope(hl, c)
   }
 
   -- results
-  hl.TelescopeResultsTitle = {
+  hl.TelescoeResultsTitle = {
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
 end
 
+local function trouble(hl, c)
+  hl.TroubleNormal = hl.Normal
+  hl.TroubleNormalNC = hl.NormalNC
+end
+
+local function lightbulb(hl, c)
+  hl.LightBulbVirtualText = { fg = "#0db9d7" }
+end
+
 local function diagnostic(hl, _)
-  local s = require("mudox.ui.color").sign
+  local c = require("mudox.ui.color").rainbow
   -- stylua: ignore start
-  hl.DiagnosticSignError = { fg = s.red    }
-  hl.DiagnosticSignWarn  = { fg = s.violet }
-  hl.DiagnosticSignDebug = { fg = s.blue   }
-  hl.DiagnosticSignInfo  = { fg = s.green  }
-  hl.DiagnosticSignHint  = { fg = s.gray   }
+  hl.DiagnosticSignError = { fg = c.red    }
+  hl.DiagnosticSignWarn  = { fg = c.violet }
+  hl.DiagnosticSignInfo  = { fg = c.yellow  }
+  hl.DiagnosticSignHint  = { fg = c.gray   }
   -- stylua: ignore end
 end
 
@@ -63,7 +71,7 @@ local function winbar(hl, _)
 end
 
 local function nvim_tree(hl, _)
-  hl.NvimTreeOpenedFile.fg = "#FFFFFF"
+  -- hl.NvimTreeOpenedFile.fg = "#FFFFFF"
 end
 
 local function dropbar(hl, _)
@@ -99,29 +107,37 @@ local function notify(hl, _)
   -- stylua: ignore end
 end
 
+local function on_highlights(...)
+  -- diagnostic(...)
+  folding(...)
+  -- gitsigns(...)
+  nvim_tree(...)
+  telescope(...)
+  dropbar(...)
+  winbar(...)
+  -- notify(...)
+  trouble(...)
+  lightbulb(...)
+end
+
 local opts = {
   -- For transparent background to take effect, the style name here must be same as that
   -- applied to current terminal app (e.g. in kitty.conf)
   style = "moon",
 
   styles = {
+    comments = { italic = false },
+    keywords = { italic = false },
     sidebars = "transparent",
     floats = "dark",
   },
 
-  on_highlights = function(...)
-    diagnostic(...)
-    folding(...)
-    -- gitsigns(...)
-    nvim_tree(...)
-    telescope(...)
-    dropbar(...)
-    winbar(...)
-    -- notify(...)
-  end,
+  on_highlights = on_highlights,
 }
 
 return {
   "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
   opts = opts,
 }

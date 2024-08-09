@@ -118,7 +118,6 @@ local keys = {
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = "nvim-web-devicons",
-  event = "CursorHold", -- HACK: fix keymap load failure after restoring session
   keys = keys,
   opts = opts,
 }

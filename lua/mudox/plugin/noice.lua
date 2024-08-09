@@ -77,22 +77,22 @@ local opts = {
 
 local keys = {
   { "<leader>tN",       "<Cmd>Noice telescope<Cr>", desc = "[Noice] History in telescope" },
-  { "<leader>m<Space>", "<Cmd>Noice<Cr>",           desc = "[Noice] History" },
-  { "<leader>m.",       "<Cmd>Noice last<Cr>",      desc = "[Noice] Last message" },
-  { "<leader>me",       "<Cmd>Noice errors<Cr>",    desc = "[Noice] Errors" },
-  { "<leader>m[",       "<Cmd>Noice disable<Cr>",    desc = "[Noice] Disable" },
-  { "<leader>m]",       "<Cmd>Noice enable<Cr>",    desc = "[Noice] Enable" },
+  { "<leader>m<Space>", "<Cmd>Noice<Cr>",           desc = "[Noice] History"              },
+  { "<leader>m.",       "<Cmd>Noice last<Cr>",      desc = "[Noice] Last message"         },
+  { "<leader>me",       "<Cmd>Noice errors<Cr>",    desc = "[Noice] Errors"               },
+  { "<leader>m[",       "<Cmd>Noice disable<Cr>",   desc = "[Noice] Disable"              },
+  { "<leader>m]",       "<Cmd>Noice enable<Cr>",    desc = "[Noice] Enable"               },
 }
 
 -- stylua: ignore end
 
 return {
+  cond = false,
   "folke/noice.nvim",
   dependencies = {
     "nui.nvim",
     "nvim-notify",
   },
-  cond = false,
   event = "VeryLazy",
   keys = keys,
   opts = opts,

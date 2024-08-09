@@ -1,6 +1,3 @@
--- stylua: ignore
-local function t(o) return { "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>", "[Option] " .. o } end
-
 local function toggle_treesitter_highlighting()
   local function notify(msg)
     vim.notify(msg, vim.log.levels.INFO, { title = "TreeSitter" })
@@ -41,28 +38,29 @@ local function toggle_loclist()
   end
 end
 
+local function yo(k, o)
+  return {
+    "yo" .. k,
+    "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>",
+    desc = "[Option] " .. o,
+  }
+end
+
 -- stylua: ignore
-local nvim = {
-  name = "+nvim toggle",
-
-  h = t "hlsearch",
-  l = t "list",
-  n = t "number",
-  r = t "relativenumber",
-  s = t "spell",
-  w = t "wrap",
-
-  t = { toggle_treesitter_highlighting, "treesitter highlighting" },
-
-  q = { toggle_quickfix,                "quickfix"                },
-  L = { toggle_loclist,                 "loclist"                 },
-}
-
-local plugin = {
-  name = "+plugin toggle",
-}
-
 return {
-  nvim = nvim,
-  plugin = plugin,
+  { "yo", group = "nvim toggle" },
+
+  yo("h", "hlsearch"),
+  yo("l", "list"),
+  yo("n", "number"),
+  yo("r", "relativenumber"),
+  yo("s", "spell"),
+  yo("w", "wrap"),
+
+  { "yot", toggle_treesitter_highlighting, desc = "treesitter highlighting" },
+
+  { "yoq", toggle_quickfix,                desc = "quickfix"                },
+  { "yol", toggle_loclist,                 desc = "loclist"                 },
+
+  { "co", group = "plugin toggle" },
 }

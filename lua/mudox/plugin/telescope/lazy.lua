@@ -12,15 +12,15 @@ local function open_plugin_window(prompt_buf)
   local state = require("telescope.actions.state")
   local entry = state.get_selected_entry()
 
-  local name = title(entry.name)
-  local path = entry.path
+  local name = entry.value.name
+  local path = entry.value.path
 
   require("telescope.actions").close(prompt_buf)
-  vim.system {
+  vim.print(vim.system {
     vim.env.MDX_NVIM_DIR .. "/scripts/tmux_plugin_win.sh",
     name,
     path,
-  }
+  })
 end
 
 return {

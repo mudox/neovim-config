@@ -104,7 +104,7 @@ local diagnostics = {
     trace = "󰩷 ",
   },
 
-  nerd = {
+  cod = {
     error = " ",
     warn  = " ",
     info  = " ",
@@ -114,16 +114,18 @@ local diagnostics = {
   }
 }
 
+-- Diagnostics 〉
+
+-- stylua: ignore
 local chevron = {
-  down = "󰅀",
+  down  = "󰅀",
   right = "󰅂",
 }
-
--- Diagnostics 〉
 
 -- stylua: ignore
 return {
   bar           = "┃",
+  short_bar     = "▮",
   border        = border,
 
   check         = "✔",

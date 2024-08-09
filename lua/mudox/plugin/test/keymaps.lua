@@ -44,34 +44,34 @@ local failed_test_nav = {
 -- stylua: ignore
 local keys = {
   -- test
-  { ".",       test_last,             "Test last",                      },
-  { "<Cr>",    test_nearest,          "Test nearest",                   },
-  { "c",       test_nearest,          "Test nearest",                   },
-  { "f",       test_file,             "Test file",                      },
-  { "s",       test_suite,            "Test suite",                     },
+  { ".",       test_last,             "Test last",                            },
+  { "<Cr>",    test_nearest,          "Test nearest",                         },
+  { "c",       test_nearest,          "Test nearest",                         },
+  { "f",       test_file,             "Test file",                            },
+  { "s",       test_suite,            "Test suite",                           },
 
   -- debug
-  { ",",       debug_last,            "Debug last",                     },
-  { "d",       debug_nearest,         "Debug nearest",                  },
-  { "F",       debug_file,            "Debug file",                     },
-  { "a",       attach_to_nearest,     "Attach to nearest",              },
+  { ",",       debug_last,            "Debug last",                           },
+  { "d",       debug_nearest,         "Debug nearest",                        },
+  { "F",       debug_file,            "Debug file",                           },
+  { "a",       attach_to_nearest,     "Attach to nearest",                    },
 
   -- stop
-  { "<Bs>",    stop_nearest,          "Stop nearest",                   },
+  { "<Bs>",    stop_nearest,          "Stop nearest",                         },
 
   -- watch
-  { "w",       toggle_watch_file,     "Toggle watch file",              },
+  { "w",       toggle_watch_file,     "Toggle watch file",                    },
 
   -- ui
-  { "<Space>", toggle_summary,        "Toggle summary",                 },
-  { "v",       open_output_float,     "Show output float",              },
-  { "l",       toggle_output_panel,   "Toggle output panel",            },
+  { "<Space>", toggle_summary,        "Toggle summary",                       },
+  { "v",       open_output_float,     "Show output float",                    },
+  { "l",       toggle_output_panel,   "Toggle output panel",                  },
 
   -- jump
-  { "]t",      X.dirop.wrap(test_nav, "next"),        "Next test",            k =  "l", },
-  { "[t",      X.dirop.wrap(test_nav, "prev"),        "Previous test",        k =  "l", },
-  { "]T",      X.dirop.wrap(failed_test_nav, "next"), "Next failed test",     k =  "l", },
-  { "[T",      X.dirop.wrap(failed_test_nav, "prev"), "Previous failed test", k =  "l", },
+  { "]t ✓",    X.dirop.wrap(test_nav, "next"),        "Next test",            },
+  { "[t ✓",    X.dirop.wrap(test_nav, "prev"),        "Previous test",        },
+  { "]T ✓",    X.dirop.wrap(failed_test_nav, "next"), "Next failed test",     },
+  { "[T ✓",    X.dirop.wrap(failed_test_nav, "prev"), "Previous failed test", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = "<leader>c",

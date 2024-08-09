@@ -138,7 +138,20 @@ setmetatable(M, {
 })
 
 function M.lazy_keys(tbl, opts)
+  local function skip(v, i)
+    if type(v[i]) == "string" and v[i]:sub(-4) == " ✓" then
+      v[i] = v[i]:sub(1, -5)
+      return true
+    else
+      return false
+    end
+  end
+
   local function lhs(v)
+    if v.mode ~= nil or skip(v, 1) then
+      return
+    end
+
     if opts.key_prefix then
       v[1] = opts.key_prefix .. v[1]
     end
@@ -146,6 +159,10 @@ function M.lazy_keys(tbl, opts)
   end
 
   local function rhs(v)
+    if skip(v, 2) then
+      return
+    end
+
     if type(v[2]) == "string" then
       if opts.main_cmd then
         v[2] = ("<Cmd>%s %s<Cr>"):format(opts.main_cmd, v[2])
@@ -158,28 +175,22 @@ function M.lazy_keys(tbl, opts)
   end
 
   local function desc(v)
+    v.desc = v[3]
+    v[3] = nil
+
+    if skip(v, "desc") then
+      return
+    end
+
     if opts.desc_prefix and v.desc:sub(1, 1) ~= "[" then
       v.desc = ("[%s] %s"):format(opts.desc_prefix, v.desc)
     end
   end
 
   for _, v in pairs(tbl) do
-    local keep = v.k or ""
-    v.k = nil
-
-    if not keep:find("l") then
-      lhs(v)
-    end
-
-    if not keep:find("r") then
-      rhs(v)
-    end
-
-    v.desc = v[3]
-    v[3] = nil
-    if not keep:find("d") then
-      desc(v)
-    end
+    lhs(v)
+    rhs(v)
+    desc(v)
   end
 
   return tbl

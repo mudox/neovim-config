@@ -13,15 +13,14 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "a",       add_file,                                 "Add file",      },
+  { "a",         add_file,                                 "Add file",      },
 
-  { "<Space>", function () ui().toggle_quick_menu() end, "Menu",          },
-  { "M",       function () ui().toggle_quick_menu() end, "Menu",          k =  "l", },
+  { "<Space>",   function () ui().toggle_quick_menu() end, "Menu",          },
+  { "M ✓",       function () ui().toggle_quick_menu() end, "Menu",          },
 
-  { "<C-S-l>", function () ui().nav_next() end,          "Next file",     k =  "l", },
-  { "<C-S-h>", function () ui().nav_prev() end,          "Previous file", k =  "l", },
+  { "<C-S-l> ✓", function () ui().nav_next() end,          "Next file",     },
+  { "<C-S-h> ✓", function () ui().nav_prev() end,          "Previous file", },
 }
-
 keys = K.lazy_keys(keys, {
   key_prefix = "<leader>e",
   desc_prefix = "Harpoon",

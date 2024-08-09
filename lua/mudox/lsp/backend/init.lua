@@ -6,24 +6,6 @@ local function base_capabilities()
   )
 end
 
-local function setup_mason()
-  require("mason").setup()
-end
-
-local function setup_neodev()
-  require("neodev").setup {
-    library = {
-      -- PERF: list plugins only needed in `neovim-config` to reduce server initialization time and
-      -- reduce memory overhead
-      plugins = {
-        -- "lazy.nvim",
-        -- "nvim-treesitter",
-        -- "plenary.nvim",
-      },
-    },
-  }
-end
-
 -- default, shared server settings
 local base_opts = {
   capabilities = base_capabilities(),
@@ -110,9 +92,7 @@ end
 
 local function setup()
   -- Order matters
-
-  setup_neodev()
-  setup_mason()
+  require("mason")
   setup_servers()
   on_lsp_attach()
 end

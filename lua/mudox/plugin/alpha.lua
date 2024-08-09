@@ -85,8 +85,8 @@ local function config()
     pattern = "LazyVimStarted",
     callback = function()
       local stats = require("lazy").stats()
-      local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-      db.section.footer.val = "󰉁 Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+      local startup_ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      db.section.footer.val = (" %d(%d)   󰚭 %.2fms"):format(stats.loaded, stats.count, startup_ms)
       pcall(vim.cmd.AlphaRedraw)
     end,
   })

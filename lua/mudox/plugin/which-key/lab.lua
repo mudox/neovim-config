@@ -1,7 +1,6 @@
 -- stylua: ignore
 return {
-  name = "lab",
+  { ";x", group = "lab" },
 
-  r = { function() require("mudox.lab.rootdir").info() end, "Root dir" },
-  c = { function() require("mudox.lab.close").window() end, "Close window" },
+  { ";xc", function() X.close.window() end, desc = "Close window" },
 }

@@ -23,8 +23,8 @@ local keys = {
   "ys", -- add
   "cs", -- change
   "ds", -- delete
-  { "q", mode = "v" },
-  { "Q", mode = "v" },
+  { "q", mode = "v", desc = "surround" },
+  { "Q", mode = "v", desc = "surround" },
 }
 
 local chars = { "(", ")", "[", "]", "{", "}", "'", '"' }
