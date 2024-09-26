@@ -69,8 +69,8 @@ local keys = {
   { "<leader>tx",   "<Cmd>TermSelect<Cr>",        desc = "Terminals"                         },
   { "<leader>wt",   "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
   -- prefer to use tmux popup when in tmux
-  { "<leader>gl",   toggle_lazygit,               desc = "[ToggleTerm] LazyGit"              },
-  { "<leader>gg",   toggle_gitui,                 desc = "[ToggleTerm] GitUI"                },
+  -- { "<leader>gl",   toggle_lazygit,               desc = "[ToggleTerm] LazyGit"              },
+  -- { "<leader>gg",   toggle_gitui,                 desc = "[ToggleTerm] GitUI"                },
 }
 
 local cmd = {

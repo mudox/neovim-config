@@ -73,7 +73,12 @@ local function config()
 end
 
 return {
-  "hrsh7th/nvim-cmp",
+  -- "hrsh7th/nvim-cmp",
+
+  -- HACK: for performance gain
+  "yioneko/nvim-cmp",
+  branch = "perf",
+
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   keys = { { "<leader>vc", "<Cmd>CmpStatus<Cr>", desc = "Cmp" } },
   dependencies = dependencies,

@@ -41,5 +41,5 @@ return {
   "hiphish/rainbow-delimiters.nvim",
   event = { "BufRead", "BufNewFile" },
   config = config,
-  -- cond = false,
+  cond = false, -- bug
 }

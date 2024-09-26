@@ -3,6 +3,6 @@ return {
   -- stylua: ignore
   keys = { { "\\S", function() require("ssr").open() end, desc = "[SSR] Open", } },
   opts = {
-    border = "single",
+    border = "none",
   },
 }

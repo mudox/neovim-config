@@ -1,45 +1,59 @@
-local function mark()
-  return require("harpoon.mark")
-end
-
-local function ui()
-  return require("harpoon.ui")
-end
-
-local function add_file()
-  mark().add_file()
-  print(("Add %s to harpoon"):format(vim.fn.expand("%:t")))
-end
-
 -- stylua: ignore
-local keys = {
-  { "a",         add_file,                                 "Add file",      },
+local function hp() return require("harpoon") end
 
-  { "<Space>",   function () ui().toggle_quick_menu() end, "Menu",          },
-  { "M ✓",       function () ui().toggle_quick_menu() end, "Menu",          },
+local function keys()
+  local function add_file()
+    hp():list():add()
+    print(("Add %s to harpoon"):format(vim.fn.expand("%:t")))
+  end
 
-  { "<C-S-l> ✓", function () ui().nav_next() end,          "Next file",     },
-  { "<C-S-h> ✓", function () ui().nav_prev() end,          "Previous file", },
-}
-keys = K.lazy_keys(keys, {
-  key_prefix = "<leader>e",
-  desc_prefix = "Harpoon",
-})
-
-for i = 1, 9 do
   -- stylua: ignore
-  table.insert(keys, { "<leader>" .. i, function () ui().nav_file(i) end, desc = "[Harpoon] Goto file " .. i })
+  local k = {
+    { "<leader>fa", add_file,                                               "[Harpoon] Add file",      },
+
+    { "M",          function () hp().ui:toggle_quick_menu(hp():list()) end, "[Harpoon] Menu",          },
+
+    { "<C-S-l>",    function () hp():list():next() end,                     "[Harpoon] Next file",     },
+    { "<C-S-h>",    function () hp():list():prev() end,                     "[Harpoon] Previous file", },
+  }
+
+  for i = 1, 9 do
+    -- stylua: ignore
+    table.insert(k, { "<leader>" .. i, function () hp():list():select(i) end, desc = "[Harpoon] Goto file " .. i })
+  end
+
+  return k
 end
 
 local opts = {
-  enter_on_sendcmd = true,
-  menu = { width = 80 },
+  -- enter_on_sendcmd = true,
+  -- menu = { width = 80 },
 }
+
+local function config()
+  hp().setup(opts)
+
+  hp():extend {
+    UI_CREATE = function(cx)
+      vim.keymap.set("n", "<C-v>", function()
+        hp().ui:select_menu_item { vsplit = true }
+      end, { buffer = cx.bufnr })
+
+      vim.keymap.set("n", "<C-s>", function()
+        hp().ui:select_menu_item { split = true }
+      end, { buffer = cx.bufnr })
+
+      vim.keymap.set("n", "<C-t>", function()
+        hp().ui:select_menu_item { tabedit = true }
+      end, { buffer = cx.bufnr })
+    end,
+  }
+end
 
 return {
   "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   dependencies = "plenary.nvim",
-  keys = keys,
-  opts = opts,
-  cond = false, -- testing grapple.nvim
+  keys = keys(),
+  config = config,
 }

@@ -34,7 +34,7 @@ end
 local opts = {
   highlight_on_hover = true,
 
-  min_width = 30,
+  min_width = require("mudox.ui").left_width,
   float = float,
 
   close_on_select = false,

@@ -19,8 +19,14 @@ local function _create(id, cmd)
   else
     cmd()
   end
+
   vim.cmd.BufferLineTabRename(id)
   vim.api.nvim_tabpage_set_var(0, varname, { id = id, cmd = cmd })
+
+  -- tabman created tabpage can not be main tabpage
+  if vim.fn.tabpagenr() == 1 then
+    vim.notify("tabman created tabpage occupied main tabpage's position", vim.log.levels.WARN, { title = "TabMan" })
+  end
 
   return vim.api.nvim_get_current_tabpage(), vim.fn.tabpagenr()
 end

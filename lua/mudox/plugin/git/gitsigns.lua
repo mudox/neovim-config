@@ -14,29 +14,27 @@ local function on_attach(buffer)
   local gs = require("gitsigns")
 
   local jump = {
-    name = "Gitsigns Hunk",
+    name = "Gitsigns hunk",
     next = gs.next_hunk,
     prev = gs.prev_hunk,
   }
 
   -- stylua: ignore
   local keys = {
-    ["ih"]         = { "<Cmd>Gitsigns select_hunk<CR>",              "Select hunk",          mode = { "x", "o" } },
-
     -- stage
-    ["<leader>gs"] = { gs.stage_hunk,                                "Stage Hunk"                                },
-    ["<leader>gu"] = { gs.undo_stage_hunk,                           "Unstage Hunk"                              },
-    ["<leader>gD"] = { gs.reset_hunk,                                "Reset Hunk (Discard Changes)"              },
+    { "<leader>gs", gs.stage_hunk,                                desc = "Stage hunk"      },
+    { "<leader>gu", gs.undo_stage_hunk,                           desc = "Unstage hunk"    },
+    { "<leader>gD", gs.reset_hunk,                                desc = "Discard changes" },
 
     -- blame
-    ["<leader>gb"] = { function() gs.blame_line { full = true } end, "Blame Line"                                },
+    { "<leader>gb", function() gs.blame_line { full = true } end, desc = "Blame line"      },
 
     -- diff
-    ["<leader>gv"] = { gs.preview_hunk,                              "Preview Hunk"                              },
+    { "<leader>gv", gs.preview_hunk,                              desc = "Preview hunk"    },
 
     -- goto
-    ["]c"]         = { X.dirop.wrap(jump, "next"),                   "Next Git hunk"                             },
-    ["[c"]         = { X.dirop.wrap(jump, "prev"),                   "Prev Git hunk"                             },
+    { "]c",         X.dirop.wrap(jump, "next"),                   desc = "Next hunk"       },
+    { "[c",         X.dirop.wrap(jump, "prev"),                   desc = "Prev hunk"       },
   }
 
   require("which-key").add(keys, { buffer = buffer })
@@ -69,7 +67,7 @@ local opts = {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "single",
+    border = require("mudox.ui.icon").border.box,
     style = "minimal",
     relative = "cursor",
     row = 0,

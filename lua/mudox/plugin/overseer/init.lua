@@ -1,33 +1,5 @@
--- TODO: adapt to find all AP actions
----@diagnostic disable-next-line: unused-local, unused-function
-local function local_shell_scripts()
-  local files = require("overseer.files")
-
-  return {
-    generator = function(opts, cb)
-      local scripts = vim.tbl_filter(function(filename)
-        return filename:match("%.z?sh$")
-      end, files.list_files(opts.dir))
-
-      local templates = {}
-      for _, filename in ipairs(scripts) do
-        table.insert(templates, {
-          name = "Run " .. filename,
-          params = {
-            args = { optional = true, type = "list", delimiter = " " },
-          },
-          builder = function(params)
-            return {
-              cmd = { files.join(opts.dir, filename) },
-              args = params.args,
-            }
-          end,
-        })
-      end
-
-      cb(templates)
-    end,
-  }
+local function r(name)
+  return require("mudox.plugin.overseer." .. name)
 end
 
 local templates = {
@@ -37,43 +9,47 @@ local templates = {
   "mudox.run_neovim_lua_script",
 }
 
+-- stylua: ignore
+local task_list_keymaps = {
+  o          = false,
+  ["]"]      = false,
+  ["["]      = false,
+
+  -- navigate
+  ["{"]      = false,
+  ["}"]      = false,
+  ["<C-n>"]  = "NextTask",
+  ["<C-p>"]  = "PrevTask",
+
+  -- scroll
+  ["<C-j>"]  = "ScrollOutputDown",
+  ["<C-k>"]  = "ScrollOutputUp",
+
+  -- detail
+  ["<C-h>"]  = false,
+  ["<C-l>"]  = false,
+  m          = "IncreaseDetail",
+  l          = "DecreaseDetail",
+  M          = "IncreaseAllDetail",
+  L          = "DecreaseAllDetail",
+
+  -- custom
+  ["<C-x>"]  = "<CMD>OverseerQuickAction duplicate<CR>",
+  ["<C-Cr>"] = "<CMD>OverseerQuickAction run<CR>",
+}
+
 local function opts()
   local border = require("mudox.ui.icon").border.corner
 
-  local task_list = {
-    direction = "right",
-    separator = "",
-
-    -- stylua: ignore
-    bindings = {
-      o            = false,
-      ["]"]        = false,
-      ["["]        = false,
-
-      -- navigate
-      ["{"]        = false,
-      ["}"]        = false,
-      ["<C-n>"]    = "NextTask",
-      ["<C-p>"]    = "PrevTask",
-
-      -- scroll
-      ["<C-j>"]    = "ScrollOutputDown",
-      ["<C-k>"]    = "ScrollOutputUp",
-
-      -- detail
-      ["<C-h>"]    = false,
-      ["<C-l>"]    = false,
-      m            = "IncreaseDetail",
-      l            = "DecreaseDetail",
-      M            = "IncreaseAllDetail",
-      L            = "DecreaseAllDetail",
-    },
-  }
-
   return {
     templates = templates,
+    actions = r("actions"),
 
-    task_list = task_list,
+    task_list = {
+      direction = "right",
+      separator = "",
+      bindings = task_list_keymaps,
+    },
     confirm = {
       border = border,
       win_opts = {

@@ -70,6 +70,14 @@ end
 
 return setmetatable(M, {
   __call = function(_, ...)
-    vim.api.nvim_create_autocmd(...)
+    -- allow for simple uses: `U.on({event}, funciton() ... end)`
+    local args = { ... }
+    if #args == 2 and type(args[2]) == "function" then
+      vim.api.nvim_create_autocmd(args[1], {
+        callback = args[2],
+      })
+    else
+      vim.api.nvim_create_autocmd(...)
+    end
   end,
 })

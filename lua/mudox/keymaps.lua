@@ -41,21 +41,6 @@ K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" }
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
--- Smart close
--- https://www.reddit.com/r/neovim/comments/16aan6k/my_latest_favorite_mapping_share_yours/
--- K.nmap("<C-q>", function()
---   -- close current window if there are more than 1 window
---   -- else close current tab if there are more than 1 tab
---   -- else close current vim
---   if #vim.api.nvim_tabpage_list_wins(0) > 1 then
---     vim.cmd.close()
---   elseif #vim.api.nvim_list_tabpages() > 1 then
---     vim.cmd.tabclose()
---   else
---     vim.cmd("confirm qall")
---   end
--- end, { desc = "Smart close" })
-
 -- Useless legacy `sleep` function
 K.nnop("gs")
 

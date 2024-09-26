@@ -1,5 +1,5 @@
 local function k(text)
-  return "<leader>ed" .. text
+  return "<leader>ep" .. text
 end
 
 return {
@@ -9,20 +9,21 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { k"v",     desc = "Variable below"   },
-    { k"V",     desc = "Variable above"   },
+    { k"v",              desc  = "Variable below"             },
+    { k"V",              desc  = "Variable above"             },
 
-    { k"<Cr>",  desc = "Prompt below"     },
-    { k"<S-Cr", desc = "Prompt above"     },
+    { k"<Cr>",           desc  = "Prompt below"               },
+    { k"<S-Cr",          desc  = "Prompt above"               },
 
-    { k"p",     desc = "Plain below"      },
-    { k"P",     desc = "Plain above"      },
+    { k"p",              desc  = "Plain below"                },
+    { k"P",              desc  = "Plain above"                },
 
-    { k"o",     desc = "Textobject below" },
-    { k"O",     desc = "Textobject above" },
+    { k"o",              desc  = "Textobject below"           },
+    { k"O",              desc  = "Textobject above"           },
 
-    { k"/",     desc = "Toggle comment"   },
-    { k"<Bs>",  desc = "Delete"           },
+    { k"/",              desc  = "Toggle comment"             },
+    { k"<Bs>",           desc  = "Delete"                     },
+    { "<Bs>d",  k"<Bs>", desc  = "[Debugprint] Delete prints", remap = true },
   },
   cmd = {
     "ToggleCommentDebugPrints",

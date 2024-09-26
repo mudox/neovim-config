@@ -11,6 +11,7 @@ local close = {
   { "<Bs>V",     c"qall!",        desc = "[Neovim] Quit all forcibly" },
 
   { "<Bs><Tab>", c"tabclose",     desc = "[Neovim] Close tabpage"     },
+  { "<Bs>w",     c"wincmd c",     desc = "[Neovim] Close window"      },
 }
 
 local edit = {
@@ -51,6 +52,7 @@ local plugin = {
   edit,
   { "<leader>f", group = "files"          },
   { "<leader>g", group = "git"            },
+  { "<leader>k", group = "kulala"         },
   { "<leader>p", group = "profile"        },
   { "<leader>r", group = "run"            },
   { "<leader>t", group = "telescope"      },
@@ -86,4 +88,7 @@ return {
   r("insert"),
 
   { "<C-\\>", group = "toggleterm" },
+
+  -- some keymaps (e.g. <C-w>c) do not work
+  -- { ";w", proxy = "<C-w>", group = "window" },
 }

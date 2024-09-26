@@ -8,6 +8,7 @@ local opts = {
     before = true,
   },
   highlight = {
+    matches = false,
     backdrop = false, -- improve drawing speed
   },
   jump = {
@@ -15,7 +16,7 @@ local opts = {
     nohlsearch = false,
   },
   prompt = {
-    prefix = { { " ", "FlashPromptIcon" } },
+    prefix = { { "󰉁 ", "FlashPromptIcon" } },
   },
 
   modes = {
@@ -44,18 +45,18 @@ local opts = {
 -- stylua: ignore
 local keys = {
   -- jump
-  { "s",        mode = { "o", "x", "n" }, function() require("flash").jump() end,              "Jump",                   },
+  { "s",        function() require("flash").jump() end,              "Jump",                   mode = { "o",   "x",   "n" }, },
 
   -- expand selection
-  { "<Space>",  mode = { "o", "x" },      function() require("flash").treesitter() end,        "Expand selection",       },
+  { "<Space>",  function() require("flash").treesitter() end,        "Expand selection",       mode = { "o",   "x"        }, },
 
   -- jump + motion
-  { "<Bslash>", mode = { "o" },           function() require("flash").remote() end,            "Remote mode",            },
+  { "<Bslash>", function() require("flash").remote() end,            "Remote mode",            mode = { "o"               }, },
   -- jump + expand selection
-  { "/",        mode = { "o" },           function() require("flash").treesitter_search() end, "Remote treesitter mode", },
+  { "/",        function() require("flash").treesitter_search() end, "Remote treesitter mode", mode = { "o"               }, },
 
   -- search
-  { "<C-s>",    mode = { "c" },           function() require("flash").toggle() end,            "Toggle flash search",    },
+  { "<C-s>",    function() require("flash").toggle() end,            "Toggle flash search",    mode = { "c"               }, },
 }
 
 keys = K.lazy_keys(keys, {

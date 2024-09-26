@@ -25,4 +25,5 @@ return {
   event = "BufEnter",
   init = init,
   config = config,
+  -- cond = false, -- conflicts with multicursor.nvim
 }

@@ -29,13 +29,13 @@ local items = {
   { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                                                  },
   { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                                                 },
 
-  { "c",       " " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
+  { "c",       "󰭹 " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
   { "t",       " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]                                            },
 
   { "h",       "󰘥 " .. " Help",            [[<Cmd>Telescope help_tags<Cr>]]                                   },
 
   { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]                     },
-  { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                                    },
+  -- { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                                    },
 }
 
 local function dashboard()

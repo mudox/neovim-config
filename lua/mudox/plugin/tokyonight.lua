@@ -74,12 +74,6 @@ local function nvim_tree(hl, _)
   -- hl.NvimTreeOpenedFile.fg = "#FFFFFF"
 end
 
-local function dropbar(hl, _)
-  -- TRACK: track: https://github.com/Bekaboo/dropbar.nvim/issues/118
-  hl.StatusLine = { fg = "white", bg = "NONE" }
-  hl.StatusLineNC = { fg = "#828bb8", bg = "NONE" }
-end
-
 local function notify(hl, _)
   local fg = "white"
   local bg = "#990000"
@@ -107,17 +101,24 @@ local function notify(hl, _)
   -- stylua: ignore end
 end
 
+local function multicursor(hl, _)
+  hl.MultiCursorCursor = { fg = "#222436", bg = "blue" }
+  hl.MultiCursorVisual = { bg = "#888822" }
+  hl.MultiCursorDisabledCursor = { fg = "#222436", bg = "gray" }
+  hl.MultiCursorDisabledVisual = { bg = "#664422" }
+end
+
 local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
   -- gitsigns(...)
   nvim_tree(...)
   telescope(...)
-  dropbar(...)
   winbar(...)
   -- notify(...)
   trouble(...)
   lightbulb(...)
+  multicursor(...)
 end
 
 local opts = {

@@ -66,8 +66,15 @@ local function setup_keymaps(_, bufnr)
     vim.notify("Diagnostic is " .. enabled, vim.log.levels.INFO, { title = "LSP" })
   end
 
+  local first_time = true
   local function lsp_lines()
-    require("lsp_lines").toggle()
+    if first_time then
+      first_time = false
+      require("lsp_lines").toggle()
+      require("lsp_lines").toggle()
+    else
+      require("lsp_lines").toggle()
+    end
   end
 
   local dirop = X.dirop.wrap

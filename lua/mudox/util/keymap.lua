@@ -138,6 +138,9 @@ setmetatable(M, {
 })
 
 function M.lazy_keys(tbl, opts)
+  -- parts with suffix ` ✓` are skipped
+  -- input ✓ by <C-k><C-k>OK in insert mode
+
   local function skip(v, i)
     if type(v[i]) == "string" and v[i]:sub(-4) == " ✓" then
       v[i] = v[i]:sub(1, -5)

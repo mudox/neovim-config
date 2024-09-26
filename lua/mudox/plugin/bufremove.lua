@@ -10,8 +10,11 @@ end
 -- stylua: ignore
 local keys = {
   { "<leader>bb", delete_buffer(false, false), desc = "[BufRemove] Delete",                },
+  { "<Bs>b",      delete_buffer(false, false), desc = "[BufRemove] Delete",                },
+  { "<Bs>B",      delete_buffer(true, false),  desc = "[BufRemove] Force delete",          },
   { "<leader>bX", delete_buffer(true,  false), desc = "[BufRemove] Force delete",          },
   { "<leader>bw", delete_buffer(false, true),  desc = "[BufRemove] Delete & close window", },
+  { "<Bs>W",      delete_buffer(false, true),  desc = "[BufRemove] Delete & close window", },
 }
 
 return {

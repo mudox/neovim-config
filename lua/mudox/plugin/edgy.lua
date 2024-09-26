@@ -1,9 +1,17 @@
 -- stylua: ignore
 local keys = {
-  { "<leader>w<Space>", function() require("edgy").toggle() end,    desc = "[Edgy] Toggle"                 },
-  { "<leader>w/",       function() require("edgy").select() end,    desc = "[Edgy] Goto Edgy window"       },
-  { "<leader>w<Cr>",    function() require("edgy").goto_main() end, desc = "[Edgy] Goto main area"         },
-  { "<leader>w-",       function() require("edgy").close() end,     desc = "[Edgy] Close all edgy windows" },
+  { "<leader>wh",    function() require("edgy").toggle("left") end,   desc = "[Edgy] Toggle left"    },
+  { "<leader>wl",    function() require("edgy").toggle("right") end,  desc = "[Edgy] Toggle right"   },
+  { "<leader>wj",    function() require("edgy").toggle("bottom") end, desc = "[Edgy] Toggle bottom"  },
+
+  { "<leader>w/",    function() require("edgy").select() end,         desc = "[Edgy] Goto ..."       },
+  { "<leader>w<Cr>", function() require("edgy").goto_main() end,      desc = "[Edgy] Goto main area" },
+
+  { "<leader>w-",    function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
+  { "<Bs>e",         function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
+  { "<Bs>h",         function() require("edgy").close("left") end,    desc = "[Edgy] Close left"     },
+  { "<Bs>l",         function() require("edgy").close("right") end,   desc = "[Edgy] Close right"    },
+  { "<Bs>j",         function() require("edgy").close("bottom") end,  desc = "[Edgy] Close bottom"   },
 }
 
 local function is_not_floating(_, win)
@@ -140,6 +148,7 @@ local ui_keys = {
   end,
 }
 
+local ui = require("mudox.ui")
 -- stylua: ignore
 local opts = {
   left      = left,
@@ -149,9 +158,9 @@ local opts = {
   keys      = ui_keys,
 
   options   = {
-    left    = { size = 46 },
+    left    = { size = ui.left_width },
     bottom  = { size = 0.3 },
-    right   = { size = 88 },
+    right   = { size = ui.right_width },
     top     = { size = 0.3 },
   },
 
@@ -183,7 +192,8 @@ for _, v in ipairs(trouble) do
 end
 
 return {
-  "folke/edgy.nvim",
+  -- "folke/edgy.nvim",
+  dir = "~/Git/neovim/edgy.nvim", -- HACK: fix `check_main`
   event = "VeryLazy",
   keys = keys,
   init = init,

@@ -6,6 +6,6 @@ return {
   },
   -- event = "LspAttach", -- required in frontend/refactoring.lua
   opts = {
-    backend = "delta",
+    -- backend = "delta",
   },
 }

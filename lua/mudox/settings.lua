@@ -201,4 +201,6 @@ opt.diffopt:append {
 
 -- Misc 〉
 
-require("tokyonight").load()
+U.on("UIEnter", function()
+  require("tokyonight").load()
+end)

@@ -4,7 +4,7 @@ local opts = function()
       algorithm = "patience",
       ignore_whitespace = true,
     },
-    telescope = require("telescope.themes").get_dropdown { winblend = 10 },
+    telescope = require("telescope.themes").get_dropdown(),
   }
 end
 
