@@ -5,6 +5,6 @@ return {
   opts = {
     wakeup_delay = 200, -- ms
     notifications = true,
-    excluded_lsp_clients = { "rust-analyzer" },
+    excluded_lsp_clients = { "rust-analyzer", "null-ls", "jdtls", "marksman", "lua_ls" },
   },
 }

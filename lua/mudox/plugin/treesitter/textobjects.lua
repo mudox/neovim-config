@@ -121,30 +121,30 @@ local function setup_keymaps()
     return X.dirop.wrap(d(name, postfix), "prev")
   end
 
-  local keys = { ["]"] = {}, ["["] = {} }
+  local keys = {}
 
   for k, v in pairs(move.goto_next_start) do
     local name = v.desc:sub(6)
     local postfix = k:sub(-1)
-    keys["]"][postfix] = { next(name, postfix), v.desc }
+    table.insert(keys, { "]" .. postfix, next(name, postfix), desc = v.desc })
   end
 
   for k, v in pairs(move.goto_previous_start) do
     local name = v.desc:sub(9)
     local postfix = k:sub(-1)
-    keys["["][postfix] = { prev(name, postfix), v.desc }
+    table.insert(keys, { "[" .. postfix, prev(name, postfix), desc = v.desc })
   end
 
   for k, v in pairs(move.goto_next_end) do
     local name = v.desc:sub(6)
     local postfix = k:sub(-1)
-    keys["]"][postfix] = { next(name, postfix), v.desc }
+    table.insert(keys, { "]" .. postfix, next(name, postfix), desc = v.desc })
   end
 
   for k, v in pairs(move.goto_previous_end) do
     local name = v.desc:sub(9)
     local postfix = k:sub(-1)
-    keys["["][postfix] = { prev(name, postfix), v.desc }
+    table.insert(keys, { "[" .. postfix, prev(name, postfix), desc = v.desc })
   end
 
   require("which-key").add(keys)

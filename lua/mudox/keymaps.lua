@@ -32,11 +32,11 @@ K.nmap("zn", function()
 end)
 
 -- Resize window using <Ctrl>+arrow keys
-local s = 4
-K.ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
-K.ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
-K.ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
-K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
+-- local s = 4
+-- K.ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
+-- K.ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
+-- K.ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
+-- K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
 
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
@@ -46,10 +46,6 @@ K.nnop("gs")
 
 -- `;w` = `<C-w>`
 K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")')
-
--- remove default diagnostic float keymaps
-K.nnop("<C-w>d")
-K.nnop("<C-w><C-d>")
 
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
@@ -72,17 +68,13 @@ K.nmap(";q", "q", { desc = "macro" })
 K.inop("<C-k>")
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
--- Terminal 〈
-
+-- Terminal
 K.tmap("<C-h>", "<Cmd>wincmd h<Cr>")
 K.tmap("<C-j>", "<Cmd>wincmd j<Cr>")
 K.tmap("<C-k>", "<Cmd>wincmd k<Cr>")
 K.tmap("<C-l>", "<Cmd>wincmd l<Cr>")
 
--- Terminal 〉
-
--- Profiling 〈
-
+-- Profiling
 K.nmap("<leader>ps", function()
   vim.cmd([[
     :profile start /tmp/nvim-profile.log
@@ -98,4 +90,7 @@ K.nmap("<leader>pe", function()
     ]])
 end, { desc = "End profiling" })
 
--- Profiling 〉
+-- Clipboard
+K.cmd({ "n", "v" }, "<C-v>", "put +")
+K.cmd({ "i", "c" }, "<C-k>v", "put +")
+K.map({ "n", "v" }, "<C-S-Y>", '"+y')

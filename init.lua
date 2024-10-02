@@ -33,3 +33,7 @@ else
   U.load("autocmds")
   U.load("keymaps")
 end
+
+U.on("UIEnter", function()
+  require("tokyonight").load()
+end)

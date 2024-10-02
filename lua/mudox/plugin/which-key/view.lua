@@ -3,6 +3,8 @@ local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 -- stylua: ignore
 return {
+  ------------ plugin ------------
+
   { ";v", group = "neovim views" },
 
   { ";va",     c"args",            desc = "Arguments"             },
@@ -24,9 +26,14 @@ return {
   { ";vv",     c"messages",        desc = "Messages"              },
   { ";vV",     c"verbose version", desc = "Version"               },
 
+  { ";vw",     X.inspect_win,      desc = "Inspect window"        },
+
   { ";v<Tab>", c"tabs",            desc = "Tabpages"              },
   { ";v=",     c"EditQuery",       desc = "TreeSitter playground" },
 
+  ------------ plugin -------------
+
   { "<leader>v", group = "plugin views" },
+
   { "<leader>vz", c"Lazy", desc = "Lazy" },
 }

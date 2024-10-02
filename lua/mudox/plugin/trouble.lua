@@ -1,26 +1,42 @@
+local function keys()
+  local op = {
+    name = "trouble item (<C-x>)",
+    next = function()
+      require("trouble").next { skip_groups = true, jump = true }
+    end,
+    prev = function()
+      require("trouble").prev { skip_groups = true, jump = true }
+    end,
+  }
+
 -- stylua: ignore
 local keys = {
-  { ":", "",                                                                              "Trouble",               },
+  { ":",      "",                                                                              "Trouble",               },
 
-  { "x", "diagnostics toggle filter.buf=0",                                               "Document diagnostics",  },
-  { "e", "diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR", "Document errors",       },
-  { "X", "diagnostics toggle",                                                            "Workspace diagnostics", },
-  { "E", "diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR",              "Workspace errors",      },
+  { "x",      "diagnostics toggle filter.buf=0",                                               "Document diagnostics",  },
+  { "e",      "diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR", "Document errors",       },
+  { "X",      "diagnostics toggle",                                                            "Workspace diagnostics", },
+  { "E",      "diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR",              "Workspace errors",      },
 
-  { "s", "symbols toggle",                                                                "Document symbols",      },
+  { "s",      "symbols toggle",                                                                "Document symbols",      },
 
-  { "L", "lsp toggle focus=false win.position=right",                                     "LSP inspectors",        },
+  { "L",      "lsp toggle focus=false win.position=right",                                     "LSP inspectors",        },
 
-  { "l", "loclist",                                                                       "Loclist",               },
-  { "q", "quickfix",                                                                      "Quickfix",              },
+  { "l",      "loclist toggle",                                                                "Loclist",               },
+  { "q",      "quickfix toggle",                                                               "Quickfix",              },
 
-  { "r", "lsp_references",                                                                "References",            },
+  { "r",      "lsp_references toggle",                                                         "References",            },
+
+  { "]<C-x> ✓", X.dirop.wrap(op, "next"),                                                      "Next trouble item",     },
+  { "[<C-x> ✓", X.dirop.wrap(op, "prev"),                                                      "Previous trouble item", },
 }
-keys = K.lazy_keys(keys, {
-  key_prefix = "<leader>x",
-  main_cmd = "Trouble",
-  desc_prefix = "Trouble",
-})
+  keys = K.lazy_keys(keys, {
+    key_prefix = "<leader>x",
+    main_cmd = "Trouble",
+  })
+
+  return keys
+end
 
 local cascade_diagnostics = {
   mode = "diagnostics",
@@ -37,45 +53,48 @@ local cascade_diagnostics = {
 
 local function opts()
   local i = require("mudox.ui.icon")
+
   local icons = {
     -- stylua: ignore
     indent = {
       fold_open   = i.chevron.down .. ' ',
       fold_closed = i.chevron.right .. ' ',
-      -- top         = "│  ",
-      -- middle      = "├╴╴",
-      -- last        = "╰╴╴",
+
       top         = "  ",
       middle      = "  ",
       last        = "  ",
+
       ws          = "  ",
     },
   }
 
-  local ui_keys = {
-    -- j = "next",
-    -- k = "prev",
-  }
-
   local modes = {
     cascade_diagnostics,
+
+    test = {
+      mode = "diagnostics",
+      preview = {
+        type = "split",
+        relative = "win",
+        position = "right",
+        size = 0.3,
+      },
+    },
   }
 
   return {
-    auto_preview = false,
+    -- modes = modes,
 
     indent_guides = true,
     icons = icons,
 
-    keys = ui_keys,
-
-    -- modes = modes,
+    auto_preview = false,
   }
 end
 
 return {
   "folke/trouble.nvim",
   cmd = "Trouble",
-  keys = keys,
+  keys = keys(),
   opts = opts,
 }

@@ -59,9 +59,10 @@ local function config()
     window = r("appearance").window,
 
     experimental = {
-      ghost_text = {
-        hl_group = "LspCodeLens",
-      },
+      ghost_text = false,
+      -- ghost_text = {
+      --   hl_group = "LspCodeLens",
+      -- },
     },
   }
 

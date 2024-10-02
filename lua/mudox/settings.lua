@@ -144,7 +144,8 @@ o.dictionary = [[/usr/share/dict/words]]
 
 -- Font 〈
 
--- o.linespace = 0
+-- for gui apps e.. neovide.app
+o.guifont = "IosevkaTerm Nerd Font:style=Light:h12"
 
 -- 〉
 
@@ -199,8 +200,16 @@ opt.diffopt:append {
   "linematch:60",
 }
 
--- Misc 〉
+-- paste
+-- remove ANSI color codes from paste input.
+-- vim.paste = (function(overridden)
+--   return function(lines, phase)
+--     for i, line in ipairs(lines) do
+-- lines[i] = line:gsub("\27%[27;5;106~", vim.keycode("\n"))
+-- lines[i] = line:gsub("\27%[[0-9;]+[mK~]", "")
+--     end
+--     return overridden(lines, phase)
+--   end
+-- end)(vim.paste)
 
-U.on("UIEnter", function()
-  require("tokyonight").load()
-end)
+-- Misc 〉

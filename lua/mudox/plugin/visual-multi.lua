@@ -1,5 +1,9 @@
 local function init()
-  vim.g.VM_leader = "<M-Bslash>"
+  vim.g.VM_mouse_mappings = 1
+  vim.g.VM_leader = "<leader>m"
+  vim.g.VM_maps = {
+    ["Reselect Last"] = "<leader>m.",
+  }
 end
 
 local config = function()

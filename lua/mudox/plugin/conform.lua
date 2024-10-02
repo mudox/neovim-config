@@ -114,8 +114,8 @@ local function toggle(global)
     local s = global and "g" or "b"
     vim[s].disable_autoformat = not vim[s].disable_autoformat
 
-    local msg = ("Format on %s %s"):format(
-      vim[s].disable_autoformat and "enabled" or "disabled",
+    local msg = ([[Autoformat turned %s %s]]):format(
+      vim[s].disable_autoformat and "OFF" or "ON",
       global and "globally" or "for current buffer"
     )
     vim.notify(msg, vim.log.levels.INFO, { title = "Conform" })
@@ -126,8 +126,8 @@ end
 local keys = {
   { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
   { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
-  { "coq",        toggle(false),                             desc = "[Conform] Toggle FOS globally", },
-  { "coQ",        toggle(true),                              desc = "[Conform] Toggle FOS locally", },
+  { "coq",        toggle(false),                             desc = "[Conform] Toggle FOS locally", },
+  { "coQ",        toggle(true),                              desc = "[Conform] Toggle FOS globally", },
 }
 
 return {

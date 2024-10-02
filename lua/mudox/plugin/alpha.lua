@@ -94,13 +94,10 @@ end
 
 return {
   "goolord/alpha-nvim",
-  dependencies = {
-    -- `lualine` needs to be loaded BEFORE `alpha`
-    "lualine.nvim",
-  },
+  dependencies = "lualine.nvim", -- `lualine` needs to be loaded BEFORE `alpha`
   event = "VimEnter",
-  keys = {
-    { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
-  },
+  -- keys = {
+  --   { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
+  -- },
   config = config,
 }

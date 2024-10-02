@@ -87,6 +87,6 @@ end
 
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VeryLazy", -- `BufRead` is too late
+  event = "VimEnter", -- need to load before alpha.nvim
   opts = opts,
 }

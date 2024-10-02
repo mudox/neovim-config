@@ -68,16 +68,37 @@ function M.filetype(pattern, fn, opts)
   })
 end
 
-return setmetatable(M, {
-  __call = function(_, ...)
-    -- allow for simple uses: `U.on({event}, funciton() ... end)`
-    local args = { ... }
-    if #args == 2 and type(args[2]) == "function" then
+---syntax sugar for `nvim_create_autocmd`
+---
+---Examples
+---```lua
+---  U.on(event, fn)
+---  U.on(event, fn, {...})
+---  U.on(event, {...})
+---```
+local function on(_, ...)
+  local args = { ... }
+  if #args == 2 then
+    -- for `U.on(event, fn)`
+    if type(args[2]) == "function" then
       vim.api.nvim_create_autocmd(args[1], {
         callback = args[2],
       })
     else
+      -- for `U.on(event, { ... })`
       vim.api.nvim_create_autocmd(...)
     end
-  end,
+  elseif #args == 3 and type(args[2]) == "function" and type(args[3]) == "table" then
+    -- for `U.on(event, fn, { ... })`
+    vim.api.nvim_create_autocmd(args[1], {
+      callback = args[2],
+      unpack(args[3]),
+    })
+  else
+    assert(false, "invalid arguments list")
+  end
+end
+
+return setmetatable(M, {
+  __call = on,
 })

@@ -27,7 +27,7 @@ local keys = {
   { "Q", mode = "v", desc = "surround" },
 }
 
-local chars = { "(", ")", "[", "]", "{", "}", "'", '"' }
+local chars = { "(", ")", "[", "]", "{", "}", "'" }
 for _, char in pairs(chars) do
   table.insert(keys, { char, "<Plug>(nvim-surround-visual)" .. char, mode = "x", remap = true })
 end

@@ -92,7 +92,7 @@ end
 local keys = {
   -- task list
   { "<Space>",      "Toggle",                    "Toggle list",                         },
-  { "<C-S-Cr> ✓",   "Toggle",                    "Toggle list",                         },
+  -- { "<C-S-Cr> ✓",   "Toggle",                    "Toggle list",                      },
   { "v",            "Toggle",                    "Toggle list",                         },
 
   -- run task
@@ -102,7 +102,7 @@ local keys = {
   { ":",            "RunCmd",                    "Run shell command",                   },
 
   { "<Cr>",         "Run",                       "Run template",                        },
-  { "<C-Cr> ✓",     "Run",                       "Run template",                        },
+  -- { "<C-Cr> ✓",     "Run",                       "Run template",                     },
 
   { "r",            on_task("run"),              "Run task",                            },
 

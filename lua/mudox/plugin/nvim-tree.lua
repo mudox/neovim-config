@@ -1,3 +1,9 @@
+local log = require("plenary.log").new {
+  plugin = "mudox",
+  level = "debug",
+  use_console = false,
+}
+
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -13,9 +19,47 @@ local function on_attach(bufnr)
   -- end
 
   api.config.mappings.default_on_attach(bufnr)
-  vim.keymap.del("n", "<C-e>", { buffer = bufnr }) -- open in place
-  vim.keymap.del("n", "<Tab>", { buffer = bufnr }) -- preview or open fold
-  vim.keymap.del("n", "<C-t>", { buffer = bufnr }) -- tab open or open fold
+
+  -- stylua: ignore
+  local keys_to_del = {
+    "s",     -- system open
+    "<C-e>", -- replace in tree window
+    "<Tab>", -- preview
+    "<C-t>", -- open in tabpage
+  }
+  for _, k in ipairs(keys_to_del) do
+    vim.keymap.del("n", k, { buffer = bufnr }) -- replace tree buffer
+  end
+
+  local function opts(desc)
+    return {
+      desc = "nvim-tree: " .. desc,
+      buffer = bufnr,
+      noremap = true,
+      silent = true,
+      nowait = true,
+    }
+  end
+
+  vim.keymap.set("n", "<C-Cr>", function()
+    local node = require("nvim-tree.lib").get_node_at_cursor()
+    if not node or node.name == ".." or node.nodes then
+      return
+    end
+
+    local path = node.link_to or node.absolute_path
+    X.layout.main:open(path)
+  end, opts("open in main"))
+
+  vim.keymap.set("n", "<C-S-Cr>", function()
+    local node = require("nvim-tree.lib").get_node_at_cursor()
+    if not node or node.name == ".." or node.nodes then
+      return
+    end
+
+    local path = node.link_to or node.absolute_path
+    X.layout.secondary:open(path)
+  end, opts("open in secondary"))
 end
 
 local function opts()

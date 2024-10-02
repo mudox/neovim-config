@@ -1,6 +1,5 @@
-local function r(name)
-  return require("mudox.plugin.telescope." .. name)
-end
+-- stylua: ignore
+local function r(name) return require("mudox.plugin.telescope." .. name) end
 
 -- common settings shared by all pickers
 local function defaults()
@@ -33,23 +32,10 @@ local function defaults()
       "--trim", -- trim indentations
     },
 
-    mappings = r("keymaps").picker(),
+    mappings = r("keymaps.ui"),
 
     -- avoid opening files in edgy panes
     get_selection_window = function()
-      -- local e = require("edgy.editor")
-      -- if vim.tbl_isempty(e.list_wins().main) then
-      --   vim.cmd.new()
-      -- end
-      --
-      -- -- return first found main window
-      -- local m = e.list_wins().main
-      -- for id, _ in pairs(m) do
-      --   return id
-      -- end
-      -- reutrn 0
-
-      -- LazyVim solution
       require("edgy").goto_main()
       return 0
     end,
@@ -152,6 +138,6 @@ return {
     build = "make",
   },
   cmd = "Telescope",
-  keys = r("keymaps").open,
+  keys = r("keymaps.open"),
   config = config,
 }

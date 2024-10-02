@@ -54,13 +54,6 @@ function bodys.cmd(mode, from, to, opts)
   to = "<Cmd>" .. to .. "<Cr>"
   opts = opts or {}
 
-  -- if mode == "i" then
-  --   to = "<Esc>" .. to
-  -- elseif mode == "t" then
-  --   to = "<C-\\><C-n>" .. to
-  --   opts.remap = true
-  -- end
-
   bodys.map(mode, from, to, opts)
 end
 
@@ -89,6 +82,8 @@ end
 
 ---Clear mapping
 function bodys.nop(mode, from, opts)
+  opts = opts or {}
+  opts.desc = opts.desc or "[Nop]"
   bodys.map(mode, from, "<Nop>", opts)
 end
 

@@ -26,8 +26,8 @@ local function keys()
 end
 
 local opts = {
-  -- enter_on_sendcmd = true,
-  -- menu = { width = 80 },
+  save_on_toggle = true,
+  sync_on_ui_close = true,
 }
 
 local function config()

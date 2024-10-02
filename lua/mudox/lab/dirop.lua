@@ -12,7 +12,6 @@ function M.nav_next()
   end
 
   local op = _G.mdx_last_dirop
-  vim.print(op)
   print("DirOp: 󰧀 " .. op.name .. " 󰜴 ")
   op.next()
 end
