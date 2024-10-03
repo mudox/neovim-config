@@ -1,4 +1,15 @@
-local function fill(buf)
+local function pad(text, width)
+  local r = text
+
+  if #text < width then
+    local n = width - #text
+    r = text .. string.rep(" ", n)
+  end
+
+  return r
+end
+
+local function lines()
   local Text = require("nui.text")
   local Line = require("nui.line")
 
@@ -13,33 +24,43 @@ local function fill(buf)
   local buftype = vim.bo.buftype == "" and Text("normal", "Comment") or Text(vim.bo.buftype, "String")
   local buflisted = bool(vim.bo.buflisted)
   local swapfile = bool(vim.bo.swapfile)
+  local modifiable = bool(vim.bo.modifiable)
 
+  local r = {}
   local l = Line()
-  local n = 1
+  local w = 16
 
-  l:append("buftype:   ")
+  l:append(pad("buftype:", w))
   l:append(buftype)
-  l:render(buf, -1, n)
-  n = n + 1
+  table.insert(r, l)
 
   l = Line()
-  l:append("buflisted: ")
+  l:append(pad("buflisted:", w))
   l:append(buflisted)
-  l:render(buf, -1, n)
-  n = n + 1
+  table.insert(r, l)
 
   l = Line()
-  l:append("swapfile:  ")
+  l:append(pad("swapfile:", w))
   l:append(swapfile)
-  l:render(buf, -1, n)
+  table.insert(r, l)
+
+  l = Line()
+  l:append(pad("modifiable:", w))
+  l:append(modifiable)
+  table.insert(r, l)
+
+  return r
 end
 
 local function show()
-  local w, h = 50, 3
+  local lines = lines()
+
+  local w, h = 25, #lines
   local win = require("nui.popup") {
+    anchor = "SE",
     position = {
-      row = vim.fn.winheight(0) - h - 1,
-      col = vim.fn.winwidth(0) - w - 1,
+      row = vim.fn.winheight(0),
+      col = vim.fn.winwidth(0),
     },
     size = { width = w, height = h },
     relative = "win",
@@ -54,11 +75,12 @@ local function show()
     win_options = { winblend = 10, winhighlight = "Normal:Normal,FloatBorder:Normal,FloatTitle:Normal" },
   }
 
-  win:mount()
-
-  -- vim.api.nvim_buf_set_lines(w.bufnr, 0, -1, false, text())
-  fill(win.bufnr)
+  for n, l in ipairs(lines) do
+    l:render(win.bufnr, -1, n)
+  end
   vim.bo[win.bufnr].modifiable = false
+
+  win:mount()
 
   win:map("n", "q", function()
     win:unmount()

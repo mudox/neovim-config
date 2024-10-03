@@ -47,8 +47,8 @@ function M.focus_next_floating_win()
   end
 
   -- current window is split window
-  vim.print(wins)
-  -- vim.api.nvim_set_current_win(wins[1].id)
+  -- vim.print(wins)
+  vim.api.nvim_set_current_win(wins[1].id)
 end
 
 return M

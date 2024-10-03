@@ -4,19 +4,17 @@
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
-local close = (function()
-  return {
-    { "<Bs>", group = "close" },
+local close = {
+  { "<Bs>", group = "close" },
 
-    { "<Bs>v",     c"confirm qall",      desc = "Quit all"                   },
-    { "<Bs>V",     c"qall!",             desc = "Quit all forcibly"          },
+  { "<Bs>v",     c"confirm qall",      desc = "Quit all"                   },
+  { "<Bs>V",     c"qall!",             desc = "Quit all forcibly"          },
 
-    { "<Bs><Tab>", c"tabclose",          desc = "Close tabpage"              },
-    { "<Bs>w",     c"wincmd c",          desc = "Close window"               },
+  { "<Bs><Tab>", c"tabclose",          desc = "Close tabpage"              },
+  { "<Bs>w",     c"wincmd c",          desc = "Close window"               },
 
-    { "<Bs>f",     U.window.close_all_floating_wins, desc = "Close all floating windows" },
-  }
-end)()
+  { "<Bs>f",     U.window.close_all_floating_wins, desc = "Close all floating windows" },
+}
 
 local edit = {
   { "<leader>e", group = "edit" },

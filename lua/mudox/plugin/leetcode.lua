@@ -1,5 +1,8 @@
+local arg = "leetcode"
+
 return {
-  "kawre/leetcode.nvim",
+  -- "kawre/leetcode.nvim",
+  dir = "~/Git/neovim-plugins/leetcode.nvim", -- HACK: improve UI
   dependencies = {
     "telescope.nvim",
     "plenary.nvim",
@@ -8,8 +11,9 @@ return {
     "nvim-notify",
     "nvim-web-devicons",
   },
-  cmd = "Leet",
+  lazy = not (vim.fn.argc() == 1 and vim.fn.argv(0) == arg),
   opts = {
-    -- configuration goes here
+    arg = arg,
+    lang = "rust",
   },
 }

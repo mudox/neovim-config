@@ -69,7 +69,7 @@ return {
     },
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
-    cmd = { "TSUpdate", "TSInstallInfo" },
+    cmd = { "TSUpdate", "TSInstallInfo", "TSDisable", "TSBufDisable" },
     -- keys = keys,
     init = init,
     config = config,
