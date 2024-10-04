@@ -76,7 +76,7 @@ local function opts()
       fold,
       -- todo,
       -- diagnostic,
-      -- test_debug,
+      test_debug,
       other,
       line_num,
       gitsigns,

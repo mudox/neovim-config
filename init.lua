@@ -37,3 +37,6 @@ end
 U.on("UIEnter", function()
   require("tokyonight").load()
 end)
+
+-- HACK: swizzle nvim_open_win
+X.swizzle()

@@ -91,6 +91,5 @@ K.nmap("<leader>pe", function()
 end, { desc = "End profiling" })
 
 -- Clipboard
-K.cmd({ "n", "v" }, "<C-v>", "put +")
 K.cmd({ "i", "c" }, "<C-k>v", "put +")
 K.map({ "n", "v" }, "<C-S-Y>", '"+y')

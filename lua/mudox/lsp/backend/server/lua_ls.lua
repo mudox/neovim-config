@@ -1,6 +1,23 @@
 local opts = {
   settings = {
     Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      codeLens = {
+        enable = true,
+      },
+      doc = {
+        privateName = { "^_" },
+      },
+      hint = {
+        enable = true,
+        setType = false,
+        paramType = true,
+        paramName = "Disable",
+        semicolon = "Disable",
+        arrayIndex = "Disable",
+      },
       workspace = {
         checkThirdParty = false,
       },
@@ -9,9 +26,6 @@ local opts = {
       },
       telemetry = {
         enable = false,
-      },
-      hint = {
-        enable = true,
       },
       semantic = {
         enable = false,

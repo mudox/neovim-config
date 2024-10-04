@@ -31,8 +31,6 @@ U.on("VimResized", {
 
 -- Auto resize window 〉
 
--- Go to last loc when opening a buffer 〈
-
 -- Close with `q` 〈
 
 U.on("FileType", {
@@ -120,3 +118,9 @@ U.on("BufRead", {
 })
 
 -- Unfold for small files 〉
+
+U.on("CursorHold", function()
+  if vim.o.cmdheight ~= 2 then
+    vim.o.cmdheight = 2
+  end
+end)

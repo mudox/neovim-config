@@ -87,11 +87,9 @@ keys = K.lazy_keys(keys, {
 })
 
 -- <leader>1~9 to switch to visually displayed buffer on buffer line
-for i = 1, 9 do
+for i = 1, 5 do
   table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Buffer " .. i })
 end
-
-table.insert(keys, { "[$", "<Cmd>BufferLineGoToBuffer -1<Cr>", desc = "[BufferLine] Last buffer" })
 
 return {
   "akinsho/bufferline.nvim",

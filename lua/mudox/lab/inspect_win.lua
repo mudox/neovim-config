@@ -1,3 +1,6 @@
+local Text = require("nui.text")
+local Line = require("nui.line")
+
 local function pad(text, width)
   local r = text
 
@@ -8,11 +11,33 @@ local function pad(text, width)
 
   return r
 end
+local function dim(s)
+  return Text(s, "Comment")
+end
+local function on(s)
+  return Text(s, "DiagnosticOk")
+end
+local function off(s)
+  return Text(s, "DiagnosticError")
+end
+local function bool(s, b)
+  return b and on(s) or off(s)
+end
+local function flag(name, ref)
+  local s = vim.bo[name] and name or "no" .. name
+
+  if vim.bo[name] == ref then
+    return bool(s, ref)
+  else
+    return dim(s)
+  end
+end
+local function enum(s)
+  return Text(s, "LspKindEnum")
+end
+local sep = Text("  ")
 
 local function lines()
-  local Text = require("nui.text")
-  local Line = require("nui.line")
-
   local function bool(b)
     if b then
       return Text("true", "DiagnosticOk")
@@ -21,33 +46,38 @@ local function lines()
     end
   end
 
-  local buftype = vim.bo.buftype == "" and Text("normal", "Comment") or Text(vim.bo.buftype, "String")
-  local buflisted = bool(vim.bo.buflisted)
-  local swapfile = bool(vim.bo.swapfile)
-  local modifiable = bool(vim.bo.modifiable)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local winid = vim.api.nvim_get_current_win()
+  local winnr = vim.fn.winnr()
 
   local r = {}
-  local l = Line()
-  local w = 16
+  local l
 
-  l:append(pad("buftype:", w))
-  l:append(buftype)
-  table.insert(r, l)
+  table.insert(
+    r,
+    Line {
+      Text("buf: "),
+      Text(tostring(bufnr), "Number"),
+      sep,
+      Text(U.window.is_floating(winid) and "popup: " or "split: "),
+      Text(("%d (%d)"):format(winid, winnr), "Number"),
+    }
+  )
 
-  l = Line()
-  l:append(pad("buflisted:", w))
-  l:append(buflisted)
-  table.insert(r, l)
-
-  l = Line()
-  l:append(pad("swapfile:", w))
-  l:append(swapfile)
-  table.insert(r, l)
-
-  l = Line()
-  l:append(pad("modifiable:", w))
-  l:append(modifiable)
-  table.insert(r, l)
+  table.insert(
+    r,
+    Line {
+      vim.bo.buftype ~= "" and Text(vim.bo.buftype, "Type") or dim("file"),
+      sep,
+      flag("buflisted", false),
+      sep,
+      flag("swapfile", false),
+      sep,
+      flag("modifiable", false),
+      sep,
+      flag("readonly", true),
+    }
+  )
 
   return r
 end
@@ -55,7 +85,7 @@ end
 local function show()
   local lines = lines()
 
-  local w, h = 25, #lines
+  local w, h = 65, #lines
   local win = require("nui.popup") {
     anchor = "SE",
     position = {
@@ -68,9 +98,10 @@ local function show()
     focusable = false,
     border = {
       style = "single",
-      text = { top = " Inspect ", top_align = "right" },
+      text = { top = "   Inspect ", top_align = "right" },
       padding = { left = 1 },
     },
+    zindex = 100,
     buf_options = { buflisted = false, buftype = "nofile", swapfile = false },
     win_options = { winblend = 10, winhighlight = "Normal:Normal,FloatBorder:Normal,FloatTitle:Normal" },
   }

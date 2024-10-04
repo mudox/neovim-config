@@ -17,7 +17,7 @@ local function keys()
     { "<C-S-h>",    function () hp():list():prev() end,                     "[Harpoon] Previous file", },
   }
 
-  for i = 1, 9 do
+  for i = 1, 5 do
     -- stylua: ignore
     table.insert(k, { "<leader>" .. i, function () hp():list():select(i) end, desc = "[Harpoon] Goto file " .. i })
   end

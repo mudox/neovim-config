@@ -14,10 +14,6 @@ local keys = {
   { "<Bs>j",         function() require("edgy").close("bottom") end,  desc = "[Edgy] Close bottom"   },
 }
 
-local function is_not_floating(_, win)
-  return vim.api.nvim_win_get_config(win).relative == ""
-end
-
 local function init()
   -- views can only be fully collapsed with the global statusline
   vim.opt.laststatus = 3
@@ -32,8 +28,9 @@ local function opts()
       title = "Files",
       ft = "NvimTree",
     },
+    "Outline",
     {
-      title = "Outline",
+      title = "Aerial",
       ft = "aerial",
     },
     {
@@ -51,7 +48,9 @@ local function opts()
     {
       title = "Breakpoints",
       ft = "dapui_breakpoints",
-      filter = is_not_floating,
+      filter = function(_, win)
+        return not U.window.is_floating(win)
+      end,
     },
     {
       title = "Watches",
@@ -156,22 +155,6 @@ local function opts()
     },
   }
 
-  local s = 4
-  local ui_keys = {
-    ["<C-Right>"] = function(win)
-      win:resize("width", s)
-    end,
-    ["<C-Left>"] = function(win)
-      win:resize("width", -s)
-    end,
-    ["<C-Up>"] = function(win)
-      win:resize("height", s)
-    end,
-    ["<C-Down>"] = function(win)
-      win:resize("height", -s)
-    end,
-  }
-
   local ui = require("mudox.ui")
 
   -- stylua: ignore
@@ -179,8 +162,6 @@ local function opts()
     left      = left,
     right     = right,
     bottom    = bottom,
-
-    keys      = ui_keys,
 
     options   = {
       left    = { size = ui.left_width },

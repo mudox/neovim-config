@@ -18,18 +18,19 @@ local words = {
   },
 }
 
+-- stylua: ignore
 local common = cmp.config.sources({
   -- path
-  { name = "path", keyword_length = 3 },
+  { name = "path",                      keyword_length = 3 },
   -- lsp
-  { name = "nvim_lsp_signature_help" },
-  { name = "nvim_lsp", max_item_count = 8 },
+  { name = "nvim_lsp_signature_help"                       },
+  { name = "nvim_lsp",                  max_item_count = 8 },
   -- snippet
-  { name = "luasnip", keyword_length = 2 },
+  { name = "luasnip",                   keyword_length = 2 },
   -- nvim lua api
-  { name = "nvim_lua", max_item_count = 5 },
+  { name = "nvim_lua",                  max_item_count = 5 },
   -- markup languages tags
-  { name = "nvim-cmp-ts-tag-close" },
+  { name = "nvim-cmp-ts-tag-close"                         },
   -- ai
   -- { name = "cmp_tabnine", max_item_count = 4 },
   -- TODO: tabnine
