@@ -1,6 +1,6 @@
 return {
   "nvchad/minty",
-  dependencies = { "nvchad/volt", lazy = true },
+  dependencies = "nvchad/volt",
   -- stylua: ignore
   keys = {
     { "<leader>ech", function() require("minty.huefy").open() end,  desc = "[Minty] huefy" },

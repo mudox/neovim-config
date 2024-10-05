@@ -17,45 +17,42 @@ local function menu(entry, item)
   item.menu = ("%s"):format(text)
 end
 
-local function format(entry, item)
+-- nvim-highlight-colors
+local function highlight_colors(entry, item)
   local _item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+  if _item.abbr_hl_group then
+    item.kind_hl_group = _item.abbr_hl_group
+    item.kind = _item.abbr
+  end
+end
 
+-- nvim-web-devicons
+local function devicon(entry, item)
+  if vim.tbl_contains({ "path" }, entry.source.name) then
+    local icon, hl = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+    if icon then
+      item.kind = icon
+      item.kind_hl_group = hl
+    end
+  end
+end
+
+local function format(entry, item)
   item = (require("lspkind").cmp_format {
     mode = "symbol",
+    preset = "codicons",
     maxwidth = function()
       return math.max(20, math.floor(vim.o.columns * 0.45))
     end,
     ellipsis_char = "...",
   })(entry, item)
 
-  if _item.abbr_hl_group then
-    item.kind_hl_group = _item.abbr_hl_group
-    item.kind = _item.abbr
-  end
-
+  devicon(entry, item)
+  highlight_colors(entry, item)
   menu(entry, item)
 
   return item
 end
---   local icons = require("mudox.ui.icon").kind
---   item.kind = icons[item.kind] or item.kind
---
---   local menu = ({
---     nvim_lsp = "LSP",
---     luasnip = "SNIPPET",
---     buffer = "BUFFER",
---     path = "PATH",
---     nvim_lua = "NVIM",
---     cmp_tabnine = "TABNINE",
---     rg = "RG",
---     cmdline = "CMD",
---     cmdline_history = "HISTORY",
---   })[entry.source.name:lower()] or entry.source.name:upper()
---
---   item.menu = ("[%s]"):format(menu)
---
---   return item
--- end
 
 -- see: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
 M.formatting = {
@@ -65,7 +62,7 @@ M.formatting = {
 
 M.view = {
   entries = {
-    name = "custom",
+    name = "custom", -- for highlights
     selection_order = "near_cursor",
     follow_cursor = true,
   },

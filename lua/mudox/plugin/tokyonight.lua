@@ -109,12 +109,9 @@ local function multicursor(hl, _)
 end
 
 local function bufferline(hl, c)
-  vim.print(c)
-
+  -- transparent tabline backdrop
   hl.BufferLineFill = { bg = "bg" }
-
   hl.BufferLineSeparator = { fg = "bg" }
-
   hl.BufferLineTabSeparator = { fg = "bg" }
   hl.BufferLineTabSeparatorSelected = { fg = "bg" }
 end

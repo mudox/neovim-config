@@ -47,4 +47,6 @@ return {
   TabNine         = "󰋙 ",
 
   Error           = " ",
+
+  -- Color
 }
