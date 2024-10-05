@@ -108,6 +108,17 @@ local function multicursor(hl, _)
   hl.MultiCursorDisabledVisual = { bg = "#664422" }
 end
 
+local function bufferline(hl, c)
+  vim.print(c)
+
+  hl.BufferLineFill = { bg = "bg" }
+
+  hl.BufferLineSeparator = { fg = "bg" }
+
+  hl.BufferLineTabSeparator = { fg = "bg" }
+  hl.BufferLineTabSeparatorSelected = { fg = "bg" }
+end
+
 local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
@@ -119,6 +130,7 @@ local function on_highlights(...)
   trouble(...)
   lightbulb(...)
   multicursor(...)
+  bufferline(...)
 end
 
 local opts = {

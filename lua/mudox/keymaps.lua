@@ -65,7 +65,6 @@ K.nnop("q")
 K.nmap(";q", "q", { desc = "macro" })
 
 -- Digraph
-K.inop("<C-k>")
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
 -- Terminal
@@ -91,5 +90,5 @@ K.nmap("<leader>pe", function()
 end, { desc = "End profiling" })
 
 -- Clipboard
-K.cmd({ "i", "c" }, "<C-k>v", "put +")
-K.map({ "n", "v" }, "<C-S-Y>", '"+y')
+K.map({ "i", "c" }, "<C-k>v", "<C-r>+", { desc = "Paste from clipboard" })
+K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })

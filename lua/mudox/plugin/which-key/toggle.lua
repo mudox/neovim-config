@@ -38,11 +38,12 @@ local function toggle_loclist()
   end
 end
 
+---Toggle nvim options with `:set {opt}!`
 local function yo(k, o)
   return {
     "yo" .. k,
     "<Cmd>set " .. o .. "!<Bar>set " .. o .. "?<Cr>",
-    desc = "[Option] " .. o,
+    desc = o .. "!",
   }
 end
 
@@ -60,7 +61,7 @@ return {
   { "yot", toggle_treesitter_highlighting, desc = "treesitter highlighting" },
 
   { "yoq", toggle_quickfix,                desc = "quickfix"                },
-  { "yol", toggle_loclist,                 desc = "loclist"                 },
+  { "yoL", toggle_loclist,                 desc = "loclist"                 },
 
   { "co", group = "plugin toggle" },
 }

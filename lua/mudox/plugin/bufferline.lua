@@ -9,10 +9,47 @@ local function name_formatter(buf)
   return vim.fn.fnamemodify(buf.name, ":t:r") -- remove file extension
 end
 
+local function init()
+  vim.o.termguicolors = true
+  vim.o.mousemoveevent = true -- hover to show close icon
+  vim.o.laststatus = 3
+
+  U.on("WinEnter", function()
+    if not U.window.is_floating() then
+      local listed_buffers = vim.tbl_filter(function(b)
+        return vim.bo[b].buflisted
+      end, vim.api.nvim_list_bufs())
+      if #listed_buffers > 0 then
+        require("bufferline")
+      end
+      return true
+    else
+      return false
+    end
+  end)
+
+  if vim.fn.argc(-1) == 0 then
+    U.on("User", {
+      pattern = "AlphaClosed",
+      callback = function()
+        require("bufferline")
+      end,
+    })
+  else
+    U.on("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        require("bufferline")
+      end,
+    })
+  end
+end
+
 local function opts()
   local o = {
     options = {
-      separator_style = "thick",
+      indicator = { style = "none" },
+      separator_style = { " ", " " }, -- transparent tabline appearance
 
       name_formatter = name_formatter,
 
@@ -42,28 +79,6 @@ local function opts()
   return o
 end
 
-local function init()
-  vim.o.termguicolors = true
-  vim.o.mousemoveevent = true -- hover to show close icon
-  vim.o.laststatus = 3
-
-  if vim.fn.argc(-1) == 0 then
-    U.on("User", {
-      pattern = "AlphaClosed",
-      callback = function()
-        require("bufferline")
-      end,
-    })
-  else
-    U.on("User", {
-      pattern = "VeryLazy",
-      callback = function()
-        require("bufferline")
-      end,
-    })
-  end
-end
-
 -- stylua: ignore
 local keys = {
   { "<M-o> ✓", "Pick",                 "Pick",           },
@@ -86,13 +101,14 @@ keys = K.lazy_keys(keys, {
   desc_prefix = "BufferLine",
 })
 
--- <leader>1~9 to switch to visually displayed buffer on buffer line
+-- <leader>[1-5] to switch to visually displayed buffer on buffer line
 for i = 1, 5 do
   table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Buffer " .. i })
 end
 
 return {
   "akinsho/bufferline.nvim",
+  event = "VeryLazy",
   cmd = { "BufferLineTabRename" },
   init = init,
   keys = keys,

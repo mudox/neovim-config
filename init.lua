@@ -1,5 +1,7 @@
 -- Globals
 
+vim.loader.enable()
+
 ---mudox.util
 U = require("mudox.util")
 ---mudox.lab

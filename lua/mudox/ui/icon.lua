@@ -55,15 +55,20 @@ local border = {
 
 -- stylua: ignore
 local filetype = {
-  markdown   = "",
-  git        = " ",
+  markdown   = " ",
+  git        = " ",
   apple      = " ",
-  java       = " ",
+  java       = " ",
   neorg      = "󰏪 ",
   config     = "󰣖 ",
-  backup     = " ",
+  backup     = "  ",
   javascript = " ",
+  key        = "󰿘 ",
+  build      = "󰣪 ",
 }
+filetype = vim.tbl_map(function(i)
+  return i:sub(1, -2)
+end, filetype)
 
 -- 〉
 

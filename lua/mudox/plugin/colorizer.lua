@@ -14,4 +14,5 @@ return {
     { "coc", "<Cmd>ColorizerToggle<Cr>", desc = "[Colorizer] Toggle" },
   },
   opts = opts,
+  cond = false, -- NOTE: unmaintained, use nvim-highlight-colors.nvim now
 }

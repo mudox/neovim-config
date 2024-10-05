@@ -51,7 +51,11 @@ function M.focus_next_floating_win()
   vim.api.nvim_set_current_win(wins[1].id)
 end
 
+---Return if the window is a floating window
+---@param win number?
+---@return boolean
 function M.is_floating(win)
+  win = win or vim.api.nvim_get_current_win()
   return vim.api.nvim_win_get_config(win).relative ~= ""
 end
 

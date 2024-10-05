@@ -6,13 +6,17 @@ local function opts()
 
   local ret = {}
 
+  -- stylua: ignore
   ret.override_by_filename = {
-    [".gitattributes"] = { icon = i.git },
-    [".gitignore"] = { icon = i.git },
+    [".gitattributes"] = { icon = i.git    },
+    [".gitignore"]     = { icon = i.git    },
+    ["justfile"]       = { icon = i.config },
+    ["LICENSE"]        = { icon = i.key    },
+    ["Makefile"]       = { icon = i.build  },
   }
 
   -- stylua: ignore
-  ret.override = {
+  ret.override_by_extension = {
     md = {
       icon  = i.markdown,
       color = "#ffffff",

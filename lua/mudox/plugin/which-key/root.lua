@@ -67,7 +67,6 @@ local plugin = {
   { "<leader>p", group = "profile"        },
   { "<leader>r", group = "run"            },
   { "<leader>t", group = "telescope"      },
-  { "<leader>v", group = "plugin views"   },
   window,
   { "<leader>x", group = "trouble"        },
 }
