@@ -1,13 +1,22 @@
--- Globals
-
 vim.loader.enable()
 
+-- Globals
 ---mudox.util
 U = require("mudox.util")
 ---mudox.lab
 X = require("mudox.lab")
 ---mudox.util.keymap
 K = U.keymap
+---log
+---@param name string number of subsystem, also the filename
+Log = function(name)
+  vim.opt.rtp:append("~/.local/share/nvim/lazy/plenary.nvim")
+  return require("plenary.log").new {
+    plugin = name,
+    use_console = false,
+    level = "debug",
+  }
+end
 
 -- Neovim mode - g:mdx_nvim_mode
 require("mudox.mode")
@@ -41,4 +50,5 @@ U.on("UIEnter", function()
 end)
 
 -- HACK: swizzle nvim_open_win
-X.swizzle()
+X.swizzle_nvim_open_win()
+require("mudox.lab.autocmd")

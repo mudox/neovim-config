@@ -3,15 +3,16 @@ local M = {}
 local function menu(entry, item)
   -- stylua: ignore
   local text = ({
-    nvim_lsp        = "LSP",
-    luasnip         = "SNIPPET",
-    buffer          = "BUFFER",
-    path            = "PATH",
-    nvim_lua        = "NVIM",
-    cmp_tabnine     = "TABNINE",
-    rg              = "RG",
-    cmdline         = "CMD",
-    cmdline_history = "HISTORY",
+    buffer             = "BUF",
+    cmdline            = "CMD",
+    cmdline_history    = "HIST",
+    cmp_tabnine        = "TABN",
+    lsp_signature_help = "SIG",
+    luasnip            = "SNIP",
+    nvim_lsp           = "LSP",
+    nvim_lua           = "NVIM",
+    path               = "PATH",
+    rg                 = "RG",
   })[entry.source.name:lower()] or entry.source.name:upper()
 
   item.menu = ("%s"):format(text)
@@ -51,6 +52,7 @@ local function format(entry, item)
   highlight_colors(entry, item)
   menu(entry, item)
 
+  item.kind = " " .. item.kind .. " "
   return item
 end
 
@@ -71,10 +73,62 @@ M.view = {
 M.window = {
   completion = {
     winblend = 0,
+    col_offset = -3,
+    side_padding = 0,
   },
   documentation = {
     winblend = 0,
   },
 }
+
+local function highlights()
+  -- stylua: ignore
+  local hls = {
+    PmenuSel                 = { bg = "#282C34", fg = "NONE" },
+    Pmenu                    = { fg = "#C5CDD9", bg = "#22252A" },
+
+    CmpItemAbbrDeprecated    = { fg = "#7E8294", bg = "NONE",      strikethrough = true },
+    CmpItemAbbrMatch         = { fg = "#82AAFF", bg = "NONE",      bold          = true },
+    CmpItemAbbrMatchFuzzy    = { fg = "#82AAFF", bg = "NONE",      bold          = true },
+    CmpItemMenu              = { fg = "#C792EA", bg = "NONE",      italic        = true },
+
+    CmpItemKindField         = { fg = "#EED8DA", bg = "#B5585F" },
+    CmpItemKindProperty      = { fg = "#EED8DA", bg = "#B5585F" },
+    CmpItemKindEvent         = { fg = "#EED8DA", bg = "#B5585F" },
+
+    CmpItemKindText          = { fg = "#C3E88D", bg = "#9FBD73" },
+    CmpItemKindEnum          = { fg = "#C3E88D", bg = "#9FBD73" },
+    CmpItemKindKeyword       = { fg = "#C3E88D", bg = "#9FBD73" },
+
+    CmpItemKindConstant      = { fg = "#FFE082", bg = "#D4BB6C" },
+    CmpItemKindConstructor   = { fg = "#FFE082", bg = "#D4BB6C" },
+    CmpItemKindReference     = { fg = "#FFE082", bg = "#D4BB6C" },
+
+    CmpItemKindFunction      = { fg = "#EADFF0", bg = "#A377BF" },
+    CmpItemKindStruct        = { fg = "#EADFF0", bg = "#A377BF" },
+    CmpItemKindClass         = { fg = "#EADFF0", bg = "#A377BF" },
+    CmpItemKindModule        = { fg = "#EADFF0", bg = "#A377BF" },
+    CmpItemKindOperator      = { fg = "#EADFF0", bg = "#A377BF" },
+
+    CmpItemKindVariable      = { fg = "#C5CDD9", bg = "#7E8294" },
+    CmpItemKindFile          = { fg = "#C5CDD9", bg = "#7E8294" },
+
+    CmpItemKindUnit          = { fg = "#F5EBD9", bg = "#D4A959" },
+    CmpItemKindSnippet       = { fg = "#F5EBD9", bg = "#D4A959" },
+    CmpItemKindFolder        = { fg = "#F5EBD9", bg = "#D4A959" },
+
+    CmpItemKindMethod        = { fg = "#DDE5F5", bg = "#6C8ED4" },
+    CmpItemKindValue         = { fg = "#DDE5F5", bg = "#6C8ED4" },
+    CmpItemKindEnumMember    = { fg = "#DDE5F5", bg = "#6C8ED4" },
+
+    CmpItemKindInterface     = { fg = "#D8EEEB", bg = "#58B5A8" },
+    CmpItemKindColor         = { fg = "#D8EEEB", bg = "#58B5A8" },
+    CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
+  }
+
+  for k, v in pairs(hls) do
+    vim.api.nvim_set_hl(0, k, v)
+  end
+end
 
 return M

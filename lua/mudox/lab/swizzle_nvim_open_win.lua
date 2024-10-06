@@ -1,8 +1,4 @@
-local log = require("plenary.log").new {
-  plugin = "swizzle",
-  use_console = false,
-  level = "debug",
-}
+-- local log = Log("siwzzle_nvim_open_win")
 
 local function get_plugin(path)
   return path:match("share/nvim/lazy/([^/]+)/(.*)")
@@ -82,7 +78,7 @@ return function()
     return function(buf, enter, opts)
       if opts.relative ~= "" then
         local x = parse(3)
-        log.debug(vim.inspect(x))
+        -- log.debug(vim.inspect(x))
         return route(x, orig, { buf, enter, opts or {} })
       else
         return orig(buf, enter, opts)

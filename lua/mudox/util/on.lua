@@ -90,10 +90,7 @@ local function on(_, ...)
     end
   elseif #args == 3 and type(args[2]) == "function" and type(args[3]) == "table" then
     -- for `U.on(event, fn, { ... })`
-    vim.api.nvim_create_autocmd(args[1], {
-      callback = args[2],
-      unpack(args[3]),
-    })
+    vim.api.nvim_create_autocmd(args[1], vim.tbl_extend("keep", { callback = args[2] }, args[3]))
   else
     assert(false, "invalid arguments list")
   end
