@@ -15,7 +15,7 @@ return {
   opts = {
     window = { border = "none" },
     lsp = { auto_attach = true },
-    icons = require("mudox.ui.icon").kind,
+    icons = I.kind,
     node_markers = { enabled = false },
   },
 }

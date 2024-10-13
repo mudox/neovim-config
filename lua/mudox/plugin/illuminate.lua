@@ -60,7 +60,7 @@ local function config()
   setup_keymaps()
 
   -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-  U.on("FileType", { callback = setup_keymaps })
+  On("FileType", { callback = setup_keymaps })
 end
 
 return {

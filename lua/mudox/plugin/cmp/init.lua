@@ -67,6 +67,7 @@ local function config()
   }
 
   cmp.setup(opts)
+  r("appearance").hightlight()
 
   cmp.setup.cmdline(":", {
     sources = r("sources").cmdline,
@@ -74,11 +75,17 @@ local function config()
 end
 
 return {
+  -- not actively maintained
   -- "hrsh7th/nvim-cmp",
 
-  -- HACK: for performance gain
-  "yioneko/nvim-cmp",
-  branch = "perf",
+  -- for performance gain
+  -- "yioneko/nvim-cmp",
+  -- branch = "perf",
+
+  -- active folk based on yioneko/nvim-cmp:perf
+  -- https://www.reddit.com/r/neovim/comments/1fwy06w/magazinenvim_a_beta_nvimcmp_to_fix_bugs_implement/
+  "iguanacucumber/magazine.nvim",
+  name = "nvim-cmp",
 
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   keys = { { "<leader>vc", "<Cmd>CmpStatus<Cr>", desc = "Cmp" } },

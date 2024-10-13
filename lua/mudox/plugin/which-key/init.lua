@@ -25,9 +25,9 @@ local opts = {
   show_help = true,
   show_keys = true,
   icons = {
-    breadcrumb = require("mudox.ui.icon").chevron.right,
+    breadcrumb = I.chevron.right,
     separator = "  ",
-    group = " ",
+    group = "+",
     mappings = false, -- remove keymap icons
     keys = keys,
   },

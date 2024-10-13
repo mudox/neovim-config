@@ -10,7 +10,7 @@ end
 
 -- Checktime 〈
 
-U.on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
+On({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
   group = g("checktime"),
   command = "silent! checktime",
 })
@@ -19,7 +19,7 @@ U.on({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Auto resize windows 〈
 
-U.on("VimResized", {
+On("VimResized", {
   group = g("equalize_splits"),
   desc = "Auto-re-equalize windows",
   callback = function()
@@ -33,7 +33,10 @@ U.on("VimResized", {
 
 -- Close with `q` 〈
 
-U.on("FileType", {
+On("FileType", function(event)
+  vim.bo[event.buf].buflisted = false
+  vim.keymap.set("n", "q", "<Cmd>close<Cr>", { buffer = event.buf, silent = true })
+end, {
   group = g("close_with_q"),
   desc = "Close using `q`",
   pattern = {
@@ -41,6 +44,7 @@ U.on("FileType", {
     "checkhealth",
     "fugitive",
     "fugitiveblame",
+    "grug-far",
     "help",
     "lspinfo",
     "man",
@@ -57,17 +61,16 @@ U.on("FileType", {
     "startuptime",
     "tsplayground",
   },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<Cmd>close<Cr>", { buffer = event.buf, silent = true })
-  end,
 })
 
 -- Close with `q` 〉
 
 -- Wrap & check spell 〈
 
-U.on("FileType", {
+On("FileType", function()
+  vim.opt_local.wrap = true
+  vim.opt_local.spell = true
+end, {
   group = g("wrap_spell"),
   desc = "Wrap lines and check spelling",
   pattern = {
@@ -75,39 +78,13 @@ U.on("FileType", {
     "markdown",
     "neorg",
   },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
 })
 
 -- Wrap & check spell 〉
 
--- User event MdxSessionStart 〈
-
-if vim.fn.argc(-1) == 0 then
-  U.on("User", {
-    pattern = "AlphaClosed",
-    desc = "Start session after Alpha closed",
-    callback = function()
-      vim.api.nvim_exec_autocmds("User", { pattern = "MdxSessionStart" })
-    end,
-  })
-else
-  U.on("User", {
-    pattern = "VeryLazy",
-    desc = "Start session on 1st buffer load",
-    callback = function()
-      vim.api.nvim_exec_autocmds("User", { pattern = "MdxSessionStart" })
-    end,
-  })
-end
-
--- User event MdxSessionStart 〉
-
 -- Unfold for small files 〈
 
-U.on("BufRead", {
+On("BufRead", {
   group = g("unfold_for_small_file"),
   desc = "No fold for small files",
   callback = function()
@@ -119,8 +96,12 @@ U.on("BufRead", {
 
 -- Unfold for small files 〉
 
-U.on("CursorHold", function()
+-- Restore cmdheight 〈
+
+On("CursorHold", function()
   if vim.o.cmdheight ~= 2 then
     vim.o.cmdheight = 2
   end
 end)
+
+-- Restore cmdheight 〉

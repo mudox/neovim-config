@@ -1,8 +1,14 @@
-local log = require("plenary.log").new {
-  plugin = "mudox",
-  level = "debug",
-  use_console = false,
-}
+local function hide_cursor()
+  U.on("BufEnter", function()
+    local def = vim.api.nvim_get_hl(0, { name = "Cursor" })
+    vim.api.nvim_set_hl(0, "Cursor", vim.tbl_extend("force", def, { blend = 100 }))
+  end, { pattern = "NvimTree*" })
+
+  U.on("BufLeave", function()
+    local def = vim.api.nvim_get_hl(0, { name = "Cursor" })
+    vim.api.nvim_set_hl(0, "Cursor", vim.tbl_extend("force", def, { blend = 0 }))
+  end, { pattern = "NvimTree*" })
+end
 
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
@@ -63,21 +69,21 @@ local function on_attach(bufnr)
 end
 
 local function opts()
-  local i = require("mudox.ui.icon")
+  hide_cursor()
 
   -- stylua: ignore
   local folder = {
-    arrow_open     = i.chevron.down,
-    arrow_closed   = i.chevron.right,
+    arrow_open     = I.chevron.down,
+    arrow_closed   = I.chevron.right,
 
-    default        = i.folder.closed,
-    open           = i.folder.open,
+    default        = I.folder.closed,
+    open           = I.folder.open,
 
-    empty          = i.folder.empty,
-    empty_open     = i.folder.empty_open,
+    empty          = I.folder.empty,
+    empty_open     = I.folder.empty_open,
 
-    symlink        = i.folder.symlink,
-    symlink_open   = i.folder.symlink_open,
+    symlink        = I.folder.symlink,
+    symlink_open   = I.folder.symlink_open,
   }
 
   for k, icon in pairs(folder) do

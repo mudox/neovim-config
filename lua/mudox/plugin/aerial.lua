@@ -1,7 +1,5 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
-local i = require("mudox.ui.icon")
-
 local float = {
   border = "none",
   max_height = { 30, 0.6 },
@@ -40,7 +38,7 @@ local opts = {
   close_on_select = false,
   post_jump_cmd = "normal! zzzv",
 
-  icons = i.kind,
+  icons = I.kind,
 
   filter_kind = kinds,
 

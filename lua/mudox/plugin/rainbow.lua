@@ -40,6 +40,5 @@ end
 return {
   "hiphish/rainbow-delimiters.nvim",
   event = { "BufRead", "BufNewFile" },
-  config = config,
-  cond = false, -- bug
+  -- config = config, -- ISSUE: trigger bug about `range` function from treesitter in nightly build
 }

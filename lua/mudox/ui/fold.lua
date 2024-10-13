@@ -4,7 +4,7 @@
 -- foldline composition feature was removed in https://github.com/neovim/neovim/pull/20750
 -- now is not unable to customize foldline
 
-local head = require("mudox.ui.icon").chevron.right .. " "
+local head = I.chevron.right .. " "
 local head_hl = "Normal"
 local dots = "   "
 local dots_hl = "Normal"

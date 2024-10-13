@@ -10,8 +10,8 @@ return {
   dependencies = "nvchad/volt",
   -- stylua: ignore
   keys = {
-    -- TODO: customize menus
-    { "<C-t>", function() require("menu").open("default") end, desc = "[Menu] Default" },
-    { "<RightMouse>", right_mouse, desc = "[Menu] Right mouse" },
+    -- TODO: learn and setup
+    { "<M-m>", function() require("menu").open("default") end, desc = "[Menu] Default" },
+    -- { "<RightMouse>", right_mouse, desc = "[Menu] Right mouse" },
   },
 }

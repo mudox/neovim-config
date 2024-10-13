@@ -14,7 +14,7 @@ if not vim.uv.fs_stat(lazypath) then
   local oldcmdheight = vim.o.cmdheight
   vim.opt.cmdheight = 2
   vim.notify("Please wait while plugins are installed...")
-  U.on("User", {
+  On("User", {
     desc = "Load Mason and Treesitter after Lazy installs plugins",
     once = true,
     pattern = "LazyInstall",

@@ -70,7 +70,7 @@ local function config()
   -- close Lazy and re-open when the dashboard is ready
   -- if vim.o.filetype == "lazy" then
   --   vim.cmd.close()
-  --   U.on("User", {
+  --   On("User", {
   --     pattern = "AlphaReady",
   --     callback = function()
   --       require("lazy").show()
@@ -81,7 +81,7 @@ local function config()
   local db = dashboard()
   require("alpha").setup(db.config)
 
-  U.on("User", {
+  On("User", {
     pattern = "LazyVimStarted",
     callback = function()
       local stats = require("lazy").stats()

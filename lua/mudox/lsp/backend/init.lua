@@ -80,7 +80,7 @@ local function setup_servers()
 end
 
 local function on_lsp_attach()
-  -- U.on.lsp_attach(function(client, bufnr)
+  -- On.lsp_attach(function(client, bufnr)
   -- local ft = vim.bo[bufnr].filetype
 
   -- if ft == "lua" then

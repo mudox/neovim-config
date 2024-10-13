@@ -3,23 +3,23 @@
 -- stylua: ignore
 return {
   File            = " ",
-  Folder          = " ",
+  Folder          = " ", -- 󰉋    󰉋  
 
-  Event           = " ",
+  Event           = " ", -- 󰉁  
 
-  Function        = "󰊕 ",
-  Method          = "󰊕 ",
-  Constructor     = "󰊕 ",
-  KeywordFunction = "󰊕 ",
+  Function        = " ", -- 󰊕 󰡱  
+  Method          = " ",
+  Constructor     = " ",
+  KeywordFunction = " ",
 
   Key             = " ",
   Keyword         = " ",
   String          = " ",
   Text            = "󰦨 ",
 
-  Package         = " ",
-  Module          = "󰋺 ",
-  Namespace       = "󰕋 ",
+  Namespace       = " ",
+  Package         = " ",
+  Module          = " ",
 
   Interface       = " ",
   Class           = " ",
@@ -31,22 +31,25 @@ return {
   Null            = "∅ ",
   Boolean         = "Ө ",
   Number          = "# ",
-  Operator        = "󰦒 ",
+  Operator        = " ", -- 
   TypeParameter   = " ",
 
-  Constant        = "󰏿 ",
-  Variable        = "𝜈 ",
+  Constant        = " ", -- 󰏿
+  Variable        = " ", -- 𝜈
 
   Enum            = " ",
   EnumMember      = " ",
 
-  Property        = " ",
+  Property        = " ", -- 
   Field           = "󰓼 ",
 
-  Snippet         = " ",
+  Snippet         = " ", --   
   TabNine         = "󰋙 ",
 
-  Error           = " ",
+  Error           = " ", -- 
 
-  -- Color
+  Reference       = " ", -- 󰈇  
+
+  Color           = " ", -- 󰏘    󰌁  
+  Unit            = " ", -- 󰭍
 }

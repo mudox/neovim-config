@@ -1,5 +1,4 @@
-local i = require("mudox.ui.icon")
-local sep = i.powerline.current
+local sep = I.powerline.current
 
 local options = {
   globalstatus = true,
@@ -44,7 +43,7 @@ local statusline = {
   lualine_x = {
     {
       "diagnostics",
-      symbols = i.diagnostics.single,
+      symbols = I.diagnostics.single,
     },
     { "filetype" },
   },

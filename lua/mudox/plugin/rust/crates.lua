@@ -1,7 +1,7 @@
 local function setup_keymaps(bufnr) end
 
 local function init()
-  U.on("BufRead", {
+  On("BufRead", {
     pattern = "Cargo.toml",
     callback = function(event)
       require("lazy").load("crates.nvim")
@@ -37,7 +37,7 @@ end
 return {
   "saecki/crates.nvim",
   tag = "v0.4.0",
-  dependencies = { "plenary.nvim", "nvim-cmp", "none-ls.nvim" },
+  -- dependencies = { "plenary.nvim", "nvim-cmp", "none-ls.nvim" },
   init = init,
   config = config,
 }

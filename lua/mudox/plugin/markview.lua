@@ -1,10 +1,12 @@
+local function opts()
+  return {
+    filetypes = { "markdown", "quarto", "rmd", "Avante" },
+  }
+end
+
 return {
   "OXY2DEV/markview.nvim",
-
-  -- lazy = false, -- Recommended
-  ft = "markdown", -- If you decide to lazy-load anyway
-  -- event = "VeryLazy",
-
+  ft = { "markdown", "quarto", "rmd", "Avante" },
   dependencies = {
     "nvim-treesitter",
     "nvim-web-devicons",

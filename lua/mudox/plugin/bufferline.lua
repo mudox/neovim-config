@@ -14,7 +14,7 @@ local function init()
   vim.o.mousemoveevent = true -- hover to show close icon
   vim.o.laststatus = 3
 
-  U.on("WinEnter", function()
+  On("WinEnter", function()
     if not U.window.is_floating() then
       local listed_buffers = vim.tbl_filter(function(b)
         return vim.bo[b].buflisted
@@ -29,14 +29,14 @@ local function init()
   end)
 
   if vim.fn.argc(-1) == 0 then
-    U.on("User", {
+    On("User", {
       pattern = "AlphaClosed",
       callback = function()
         require("bufferline")
       end,
     })
   else
-    U.on("User", {
+    On("User", {
       pattern = "VeryLazy",
       callback = function()
         require("bufferline")
@@ -64,8 +64,8 @@ local function opts()
       buffer_close_icon  = "󰅖",
       modified_icon      = "•",
       close_icon         = "󰅖",
-      left_trunc_marker  = "┄",
-      right_trunc_marker = "┄",
+      left_trunc_marker  = "⋯",
+      right_trunc_marker = "⋯",
       -- stylua: ignore end
 
       groups = {

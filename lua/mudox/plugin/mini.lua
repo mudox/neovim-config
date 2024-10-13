@@ -1,4 +1,4 @@
 return {
-  "echasnovski/mini.icons",
+  "echasnovski/mini.nvim",
   config = true,
 }

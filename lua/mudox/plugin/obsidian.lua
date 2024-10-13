@@ -10,12 +10,6 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*",
   event = event,
-  dependencies = {
-    "plenary.nvim",
-    "nvim-cmp",
-    "telescope.nvim",
-    "nvim-treesitter",
-  },
   opts = {
     workspaces = {
       {
@@ -24,4 +18,5 @@ return {
       },
     },
   },
+  cond = false,
 }

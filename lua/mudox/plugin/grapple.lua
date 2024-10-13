@@ -11,5 +11,9 @@ return {
   dependencies = "nvim-web-devicons",
   cmd = "Grapple",
   keys = keys,
-  cond = false, -- testing harpoon2
+  opts = {
+    win_opts = {
+      border = "none",
+    },
+  },
 }

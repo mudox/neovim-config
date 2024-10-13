@@ -1,5 +1,5 @@
 local function opts()
-  local symbols = vim.tbl_deep_extend("force", require("mudox.ui.icon").kind, {
+  local symbols = vim.tbl_deep_extend("force", I.kind, {
     File = "󰈔 ",
     Folder = " ",
     Terminal = " ",

@@ -1,11 +1,10 @@
 local function opts()
-  local i = require("mudox.ui.icon")
   return {
     floating = {
-      border = i.border.corner,
+      border = I.border.corner,
       icons = {
-        collapsed = i.chevron.right,
-        expanded = i.chevron.down,
+        collapsed = I.chevron.right,
+        expanded = I.chevron.down,
       },
       render = {
         max_value_lines = 60,

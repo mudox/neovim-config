@@ -117,7 +117,7 @@ local function show()
     win:unmount()
   end)
 
-  U.on({ "CursorMoved", "WinLeave" }, function()
+  On({ "CursorMoved", "WinLeave" }, function()
     win:unmount()
   end, { once = true })
 end

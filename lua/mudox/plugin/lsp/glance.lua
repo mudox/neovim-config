@@ -1,5 +1,4 @@
 local function opts()
-  local i = require("mudox.ui.icon")
   local g = require("glance")
   local a = g.actions
 
@@ -19,8 +18,8 @@ local function opts()
       },
     },
     folds = {
-      fold_closed = i.chevron.right,
-      fold_open = i.chevron.down,
+      fold_closed = I.chevron.right,
+      fold_open = I.chevron.down,
       folded = true, -- Automatically fold list on startup
     },
   }

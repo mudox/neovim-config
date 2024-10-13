@@ -25,14 +25,14 @@ local function opts()
       require("neotest-rust"),
     },
     floating = {
-      border = require("mudox.ui.icon").border.corner,
+      border = I.border.corner,
     },
     consumers = {
       overseer = require("neotest.consumers.overseer"),
     },
     icons = {
-      passed = require("mudox.ui.icon").check,
-      failed = require("mudox.ui.icon").ballot,
+      passed = I.check,
+      failed = I.ballot,
     },
   }
 end

@@ -9,12 +9,12 @@ local function keys()
 
   -- stylua: ignore
   local k = {
-    { "<leader>fa", add_file,                                               "[Harpoon] Add file",      },
+    { "<leader>ea", add_file,                                               desc = "[Harpoon] Add file",      },
 
-    { "M",          function () hp().ui:toggle_quick_menu(hp():list()) end, "[Harpoon] Menu",          },
+    { "<leader>eh", function () hp().ui:toggle_quick_menu(hp():list()) end, desc = "[Harpoon] Menu",          },
 
-    { "<C-S-l>",    function () hp():list():next() end,                     "[Harpoon] Next file",     },
-    { "<C-S-h>",    function () hp():list():prev() end,                     "[Harpoon] Previous file", },
+    { "<C-S-l>",    function () hp():list():next() end,                     desc = "[Harpoon] Next file",     },
+    { "<C-S-h>",    function () hp():list():prev() end,                     desc = "[Harpoon] Previous file", },
   }
 
   for i = 1, 5 do
@@ -55,5 +55,5 @@ return {
   branch = "harpoon2",
   dependencies = "plenary.nvim",
   keys = keys(),
-  config = config,
+  -- config = config,
 }

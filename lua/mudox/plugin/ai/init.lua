@@ -8,4 +8,5 @@ return {
   r"codeium",
   r"codecompanion",
   r"supermaven",
+  r"avante",
 }

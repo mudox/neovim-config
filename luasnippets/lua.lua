@@ -5,7 +5,7 @@ local string_format = s("sf", fmt([[("{1}"):format({2})]], { i(1, "format"), i(2
 local autocmd = (function()
   local autocmd_simple = fmt(
     [[
-      U.on("{event}", {{
+      On("{event}", {{
         callback = function(event)
           {content}
         end,
@@ -20,7 +20,7 @@ local autocmd = (function()
   local autocmd_complete = fmt(
     [[
       local gid = vim.api.nvim_create_augroup({group_name}, {{ clear = true }})
-      U.on("{event}", {{
+      On("{event}", {{
         group = gid,
         desc = "{desc}",
         callback = function(event)

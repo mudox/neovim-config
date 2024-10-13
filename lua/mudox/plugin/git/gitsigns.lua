@@ -1,4 +1,4 @@
-local bar = require("mudox.ui.icon").bar
+local bar = I.bar
 
 -- stylua: ignore
 local signs = {
@@ -67,7 +67,7 @@ local opts = {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = require("mudox.ui.icon").border.box,
+    border = I.border.box,
     style = "minimal",
     relative = "cursor",
     row = 0,

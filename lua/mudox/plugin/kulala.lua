@@ -4,7 +4,7 @@ local function f(name)
   end
 end
 
-local tabman_id = "Kulala Scratchpad"
+local tabman_id = "Kulala"
 local function tab_scratchpad()
   vim.cmd.tabnew()
   require("kulala").scratchpad()

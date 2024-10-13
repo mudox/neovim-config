@@ -52,7 +52,7 @@ local cascade_diagnostics = {
 }
 
 local function opts()
-  local i = require("mudox.ui.icon")
+  local i = I
 
   local icons = {
     -- stylua: ignore

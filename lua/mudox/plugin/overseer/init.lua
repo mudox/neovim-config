@@ -39,7 +39,7 @@ local task_list_keymaps = {
 }
 
 local function opts()
-  local border = require("mudox.ui.icon").border.corner
+  local border = I.border.corner
 
   return {
     templates = templates,

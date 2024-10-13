@@ -21,7 +21,7 @@ local function opts()
     collapse_dir = true,
 
     git_status = false,
-    dir_icon = require("mudox.ui.icon").folder.closed:sub(1, -2),
+    dir_icon = I.folder.closed:sub(1, -2),
 
     prompt_path = true,
 

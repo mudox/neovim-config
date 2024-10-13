@@ -55,7 +55,7 @@ local window = {
 
 K.nnop(",")
 local plugin = {
-  { "<leader>",  group = "plugin" },
+  { "<leader>",  group = "plugin",        mode = { "n", "x" } },
 
   { "<leader>b", group = "buffer"         },
   { "<leader>c", group = "test"           },
@@ -63,12 +63,14 @@ local plugin = {
   edit,
   { "<leader>f", group = "files"          },
   { "<leader>g", group = "git"            },
+  { "<leader>i", group = "inspect"        },
   { "<leader>k", group = "kulala"         },
   { "<leader>p", group = "profile"        },
   { "<leader>r", group = "run"            },
   { "<leader>t", group = "telescope"      },
   window,
   { "<leader>x", group = "trouble"        },
+  { "<leader>z", group = "visual-multi",  mode = { "n", "x"} },
 }
 
 K.nnop(";")

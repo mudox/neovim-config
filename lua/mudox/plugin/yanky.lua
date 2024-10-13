@@ -35,10 +35,10 @@ local keys = {
   { "]P",         "<Plug>(YankyPutIndentBeforeLinewise)",   desc =  "[Yanky] Put before (linewise)"                               },
   { "[P",         "<Plug>(YankyPutIndentBeforeLinewise)",   desc =  "[Yanky] Put before (linewise)"                               },
 
-  { ">p",         "<Plug>(YankyPutIndentAfterShiftRight)",  desc =  "[Yanky] Put and indent right"                                },
-  { "<p",         "<Plug>(YankyPutIndentAfterShiftLeft)",   desc =  "[Yanky] Put and indent left"                                 },
-  { ">P",         "<Plug>(YankyPutIndentBeforeShiftRight)", desc =  "[Yanky] Put before and indent right"                         },
-  { "<P",         "<Plug>(YankyPutIndentBeforeShiftLeft)",  desc =  "[Yanky] Put before and indent left"                          },
+  -- { ">p",         "<Plug>(YankyPutIndentAfterShiftRight)",  desc =  "[Yanky] Put and indent right"                                },
+  -- { "<p",         "<Plug>(YankyPutIndentAfterShiftLeft)",   desc =  "[Yanky] Put and indent left"                                 },
+  -- { ">P",         "<Plug>(YankyPutIndentBeforeShiftRight)", desc =  "[Yanky] Put before and indent right"                         },
+  -- { "<P",         "<Plug>(YankyPutIndentBeforeShiftLeft)",  desc =  "[Yanky] Put before and indent left"                          },
 
   { "=p",         "<Plug>(YankyPutAfterFilter)",            desc =  "[Yanky] Put after applying a filter"                         },
   { "=P",         "<Plug>(YankyPutBeforeFilter)",           desc =  "[Yanky] Put before applying a filter"                        },

@@ -1,5 +1,5 @@
 local function opts()
-  local i = require("mudox.ui.icon").diagnostics.double
+  local i = I.diagnostics.double
   -- stylua: ignore
   local icons = {
     ERROR = i.error,
@@ -18,7 +18,7 @@ local function opts()
 
     on_open = function(win)
       vim.api.nvim_win_set_config(win, {
-        -- border = require("mudox.ui.icon").border.box,
+        -- border = I.border.box,
         border = "single", -- 'rounded' by default
       })
     end,

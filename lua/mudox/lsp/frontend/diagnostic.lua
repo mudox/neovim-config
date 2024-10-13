@@ -1,17 +1,12 @@
 local d = vim.diagnostic
 
 local function config()
-  local E = vim.diagnostic.severity.ERROR
-  local W = vim.diagnostic.severity.WARN
-  local I = vim.diagnostic.severity.INFO
-  local H = vim.diagnostic.severity.HINT
-  local bar = require("mudox.ui.icon").short_bar
   local signs = {
     text = {
-      [E] = bar,
-      [W] = bar,
-      [I] = bar,
-      [H] = bar,
+      [vim.diagnostic.severity.ERROR] = I.short_bar,
+      [vim.diagnostic.severity.WARN] = I.short_bar,
+      [vim.diagnostic.severity.INFO] = I.short_bar,
+      [vim.diagnostic.severity.HINT] = I.short_bar,
     },
   }
 
@@ -101,7 +96,7 @@ local function setup()
   config()
   -- setup_signs()
 
-  U.on.lsp_attach(setup_keymaps)
+  On.lsp_attach(setup_keymaps)
 end
 
 return {

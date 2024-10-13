@@ -68,11 +68,16 @@ function M.wrap(op, dir)
 end
 
 function M.wrap_cmd(name, n, p)
-  -- stylua: ignore
   return {
     name = name,
-    next = function() vim.cmd("silent! " .. n) end,
-    prev = function() vim.cmd("silent! " .. p) end,
+    next = function()
+      vim.cmd("silent! " .. n)
+      vim.cmd.normal { "zv", bang = true }
+    end,
+    prev = function()
+      vim.cmd("silent! " .. p)
+      vim.cmd.normal { "zv", bang = true }
+    end,
   }
 end
 

@@ -1,8 +1,5 @@
 local function opts()
-  local i = require("mudox.ui.icon").filetype
-
-  -- NOTE: do not put spaces in `name` field
-  -- It is used for `hi` command as group name
+  local i = I.filetype
 
   local ret = {}
 
@@ -17,6 +14,9 @@ local function opts()
 
   -- stylua: ignore
   ret.override_by_extension = {
+    csv = {
+      icon = i.table,
+    },
     md = {
       icon  = i.markdown,
       color = "#ffffff",

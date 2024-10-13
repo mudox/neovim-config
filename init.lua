@@ -1,22 +1,7 @@
 vim.loader.enable()
 
--- Globals
----mudox.util
-U = require("mudox.util")
----mudox.lab
-X = require("mudox.lab")
----mudox.util.keymap
-K = U.keymap
----log
----@param name string number of subsystem, also the filename
-Log = function(name)
-  vim.opt.rtp:append("~/.local/share/nvim/lazy/plenary.nvim")
-  return require("plenary.log").new {
-    plugin = name,
-    use_console = false,
-    level = "debug",
-  }
-end
+-- Convenient globals
+require("mudox.globals")
 
 -- Neovim mode - g:mdx_nvim_mode
 require("mudox.mode")
@@ -30,7 +15,7 @@ U.load("settings")
 -- Autocmds & keymaps
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
-  U.on("User", {
+  On("User", {
     pattern = "VeryLazy",
     callback = function()
       U.load("autocmds")
@@ -45,10 +30,11 @@ else
   U.load("keymaps")
 end
 
-U.on("UIEnter", function()
+-- Colorscheme
+On("UIEnter", function()
   require("tokyonight").load()
 end)
 
 -- HACK: swizzle nvim_open_win
 X.swizzle_nvim_open_win()
-require("mudox.lab.autocmd")
+-- require("mudox.lab.autocmd")

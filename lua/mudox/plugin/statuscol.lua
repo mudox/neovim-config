@@ -81,7 +81,7 @@ local function opts()
       line_num,
       gitsigns,
     },
-    ft_ignore = { "alpha", "qf" },
+    ft_ignore = { "alpha", "qf", "NvimTree" },
   }
 end
 

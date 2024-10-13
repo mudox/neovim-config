@@ -1,5 +1,3 @@
-local i = require("mudox.ui.icon")
-
 return {
   "hedyhli/outline.nvim",
   cmd = { "Outline", "OutlineOpen" },
@@ -11,12 +9,15 @@ return {
       -- filter = {
       --   default = { "String", exclude = true },
       -- },
+
       icon_fetcher = function(kind)
         return vim.fn.trim(require("mudox.ui.kind")[kind])
       end,
+
+      icon_source = "lspkind",
     },
     symbol_folding = {
-      markers = { i.chevron.right, i.chevron.down },
+      markers = { I.chevron.right, I.chevron.down },
     },
     outline_window = {
       auto_jump = true,

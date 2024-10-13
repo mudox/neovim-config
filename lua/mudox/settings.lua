@@ -37,8 +37,8 @@ opt.fillchars = {
   diff      = '╱',
 
   fold      = ' ',
-  foldopen  = require("mudox.ui.icon").chevron.down,
-  foldclose = require("mudox.ui.icon").chevron.right,
+  foldopen  = I.chevron.down,
+  foldclose = I.chevron.right,
   foldsep   = ' ',
 }
 
@@ -72,9 +72,10 @@ opt.shortmess:append {
 
 -- cursor
 opt.guicursor = {
-  "n-v-c-sm:block-blinkwait1300-blinkon200",
-  "i-ci-ve:ver25-Cursor-blinkon200-blinkoff150",
-  "r-cr-o:hor20-blinkwait300-blinkon200",
+  "n-v-c-sm:block",
+  "i-ci-ve:ver25",
+  "r-cr-o:hor20",
+  "a:blinkwait700-blinkon250-blinkoff400-Cursor/lCursor",
 }
 
 o.foldcolumn = "auto:1"
