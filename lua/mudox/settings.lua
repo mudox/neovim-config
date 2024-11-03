@@ -103,9 +103,9 @@ o.copyindent = true
 
 o.hlsearch = true
 o.wrapscan = true
-o.incsearch = true
 o.ignorecase = true
 o.smartcase = true
+o.incsearch = true
 o.inccommand = "nosplit"
 
 -- 〉
@@ -181,7 +181,7 @@ vim.g.loaded_perl_provider = 0
 
 -- Misc 〈
 
--- opt.diffopt:append("linematch:60")
+o.ttimeout = false -- <Esc> does not wait
 
 -- grep
 o.grepformat = "%f:%l:%c:%m"

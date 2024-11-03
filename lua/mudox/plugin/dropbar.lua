@@ -1,7 +1,7 @@
 local function opts()
   local symbols = vim.tbl_deep_extend("force", I.kind, {
     File = "󰈔 ",
-    Folder = " ",
+    Folder = "",
     Terminal = " ",
   })
 
@@ -12,7 +12,7 @@ local function opts()
       },
       ui = {
         bar = {
-          separator = "  ",
+          separator = " " .. I.chevron.right .. " ",
           extends = "…",
         },
       },

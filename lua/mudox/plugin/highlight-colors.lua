@@ -1,11 +1,5 @@
-local once = false
 local function toggle()
-  if not once then
-    require("nvim-highlight-colors").turnOn()
-    once = true
-  else
-    require("nvim-highlight-colors").toggle()
-  end
+  require("nvim-highlight-colors").toggle()
 end
 
 return {
@@ -13,10 +7,17 @@ return {
   keys = {
     { "coc", toggle, desc = "[Color] Toggle" },
   },
-  opts = {
-    render = "virtual",
-    virtual_symbol_position = "inline",
-    virtual_symbol = " ",
-    virtual_symbol_suffix = "",
-  },
+  config = function()
+    require("nvim-highlight-colors").setup {
+      render = "virtual",
+      virtual_symbol_position = "inline",
+      virtual_symbol = " ",
+      virtual_symbol_suffix = "",
+
+      exclude_filetypes = { "lazy", "help" },
+    }
+
+    -- off initially
+    require("nvim-highlight-colors").turnOff()
+  end,
 }

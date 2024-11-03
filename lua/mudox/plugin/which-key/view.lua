@@ -35,5 +35,6 @@ return {
 
   { "<leader>v", group = "plugin views" },
 
-  { "<leader>vz", c"Lazy", desc = "Lazy" },
+  { "<leader>vz", c"Lazy",     desc = "Lazy"     },
+  { "<leader>vw", c"WhichKey", desc = "WhichKey" },
 }

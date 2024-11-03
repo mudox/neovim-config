@@ -1,7 +1,9 @@
 -- stylua: ignore
 local formatters_by_ft = {
   lua        = { "stylua"          },
-  python     = { "ruff"            },
+
+  python     = { "isort", "ruff"   },
+
   rust       = { "rustfmt"         },
 
   javascript = { "prettierd"       },

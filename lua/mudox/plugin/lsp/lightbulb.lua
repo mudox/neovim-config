@@ -15,8 +15,8 @@ local opts = {
 }
 
 return {
-  -- "kosayoda/nvim-lightbulb",
-  "traap/nvim-lightbulb",
+  "kosayoda/nvim-lightbulb", -- the origin repo
+  -- "traap/nvim-lightbulb",
   event = "LspAttach",
   opts = opts,
 }

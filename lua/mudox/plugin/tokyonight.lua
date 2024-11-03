@@ -110,10 +110,22 @@ end
 
 local function bufferline(hl, c)
   -- transparent tabline backdrop
+
   hl.BufferLineFill = { bg = "bg" }
-  hl.BufferLineSeparator = { fg = "bg" }
-  hl.BufferLineTabSeparator = { fg = "bg" }
-  hl.BufferLineTabSeparatorSelected = { fg = "bg" }
+
+  hl.BufferLineSeparator = { fg = "bg", bg = "bg" }
+
+  -- hl.BufferLineBufferVisible = { fg = "bg", bg = "bg" }
+  -- hl.BufferLineHint = { fg = "bg", bg = "bg" }
+
+  -- hl.BufferLineGroupSeparator = { bg = "bg" }
+  -- hl.BufferLineOffsetSeparator = { bg = "bg" }
+
+  hl.BufferLineTabSeparator = { bg = "bg" }
+  -- hl.BufferLineTabSeparatorSelected = { bg = "bg" }
+
+  -- hl.BufferLineIndicatorVisible = { fg = "bg", bg = "bg" }
+  hl.BufferLineIndicatorSelected = { bg = "bg" }
 end
 
 local function on_highlights(...)

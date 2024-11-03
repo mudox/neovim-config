@@ -69,7 +69,7 @@ local function on_attach(bufnr)
 end
 
 local function opts()
-  hide_cursor()
+  -- hide_cursor()
 
   -- stylua: ignore
   local folder = {

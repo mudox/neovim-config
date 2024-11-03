@@ -105,3 +105,7 @@ On("CursorHold", function()
 end)
 
 -- Restore cmdheight 〉
+
+On("TermEnter", function()
+  vim.cmd.startinsert { bang = true }
+end)

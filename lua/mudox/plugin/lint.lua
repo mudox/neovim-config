@@ -3,12 +3,16 @@ local function config()
 
   -- stylua: ignore
   lint.linters_by_ft = {
+    lua        = { "typos"     },
+
     javascript = { "eslint_d" },
     typescript = { "eslint_d" },
 
     json       = { "jsonlint" },
 
-    python     = { "ruff"     },
+    python     = { "typos"     },
+
+    rust       = { "typos"     },
   }
 
   local gid = vim.api.nvim_create_augroup("mdx_lint", { clear = true })

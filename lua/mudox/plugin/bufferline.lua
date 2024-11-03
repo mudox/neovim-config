@@ -9,6 +9,14 @@ local function name_formatter(buf)
   return vim.fn.fnamemodify(buf.name, ":t:r") -- remove file extension
 end
 
+local function filter(bufnr, bufnrs)
+  if vim.bo[bufnr].buftype ~= "" then
+    return false
+  end
+
+  return true
+end
+
 local function init()
   vim.o.termguicolors = true
   vim.o.mousemoveevent = true -- hover to show close icon
@@ -49,7 +57,7 @@ local function opts()
   local o = {
     options = {
       indicator = { style = "none" },
-      separator_style = { " ", " " }, -- transparent tabline appearance
+      separator_style = { "", " " }, -- transparent tabline appearance
 
       name_formatter = name_formatter,
 
@@ -73,6 +81,8 @@ local function opts()
           require("bufferline.groups").builtin.pinned:with { icon = " " },
         },
       },
+
+      custom_filter = filter,
     },
   }
 

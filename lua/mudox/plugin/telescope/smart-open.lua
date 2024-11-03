@@ -23,6 +23,7 @@ local keys = {
 
 return {
   "danielfalk/smart-open.nvim",
+  branch = "0.3.x",
   dependencies = {
     "kkharji/sqlite.lua",
     "telescope.nvim",

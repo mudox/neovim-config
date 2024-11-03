@@ -15,17 +15,14 @@
 ---  - remap = false (by default for `vim.keymap.set`), true for `plug`
 ---  - silent = true if not in `c` mode
 
----Fix opts
----`vim.keymap.set` does not like unknown keys
-local function normalize_opts(mode, opts)
-  -- `remap` default `false` in `vim.keymap.set`
-
-  -- `cmap` needs echoing (`silent = false` ) in most cases
-  if opts.silent == nil then
-    opts.silent = mode ~= "c"
+local function initopts(opts)
+  if opts == nil then
+    return {}
+  elseif type(opts) == "string" then
+    return { desc = opts }
+  else
+    return opts
   end
-
-  return opts
 end
 
 local bodys = {}
@@ -36,23 +33,23 @@ local bodys = {}
 ---@param to   string|function Normal command string or lua function
 ---@param opts table           opts, see help of `vim.keymap.set()`
 function bodys.map(mode, from, to, opts)
-  opts = opts or {}
-  opts = normalize_opts(mode, opts)
-
-  vim.keymap.set(mode, from, to, opts)
+  vim.keymap.set(mode, from, to, initopts(opts))
 end
 
 function bodys.expr(mode, from, to, opts)
-  opts = opts or {}
+  opts = initopts(opts)
   opts.expr = true
   opts.silent = false
+
   bodys.map(mode, from, to, opts)
 end
 
 ---For pattern `<Cmd>{ex command}<Cr>`
 function bodys.cmd(mode, from, to, opts)
   to = "<Cmd>" .. to .. "<Cr>"
-  opts = opts or {}
+
+  opts = initopts(opts)
+  opts.silent = false
 
   bodys.map(mode, from, to, opts)
 end
@@ -70,8 +67,9 @@ end
 ---For pattern  `<Plug>xxx` or `<Plug>(xxx)`
 ---Note: Parentheses are not added automatically
 function bodys.plug(mode, from, to, opts)
-  opts = opts or {}
+  opts = initopts(opts)
   opts.remap = true
+
   bodys.map(mode, from, ("<Plug>%s"):format(to), opts)
 end
 
@@ -82,8 +80,9 @@ end
 
 ---Clear mapping
 function bodys.nop(mode, from, opts)
-  opts = opts or {}
+  opts = initopts(opts)
   opts.desc = opts.desc or "[Nop]"
+
   bodys.map(mode, from, "<Nop>", opts)
 end
 

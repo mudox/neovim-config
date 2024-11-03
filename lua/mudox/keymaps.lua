@@ -16,20 +16,21 @@ for i = 1, 9 do
 end
 
 -- Folding
-K.nmap("zi", "zizz")
+K.nmap("zi", "zizz", "Toggle fold")
 -- stylua: ignore
 local zjk = {
   name = "Fold",
   next = function() vim.cmd.normal { "zjzx", bang = true } end,
   prev = function() vim.cmd.normal { "zkzx", bang = true } end,
 }
-K.nmap("zj", X.dirop.wrap(zjk, "next"))
-K.nmap("zk", X.dirop.wrap(zjk, "prev"))
+K.nmap("zj", X.dirop.wrap(zjk, "next"), "Goto next fold start")
+K.nmap("zk", X.dirop.wrap(zjk, "prev"), "Goto prev fold end")
 K.nmap("z<Space>", "zMzA", { remap = true })
-K.nmap("zn", function()
-  vim.opt_local.foldenable = false
-  U.redraw_status_column()
-end)
+
+-- K.nmap("zn", function()
+--   vim.opt_local.foldenable = false
+--   U.redraw_status_column()
+-- end)
 
 -- Resize window using <Ctrl>+arrow keys
 -- local s = 4

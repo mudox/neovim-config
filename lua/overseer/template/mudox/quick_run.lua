@@ -2,7 +2,7 @@ return {
   name = "quick run",
 
   condition = {
-    filetype = { "sh", "zsh", "python", "go", "nu" },
+    filetype = { "sh", "zsh", "python", "go", "nu", "lua" },
   },
 
   builder = function()
@@ -17,6 +17,7 @@ return {
     elseif ft == "python" then cmd = { "python",    file }
     elseif ft == "go"     then cmd = { "go", "run", file }
     elseif ft == "nu"     then cmd = { "nu",        file }
+    elseif ft == "lua"    then cmd = { "luajit",    file }
     end
 
     return {

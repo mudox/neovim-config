@@ -13,7 +13,7 @@ local opts = {
   },
   jump = {
     autojump = true,
-    nohlsearch = false,
+    nohlsearch = true,
   },
   prompt = {
     prefix = { { "󰉁 ", "FlashPromptIcon" } },

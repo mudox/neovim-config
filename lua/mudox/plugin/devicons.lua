@@ -52,5 +52,10 @@ end
 
 return {
   "kyazdani42/nvim-web-devicons",
+  dependencies = "yamatsum/nvim-nonicons",
   opts = opts,
+  config = function(_, o)
+    require("nvim-web-devicons").setup(o)
+    -- require("nvim-nonicons").setup {}
+  end,
 }
