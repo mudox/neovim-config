@@ -130,7 +130,7 @@ local function opts()
       },
       padding = " ",
       git_placement = "after",
-      symlink_arrow = " 󰅂 ",
+      symlink_arrow = " -> ",
       glyphs = glyphs,
     },
 

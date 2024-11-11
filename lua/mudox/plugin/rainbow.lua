@@ -22,7 +22,9 @@ local function config()
   }
 
   local strategy = {
-    [""] = sS,
+    [""] = sL,
+
+    lua = sL,
 
     html = sL,
     json = sL,
@@ -31,14 +33,14 @@ local function config()
     objc = sL,
   }
 
-  vim.g.rainbow_delimiters = {
-    whitelist = whitelist,
-    strategy = strategy,
-  }
+  -- vim.g.rainbow_delimiters = {
+  -- whitelist = whitelist,
+  -- strategy = strategy,
+  -- }
 end
 
 return {
   "hiphish/rainbow-delimiters.nvim",
-  event = { "BufRead", "BufNewFile" },
-  -- config = config, -- ISSUE: trigger bug about `range` function from treesitter in nightly build
+  event = { "BufReadPre", "BufNewFile" },
+  config = config, -- ISSUE: trigger bug about `range` function from treesitter in nightly build
 }

@@ -3,7 +3,7 @@ local function config()
 
   -- stylua: ignore
   lint.linters_by_ft = {
-    lua        = { "typos"     },
+    lua        = { "selene", "typos" },
 
     javascript = { "eslint_d" },
     typescript = { "eslint_d" },

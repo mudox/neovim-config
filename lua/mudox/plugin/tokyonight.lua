@@ -128,6 +128,16 @@ local function bufferline(hl, c)
   hl.BufferLineIndicatorSelected = { bg = "bg" }
 end
 
+local function alacritty(hl, c)
+  -- ISSUE:
+  -- 1. Many plugin highlights derived from Normal
+  -- 2. tokyonight.theme emit error
+  if vim.env.ALACRITTY_WINDOW_ID then
+    hl.Normal.bg = "NONE"
+    hl.NormalNC.bg = "NONE"
+  end
+end
+
 local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
@@ -140,6 +150,7 @@ local function on_highlights(...)
   lightbulb(...)
   multicursor(...)
   bufferline(...)
+  -- alacritty(...)
 end
 
 local opts = {
@@ -148,11 +159,13 @@ local opts = {
   style = "moon",
 
   styles = {
-    comments = { italic = false },
+    -- comments = { italic = false },
     keywords = { italic = false },
     sidebars = "transparent",
     floats = "dark",
   },
+
+  lualine_bold = false,
 
   on_highlights = on_highlights,
 }

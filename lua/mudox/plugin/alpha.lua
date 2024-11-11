@@ -20,7 +20,7 @@ end
 -- stylua: ignore
 local items = {
   { "f",       " " .. " Smart open",      [[<Cmd>lua require"mudox.plugin.telescope.util".smart_open()<Cr>]] },
-  { "F",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]                                  },
+  -- { "F",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]                                  },
   { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]                                   },
   { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]                                 },
 
@@ -29,13 +29,11 @@ local items = {
   { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                                                  },
   { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                                                 },
 
-  { "c",       "󰭹 " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
-  { "t",       " " .. " Terminal",        [[<Cmd>ToggleTerm<Cr>]]                                            },
+  -- { "c",       "󰭹 " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
 
   { "h",       "󰘥 " .. " Help",            [[<Cmd>Telescope help_tags<Cr>]]                                   },
 
   { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]                     },
-  -- { "q",       " " .. " Quit",            [[<Cmd>qa<Cr>]]                                                    },
 }
 
 local function dashboard()

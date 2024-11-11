@@ -1,10 +1,12 @@
 local function title(name)
   -- stylua: ignore
-  return name
+   name = name
     :gsub("^nvim[-_]", "")
     :gsub("%.lua$", "")
     :gsub("[.-_]nvim$", "")
     :gsub("_", "-")
+
+  return " " .. name
 end
 
 -- action to open selected plugin in separate tmux window
