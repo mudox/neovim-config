@@ -2,17 +2,25 @@
 --   https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/after/plugin/completion.lua
 
 local dependencies = {
-  -- basics
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-cmdline",
+  -- buffer
+  -- "hrsh7th/cmp-buffer",
+  { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+
+  -- cmdline
+  -- "hrsh7th/cmp-cmdline",
+  { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
   "dmitmel/cmp-cmdline-history",
-  "hrsh7th/cmp-path",
+
+  -- path
+  -- "hrsh7th/cmp-path",
+  "https://codeberg.org/FelipeLema/cmp-async-path",
 
   -- snippet
   "saadparwaiz1/cmp_luasnip",
 
   -- lsp
-  "hrsh7th/cmp-nvim-lsp",
+  -- "hrsh7th/cmp-nvim-lsp",
+  { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp" },
   "hrsh7th/cmp-nvim-lsp-signature-help",
 
   -- treesitter
@@ -23,7 +31,8 @@ local dependencies = {
 
   -- language
   "octaltree/cmp-look",
-  "hrsh7th/cmp-nvim-lua",
+  -- "hrsh7th/cmp-nvim-lua",
+  { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
   "buschco/nvim-cmp-ts-tag-close",
 
   -- icons
@@ -77,10 +86,6 @@ end
 return {
   -- not actively maintained
   -- "hrsh7th/nvim-cmp",
-
-  -- for performance gain
-  -- "yioneko/nvim-cmp",
-  -- branch = "perf",
 
   -- active folk based on yioneko/nvim-cmp:perf
   -- https://www.reddit.com/r/neovim/comments/1fwy06w/magazinenvim_a_beta_nvimcmp_to_fix_bugs_implement/

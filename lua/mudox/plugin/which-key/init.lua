@@ -1,6 +1,6 @@
 -- stylua: ignore
 -- appand `en space` to prevent trimming
-local keys = {
+local key_icons = {
   Up              = "󰁝",
   Down            = "󰁅",
   Left            = "󰁍",
@@ -8,11 +8,11 @@ local keys = {
   C               = "󰘳 ",
   M               = "󰘴 ",
   S               = "󰘶 ",
-  CR              = " ",
+  CR              = "󰌑 ",
   Esc             = "󱊷 ",
   ScrollWheelDown = "󱕐 ",
   ScrollWheelUp   = "󱕑 ",
-  NL              = " ",
+  NL              = "␤ ",
   BS              = "󰭜 ",
   Space           = "󱁐 ",
   Tab             = "󰌒 ",
@@ -29,7 +29,7 @@ local opts = {
     separator = "  ",
     group = "+",
     mappings = false, -- remove keymap icons
-    keys = keys,
+    keys = key_icons,
   },
 
   -- keymaps

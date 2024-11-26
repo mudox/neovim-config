@@ -56,7 +56,7 @@ K.nmap("<C-S-k>", "g,", { remap = true })
 
 -- Insert mode keymaps
 K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })
-K.imap("<M-l>", "<C-x><C-l>", { noremap = false, desc = "Omni completion line" })
+K.imap("<M-l>", "<C-x><C-l>", { remap = true, desc = "Omni completion line" })
 
 -- Copy entire buffer content into system pasteboard
 K.ncmd("yf", "0,$y +")

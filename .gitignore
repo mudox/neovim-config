@@ -19,3 +19,5 @@
 
 /luapad.lua
 lua/mudox/plugin/neorg/keybind.lua
+.aider*
+.env

@@ -88,7 +88,10 @@ local tabline = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  -- event = "VeryLazy", -- loaded by `dashboard.nvim` as its dependency
+  cond = function()
+    return not _G.mdx_config.noice
+  end,
+  -- event = "VeryLazy", -- loaded by `alpha.nvim` automatically
   opts = {
     options = options,
     sections = statusline,

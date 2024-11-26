@@ -59,8 +59,8 @@ local keys = {
   { "<leader>es", edit_snippet,                                                                            desc =  "[LuaSnip] Edit snippet" },
 
   -- on the fly snippet
-  { "<C-o>",      [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode =  "v",          desc =  "[LuaSnip] On-The-Fly snippet" },
-  { "<C-o>",      function() require("luasnip.extras.otf").on_the_fly("o") end,      mode =  "i",          desc =  "[LuaSnip] On-The-Fly snippet" },
+  -- { "<C-o>",      [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode =  "v",          desc =  "[LuaSnip] On-The-Fly snippet" },
+  -- { "<C-o>",      function() require("luasnip.extras.otf").on_the_fly("o") end,      mode =  "i",          desc =  "[LuaSnip] On-The-Fly snippet" },
 }
 
 -- Keys 〉

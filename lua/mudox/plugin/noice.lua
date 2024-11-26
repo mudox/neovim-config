@@ -12,6 +12,19 @@ local views = {
 }
 
 local routes = {
+  -- line change report
+  -- https://github.com/LazyVim/LazyVim/blob/bb289f4345835d98df7d0dfd4a26fd0dffa7e89a/lua/lazyvim/plugins/ui.lua#L243
+  {
+    filter = {
+      event = "msg_show",
+      any = {
+        { find = "%d+L, %d+B" },
+        { find = "; after #%d+" },
+        { find = "; before #%d+" },
+      },
+    },
+    view = "mini",
+  },
   -- remove 'written' messages
   {
     filter = {
@@ -21,21 +34,6 @@ local routes = {
     },
     opts = { skip = true },
   },
-  -- {
-  --   filter = {
-  --     any = {
-  --       {
-  --         event = "msg_show",
-  --         min_height = 15,
-  --       },
-  --       {
-  --         event = "msg_show",
-  --         min_width = 30,
-  --       },
-  --     },
-  --   },
-  --   view = "split",
-  -- },
 }
 
 local cmdline = {
@@ -58,18 +56,20 @@ local lsp = {
 }
 
 local opts = {
-  views = views,
   routes = routes,
+  views = views,
 
   cmdline = cmdline,
   lsp = lsp,
 
+  -- stylua: ignore
   presets = {
-    bottom_search = true,
-    command_palette = true,
+    command_palette       = true,
+    bottom_search         = true,
     long_message_to_split = true,
-    inc_rename = false,
-    lsp_doc_border = false,
+
+    inc_rename            = false,
+    lsp_doc_border        = false,
   },
 }
 
@@ -87,7 +87,9 @@ local keys = {
 -- stylua: ignore end
 
 return {
-  cond = false,
+  cond = function()
+    return _G.mdx_config.noice
+  end,
   "folke/noice.nvim",
   dependencies = {
     "nui.nvim",

@@ -15,19 +15,16 @@ U.load("settings")
 -- Autocmds & keymaps
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
-  On("User", {
-    pattern = "VeryLazy",
-    callback = function()
-      U.load("autocmds")
-      U.load("keymaps")
-
-      X.dirop.setup()
-    end,
-  })
+  On.user("VeryLazy", function()
+    U.load("autocmds")
+    U.load("keymaps")
+    X.dirop.setup()
+  end)
 else
   -- load them immediately so they affect the opened buffers
   U.load("autocmds")
   U.load("keymaps")
+  X.dirop.setup()
 end
 
 -- Colorscheme

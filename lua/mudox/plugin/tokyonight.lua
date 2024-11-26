@@ -138,6 +138,16 @@ local function alacritty(hl, c)
   end
 end
 
+local function win_separator(hl, c)
+  hl.WinSeparator = { fg = c.bg }
+end
+
+local function italic_keyword(hl, c)
+  for _, name in ipairs { "@keyword.function", "Statement" } do
+    hl[name].italic = true
+  end
+end
+
 local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
@@ -151,6 +161,9 @@ local function on_highlights(...)
   multicursor(...)
   bufferline(...)
   -- alacritty(...)
+  win_separator(...)
+
+  italic_keyword(...)
 end
 
 local opts = {
@@ -160,7 +173,7 @@ local opts = {
 
   styles = {
     -- comments = { italic = false },
-    keywords = { italic = false },
+    keywords = { italic = true },
     sidebars = "transparent",
     floats = "dark",
   },

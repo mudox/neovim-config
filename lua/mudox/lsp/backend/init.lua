@@ -31,19 +31,21 @@ end
 
 local function setup_servers()
   -- when `require("mason-lspconfig").setup` is called, all servers installed by mason would be
-  -- configured by mason-lspconfig with proper function from its `setup.handlers`
+  -- configured by mason-lspconfig with proper function according to its `setup.handlers` config
   -- those server that are not installed by mason need to be setup manually here by call `config_server`
   -- explicitly
   --
   -- under folder `backend/server/`, `xxx.lua` file provides custom server settings for given server
   -- named `xxx`
+  --
   -- if a server is not installed by mason, which means mason-lspconfig will not configure it
   -- automatically, set `mason = false` to manually setup here
 
   -- for servers can not be installed by mason, e.g. sourcekit-lsp
   local manually = {}
-  -- for servers installed by mason
-  local by_mason = {}
+
+  local ensure_install_by_mason = {}
+
   for name, _ in vim.fs.dir("~/.config/nvim/lua/mudox/lsp/backend/server") do
     if name:sub(-4) == ".lua" then
       local server_name = name:sub(1, -5)
@@ -52,7 +54,7 @@ local function setup_servers()
       if server.mason == false then
         table.insert(manually, server_name)
       else
-        table.insert(by_mason, server_name)
+        table.insert(ensure_install_by_mason, server_name)
       end
     end
   end
@@ -63,13 +65,13 @@ local function setup_servers()
 
   -- `setup` would IMMEDIATELY setup every installled server with handler found from `handlers`
   require("mason-lspconfig").setup {
-    ensure_installed = by_mason,
+    ensure_installed = ensure_install_by_mason,
 
     -- stylua: ignore
     handlers = {
       config, -- default setup handler for all servers installed by mason
 
-      -- Note: set `skip` to servers that will be setup by other plugins
+      -- set `skip` to servers that will be setup by other plugins
       ["rust_analyzer"] = skip,
     },
   }

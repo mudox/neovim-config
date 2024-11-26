@@ -37,9 +37,9 @@ local common = cmp.config.sources({
   -- TODO: copilot
   -- TODO: codium
 }, {
-  { name = "buffer", keyword_length = 4 },
-  { name = "treesitter", keyword_length = 2 },
-  { name = "rg", max_item_count = 10 },
+  { name = "buffer",                    keyword_length = 4  },
+  { name = "treesitter",                keyword_length = 2  },
+  { name = "rg",                        max_item_count = 10 },
 }, {
   words,
 })

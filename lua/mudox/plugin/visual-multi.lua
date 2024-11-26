@@ -22,7 +22,7 @@ local function init()
   end
   vim.g.VM_leader = _k
 
-  -- vim.g.VM_force_maps = { "<Tab>", "[", "]" }
+  vim.g.VM_force_maps = { "<Tab>", "[", "]" }
   -- stylua: ignore
   vim.g.VM_maps = {
     ["Select All"] = k("*"),

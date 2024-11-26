@@ -1,16 +1,18 @@
--- stylua: ignore start
+_G.mdx_config = {
+  noice = false, -- ISSUE: noice.nvim cause vim-visual-multi failed to load
+}
 
 ---Utility lib
-_G.U  = require("mudox.util")
+_G.U = require("mudox.util")
 
 ---Autocmd helpers
 _G.On = require("mudox.util.on")
 
 ---Experiment features
-_G.X  = require("mudox.lab")
+_G.X = require("mudox.lab")
 
 ---Keymap helpers
-_G.K  = require("mudox.util.keymap")
+_G.K = require("mudox.util.keymap")
 
 ---Symbols
 _G.I = require("mudox.ui.icon")
