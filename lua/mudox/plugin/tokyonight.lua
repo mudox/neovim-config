@@ -62,12 +62,12 @@ local function gitsigns(hl, _)
 end
 
 local function folding(hl, _)
-  hl.Folded.bg = "NONE"
+  hl.Folded.bg = "bg"
 end
 
 local function winbar(hl, _)
-  hl.WinBar = { bg = "NONE" }
-  hl.WinBarNC = { bg = "NONE" }
+  hl.WinBar = { bg = "bg" }
+  hl.WinBarNC = { bg = "bg" }
 end
 
 local function nvim_tree(hl, _)
@@ -113,7 +113,7 @@ local function bufferline(hl, c)
 
   hl.BufferLineFill = { bg = "bg" }
 
-  hl.BufferLineSeparator = { fg = "bg", bg = "bg" }
+  hl.BufferLineSeparator = { bg = "bg" }
 
   -- hl.BufferLineBufferVisible = { fg = "bg", bg = "bg" }
   -- hl.BufferLineHint = { fg = "bg", bg = "bg" }
@@ -133,13 +133,13 @@ local function alacritty(hl, c)
   -- 1. Many plugin highlights derived from Normal
   -- 2. tokyonight.theme emit error
   if vim.env.ALACRITTY_WINDOW_ID then
-    hl.Normal.bg = "NONE"
-    hl.NormalNC.bg = "NONE"
+    hl.Normal.bg = "bg"
+    hl.NormalNC.bg = "bg"
   end
 end
 
 local function win_separator(hl, c)
-  hl.WinSeparator = { fg = c.bg }
+  hl.WinSeparator = { fg = c.bg_dark }
 end
 
 local function italic_keyword(hl, c)
@@ -162,7 +162,6 @@ local function on_highlights(...)
   bufferline(...)
   -- alacritty(...)
   win_separator(...)
-
   italic_keyword(...)
 end
 
@@ -181,6 +180,10 @@ local opts = {
   lualine_bold = false,
 
   on_highlights = on_highlights,
+
+  plugins = {
+    bufferline = true,
+  },
 }
 
 return {

@@ -5,15 +5,12 @@ local options = {
 
   icons_enabled = true,
 
-  -- Theme
-  -- theme = "auto",
-  -- theme = "gruvbox",
-  -- theme = "horizon",
-  -- theme = "ayu_mirage",
-  -- theme = "tokyonight",
-  theme = "molokai",
+  theme = (function()
+    local theme = require("lualine.themes.molokai")
+    theme.normal.c.bg = "bg"
+    return theme
+  end)(),
 
-  -- Separators
   component_separators = {
     left = sep.light_left,
     right = sep.light_right,
@@ -36,15 +33,10 @@ local statusline = {
   },
   lualine_c = {
     { "filename" },
-    { "b:toggle_number" },
-    -- navic, -- prefer `dropbar.nvim` instead
   },
 
   lualine_x = {
-    {
-      "diagnostics",
-      symbols = I.diagnostics.single,
-    },
+    { "diagnostics", symbols = I.diagnostics.single },
     { "filetype" },
   },
   lualine_y = {
@@ -53,37 +45,6 @@ local statusline = {
   lualine_z = {
     { "location", padding = { left = 0, right = 0 } },
   },
-}
-
-local buffers = {
-  "buffers",
-
-  show_filename_only = true,
-  hide_filename_extension = true,
-
-  filetype_names = {
-    TelescopePrompt = "[telescope]",
-    packer = "[packer]",
-    aerial = "[aerial]",
-    fugitive = "[fugitive]",
-  },
-
-  symbols = {
-    modified = " 󰴓 ",
-    alternate_file = "⎇  ",
-    directory = " ",
-  },
-}
-
----use bufferline.nvim instead
----@diagnostic disable-next-line: unused-local
-local tabline = {
-  lualine_a = { buffers },
-  lualine_b = {},
-  lualine_c = {},
-  lualine_x = { [[ vim.g.mdx_nvim_mode .. ' ' ]] },
-  lualine_y = {},
-  lualine_z = { "tabs" },
 }
 
 return {
@@ -95,6 +56,5 @@ return {
   opts = {
     options = options,
     sections = statusline,
-    -- tabline = tabline, -- use bufferline.nvim instead
   },
 }

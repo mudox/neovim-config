@@ -16,7 +16,9 @@ local function on_last_task(action)
     if vim.tbl_isempty(tasks) then
       vim.notify("No overseer task found", vim.log.levels.INFO)
     else
+      local orig_win = vim.api.nvim_get_current_win()
       overseer.run_action(tasks[1], action)
+      vim.api.nvim_set_current_win(orig_win)
     end
   end
 end
@@ -63,9 +65,15 @@ local function quick_run()
 
   o.run_template({ name = default_task_name() }, function(task)
     if task then
-      local main_win = vim.api.nvim_get_current_win()
+      local orig_win = vim.api.nvim_get_current_win()
       o.run_action(task, "open vsplit")
-      vim.api.nvim_set_current_win(main_win)
+      -- fix: result window may scroll to right by some chars
+      local term_win = vim.api.nvim_get_current_win()
+      vim.defer_fn(function()
+        vim.api.nvim_win_set_cursor(term_win, { 1, 0 })
+      end, 260)
+
+      vim.api.nvim_set_current_win(orig_win)
     else
       vim.notify("Failed to run task", vim.log.levels.ERROR)
     end

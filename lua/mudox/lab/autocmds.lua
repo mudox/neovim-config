@@ -7,7 +7,7 @@ On(events, function(e)
   log.debug(e.event)
 end)
 
-local user_events = { "VeryLazy", "AlphaClosed" }
+local user_events = { "VeryLazy", "AlphaClosed", "LazyVimStarted" }
 for _, v in ipairs(user_events) do
   On("User", function()
     log.debug("User " .. v)
