@@ -43,8 +43,8 @@ local icons = {
 
   lazy       = "",
 
-  loaded     = "•",
-  not_loaded = "◦",
+  loaded     = "✓",
+  not_loaded = "-",
 
   runtime    = " ",
   start      = "",

@@ -86,6 +86,6 @@ return {
   "akinsho/toggleterm.nvim",
   cmd = cmd,
   keys = keys,
-  -- config = config,
-  config = true,
+  config = config,
+  -- config = true,
 }

@@ -31,7 +31,7 @@ local bodys = {}
 ---@param mode string|string[] Mode character(s), see help of `map-modes`
 ---@param from string          Keymap string, see help `key-notation`
 ---@param to   string|function Normal command string or lua function
----@param opts table           opts, see help of `vim.keymap.set()`
+---@param opts table?          opts, see help of `vim.keymap.set()`
 function bodys.map(mode, from, to, opts)
   vim.keymap.set(mode, from, to, initopts(opts))
 end

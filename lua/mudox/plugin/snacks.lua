@@ -1,7 +1,7 @@
 return {
   "folke/snacks.nvim",
-  priority = 999,
-  lazy = false,
+  -- priority = 999,
+  -- lazy = false,
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings

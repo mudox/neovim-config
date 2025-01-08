@@ -16,11 +16,10 @@ local function init()
 
   vim.g.VM_theme = "neon"
 
-  local _k = "<leader>z"
+  vim.g.VM_leader = "<leader>z"
   local function k(s)
-    return _k .. s
+    return vim.g.VM_leader .. s
   end
-  vim.g.VM_leader = _k
 
   vim.g.VM_force_maps = { "<Tab>", "[", "]" }
   -- stylua: ignore

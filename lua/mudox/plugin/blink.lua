@@ -24,4 +24,5 @@ return {
     -- experimental signature help support
     -- trigger = { signature_help = { enabled = true } }
   },
+  cond = false,
 }

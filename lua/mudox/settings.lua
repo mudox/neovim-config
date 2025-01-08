@@ -70,6 +70,8 @@ opt.shortmess:append {
   W  = true, -- bytes written messages
 }
 
+-- o.messagesopt = "wait:1000,history:1000"
+
 -- cursor
 opt.guicursor = {
   "n-v-c-sm:block",

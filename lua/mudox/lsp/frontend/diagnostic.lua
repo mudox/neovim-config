@@ -12,13 +12,13 @@ local function config()
 
   local float = {
     source = "if_many",
-    prefix = " ",
+    prefix = I.short_bar .. " ",
   }
 
   local virtual_text = {
     severity = vim.diagnostic.severity.ERROR,
-    prefix = "",
-    suffix = " ",
+    prefix = "⎸",
+    suffix = "",
     source = false,
   }
 
@@ -81,12 +81,12 @@ local function setup_keymaps(_, bufnr)
     { "]E",  dirop(jump_error_dirop, 'next'), desc = "[Diagnostic] Next error"     },
     { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
 
-    { "gl",  d.open_float,                    desc =  "[Diagnostic] Show issue(s)" },
-    { "col", lsp_lines,                       desc =  "[Lsp Lines] Toggle"         },
+    { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
+    { "col", lsp_lines,                       desc = "[Lsp Lines] Toggle"          },
 
-    { "yod", toggle,                          desc =  "[Diagnostic] Toggle"        },
+    { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
 
-    { "gQ",  vim.diagnostic.setloclist,       desc =  "[Diagnostic] Set loclist"   },
+    { "gQ",  vim.diagnostic.setloclist,       desc = "[Diagnostic] Set loclist"    },
   }
 
   require("which-key").add(keys, { buffer = bufnr })

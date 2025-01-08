@@ -148,6 +148,11 @@ local function italic_keyword(hl, c)
   end
 end
 
+local function statusline(hl, c)
+  hl.StatusLine.bg = "bg"
+  hl.StatusLineNC.bg = "bg"
+end
+
 local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
@@ -163,6 +168,7 @@ local function on_highlights(...)
   -- alacritty(...)
   win_separator(...)
   italic_keyword(...)
+  -- statusline(...)
 end
 
 local opts = {

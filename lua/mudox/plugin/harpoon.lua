@@ -55,5 +55,6 @@ return {
   branch = "harpoon2",
   dependencies = "plenary.nvim",
   keys = keys(),
-  -- config = config,
+  config = config,
+  cond = false,
 }

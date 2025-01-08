@@ -7,7 +7,7 @@ local options = {
 
   theme = (function()
     local theme = require("lualine.themes.molokai")
-    theme.normal.c.bg = "bg"
+    theme.normal.c.bg = "#222436"
     return theme
   end)(),
 

@@ -47,19 +47,13 @@ end
 ---@param dir string ["next"|"prev"]
 ---@return function wrapped operation function for keymap definition
 function M.wrap(op, dir)
-  vim.validate {
-    ["op"] = { op, "table" },
-    ["op.name"] = { op.name, "string" },
-    ["op.next"] = { op.next, "function" },
-    ["op.prev"] = { op.prev, "function" },
-    ["dir"] = {
-      dir,
-      function()
-        return dir == "next" or dir == "prev"
-      end,
-      '"next"|"prev"',
-    },
-  }
+  vim.validate("op", op, "table")
+  vim.validate("op.name", op.name, "string")
+  vim.validate("op.next", op.next, "function")
+  vim.validate("op.prev", op.prev, "function")
+  vim.validate("dir", dir, function()
+    return (dir == "next" or dir == "prev"), '"next"|"prev"'
+  end)
 
   return function()
     _G.mdx_last_dirop = op
