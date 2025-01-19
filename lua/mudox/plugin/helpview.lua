@@ -22,7 +22,6 @@ local opts = {
 return {
   -- "OXY2DEV/helpview.nvim",
   dir = "~/Git/neovim-plugins/helpview.nvim", -- HACK: `tbl_deep_extend` config
-
   ft = "help",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",

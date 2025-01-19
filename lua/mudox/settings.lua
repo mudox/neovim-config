@@ -6,6 +6,7 @@ local opt = vim.opt
 o.exrc = true
 
 -- UI 〈
+
 o.winblend = 0 -- pseudo-transparent makes kitty renders icons in one cell
 
 o.mouse = "a"

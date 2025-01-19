@@ -117,6 +117,15 @@ local diagnostics = {
     debug = " ",
     hint  = "󰨄 ",
     trace = "󰛐 ",
+  },
+
+  box = {
+    error = "🅴",
+    warn  = "🆆",
+    info  = "🅸",
+    debug = " ",
+    hint  = "🅷",
+    trace = " ",
   }
 }
 
@@ -131,7 +140,8 @@ local chevron = {
 -- stylua: ignore
 return {
   bar           = "┃",
-  short_bar     = "▮",
+  -- short_bar     = "▮",
+  short_bar     = "♦",
   border        = border,
 
   check         = "✔",

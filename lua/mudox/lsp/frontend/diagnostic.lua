@@ -11,7 +11,8 @@ local function config()
   }
 
   local float = {
-    source = "if_many",
+    -- source = "if_many",
+    source = true,
     prefix = I.short_bar .. " ",
   }
 
@@ -19,7 +20,7 @@ local function config()
     severity = vim.diagnostic.severity.ERROR,
     prefix = "⎸",
     suffix = "",
-    source = false,
+    source = true,
   }
 
   d.config {
@@ -27,7 +28,8 @@ local function config()
       severity = d.severity.ERROR,
     },
     update_in_insert = false,
-    virtual_text = virtual_text,
+    -- virtual_text = virtual_text,
+    virtual_text = false, -- use tiny-inline-diagnostic.nvim instead
     severity_sort = true,
     signs = signs,
     float = float,
@@ -63,13 +65,13 @@ local function setup_keymaps(_, bufnr)
 
   local first_time = true
   local function lsp_lines()
-    if first_time then
-      first_time = false
-      require("lsp_lines").toggle()
-      require("lsp_lines").toggle()
-    else
-      require("lsp_lines").toggle()
-    end
+    -- if first_time then
+    --   first_time = false
+    --   require("lsp_lines").toggle()
+    --   require("lsp_lines").toggle()
+    -- else
+    require("lsp_lines").toggle()
+    -- end
   end
 
   local dirop = X.dirop.wrap

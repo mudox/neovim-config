@@ -21,7 +21,7 @@ local keys = {
 -- stylua: ignore
 local keywords = {
   FIX  = { icon = " ", color = "error",   alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-  TODO = { icon = "﫠", color = "info",    alt = { "LATER", "IDEA" } },
+  TODO = { icon = " ", color = "info",    alt = { "LATER", "IDEA" } },
   HACK = { icon = "󰂕 ", color = "warning", alt = { "DANGER", "TRACK" } },
   WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
   PERF = { icon = "󰓅 ", color = "info",    alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
