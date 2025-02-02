@@ -51,16 +51,16 @@ end
 return {
   { "yo", group = "nvim toggle" },
 
-  yo("h", "hlsearch"),
-  yo("l", "list"),
-  yo("n", "number"),
-  yo("r", "relativenumber"),
-  yo("s", "spell"),
-  yo("w", "wrap"),
+  yo("h",     "hlsearch"),
+  yo("<C-l>", "list"),
+  yo("n",     "number"),
+  yo("r",     "relativenumber"),
+  yo("s",     "spell"),
+  yo("w",     "wrap"),
 
   { "yot", toggle_treesitter_highlighting, desc = "treesitter highlighting" },
 
-  { "yoq", toggle_quickfix,                desc = "quickfix"                },
+  { "yoQ", toggle_quickfix,                desc = "quickfix"                },
   { "yoL", toggle_loclist,                 desc = "loclist"                 },
 
   { "co", group = "plugin toggle" },

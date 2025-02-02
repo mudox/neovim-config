@@ -56,7 +56,11 @@ end
 
 return {
   "mfussenegger/nvim-dap",
-  dependencies = { "nvim-dap-ui", "nvim-dap-virtual-text" },
+  dependencies = {
+    "nvim-dap-ui",
+    "igorlfs/nvim-dap-view", -- TODO: pending
+    "nvim-dap-virtual-text",
+  },
   keys = require("mudox.plugin.debug.keymaps"),
   config = config,
 }

@@ -76,7 +76,7 @@ local function config()
   }
 
   cmp.setup(opts)
-  r("appearance").hightlight()
+  r("appearance").highlight()
 
   cmp.setup.cmdline(":", {
     sources = r("sources").cmdline,

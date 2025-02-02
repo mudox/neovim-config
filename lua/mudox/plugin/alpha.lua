@@ -33,7 +33,7 @@ local items = {
 
   { "h",       "󰘥 " .. " Help",            [[<Cmd>Telescope help_tags<Cr>]]                                   },
 
-  { "r",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]                     },
+  { "R",       "󰦛 " .. " Restore session", [[<Cmd>lua require("persistence").load()<Cr>]]                     },
 }
 
 local function dashboard()

@@ -9,7 +9,7 @@ if not vim.uv.fs_stat(lazypath) then
     lazypath,
   }
   if vim.api.nvim_get_vvar("shell_error") ~= 0 then
-    vim.api.nvim_err_writeln("Error cloning lazy.nvim repository...\n\n" .. output)
+    vim.api.nvim_echo({ "Error cloning lazy.nvim repository...\n\n" .. output }, true, { err = true })
   end
   local oldcmdheight = vim.o.cmdheight
   vim.opt.cmdheight = 2

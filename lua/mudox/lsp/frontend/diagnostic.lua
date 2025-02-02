@@ -1,5 +1,10 @@
 local d = vim.diagnostic
 
+local function toggle_virtual_lines()
+  local flag = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config { virtual_lines = flag }
+end
+
 local function config()
   local signs = {
     text = {
@@ -11,7 +16,6 @@ local function config()
   }
 
   local float = {
-    -- source = "if_many",
     source = true,
     prefix = I.short_bar .. " ",
   }
@@ -28,8 +32,8 @@ local function config()
       severity = d.severity.ERROR,
     },
     update_in_insert = false,
-    -- virtual_text = virtual_text,
     virtual_text = false, -- use tiny-inline-diagnostic.nvim instead
+    virtual_lines = false,
     severity_sort = true,
     signs = signs,
     float = float,
@@ -64,15 +68,6 @@ local function setup_keymaps(_, bufnr)
   end
 
   local first_time = true
-  local function lsp_lines()
-    -- if first_time then
-    --   first_time = false
-    --   require("lsp_lines").toggle()
-    --   require("lsp_lines").toggle()
-    -- else
-    require("lsp_lines").toggle()
-    -- end
-  end
 
   local dirop = X.dirop.wrap
 
@@ -84,7 +79,7 @@ local function setup_keymaps(_, bufnr)
     { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
 
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
-    { "col", lsp_lines,                       desc = "[Lsp Lines] Toggle"          },
+    { "yol", toggle_virtual_lines,            desc = "[Lsp Lines] Toggle"          },
 
     { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
 

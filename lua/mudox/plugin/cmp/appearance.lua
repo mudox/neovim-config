@@ -56,7 +56,7 @@ local function format(entry, item)
   return item
 end
 
-function M.hightlight()
+function M.highlight()
   -- stylua: ignore
   local hls = {
     PmenuSel                 = { bg = "#282C34", fg = "NONE" },

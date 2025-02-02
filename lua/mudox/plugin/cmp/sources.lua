@@ -19,7 +19,8 @@ local words = {
 }
 
 -- stylua: ignore
-local common = cmp.config.sources({
+local common = cmp.config.sources(
+  {
   -- path
   { name = "path",                      keyword_length = 3 },
   -- lsp
@@ -43,6 +44,8 @@ local common = cmp.config.sources({
 }, {
   words,
 })
+
+table.insert(common, { name = "lazydev", group_index = 0 })
 
 local search = {
   { name = "buffer", keyword_length = 3 },
