@@ -43,6 +43,9 @@ local dependencies = {
 }
 
 local function config()
+  vim.o.wildmenu = false
+  vim.o.wildchar = 0
+
   local cmp = require("cmp")
   local function r(name)
     return require("mudox.plugin.cmp." .. name)
@@ -86,14 +89,12 @@ end
 return {
   -- not actively maintained
   -- "hrsh7th/nvim-cmp",
-
-  -- active folk based on yioneko/nvim-cmp:perf
-  -- https://www.reddit.com/r/neovim/comments/1fwy06w/magazinenvim_a_beta_nvimcmp_to_fix_bugs_implement/
   "iguanacucumber/magazine.nvim",
   name = "nvim-cmp",
+  dependencies = dependencies,
 
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   keys = { { "<leader>vc", "<Cmd>CmpStatus<Cr>", desc = "Cmp" } },
-  dependencies = dependencies,
   config = config,
+  cond = not C.blink,
 }

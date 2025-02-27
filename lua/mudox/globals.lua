@@ -1,5 +1,6 @@
-_G.mdx_config = {
+_G.C = {
   noice = false, -- ISSUE: noice.nvim cause vim-visual-multi failed to load
+  blink = true,
 }
 
 ---Utility lib

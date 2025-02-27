@@ -1,9 +1,10 @@
 local function base_capabilities()
-  return vim.tbl_deep_extend(
-    "force",
-    require("lspconfig").util.default_config.capabilities,
-    require("cmp_nvim_lsp").default_capabilities()
-  )
+  -- return vim.tbl_deep_extend(
+  --   "force",
+  --   require("lspconfig").util.default_config.capabilities,
+  --   require("cmp_nvim_lsp").default_capabilities()
+  -- )
+  return require("lspconfig").util.default_config.capabilities
 end
 
 -- default, shared server settings

@@ -88,7 +88,7 @@ local keys = {
 
 return {
   cond = function()
-    return _G.mdx_config.noice
+    return _G.C.noice
   end,
   "folke/noice.nvim",
   dependencies = {

@@ -50,7 +50,7 @@ local statusline = {
 return {
   "nvim-lualine/lualine.nvim",
   cond = function()
-    return not _G.mdx_config.noice
+    return not _G.C.noice
   end,
   -- event = "VeryLazy", -- loaded by `alpha.nvim` automatically
   opts = {
