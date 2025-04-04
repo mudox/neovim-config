@@ -1,5 +1,3 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
 local float = {
   border = "none",
   max_height = { 30, 0.6 },
@@ -22,13 +20,6 @@ local kinds = {
   "Constant",
 }
 
-local on_attach = function(bufnr)
-  local ncmd = K.ncmd
-
-  ncmd("]i", "AerialNext", { buffer = bufnr })
-  ncmd("[i", "AerialPrev", { buffer = bufnr })
-end
-
 local opts = {
   highlight_on_hover = true,
 
@@ -43,23 +34,18 @@ local opts = {
   filter_kind = kinds,
 
   show_guides = true,
-
-  on_attach = on_attach,
 }
 
 local keys = {
-  -- outline side pane
-  { "gO", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle outline side pane" },
-  -- { "<leader>aX", "<Cmd>AerialCloseAll<Cr>", desc = "[Aerial] Close all outline windows" },
+  { "<leader>wa", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
 }
 
--- stylua: ignore start
+-- stylua: ignore
 local cmd = {
   "Open", "OpenAll", "Close", "Toggle",
   "NavOpen", "NavClose", "NavToggle",
   "Info",
 }
--- stylua: ignore end
 
 cmd = vim.tbl_map(function(e)
   return "Aerial" .. e

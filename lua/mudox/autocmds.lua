@@ -31,11 +31,11 @@ On("VimResized", {
 
 -- Auto resize window 〉
 
--- Close with `q` 〈
+-- Quit with `q` 〈
 
 On("FileType", function(event)
   vim.bo[event.buf].buflisted = false
-  vim.keymap.set("n", "q", "<Cmd>close<Cr>", { buffer = event.buf, silent = true })
+  vim.keymap.set("n", "q", "<Cmd>quit<Cr>", { buffer = event.buf, silent = true })
 end, {
   group = g("close_with_q"),
   desc = "Close using `q`",

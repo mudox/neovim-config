@@ -7,4 +7,5 @@ return {
     notifications = true,
     excluded_lsp_clients = { "rust-analyzer", "null-ls", "jdtls", "marksman", "lua_ls" },
   },
+  cond = false, -- HACK: vim.lsp does not have command LspStart
 }

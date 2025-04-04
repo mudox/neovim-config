@@ -2,6 +2,7 @@ return {
   "williamboman/mason.nvim",
   cmd = "Mason",
   keys = { { "<leader>vm", "<Cmd>Mason<Cr>", desc = "Mason" } },
+  event = "VeryLazy",
   opts = {
     ui = {
       width = 0.6,

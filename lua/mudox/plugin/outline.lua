@@ -6,15 +6,9 @@ return {
   },
   opts = {
     symbols = {
-      -- filter = {
-      --   default = { "String", exclude = true },
-      -- },
-
       icon_fetcher = function(kind)
         return vim.fn.trim(require("mudox.ui.kind")[kind])
       end,
-
-      icon_source = "lspkind",
     },
     symbol_folding = {
       markers = { I.chevron.right, I.chevron.down },

@@ -6,7 +6,7 @@ local function setup_keymaps(_, bufnr)
   end
 
   local function tiny_code_actions()
-    require("tiny-code-action").code_action()
+    require("tiny-code-action").code_action {}
   end
 
   -- stylua: ignore

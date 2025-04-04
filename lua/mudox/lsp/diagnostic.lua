@@ -20,13 +20,6 @@ local function config()
     prefix = I.short_bar .. " ",
   }
 
-  local virtual_text = {
-    severity = vim.diagnostic.severity.ERROR,
-    prefix = "⎸",
-    suffix = "",
-    source = true,
-  }
-
   d.config {
     underline = {
       severity = d.severity.ERROR,

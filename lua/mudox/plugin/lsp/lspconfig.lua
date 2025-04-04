@@ -27,4 +27,5 @@ return {
   },
   dependencies = dependencies,
   config = config,
+  cond = false,
 }
