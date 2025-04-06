@@ -49,12 +49,7 @@ local icons = {
   runtime    = " ",
   start      = "",
   task       = "✔ ",
-  list       = {
-    "●",
-    "•",
-    "·",
-    " ",
-  },
+  list       = { "●", "•", "·", " ", },
 }
 
 local ui = {
@@ -91,7 +86,6 @@ local ui = {
 
 local performance = {
   rtp = {
-    -- disable some rtp plugins
     disabled_plugins = {
       "gzip",
       "matchit",
@@ -111,10 +105,7 @@ require("lazy").setup {
   spec = "mudox.mode." .. vim.g.mdx_nvim_mode .. ".plugin",
   defaults = {
     lazy = true,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
     version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = false }, -- automatically check for plugin updates

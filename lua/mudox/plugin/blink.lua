@@ -14,6 +14,13 @@ local cmdline = {
 
   completion = {
     menu = { auto_show = true },
+
+    list = {
+      selection = {
+        preselect = false,
+        auto_insert = false,
+      },
+    },
   },
 
   -- stylua: ignore
