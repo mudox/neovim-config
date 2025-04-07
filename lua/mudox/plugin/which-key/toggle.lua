@@ -32,7 +32,7 @@ local function toggle_loclist()
     end
   end
   if not vim.tbl_isempty(vim.fn.getloclist(0)) then
-    vim.cmd("lopen")
+    vim.cmd.lopen()
   else
     print("loclist is empty")
   end
@@ -60,8 +60,8 @@ return {
 
   { "yot", toggle_treesitter_highlighting, desc = "treesitter highlighting" },
 
-  { "yoQ", toggle_quickfix,                desc = "quickfix"                },
-  { "yoL", toggle_loclist,                 desc = "loclist"                 },
+  { "yoq", toggle_quickfix,                desc = "quickfix"                },
+  { "yol", toggle_loclist,                 desc = "loclist"                 },
 
   { "co", group = "plugin toggle" },
 }
