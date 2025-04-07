@@ -73,6 +73,7 @@ local function setup_keymaps(_, bufnr)
 
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
     { "col", toggle_virtual_lines,            desc = "[Lsp Lines] Toggle"          },
+    { "yol", toggle_virtual_lines,            desc = "Lsp Lines"                   },
 
     { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
 

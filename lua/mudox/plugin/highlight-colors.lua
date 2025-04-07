@@ -5,7 +5,7 @@ end
 return {
   "brenoprata10/nvim-highlight-colors",
   keys = {
-    { "coc", toggle, desc = "[Color] Toggle" },
+    { "coc", toggle, desc = "Color" },
   },
   config = function()
     require("nvim-highlight-colors").setup {

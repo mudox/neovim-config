@@ -128,8 +128,8 @@ end
 local keys = {
   { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
   { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
-  { "coq",        toggle(false),                             desc = "[Conform] Toggle FOS locally", },
-  { "coQ",        toggle(true),                              desc = "[Conform] Toggle FOS globally", },
+  { "cof",        toggle(false),                             desc = "FOS locally", },
+  { "coF",        toggle(true),                              desc = "FOS globally", },
 }
 
 return {

@@ -11,7 +11,7 @@ return {
   "NvChad/nvim-colorizer.lua",
   cmd = { "ColorizerToggle" },
   keys = {
-    { "coc", "<Cmd>ColorizerToggle<Cr>", desc = "[Colorizer] Toggle" },
+    { "coc", "<Cmd>ColorizerToggle<Cr>", desc = "Colorizer" },
   },
   opts = opts,
   cond = false, -- NOTE: unmaintained, use nvim-highlight-colors.nvim now

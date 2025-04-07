@@ -80,7 +80,6 @@ return {
   event = { "BufRead", "BufNewFile" },
   opts = opts,
   keys = {
-    { "<leader>g<Space>", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "[GitSigns] Toggle signs" },
-    { "cog", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "[GitSigns] Toggle signs" },
+    { "cog", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "GitSigns" },
   },
 }
