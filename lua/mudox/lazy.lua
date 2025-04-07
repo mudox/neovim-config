@@ -46,10 +46,12 @@ local icons = {
   loaded     = "✓",
   not_loaded = "-",
 
-  runtime    = " ",
+  runtime    = "",
   start      = "",
+
   task       = "✔ ",
-  list       = { "●", "•", "·", " ", },
+
+  list       = { "", "  ", "  ", "  " },
 }
 
 local ui = {
