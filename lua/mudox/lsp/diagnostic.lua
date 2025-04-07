@@ -72,7 +72,7 @@ local function setup_keymaps(_, bufnr)
     { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
 
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
-    { "yol", toggle_virtual_lines,            desc = "[Lsp Lines] Toggle"          },
+    { "col", toggle_virtual_lines,            desc = "[Lsp Lines] Toggle"          },
 
     { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
 
