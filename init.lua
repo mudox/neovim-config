@@ -9,6 +9,9 @@ require("mudox.mode")
 -- Plugin manager - lazy.nvim
 require("mudox.lazy")
 
+-- Colorscheme
+require("tokyonight").load()
+
 U.load("settings")
 U.load("autocmds")
 
@@ -27,11 +30,6 @@ else
   U.load("keymaps")
   X.dirop.setup()
 end
-
--- Colorscheme
-On("UIEnter", function()
-  require("tokyonight").load()
-end)
 
 -- HACK: swizzle nvim_open_win
 X.swizzle_nvim_open_win()
