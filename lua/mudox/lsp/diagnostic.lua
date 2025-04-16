@@ -66,18 +66,19 @@ local function setup_keymaps(_, bufnr)
 
   -- stylua: ignore
   local keys = {
+    -- Navigate
     { "]d",  dirop(jump_dirop, 'next'),       desc = "[Diagnostic] Next issue"     },
     { "[d",  dirop(jump_dirop, 'prev'),       desc = "[Diagnostic] Previous issue" },
     { "]E",  dirop(jump_error_dirop, 'next'), desc = "[Diagnostic] Next error"     },
     { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
 
+    -- View
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
-    { "col", toggle_virtual_lines,            desc = "[Lsp Lines] Toggle"          },
     { "yol", toggle_virtual_lines,            desc = "Lsp Lines"                   },
+    { "grq", vim.diagnostic.setloclist,       desc = "[Diagnostic] Set loclist"    },
 
+    -- Toggle
     { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
-
-    { "gQ",  vim.diagnostic.setloclist,       desc = "[Diagnostic] Set loclist"    },
   }
 
   require("which-key").add(keys, { buffer = bufnr })

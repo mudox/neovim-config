@@ -6,7 +6,7 @@ require("mudox.globals")
 -- Neovim mode - g:mdx_nvim_mode
 require("mudox.mode")
 
--- Plugin manager - lazy.nvim
+-- Load plugins
 require("mudox.lazy")
 
 -- Colorscheme

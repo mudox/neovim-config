@@ -21,7 +21,7 @@ end
 local items = {
   { "f",       " " .. " Smart open",      [[<Cmd>lua require"mudox.plugin.telescope.util".smart_open()<Cr>]] },
   -- { "F",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]                                  },
-  { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]                                   },
+  -- { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]                                   },
   { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]                                 },
 
   { "s",       "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]                                   },
@@ -94,8 +94,6 @@ return {
   "goolord/alpha-nvim",
   dependencies = "lualine.nvim", -- `lualine` needs to be loaded BEFORE `alpha`
   event = "VimEnter",
-  -- keys = {
-  --   { "<Space>a", "<Cmd>Alpha<Cr>", desc = "Alpha Dashboard" },
-  -- },
   config = config,
+  cond = C.alpha,
 }

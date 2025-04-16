@@ -12,9 +12,9 @@ local M = {
   { "!",          "diagnostics",               "Workspace diagnostics",     },
 
   -- symbols
-  { "<M-7> ✓",    "treesitter",                "Treesitter symbols",        },
-  { "<M-8> ✓",    "lsp_document_symbols",      "LSP document symbols",      },
-  { "<M-9> ✓",    "lsp_workspace_symbols",     "LSP workspace symbols",     },
+  { "<C-1> ✓",    "lsp_document_symbols",      "LSP document symbols",      },
+  { "<C-2> ✓",    "treesitter",                "Treesitter symbols",        },
+  { "<C-3> ✓",    "lsp_workspace_symbols",     "LSP workspace symbols",     },
 
   -- vim
   { "<Space>r ✓", "oldfiles",                  "[Telescope] Recent files",  },

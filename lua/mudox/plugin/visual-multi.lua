@@ -49,6 +49,7 @@ local config = function()
     require("illuminate").resume_buf()
     require("lualine").hide { unhide = true, place = { "statusline" } }
 
+    -- recover
     require("which-key").add {
       { "<Tab>", group = "tabpage" },
       { "]", group = "next" },

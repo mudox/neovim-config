@@ -1,6 +1,14 @@
+-- stylua: ignore
 _G.C = {
-  noice = false, -- ISSUE: noice.nvim cause vim-visual-multi failed to load
-  blink = true,
+  -- ISSUE: noice.nvim cause vim-visual-multi failed to load
+  noice = false, -- noice      | builtin
+  blink = true,  -- blink.cmp  | nvim-cmp
+  -- snacks dashboard is not faster than alpha
+  alpha = true,  -- alpha.nvim | snacks.dashboard
+
+  key = {
+    toggle = "<C-x>"
+  }
 }
 
 ---Utility lib
@@ -17,7 +25,6 @@ _G.K = require("mudox.util.keymap")
 
 ---Symbols
 _G.I = require("mudox.ui.icon")
--- stylua: ignore end
 
 ---Logging
 ---@param name string number of subsystem, also the filename

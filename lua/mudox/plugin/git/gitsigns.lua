@@ -79,7 +79,5 @@ return {
   "lewis6991/gitsigns.nvim",
   event = { "BufRead", "BufNewFile" },
   opts = opts,
-  keys = {
-    { "cog", "<Cmd>Gitsigns toggle_signs<Cr>", desc = "GitSigns" },
-  },
+  keys = C.key.toggle .. "g", -- defined in mudox/plugin/snacks/toggle.lua
 }

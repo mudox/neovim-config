@@ -129,15 +129,26 @@ local function config()
 
   t.load_extension("fzf")
   t.load_extension("notify")
+  t.load_extension("ui-select")
 end
 
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
+    { "nvim-telescope/telescope-ui-select.nvim" },
   },
   cmd = "Telescope",
   keys = r("keymaps.open"),
+  init = function()
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.ui.select = function(...)
+      require("telescope")
+      return vim.ui.select(...)
+    end
+  end,
   config = config,
 }

@@ -1,12 +1,6 @@
-local function toggle()
-  require("nvim-highlight-colors").toggle()
-end
-
 return {
   "brenoprata10/nvim-highlight-colors",
-  keys = {
-    { "coc", toggle, desc = "Color" },
-  },
+  keys = C.key.toggle .. "c", -- defined in mudox/plugin/snacks/toggle.lua
   config = function()
     require("nvim-highlight-colors").setup {
       render = "virtual",

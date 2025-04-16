@@ -113,9 +113,10 @@ return {
   tabpage,
 
   r"view",
-  r"toggle",
   r"next_prev",
   r"insert",
 
   resize_window,
+
+  { C.key.toggle, group = "toggle" }, -- defined in mudox/plugin/snacks/toggle.lua
 }

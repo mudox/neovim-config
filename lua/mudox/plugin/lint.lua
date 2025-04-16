@@ -19,7 +19,14 @@ local function config()
   On({ "BufEnter", "BufWritePost" }, {
     group = gid,
     desc = "Lint document by nvim-lint",
-    callback = function()
+    callback = function(event)
+      local ft = vim.bo[event.buf].filetype
+
+      local backlist_fts = { "json.kulala_ui" }
+      if vim.tbl_contains(backlist_fts, ft) then
+        return
+      end
+
       require("lint").try_lint()
     end,
   })

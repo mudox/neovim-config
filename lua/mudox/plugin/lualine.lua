@@ -5,11 +5,7 @@ local options = {
 
   icons_enabled = true,
 
-  theme = (function()
-    local theme = require("lualine.themes.molokai")
-    theme.normal.c.bg = "#222436"
-    return theme
-  end)(),
+  -- theme = "molokai",
 
   component_separators = {
     left = sep.light_left,
@@ -49,12 +45,10 @@ local statusline = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  cond = function()
-    return not _G.C.noice
-  end,
-  -- event = "VeryLazy", -- loaded by `alpha.nvim` automatically
+  -- event = "UIEnter", -- auto loaded by alpha.nvim as a dependency
   opts = {
     options = options,
     sections = statusline,
   },
+  cond = not C.noice,
 }

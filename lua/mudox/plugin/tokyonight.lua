@@ -1,15 +1,15 @@
 local function telescope(hl, c)
   hl.TelescopeNormal = {
     fg = c.fg_dark,
-    bg = c.bg_dark,
+    bg = c.bg_dark1,
   }
   hl.TelescopeBorder = {
-    fg = c.bg_dark,
-    bg = c.bg_dark,
+    fg = c.bg_dark1,
+    bg = c.bg_dark1,
   }
 
   -- prompt
-  local prompt = "#2d3149"
+  local prompt = "#2D3149"
   hl.TelescopePromptNormal = {
     bg = prompt,
   }
@@ -18,7 +18,7 @@ local function telescope(hl, c)
     fg = prompt,
   }
   hl.TelescopePromptTitle = {
-    bg = prompt,
+    bg = "#FF966C",
     fg = prompt,
   }
 
@@ -27,11 +27,69 @@ local function telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
+  hl.TelescopePreviewNormal = {
+    bg = c.bg_dark,
+    fg = c.fg_dark,
+  }
+  hl.TelescopePreviewBorder = {
+    bg = c.bg_dark,
+    fg = c.bg_dark,
+  }
 
   -- results
   hl.TelescoeResultsTitle = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+  hl.TelescoeResultsNormal = {
+    bg = c.bg_dark1,
+    fg = c.fg_dark1,
+  }
+  hl.TelescoeResultsBorder = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+end
+
+local function snacks(hl, c)
+  -- input
+  local input = "#2D3149"
+  hl.SnacksPickerInput = {
+    bg = input,
+  }
+  hl.SnacksPickerInputBorder = {
+    bg = input,
+    fg = input,
+  }
+  hl.SnacksPickerInputTitle = {
+    bg = "#FF966C",
+    fg = input,
+  }
+
+  -- list
+  hl.SnacksPickerPreview = {
+    bg = c.bg_dark,
+  }
+  hl.SnacksPickerPreviewBorder = {
     bg = c.bg_dark,
     fg = c.bg_dark,
+  }
+  hl.SnacksPickerPreviewTitle = {
+    bg = c.bg_dark,
+    fg = c.bg_dark,
+  }
+
+  -- list
+  hl.SnacksPickerList = {
+    bg = c.bg_dark1,
+  }
+  hl.SnacksPickerListBorder = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+  hl.SnacksPickerListTitle = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
   }
 end
 
@@ -154,11 +212,13 @@ local function statusline(hl, c)
 end
 
 local function on_highlights(...)
+  telescope(...)
+  snacks(...)
+
   -- diagnostic(...)
   folding(...)
   -- gitsigns(...)
   nvim_tree(...)
-  telescope(...)
   winbar(...)
   -- notify(...)
   trouble(...)
@@ -172,7 +232,7 @@ local function on_highlights(...)
 end
 
 local opts = {
-  -- For transparent background to take effect, the style name here must be same as that
+  -- HACK: For transparent background to take effect, the style name here must be same as that
   -- applied to current terminal app (e.g. in kitty.conf)
   style = "moon",
 

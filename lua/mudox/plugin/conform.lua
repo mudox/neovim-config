@@ -6,6 +6,8 @@ local formatters_by_ft = {
 
   rust       = { "rustfmt"         },
 
+  json       = { "jq"              },
+
   javascript = { "prettierd"       },
   typescript = { "prettierd"       },
 
@@ -128,8 +130,10 @@ end
 local keys = {
   { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
   { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
-  { "cof",        toggle(false),                             desc = "FOS locally", },
-  { "coF",        toggle(true),                              desc = "FOS globally", },
+
+  -- defined in mudox/plugin/snacks/toggle.lua
+  C.key.toggle .. "f",
+  C.key.toggle .. "F",
 }
 
 return {

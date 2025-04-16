@@ -1,5 +1,8 @@
 -- stylua: ignore
 local opts = {
+  preview = {
+    icon_provider = 'mini',
+  },
   vimdoc = {
     headings         = {
       heading_1      = { sign = " 1 ", },
