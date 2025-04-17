@@ -54,23 +54,25 @@ local window = {
 }
 
 K.nnop(",")
-local plugin = {
-  { "<leader>",  group = "plugin",        mode = { "n", "x" } },
+local main = {
+  { "<leader>",   group = "main",          mode = { "n", "x" } },
 
-  { "<leader>b", group = "buffer"         },
-  { "<leader>c", group = "test"           },
-  { "<leader>d", group = "debug"          },
+  { "<leader>b",  group = "buffer"                             },
+  { "<leader>c",  group = "test"                               },
+  { "<leader>d",  group = "debug"                              },
   edit,
-  { "<leader>f", group = "files"          },
-  { "<leader>g", group = "git"            },
-  { "<leader>i", group = "inspect"        },
-  { "<leader>k", group = "kulala"         },
-  { "<leader>p", group = "profile"        },
-  { "<leader>r", group = "run"            },
-  { "<leader>t", group = "telescope"      },
+  { "<leader>f",  group = "files"                              },
+  { "<leader>g",  group = "git"                                },
+  { "<leader>i",  group = "inspect"                            },
+  { "<leader>k",  group = "kulala"                             },
+  { "<leader>p",  group = "profile"                            },
+  { "<leader>r",  group = "run"                                },
+  { "<leader>t",  group = "telescope"                          },
+  { "<leader>s",  group = "snacks.picker"                      },
+  { "<leader>sf", group = "find"                               },
   window,
-  { "<leader>x", group = "trouble"        },
-  { "<leader>z", group = "visual-multi",  mode = { "n", "x"} },
+  { "<leader>x",  group = "trouble"                            },
+  { "<leader>z",  group = "visual-multi",  mode = { "n", "x" } },
 }
 
 K.nnop(";")
@@ -105,7 +107,7 @@ local resize_window = (function()
 end)()
 
 return {
-  plugin,
+  main,
   nvim,
   common,
   refactoring,

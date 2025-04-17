@@ -1,51 +1,51 @@
--- local log = Log("siwzzle_nvim_open_win")
+-- local log = Log("swizzle_nvim_open_win")
 
 local function get_plugin(path)
   return path:match("share/nvim/lazy/([^/]+)/(.*)")
 end
 
----@class mudox.swizzle.context
----@field fn string function name
+---@class mudox.swizzle_nvim_open_win.Context
 ---@field path string full pathname
 ---@field line number line number
+---@field fn string function name
 ---@field plugin string plugin name
 ---@field rpath string relative path under the plugin dir
 
 ---Parse debug.traceback
 ---@param n integer stack level to begin with
----@return mudox.swizzle.context
+---@return mudox.swizzle_nvim_open_win.Context
 local function parse(n)
   local trace = debug.traceback("", n)
 
-  local r = {}
+  local contexts = {}
   for line in trace:gmatch("[^\r\n]+") do
     local path, ln, fn = vim.fn.trim(line):match("([^:]+):(%d+):.*in function '([^']+)'")
     if path then
       path = vim.fn.fnamemodify(path, ":p")
-      local plugin, tail = get_plugin(path)
-      table.insert(r, {
+      local plugin, rpath = get_plugin(path)
+      table.insert(contexts, {
         path = path,
         line = ln,
         fn = fn,
         plugin = plugin,
-        rpath = tail,
+        rpath = rpath,
       })
     end
   end
 
-  return r
+  return contexts
 end
 
 local handlers = {}
 
 ---Router
----@param info [mudox.swizzle.context] parsed traceback
+---@param ctx [mudox.swizzle_nvim_open_win.Context] parsed traceback
 ---@param orig fun(...):number the original `vim.api.nvim_open_win`
 ---@param args table args passed to call `orig`
 ---@return number winnr from calling `orig`
-local function route(info, orig, args)
+local function route(ctx, orig, args)
   for _, fn in ipairs(handlers) do
-    local r = fn(info, orig, args)
+    local r = fn(ctx, orig, args)
     if r then
       return r
     end
@@ -55,8 +55,8 @@ local function route(info, orig, args)
 end
 
 -- conform.nvim
-table.insert(handlers, function(info, orig, args)
-  local r = vim.tbl_contains(info, function(v)
+table.insert(handlers, function(contexts, orig, args)
+  local r = vim.tbl_contains(contexts, function(v)
     return v.plugin == "conform.nvim"
   end, { predicate = true })
   if r then
@@ -68,6 +68,19 @@ table.insert(handlers, function(info, orig, args)
       height = vim.o.lines - 12,
     })
     return orig(unpack(args))
+  else
+    return false
+  end
+end)
+
+-- triptych
+table.insert(handlers, function(contexts, orig, args)
+  local r = vim.tbl_contains(contexts, function(v)
+    return v.plugin == "triptych.nvim"
+  end, { predicate = true })
+  if r then
+    local win = orig(unpack(args))
+    vim.wo[win].winhl = "NormalFloat:TelescopeNormal,FloatBorder:TelescopeBorder"
   else
     return false
   end
