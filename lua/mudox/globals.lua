@@ -7,7 +7,7 @@ _G.C = {
   alpha = true,  -- alpha.nvim | snacks.dashboard
 
   key = {
-    toggle = "<C-x>"
+    toggle  = "<C-x>",
   }
 }
 

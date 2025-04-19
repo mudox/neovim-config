@@ -17,12 +17,9 @@ local close = {
 }
 
 local edit = {
-  { "<leader>e", group = "edit" },
-
-  { "<leader>eq", c"EditQuery", desc = "Edit query",  },
-  { "<leader>ee", c"edit!",     desc = "Reload file", },
-
-  { "<leader>ed", group = "debug print" },
+  { "<leader>eq", c"EditQuery",                                desc = "Edit query",  },
+  { "<leader>ee", c"edit!",                                    desc = "Reload file", },
+  { "<leader>ev", function() X.layout.secondary:open("#") end, desc = "Edit #",      },
 }
 
 local refactoring = {
@@ -45,8 +42,6 @@ local tabpage = {
 }
 
 local window = {
-  { "<leader>w", group = "window"         },
-
   { "<leader>w1", function() X.layout.one_window() end,  desc = "1 window layout"  },
   { "<leader>w2", function() X.layout.two_windows() end, desc = "2 windows layout" },
 
@@ -54,13 +49,13 @@ local window = {
 }
 
 K.nnop(",")
-local main = {
+local prefix1 = {
   { "<leader>",   group = "main",          mode = { "n", "x" } },
 
   { "<leader>b",  group = "buffer"                             },
   { "<leader>c",  group = "test"                               },
   { "<leader>d",  group = "debug"                              },
-  edit,
+  { "<leader>e",  group = "edit", edit                         },
   { "<leader>f",  group = "files"                              },
   { "<leader>g",  group = "git"                                },
   { "<leader>i",  group = "inspect"                            },
@@ -70,13 +65,13 @@ local main = {
   { "<leader>t",  group = "telescope"                          },
   { "<leader>s",  group = "snacks.picker"                      },
   { "<leader>sf", group = "find"                               },
-  window,
+  { "<leader>w",  group = "window", window,                    },
   { "<leader>x",  group = "trouble"                            },
   { "<leader>z",  group = "visual-multi",  mode = { "n", "x" } },
 }
 
 K.nnop(";")
-local nvim = {
+local prefix2 = {
   { ";", group = "nvim" },
 
   -- layout
@@ -87,13 +82,9 @@ local nvim = {
   { ";3",       function() X.layout.one_window() end,     desc = "Main window only"      },
 }
 
-local common = {
-  { "<Space>", group = "common" }
-}
-
 local resize_window = (function()
   local step = 4
-  local prefix = " "
+  local prefix = "<C-w>r"
 
   return {
     { "<C-w>r", function() require("which-key").show { keys = prefix, loop = true } end, desc = "Resize" },
@@ -107,12 +98,12 @@ local resize_window = (function()
 end)()
 
 return {
-  main,
-  nvim,
-  common,
-  refactoring,
-  close,
-  tabpage,
+  { "<Space>",  group = "common",                   },
+  { "<leader>", group = "main",        prefix1,     },
+  { ";",        group = "secondary",   prefix2,     },
+  { "<Bslash>", group = "refactoring", refactoring, },
+  { "<Bs>",     group = "close",       close,       },
+  { "<Tab>",    group = "tabpage",     tabpage,     },
 
   r"view",
   r"next_prev",
@@ -120,5 +111,5 @@ return {
 
   resize_window,
 
-  { C.key.toggle, group = "toggle" }, -- defined in mudox/plugin/snacks/toggle.lua
+  { C.key.toggle, group = "toggle"      }, -- defined in mudox/plugin/snacks/toggle.lua
 }

@@ -3,8 +3,6 @@ local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 -- stylua: ignore
 return {
-  ------------ plugin ------------
-
   { ";v", group = "neovim views" },
 
   { ";va",     c"args",            desc = "Arguments"             },
@@ -30,8 +28,6 @@ return {
 
   { ";v<Tab>", c"tabs",            desc = "Tabpages"              },
   { ";v=",     c"EditQuery",       desc = "TreeSitter playground" },
-
-  ------------ plugin -------------
 
   { "<leader>v", group = "plugin views" },
 

@@ -4,6 +4,8 @@ local function r(name) return require("mudox.plugin.telescope." .. name) end
 -- common settings shared by all pickers
 local function defaults()
   return {
+    debounce = 100, -- reduce preview flickering
+
     -- icons
     -- stylua: ignore start
     selection_caret = " ",

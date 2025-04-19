@@ -22,11 +22,11 @@ local function setup_keymaps(_, bufnr)
     { "gR",     "<Cmd>Glance references<Cr>",              desc = "[Glance] Goto references"         },
 
     { "K",      vim.lsp.buf.hover,                         desc = "[LSP] Hover"                      },
+
     { "gk",     vim.lsp.buf.signature_help,                desc = "[LSP] Signature help"             },
+    { "<C-k>k", vim.lsp.buf.signature_help,                desc = "[LSP] Signature Help",            mode = "i" },
 
     { "yoH",    toggle_inlay_hint,                         desc = "[LSP] inlay hint"                 },
-
-    { "<C-k>k", vim.lsp.buf.signature_help,                desc = "[LSP] Signature Help",            mode = "i" },
   }
 
   for _, v in pairs(keys) do

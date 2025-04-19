@@ -23,6 +23,7 @@ local function opts()
       require("neotest-jest"),
       require("neotest-python"),
       require("neotest-rust"),
+      require("rustaceanvim.neotest"),
     },
     floating = {
       border = I.border.corner,

@@ -46,7 +46,7 @@ K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearc
 K.nnop("gs")
 
 -- `;w` = `<C-w>`
-K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")')
+K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")', { desc = "<C-w>" })
 
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
@@ -91,5 +91,5 @@ K.nmap("<leader>pe", function()
 end, { desc = "End profiling" })
 
 -- Clipboard
-K.map({ "i", "c" }, "<C-k>v", "<C-r>+", { desc = "Paste from clipboard" })
+K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })

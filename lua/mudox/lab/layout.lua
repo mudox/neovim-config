@@ -67,4 +67,5 @@ function M:two_windows()
     vim.api.nvim_win_close(wins[i], false)
   end
 end
+
 return M
