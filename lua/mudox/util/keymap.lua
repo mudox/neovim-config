@@ -193,4 +193,8 @@ function M.lazy_keys(tbl, opts)
   return tbl
 end
 
+function M.c(cmd)
+  return "<Cmd>" .. cmd .. "<Cr>"
+end
+
 return M

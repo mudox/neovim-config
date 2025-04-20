@@ -22,6 +22,8 @@ local function on_attach(buffer)
 
   -- stylua: ignore
   local keys = {
+    buffer = buffer,
+
     -- stage
     { "<leader>gs", gs.stage_hunk,                                desc = "Stage hunk"      },
     { "<leader>gD", gs.reset_hunk,                                desc = "Discard changes" },
@@ -37,7 +39,7 @@ local function on_attach(buffer)
     { "[c",         X.dirop.wrap(jump, "prev"),                   desc = "Prev hunk"       },
   }
 
-  require("which-key").add(keys, { buffer = buffer })
+  require("which-key").add(keys)
 end
 
 local opts = {

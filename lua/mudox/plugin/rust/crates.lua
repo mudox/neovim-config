@@ -40,4 +40,5 @@ return {
   -- dependencies = { "plenary.nvim", "nvim-cmp", "none-ls.nvim" },
   init = init,
   config = config,
+  cond = false,
 }

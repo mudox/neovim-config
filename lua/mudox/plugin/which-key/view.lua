@@ -1,5 +1,4 @@
--- stylua: ignore
-local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
+local c = K.c
 
 -- stylua: ignore
 return {

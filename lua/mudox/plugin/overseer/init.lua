@@ -91,6 +91,6 @@ end
 return {
   "stevearc/overseer.nvim",
   cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo", "OverseerBuild" },
-  keys = require("mudox.plugin.overseer.keymaps"),
+  keys = r("keymaps"),
   config = config,
 }

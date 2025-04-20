@@ -42,5 +42,4 @@ local keys = {
 return K.lazy_keys(keys, {
   key_prefix = "<leader>r",
   cmd_prefix = "Overseer",
-  desc_prefix = "Overseer",
 })

@@ -2,7 +2,7 @@
 
 -- helpers
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
-local function c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
+local c = K.c
 
 local close = {
   { "<Bs>", group = "close" },
@@ -50,8 +50,6 @@ local window = {
 
 K.nnop(",")
 local prefix1 = {
-  { "<leader>",   group = "main",          mode = { "n", "x" } },
-
   { "<leader>b",  group = "buffer"                             },
   { "<leader>c",  group = "test"                               },
   { "<leader>d",  group = "debug"                              },
@@ -61,8 +59,8 @@ local prefix1 = {
   { "<leader>i",  group = "inspect"                            },
   { "<leader>k",  group = "kulala"                             },
   { "<leader>p",  group = "profile"                            },
-  { "<leader>r",  group = "run"                                },
   { "<leader>t",  group = "telescope"                          },
+  { "<leader>r",  group = "overseer"                           },
   { "<leader>s",  group = "snacks.picker"                      },
   { "<leader>sf", group = "find"                               },
   { "<leader>w",  group = "window", window,                    },
@@ -72,8 +70,6 @@ local prefix1 = {
 
 K.nnop(";")
 local prefix2 = {
-  { ";", group = "nvim" },
-
   -- layout
   { ";1",       function() X.layout.main:focus() end,     desc = "Focus main window"     },
   { "<C-Cr>",   function() X.layout.main:focus() end,     desc = "Focus main window"     },
