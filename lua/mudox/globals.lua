@@ -7,9 +7,12 @@ _G.C = {
   alpha = true,  -- alpha.nvim | snacks.dashboard
 
   key = {
-    toggle  = "<C-x>",
+    toggle  = ",,",
   }
 }
+
+-- Dev, debug
+_G.D = {}
 
 ---Utility lib
 _G.U = require("mudox.util")

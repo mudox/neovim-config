@@ -32,6 +32,5 @@ end
 
 return {
   "lukas-reineke/indent-blankline.nvim",
-  keys = C.key.toggle .. "i", -- defined in mudox/plugin/snacks/toggle.lua
   config = config,
 }

@@ -112,7 +112,7 @@ local function diagnostic(hl, _)
   -- stylua: ignore end
 end
 
-local function gitsigns(hl, _)
+local function diff(hl, c)
   local s = require("mudox.ui.color").sign
   hl.GitSignsAdd = { fg = s.green }
   hl.GitSignsChange = { fg = s.blue }
@@ -186,16 +186,6 @@ local function bufferline(hl, c)
   hl.BufferLineIndicatorSelected = { bg = "bg" }
 end
 
-local function alacritty(hl, c)
-  -- ISSUE:
-  -- 1. Many plugin highlights derived from Normal
-  -- 2. tokyonight.theme emit error
-  if vim.env.ALACRITTY_WINDOW_ID then
-    hl.Normal.bg = "bg"
-    hl.NormalNC.bg = "bg"
-  end
-end
-
 local function win_separator(hl, c)
   hl.WinSeparator = { fg = c.bg_dark }
 end
@@ -211,13 +201,19 @@ local function statusline(hl, c)
   hl.StatusLineNC.bg = "bg"
 end
 
+local function tiny_inline_diagnostic(hl, c)
+  hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
+end
+
 local function on_highlights(...)
+  local hl, c = ...
+
   telescope(...)
   snacks(...)
 
   -- diagnostic(...)
   folding(...)
-  -- gitsigns(...)
+  diff(...)
   nvim_tree(...)
   winbar(...)
   -- notify(...)
@@ -225,10 +221,20 @@ local function on_highlights(...)
   lightbulb(...)
   multicursor(...)
   bufferline(...)
-  -- alacritty(...)
   win_separator(...)
   italic_keyword(...)
   -- statusline(...)
+  tiny_inline_diagnostic(...)
+
+  -- alalcritty
+  if U.in_alacritty() then
+    local bg = hl.Normal.bg
+    for _, v in pairs(hl) do
+      if v.bg == bg or v.bg == "bg" then
+        v.bg = "NONE"
+      end
+    end
+  end
 end
 
 local opts = {

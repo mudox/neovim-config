@@ -9,6 +9,7 @@ return {
   { ";vB",     c"buffers!",        desc = "Buffers!"              },
   { ";vb",     c"buffers",         desc = "Buffers"               },
   { ";vc",     c"ascii",           desc = "ASCII"                 },
+  { ";vC",     c"checkhealth",     desc = "Health"                },
   { ";vg",     "8<C-G>",           desc = "Buffer info"           },
   { ";vI",     c"Inspect!",        desc = "Inspect!"              },
   { ";vi",     c"Inspect",         desc = "Inspect"               },

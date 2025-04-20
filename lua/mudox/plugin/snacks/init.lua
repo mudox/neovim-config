@@ -2,7 +2,14 @@
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
 local function init()
-  On.very_lazy(r("toggle"))
+  On.very_lazy(function()
+    r("toggle")()
+
+    -- stylua: ignore start
+    D.dd = function(...) Snacks.debug.inspect(...) end
+    D.bt = function() Snacks.debug.backtrace() end
+    -- stylua: ignore end
+  end)
 end
 
 local k = "<leader>s"
@@ -39,9 +46,10 @@ return {
     quickfile    = {},
 
     toggle       = {
+      which_key  = true,
       wk_desc    = {
-        enabled  = "  ",
-        disabled = "  ",
+        enabled  = "󰝥  ",
+        disabled = "󰝦  ",
       },
     },
   },

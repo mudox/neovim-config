@@ -38,7 +38,7 @@ local function setup_keymaps(_, bufnr)
     local count = next and 1 or -1
     severity = severity and d.severity[severity] or nil
     return function()
-      d.jump { count = count, severity = severity, float = true }
+      d.jump { count = count, severity = severity, float = false }
     end
   end
 

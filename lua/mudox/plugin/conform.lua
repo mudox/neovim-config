@@ -130,10 +130,6 @@ end
 local keys = {
   { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
   { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
-
-  -- defined in mudox/plugin/snacks/toggle.lua
-  C.key.toggle .. "f",
-  C.key.toggle .. "F",
 }
 
 return {

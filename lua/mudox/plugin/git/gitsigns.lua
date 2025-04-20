@@ -13,17 +13,17 @@ local signs = {
 local function on_attach(buffer)
   local gs = require("gitsigns")
 
+  -- stylua: ignore
   local jump = {
     name = "Gitsigns hunk",
-    next = gs.next_hunk,
-    prev = gs.prev_hunk,
+    next = function() gs.nav_hunk("next") end,
+    prev = function() gs.nav_hunk("prev") end,
   }
 
   -- stylua: ignore
   local keys = {
     -- stage
     { "<leader>gs", gs.stage_hunk,                                desc = "Stage hunk"      },
-    { "<leader>gu", gs.undo_stage_hunk,                           desc = "Unstage hunk"    },
     { "<leader>gD", gs.reset_hunk,                                desc = "Discard changes" },
 
     -- blame
@@ -77,7 +77,6 @@ local opts = {
 
 return {
   "lewis6991/gitsigns.nvim",
-  event = { "BufRead", "BufNewFile" },
+  event = "VeryLazy",
   opts = opts,
-  keys = C.key.toggle .. "g", -- defined in mudox/plugin/snacks/toggle.lua
 }
