@@ -1,12 +1,16 @@
 return {
   "simonmclean/triptych.nvim",
-  event = "VeryLazy",
   dependencies = {
     "plenary.nvim",
     "nvim-web-devicons",
 
     "antosha417/nvim-lsp-file-operations", -- optional LSP integration
   },
+
+  keys = {
+    { "<leader>ft", "<Cmd>Triptych<Cr>", desc = "[Triptych] Toggle" },
+  },
+
   opts = {
     options = {
       file_icons = {
@@ -28,9 +32,5 @@ return {
     diagnostic_signs = {
       enabled = false,
     },
-  },
-
-  keys = {
-    { "<leader>ft", "<Cmd>Triptych<Cr>", desc = "[Triptych] Toggle" },
   },
 }

@@ -20,6 +20,10 @@ local function config()
     group = gid,
     desc = "Lint document by nvim-lint",
     callback = function(event)
+      if vim.b.auto_lint == false or vim.g.auto_lint == false then
+        return
+      end
+
       local ft = vim.bo[event.buf].filetype
 
       local backlist_fts = { "json.kulala_ui" }

@@ -1,3 +1,31 @@
+local quickfix = {
+  get = function()
+    for _, win in pairs(vim.fn.getwininfo()) do
+      if win["quickfix"] == 1 then
+        return true
+      end
+    end
+    return false
+  end,
+  set = function(s)
+    if s then
+      vim.cmd.copen()
+    else
+      vim.cmd.cclose()
+    end
+  end,
+}
+
+local diagnostic = {
+  get = function()
+    return require("tiny-inline-diagnostic.diagnostic").user_toggle_state
+  end,
+  set = function(s)
+    require("tiny-inline-diagnostic")[s and "enable" or "disable"]()
+    pcall(vim.diagnostic[s and "enabled" or "disable"])
+  end,
+}
+
 -- stylua: ignore
 return function()
   -- for parameter `key`
@@ -14,9 +42,17 @@ return function()
   o("list",     { name = "List Mode"        }):map(k"<C-l>")
   o("hlsearch", { name = "Highlight Search" }):map(k"h")
 
+  -- lsp virtual lines
+  t.new({
+    id = "lsp_virtual_lines",
+    name = "LSP Virtual Lines",
+    get = function() return vim.lsp.config.virtual_lines end,
+    set = function(state) vim.lsp.config { virtual_lines = state } end,
+  }):map(k"L")
+
   -- treesitter & lsp
   t.treesitter():map(k"T")
-  t.diagnostics():map(k"d")
+  -- t.diagnostics():map(k"d")
   t.inlay_hints():map(k"H")
 
   -- line numbers
@@ -26,14 +62,6 @@ return function()
   -- conceal level
   local opts = { name = "Conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
   o("conceallevel", opts):map(k"c")
-
-  -- lsp virtual lines
-  t.new({
-    id = "lsp_virtual_lines",
-    name = "LSP Virtual Lines",
-    get = function() return vim.lsp.config.virtual_lines end,
-    set = function(state) vim.lsp.config { virtual_lines = state } end,
-  }):map(k"L")
 
   -- gitsigns
   t.new({
@@ -77,4 +105,21 @@ return function()
     get = function() return not vim.g.disable_autoformat end,
     set = function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
   }):map(k"F")
+
+  -- quickfix window
+  t.new({
+    id = "quickfix",
+    name = "Quickfix",
+    get = quickfix.get,
+    set = quickfix.set,
+  }):map(k"q")
+
+  -- diagnostic
+  -- vim.diagnostic + tiny-inline-diagnostic
+  t.new({
+    id = "diagnostic",
+    name = "Diagnostic",
+    get = diagnostic.get,
+    set = diagnostic.set,
+  }):map(k"d")
 end

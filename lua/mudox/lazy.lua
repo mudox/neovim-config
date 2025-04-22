@@ -92,7 +92,6 @@ local performance = {
       "gzip",
       "matchit",
       "matchparen",
-      "netrw",
       "netrwPlugin",
       "tarPlugin",
       "tohtml",

@@ -2,14 +2,7 @@
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
 local function init()
-  On.very_lazy(function()
-    r("toggle")()
-
-    -- stylua: ignore start
-    D.dd = function(...) Snacks.debug.inspect(...) end
-    D.bt = function() Snacks.debug.backtrace() end
-    -- stylua: ignore end
-  end)
+  On.very_lazy(r("toggle"))
 end
 
 local k = "<leader>s"

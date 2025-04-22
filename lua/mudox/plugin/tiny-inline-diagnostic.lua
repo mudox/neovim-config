@@ -9,6 +9,8 @@ return {
     },
 
     options = {
+      throttle = 100,
+
       virt_texts = {
         priority = 5000,
       },
@@ -16,14 +18,15 @@ return {
         enabled = true,
         if_many = false,
       },
-      show_all_diags_on_cursorline = true,
 
       set_arrow_to_diag_color = true,
 
+      show_all_diags_on_cursorline = true,
       multilines = {
-        enabled = true,
+        enabled = false,
         always_show = false,
       },
+
       overflow = {
         mode = "wrap",
         padding = 1,

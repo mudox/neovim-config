@@ -1,4 +1,5 @@
 return {
+  "phanen/lazy-help.nvim",
   dir = "~/Git/neovim-plugins/lazy-help.nvim", -- HACK: fix helpview.txt multi-encodings issue
   ft = "lazy",
   init = function()

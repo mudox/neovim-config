@@ -3,7 +3,7 @@ local prefix = ";r"
 local function c(t)
   t[1] = prefix .. t[1]
   t[2] = "<Cmd>RustLsp " .. t[2] .. "<Cr>"
-  t.desc = "[Rust] " .. t.desc
+  -- t.desc = "[Rust] " .. t.desc
   return t
 end
 
@@ -22,7 +22,7 @@ local keymaps = {
 
   { prefix,    group = "rust" },
 
-  { "<Space>", ":<C-u>RustLsp ",         desc = "[Rust] :RustLsp ..." },
+  { "<Space>", ":<C-u>RustLsp ",         desc = ":RustLsp ..." },
 
   -- acitons
   c{ "a",      "codeAction",             desc = "Code actions ..."    },

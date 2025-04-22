@@ -184,11 +184,13 @@ local function opts()
 end
 
 return {
-  -- "folke/edgy.nvim",
+  "folke/edgy.nvim",
   dir = "~/Git/neovim-plugins/edgy.nvim", -- HACK: fix `check_main`
+  branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
+
   event = "VeryLazy",
   keys = keys,
+
   init = init,
   opts = opts,
-  branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
 }

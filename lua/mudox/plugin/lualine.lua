@@ -5,7 +5,7 @@ local options = {
 
   icons_enabled = true,
 
-  -- theme = "molokai",
+  theme = "molokai",
 
   component_separators = {
     left = sep.light_left,

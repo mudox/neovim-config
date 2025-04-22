@@ -10,8 +10,8 @@ local opts = {
       heading_3      = { sign = " 3 ", },
       heading_4      = { sign = " 4 ", },
     },
-    keycodes         = { default = { enable = false } },
-    arguments        = { default = { enable = false } },
+    -- keycodes         = { enable = false, },
+    -- arguments        = { enable = false, },
     mention_links    = { default = { icon   = ""    } },
     notes            = {
       default        = { icon   = "┃"   },
@@ -20,7 +20,7 @@ local opts = {
     },
     optionlinks      = { icon   = ""    },
     highlight_groups = { icon   = "󰏗 "  },
-    },
+  },
 }
 
 return {

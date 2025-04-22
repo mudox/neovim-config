@@ -12,7 +12,14 @@ _G.C = {
 }
 
 -- Dev, debug
-_G.D = {}
+_G.D = {
+  dd = function(...)
+    Snacks.debug.inspect(...)
+  end,
+  bt = function()
+    Snacks.debug.backtrace()
+  end,
+}
 
 ---Utility lib
 _G.U = require("mudox.util")
