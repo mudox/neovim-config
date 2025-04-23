@@ -93,12 +93,12 @@ local function snacks(hl, c)
   }
 end
 
-local function trouble(hl, c)
+local function trouble(hl, _)
   hl.TroubleNormal = hl.Normal
   hl.TroubleNormalNC = hl.NormalNC
 end
 
-local function lightbulb(hl, c)
+local function lightbulb(hl, _)
   hl.LightBulbVirtualText = { fg = "#0db9d7" }
 end
 
@@ -112,7 +112,7 @@ local function diagnostic(hl, _)
   -- stylua: ignore end
 end
 
-local function diff(hl, c)
+local function diff(hl, _)
   local s = require("mudox.ui.color").sign
   hl.GitSignsAdd = { fg = s.green }
   hl.GitSignsChange = { fg = s.blue }
@@ -126,10 +126,6 @@ end
 local function winbar(hl, _)
   hl.WinBar = { bg = "bg" }
   hl.WinBarNC = { bg = "bg" }
-end
-
-local function nvim_tree(hl, _)
-  -- hl.NvimTreeOpenedFile.fg = "#FFFFFF"
 end
 
 local function notify(hl, _)
@@ -166,7 +162,7 @@ local function multicursor(hl, _)
   hl.MultiCursorDisabledVisual = { bg = "#664422" }
 end
 
-local function bufferline(hl, c)
+local function bufferline(hl, _)
   -- transparent tabline backdrop
 
   hl.BufferLineFill = { bg = "bg" }
@@ -190,23 +186,23 @@ local function win_separator(hl, c)
   hl.WinSeparator = { fg = c.bg_dark }
 end
 
-local function italic_keyword(hl, c)
+local function italic_keyword(hl, _)
   for _, name in ipairs { "@keyword.function", "Statement" } do
     hl[name].italic = true
   end
 end
 
-local function statusline(hl, c)
+local function statusline(hl, _)
   hl.StatusLine.bg = "bg"
   hl.StatusLineNC.bg = "bg"
 end
 
-local function tiny_inline_diagnostic(hl, c)
+local function tiny_inline_diagnostic(hl, _)
   hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
 end
 
 local function on_highlights(...)
-  local hl, c = ...
+  local hl, _ = ...
 
   telescope(...)
   snacks(...)
@@ -214,7 +210,6 @@ local function on_highlights(...)
   -- diagnostic(...)
   folding(...)
   diff(...)
-  nvim_tree(...)
   winbar(...)
   -- notify(...)
   trouble(...)

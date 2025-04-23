@@ -12,4 +12,5 @@ return {
   opts = {
     api_key_cmd = "op read op://Personal/OpenAI/ChatGPT.nvim",
   },
+  cond = false, -- seems unactive
 }

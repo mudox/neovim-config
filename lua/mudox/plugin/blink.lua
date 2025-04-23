@@ -23,7 +23,6 @@ local cmdline = {
     },
   },
 
-  -- stylua: ignore
   keymap = { preset = "inherit" },
 }
 
@@ -31,15 +30,22 @@ local cmdline = {
 local keymap = {
   preset = "enter",
 
-  ["<C-y>"]     = {},
+  ["<C-y>"]     = {}, -- conflict with tmux
+
   ["<Tab>"]     = {},
   ["<S-Tab>"]   = {},
 
   ["<C-p>"]     = { "select_prev", "fallback" },
   ["<C-n>"]     = { "select_next", "fallback" },
 
-  -- Accept
-  ["<C-Enter>"] = { function(cmp) cmp.select_and_accept() end, },
+  -- scroll documentation
+  ["<C-f>"]     = {}, -- conflict with LuaSnip
+  ["<C-b>"]     = {},
+  ["<C-u>"]     = { "scroll_documentation_up", "fallback" },
+  ["<C-d>"]     = { "scroll_documentation_down", "fallback" },
+
+  -- accept
+  ["<C-Enter>"] = { "select_and_accept" },
   ["<C-1>"]     = { function(cmp) cmp.accept { index = 1 } end, },
   ["<C-2>"]     = { function(cmp) cmp.accept { index = 2 } end, },
   ["<C-3>"]     = { function(cmp) cmp.accept { index = 3 } end, },

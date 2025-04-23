@@ -1,8 +1,3 @@
--- local keys = {
---   { "<C-Space>", desc = "Begin / expand selection", mode = { "n", "x" } },
---   { "<Bs>", desc = "Shrink selection", mode = "x" },
--- }
-
 local opts = {}
 
 opts.ensure_installed = {
@@ -52,13 +47,14 @@ local function config()
 end
 
 local function init()
-  -- treesitter folding
+  -- folding
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   vim.o.foldtext = "" -- use default transparent foldtext
-  -- vim.o.foldtext = "v:lua.require('mudox.ui.fold').foldtext()"
   -- vim.o.foldminlines = 6
   vim.o.foldnestmax = 3
+
+  vim.hl.priorities.semantic_tokens = 75 -- do not override treesitter highlighting
 end
 
 return {
@@ -70,7 +66,6 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "TSUpdate", "TSInstallInfo", "TSDisable", "TSBufDisable" },
-    -- keys = keys,
     init = init,
     config = config,
   },

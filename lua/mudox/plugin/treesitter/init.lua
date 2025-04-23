@@ -4,7 +4,7 @@ end
 
 -- stylua: ignore
 return {
-  r "treesitter",
-  r "context-comment-string",
-  r "textobjects",
+  r"treesitter",
+  r"context-comment-string",
+  r"textobjects",
 }

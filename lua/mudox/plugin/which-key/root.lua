@@ -95,8 +95,8 @@ end)()
 
 return {
   { "<Space>",  group = "common",                   },
-  { "<leader>", group = "main",        prefix1,     },
-  { ";",        group = "secondary",   prefix2,     },
+  { "<leader>", group = "prefix1",     prefix1,     },
+  { ";",        group = "prefix2",     prefix2,     },
   { "<Bslash>", group = "refactoring", refactoring, },
   { "<Bs>",     group = "close",       close,       },
   { "<Tab>",    group = "tabpage",     tabpage,     },
