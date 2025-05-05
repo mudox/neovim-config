@@ -46,6 +46,21 @@ local window = {
   { "<leader>w2", function() X.layout.two_windows() end, desc = "2 windows layout" },
 
   { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Close all floating windows" },
+
+  -- resize window repeatable
+  (function()
+    local step = 4
+    local prefix = "<C-w>r"
+
+    return {
+      { prefix, function() require("which-key").show { keys = prefix, loop = true } end, group = "resize" },
+
+      { prefix .. "w", function() vim.cmd("vertical resize -" .. step) end, group = "- width"   },
+      { prefix .. "W", function() vim.cmd("vertical resize +" .. step) end, group = "+ width"   },
+      { prefix .. "h", function() vim.cmd("resize -" .. step) end,          group = "- height"  },
+      { prefix .. "H", function() vim.cmd("resize +" .. step) end,          group = "+ height"  },
+    }
+  end)()
 }
 
 K.nnop(",")
@@ -78,21 +93,6 @@ local prefix2 = {
   { ";3",       function() X.layout.one_window() end,     desc = "Main window only"      },
 }
 
-local resize_window = (function()
-  local step = 4
-  local prefix = "<C-w>r"
-
-  return {
-    { "<C-w>r", function() require("which-key").show { keys = prefix, loop = true } end, desc = "Resize" },
-
-    { prefix, group = "resize" },
-    { prefix .. "h", function() vim.cmd("resize +" .. step) end,          group = "Increase width"  },
-    { prefix .. "H", function() vim.cmd("resize -" .. step) end,          group = "Decrease width"  },
-    { prefix .. "w", function() vim.cmd("vertical resize +" .. step) end, group = "Increase height" },
-    { prefix .. "W", function() vim.cmd("vertical resize -" .. step) end, group = "Decrease height" },
-  }
-end)()
-
 return {
   { "<Space>",  group = "common",                   },
   { "<leader>", group = "prefix1",     prefix1,     },
@@ -104,8 +104,6 @@ return {
   r"view",
   r"next_prev",
   r"insert",
-
-  resize_window,
 
   { C.key.toggle, group = "toggle"      }, -- defined in mudox/plugin/snacks/toggle.lua
 }

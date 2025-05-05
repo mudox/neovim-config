@@ -1,5 +1,3 @@
--- TODO: favor nvim-lint & conform over null-ls
-
 local function opts()
   local null = require("null-ls")
 
@@ -28,4 +26,5 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   keys = { { "<leader>vn", "<Cmd>NullLsInfo<Cr>", desc = "Null" } },
   opts = opts,
+  cond = false, -- TODO: favor nvim-lint & conform over null-ls
 }

@@ -1,6 +1,5 @@
-local function k(text)
-  return "<leader>i" .. text
-end
+-- stylua: ignore
+local function k(text) return "<leader>i" .. text end
 
 return {
   "andrewferrier/debugprint.nvim",

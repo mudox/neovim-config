@@ -50,9 +50,9 @@ local keys = {
   -- expand selection
   { "<Space>",  function() require("flash").treesitter() end,        "Expand selection",       mode = { "o",   "x"        }, },
 
-  -- jump + motion
+  -- remote motion
   { "<Bslash>", function() require("flash").remote() end,            "Remote mode",            mode = { "o"               }, },
-  -- jump + expand selection
+  -- remote expand selection
   { "/",        function() require("flash").treesitter_search() end, "Remote treesitter mode", mode = { "o"               }, },
 
   -- search

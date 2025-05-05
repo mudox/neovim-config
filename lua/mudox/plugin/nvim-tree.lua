@@ -139,6 +139,10 @@ local function opts()
 
   return {
     on_attach = on_attach,
+
+    diagnostics = { enable = false },
+    git = { enable = false },
+
     sort_by = "extension",
     view = {
       signcolumn = "no",

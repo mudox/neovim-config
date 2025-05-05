@@ -14,8 +14,8 @@ return {
 
   mode = "i",
   {
-    { "<C-;>",    append(";"), desc = "Append ; + Newline" },
-    { "<C-,>",    append(","), desc = "Append , + Newline" },
-    { "<C-S-Cr>", append(""),  desc = "Newline"            },
+    { "<C-;>",    append(";"), desc = "Append ; + NL" },
+    { "<C-,>",    append(","), desc = "Append , + NL" },
+    { "<C-S-Cr>", append(""),  desc = "Newline"       },
   },
 }
