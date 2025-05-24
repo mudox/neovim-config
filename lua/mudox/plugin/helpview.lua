@@ -19,7 +19,7 @@ local opts = {
       deprecated     = { icon   = "┃"   },
     },
     optionlinks      = { icon   = ""    },
-    highlight_groups = { icon   = "󰏗 "  },
+    highlight_groups = { icon   = ""    },
   },
 }
 

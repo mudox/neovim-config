@@ -39,8 +39,8 @@ end)()
 
 local local_function = (function()
   local head = c(1, {
-    fmt("local function {name}({args})", { name = i(1, "name"), args = i(2) }),
-    fmt("local {name} = function({args})", { name = i(1, "name"), args = i(2) }),
+    fmt("local function {name}({args})", { name = i(1, ""), args = i(2) }),
+    fmt("local {name} = function({args})", { name = i(1, ""), args = i(2) }),
   })
 
   local format = [[
@@ -53,7 +53,7 @@ local local_function = (function()
     "lf",
     fmt(format, {
       head = head,
-      body = i(0),
+      body = i(2),
     })
   )
 end)()

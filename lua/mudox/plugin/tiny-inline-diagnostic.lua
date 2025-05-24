@@ -4,8 +4,7 @@ return {
   priority = 800,
   opts = {
     signs = {
-      -- diag = I.short_bar,
-      diag = "•",
+      diag = I.diagnostic.sign,
     },
 
     options = {
@@ -18,14 +17,10 @@ return {
         enabled = true,
         if_many = false,
       },
-
       set_arrow_to_diag_color = true,
 
       show_all_diags_on_cursorline = true,
-      multilines = {
-        enabled = false,
-        always_show = false,
-      },
+      multilines = false,
 
       overflow = {
         mode = "wrap",

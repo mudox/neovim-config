@@ -12,7 +12,7 @@ end
 
 return {
   "mrcjkb/rustaceanvim",
-  dependencies = { "nvim-dap", "nvim-cmp" },
+  dependencies = { "nvim-dap" },
   ft = "rust",
   config = config,
 }

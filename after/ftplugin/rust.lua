@@ -3,7 +3,6 @@ local prefix = ";r"
 local function c(t)
   t[1] = prefix .. t[1]
   t[2] = "<Cmd>RustLsp " .. t[2] .. "<Cr>"
-  -- t.desc = "[Rust] " .. t.desc
   return t
 end
 
@@ -15,7 +14,6 @@ local function p(t)
   return t
 end
 
-
 -- stylua: ignore
 local keymaps = {
   buffer = vim.api.nvim_get_current_buf(),
@@ -23,7 +21,7 @@ local keymaps = {
   { prefix,    group = "rust" },
 
   -- main command
-  p{ "<Space>", "",                   desc = ":RustLsp ..." },
+  p{ "<Space>", "",                   desc = ":RustLsp ..."        },
 
   -- acitons
   c{ "a",       "codeAction",         desc = "Code actions ..."    },

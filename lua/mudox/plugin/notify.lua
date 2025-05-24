@@ -1,5 +1,5 @@
 local function opts()
-  local i = I.diagnostics.double
+  local i = I.diagnostic.cod
   -- stylua: ignore
   local icons = {
     ERROR = i.error,

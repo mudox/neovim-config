@@ -96,7 +96,7 @@ On("BufRead", {
 
 -- Unfold for small files 〉
 
--- Restore cmdheight 〈
+-- Lock cmdheight 〈
 
 On("CursorHold", function()
   if vim.o.cmdheight ~= 2 then
@@ -104,7 +104,35 @@ On("CursorHold", function()
   end
 end)
 
--- Restore cmdheight 〉
+-- Lock cmdheight 〉
+
+-- Disable folding in insert mode 〈
+
+local gid = g("no_folding_in_insert_mode")
+local oldfdm
+
+On("InsertEnter", {
+  group = gid,
+  pattern = "*",
+  callback = function()
+    oldfdm = vim.wo.foldmethod
+    vim.wo.foldmethod = "manual"
+  end,
+})
+
+On("InsertLeave", {
+  group = gid,
+  pattern = "*",
+  callback = function()
+    if oldfdm then
+      vim.wo.foldmethod = oldfdm
+      oldfdm = nil
+    end
+    vim.cmd("normal! zv")
+  end,
+})
+
+-- Disable folding in insert mode 〉
 
 On("TermEnter", function()
   vim.cmd.startinsert { bang = true }

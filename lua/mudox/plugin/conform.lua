@@ -2,7 +2,7 @@
 local formatters_by_ft = {
   lua        = { "stylua"          },
 
-  python     = { "isort", "ruff"   },
+  python     = { "ruff"            },
 
   rust       = { "rustfmt"         },
 
@@ -22,15 +22,6 @@ local formatters_by_ft = {
   ["_"]      = { "trim_whitespace" },
 }
 
-local fast_fts = {
-  lua = true,
-  rust = true,
-
-  bash = true,
-  zsh = true,
-  sh = true,
-}
-
 local slow_fts = {
   sql = true,
   java = true,
@@ -46,7 +37,7 @@ local format_on_save = function(bufnr)
   end
 
   -- filter by filetype
-  if not fast_fts[vim.bo[bufnr].filetype] then
+  if slow_fts[vim.bo[bufnr].filetype] then
     return
   end
 

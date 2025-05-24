@@ -32,7 +32,7 @@ local statusline = {
   },
 
   lualine_x = {
-    { "diagnostics", symbols = I.diagnostics.single },
+    { "diagnostics", symbols = I.diagnostic.single },
     { "filetype" },
   },
   lualine_y = {

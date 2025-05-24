@@ -52,7 +52,7 @@ local function init()
   vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   vim.o.foldtext = "" -- use default transparent foldtext
   -- vim.o.foldminlines = 6
-  vim.o.foldnestmax = 3
+  -- vim.o.foldnestmax = 3
 
   vim.hl.priorities.semantic_tokens = 75 -- do not override treesitter highlighting
 end

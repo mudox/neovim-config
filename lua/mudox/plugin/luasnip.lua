@@ -46,17 +46,16 @@ local main_key = "<C-f>"
 -- stylua: ignore
 local keys = {
   -- expand & juamp
-  { main_key,     function() require("luasnip").expand_or_jump() end,                mode =  "i",          desc =  "[LuaSnip] Expand or jump to next placeholder" },
-  { main_key,     function() require("luasnip").jump(1) end,                         mode =  { "v", "s" }, desc =  "[LuaSnip] Jump to next placeholder" },
-  { "<C-b>",      function() require("luasnip").jump(-1) end,                        mode =  { "i", "s" }, desc =  "[LuaSnip] Jump to next placeholder" },
+  { main_key,     function() require("luasnip").expand_or_jump() end, mode = "i",          desc =  "[LuaSnip] Expand or jump to next placeholder" },
+  { main_key,     function() require("luasnip").jump(1) end,          mode = { "v", "s" }, desc =  "[LuaSnip] Jump to next placeholder"           },
+  { "<C-b>",      function() require("luasnip").jump(-1) end,         mode = { "i", "s" }, desc =  "[LuaSnip] Jump to next placeholder"           },
 
   -- choices
-  { "<C-e>",      change_choice, expr = true,                                        mode =  { "i", "s" }, desc =  "[LuaSnip] Change choice" },
-  { "<C-c>",      select_choice,                                                     mode =  { "i", "s" }, desc =  "[LuaSnip] Select choice" },
-
+  { "<C-e>",      change_choice, expr = true,                         mode = { "i", "s" }, desc =  "[LuaSnip] Change choice"                      },
+  { "<C-c>",      select_choice,                                      mode = { "i", "s" }, desc =  "[LuaSnip] Select choice"                      },
 
   -- edit
-  { "<leader>es", edit_snippet,                                                                            desc =  "[LuaSnip] Edit snippet" },
+  { "<leader>es", edit_snippet,                                                            desc =  "[LuaSnip] Edit snippet"                       },
 
   -- on the fly snippet
   -- { "<C-o>",      [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode =  "v",          desc =  "[LuaSnip] On-The-Fly snippet" },

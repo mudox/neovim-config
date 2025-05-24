@@ -31,6 +31,6 @@ local run = {
 }
 
 return {
-  ["duplicate"] = duplicate,
-  ["run"] = run,
+  duplicate = duplicate,
+  run = run,
 }

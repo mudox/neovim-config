@@ -6,18 +6,19 @@ local function toggle_virtual_lines()
 end
 
 local function config()
+  local sign = I.diagnostic.sign
   local signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = I.short_bar,
-      [vim.diagnostic.severity.WARN] = I.short_bar,
-      [vim.diagnostic.severity.INFO] = I.short_bar,
-      [vim.diagnostic.severity.HINT] = I.short_bar,
+      [vim.diagnostic.severity.ERROR] = sign,
+      [vim.diagnostic.severity.WARN] = sign,
+      [vim.diagnostic.severity.INFO] = sign,
+      [vim.diagnostic.severity.HINT] = sign,
     },
   }
 
   local float = {
     source = true,
-    prefix = I.short_bar .. " ",
+    prefix = sign .. " ",
   }
 
   d.config {

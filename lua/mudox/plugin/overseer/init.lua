@@ -42,6 +42,8 @@ local function opts()
   local border = I.border.corner
 
   return {
+    -- strategy = { "jobstart", use_terminal = true },
+
     templates = templates,
     actions = r("actions"),
 

@@ -103,7 +103,7 @@ local performance = {
 
 vim.g.mapleader = "," -- lazy spec `keys` depends on this
 require("lazy").setup {
-  spec = "mudox.mode." .. vim.g.mdx_nvim_mode .. ".plugin",
+  spec = "mudox.plugin",
   defaults = {
     lazy = true,
     version = false, -- always use the latest git commit

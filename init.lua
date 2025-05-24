@@ -1,19 +1,23 @@
-vim.loader.enable()
+vim.loader.enable(true)
+-- https://www.reddit.com/r/neovim/comments/1kcz8un/great_improvements_to_the_cmdline_in_nightly
+-- https://github.com/neovim/neovim/pull/27855
+-- require("vim._extui").enable {}
+-- it breaks easy-align
 
 -- Convenient globals
 require("mudox.globals")
-
--- Neovim mode - g:mdx_nvim_mode
-require("mudox.mode")
 
 -- Load plugins
 require("mudox.lazy")
 
 -- Colorscheme
-require("tokyonight").load()
+local ok, tn = pcall(require, "tokyonight")
+if ok then
+  tn.load()
+end
 
-U.load("settings")
-U.load("autocmds")
+require("mudox.settings")
+require("mudox.autocmds")
 
 -- LSP
 require("mudox.lsp")
@@ -22,12 +26,12 @@ require("mudox.lsp")
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
   On.very_lazy(function()
-    U.load("keymaps")
+    require("mudox.keymaps")
     X.dirop.setup()
   end)
 else
   -- load them immediately so they affect the opened buffers
-  U.load("keymaps")
+  require("mudox.keymaps")
   X.dirop.setup()
 end
 

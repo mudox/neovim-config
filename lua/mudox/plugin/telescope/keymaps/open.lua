@@ -17,10 +17,10 @@ local M = {
   { "<C-3> ✓",    "lsp_workspace_symbols",     "LSP workspace symbols",     },
 
   -- vim
-  { "<Space>r ✓", "oldfiles",                  "[Telescope] Recent files",  },
+  { "<Space>r ✓", "oldfiles",                  "Recent files",  },
   { "a",          "autocommands",              "autocommands",              },
   { "b",          "buffers",                   "Buffers",                   },
-  { "<C-S-o> ✓",  "buffers",                   "[Telescope] Buffers",       },
+  { "<C-S-o> ✓",  "buffers",                   "Buffers",       },
   { "o",          "vim_options",               "Vim options",               },
   { "h",          "highlights",                "Highlight groups",          },
 
@@ -31,12 +31,12 @@ local M = {
   { "c",          "commands",                  "Commands",                  },
   { "<M-;> ✓",    "commands",                  "Commands",                  },
 
-  { "<C-S-/> ✓",  "help_tags",                 "[Telescope] Vim help",      },
+  { "<C-S-/> ✓",  "help_tags",                 "Vim help",      },
 
   { "<M-/> ✓",    "current_buffer_fuzzy_find", "Search in buffer",          },
 
   -- grep
-  { "<Space>s ✓", "live_grep",                 "[Telescope] Live grep",     },
+  { "<Space>s ✓", "live_grep",                 "Live grep",     },
   { "w",          "grep_string",               "Grep <cword> under cursor", },
 
   -- git

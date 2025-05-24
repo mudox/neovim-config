@@ -88,10 +88,12 @@ local folder = {
 
 -- 〉
 
--- Diagnostics 〈
+-- Diagnostic 〈
 
 -- stylua: ignore
-local diagnostics = {
+local diagnostic = {
+  sign = "•",
+
   single = {
     error = "󰉁",
     warn  = "",
@@ -129,7 +131,7 @@ local diagnostics = {
   }
 }
 
--- Diagnostics 〉
+-- Diagnostic 〉
 
 -- stylua: ignore
 local chevron = {
@@ -149,7 +151,7 @@ return {
 
   chevron       = chevron,
 
-  diagnostics   = diagnostics,
+  diagnostic   = diagnostic,
   powerline     = powerline,
   tree          = tree,
   folder        = folder,

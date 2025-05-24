@@ -5,14 +5,14 @@ local function config()
   lint.linters_by_ft = {
     lua        = { "selene", "typos" },
 
-    javascript = { "eslint_d" },
-    typescript = { "eslint_d" },
+    javascript = { "quick-lint-js"   },
+    typescript = { "quick-lint-js"   },
 
-    json       = { "jsonlint" },
+    json       = { "jsonlint"        },
 
-    python     = { "typos"     },
+    python     = { "typos"           },
 
-    rust       = { "typos"     },
+    rust       = { "typos"           },
   }
 
   local gid = vim.api.nvim_create_augroup("mdx_lint", { clear = true })
@@ -39,14 +39,9 @@ end
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
+  -- stylua: ignore
   keys = {
-    {
-      "\\l",
-      function()
-        require("lint").try_lint()
-      end,
-      desc = "[Lint] lint",
-    },
+    { "\\l", function() require("lint").try_lint() end, desc = "[Lint] lint" },
   },
   config = config,
 }

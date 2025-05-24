@@ -9,7 +9,7 @@ local surrounds = {
       return { open, close }
     end,
   },
-  -- stylue ignore lines
+  -- disable formatting
   i = {
     add = function()
       local open = { "-- stylua: ignore start" }

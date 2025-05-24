@@ -13,12 +13,10 @@ local function opts()
   }
 end
 
-local function config(_, o)
-  require("other-nvim").setup(o)
-end
-
+-- stylua: ignore
 local keys = {
   { "<leader>eo", "<Cmd>OtherVSplit<Cr>", desc = "[Other] VSplit" },
+  { "<leader>eO", "<Cmd>Other<Cr>",       desc = "[Other] Goto"   },
 }
 
 return {
@@ -32,5 +30,5 @@ return {
   },
   keys = keys,
   opts = opts,
-  config = config,
+  main = "other-nvim",
 }

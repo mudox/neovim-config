@@ -45,12 +45,12 @@ local window = {
   { "<leader>w1", function() X.layout.one_window() end,  desc = "1 window layout"  },
   { "<leader>w2", function() X.layout.two_windows() end, desc = "2 windows layout" },
 
-  { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Close all floating windows" },
+  { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Focus next floating windows" },
 
   -- resize window repeatable
   (function()
     local step = 4
-    local prefix = "<C-w>r"
+    local prefix = "<leader>wr"
 
     return {
       { prefix, function() require("which-key").show { keys = prefix, loop = true } end, group = "resize" },
