@@ -92,7 +92,9 @@ end
 
 return {
   "stevearc/overseer.nvim",
+
   cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo", "OverseerBuild" },
   keys = r("keymaps"),
+
   config = config,
 }

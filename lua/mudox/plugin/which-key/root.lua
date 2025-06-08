@@ -7,11 +7,14 @@ local c = K.c
 local close = {
   { "<Bs>", group = "close" },
 
-  { "<Bs>v",     c"confirm qall",      desc = "Quit all"                   },
-  { "<Bs>V",     c"qall!",             desc = "Quit all forcibly"          },
+  { "<Bs>v",     c"confirm qall",                  desc = "Quit all"                   },
+  { "<Bs><Bs>",  c"confirm qall",                  desc = "Quit all"                   },
+  { "<Bs>V",     c"qall!",                         desc = "Quit all forcibly"          },
+  { "<Bs>r",     c"restart",                       desc = "Restart"                    },
+  { "<Bs>R",     c"restart!",                      desc = "Restart forcibly"           },
 
-  { "<Bs><Tab>", c"tabclose",          desc = "Close tabpage"              },
-  { "<Bs>w",     c"wincmd c",          desc = "Close window"               },
+  { "<Bs><Tab>", c"tabclose",                      desc = "Close tabpage"              },
+  { "<Bs>w",     c"wincmd c",                      desc = "Close window"               },
 
   { "<Bs>f",     U.window.close_all_floating_wins, desc = "Close all floating windows" },
 }

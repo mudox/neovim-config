@@ -47,7 +47,6 @@ end, {
     "grug-far",
     "help",
     "lspinfo",
-    "man",
     "neotest-output",
     "neotest-output-panel",
     "neotest-summary",
