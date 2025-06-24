@@ -13,7 +13,5 @@ return {
   },
   build = "make",
   cmd = "AvanteAsk",
-  opts = {
-    -- add any opts here
-  },
+  opts = {},
 }

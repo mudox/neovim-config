@@ -1,15 +1,3 @@
-local function hide_cursor()
-  U.on("BufEnter", function()
-    local def = vim.api.nvim_get_hl(0, { name = "Cursor" })
-    vim.api.nvim_set_hl(0, "Cursor", vim.tbl_extend("force", def, { blend = 100 }))
-  end, { pattern = "NvimTree*" })
-
-  U.on("BufLeave", function()
-    local def = vim.api.nvim_get_hl(0, { name = "Cursor" })
-    vim.api.nvim_set_hl(0, "Cursor", vim.tbl_extend("force", def, { blend = 0 }))
-  end, { pattern = "NvimTree*" })
-end
-
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -69,8 +57,6 @@ local function on_attach(bufnr)
 end
 
 local function opts()
-  -- hide_cursor()
-
   -- stylua: ignore
   local folder = {
     arrow_open     = I.chevron.down,
@@ -159,6 +145,10 @@ local function opts()
     hijack_directories = {
       enable = false,
     }, -- for `dirbuf.nvim`
+    notify = {
+      threshold = vim.log.levels.WARN,
+      absolute_path = false,
+    },
   }
 end
 

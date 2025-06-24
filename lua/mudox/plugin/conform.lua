@@ -6,10 +6,10 @@ local formatters_by_ft = {
 
   rust       = { "rustfmt"         },
 
-  json       = { "jq"              },
+  json       = { "biome"           },
 
-  javascript = { "prettierd"       },
-  typescript = { "prettierd"       },
+  javascript = { "biome"           },
+  typescript = { "biome"           },
 
   sh         = { "shfmt"           },
   bash       = { "shfmt"           },

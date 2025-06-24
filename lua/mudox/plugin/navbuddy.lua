@@ -1,5 +1,6 @@
 return {
-  "SmiteshP/nvim-navbuddy",
+  -- "SmiteshP/nvim-navbuddy", -- origin
+  "hasansujon786/nvim-navbuddy",
   dependencies = {
     "Comment.nvim",
     "nui.nvim",

@@ -2,10 +2,14 @@ local surrounds = {
   -- fold
   z = {
     add = function()
+      local prefix = vim.bo.commentstring
+      if prefix == "" then
+        prefix = "# %s"
+      end
       local input = require("nvim-surround.config").get_input
       local label = input("Enter fold label: ")
-      local open = { ("-- %s 〈"):format(label), "" }
-      local close = { "", ("-- %s 〉"):format(label) }
+      local open = { (prefix .. " 〈"):format(label), "" }
+      local close = { "", (prefix .. " 〉"):format(label) }
       return { open, close }
     end,
   },

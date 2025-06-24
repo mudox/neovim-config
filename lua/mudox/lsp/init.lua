@@ -1,10 +1,13 @@
 On.very_lazy(function()
   -- stylua: ignore
   vim.lsp.enable {
-    "lua_ls",
-    -- "emmylua_ls",
+    -- "lua_ls",
+    "emmylua_ls",
+
     "jsonls",
     "yamlls",
+
+    "nushell",
   }
 
   K.ncmd("<leader>vl", "checkhealth vim.lsp", "LSP information")

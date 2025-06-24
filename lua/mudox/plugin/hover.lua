@@ -5,7 +5,7 @@ local opts = {
     require("hover.providers.gh_user")
     require("hover.providers.jira")
     require("hover.providers.dap")
-    require("hover.providers.diagnostic")
+    -- require("hover.providers.diagnostic")
     require("hover.providers.man")
     require("hover.providers.dictionary")
     require("hover.providers.highlight")
@@ -36,4 +36,5 @@ return {
   "lewis6991/hover.nvim",
   keys = keys,
   config = config,
+  cond = false,
 }

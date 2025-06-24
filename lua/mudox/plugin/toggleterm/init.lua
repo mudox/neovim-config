@@ -87,5 +87,5 @@ return {
   cmd = cmd,
   keys = keys,
   config = config,
-  -- config = true,
+  cond = false,
 }

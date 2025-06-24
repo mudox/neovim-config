@@ -5,10 +5,10 @@ local function config()
   lint.linters_by_ft = {
     lua        = { "selene", "typos" },
 
-    javascript = { "quick-lint-js"   },
-    typescript = { "quick-lint-js"   },
+    javascript = { "biomejs"         },
+    -- typescript = { "biomejs"         },
 
-    json       = { "jsonlint"        },
+    json       = { "biomejs"         },
 
     python     = { "typos"           },
 

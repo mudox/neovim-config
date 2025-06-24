@@ -60,9 +60,6 @@ end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      { "nushell/tree-sitter-nu", ft = "nu" },
-    },
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "TSUpdate", "TSInstallInfo", "TSDisable", "TSBufDisable" },
