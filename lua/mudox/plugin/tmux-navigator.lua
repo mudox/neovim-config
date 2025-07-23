@@ -9,7 +9,12 @@ return {
     { "<C-k>", "<Cmd>TmuxNavigateUp<Cr>",    desc = "[TmuxNav] Go up" },
   },
   init = function()
+    vim.go.shell = "/bin/bash -i" -- PERF: faster
+
     vim.g.tmux_navigator_disable_when_zoomed = 1
     vim.g.tmux_navigator_no_mappings = 1
+  end,
+  cond = function()
+    return vim.env.TMUX ~= nil
   end,
 }

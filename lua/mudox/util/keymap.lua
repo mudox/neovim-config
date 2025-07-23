@@ -193,8 +193,24 @@ function M.lazy_keys(tbl, opts)
   return tbl
 end
 
-function M.c(cmd)
-  return "<Cmd>" .. cmd .. "<Cr>"
-end
+-- stylua: ignore
+function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
+
+M.nnop(",")
+M.nnop(";")
+
+-- stylua: ignore start
+M.leader  = " "
+M.prefix1 = M.leader
+M.prefix2 = ";"
+M.common  = ","
+M.toggle  = ",,"
+-- stylua: ignore end
+
+assert(M.leader == M.prefix1)
+assert(M.prefix1 ~= M.common)
+
+-- stylua: ignore
+function M.cm(sfx) return M.common .. sfx end
 
 return M

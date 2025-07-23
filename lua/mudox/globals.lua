@@ -1,14 +1,10 @@
 -- stylua: ignore
 _G.C = {
-  -- ISSUE: noice.nvim cause vim-visual-multi failed to load
+  -- noice.nvim cause vim-visual-multi failed to load
   noice = false, -- noice      | builtin
-  blink = true,  -- blink.cmp  | nvim-cmp
+
   -- snacks dashboard is not faster than alpha
   alpha = true,  -- alpha.nvim | snacks.dashboard
-
-  key = {
-    toggle  = ",,",
-  }
 }
 
 -- Dev, debug

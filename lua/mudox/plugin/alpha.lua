@@ -1,3 +1,8 @@
+local function version()
+  local first_line = vim.fn.execute("version"):match("([^\n]+)")
+  return first_line:gsub("^NVIM%s*", "")
+end
+
 local function logo()
   -- ASCII generator: https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=mudox
   -- Use font `ANSI Shadow`
@@ -14,22 +19,26 @@ local function logo()
   local err, lines = pcall(vim.fn.readfile, filename)
   lines = err and lines or vim.split(default, "\n")
 
+  -- version line
+  local ver = version()
+  local w1 = vim.fn.strwidth(lines[2])
+  local w2 = vim.fn.strwidth(ver)
+  local indent = vim.fn["repeat"](" ", math.floor((w1 - w2) / 2))
+  table.insert(lines, "")
+  table.insert(lines, indent .. ver)
+
   return lines
 end
 
 -- stylua: ignore
 local items = {
   { "f",       " " .. " Smart open",      [[<Cmd>lua require"mudox.plugin.telescope.util".smart_open()<Cr>]] },
-  -- { "F",       " " .. " Find files",      [[<Cmd>Telescope find_files<Cr>]]                                  },
-  -- { "o",       " " .. " Recent files",    [[<Cmd>Telescope oldfiles <Cr>]]                                   },
   { "n",       " " .. " New file",        [[<Cmd>ene <Bar> startinsert<Cr>]]                                 },
 
   { "s",       "󱉶 " .. " Find text",       [[<Cmd>Telescope live_grep<Cr>]]                                   },
 
   { "l",       "󰒲 " .. " Lazy",            [[<Cmd>Lazy<Cr>]]                                                  },
   { "m",       "󰈏 " .. " Mason",           [[<Cmd>Mason<Cr>]]                                                 },
-
-  -- { "c",       "󰭹 " .. " ChatGPT",         [[<Cmd>ChatGPT<Cr>]]                                               },
 
   { "h",       "󰘥 " .. " Help",            [[<Cmd>Telescope help_tags<Cr>]]                                   },
 
@@ -95,5 +104,6 @@ return {
   dependencies = "lualine.nvim", -- `lualine` needs to be loaded BEFORE `alpha`
   event = "VimEnter",
   config = config,
-  cond = C.alpha,
+  -- cond = C.alpha,
+  cond = false,
 }

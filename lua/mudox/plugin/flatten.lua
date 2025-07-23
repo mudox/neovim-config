@@ -5,4 +5,5 @@ return {
   priority = 2000,
 
   opts = true,
+  cond = false,
 }

@@ -201,8 +201,15 @@ local function tiny_inline_diagnostic(hl, _)
   hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
 end
 
+local function float_win(hl, _)
+  hl.NormalFloat = { bg = "bg" }
+  hl.FloatBorder = { bg = "bg" }
+end
+
 local function on_highlights(...)
   local hl, _ = ...
+
+  float_win(...)
 
   telescope(...)
   snacks(...)

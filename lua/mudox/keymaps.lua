@@ -1,7 +1,7 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = K.leader
+vim.g.maplocalleader = K.leader
 
 -- Save file
 K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })

@@ -64,7 +64,7 @@ opt.wildmode = "longest:full,full"
 -- message
 -- stylua: ignore
 opt.shortmess:append {
-  I  = true, -- `:into` at startup
+  -- I  = true, -- `:intro` at startup
   A  = true, -- swap file messages
   cC = true, -- completion menu messages
   s  = true, -- search messages
@@ -205,16 +205,7 @@ opt.diffopt:append {
   "linematch:60",
 }
 
--- paste
--- remove ANSI color codes from paste input.
--- vim.paste = (function(overridden)
---   return function(lines, phase)
---     for i, line in ipairs(lines) do
--- lines[i] = line:gsub("\27%[27;5;106~", vim.keycode("\n"))
--- lines[i] = line:gsub("\27%[[0-9;]+[mK~]", "")
---     end
---     return overridden(lines, phase)
---   end
--- end)(vim.paste)
+-- mise
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 -- Misc 〉

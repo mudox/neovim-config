@@ -5,6 +5,12 @@ local function setup_keymaps(_, bufnr)
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end
 
+  local function hover()
+    vim.lsp.buf.hover {
+      border = { " " },
+    }
+  end
+
   -- stylua: ignore
   local keys = {
     { "gx",     vim.lsp.buf.declaration,                   desc = "[LSP] Goto declaration"           },
@@ -22,7 +28,7 @@ local function setup_keymaps(_, bufnr)
     { "gR",     "<Cmd>Glance references<Cr>",              desc = "[Glance] Goto references"         },
 
     -- in favor of hover.nvim
-    -- { "K",      vim.lsp.buf.hover,                         desc = "[LSP] Hover"                      },
+    { "K",      hover,                                     desc = "[LSP] Hover"                      },
 
     { "gk",     vim.lsp.buf.signature_help,                desc = "[LSP] Signature help"             },
     { "<C-k>k", vim.lsp.buf.signature_help,                desc = "[LSP] Signature Help",            mode = "i" },

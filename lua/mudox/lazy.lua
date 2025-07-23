@@ -101,7 +101,7 @@ local performance = {
   },
 }
 
-vim.g.mapleader = "," -- lazy spec `keys` depends on this
+vim.g.mapleader = K.leader
 require("lazy").setup {
   spec = "mudox.plugin",
   defaults = {

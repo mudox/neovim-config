@@ -4,11 +4,15 @@
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local c = K.c
 
+-- stylua: ignore
+local common = {
+  { K.cm"v", c"Lazy", desc = "Plugin manager" },
+}
+
 local close = {
   { "<Bs>", group = "close" },
 
   { "<Bs>v",     c"confirm qall",                  desc = "Quit all"                   },
-  { "<Bs><Bs>",  c"confirm qall",                  desc = "Quit all"                   },
   { "<Bs>V",     c"qall!",                         desc = "Quit all forcibly"          },
   { "<Bs>r",     c"restart",                       desc = "Restart"                    },
   { "<Bs>R",     c"restart!",                      desc = "Restart forcibly"           },
@@ -66,7 +70,6 @@ local window = {
   end)()
 }
 
-K.nnop(",")
 local prefix1 = {
   { "<leader>b",  group = "buffer"                             },
   { "<leader>c",  group = "test"                               },
@@ -86,7 +89,6 @@ local prefix1 = {
   { "<leader>z",  group = "visual-multi",  mode = { "n", "x" } },
 }
 
-K.nnop(";")
 local prefix2 = {
   -- layout
   { ";1",       function() X.layout.main:focus() end,     desc = "Focus main window"     },
@@ -97,9 +99,11 @@ local prefix2 = {
 }
 
 return {
-  { "<Space>",  group = "common",                   },
-  { "<leader>", group = "prefix1",     prefix1,     },
-  { ";",        group = "prefix2",     prefix2,     },
+  { K.common,   group = "common",      common       },
+  { K.prefix1,  group = "prefix1",     prefix1,     },
+  { K.prefix2,  group = "prefix2",     prefix2,     },
+  { K.toggle,   group = "toggle"                    }, -- defined in mudox/plugin/snacks/toggle.lua
+
   { "<Bslash>", group = "refactoring", refactoring, },
   { "<Bs>",     group = "close",       close,       },
   { "<Tab>",    group = "tabpage",     tabpage,     },
@@ -107,6 +111,4 @@ return {
   r"view",
   r"next_prev",
   r"insert",
-
-  { C.key.toggle, group = "toggle"      }, -- defined in mudox/plugin/snacks/toggle.lua
 }

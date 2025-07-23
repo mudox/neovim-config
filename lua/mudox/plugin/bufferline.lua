@@ -91,7 +91,8 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<M-o> ✓", "Pick",                 "Pick",           },
+  -- { "<M-o> ✓",      "Pick", "Pick", },
+  { "<leader>fp ✓", "Pick", "Pick", },
 
   -- close buffer
   { "x",       "PickClose",            "Pick & close",   },
