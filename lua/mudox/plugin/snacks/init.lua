@@ -5,29 +5,34 @@ local function init()
   On.very_lazy(r("toggle"))
 end
 
-local k = "<leader>s"
+-- stylua: ignore
+local function k(c) return "<leader>s" .. c
+
+end
 -- stylua: ignore
 local keys = {
-  -- common
-  { k .. "<Space>", function() Snacks.picker.smart() end,                                   desc = "Smart Find Files"       },
-  { k .. "b",       function() Snacks.picker.buffers() end,                                 desc = "Buffers"                },
-  { k .. "w",       function() Snacks.picker.grep() end,                                    desc = "Grep"                   },
-  { k .. "C",       function() Snacks.picker.command_history() end,                         desc = "Command History"        },
-  { k .. "n",       function() Snacks.picker.notifications() end,                           desc = "Notification History"   },
+  -- file
+  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Smart find files"        },
+  { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"        },
+  { k"f",             function() Snacks.picker.files() end,           desc = "Files"                   },
+  { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"                  },
+  { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"               },
 
-  { k .. "\\",      function() Snacks.explorer() end,                                       desc = "File Explorer"          },
-  { "<leader>fl",   function() Snacks.explorer() end,                                       desc = "File Explorer"          },
+  { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"                 },
 
-  -- find
-  { k .. "fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers"                },
-  { k .. "fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File"       },
-  { k .. "ff",      function() Snacks.picker.files() end,                                   desc = "Find Files"             },
-  { k .. "fg",      function() Snacks.picker.git_files() end,                               desc = "Find Git Files"         },
-  { k .. "fp",      function() Snacks.picker.projects() end,                                desc = "Projects"               },
-  { k .. "fr",      function() Snacks.picker.recent() end,                                  desc = "Recent"                 },
+  { k"P",             function() Snacks.picker.projects() end,        desc = "Projects"                },
 
-  -- profiler
-  { "<leader>ps",   function() Snacks.profiler.scratch() end,                               desc = "Profiler Scratch Buffer" },
+  { k"\\",            function() Snacks.explorer() end,               desc = "File explorer"           },
+  { "<leader>fl",     function() Snacks.explorer() end,               desc = "File explorer"           },
+
+  { ",s",             function() Snacks.picker.grep() end,            desc = "Grep"                    },
+
+  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "Help"                    },
+
+  { k"C",             function() Snacks.picker.command_history() end, desc = "Command history"         },
+  { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history"    },
+
+  { "<leader>ps",     function() Snacks.profiler.scratch() end,       desc = "Profiler scratch buffer" },
 }
 
 return {
