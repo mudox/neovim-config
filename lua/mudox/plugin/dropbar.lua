@@ -18,12 +18,6 @@ local function opts()
       },
     },
     sources = {
-      -- path = {
-      --   relative_to = function()
-      --     -- always use global `cwd`
-      --     return vim.fn.getcwd()
-      --   end,
-      -- },
       path = {
         relative_to = function(buf, win)
           -- Show full path in oil or fugitive buffers
@@ -38,26 +32,6 @@ local function opts()
 
           local ok, cwd = pcall(vim.fn.getcwd, win)
           return ok and cwd or vim.fn.getcwd()
-        end,
-      },
-      terminal = {
-        -- see: https://github.com/Bekaboo/dropbar.nvim#terminal
-        name = function(buf)
-          local name = vim.api.nvim_buf_get_name(buf)
-          -- the second result val is the terminal object
-          require("toggleterm")
-          local term = select(2, require("toggleterm.terminal").identify(name))
-          if term then
-            local s = term.display_name or term.name
-
-            if s:match("#toggleterm#%d") then
-              return "ToggleTerm #" .. s:sub(-1)
-            end
-
-            return s
-          else
-            return name
-          end
         end,
       },
     },
@@ -99,7 +73,7 @@ end
 
 -- stylua: ignore
 local keys = {
-    -- { "<M-.>",      function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
+    { "<M-.>",      function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
     { "<leader>fb", function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
 }
 

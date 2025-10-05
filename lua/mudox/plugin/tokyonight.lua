@@ -202,8 +202,11 @@ local function tiny_inline_diagnostic(hl, _)
 end
 
 local function float_win(hl, _)
-  hl.NormalFloat = { bg = "bg" }
-  hl.FloatBorder = { bg = "bg" }
+  hl.MdxFloatFrameNormal = { link = "Normal" }
+  hl.MdxFloatFrameBorder = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
+
+  hl.MdxFloatBlockNormal = { bg = "bg" }
+  hl.MdxFloatBlockBorder = { bg = "bg" }
 end
 
 local function on_highlights(...)

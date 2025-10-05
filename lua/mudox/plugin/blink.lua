@@ -32,7 +32,7 @@ local keymap = {
 
   ["<C-y>"]     = {}, -- conflict with tmux
 
-  ["<Tab>"]     = {},
+  ["<Tab>"]     = { "select_and_accept", "fallback" },
   ["<S-Tab>"]   = {},
 
   ["<C-p>"]     = { "select_prev", "fallback" },
@@ -170,5 +170,4 @@ return {
   build = "cargo build --release",
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   opts = opts,
-  cond = C.blink,
 }

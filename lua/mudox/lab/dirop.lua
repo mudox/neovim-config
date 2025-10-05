@@ -44,7 +44,7 @@ end
 
 ---add a directional operation pair
 ---@param op table<string, function> diectional operations table
----@param dir string ["next"|"prev"]
+---@param dir ["next"|"prev"]
 ---@return function wrapped operation function for keymap definition
 function M.wrap(op, dir)
   vim.validate("op", op, "table")

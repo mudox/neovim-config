@@ -7,4 +7,5 @@ return {
     { ",S", K.c("LiveServerStop"), desc = "[LiveServer] Stop" },
   },
   config = true,
+  cond = false, -- run `live-server` alone out of neovim
 }

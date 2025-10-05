@@ -9,4 +9,5 @@ return {
   r"codecompanion",
   r"supermaven",
   r"avante",
+  r"sidekick",
 }

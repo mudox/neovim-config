@@ -14,4 +14,5 @@ return {
     { "<M-m>", function() require("menu").open("default") end, desc = "[Menu] Default" },
     -- { "<RightMouse>", right_mouse, desc = "[Menu] Right mouse" },
   },
+  cond = false,
 }

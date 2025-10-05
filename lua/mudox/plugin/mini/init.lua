@@ -6,7 +6,7 @@ local modules = {
   "icons",
 }
 
-local function setup()
+local function config()
   for _, name in ipairs(modules) do
     r(name).setup()
   end
@@ -23,6 +23,7 @@ end)()
 return {
   "nvim-mini/mini.nvim",
   lazy = false,
+  priority = 900,
   keys = keys,
-  setup = setup,
+  config = config,
 }

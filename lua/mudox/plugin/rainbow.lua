@@ -1,46 +1,15 @@
 local function config()
-  local rb = require("rainbow-delimiters")
-
-  local sG = rb.strategy["global"]
-  local sL = rb.strategy["local"]
-  local sS = function()
-    -- local strategy for normal sized files
-    -- global strategy for large files
-    -- disabled for very large files
-    if vim.fn.line("$") > 10000 then
-      return nil
-    elseif vim.fn.line("$") > 1000 then
-      return sG
-    else
-      return sL
-    end
-  end
-
-  local whitelist = {
-    "lua",
-    "json",
+  require("rainbow-delimiters.setup").setup {
+    priority = {
+      [""] = 110,
+    },
   }
-
-  local strategy = {
-    [""] = sL,
-
-    lua = sL,
-
-    html = sL,
-    json = sL,
-
-    commonLisp = sL,
-    objc = sL,
-  }
-
-  -- vim.g.rainbow_delimiters = {
-  -- whitelist = whitelist,
-  -- strategy = strategy,
-  -- }
 end
 
 return {
   "hiphish/rainbow-delimiters.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  config = config, -- ISSUE: trigger bug about `range` function from treesitter in nightly build
+  -- event = { "BufReadPre", "BufNewFile" },
+  -- event = "VeryLazy",
+  lazy = false,
+  config = config,
 }

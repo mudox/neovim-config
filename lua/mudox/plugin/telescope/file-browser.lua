@@ -1,15 +1,15 @@
-local function mappings()
+local function keymaps()
   local a = require("telescope").extensions.file_browser.actions
   return {
     i = {
-      ["<C-,>c"] = a.create,
+      ["<C-,>n"] = a.create,
       ["<C-,>d"] = a.remove,
       ["<C-,>r"] = a.rename,
-      ["<C-,>y"] = a.copy,
+      ["<C-,>c"] = a.copy,
       ["<C-,>m"] = a.move,
       ["<C-,>o"] = a.open,
 
-      ["<M-/>"] = a.toggle_browser,
+      ["<C-/>"] = a.toggle_browser,
     },
   }
 end
@@ -19,13 +19,14 @@ local function opts()
     theme = "ivy",
 
     collapse_dir = true,
+    depth = false,
 
     git_status = false,
     dir_icon = I.folder.closed:sub(1, -2),
 
     prompt_path = true,
 
-    mappings = mappings(),
+    mappings = keymaps(),
   }
 end
 
@@ -59,8 +60,8 @@ local keys = {
   { "<leader>t\\", open_buffer, desc = "[TFB] Open buffer path" },
   { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD"        },
 
-  { "<leader>f/",  open_cwd,    desc = "[TFB] Open $CWD"        },
   { "<leader>f.",  open_buffer, desc = "[TFB] Open buffer path" },
+  { "<leader>f/",  open_cwd,    desc = "[TFB] Open $CWD"        },
 }
 
 return {

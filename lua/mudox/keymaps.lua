@@ -25,7 +25,11 @@ local zjk = {
 }
 K.nmap("zj", X.dirop.wrap(zjk, "next"), "Goto next fold start")
 K.nmap("zk", X.dirop.wrap(zjk, "prev"), "Goto prev fold end")
+
 K.nmap("z<Space>", "zMzA", { remap = true })
+
+K.nmap("<C-S-,>", "zm", { remap = true })
+K.nmap("<C-S-.>", "zr", { remap = true })
 
 -- K.nmap("zn", function()
 --   vim.opt_local.foldenable = false
@@ -68,11 +72,11 @@ K.nmap(";q", "q", { desc = "macro" })
 -- Digraph
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
--- Terminal
-K.tmap("<C-h>", "<Cmd>wincmd h<Cr>")
-K.tmap("<C-j>", "<Cmd>wincmd j<Cr>")
-K.tmap("<C-k>", "<Cmd>wincmd k<Cr>")
-K.tmap("<C-l>", "<Cmd>wincmd l<Cr>")
+-- Window jump
+K.map({ "n", "t" }, "<C-h>", K.c("wincmd h"))
+K.map({ "n", "t" }, "<C-j>", K.c("wincmd j"))
+K.map({ "n", "t" }, "<C-k>", K.c("wincmd k"))
+K.map({ "n", "t" }, "<C-l>", K.c("wincmd l"))
 
 -- Profiling
 K.nmap("<leader>ps", function()

@@ -1,6 +1,8 @@
 -- stylua: ignore
 local M = {
+  { "",           "builtin",                   "All telescope pickers",     },
   { ":",          "builtin",                   "All telescope pickers",     },
+
   { ".",          "resume",                    "Resume telescope",          },
 
   -- files
@@ -36,6 +38,7 @@ local M = {
 
   -- grep
   { "/",          "live_grep",                 "Live grep",                 },
+  { ",s ✓",       "live_grep",                 "Live grep",                 },
   { "w",          "grep_string",               "Grep <cword> under cursor", },
 
   -- git

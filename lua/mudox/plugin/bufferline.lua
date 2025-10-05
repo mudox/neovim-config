@@ -91,20 +91,20 @@ end
 
 -- stylua: ignore
 local keys = {
-  -- { "<M-o> ✓",      "Pick", "Pick", },
-  { "<leader>fp ✓", "Pick", "Pick", },
+  { "<M-,> ✓",      "Pick",                 "Pick",           },
+  { "<leader>fp ✓", "Pick",                 "Pick",           },
 
   -- close buffer
-  { "x",       "PickClose",            "Pick & close",   },
-  { "<",       "CloseLeft",            "Close left",     },
-  { ">",       "CloseRight",           "Close right",    },
-  { "o",       "CloseOthers",          "Close other",    },
-  { "O",       "GroupClose ungrouped", "Close unpinned", },
+  { "x",            "PickClose",            "Pick & close",   },
+  { "<",            "CloseLeft",            "Close left",     },
+  { ">",            "CloseRight",           "Close right",    },
+  { "o",            "CloseOthers",          "Close other",    },
+  { "O",            "GroupClose ungrouped", "Close unpinned", },
 
-  { "-",       "TogglePin",            "Pin",            },
+  { "-",            "TogglePin",            "Pin",            },
 
-  { "L ✓",     "CycleNext",            "Cycle next",     },
-  { "H ✓",     "CyclePrev",            "Cycle previous", },
+  { "L ✓",          "CycleNext",            "Cycle next",     },
+  { "H ✓",          "CyclePrev",            "Cycle previous", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = "<leader>b",

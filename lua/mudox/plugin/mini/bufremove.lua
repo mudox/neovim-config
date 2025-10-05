@@ -17,7 +17,7 @@ local keys = {
 }
 
 return {
-  config = function()
+  setup = function()
     require("mini.bufremove").setup {}
   end,
   keys = keys,

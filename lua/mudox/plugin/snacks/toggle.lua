@@ -122,4 +122,9 @@ return function()
     get = diagnostic.get,
     set = diagnostic.set,
   }):map(k"d")
+
+  -- profiler
+  t.profiler():map(k"p")
+  -- profiler highlights
+  t.profiler_highlights():map(k"P")
 end

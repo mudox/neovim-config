@@ -75,11 +75,10 @@ local function setup_keymaps(_, bufnr)
 
     -- View
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
-    { "yol", toggle_virtual_lines,            desc = "Lsp Lines"                   },
     { "grq", vim.diagnostic.setloclist,       desc = "[Diagnostic] Set loclist"    },
 
     -- Toggle
-    { "yod", toggle,                          desc = "[Diagnostic] Toggle"         },
+    -- see snacks/toggle.lua
   }
 
   require("which-key").add(keys, { buffer = bufnr })

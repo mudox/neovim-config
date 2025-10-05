@@ -1,8 +1,8 @@
 local arg = "leetcode"
 
 return {
-  -- "kawre/leetcode.nvim",
-  dir = "~/Git/neovim-plugins/leetcode.nvim", -- HACK: improve UI
+  "kawre/leetcode.nvim",
+  -- dir = "~/Git/neovim-plugins/leetcode.nvim", -- HACK: improve UI
   dependencies = {
     "telescope.nvim",
     "plenary.nvim",

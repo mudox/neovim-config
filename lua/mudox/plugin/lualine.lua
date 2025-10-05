@@ -45,7 +45,7 @@ local statusline = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  -- event = "UIEnter", -- auto loaded by alpha.nvim as a dependency
+  event = "UIEnter", -- auto loaded by alpha.nvim as a dependency
   opts = {
     options = options,
     sections = statusline,

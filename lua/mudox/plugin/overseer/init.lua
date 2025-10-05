@@ -92,6 +92,7 @@ end
 
 return {
   "stevearc/overseer.nvim",
+  branch = "stevearc-rewrite",
 
   cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo", "OverseerBuild" },
   keys = r("keymaps"),

@@ -1,25 +1,30 @@
 -- stylua: ignore
 local formatters_by_ft = {
-  lua        = { "stylua"          },
+  lua             = { "stylua"          },
 
-  python     = { "ruff"            },
+  python          = { "ruff"            },
 
-  rust       = { "rustfmt"         },
+  rust            = { "rustfmt"         },
 
-  json       = { "biome"           },
+  json            = { "biome"           },
 
-  javascript = { "biome"           },
-  typescript = { "biome"           },
+  javascript      = { "biome"           },
+  javascriptreact = { "biome"           },
+  typescript      = { "biome"           },
+  typescriptreact = { "biome"           },
 
-  sh         = { "shfmt"           },
-  bash       = { "shfmt"           },
-  zsh        = { "shfmt"           },
+  html            = { "biome"           },
+  css             = { "biome"           },
+
+  sh              = { "shfmt"           },
+  bash            = { "shfmt"           },
+  zsh             = { "shfmt"           },
 
   -- for all filetypes
-  ["*"]      = { "trim_whitespace" },
+  ["*"]           = { "trim_whitespace" },
 
   -- fallback
-  ["_"]      = { "trim_whitespace" },
+  ["_"]           = { "trim_whitespace" },
 }
 
 local slow_fts = {
