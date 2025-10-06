@@ -1,7 +1,7 @@
 -- stylua: ignore
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
-local mods = { "picker", "toggle" }
+local mods = { "picker", "toggle", "dashboard" }
 
 local function init()
   for _, name in ipairs(mods) do
@@ -34,21 +34,6 @@ end
 local function opts()
   local ret = {
     bigfile = {},
-    dashboard = {
-      enabled = true,
-      preset = {
-        header = U.logo(),
-        keys = {
-          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-        },
-      },
-    },
     input = {},
     quickfile = {},
   }
