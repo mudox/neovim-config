@@ -9,6 +9,6 @@ return {
   ft = { "markdown", "quarto", "rmd", "Avante" },
   dependencies = {
     "nvim-treesitter",
-    "nvim-web-devicons",
+    "mini.nvim",
   },
 }

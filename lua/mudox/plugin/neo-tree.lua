@@ -3,7 +3,7 @@ return {
   branch = "v3.x",
   dependencies = {
     "plenary.nvim",
-    "nvim-web-devicons",
+    "mini.nvim",
     "nui.nvim",
   },
   cmd = "Neotree",

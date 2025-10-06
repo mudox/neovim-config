@@ -14,7 +14,7 @@ return {
     vim.g.tmux_navigator_disable_when_zoomed = 1
     vim.g.tmux_navigator_no_mappings = 1
   end,
-  cond = function()
-    return vim.env.TMUX ~= nil
-  end,
+  -- cond = function()
+  --   return vim.env.TMUX ~= nil
+  -- end,
 }

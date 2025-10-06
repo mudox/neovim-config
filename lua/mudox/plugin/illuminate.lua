@@ -1,26 +1,3 @@
--- local denylist = {
---   "aerial",
---   "aerial-nav",
---   "DiffviewFiles",
---   "dirvish",
---   "DressingInput",
---   "dropbar_menu",
---   "fugitive",
---   "harpoon",
---   "help",
---   "lazy",
---   "man",
---   "mason",
---   "NvimTree",
---   "oil",
---   "OverseerForm",
---   "OverseerList",
---   "qf",
---   "TelescopePrompt",
---   "toggleterm",
---   "alpha",
--- }
-
 local allowlist = {
   "c",
   "cpp",

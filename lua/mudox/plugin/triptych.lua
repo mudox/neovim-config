@@ -2,7 +2,7 @@ return {
   "simonmclean/triptych.nvim",
   dependencies = {
     "plenary.nvim",
-    "nvim-web-devicons",
+    "mini.nvim",
 
     "antosha417/nvim-lsp-file-operations", -- optional LSP integration
   },

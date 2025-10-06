@@ -73,10 +73,10 @@ K.nmap(";q", "q", { desc = "macro" })
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
 -- Window jump
-K.map({ "n", "t" }, "<C-h>", K.c("wincmd h"))
-K.map({ "n", "t" }, "<C-j>", K.c("wincmd j"))
-K.map({ "n", "t" }, "<C-k>", K.c("wincmd k"))
-K.map({ "n", "t" }, "<C-l>", K.c("wincmd l"))
+-- K.map({ "n", "t" }, "<C-h>", K.c("wincmd h"))
+-- K.map({ "n", "t" }, "<C-j>", K.c("wincmd j"))
+-- K.map({ "n", "t" }, "<C-k>", K.c("wincmd k"))
+-- K.map({ "n", "t" }, "<C-l>", K.c("wincmd l"))
 
 -- Profiling
 K.nmap("<leader>ps", function()
@@ -97,3 +97,5 @@ end, { desc = "End profiling" })
 -- Clipboard
 K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
+
+K.nmap(";l", ":lua ", { silent = false, desc = ":lua" })

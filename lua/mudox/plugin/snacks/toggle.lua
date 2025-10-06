@@ -27,7 +27,7 @@ local diagnostic = {
 }
 
 -- stylua: ignore
-return function()
+local function _init()
   -- for parameter `key`
   -- + use lowercase for commonly used ones
   -- + use uppercase for less commonly used ones
@@ -107,6 +107,7 @@ return function()
   }):map(k"F")
 
   -- quickfix window
+  -- TODO: move under <leader>w
   t.new({
     id = "quickfix",
     name = "Quickfix",
@@ -128,3 +129,17 @@ return function()
   -- profiler highlights
   t.profiler_highlights():map(k"P")
 end
+
+return {
+  opts = {
+    which_key = true,
+    -- stylua: ignore
+    wk_desc = {
+      enabled  = "󰝥  ",
+      disabled = "󰝦  ",
+    },
+  },
+  init = function()
+    On.very_lazy(_init)
+  end,
+}

@@ -15,7 +15,7 @@ local function logo()
   ╚═╝     ╚═╝  ╚═════╝  ╚═════╝   ╚═════╝  ╚═╝  ╚═╝
   ]]
 
-  local filename = ".ascii-art.txt"
+  local filename = ".nvim-logo.ascii.txt"
   local err, lines = pcall(vim.fn.readfile, filename)
   lines = err and lines or vim.split(default, "\n")
 

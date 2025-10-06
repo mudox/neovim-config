@@ -45,8 +45,8 @@ end
 local keys = {
   -- expand & juamp
   { "<Tab>",      function() require("luasnip").expand_or_jump() end, mode = "i",          desc =  "[LuaSnip] Expand or jump"               },
-  { "<M-l>",      function() require("luasnip").jump(1) end,          mode = { "i", "s" }, desc =  "[LuaSnip] Jump to next placeholder"     },
-  { "<M-h>",      function() require("luasnip").jump(-1) end,         mode = { "i", "s" }, desc =  "[LuaSnip] Jump to previous placeholder" },
+  { "<M-n>",      function() require("luasnip").jump(1) end,          mode = { "i", "s" }, desc =  "[LuaSnip] Jump to next placeholder"     },
+  { "<M-p>",      function() require("luasnip").jump(-1) end,         mode = { "i", "s" }, desc =  "[LuaSnip] Jump to previous placeholder" },
 
   -- choices
   { "<C-e>",      change_choice, expr = true,                         mode = { "i", "s" }, desc =  "[LuaSnip] Change choice"                },
@@ -73,7 +73,7 @@ local function opts(_, o)
   o.region_check_events = "CursorMoved, CursorHold, InsertLeave"
   o.delete_check_events = "TextChanged, InsertLeave"
 
-  o.store_selection_keys = main_key
+  o.store_selection_keys = "<Tab>"
 
   o.ext_opts = {
     [t.choiceNode] = {

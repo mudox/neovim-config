@@ -3,10 +3,9 @@ local function config()
 
   -- stylua: ignore
   lint.linters_by_ft = {
-    lua        = { "selene", "typos" },
+    lua        = { "typos"           },
 
     javascript = { "biomejs"         },
-    -- typescript = { "biomejs"         },
 
     json       = { "biomejs"         },
 
@@ -31,7 +30,7 @@ local function config()
         return
       end
 
-      require("lint").try_lint()
+      require("lint").try_lint(nil, { ignore_errors = true })
     end,
   })
 end

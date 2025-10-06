@@ -9,7 +9,7 @@ return {
     "nui.nvim",
     "nvim-treesitter",
     "nvim-notify",
-    "nvim-web-devicons",
+    "mini.nvim",
   },
   lazy = not (vim.fn.argc() == 1 and vim.fn.argv(0) == arg),
   opts = {

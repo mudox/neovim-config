@@ -6,7 +6,7 @@ return {
     "plenary.nvim",
     "nui.nvim",
     -- optional
-    "nvim-web-devicons", -- or mini.icons
+    "mini.nvim",
     "copilot.lua",
     "markview.nvim",
     "img-clip.nvim",
@@ -14,4 +14,5 @@ return {
   build = "make",
   cmd = "AvanteAsk",
   opts = {},
+  cond = false,
 }

@@ -1,39 +1,64 @@
 -- stylua: ignore
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
+local mods = { "picker", "toggle" }
+
 local function init()
-  On.very_lazy(r("toggle"))
+  for _, name in ipairs(mods) do
+    if r(name).init then
+      r(name).init()
+    end
+  end
 end
 
--- stylua: ignore
-local function k(c) return "<leader>s" .. c
+local function keys()
+  -- stylua: ignore
+  local function k(c) return "<leader>s" .. c end
 
+  -- stylua: ignore
+  local ret = {
+    { k"\\",            function() Snacks.explorer() end,               desc = "File explorer"           },
+    { "<leader>fl",     function() Snacks.explorer() end,               desc = "File explorer"           },
+    -- { "<C-S-p>",        function() Snacks.explorer() end,               desc = "File explorer"           },
+
+    { "<leader>ps",     function() Snacks.profiler.scratch() end,       desc = "Profiler scratch buffer" },
+  }
+
+  for _, name in ipairs(mods) do
+    vim.list_extend(ret, r(name).keys or {})
+  end
+
+  return ret
 end
--- stylua: ignore
-local keys = {
-  -- file
-  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Smart find files"        },
-  { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"        },
-  { k"f",             function() Snacks.picker.files() end,           desc = "Files"                   },
-  { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"                  },
-  { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"               },
 
-  { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"                 },
+local function opts()
+  local ret = {
+    bigfile = {},
+    dashboard = {
+      enabled = true,
+      preset = {
+        header = U.logo(),
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+      },
+    },
+    input = {},
+    quickfile = {},
+  }
 
-  { k"P",             function() Snacks.picker.projects() end,        desc = "Projects"                },
+  for _, name in ipairs(mods) do
+    ret[name] = r(name).opts
+  end
 
-  { k"\\",            function() Snacks.explorer() end,               desc = "File explorer"           },
-  { "<leader>fl",     function() Snacks.explorer() end,               desc = "File explorer"           },
-
-  { ",s",             function() Snacks.picker.grep() end,            desc = "Grep"                    },
-
-  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "Help"                    },
-
-  { k"C",             function() Snacks.picker.command_history() end, desc = "Command history"         },
-  { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history"    },
-
-  { "<leader>ps",     function() Snacks.profiler.scratch() end,       desc = "Profiler scratch buffer" },
-}
+  return ret
+end
 
 return {
   "folke/snacks.nvim",
@@ -41,22 +66,5 @@ return {
   priority = 900,
   keys = keys,
   init = init,
-  opts = function()
-    -- stylua: ignore
-    return {
-      bigfile      = {},
-      dashboard    = { enabled = not C.alpha },
-      input        = {},
-      picker       = r"picker",
-      quickfile    = {},
-
-      toggle       = {
-        which_key  = true,
-        wk_desc    = {
-          enabled  = "󰝥  ",
-          disabled = "󰝦  ",
-        },
-      },
-    }
-  end,
+  opts = opts,
 }

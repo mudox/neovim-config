@@ -161,7 +161,7 @@ local keys = {
 
 return {
   "kyazdani42/nvim-tree.lua",
-  dependencies = "nvim-web-devicons",
+  dependencies = "mini.nvim",
   keys = keys,
   opts = opts,
 }

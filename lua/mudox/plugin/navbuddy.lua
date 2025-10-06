@@ -8,7 +8,7 @@ return {
     "nvim-navic",
     "telescope.nvim",
   },
-  event = { "BufRead", "BufNewFile" },
+  -- event = { "BufRead", "BufNewFile" },
   cmd = "Navbuddy",
   keys = {
     { "<C-;>", "<Cmd>Navbuddy<Cr>", desc = "Navbuddy" },
