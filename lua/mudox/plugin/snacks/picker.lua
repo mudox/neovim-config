@@ -3,26 +3,27 @@ local function k(c) return "<leader>s" .. c end
 
 -- stylua: ignore
 local keys = {
-  { k"<Space>",   function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { ",f",         function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { "<Space><Space>",         function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { k"f",         function() Snacks.picker.files() end,           desc = "Files"                },
-  { k"g",         function() Snacks.picker.git_files() end,       desc = "Git files"            },
-  { k"r",         function() Snacks.picker.recent() end,          desc = "Recent"               },
+  { k":",             function() Snacks.picker.pickers() end,         desc = "Pickers"              },
 
-  { k"b",         function() Snacks.picker.buffers() end,         desc = "Buffers"              },
+  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Smart find files"     },
+  { ",f",             function() Snacks.picker.smart() end,           desc = "Smart find files"     },
+  { k"f",             function() Snacks.picker.files() end,           desc = "Files"                },
+  { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"            },
+  { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"               },
+
+  { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"              },
   -- { "<C-S-o>",    function() Snacks.picker.buffers() end,         desc = "Buffers"              },
 
-  { k"P",         function() Snacks.picker.projects() end,        desc = "Projects"             },
+  { k"P",             function() Snacks.picker.projects() end,        desc = "Projects"             },
 
-  { ",S",         function() Snacks.picker.grep() end,            desc = "Grep"                 },
+  { ",S",             function() Snacks.picker.grep() end,            desc = "Grep"                 },
 
-  { ",h",         function() Snacks.picker.help() end,            desc = "Help"                 },
+  { ",h",             function() Snacks.picker.help() end,            desc = "Help"                 },
 
-  { k"C",         function() Snacks.picker.command_history() end, desc = "Command history"      },
-  { k"n",         function() Snacks.picker.notifications() end,   desc = "Notification history" },
+  { k"C",             function() Snacks.picker.command_history() end, desc = "Command history"      },
+  { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history" },
 
-  { k"p",         function() Snacks.picker.lazy() end,            desc = "Plugins"              },
+  { k"p",             function() Snacks.picker.lazy() end,            desc = "Plugins"              },
 }
 
 local opts = {

@@ -13,7 +13,7 @@ local formatters_by_ft = {
   typescript      = { "biome"           },
   typescriptreact = { "biome"           },
 
-  html            = { "biome"           },
+  html            = { "biome", "injected" },
   css             = { "biome"           },
 
   sh              = { "shfmt"           },

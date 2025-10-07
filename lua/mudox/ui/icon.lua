@@ -2,7 +2,7 @@
 
 -- Powerline 〈
 
--- stylua: ignore start
+-- stylua: ignore
 local powerline = {
   t1 = {
     heavy_left  = "",
@@ -23,7 +23,6 @@ local powerline = {
     light_right = "",
   },
 }
--- stylua: ignore end
 
 powerline.current = powerline.t1
 
