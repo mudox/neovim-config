@@ -37,7 +37,7 @@ local M = {
 
   -- grep
   { "/",          "live_grep",                 "Live grep",                 },
-  { ",s ✓",       "live_grep",                 "Live grep",                 },
+  { ",G ✓",       "live_grep",                 "[Telescope] Live grep",     },
   { "w",          "grep_string",               "Grep <cword> under cursor", },
 
   -- git

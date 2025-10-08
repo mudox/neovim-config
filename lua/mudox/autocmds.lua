@@ -133,6 +133,6 @@ On("InsertLeave", {
 
 -- Disable folding in insert mode 〉
 
-On("TermEnter", function()
-  vim.cmd.startinsert { bang = true }
+On.very_lazy(function()
+  require("mudox.lab.terminal")
 end)

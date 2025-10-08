@@ -35,11 +35,8 @@ function M.setup()
   K.map({ "i", "c" }, "<C-S-]>", next)
   K.map({ "i", "c" }, "<C-S-[>", prev)
 
-  K.nmap("<C-S-]>", M.nav_next, { desc = "DirOp forwards" })
-  K.nmap("<C-S-[>", M.nav_prev, { desc = "DirOp backwards" })
-
-  -- swizzle_nvim_set_keymap()
-  -- swizzle_nvim_buf_set_keymap()
+  K.nmap("L", M.nav_next, { desc = "DirOp forwards" })
+  K.nmap("H", M.nav_prev, { desc = "DirOp backwards" })
 end
 
 ---add a directional operation pair

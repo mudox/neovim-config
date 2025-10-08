@@ -4,6 +4,7 @@ local o = vim.o
 local opt = vim.opt
 
 o.exrc = true
+o.shell = "/opt/homebrew/bin/zsh -l"
 
 -- UI 〈
 

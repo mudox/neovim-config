@@ -1,7 +1,7 @@
 -- stylua: ignore
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
-local mods = { "picker", "toggle", "dashboard" }
+local mods = { "picker", "toggle", "dashboard", "scratch" }
 
 local function init()
   for _, name in ipairs(mods) do
@@ -17,11 +17,12 @@ local function keys()
 
   -- stylua: ignore
   local ret = {
-    { k"\\",            function() Snacks.explorer() end,               desc = "File explorer"           },
-    { "<leader>fl",     function() Snacks.explorer() end,               desc = "File explorer"           },
+    { k"\\",        function() Snacks.explorer() end,         desc = "File explorer"           },
+    { "<leader>fl", function() Snacks.explorer() end,         desc = "File explorer"           },
     -- { "<C-S-p>",        function() Snacks.explorer() end,               desc = "File explorer"           },
 
-    { "<leader>ps",     function() Snacks.profiler.scratch() end,       desc = "Profiler scratch buffer" },
+    { "<leader>ps", function() Snacks.profiler.scratch() end, desc = "Profiler scratch buffer" },
+
   }
 
   for _, name in ipairs(mods) do
@@ -33,6 +34,9 @@ end
 
 local function opts()
   local ret = {
+    styles = r("styles"),
+
+    scratch = {},
     bigfile = {},
     input = {},
     quickfile = {},

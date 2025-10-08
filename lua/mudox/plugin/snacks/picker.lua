@@ -6,21 +6,19 @@ local keys = {
   { k":",             function() Snacks.picker.pickers() end,         desc = "Pickers"              },
   { k".",             function() Snacks.picker.resume() end,          desc = "Resume"               },
 
-  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { ",f",             function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"     },
+  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Files"                },
+  { ",f",             function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
+  -- { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"     },
   { k"f",             function() Snacks.picker.files() end,           desc = "Files"                },
   { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"            },
   { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"               },
 
   { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"              },
-  -- { "<C-S-o>",    function() Snacks.picker.buffers() end,         desc = "Buffers"              },
+  { "<C-S-o>",        function() Snacks.picker.buffers() end,         desc = "Buffers"              },
 
-  { k"P",             function() Snacks.picker.projects() end,        desc = "Projects"             },
+  { ",g",             function() Snacks.picker.grep() end,            desc = "[Snacks] Grep"        },
 
-  { ",S",             function() Snacks.picker.grep() end,            desc = "Grep"                 },
-
-  { ",h",             function() Snacks.picker.help() end,            desc = "Help"                 },
+  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "Help"                 },
 
   { k"C",             function() Snacks.picker.command_history() end, desc = "Command history"      },
   { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history" },

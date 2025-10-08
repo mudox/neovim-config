@@ -55,8 +55,6 @@ K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")', { desc = "<C-w>" })
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
 K.nmap("g,", "g,zv", { remap = true })
-K.nmap("<C-S-j>", "g;", { remap = true })
-K.nmap("<C-S-k>", "g,", { remap = true })
 
 -- Insert mode keymaps
 K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })

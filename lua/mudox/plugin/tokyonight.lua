@@ -198,24 +198,21 @@ local function multicursor(hl, _)
   hl.MultiCursorDisabledVisual = { bg = "#664422" }
 end
 
-local function bufferline(hl, _)
-  -- transparent tabline backdrop
+local function bufferline(hl, c)
+  local on = c.bg_dark1
+  local off = c.bg_dark
 
-  hl.BufferLineFill = { bg = "bg" }
+  hl.TabLine = { bg = "bg" }
+  hl.TabLineSel = { bg = on }
 
-  hl.BufferLineSeparator = { bg = "bg" }
+  hl.BufferLineFill = { bg = "bg" } -- transparent
 
-  -- hl.BufferLineBufferVisible = { fg = "bg", bg = "bg" }
-  -- hl.BufferLineHint = { fg = "bg", bg = "bg" }
+  hl.BufferLineSeparator = { bg = "bg" } -- hide
+  hl.BufferLineTabSeparator = { bg = "bg" } -- hide
 
-  -- hl.BufferLineGroupSeparator = { bg = "bg" }
-  -- hl.BufferLineOffsetSeparator = { bg = "bg" }
+  hl.BufferLineIndicatorSelected = { bg = "bg" } -- hide
 
-  hl.BufferLineTabSeparator = { bg = "bg" }
-  -- hl.BufferLineTabSeparatorSelected = { bg = "bg" }
-
-  -- hl.BufferLineIndicatorVisible = { fg = "bg", bg = "bg" }
-  hl.BufferLineIndicatorSelected = { bg = "bg" }
+  hl.BufferLineTabSelected = { fg = "white", bg = "bg" }
 end
 
 local function win_separator(hl, c)
@@ -232,12 +229,15 @@ local function tiny_inline_diagnostic(hl, _)
   hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
 end
 
-local function float_win(hl, _)
-  hl.MdxFloatFrameNormal = { link = "Normal" }
-  hl.MdxFloatFrameBorder = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
+local function mudox(hl, c)
+  hl._F = { link = "Normal" }
+  hl._FBorder = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
 
-  hl.MdxFloatBlockNormal = { bg = "bg" }
-  hl.MdxFloatBlockBorder = { bg = "bg" }
+  hl._B = { bg = c.bg_dark }
+  hl._BBorder = { fg = c.bg_dark, bg = c.bg_dark }
+
+  hl._term_winbar_item = { fg = "grey", bg = "#043c38" }
+  hl._term_winbar_item_selected = { fg = "white", bg = "#096a62" }
 end
 
 local function on_highlights(...)
@@ -249,7 +249,7 @@ local function on_highlights(...)
   -- statusline(...)
   bufferline(...)
   diff(...)
-  float_win(...)
+  mudox(...)
   folding(...)
   italic_keyword(...)
   lightbulb(...)

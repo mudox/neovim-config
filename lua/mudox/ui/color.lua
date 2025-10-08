@@ -44,4 +44,20 @@ local sign = {
 return {
   rainbow = rainbow,
   sign = sign,
+
+  -- TODO: uniform floating window colors
+  floating = {
+    block = {
+      title = {
+        fg = "",
+        bg = "",
+      },
+
+      bg1 = "",
+      bg2 = "",
+      bg3 = "",
+
+      winhl = "NormalFloat:_B,FloatBorder:_BBorder",
+    },
+  },
 }

@@ -6,9 +6,9 @@ return {
   r "telescope",
 
   r "file-browser",
-  r "frecency",
+  -- r "frecency",
   -- r "heading",
-  r "help-grep",
+  -- r "help-grep",
   r "lazy",
   -- r "live-grep-args",
   -- r "luasnip",
