@@ -4,9 +4,11 @@ local function k(c) return "<leader>s" .. c end
 -- stylua: ignore
 local keys = {
   { k":",             function() Snacks.picker.pickers() end,         desc = "Pickers"              },
+  { k".",             function() Snacks.picker.resume() end,          desc = "Resume"               },
 
   { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Smart find files"     },
   { ",f",             function() Snacks.picker.smart() end,           desc = "Smart find files"     },
+  { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"     },
   { k"f",             function() Snacks.picker.files() end,           desc = "Files"                },
   { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"            },
   { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"               },
@@ -24,10 +26,13 @@ local keys = {
   { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history" },
 
   { k"p",             function() Snacks.picker.lazy() end,            desc = "Plugins"              },
+
+  { "<C-k>i",         function() Snacks.picker.icons() end,           desc = "[Snacks] Icons",      mode = 'i' },
+  { "<C-k>y",         function() Snacks.picker.yanky() end,           desc = "[Snacks] Yanky",      mode = 'i' },
 }
 
 local opts = {
-  ui_select = true,
+  ui_select = false,
 
   layout = {
     -- The default layout for "telescopy" pickers, e.g. `files`, `commands`, ...
@@ -35,10 +40,11 @@ local opts = {
     preset = function()
       return vim.o.columns >= 120 and "telescope" or "vertical"
     end,
+
     layouts = {
       telescope = {
         -- Copy from https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#telescope
-        reverse = false,
+        reverse = true,
         layout = {
           box = "horizontal",
           backdrop = false,
@@ -76,6 +82,7 @@ local opts = {
   sources = {
     files = {},
     explorer = {
+      diagnostics = false,
       layout = {
         layout = {
           position = "right",

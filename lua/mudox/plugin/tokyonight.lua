@@ -1,3 +1,8 @@
+local picker_input = "#2D3149"
+local picker_title = "#FF966C"
+-- picker results list
+-- picker preview
+
 local function telescope(hl, c)
   hl.TelescopeNormal = {
     fg = c.fg_dark,
@@ -8,18 +13,17 @@ local function telescope(hl, c)
     bg = c.bg_dark1,
   }
 
-  -- prompt
-  local prompt = "#2D3149"
-  hl.TelescopePromptNormal = {
-    bg = prompt,
-  }
+  -- input
   hl.TelescopePromptBorder = {
-    bg = prompt,
-    fg = prompt,
+    bg = picker_input,
+    fg = picker_input,
   }
   hl.TelescopePromptTitle = {
-    bg = "#FF966C",
-    fg = prompt,
+    fg = picker_input,
+    bg = picker_title,
+  }
+  hl.TelescopePromptNormal = {
+    bg = picker_input,
   }
 
   -- preview
@@ -27,13 +31,13 @@ local function telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
-  hl.TelescopePreviewNormal = {
-    bg = c.bg_dark,
-    fg = c.fg_dark,
-  }
   hl.TelescopePreviewBorder = {
     bg = c.bg_dark,
     fg = c.bg_dark,
+  }
+  hl.TelescopePreviewNormal = {
+    bg = c.bg_dark,
+    fg = c.fg_dark,
   }
 
   -- results
@@ -41,32 +45,31 @@ local function telescope(hl, c)
     bg = c.bg_dark1,
     fg = c.bg_dark1,
   }
-  hl.TelescoeResultsNormal = {
-    bg = c.bg_dark1,
-    fg = c.fg_dark1,
-  }
   hl.TelescoeResultsBorder = {
     bg = c.bg_dark1,
     fg = c.bg_dark1,
+  }
+  hl.TelescoeResultsNormal = {
+    bg = c.bg_dark1,
+    fg = c.fg_dark1,
   }
 end
 
 local function snacks(hl, c)
   -- input
-  local input = "#2D3149"
   hl.SnacksPickerInput = {
-    bg = input,
+    bg = picker_input,
   }
   hl.SnacksPickerInputBorder = {
-    bg = input,
-    fg = input,
+    bg = picker_input,
+    fg = picker_input,
   }
   hl.SnacksPickerInputTitle = {
-    bg = "#FF966C",
-    fg = input,
+    fg = picker_input,
+    bg = picker_title,
   }
 
-  -- list
+  -- preview
   hl.SnacksPickerPreview = {
     bg = c.bg_dark,
   }
@@ -90,6 +93,39 @@ local function snacks(hl, c)
   hl.SnacksPickerListTitle = {
     bg = c.bg_dark1,
     fg = c.bg_dark1,
+  }
+end
+
+local function fzflua(hl, c)
+  -- input
+
+  -- preview
+  hl.FzfLuaPreviewNormal = {
+    bg = c.bg_dark1,
+  }
+  hl.FzfLuaPreviewBorder = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+  hl.FzfLuaPreviewTitle = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+
+  -- main
+  hl.FzfLuaNormal = {
+    bg = c.bg_dark,
+  }
+  hl.FzfLuaFzfNormal = {
+    bg = c.bg_dark,
+  }
+  hl.FzfLuaBorder = {
+    bg = c.bg_dark,
+    fg = c.bg_dark,
+  }
+  hl.FzfLuaTitle = {
+    fg = picker_input,
+    bg = picker_title,
   }
 end
 
@@ -192,11 +228,6 @@ local function italic_keyword(hl, _)
   end
 end
 
-local function statusline(hl, _)
-  hl.StatusLine.bg = "bg"
-  hl.StatusLineNC.bg = "bg"
-end
-
 local function tiny_inline_diagnostic(hl, _)
   hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
 end
@@ -212,24 +243,23 @@ end
 local function on_highlights(...)
   local hl, _ = ...
 
-  float_win(...)
-
-  telescope(...)
-  snacks(...)
-
+  fzflua(...)
   -- diagnostic(...)
-  folding(...)
-  diff(...)
-  winbar(...)
   -- notify(...)
-  trouble(...)
+  -- statusline(...)
+  bufferline(...)
+  diff(...)
+  float_win(...)
+  folding(...)
+  italic_keyword(...)
   lightbulb(...)
   multicursor(...)
-  bufferline(...)
-  win_separator(...)
-  italic_keyword(...)
-  -- statusline(...)
+  snacks(...)
+  telescope(...)
   tiny_inline_diagnostic(...)
+  trouble(...)
+  win_separator(...)
+  winbar(...)
 
   -- alalcritty
   if U.in_alacritty() then

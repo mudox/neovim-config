@@ -5,7 +5,7 @@ local options = {
 
   icons_enabled = true,
 
-  theme = "molokai",
+  theme = "mudox", -- neovim-config/lua/lualine/themes/mudox.lua
 
   component_separators = {
     left = sep.light_left,

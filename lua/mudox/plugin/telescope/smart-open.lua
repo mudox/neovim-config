@@ -18,14 +18,13 @@ local config = function()
 end
 
 local keys = {
-  { "<Space><Space>", require("mudox.plugin.telescope.util").smart_open, desc = "[Telescope] Smart open" },
+  -- { "<Space><Space>", require("mudox.plugin.telescope.util").smart_open, desc = "[Telescope] Smart open" },
 }
 
 return {
   "danielfalk/smart-open.nvim",
   dependencies = {
     "kkharji/sqlite.lua",
-    "telescope.nvim",
     "telescope-fzf-native.nvim",
   },
   keys = keys,
