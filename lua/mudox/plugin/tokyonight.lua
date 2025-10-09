@@ -236,8 +236,13 @@ local function mudox(hl, c)
   hl._B = { bg = c.bg_dark }
   hl._BBorder = { fg = c.bg_dark, bg = c.bg_dark }
 
-  hl._term_winbar_item = { fg = "grey", bg = "#043c38" }
-  hl._term_winbar_item_selected = { fg = "white", bg = "#096a62" }
+  -- terminal
+  -- stylua: ignore start
+  hl._term_winbar_item                   = { fg = "grey",  bg = "#043c38" }
+  hl._term_winbar_item_reverted          = { fg = "#043c38" }
+  hl._term_winbar_item_selected          = { fg = "white", bg = "#096a62" }
+  hl._term_winbar_item_selected_reverted = { fg = "#096a62" }
+  -- stylua: ignore end
 end
 
 local function on_highlights(...)

@@ -1,6 +1,0 @@
-{
-  "catppuccin": { "branch": "main", "commit": "be1e5e6308bb9d016bf5c1565e0f1d5e46400d7a" },
-  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
-  "tokyonight.nvim": { "branch": "main", "commit": "057ef5d260c1931f1dffd0f052c685dcd14100a3" },
-  "vim-tmux-navigator": { "branch": "master", "commit": "0ecda542c0bd3ea26444044c7f03e469a6bb0bff" }
-}

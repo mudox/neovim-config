@@ -43,8 +43,10 @@ local function update_winbar()
     .iter(bufnrs)
     :map(function(bufnr)
       local title = get_title(vim.api.nvim_buf_get_name(bufnr))
-      local group = bufnr == current_bufnr and "_term_winbar_item_selected" or "_term_winbar_item"
-      return ("%%#%s# %s "):format(group, title)
+      local group1 = bufnr == current_bufnr and "_term_winbar_item_selected" or "_term_winbar_item"
+      local group2 = bufnr == current_bufnr and "_term_winbar_item_selected_reverted" or "_term_winbar_item_reverted"
+      local r, l = ("%%#%s#"):format(group2), ("%%#%s#"):format(group2)
+      return r .. ("%%#%s#  %s  "):format(group1, title) .. l
     end)
     :totable()
 
@@ -105,7 +107,7 @@ local function open()
     anchor = "SW",
     row = total_lines - 5,
     col = margin,
-    zindex = 50,
+    zindex = 500,
 
     style = "minimal",
     border = "single",
@@ -126,8 +128,9 @@ local function open()
 end
 
 local function close()
-  if is_term_win() then
-    vim.cmd.wincmd("c")
+  local win = get_term_win()
+  if win then
+    vim.api.nvim_win_close(win, true)
   end
 end
 
@@ -141,14 +144,7 @@ end
 
 ---@param dir "next" | "prev"
 local function nav(dir)
-  if not is_term_win() then
-    if dir == "next" then
-      vim.cmd.bnext(vim.v.count1)
-    else
-      vim.cmd.bprev(vim.v.count1)
-    end
-    return
-  end
+  assert(is_term_win())
 
   local bufs = get_term_bufnrs()
   assert(bufs and #bufs > 0)
@@ -164,19 +160,81 @@ local function nav(dir)
   end
 end
 
-vim.api.nvim_create_user_command("ScratchFloatTerm", toggle, {})
+local function delete()
+  assert(is_term_win())
+  local bufs = get_term_bufnrs()
 
--- stylua: ignore start
-K.map({"n", "t"}, "<C-S-j>", toggle, "[Term] Toggle")
+  if #bufs == 1 then
+    vim.api.nvim_buf_delete(0, { force = true })
+  else
+    local buf = vim.api.nvim_get_current_buf()
+    nav("prev")
+    vim.api.nvim_buf_delete(buf, { force = true })
+    update_winbar()
+  end
+end
 
-K.map({"n", "t"}, "<C-S-]>",  function() nav("next") end, "[Term] Next")
-K.map({"n", "t"}, "<C-S-[>",  function() nav("prev") end, "[Term] Prev")
+-- stylua: ignore
+local function setup_global_keymaps()
+  require("which-key").add {
+    {
+      mode = { "n", "t", "i", "v" },
+      { "<C-S-j>", toggle, desc = "[Term] Toggle" },
+    },
+    {
+      mode = 't',
+      { "<C-S-]>",  function() nav("next") end, desc = "[Term] Next"    },
+      { "<C-S-[>",  function() nav("prev") end, desc = "[Term] Prev"    },
 
-K.tcmd("<C-k>", "wincmd p", "[Term] Leave")
--- stylua: ignore end
+      { "<C-S-Cr>", K.c'terminal',              desc = "[Term] New"     },
+      { "<C-S-±>",  delete,                     desc = "[Term] Delete"  },
+    }
+  }
+end
+
+-- stylua: ignore
+local function setup_buffer_keymaps()
+  require('which-key').add {
+    mode = 'n', buffer = true,
+    {
+      { "<C-S-]>",  function() nav("next") end, desc = "[Term] Next"    },
+      { "<C-S-[>",  function() nav("prev") end, desc = "[Term] Prev"    },
+
+      { "<C-S-Cr>", K.c'terminal',              desc = "[Term] New"     },
+      { "<C-S-±>",  delete,                     desc = "[Term] Delete"  },
+    }
+  }
+end
+
+local function preceate()
+  vim.cmd("tabnew")
+
+  vim.cmd.terminal("zsh")
+  setup_buffer_keymaps()
+  vim.bo.buflisted = false
+  vim.bo.swapfile = false
+
+  vim.cmd.tabclose()
+end
 
 On("TermOpen", function()
   vim.bo.buflisted = false
   update_winbar()
+  setup_buffer_keymaps()
 end)
+
 On("BufEnter", update_winbar)
+
+On("WinEnter", function()
+  if not is_term_win() then
+    close()
+  end
+end)
+
+setup_global_keymaps()
+-- after autcmds setup
+preceate()
+
+return {
+  close = close,
+}

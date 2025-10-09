@@ -1,6 +1,0 @@
-ruleDirs:
-- .sg/rules
-testConfigs:
-- testDir: .sg/rule-tests
-utilDirs:
-- .sg/utils

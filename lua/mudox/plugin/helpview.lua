@@ -25,7 +25,7 @@ local opts = {
 
 return {
   "OXY2DEV/helpview.nvim",
-  dependencies = "nvim-treesitter/nvim-treesitter",
+  dependencies = "nvim-treesitter",
   event = "VeryLazy",
   opts = opts,
 }

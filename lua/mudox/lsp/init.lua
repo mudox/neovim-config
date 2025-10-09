@@ -2,7 +2,8 @@ On.very_lazy(function()
   -- stylua: ignore
   vim.lsp.enable {
     -- lua
-    "emmylua_ls",
+    "lua_ls",
+    -- "emmylua_ls",
 
     -- data format
     "jsonls",

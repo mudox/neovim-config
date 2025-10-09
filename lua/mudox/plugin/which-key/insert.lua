@@ -30,6 +30,4 @@ return {
   { "<C-,>",    end_with(","),        desc = "End with , + NL" },
   { "<M-,>",    end_with(",", false), desc = "End with ,"      },
   { ",,",       end_with(",", false), desc = "End with ,"      },
-
-  { "<C-S-Cr>", end_with(""),         desc = "Newline"       },
 }

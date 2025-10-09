@@ -6,7 +6,7 @@ local opts = {
         keys = {
           { icon = "", key = "f", desc = "Find",    action  = ":lua Snacks.dashboard.pick('files')"     },
           { icon = "", key = "r", desc = "Recent",  action  = ":lua Snacks.dashboard.pick('oldfiles')"  },
-          { icon = "", key = "n", desc = "New",     action  = ":ene | startinsert"                      },
+          { icon = "", key = "q", desc = "New",     action  = ":ene | startinsert"                      },
           { icon = "", key = "s", desc = "Grep",    action  = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "", key = "R", desc = "Restore", section = "session"                                 },
           { icon = "", key = "v", desc = "Plugin",  action  = ":Lazy"                                   },

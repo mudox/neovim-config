@@ -103,8 +103,8 @@ local keys = {
 
   { "-",            "TogglePin",            "Pin",            },
 
-  { "L ✓",          "CycleNext",            "Cycle next",     },
-  { "H ✓",          "CyclePrev",            "Cycle previous", },
+  { "<C-S-]> ✓",    "CycleNext",            "Cycle next",     },
+  { "<C-S-[> ✓",    "CyclePrev",            "Cycle previous", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = "<leader>b",
