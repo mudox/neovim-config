@@ -1,26 +1,70 @@
-local wvar = "mdx_float_term"
+--- b:mdx_term_title
+--- w:mdx_float_term
 
--- stylua: ignore
----param win number?
-local function is_term_win(win)
-  return pcall(vim.api.nvim_win_get_var, win or 0, wvar)
+local M = {}
+
+local win_flag_varname = "mdx_float_term"
+local title_varname = "mdx_term_title"
+
+function M.new()
+  assert(M.is_term_buf(0), "should be in term buffer")
+  vim.cmd.terminal()
 end
 
-local function get_title(name)
-  if name:match("^term://") then
-    local cmd = name:match(":([^:]+)$")
-    if cmd then
-      cmd = vim.fn.fnamemodify(cmd, ":t")
-      return cmd
-    else
-      return "term"
+function M.rename()
+  assert(M.is_term_buf(0), "should be in term buffer")
+
+  local buf = vim.api.nvim_get_current_buf()
+  vim.ui.input({ prompt = "New Name: " }, function(name)
+    if name and name ~= "" then
+      vim.api.nvim_buf_set_var(buf, title_varname, name)
+      vim.cmd.redrawstatus { bang = true }
     end
+  end)
+end
+
+function M.setup_term_buffer()
+  vim.wo.winbar = ("%%!v:lua.mdx_term_winbar_render(%d)"):format(vim.api.nvim_get_current_win())
+  vim.bo.buflisted = false
+  vim.bo.swapfile = false
+  M.setup_buffer_keymaps()
+
+  if M.is_floating_term_win(0) then
+    vim.wo.winhl = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border,WinBar:mdx_float_term_winbar"
   else
-    return name
+    vim.wo.winhl = "WinBar:mdx_term_winbar"
   end
 end
 
-local function get_term_bufnrs()
+---param win number 0 for current window
+function M.is_floating_term_win(win)
+  return pcall(vim.api.nvim_win_get_var, win, win_flag_varname)
+end
+
+---param win number 0 for current buffer
+function M.is_term_buf(buf)
+  return vim.bo[buf].buftype == "terminal"
+end
+
+function M.get_title(buf)
+  assert(M.is_term_buf(buf))
+
+  local ok, title = pcall(vim.api.nvim_buf_get_var, buf, title_varname)
+  if ok then
+    assert(title and title ~= "")
+    return title
+  end
+
+  local bufname = vim.api.nvim_buf_get_name(buf)
+  assert(bufname:match("^term://"))
+  local cmd = bufname:match("([^:/\\]+)$") -- remove term://{path}//pid:{bin_path}
+  assert(cmd and cmd ~= "")
+  local bin = cmd:match("^[^ ]+") -- remove args
+  -- bin = vim.fn.fnamemodify(bin, ":t")
+  return bin
+end
+
+function M.list_term_bufs()
   return vim
     .iter(vim.api.nvim_list_bufs())
     :filter(function(bufnr)
@@ -29,77 +73,43 @@ local function get_term_bufnrs()
     :totable()
 end
 
-local function update_winbar()
-  if not is_term_win() then
-    return
-  end
-
-  local bufnrs = get_term_bufnrs()
-  assert(#bufnrs > 0)
-
-  local current_bufnr = vim.api.nvim_get_current_buf()
-
-  local parts = vim
-    .iter(bufnrs)
-    :map(function(bufnr)
-      local title = get_title(vim.api.nvim_buf_get_name(bufnr))
-      local group1 = bufnr == current_bufnr and "_term_winbar_item_selected" or "_term_winbar_item"
-      local group2 = bufnr == current_bufnr and "_term_winbar_item_selected_reverted" or "_term_winbar_item_reverted"
-      local r, l = ("%%#%s#"):format(group2), ("%%#%s#"):format(group2)
-      return r .. ("%%#%s#  %s  "):format(group1, title) .. l
-    end)
-    :totable()
-
-  vim.wo.winbar = table.concat(parts, "%#WinBar# ") .. "%#WinBar#"
-end
-
-local bufname = "term://:scratch"
-
 ---@return number?
-local function get_term_win()
+function M.get_term_win()
   for _, win in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if is_term_win(win) then
+    if M.is_floating_term_win(win) then
       return win
     end
   end
 end
 
-local function open()
-  assert(not is_term_win())
+function M.open()
+  assert(not M.is_floating_term_win(0))
 
   -- if alreay open, jump to
-  local win = get_term_win()
+  local win = M.get_term_win()
   if win then
     vim.api.nvim_set_current_win(win)
     return
   end
 
-  local buf = nil
-  local newbuf = false
+  -- no term win found
+  -- create a and display existing one or :term
 
   -- search for existing terminal buffer
+  local existing_buf = nil
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.bo[bufnr].buftype == "terminal" then
-      buf = bufnr
+      existing_buf = bufnr
       break
     end
-  end
-
-  -- no found, create a new buffer
-  if buf == nil then
-    newbuf = true
-    buf = vim.api.nvim_create_buf(false, true) -- nolisted scratch
   end
 
   -- create window
   local total_lines = vim.o.lines
   local total_cols = vim.o.columns
-
   local height = math.max(10, math.floor(total_lines / 3))
-
   local margin = 4
   local width = total_cols - margin * 2 - 3
-
   local win_opts = {
     relative = "editor",
     width = width,
@@ -112,41 +122,37 @@ local function open()
     style = "minimal",
     border = "single",
   }
-  win = vim.api.nvim_open_win(buf, true, win_opts)
-  vim.wo[win].winhl = "NormalFloat:_B,FloatBorder:_BBorder,WinBar:_B"
-  vim.api.nvim_win_set_var(win, wvar, 1)
+  win = vim.api.nvim_open_win(existing_buf or 0, true, win_opts)
+  vim.api.nvim_win_set_var(win, win_flag_varname, 1)
+  M.setup_term_buffer()
 
-  if newbuf then
-    vim.fn.termopen("zsh")
-    vim.api.nvim_buf_set_name(buf, bufname)
-    vim.bo[buf].swapfile = false
+  if existing_buf == nil then
+    vim.cmd.terminal()
   end
-
-  update_winbar()
 
   vim.cmd.startinsert { bang = true }
 end
 
-local function close()
-  local win = get_term_win()
+function M.close()
+  local win = M.get_term_win()
   if win then
     vim.api.nvim_win_close(win, true)
   end
 end
 
-local function toggle()
-  if is_term_win() then
-    close()
+function M.toggle()
+  if M.is_floating_term_win(0) then
+    M.close()
   else
-    open()
+    M.open()
   end
 end
 
 ---@param dir "next" | "prev"
-local function nav(dir)
-  assert(is_term_win())
+function M.nav(dir)
+  assert(M.is_term_buf(0), "should be in term buffer")
 
-  local bufs = get_term_bufnrs()
+  local bufs = M.list_term_bufs()
   assert(bufs and #bufs > 0)
 
   local cur = vim.api.nvim_get_current_buf()
@@ -160,81 +166,130 @@ local function nav(dir)
   end
 end
 
-local function delete()
-  assert(is_term_win())
-  local bufs = get_term_bufnrs()
+function M.delete()
+  assert(M.is_term_buf(0), "should be in term buf")
 
+  local bufs = M.list_term_bufs()
   if #bufs == 1 then
     vim.api.nvim_buf_delete(0, { force = true })
+    if M.is_floating_term_win(0) then
+      vim.api.nvim_win_close(0, true)
+    end
   else
     local buf = vim.api.nvim_get_current_buf()
-    nav("prev")
+    M.nav("prev")
     vim.api.nvim_buf_delete(buf, { force = true })
-    update_winbar()
   end
 end
 
 -- stylua: ignore
-local function setup_global_keymaps()
+local in_win_keymaps = {
+  { "<C-S-]>",  function() M.nav("next") end, desc = "[Term] Next" },
+  { "<C-S-[>",  function() M.nav("prev") end, desc = "[Term] Prev" },
+
+  { "<C-S-Cr>", M.new,    desc = "[Term] New"     },
+  { "<C-S-±>",  M.delete, desc = "[Term] Delete"  }, -- Ctrl+Shift+Backspace
+
+  { "<C-S-k>r", M.rename, desc = "[Term] Rename"  },
+}
+
+-- stylua: ignore
+function M.setup_global_keymaps()
   require("which-key").add {
     {
       mode = { "n", "t", "i", "v" },
-      { "<C-S-j>", toggle, desc = "[Term] Toggle" },
+      { "<C-S-j>", M.toggle, desc = "[Term] Toggle" },
     },
     {
       mode = 't',
-      { "<C-S-]>",  function() nav("next") end, desc = "[Term] Next"    },
-      { "<C-S-[>",  function() nav("prev") end, desc = "[Term] Prev"    },
-
-      { "<C-S-Cr>", K.c'terminal',              desc = "[Term] New"     },
-      { "<C-S-±>",  delete,                     desc = "[Term] Delete"  },
+      unpack(in_win_keymaps)
     }
   }
 end
 
--- stylua: ignore
-local function setup_buffer_keymaps()
-  require('which-key').add {
-    mode = 'n', buffer = true,
+function M.setup_buffer_keymaps()
+  assert(M.is_term_buf(0), "should be in term buffer")
+
+  require("which-key").add {
+    mode = "n",
+    buffer = true,
+    -- unpack(in_win_keymaps),
     {
-      { "<C-S-]>",  function() nav("next") end, desc = "[Term] Next"    },
-      { "<C-S-[>",  function() nav("prev") end, desc = "[Term] Prev"    },
+      "<C-S-]>",
+      function()
+        M.nav("next")
+      end,
+      desc = "[Term] Next",
+    },
+    {
+      "<C-S-[>",
+      function()
+        M.nav("prev")
+      end,
+      desc = "[Term] Prev",
+    },
 
-      { "<C-S-Cr>", K.c'terminal',              desc = "[Term] New"     },
-      { "<C-S-±>",  delete,                     desc = "[Term] Delete"  },
-    }
+    { "<C-S-Cr>", M.new, desc = "[Term] New" },
+    { "<C-S-±>", M.delete, desc = "[Term] Delete" }, -- Ctrl+Shift+Backspace
+
+    { "<C-S-k>r", M.rename, desc = "[Term] Rename" },
   }
 end
 
-local function preceate()
-  vim.cmd("tabnew")
-
-  vim.cmd.terminal("zsh")
-  setup_buffer_keymaps()
-  vim.bo.buflisted = false
-  vim.bo.swapfile = false
-
+function M.preload()
+  vim.cmd.tabnew()
+  vim.cmd.terminal()
   vim.cmd.tabclose()
 end
 
-On("TermOpen", function()
-  vim.bo.buflisted = false
-  update_winbar()
-  setup_buffer_keymaps()
-end)
-
-On("BufEnter", update_winbar)
+On("TermOpen", M.setup_term_buffer)
 
 On("WinEnter", function()
-  if not is_term_win() then
-    close()
+  if not M.is_floating_term_win(0) then
+    M.close()
   end
 end)
 
-setup_global_keymaps()
--- after autcmds setup
-preceate()
+On("BufEnter", function()
+  if M.is_term_buf(0) then
+    M.setup_term_buffer()
+  end
+end)
 
-return {
-  close = close,
-}
+M.setup_global_keymaps()
+
+-- after autcmds setup
+M.preload()
+
+local _winbar = nil
+function _G.mdx_term_winbar_render(win)
+  if not M.is_term_buf(0) then
+    return _winbar or ""
+  end
+
+  local bufnrs = M.list_term_bufs()
+  assert(#bufnrs > 0, "no term buf found")
+
+  local cur_buf = vim.api.nvim_win_get_buf(win)
+  local parts = vim
+    .iter(bufnrs)
+    :map(function(buf)
+      local texthl = buf == cur_buf and "mdx_term_winbar_item_selected" or "mdx_term_winbar_item"
+      local decohl = buf == cur_buf and "mdx_term_winbar_item_selected_reverted" or "mdx_term_winbar_item_reverted"
+      local r, l = ("%%#%s#"):format(decohl), ("%%#%s#"):format(decohl)
+      local title = M.get_title(buf)
+      local ret = r .. ("%%#%s#  %s  "):format(texthl, title) .. l
+      ret = ("%%%d@v:lua.mdx_term_winbar_handler@"):format(buf) .. ret .. "%X"
+      return ret
+    end)
+    :totable()
+
+  _winbar = "%#WinBar#" .. table.concat(parts, "%#WinBar# ") .. "%#WinBar#"
+  return _winbar
+end
+
+function _G.mdx_term_winbar_handler(buf)
+  vim.api.nvim_win_set_buf(0, buf)
+end
+
+return M

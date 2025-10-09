@@ -76,10 +76,12 @@ opt.shortmess:append {
 
 -- cursor
 opt.guicursor = {
-  "n-v-c-sm:block",
-  "i-ci-ve:ver25",
-  "r-cr-o:hor20",
-  "a:blinkwait700-blinkon250-blinkoff400-Cursor/lCursor",
+  "n-v-ve-sm:block-mdx_cursor",
+  "i-c-ci:ver25-mdx_cursor",
+  "o:block-mdx_o_cursor",
+  "r-cr:hor20-mdx_cursor",
+  "t:ver25-mdx_t_cursor",
+  "a:blinkwait700-blinkon250-blinkoff400",
 }
 
 o.foldcolumn = "auto:1"

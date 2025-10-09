@@ -40,7 +40,7 @@ a("e", {
 -- stylua: ignore start
 a("a",     c("Argument file", "next",    "previous"))
 
-a(",",     k("Change point",  "g,",      "g;",        true))
+a(",",     k("Change point",  "g,zv",      "g;zv",    true))
 a("c",     k("Diff hunk",     "]c",      "[c",        true))
 
 a("q",     c("Quickfix item", "cnext",   "cprevious"))

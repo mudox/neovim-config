@@ -1,7 +1,8 @@
+---@diagnostic disable: unused-local
+-- stylua: ignore start
+
 local picker_input = "#2D3149"
 local picker_title = "#FF966C"
--- picker results list
--- picker preview
 
 local function telescope(hl, c)
   hl.TelescopeNormal = {
@@ -140,12 +141,10 @@ end
 
 local function diagnostic(hl, _)
   local c = require("mudox.ui.color").rainbow
-  -- stylua: ignore start
   hl.DiagnosticSignError = { fg = c.red    }
   hl.DiagnosticSignWarn  = { fg = c.violet }
   hl.DiagnosticSignInfo  = { fg = c.yellow  }
   hl.DiagnosticSignHint  = { fg = c.gray   }
-  -- stylua: ignore end
 end
 
 local function diff(hl, _)
@@ -168,7 +167,6 @@ local function notify(hl, _)
   local fg = "white"
   local bg = "#990000"
 
-  -- stylua: ignore start
   -- error
   hl.NotifyERRORBody   = { fg = fg, bg = bg }
   hl.NotifyERRORTitle  = { fg = fg, bg = bg }
@@ -188,7 +186,6 @@ local function notify(hl, _)
   hl.NotifyINFOTitle   = { fg = fg, bg = bg }
   hl.NotifyINFOIcon    = { fg = fg, bg = bg }
   hl.NotifyINFOBorder  = { fg = bg, bg = bg }
-  -- stylua: ignore end
 end
 
 local function multicursor(hl, _)
@@ -230,24 +227,37 @@ local function tiny_inline_diagnostic(hl, _)
 end
 
 local function mudox(hl, c)
-  hl._F = { link = "Normal" }
-  hl._FBorder = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
-
-  hl._B = { bg = c.bg_dark }
-  hl._BBorder = { fg = c.bg_dark, bg = c.bg_dark }
+  -- floating window styles
+  -- frame
+  hl.mdx_frame_float        = { link = "Normal" }
+  hl.mdx_frame_float_border = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
+  -- block
+  hl.mdx_block_float        = {                 bg = c.bg_dark }
+  hl.mdx_block_float_border = { fg = c.bg_dark, bg = c.bg_dark }
 
   -- terminal
-  -- stylua: ignore start
-  hl._term_winbar_item                   = { fg = "grey",  bg = "#043c38" }
-  hl._term_winbar_item_reverted          = { fg = "#043c38" }
-  hl._term_winbar_item_selected          = { fg = "white", bg = "#096a62" }
-  hl._term_winbar_item_selected_reverted = { fg = "#096a62" }
-  -- stylua: ignore end
+  hl.mdx_term_winbar_item                   = { fg = "grey",  bg = "#043c38" }
+  hl.mdx_term_winbar_item_reverted          = { fg = "#043c38" }
+  hl.mdx_term_winbar_item_selected          = { fg = "white", bg = "#096a62" }
+  hl.mdx_term_winbar_item_selected_reverted = { fg = "#096a62" }
+
+  hl.mdx_term_winbar = { }
+  hl.mdx_float_term_winbar = { link = 'mdx_block_float' }
+
+  -- cursor
+  hl.mdx_cursor =   { bg = "orange" }
+  hl.mdx_o_cursor = { bg = "cyan"   }
+  hl.mdx_t_cursor = { bg = "green"  }
+end
+
+local function nvim(hl, c)
+  hl.MsgSeparator = { link = "WinSeparator" }
 end
 
 local function on_highlights(...)
   local hl, _ = ...
 
+  nvim(...)
   fzflua(...)
   -- diagnostic(...)
   -- notify(...)

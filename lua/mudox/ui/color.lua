@@ -48,16 +48,7 @@ return {
   -- TODO: uniform floating window colors
   floating = {
     block = {
-      title = {
-        fg = "",
-        bg = "",
-      },
-
-      bg1 = "",
-      bg2 = "",
-      bg3 = "",
-
-      winhl = "NormalFloat:_B,FloatBorder:_BBorder",
+      winhl = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border",
     },
   },
 }
