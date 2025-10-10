@@ -3,8 +3,8 @@ return {
   cmd = "Fyler",
   -- stylua: ignore
   keys = {
-    { "<leader>ff", K.c"Fyler", desc = "[Fyler] Open" },
-    { "<leader>fF", K.c"Fyler kind=float", desc = "[Fyler] Open float" },
+    { K.p"ff", K.c"Fyler", desc = "[Fyler] Open" },
+    { K.p"fF", K.c"Fyler kind=float", desc = "[Fyler] Open float" },
   },
   opts = {
     views = {

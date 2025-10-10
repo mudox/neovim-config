@@ -56,10 +56,10 @@ return {
   "stevearc/oil.nvim",
   -- stylua: ignore
   keys = {
-    { "<leader>fo", K.c"Oil",         desc = "[Oil] Open", },
+    { K.p"fo", K.c"Oil",         desc = "[Oil] Open", },
     { "<M-o>",      K.c"Oil",         desc = "[Oil] Open", },
 
-    { "<leader>fO", K.c"Oil --float", desc = "[Oil] Open", },
+    { K.p"fO", K.c"Oil --float", desc = "[Oil] Open", },
   },
   cmd = "Oil",
   opts = opts,

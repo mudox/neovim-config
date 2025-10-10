@@ -76,12 +76,12 @@ local opts = {
 -- stylua: ignore start
 
 local keys = {
-  { "<leader>tN",       "<Cmd>Noice telescope<Cr>", desc = "[Noice] History in telescope" },
-  { "<leader>m<Space>", "<Cmd>Noice<Cr>",           desc = "[Noice] History"              },
-  { "<leader>m.",       "<Cmd>Noice last<Cr>",      desc = "[Noice] Last message"         },
-  { "<leader>me",       "<Cmd>Noice errors<Cr>",    desc = "[Noice] Errors"               },
-  { "<leader>m[",       "<Cmd>Noice disable<Cr>",   desc = "[Noice] Disable"              },
-  { "<leader>m]",       "<Cmd>Noice enable<Cr>",    desc = "[Noice] Enable"               },
+  { K.p"tN",       "<Cmd>Noice telescope<Cr>", desc = "[Noice] History in telescope" },
+  { K.p"m<Space>", "<Cmd>Noice<Cr>",           desc = "[Noice] History"              },
+  { K.p"m.",       "<Cmd>Noice last<Cr>",      desc = "[Noice] Last message"         },
+  { K.p"me",       "<Cmd>Noice errors<Cr>",    desc = "[Noice] Errors"               },
+  { K.p"m[",       "<Cmd>Noice disable<Cr>",   desc = "[Noice] Disable"              },
+  { K.p"m]",       "<Cmd>Noice enable<Cr>",    desc = "[Noice] Enable"               },
 }
 
 -- stylua: ignore end

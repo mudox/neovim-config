@@ -13,9 +13,9 @@ local keys = {
   { "]<C-t>",     X.dirop.wrap(op, "next"),                       desc = "Next todo comment",     },
   { "[<C-t>",     X.dirop.wrap(op, "prev"),                       desc = "Previous todo comment", },
 
-  { "<leader>xt", "<Cmd>TodoTrouble<Cr>",                         desc = "Todo",                  },
-  { "<leader>xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "Todo|Fix|Fixme",        },
-  { "<leader>tt", "<Cmd>TodoTelescope<Cr>",                       desc = "Todo",                  },
+  { K.p"xt", "<Cmd>TodoTrouble<Cr>",                         desc = "Todo",                  },
+  { K.p"xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "Todo|Fix|Fixme",        },
+  { K.p"tt", "<Cmd>TodoTelescope<Cr>",                       desc = "Todo",                  },
 }
 
 -- stylua: ignore

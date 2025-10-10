@@ -8,6 +8,6 @@ return {
   },
   cmd = "Neotree",
   keys = {
-    { "<leader>fn", "<Cmd>Neotree<Cr>", desc = "[Neotree] Open" },
+    { K.p"fn", "<Cmd>Neotree<Cr>", desc = "[Neotree] Open" },
   },
 }

@@ -6,7 +6,7 @@ local function pick()
 end
 
 local keys = {
-  { "<leader>ww", pick, desc = "[Window Picker] Goto window" },
+  { K.p"ww", pick, desc = "[Window Picker] Goto window" },
 }
 
 local opts = {

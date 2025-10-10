@@ -1,4 +1,4 @@
-local prefix = ";r"
+local prefix = K.sc("r")
 
 local function c(t)
   t[1] = prefix .. t[1]

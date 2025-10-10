@@ -11,7 +11,7 @@ return {
   -- r "help-grep",
   r "lazy",
   -- r "live-grep-args",
-  -- r "luasnip",
+  r "luasnip",
   -- r "smart-open",
   -- r "symbols",
 }

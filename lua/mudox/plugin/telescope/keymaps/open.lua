@@ -37,7 +37,7 @@ local M = {
 
   -- grep
   { "/",          "live_grep",                 "Live grep",                 },
-  { ",G ✓",       "live_grep",                 "[Telescope] Live grep",     },
+  { K.sc"g ✓",    "live_grep",                 "[Telescope] Live grep",     },
   { "w",          "grep_string",               "Grep <cword> under cursor", },
 
   -- git
@@ -56,7 +56,7 @@ local M = {
 }
 
 M = K.lazy_keys(M, {
-  key_prefix = "<leader>t",
+  key_prefix = K.p("t"),
   main_cmd = "Telescope",
 })
 

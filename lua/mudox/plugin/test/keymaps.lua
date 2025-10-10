@@ -74,7 +74,7 @@ local keys = {
   { "[T ✓",    X.dirop.wrap(failed_test_nav, "prev"), "Previous failed test", },
 }
 keys = K.lazy_keys(keys, {
-  key_prefix = "<leader>c",
+  key_prefix = K.p"c",
   desc_prefix = "Neotest",
 })
 

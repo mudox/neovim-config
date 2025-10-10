@@ -193,30 +193,26 @@ function M.lazy_keys(tbl, opts)
   return tbl
 end
 
--- stylua: ignore
-function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
-
 M.nnop(",")
 M.nnop(";")
 
-local leader = {
-  primary = "<Space>",
+-- stylua: ignore
+M.leader = {
+  primary   = "<Space>",
   secondary = ",",
-  shortcut = ";",
+  shortcut  = ";",
+  toggle    = ",,",
 }
 
 -- stylua: ignore start
-M.leader  = " "
-M.prefix1 = M.leader
-M.prefix2 = ";"
-M.common  = ","
-M.toggle  = ",,"
+function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
+
+---primary leader: space + key
+function M.p(sfx)  return M.leader.primary   .. sfx end
+---secondary leader: comma + key
+function M.s(sfx)  return M.leader.secondary .. sfx end
+---shortcut: semicolon + key
+function M.sc(sfx) return M.leader.shortcut  .. sfx end
 -- stylua: ignore end
-
-assert(M.leader == M.prefix1)
-assert(M.prefix1 ~= M.common)
-
--- stylua: ignore
-function M.cm(sfx) return M.common .. sfx end
 
 return M

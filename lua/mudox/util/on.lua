@@ -12,7 +12,7 @@ local function on(_, ...)
     -- for `On(event, fn)`
     if type(args[2]) == "function" then
       local event, fn = ...
-      vim.api.nvim_create_autocmd(args[1], {
+      vim.api.nvim_create_autocmd(event, {
         callback = fn,
       })
     else

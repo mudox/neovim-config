@@ -74,8 +74,8 @@ local opts = {
 
 local keys = {
   { "<Space>e", "<Cmd>Neorg workspace home<Cr>", desc = "Open Neorg Home Workspace" },
-  { "<leader>tef", "<Cmd>Telescope neorg find_norg_files<Cr>", desc = "Neorg Notes" },
-  { "<leader>tel", "<Cmd>Telescope neorg find_linkable<Cr>", desc = "Neorg Notes" },
+  { K.p"tef", "<Cmd>Telescope neorg find_norg_files<Cr>", desc = "Neorg Notes" },
+  { K.p"tel", "<Cmd>Telescope neorg find_linkable<Cr>", desc = "Neorg Notes" },
 }
 
 local function init()

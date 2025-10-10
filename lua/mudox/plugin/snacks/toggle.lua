@@ -32,7 +32,7 @@ local function _init()
   -- + use lowercase for commonly used ones
   -- + use uppercase for less commonly used ones
   -- + use <C-X> for less rarely used ones
-  local function k(key) return K.toggle .. key end
+  local function k(key) return K.leader.toggle .. key end
 
   local t = Snacks.toggle
   local o = t.option

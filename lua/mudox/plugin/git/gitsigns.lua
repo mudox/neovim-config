@@ -25,14 +25,14 @@ local function on_attach(buffer)
     buffer = buffer,
 
     -- stage
-    { "<leader>gs", gs.stage_hunk,                                desc = "Stage hunk"      },
-    { "<leader>gD", gs.reset_hunk,                                desc = "Discard changes" },
+    { K.p"gs", gs.stage_hunk,                                desc = "Stage hunk"      },
+    { K.p"gD", gs.reset_hunk,                                desc = "Discard changes" },
 
     -- blame
-    { "<leader>gb", function() gs.blame_line { full = true } end, desc = "Blame line"      },
+    { K.p"gb", function() gs.blame_line { full = true } end, desc = "Blame line"      },
 
     -- diff
-    { "<leader>gv", gs.preview_hunk,                              desc = "Preview hunk"    },
+    { K.p"gv", gs.preview_hunk,                              desc = "Preview hunk"    },
 
     -- goto
     { "]c",         X.dirop.wrap(jump, "next"),                   desc = "Next hunk"       },

@@ -57,11 +57,11 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<leader>t\\", open_buffer, desc = "[TFB] Open buffer path" },
+  { K.p"t\\", open_buffer, desc = "[TFB] Open buffer path" },
   { "<C-S-p>",     open_cwd,    desc = "[TFB] Open $CWD"        },
 
-  { "<leader>f.",  open_buffer, desc = "[TFB] Open buffer path" },
-  { "<leader>f/",  open_cwd,    desc = "[TFB] Open $CWD"        },
+  { K.p"f.",  open_buffer, desc = "[TFB] Open buffer path" },
+  { K.p"f/",  open_cwd,    desc = "[TFB] Open $CWD"        },
 }
 
 return {

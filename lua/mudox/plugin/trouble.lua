@@ -31,7 +31,7 @@ local keys = {
   { "[<C-x> ✓", X.dirop.wrap(op, "prev"),                                                      "Previous trouble item", },
 }
   keys = K.lazy_keys(keys, {
-    key_prefix = "<leader>x",
+    key_prefix = K.p"x",
     main_cmd = "Trouble",
   })
 

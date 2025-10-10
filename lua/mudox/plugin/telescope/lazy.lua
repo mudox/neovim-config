@@ -28,7 +28,7 @@ end
 return {
   "tsakirist/telescope-lazy.nvim",
   dependencies = "telescope.nvim",
-  keys = { { "<leader>tp", "<Cmd>Telescope lazy<Cr>", desc = "Plugins" } },
+  keys = { { K.p"tp", "<Cmd>Telescope lazy<Cr>", desc = "Plugins" } },
   config = function()
     require("telescope._extensions.lazy.actions").open_in_terminal = open_plugin_window
     local t = require("telescope")

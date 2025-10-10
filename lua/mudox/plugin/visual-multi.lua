@@ -16,7 +16,7 @@ local function init()
 
   vim.g.VM_theme = "neon"
 
-  vim.g.VM_leader = "<leader>z"
+  vim.g.VM_leader = K.p"z"
   local function k(s)
     return vim.g.VM_leader .. s
   end
@@ -62,17 +62,17 @@ local function keys()
   -- stylua: ignore
   return {
     { "<C-n>",      mode = { "n", "x" }, desc = "[VM] Add word", },
-    { "<leader>z*", mode = { 'n', 'x' }, desc = "[VM] All",      },
-    { "<leader>z+", mode = { 'n', 'x' }, desc = "[VM] Add",      },
-    { "<leader>z/", mode = { 'n', 'x' }, desc = "[VM] Search",   },
+    { K.p"z*", mode = { 'n', 'x' }, desc = "[VM] All",      },
+    { K.p"z+", mode = { 'n', 'x' }, desc = "[VM] Add",      },
+    { K.p"z/", mode = { 'n', 'x' }, desc = "[VM] Search",   },
 
     { "<M-j>",                           desc = "[VM] Select cursor down" },
     { "<M-k>",                           desc = "[VM] Select cursor up"   },
 
-    { "<leader>z.",                      desc = "[VM] Reselct" },
+    { K.p"z.",                      desc = "[VM] Reselct" },
 
     { "<Bs>z",      "<Cmd>VMClear<Cr>",  desc = "[VM] Clear" },
-    { "<leader>vZ", "<Cmd>VMDebug<Cr>",  desc = "Visual Multi" },
+    { K.p"vZ", "<Cmd>VMDebug<Cr>",  desc = "Visual Multi" },
   }
 end
 

@@ -1,23 +1,20 @@
 -- stylua: ignore
-local function k(c) return "<leader>s" .. c end
+local function k(c) return K.p"s" .. c end
 
 -- stylua: ignore
 local keys = {
   { k":",             function() Snacks.picker.pickers() end,         desc = "Pickers"              },
   { k".",             function() Snacks.picker.resume() end,          desc = "Resume"               },
 
-  { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Files"                },
-  { ",f",             function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
   { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
-  -- { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"     },
-  { k"f",             function() Snacks.picker.files() end,           desc = "Files"                },
+  { K.sc"f",          function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
   { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"            },
   { k"r",             function() Snacks.picker.recent() end,          desc = "Recent"               },
 
   { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"              },
   { "<C-S-o>",        function() Snacks.picker.buffers() end,         desc = "Buffers"              },
 
-  { ",g",             function() Snacks.picker.grep() end,            desc = "[Snacks] Grep"        },
+  { K.sc"G",          function() Snacks.picker.grep() end,            desc = "[Snacks] Grep"        },
 
   { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "Help"                 },
 

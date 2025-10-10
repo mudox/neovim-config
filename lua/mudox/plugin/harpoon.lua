@@ -9,9 +9,9 @@ local function keys()
 
   -- stylua: ignore
   local k = {
-    { "<leader>ea", add_file,                                               desc = "[Harpoon] Add file",      },
+    { K.p"ea", add_file,                                               desc = "[Harpoon] Add file",      },
 
-    { "<leader>eh", function () hp().ui:toggle_quick_menu(hp():list()) end, desc = "[Harpoon] Menu",          },
+    { K.p"eh", function () hp().ui:toggle_quick_menu(hp():list()) end, desc = "[Harpoon] Menu",          },
 
     { "<C-S-l>",    function () hp():list():next() end,                     desc = "[Harpoon] Next file",     },
     { "<C-S-h>",    function () hp():list():prev() end,                     desc = "[Harpoon] Previous file", },
@@ -19,7 +19,7 @@ local function keys()
 
   for i = 1, 5 do
     -- stylua: ignore
-    table.insert(k, { "<leader>" .. i, function () hp():list():select(i) end, desc = "[Harpoon] Goto file " .. i })
+    table.insert(k, { K.leader.primary .. i, function () hp():list():select(i) end, desc = "[Harpoon] Goto file " .. i })
   end
 
   return k

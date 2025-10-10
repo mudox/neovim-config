@@ -1,6 +1,6 @@
 -- stylua: ignore
 return {
-  { ";x", group = "lab" },
+  { K.sc"x", group = "lab" },
 
-  { ";xi", X.inspect_win, desc = "Inspect window" },
+  { K.sc"xi", X.inspect_win, desc = "Inspect window" },
 }

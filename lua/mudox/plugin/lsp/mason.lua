@@ -1,7 +1,7 @@
 return {
   "mason-org/mason.nvim",
   cmd = "Mason",
-  keys = { { "<leader>vm", "<Cmd>Mason<Cr>", desc = "Mason" } },
+  keys = { { K.p"vm", "<Cmd>Mason<Cr>", desc = "Mason" } },
   event = "VeryLazy",
   opts = {
     ui = {

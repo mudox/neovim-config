@@ -43,10 +43,10 @@ local keys =  {
   { "<Right>",       function() mc().nextCursor() end,         desc = "[MC] Previous",            mode = { "n", "v" }, },
   { "<Left>",        function() mc().prevCursor() end,         desc = "[MC] Next",                mode = { "n", "v" }, },
   -- delete main cursor
-  { "<leader>mx",    function() mc().deleteCursor() end,       desc = "[MC] Delete",              mode = { "n", "v" }, },
+  { K.p"mx",    function() mc().deleteCursor() end,       desc = "[MC] Delete",              mode = { "n", "v" }, },
   -- tanspose
-  { "<leader>ml",    function() mc().transposeCursors(1) end,  desc = "[MC] Transpose forwards",  mode = { "n", "v" }, },
-  { "<leader>mh",    function() mc().transposeCursors(-1) end, desc = "[MC] Transpose backwards", mode = { "n", "v" }, },
+  { K.p"ml",    function() mc().transposeCursors(1) end,  desc = "[MC] Transpose forwards",  mode = { "n", "v" }, },
+  { K.p"mh",    function() mc().transposeCursors(-1) end, desc = "[MC] Transpose backwards", mode = { "n", "v" }, },
   -- disable
   { "<C-q>",         freeze,                                   desc = "[MC] Disable",             mode = { "n", "v" }, },
   { "<Esc>",         exit,                                     desc = "[MC] Exit",                mode = { "n",     }, },

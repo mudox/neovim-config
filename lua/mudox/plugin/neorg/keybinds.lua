@@ -1,5 +1,5 @@
 local function hook(k)
-  local prefix = "<leader>e"
+  local prefix = K.p"e"
 
   -- gtd
   local keys = { "u", "p", "d", "h", "c", "r", "i" }

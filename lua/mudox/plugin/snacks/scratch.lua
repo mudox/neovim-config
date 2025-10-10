@@ -11,7 +11,7 @@ return {
   opts = opts,
   -- stylua: ignore
   keys = {
-    { "<leader>e=", function() Snacks.scratch() end,          desc = "Scratch buffer"          },
-    { "<leader>s=", function() Snacks.scratch.select() end,   desc = "Select scratch buffer"   },
+    { K.p"e=", function() Snacks.scratch() end,          desc = "Scratch buffer"          },
+    { K.p"s=", function() Snacks.scratch.select() end,   desc = "Select scratch buffer"   },
   },
 }

@@ -53,7 +53,7 @@ local keys = {
   { "<C-c>",      select_choice,                                      mode = { "i", "s" }, desc =  "[LuaSnip] Select choice"                },
 
   -- edit
-  { "<leader>es", edit_snippet,                                                            desc =  "[LuaSnip] Edit snippet"                 },
+  { K.p"es", edit_snippet,                                                            desc =  "[LuaSnip] Edit snippet"                 },
 
   -- on the fly snippet
   -- { "<C-o>",      [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode =  "v",          desc =  "[LuaSnip] On-The-Fly snippet" },

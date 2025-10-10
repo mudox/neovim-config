@@ -19,7 +19,7 @@ local opts = {
 -- stylua: ignore
 local keys = {
   { "K",           function() require("hover").hover() end,                  desc = "[Hover] Show"   },
-  { "<leader>vk",  function() require("hover").hover_select() end,           desc = "[Hover] Select" },
+  { K.p"vk",  function() require("hover").hover_select() end,           desc = "[Hover] Select" },
 
   { "<C-S-Left>",  function() require("hover").hover_switch("previous") end, desc = "[Hover] Prev"   },
   { "<C-S-Right>", function() require("hover").hover_switch("next") end,     desc = "[Hover] Next"   },

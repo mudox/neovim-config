@@ -1,6 +1,6 @@
 return {
   "rafcamlet/nvim-luapad",
   cmd = { "LuaRun", "Luapad" },
-  keys = { { "<leader>v=", "<Cmd>Luapad<Cr>", desc = "Luadpad" } },
+  keys = { { K.p"v=", "<Cmd>Luapad<Cr>", desc = "Luadpad" } },
   opts = true,
 }

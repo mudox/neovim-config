@@ -12,18 +12,18 @@ local kulala = {
   { "<C-p>",         k"jump_prev",          desc = "[Kualala] Goto previous" },
 
   { "<Cr>",          k"run",                desc = "Run"                     },
-  { "<leader>k<Cr>", k"run",                desc = "Run"                     },
-  { "<leader>k.",    k"replay",             desc = "Rerun"                   },
+  { K.p"k<Cr>", k"run",                desc = "Run"                     },
+  { K.p"k.",    k"replay",             desc = "Rerun"                   },
 
-  { "<leader>kc",    k"copy",               desc = "Copy as cURL"            },
-  { "<leader>kf",    k'from_curl',          desc = "Paste as HTTP spec"      },
+  { K.p"kc",    k"copy",               desc = "Copy as cURL"            },
+  { K.p"kf",    k'from_curl',          desc = "Paste as HTTP spec"      },
 
-  { "<leader>ki",    k"inspect",            desc = "Inspect"                 },
+  { K.p"ki",    k"inspect",            desc = "Inspect"                 },
   { "<C-v>",         k"toggle_view",        desc = "Toggle view"             },
 
   { "<C-2>",         k'search',             desc = "Goto ..."                },
 
-  { "<leader>kX",    k'clear_cached_files', desc = "Clear"                   },
+  { K.p"kX",    k'clear_cached_files', desc = "Clear"                   },
 }
 
 require("which-key").add { kulala, { buffer = 0 } }

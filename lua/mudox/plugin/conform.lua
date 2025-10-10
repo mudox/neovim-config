@@ -125,7 +125,7 @@ end
 -- stylua: ignore
 local keys = {
   { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
-  { "<leader>vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
+  { K.p"vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
 }
 
 return {

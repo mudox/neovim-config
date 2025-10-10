@@ -13,15 +13,15 @@ end
 
 local function keys()
   -- stylua: ignore
-  local function k(c) return "<leader>s" .. c end
+  local function k(c) return K.p"s" .. c end
 
   -- stylua: ignore
   local ret = {
     { k"\\",        function() Snacks.explorer() end,         desc = "File explorer"           },
-    { "<leader>fl", function() Snacks.explorer() end,         desc = "File explorer"           },
+    { K.p"fl", function() Snacks.explorer() end,         desc = "File explorer"           },
     -- { "<C-S-p>",        function() Snacks.explorer() end,               desc = "File explorer"           },
 
-    { "<leader>ps", function() Snacks.profiler.scratch() end, desc = "Profiler scratch buffer" },
+    { K.p"ps", function() Snacks.profiler.scratch() end, desc = "Profiler scratch buffer" },
 
   }
 

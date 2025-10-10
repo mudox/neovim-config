@@ -3,6 +3,33 @@
 
 local M = {}
 
+---@alias mdx.xpress.WinPos
+---| '"float-bottom"'
+---| '"float-top"'
+---| '"float-right"'
+---| '"float-left"'
+---| '"split-bottom"'
+---| '"split-top"'
+---| '"split-right"'
+---| '"split-left"'
+---| '"split-left"'
+---| '"tab"'
+
+---@type mdx.xpress.WinPos
+M.pos = "float-bottom"
+
+M.margin = 4
+
+---reposition terminal win
+---@param pos mdx.xpress.WinPos?
+function M.repos(pos)
+  local win = M.get_term_win()
+  if win then
+    M.pos = pos or M.pos
+    vim.api.nvim_win_set_config(win, M.recalculate_layout())
+  end
+end
+
 local log = Log("xpress")
 
 local win_flag_varname = "mdx_float_term"
@@ -11,16 +38,52 @@ local title_varname = "mdx_term_title"
 function M.recalculate_layout()
   local total_lines = vim.o.lines
   local total_cols = vim.o.columns
-  local height = math.max(10, math.floor(total_lines / 3))
-  local margin = 4
-  local width = total_cols - margin * 2 - 3
-  return {
-    anchor = "SW",
-    row = total_lines - margin - 1,
-    col = margin,
-    width = width,
-    height = height,
-  }
+
+  if M.pos == "float-bottom" then
+    local height = math.max(10, math.floor(total_lines / 3))
+    local width = total_cols - M.margin * 2 - 3
+    return {
+      relative = "editor",
+      anchor = "SW",
+      row = total_lines - M.margin - 1,
+      col = M.margin,
+      width = width,
+      height = height,
+    }
+  elseif M.pos == "float-top" then
+    local height = math.max(10, math.floor(total_lines / 3))
+    local width = total_cols - M.margin * 2 - 3
+    return {
+      relative = "editor",
+      anchor = "NW",
+      row = M.margin,
+      col = M.margin,
+      width = width,
+      height = height,
+    }
+  elseif M.pos == "float-right" then
+    local width = math.max(86, math.floor(total_cols / 3))
+    local height = total_lines - M.margin * 2 - 3
+    return {
+      relative = "editor",
+      anchor = "NE",
+      row = M.margin,
+      col = total_cols - M.margin - 1,
+      width = width,
+      height = height,
+    }
+  elseif M.pos == "float-left" then
+    local width = math.max(86, math.floor(total_cols / 3))
+    local height = total_lines - M.margin * 2 - 3
+    return {
+      relative = "editor",
+      anchor = "NW",
+      row = M.margin,
+      col = M.margin,
+      width = width,
+      height = height,
+    }
+  end
 end
 
 function M.new()
@@ -53,14 +116,13 @@ function M.setup_term_buffer()
   end
 end
 
----param win number 0 for current window
 function M.is_floating_term_win(win)
   return pcall(vim.api.nvim_win_get_var, win, win_flag_varname)
 end
 
----param win number 0 for current buffer
 function M.is_term_buf(buf)
-  return vim.bo[buf].buftype == "terminal"
+  -- fzf would set its terminal buf's `ft` option
+  return vim.bo[buf].buftype == "terminal" and vim.bo[buf].ft == ""
 end
 
 function M.get_title(buf)
@@ -115,7 +177,7 @@ function M.open()
 
   -- search for existing terminal buffer
   local existing_buf = nil
-  if vim.v.count == 0 and M.last_visited_term_buf then
+  if vim.v.count == 0 and M.last_visited_term_buf and vim.api.nvim_buf_is_valid(M.last_visited_term_buf) then
     existing_buf = M.last_visited_term_buf
   else
     local bufs = M.list_term_bufs()
@@ -127,27 +189,16 @@ function M.open()
 
   -- create window
   local win_opts = {
-    relative = "editor",
     zindex = 50,
     style = "minimal",
     border = "single",
   }
   win_opts = vim.tbl_extend("force", win_opts, M.recalculate_layout())
   log.fmt_debug("win_opts: %s", win_opts)
-  local _buf = vim.api.nvim_create_buf(false, true)
-  log.fmt_debug("_buf: %d", _buf)
-  win = vim.api.nvim_open_win(existing_buf or _buf, true, win_opts)
+  win = vim.api.nvim_open_win(existing_buf or M.create_term_buf(), true, win_opts)
   vim.api.nvim_win_set_var(win, win_flag_varname, 1)
-
-  -- buffer
-  if existing_buf == nil then
-    log.info("new terminal")
-    vim.cmd.terminal()
-  end
   M.setup_term_buffer()
   vim.cmd.startinsert { bang = true }
-
-  vim.cmd.bwipeout(_buf)
 end
 
 function M.close()
@@ -186,17 +237,16 @@ end
 function M.delete()
   assert(M.is_term_buf(0), "should be in term buf")
 
+  local buf = vim.api.nvim_get_current_buf()
   local bufs = M.list_term_bufs()
   if #bufs == 1 then
     if M.is_floating_term_win(0) then
       vim.api.nvim_win_close(0, true)
     end
-    vim.api.nvim_buf_delete(0, { force = true })
   else
-    local buf = vim.api.nvim_get_current_buf()
     M.nav("prev")
-    vim.api.nvim_buf_delete(buf, { force = true })
   end
+  vim.api.nvim_buf_delete(buf, { force = true })
 end
 
 -- stylua: ignore
@@ -204,10 +254,15 @@ local in_win_keymaps = {
   { "<C-S-]>",  function() M.nav("next") end, desc = "[Term] Next" },
   { "<C-S-[>",  function() M.nav("prev") end, desc = "[Term] Prev" },
 
-  { "<C-S-Cr>", M.new,    desc = "[Term] New"     },
+  { "<C-S-CR>", M.new,    desc = "[Term] New"     },
   { "<C-S-±>",  M.delete, desc = "[Term] Delete"  }, -- Ctrl+Shift+Backspace
 
   { "<C-S-k>r", M.rename, desc = "[Term] Rename"  },
+
+  { "<C-S-k>k", function() M.repos('float-top') end,    desc = "[Term] Dock top"     },
+  { "<C-S-k>j", function() M.repos('float-bottom') end, desc = "[Term] Dock bottom"  },
+  { "<C-S-k>l", function() M.repos('float-right') end,  desc = "[Term] Dock right"   },
+  { "<C-S-k>h", function() M.repos('float-left') end,   desc = "[Term] Dock leftk"   },
 }
 
 -- stylua: ignore
@@ -234,10 +289,12 @@ function M.setup_buffer_keymaps()
   }
 end
 
-function M.preload()
+function M.create_term_buf()
   vim.cmd.tabnew()
   vim.cmd.terminal()
+  local buf = vim.api.nvim_get_current_buf()
   vim.cmd.tabclose()
+  return buf
 end
 
 On("TermOpen", M.setup_term_buffer)
@@ -254,32 +311,37 @@ On("BufEnter", function()
   end
 end)
 
-On("VimResized", function()
-  log.fmt_debug("vim resized: %s", M.recalculate_layout())
+On("VimResized", function(ev)
+  local win = M.get_term_win()
+  if win then
+    vim.api.nvim_win_set_config(win, M.recalculate_layout())
+  end
 end)
 
 On("WinLeave", function(ev)
   if M.is_term_buf(ev.buf) then
+    log.fmt_info("win leave term buf: %d", ev.buf)
     M.last_visited_term_buf = ev.buf
   end
 end)
 
 M.setup_global_keymaps()
 
+-- pre create 1st buf
 -- after autcmds setup
-M.preload()
+M.last_visited_term_buf = M.create_term_buf()
 
 function _G.mdx_term_winbar_render(win)
   if not M.is_term_buf(0) then
     return M.cached_winbar or ""
   end
 
-  local bufnrs = M.list_term_bufs()
-  assert(#bufnrs > 0, "no term buf found")
+  local bufs = M.list_term_bufs()
+  assert(#bufs > 0, "no term buf found")
 
   local cur_buf = vim.api.nvim_win_get_buf(win)
   local parts = vim
-    .iter(bufnrs)
+    .iter(bufs)
     :map(function(buf)
       local texthl = buf == cur_buf and "mdx_term_winbar_item_selected" or "mdx_term_winbar_item"
       local decohl = buf == cur_buf and "mdx_term_winbar_item_selected_reverted" or "mdx_term_winbar_item_reverted"

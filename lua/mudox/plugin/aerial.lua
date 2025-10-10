@@ -37,7 +37,7 @@ local opts = {
 }
 
 local keys = {
-  { "<leader>wa", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
+  { K.p"wa", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
 }
 
 -- stylua: ignore

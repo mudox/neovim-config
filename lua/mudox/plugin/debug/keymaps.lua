@@ -92,7 +92,7 @@ local keys = {
   { "=",       function() u().eval() end,                               "[DAPUI] Eval",                   },
 }
 keys = K.lazy_keys(keys, {
-  key_prefix = "<leader>d",
+  key_prefix = K.p"d",
   desc_prefix = "DAP",
 })
 

@@ -2,7 +2,7 @@ return {
   "hedyhli/outline.nvim",
   cmd = { "Outline", "OutlineOpen" },
   keys = { -- Example mapping to toggle outline
-    { "<leader>wo", "<Cmd>Outline!<Cr>", desc = "[Outline] Toggle" },
+    { K.p"wo", "<Cmd>Outline!<Cr>", desc = "[Outline] Toggle" },
   },
   opts = {
     symbols = {

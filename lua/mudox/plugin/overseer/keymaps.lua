@@ -36,10 +36,10 @@ local keys = {
   { "D",            "DeleteBundle",                "Delete task bundle",     },
 
   -- info
-  { "<leader>vo ✓", "Info",                        "Overseer ✓",             },
+  { K.p"vo ✓", "Info",                        "Overseer ✓",             },
 }
 
 return K.lazy_keys(keys, {
-  key_prefix = "<leader>r",
+  key_prefix = K.p"r",
   cmd_prefix = "Overseer",
 })

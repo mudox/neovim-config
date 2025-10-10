@@ -66,11 +66,11 @@ local keys = {
   -- switch
   { "<C-\\><Tab>",  "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
   -- select terminal
-  { "<leader>tx",   "<Cmd>TermSelect<Cr>",        desc = "Terminals"                         },
-  { "<leader>wt",   "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
+  { K.p"tx",   "<Cmd>TermSelect<Cr>",        desc = "Terminals"                         },
+  { K.p"wt",   "<Cmd>TermSelect<Cr>",        desc = "[ToggleTerm] Select terminal"      },
   -- prefer to use tmux popup when in tmux
-  -- { "<leader>gl",   toggle_lazygit,               desc = "[ToggleTerm] LazyGit"              },
-  -- { "<leader>gg",   toggle_gitui,                 desc = "[ToggleTerm] GitUI"                },
+  -- { K.p"gl",   toggle_lazygit,               desc = "[ToggleTerm] LazyGit"              },
+  -- { K.p"gg",   toggle_gitui,                 desc = "[ToggleTerm] GitUI"                },
 }
 
 local cmd = {

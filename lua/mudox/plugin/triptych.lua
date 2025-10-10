@@ -8,7 +8,7 @@ return {
   },
 
   keys = {
-    { "<leader>ft", "<Cmd>Triptych<Cr>", desc = "[Triptych] Toggle" },
+    { K.p"ft", "<Cmd>Triptych<Cr>", desc = "[Triptych] Toggle" },
   },
 
   opts = {

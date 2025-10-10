@@ -30,7 +30,7 @@ return {
       desc = "Sidekick Switch Focus",
     },
     {
-      "<leader>aa",
+      K.p"aa",
       function()
         require("sidekick.cli").toggle()
       end,
@@ -38,7 +38,7 @@ return {
       mode = { "n", "v" },
     },
     {
-      "<leader>as",
+      K.p"as",
       function()
         require("sidekick.cli").select()
         -- Or to select only installed tools:
@@ -48,7 +48,7 @@ return {
       mode = { "n", "v" },
     },
     {
-      "<leader>ac",
+      K.p"ac",
       function()
         require("sidekick.cli").toggle { name = "claude", focus = true }
       end,
@@ -56,7 +56,7 @@ return {
       mode = { "n", "v" },
     },
     {
-      "<leader>ag",
+      K.p"ag",
       function()
         require("sidekick.cli").toggle { name = "grok", focus = true }
       end,
@@ -64,7 +64,7 @@ return {
       mode = { "n", "v" },
     },
     {
-      "<leader>ap",
+      K.p"ap",
       function()
         require("sidekick.cli").prompt()
       end,

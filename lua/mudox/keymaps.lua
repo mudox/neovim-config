@@ -1,7 +1,6 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
-vim.g.mapleader = K.leader
-vim.g.maplocalleader = K.leader
+vim.g.mapleader = K.leader.primary
 
 -- Save file
 K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
@@ -49,8 +48,8 @@ K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearc
 -- Useless legacy `sleep` function
 K.nnop("gs")
 
--- `;w` = `<C-w>`
-K.ncmd(";w", 'call feedkeys("\\<C-w>", "t")', { desc = "<C-w>" })
+-- `<C-w>`
+K.ncmd(K.sc("w"), 'call feedkeys("\\<C-w>", "t")', { desc = "<C-w>+" })
 
 -- Change list
 K.nmap("g;", "g;zv", { remap = true })
@@ -65,7 +64,7 @@ K.ncmd("yf", "0,$y +")
 
 -- Macro
 K.nnop("q")
-K.nmap(";q", "q", { desc = "macro" })
+K.nmap(K.sc("q"), "q", { desc = "macro" })
 
 -- Digraph
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
@@ -77,7 +76,7 @@ K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 -- K.map({ "n", "t" }, "<C-l>", K.c("wincmd l"))
 
 -- Profiling
-K.nmap("<leader>ps", function()
+K.nmap(K.p("ps"), function()
   vim.cmd([[
     :profile start /tmp/nvim-profile.log
     :profile func *
@@ -85,7 +84,7 @@ K.nmap("<leader>ps", function()
     ]])
 end, { desc = "Start profiling" })
 
-K.nmap("<leader>pe", function()
+K.nmap(K.p("pe"), function()
   vim.cmd([[
     :profile stop
     :edit /tmp/nvim-profile.log
@@ -96,4 +95,6 @@ end, { desc = "End profiling" })
 K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
 
-K.nmap(";l", ":lua ", { silent = false, desc = ":lua" })
+-- Cmdline
+K.nmap(K.sc(";"), ":", { silent = false, desc = "[cmdline] :" })
+K.nmap(K.sc("l"), ":lua ", { silent = false, desc = "[cmdline] :lua" })

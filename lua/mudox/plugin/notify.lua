@@ -46,8 +46,8 @@ end
 -- stylua: ignore
 local keys = {
   { "<Bs>n",      dismiss_all,                 desc = "[Notify] Dismiss all",     },
-  { "<leader>tn", "<Cmd>Telescope notify<Cr>", desc = "[Telescope] Notifications" },
-  { "<leader>vv", "<Cmd>Notifications<Cr>",    desc = "Notify notifications"    },
+  { K.p"tn", "<Cmd>Telescope notify<Cr>", desc = "[Telescope] Notifications" },
+  { K.p"vv", "<Cmd>Notifications<Cr>",    desc = "Notify notifications"    },
 }
 
 return {

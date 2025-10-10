@@ -6,7 +6,7 @@ return {
   "nvim-telescope/telescope-symbols.nvim",
   dependencies = "telescope.nvim",
   keys = {
-    { "<leader>ti", symbols, desc = "Symbols" },
+    { K.p"ti", symbols, desc = "Symbols" },
     { "<C-k>i", symbols, desc = "Symbols", mode = "i" },
   },
 }

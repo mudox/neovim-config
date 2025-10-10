@@ -1,13 +1,13 @@
 -- stylua: ignore
 local keys = {
-  { "<leader>wh",    function() require("edgy").toggle("left") end,   desc = "[Edgy] Toggle left"    },
-  { "<leader>wl",    function() require("edgy").toggle("right") end,  desc = "[Edgy] Toggle right"   },
-  { "<leader>wj",    function() require("edgy").toggle("bottom") end, desc = "[Edgy] Toggle bottom"  },
+  { K.p"wh",    function() require("edgy").toggle("left") end,   desc = "[Edgy] Toggle left"    },
+  { K.p"wl",    function() require("edgy").toggle("right") end,  desc = "[Edgy] Toggle right"   },
+  { K.p"wj",    function() require("edgy").toggle("bottom") end, desc = "[Edgy] Toggle bottom"  },
 
-  { "<leader>w/",    function() require("edgy").select() end,         desc = "[Edgy] Goto ..."       },
-  { "<leader>w<Cr>", function() require("edgy").goto_main() end,      desc = "[Edgy] Goto main area" },
+  { K.p"w/",    function() require("edgy").select() end,         desc = "[Edgy] Goto ..."       },
+  { K.p"w<Cr>", function() require("edgy").goto_main() end,      desc = "[Edgy] Goto main area" },
 
-  { "<leader>w-",    function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
+  { K.p"w-",    function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
   { "<Bs>e",         function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
   { "<Bs>h",         function() require("edgy").close("left") end,    desc = "[Edgy] Close left"     },
   { "<Bs>l",         function() require("edgy").close("right") end,   desc = "[Edgy] Close right"    },

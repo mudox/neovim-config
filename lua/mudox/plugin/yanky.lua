@@ -16,7 +16,7 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<leader>ty", paste,                                    desc =  "[Yanky] History",                       mode =  { "n", "x" } },
+  { K.p"ty", paste,                                    desc =  "[Yanky] History",                       mode =  { "n", "x" } },
 
   { "y",          "<Plug>(YankyYank)",                      desc =  "[Yanky] Yank text",                     mode =  { "n", "x" } },
 
