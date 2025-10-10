@@ -146,6 +146,8 @@ function M.open()
   end
   M.setup_term_buffer()
   vim.cmd.startinsert { bang = true }
+
+  vim.cmd.bwipeout(_buf)
 end
 
 function M.close()
@@ -186,10 +188,10 @@ function M.delete()
 
   local bufs = M.list_term_bufs()
   if #bufs == 1 then
-    vim.api.nvim_buf_delete(0, { force = true })
     if M.is_floating_term_win(0) then
       vim.api.nvim_win_close(0, true)
     end
+    vim.api.nvim_buf_delete(0, { force = true })
   else
     local buf = vim.api.nvim_get_current_buf()
     M.nav("prev")
