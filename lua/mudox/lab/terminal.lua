@@ -3,8 +3,25 @@
 
 local M = {}
 
+local log = Log("xpress")
+
 local win_flag_varname = "mdx_float_term"
 local title_varname = "mdx_term_title"
+
+function M.recalculate_layout()
+  local total_lines = vim.o.lines
+  local total_cols = vim.o.columns
+  local height = math.max(10, math.floor(total_lines / 3))
+  local margin = 4
+  local width = total_cols - margin * 2 - 3
+  return {
+    anchor = "SW",
+    row = total_lines - margin - 1,
+    col = margin,
+    width = width,
+    height = height,
+  }
+end
 
 function M.new()
   assert(M.is_term_buf(0), "should be in term buffer")
@@ -83,11 +100,12 @@ function M.get_term_win()
 end
 
 function M.open()
-  assert(not M.is_floating_term_win(0))
+  log.fmt_debug("count: %d, count1: %d", vim.v.count, vim.v.count1)
 
   -- if alreay open, jump to
   local win = M.get_term_win()
   if win then
+    log.fmt_info("open existing win: %d", win)
     vim.api.nvim_set_current_win(win)
     return
   end
@@ -97,39 +115,36 @@ function M.open()
 
   -- search for existing terminal buffer
   local existing_buf = nil
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.bo[bufnr].buftype == "terminal" then
-      existing_buf = bufnr
-      break
+  if vim.v.count == 0 and M.last_visited_term_buf then
+    existing_buf = M.last_visited_term_buf
+  else
+    local bufs = M.list_term_bufs()
+    if #bufs > 0 then
+      local i = vim.v.count1 <= #bufs and vim.v.count1 or 1
+      existing_buf = bufs[i]
     end
   end
 
   -- create window
-  local total_lines = vim.o.lines
-  local total_cols = vim.o.columns
-  local height = math.max(10, math.floor(total_lines / 3))
-  local margin = 4
-  local width = total_cols - margin * 2 - 3
   local win_opts = {
     relative = "editor",
-    width = width,
-    height = height,
-    anchor = "SW",
-    row = total_lines - 5,
-    col = margin,
-    zindex = 500,
-
+    zindex = 50,
     style = "minimal",
     border = "single",
   }
-  win = vim.api.nvim_open_win(existing_buf or 0, true, win_opts)
+  win_opts = vim.tbl_extend("force", win_opts, M.recalculate_layout())
+  log.fmt_debug("win_opts: %s", win_opts)
+  local _buf = vim.api.nvim_create_buf(false, true)
+  log.fmt_debug("_buf: %d", _buf)
+  win = vim.api.nvim_open_win(existing_buf or _buf, true, win_opts)
   vim.api.nvim_win_set_var(win, win_flag_varname, 1)
-  M.setup_term_buffer()
 
+  -- buffer
   if existing_buf == nil then
+    log.info("new terminal")
     vim.cmd.terminal()
   end
-
+  M.setup_term_buffer()
   vim.cmd.startinsert { bang = true }
 end
 
@@ -202,7 +217,7 @@ function M.setup_global_keymaps()
     },
     {
       mode = 't',
-      unpack(in_win_keymaps)
+      unpack(vim.deepcopy(in_win_keymaps))
     }
   }
 end
@@ -213,26 +228,7 @@ function M.setup_buffer_keymaps()
   require("which-key").add {
     mode = "n",
     buffer = true,
-    -- unpack(in_win_keymaps),
-    {
-      "<C-S-]>",
-      function()
-        M.nav("next")
-      end,
-      desc = "[Term] Next",
-    },
-    {
-      "<C-S-[>",
-      function()
-        M.nav("prev")
-      end,
-      desc = "[Term] Prev",
-    },
-
-    { "<C-S-Cr>", M.new, desc = "[Term] New" },
-    { "<C-S-±>", M.delete, desc = "[Term] Delete" }, -- Ctrl+Shift+Backspace
-
-    { "<C-S-k>r", M.rename, desc = "[Term] Rename" },
+    unpack(vim.deepcopy(in_win_keymaps)),
   }
 end
 
@@ -256,15 +252,24 @@ On("BufEnter", function()
   end
 end)
 
+On("VimResized", function()
+  log.fmt_debug("vim resized: %s", M.recalculate_layout())
+end)
+
+On("WinLeave", function(ev)
+  if M.is_term_buf(ev.buf) then
+    M.last_visited_term_buf = ev.buf
+  end
+end)
+
 M.setup_global_keymaps()
 
 -- after autcmds setup
 M.preload()
 
-local _winbar = nil
 function _G.mdx_term_winbar_render(win)
   if not M.is_term_buf(0) then
-    return _winbar or ""
+    return M.cached_winbar or ""
   end
 
   local bufnrs = M.list_term_bufs()
@@ -276,16 +281,18 @@ function _G.mdx_term_winbar_render(win)
     :map(function(buf)
       local texthl = buf == cur_buf and "mdx_term_winbar_item_selected" or "mdx_term_winbar_item"
       local decohl = buf == cur_buf and "mdx_term_winbar_item_selected_reverted" or "mdx_term_winbar_item_reverted"
-      local r, l = ("%%#%s#"):format(decohl), ("%%#%s#"):format(decohl)
+      -- local r, l = "", ""
+      local l, r = "", ""
+      l, r = ("%%#%s#%s"):format(decohl, l), ("%%#%s#%s"):format(decohl, r)
       local title = M.get_title(buf)
-      local ret = r .. ("%%#%s#  %s  "):format(texthl, title) .. l
+      local ret = l .. ("%%#%s#  %s  "):format(texthl, title) .. r
       ret = ("%%%d@v:lua.mdx_term_winbar_handler@"):format(buf) .. ret .. "%X"
       return ret
     end)
     :totable()
 
-  _winbar = "%#WinBar#" .. table.concat(parts, "%#WinBar# ") .. "%#WinBar#"
-  return _winbar
+  M.cached_winbar = "%=%#WinBar#" .. table.concat(parts, "%#WinBar# ") .. "%#WinBar#%="
+  return M.cached_winbar
 end
 
 function _G.mdx_term_winbar_handler(buf)

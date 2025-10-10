@@ -8,6 +8,7 @@ local keys = {
 
   { k"<Space>",       function() Snacks.picker.smart() end,           desc = "Files"                },
   { ",f",             function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
+  { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "[Snacks] Files"       },
   -- { "<Space><Space>", function() Snacks.picker.smart() end,           desc = "Smart find files"     },
   { k"f",             function() Snacks.picker.files() end,           desc = "Files"                },
   { k"g",             function() Snacks.picker.git_files() end,       desc = "Git files"            },

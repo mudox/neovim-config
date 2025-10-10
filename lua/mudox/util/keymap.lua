@@ -199,6 +199,12 @@ function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 M.nnop(",")
 M.nnop(";")
 
+local leader = {
+  primary = "<Space>",
+  secondary = ",",
+  shortcut = ";",
+}
+
 -- stylua: ignore start
 M.leader  = " "
 M.prefix1 = M.leader

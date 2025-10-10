@@ -1,8 +1,8 @@
 local function opts()
   local symbols = vim.tbl_deep_extend("force", I.kind, {
-    File = "󰈔 ",
+    -- File = "󰈔 ",
+    File = "󰈤 ",
     Folder = "",
-    Terminal = " ",
   })
 
   return {
@@ -42,20 +42,20 @@ local function opts()
         if
           not vim.api.nvim_buf_is_valid(buf)
           or not vim.api.nvim_win_is_valid(win)
-          or vim.fn.win_gettype(win) ~= ""
-          or vim.wo[win].winbar ~= ""
-          or vim.bo[buf].ft == "help"
+          or vim.fn.win_gettype(win) ~= "" -- spacial window
+          or vim.wo[win].winbar ~= "" -- winbar already set
+          -- or vim.bo[buf].ft == "help"
         then
           return false
         end
 
+        -- file size
         local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
         if stat and stat.size > 1024 * 1024 then
           return false
         end
 
-        return vim.bo[buf].bt == "terminal"
-          or vim.bo[buf].ft == "markdown"
+        return vim.bo[buf].ft == "markdown"
           or pcall(vim.treesitter.get_parser, buf)
           or not vim.tbl_isempty(vim.lsp.get_clients {
             bufnr = buf,
