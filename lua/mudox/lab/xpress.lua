@@ -8,6 +8,7 @@ local M = {}
 ---| '"float-top"'
 ---| '"float-right"'
 ---| '"float-left"'
+---| '"float-center"'
 ---| '"split-bottom"'
 ---| '"split-top"'
 ---| '"split-right"'
@@ -23,10 +24,13 @@ M.margin = 4
 ---reposition terminal win
 ---@param pos mdx.xpress.WinPos?
 function M.repos(pos)
+  M.pos = pos or M.pos
+
   local win = M.get_term_win()
   if win then
-    M.pos = pos or M.pos
-    vim.api.nvim_win_set_config(win, M.recalculate_layout())
+    vim.api.nvim_win_set_config(win, M.calc_layout())
+  else
+    M.open()
   end
 end
 
@@ -35,7 +39,7 @@ local log = Log("xpress")
 local win_flag_varname = "mdx_float_term"
 local title_varname = "mdx_term_title"
 
-function M.recalculate_layout()
+function M.calc_layout()
   local total_lines = vim.o.lines
   local total_cols = vim.o.columns
 
@@ -83,6 +87,17 @@ function M.recalculate_layout()
       width = width,
       height = height,
     }
+  elseif M.pos == "float-center" then
+    local width = total_cols - M.margin * 4
+    local height = total_lines - M.margin * 2 - 3
+    return {
+      relative = "editor",
+      anchor = "NW",
+      row = M.margin,
+      col = M.margin * 2,
+      width = width,
+      height = height,
+    }
   end
 end
 
@@ -107,7 +122,7 @@ function M.setup_term_buffer()
   vim.wo.winbar = ("%%!v:lua.mdx_term_winbar_render(%d)"):format(vim.api.nvim_get_current_win())
   vim.bo.buflisted = false
   vim.bo.swapfile = false
-  M.setup_buffer_keymaps()
+  M.setup_local_keymaps()
 
   if M.is_floating_term_win(0) then
     vim.wo.winhl = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border,WinBar:mdx_float_term_winbar"
@@ -162,8 +177,6 @@ function M.get_term_win()
 end
 
 function M.open()
-  log.fmt_debug("count: %d, count1: %d", vim.v.count, vim.v.count1)
-
   -- if alreay open, jump to
   local win = M.get_term_win()
   if win then
@@ -193,8 +206,7 @@ function M.open()
     style = "minimal",
     border = "single",
   }
-  win_opts = vim.tbl_extend("force", win_opts, M.recalculate_layout())
-  log.fmt_debug("win_opts: %s", win_opts)
+  win_opts = vim.tbl_extend("force", win_opts, M.calc_layout())
   win = vim.api.nvim_open_win(existing_buf or M.create_term_buf(), true, win_opts)
   vim.api.nvim_win_set_var(win, win_flag_varname, 1)
   M.setup_term_buffer()
@@ -250,42 +262,44 @@ function M.delete()
 end
 
 -- stylua: ignore
-local in_win_keymaps = {
-  { "<C-S-]>",  function() M.nav("next") end, desc = "[Term] Next" },
-  { "<C-S-[>",  function() M.nav("prev") end, desc = "[Term] Prev" },
+local _global_keymaps = {
+  -- toggle
+  { "<C-S-j>", M.toggle, desc = "[Term] Toggle" },
 
-  { "<C-S-CR>", M.new,    desc = "[Term] New"     },
-  { "<C-S-±>",  M.delete, desc = "[Term] Delete"  }, -- Ctrl+Shift+Backspace
-
-  { "<C-S-k>r", M.rename, desc = "[Term] Rename"  },
-
-  { "<C-S-k>k", function() M.repos('float-top') end,    desc = "[Term] Dock top"     },
-  { "<C-S-k>j", function() M.repos('float-bottom') end, desc = "[Term] Dock bottom"  },
-  { "<C-S-k>l", function() M.repos('float-right') end,  desc = "[Term] Dock right"   },
-  { "<C-S-k>h", function() M.repos('float-left') end,   desc = "[Term] Dock leftk"   },
+  -- move
+  { "<C-S-k>k", function() M.repos('float-top') end,    desc = "[Term] Dock top"    },
+  { "<C-S-k>j", function() M.repos('float-bottom') end, desc = "[Term] Dock bottom" },
+  { "<C-S-k>l", function() M.repos('float-right') end,  desc = "[Term] Dock right"  },
+  { "<C-S-k>h", function() M.repos('float-left') end,   desc = "[Term] Dock left"   },
+  { "<C-S-k>c", function() M.repos('float-center') end, desc = "[Term] Dock center" },
 }
 
 -- stylua: ignore
+local _local_keymaps = {
+  -- nav
+  { "<C-S-]>",  function() M.nav("next") end, desc = "[Term] Next" },
+  { "<C-S-[>",  function() M.nav("prev") end, desc = "[Term] Prev" },
+
+  -- new, delete, rename
+  { "<C-S-Cr>", M.new,    desc = "[Term] New"     },
+  { "<C-S-±>",  M.delete, desc = "[Term] Delete"  }, -- Ctrl+Shift+Backspace
+  { "<C-S-k>r", M.rename, desc = "[Term] Rename"  },
+}
+
 function M.setup_global_keymaps()
   require("which-key").add {
-    {
-      mode = { "n", "t", "i", "v" },
-      { "<C-S-j>", M.toggle, desc = "[Term] Toggle" },
-    },
-    {
-      mode = 't',
-      unpack(vim.deepcopy(in_win_keymaps))
-    }
+    mode = { "n", "t", "i" },
+    unpack(vim.deepcopy(_global_keymaps)),
   }
 end
 
-function M.setup_buffer_keymaps()
+function M.setup_local_keymaps()
   assert(M.is_term_buf(0), "should be in term buffer")
 
   require("which-key").add {
     mode = "n",
     buffer = true,
-    unpack(vim.deepcopy(in_win_keymaps)),
+    unpack(vim.deepcopy(_local_keymaps)),
   }
 end
 
@@ -311,19 +325,20 @@ On("BufEnter", function()
   end
 end)
 
-On("VimResized", function(ev)
+On("VimResized", function()
   local win = M.get_term_win()
   if win then
-    vim.api.nvim_win_set_config(win, M.recalculate_layout())
+    vim.api.nvim_win_set_config(win, M.calc_layout())
   end
 end)
 
 On("WinLeave", function(ev)
   if M.is_term_buf(ev.buf) then
-    log.fmt_info("win leave term buf: %d", ev.buf)
     M.last_visited_term_buf = ev.buf
   end
 end)
+
+vim.api.nvim_create_user_command("Xpress", M.toggle, {})
 
 M.setup_global_keymaps()
 

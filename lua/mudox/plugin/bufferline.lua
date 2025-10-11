@@ -92,7 +92,7 @@ end
 -- stylua: ignore
 local keys = {
   { "<M-,> ✓",      "Pick",                 "Pick",           },
-  { K.p"fp ✓", "Pick",                 "Pick",           },
+  { K.p"fb ✓",      "Pick",                 "Pick",           },
 
   -- close buffer
   { "x",            "PickClose",            "Pick & close",   },
@@ -107,7 +107,7 @@ local keys = {
   { "<C-S-[> ✓",    "CyclePrev",            "Cycle previous", },
 }
 keys = K.lazy_keys(keys, {
-  key_prefix = K.p"b",
+  key_prefix = K.p("b"),
   cmd_prefix = "BufferLine",
   desc_prefix = "BufferLine",
 })
