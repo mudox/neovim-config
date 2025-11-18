@@ -5,7 +5,7 @@
 -- a  󰅂 argument / parameter
 -- c  󰅂 class
 -- f  󰅂 function
--- i  󰅂 condition
+-- ^  󰅂 condition
 -- k  󰅂 function call
 -- @  󰅂 loop
 -- s  󰅂 scope
@@ -36,8 +36,8 @@ select.keymaps = {
   ["ia"] = { query = "@parameter.inner",   desc = "Inner of a parameter/argument" },
 
   -- condition
-  ["ai"] = { query = "@conditional.outer", desc = "Outer of a conditional" },
-  ["ii"] = { query = "@conditional.inner", desc = "Inner of a conditional" },
+  ["a^"] = { query = "@conditional.outer", desc = "Outer of a conditional" },
+  ["i^"] = { query = "@conditional.inner", desc = "Inner of a conditional" },
 
   -- loop
   ["a@"] = { query = "@loop.outer",        desc = "Outer of a loop" },
@@ -66,39 +66,39 @@ local move = {
 }
 
 move.goto_next_start = {
-  ["󰅂k"] = { query = "@call.outer",        desc = "Next function call start" },
-  ["󰅂f"] = { query = "@function.outer",    desc = "Next method/function def start" },
-  -- ["󰅂c"] = { query = "@class.outer",       desc = "Next class start" },
-  ["󰅂i"] = { query = "@conditional.outer", desc = "Next conditional start" },
-  ["󰅂@"] = { query = "@loop.outer",        desc = "Next loop start" },
-  ["󰅂s"] = { query = "@scope",             desc = "Next scope",     query_group  = "locals" },
+  ["󰅂k"] = { query = "@call.outer",        desc = "Call start"                                 },
+  ["󰅂f"] = { query = "@function.outer",    desc = "Function start"                             },
+  -- ["󰅂c"] = { query = "@class.outer",       desc = "Class start" },
+  ["󰅂^"] = { query = "@conditional.outer", desc = "Conditional start"                          },
+  ["󰅂@"] = { query = "@loop.outer",        desc = "Loop start"                                 },
+  ["󰅂s"] = { query = "@scope",             desc = "Scope",             query_group  = "locals" },
 }
 
 move.goto_next_end = {
-  ["󰅂K"] = { query = "@call.outer",        desc = "Next function call end" },
-  ["󰅂F"] = { query = "@function.outer",    desc = "Next method/function def end" },
-  -- ["󰅂C"] = { query = "@class.outer",       desc = "Next class end" },
-  ["󰅂I"] = { query = "@conditional.outer", desc = "Next conditional end" },
-  ["󰅂L"] = { query = "@loop.outer",        desc = "Next loop end" },
-  ["󰅂S"] = { query = "@scope",             desc = "Next scope",     query_group  = "locals" },
+  ["󰅂K"] = { query = "@call.outer",        desc = "Call end"                                   },
+  ["󰅂F"] = { query = "@function.outer",    desc = "Function end"                               },
+  -- ["󰅂C"] = { query = "@class.outer",       desc = "Class end"                               },
+  -- ["󰅂I"] = { query = "@conditional.outer", desc = "Conditional end"                         },
+  ["󰅂L"] = { query = "@loop.outer",        desc = "Loop end"                                   },
+  ["󰅂S"] = { query = "@scope",             desc = "Scope",             query_group  = "locals" },
 }
 
 move.goto_previous_start = {
-  ["󰅁k"] = { query = "@call.outer",        desc = "Previous function call start" },
-  ["󰅁f"] = { query = "@function.outer",    desc = "Previous method/function def start" },
-  -- ["󰅁c"] = { query = "@class.outer",       desc = "Previous class start" },
-  ["󰅁i"] = { query = "@conditional.outer", desc = "Previous conditional start" },
-  ["󰅁@"] = { query = "@loop.outer",        desc = "Previous loop start" },
-  ["󰅁s"] = { query = "@scope",             desc = "Previous scope", query_group  = "locals" },
+  ["󰅁k"] = { query = "@call.outer",        desc = "Call start"                                 },
+  ["󰅁f"] = { query = "@function.outer",    desc = "Function start"                             },
+  -- ["󰅁c"] = { query = "@class.outer",       desc = "Class start" },
+  ["󰅁^"] = { query = "@conditional.outer", desc = "Conditional start"                          },
+  ["󰅁@"] = { query = "@loop.outer",        desc = "Loop start"                                 },
+  ["󰅁s"] = { query = "@scope",             desc = "Scope",             query_group  = "locals" },
 }
 
 move.goto_previous_end = {
-  ["󰅁K"] = { query = "@call.outer",        desc = "Previous function call end" },
-  ["󰅁F"] = { query = "@function.outer",    desc = "Previous function def end" },
-  -- ["󰅁C"] = { query = "@class.outer",       desc = "Previous class end" },
-  ["󰅁I"] = { query = "@conditional.outer", desc = "Previous conditional end" },
-  ["󰅁L"] = { query = "@loop.outer",        desc = "Previous loop end" },
-  ["󰅁S"] = { query = "@scope",             desc = "Previous scope", query_group  = "locals" },
+  ["󰅁K"] = { query = "@call.outer",        desc = "Call end"                                   },
+  ["󰅁F"] = { query = "@function.outer",    desc = "Function end"                               },
+  -- ["󰅁C"] = { query = "@class.outer",       desc = "Class end"                               },
+  -- ["󰅁I"] = { query = "@conditional.outer", desc = "Conditional end"                         },
+  ["󰅁L"] = { query = "@loop.outer",        desc = "Loop end"                                   },
+  ["󰅁S"] = { query = "@scope",             desc = "Scope",             query_group  = "locals" },
 }
 
 -- stylua: ignore end
@@ -108,17 +108,17 @@ local function setup_keymaps()
     -- stylua: ignore
     return {
       name = name,
-      next = function() vim.cmd.normal("󰅂" .. postfix) end,
-      prev = function() vim.cmd.normal("󰅁" .. postfix) end,
+      left = function() vim.cmd.normal("󰅂" .. postfix) end,
+      right = function() vim.cmd.normal("󰅁" .. postfix) end,
     }
   end
 
   local function next(name, postfix)
-    return X.dirop.wrap(d(name, postfix), "next")
+    return X.dirop.left(d(name, postfix))
   end
 
   local function prev(name, postfix)
-    return X.dirop.wrap(d(name, postfix), "prev")
+    return X.dirop.right(d(name, postfix))
   end
 
   local keys = {}

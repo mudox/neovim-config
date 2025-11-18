@@ -18,4 +18,5 @@ return {
   cmd = { "FzfLua" },
   keys = keys,
   opts = opts,
+  cond = false,
 }

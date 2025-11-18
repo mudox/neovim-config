@@ -18,7 +18,7 @@ local config = function()
 end
 
 local keys = {
-  { K.sc("f"), require("mudox.plugin.telescope.util").smart_open, desc = "[Telescope] Files" },
+  { K.p("<Space>"), require("mudox.plugin.telescope.util").smart_open, desc = "[Telescope] Files" },
 }
 
 return {

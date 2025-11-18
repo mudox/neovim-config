@@ -61,7 +61,7 @@ local function _init()
 
   -- conceal level
   local opts = { name = "Conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
-  o("conceallevel", opts):map(k"c")
+  o("conceallevel", opts):map(k"C")
 
   -- gitsigns
   t.new({
@@ -83,12 +83,12 @@ local function _init()
   }):map(k"c")
 
   -- indent-blank-line
-  t.new({
-    id = "indent_blank_line",
-    name = "Indent Blank Line",
-    get = function() return require("ibl.config").get_config(-1).enabled end,
-    set = function() vim.cmd.IBLToggle() end,
-  }):map(k"i")
+  -- t.new({
+  --   id = "indent_blank_line",
+  --   name = "Indent Blank Line",
+  --   get = function() return require("ibl.config").get_config(-1).enabled end,
+  --   set = function() vim.cmd.IBLToggle() end,
+  -- }):map(k"i")
 
   -- conform locally
   t.new({
@@ -133,6 +133,9 @@ end
 return {
   opts = {
     which_key = true,
+    notify = function(state, opts)
+      print(("%s <- %s"):format(state and "on" or "off", opts.name))
+    end,
     -- stylua: ignore
     wk_desc = {
       enabled  = "󰝥  ",

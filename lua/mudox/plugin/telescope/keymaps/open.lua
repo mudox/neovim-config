@@ -1,12 +1,12 @@
 -- stylua: ignore
 local M = {
   { ":",          "builtin",                   "All telescope pickers",     },
-
   { ".",          "resume",                    "Resume telescope",          },
 
   -- files
   { "f",          "find_files",                "Find files",                },
   { "F",          "git_files",                 "Git files",                 },
+  { "r",          "oldfiles",                  "Old files",                 },
 
   -- lsp
   { "?",          "diagnostics bufnr=0",       "Document diagnostics",      },

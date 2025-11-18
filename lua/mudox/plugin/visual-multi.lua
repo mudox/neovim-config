@@ -16,7 +16,7 @@ local function init()
 
   vim.g.VM_theme = "neon"
 
-  vim.g.VM_leader = K.p"z"
+  vim.g.VM_leader = K.p("z")
   local function k(s)
     return vim.g.VM_leader .. s
   end
@@ -61,18 +61,20 @@ end
 local function keys()
   -- stylua: ignore
   return {
-    { "<C-n>",      mode = { "n", "x" }, desc = "[VM] Add word", },
-    { K.p"z*", mode = { 'n', 'x' }, desc = "[VM] All",      },
-    { K.p"z+", mode = { 'n', 'x' }, desc = "[VM] Add",      },
-    { K.p"z/", mode = { 'n', 'x' }, desc = "[VM] Search",   },
+    "<C-LeftMouse>",
 
-    { "<M-j>",                           desc = "[VM] Select cursor down" },
-    { "<M-k>",                           desc = "[VM] Select cursor up"   },
+    { "<C-n>", mode = { "n", "x" },     desc = "[VM] Add word",          },
+    { K.p"z*", mode = { 'n', 'x' },     desc = "Select all",             },
+    { K.p"z+", mode = { 'n', 'x' },     desc = "Add",                    },
+    { K.p"z/", mode = { 'n', 'x' },     desc = "Search",                 },
 
-    { K.p"z.",                      desc = "[VM] Reselct" },
+    { "<M-j>",                          desc = "[VM] Select cursor down" },
+    { "<M-k>",                          desc = "[VM] Select cursor up"   },
 
-    { "<Bs>z",      "<Cmd>VMClear<Cr>",  desc = "[VM] Clear" },
-    { K.p"vZ", "<Cmd>VMDebug<Cr>",  desc = "Visual Multi" },
+    { K.p"z.",                          desc = "Reselct"                 },
+
+    { "<Bs>z",      "<Cmd>VMClear<Cr>", desc = "[VM] Clear"              },
+    { K.p"vZ",      "<Cmd>VMDebug<Cr>", desc = "Visual Multi"            },
   }
 end
 

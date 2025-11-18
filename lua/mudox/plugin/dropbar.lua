@@ -1,6 +1,5 @@
 local function opts()
   local symbols = vim.tbl_deep_extend("force", I.kind, {
-    -- File = "󰈔 ",
     File = "󰈤 ",
     Folder = "",
   })

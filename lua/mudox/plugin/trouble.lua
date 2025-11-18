@@ -1,10 +1,10 @@
 local function keys()
   local op = {
     name = "trouble item (<C-x>)",
-    next = function()
+    left = function()
       require("trouble").next { skip_groups = true, jump = true }
     end,
-    prev = function()
+    right = function()
       require("trouble").prev { skip_groups = true, jump = true }
     end,
   }
@@ -27,11 +27,11 @@ local keys = {
 
   { "r",      "lsp_references toggle",                                                         "References",            },
 
-  { "]<C-x> ✓", X.dirop.wrap(op, "next"),                                                      "Next trouble item",     },
-  { "[<C-x> ✓", X.dirop.wrap(op, "prev"),                                                      "Previous trouble item", },
+  { "]<C-x> ✓", X.dirop.left(op),  "Next trouble item",     },
+  { "[<C-x> ✓", X.dirop.right(op), "Previous trouble item", },
 }
   keys = K.lazy_keys(keys, {
-    key_prefix = K.p"x",
+    key_prefix = K.p("x"),
     main_cmd = "Trouble",
   })
 

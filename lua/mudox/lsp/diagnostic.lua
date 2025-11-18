@@ -45,14 +45,14 @@ local function setup_keymaps(_, bufnr)
 
   local jump_dirop = {
     name = "Diagnostic issue",
-    next = jump(true),
-    prev = jump(false),
+    left = jump(true),
+    right = jump(false),
   }
 
   local jump_error_dirop = {
     name = "Diagnostic error",
-    next = jump(true, "ERROR"),
-    prev = jump(false, "ERROR"),
+    left = jump(true, "ERROR"),
+    right = jump(false, "ERROR"),
   }
 
   local function toggle()
@@ -63,15 +63,13 @@ local function setup_keymaps(_, bufnr)
 
   local first_time = true
 
-  local dirop = X.dirop.wrap
-
   -- stylua: ignore
   local keys = {
     -- Navigate
-    { "]d",  dirop(jump_dirop, 'next'),       desc = "[Diagnostic] Next issue"     },
-    { "[d",  dirop(jump_dirop, 'prev'),       desc = "[Diagnostic] Previous issue" },
-    { "]E",  dirop(jump_error_dirop, 'next'), desc = "[Diagnostic] Next error"     },
-    { "[E",  dirop(jump_error_dirop, 'prev'), desc = "[Diagnostic] Previous error" },
+    { "]d",  X.dirop.left(jump_dirop),        desc = "[Diagnostic] Next issue"     },
+    { "[d",  X.dirop.right(jump_dirop),       desc = "[Diagnostic] Previous issue" },
+    { "]E",  X.dirop.left(jump_error_dirop),  desc = "[Diagnostic] Next error"     },
+    { "[E",  X.dirop.right(jump_error_dirop), desc = "[Diagnostic] Previous error" },
 
     -- View
     { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },

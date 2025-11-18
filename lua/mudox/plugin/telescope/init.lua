@@ -8,10 +8,10 @@ return {
   r "file-browser",
   -- r "frecency",
   -- r "heading",
-  -- r "help-grep",
+  r "help-grep",
   r "lazy",
   -- r "live-grep-args",
   r "luasnip",
-  -- r "smart-open",
+  r "smart-open",
   -- r "symbols",
 }

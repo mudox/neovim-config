@@ -28,9 +28,9 @@ local function setup_keymaps(_, bufnr)
     { "gR",     "<Cmd>Glance references<Cr>",              desc = "[Glance] Goto references"         },
 
     -- in favor of hover.nvim
-    { "K",      hover,                                     desc = "[LSP] Hover"                      },
+    { "gk",     hover,                                     desc = "[LSP] Hover"                      },
 
-    { "gk",     vim.lsp.buf.signature_help,                desc = "[LSP] Signature help"             },
+    { "gK",     vim.lsp.buf.signature_help,                desc = "[LSP] Signature help"             },
     { "<C-k>k", vim.lsp.buf.signature_help,                desc = "[LSP] Signature Help",            mode = "i" },
 
     { "yoH",    toggle_inlay_hint,                         desc = "[LSP] inlay hint"                 },

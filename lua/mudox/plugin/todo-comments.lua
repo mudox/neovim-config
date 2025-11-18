@@ -1,21 +1,21 @@
 local op = {
-  name = "todo item (<C-t>)",
-  next = function()
+  name = "Todo items",
+  left = function()
     require("todo-comments").jump_next()
   end,
-  prev = function()
+  right = function()
     require("todo-comments").jump_prev()
   end,
 }
 
 -- stylua: ignore
 local keys = {
-  { "]<C-t>",     X.dirop.wrap(op, "next"),                       desc = "Next todo comment",     },
-  { "[<C-t>",     X.dirop.wrap(op, "prev"),                       desc = "Previous todo comment", },
+  { "]<C-t>", X.dirop.left(op),  desc = "Next todo comment",     },
+  { "[<C-t>", X.dirop.right(op), desc = "Previous todo comment", },
 
-  { K.p"xt", "<Cmd>TodoTrouble<Cr>",                         desc = "Todo",                  },
-  { K.p"xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "Todo|Fix|Fixme",        },
-  { K.p"tt", "<Cmd>TodoTelescope<Cr>",                       desc = "Todo",                  },
+  { K.p"xt", "<Cmd>TodoTrouble<Cr>",                         desc = "Todo",           },
+  { K.p"xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "Todo|Fix|Fixme", },
+  { K.p"tt", "<Cmd>TodoTelescope<Cr>",                       desc = "Todo",           },
 }
 
 -- stylua: ignore

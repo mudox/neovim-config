@@ -40,6 +40,8 @@ end, {
   group = g("close_with_q"),
   desc = "Close using `q`",
   pattern = {
+    "OverseerList",
+    "PlenaryTestPopup",
     "aerial-nav",
     "checkhealth",
     "fugitive",
@@ -52,8 +54,7 @@ end, {
     "neotest-summary",
     "notify",
     "null-ls-info",
-    "OverseerList",
-    "PlenaryTestPopup",
+    "nvim-undotree",
     "qf",
     "qr_panel",
     "spectre_panel",

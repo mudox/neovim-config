@@ -7,7 +7,7 @@ local opts = {
     java = false,
   },
 
-  disable_filetype = { "TelescopePrompt", "spectre_panel" },
+  disable_filetype = { "TelescopePrompt", "snacks_picker_input", "spectre_panel" },
   disable_in_visualblock = true,
 
   fast_wrap = {

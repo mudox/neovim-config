@@ -108,6 +108,10 @@ local function opts()
 
   local right = {
     {
+      title = "Undo Tree",
+      ft = "nvim-undotree",
+    },
+    {
       title = "Tests",
       ft = "neotest-summary",
     },

@@ -5,6 +5,21 @@ local opts = {
     end
     return "lua"
   end,
+
+  win_by_ft = {
+    javascript = {
+      keys = {
+        source = {
+          "<Cr>",
+          function(self)
+            local name = "scratch." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+            print(name)
+          end,
+          desc = "Run buffer by node",
+        },
+      },
+    },
+  },
 }
 
 return {

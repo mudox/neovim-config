@@ -2,12 +2,13 @@ On.very_lazy(function()
   -- stylua: ignore
   vim.lsp.enable {
     -- lua
-    "lua_ls",
-    -- "emmylua_ls",
+    -- "lua_ls",
+    "emmylua_ls",
 
     -- data format
     "jsonls",
     "yamlls",
+    "taplo", -- toml
 
     -- shell
     "nushell",
@@ -19,7 +20,7 @@ On.very_lazy(function()
     -- "ts_ls", -- managed by `typescript-tools.nvim`
   }
 
-  K.ncmd(K.p"vl", "checkhealth vim.lsp", "LSP information")
+  K.ncmd(K.p("vl"), "checkhealth vim.lsp", "LSP information")
 
   local function setup(name)
     require("mudox.lsp." .. name).setup()

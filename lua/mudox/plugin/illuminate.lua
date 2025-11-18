@@ -21,17 +21,17 @@ local function config()
 
   local op = {
     name = "illuminate",
-    next = function()
+    left = function()
       require("illuminate").goto_next_reference(true)
     end,
-    prev = function()
+    right = function()
       require("illuminate").goto_prev_reference(true)
     end,
   }
 
   local function setup_keymaps()
-    K.nmap("]]", X.dirop.wrap(op, "next"))
-    K.nmap("[[", X.dirop.wrap(op, "prev"))
+    K.nmap("]]", X.dirop.left(op))
+    K.nmap("[[", X.dirop.right(op))
   end
 
   setup_keymaps()

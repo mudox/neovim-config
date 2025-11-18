@@ -14,10 +14,10 @@ local function on_attach(buffer)
   local gs = require("gitsigns")
 
   -- stylua: ignore
-  local jump = {
+  local op = {
     name = "Gitsigns hunk",
-    next = function() gs.nav_hunk("next") end,
-    prev = function() gs.nav_hunk("prev") end,
+    left = function() gs.nav_hunk("next") end,
+    right = function() gs.nav_hunk("prev") end,
   }
 
   -- stylua: ignore
@@ -35,8 +35,8 @@ local function on_attach(buffer)
     { K.p"gv", gs.preview_hunk,                              desc = "Preview hunk"    },
 
     -- goto
-    { "]c",         X.dirop.wrap(jump, "next"),                   desc = "Next hunk"       },
-    { "[c",         X.dirop.wrap(jump, "prev"),                   desc = "Prev hunk"       },
+    { "]c",         X.dirop.left(op),                   desc = "Next hunk"       },
+    { "[c",         X.dirop.right(op),                   desc = "Prev hunk"       },
   }
 
   require("which-key").add(keys)

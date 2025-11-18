@@ -57,6 +57,12 @@ local function telescope(hl, c)
 end
 
 local function snacks(hl, c)
+  -- picker
+  hl.SnacksPickerBorder = {
+    bg = c.bg_dark1,
+    fg = c.bg_dark1,
+  }
+
   -- input
   hl.SnacksPickerInput = {
     bg = picker_input,
@@ -236,12 +242,12 @@ local function mudox(hl, c)
   hl.mdx_block_float_border = { fg = c.bg_dark, bg = c.bg_dark }
 
   -- terminal
-  hl.mdx_term_winbar_item                   = { fg = "grey",  bg = "#043c38" }
-  hl.mdx_term_winbar_item_reverted          = { fg = "#043c38" }
-  hl.mdx_term_winbar_item_selected          = { fg = "white", bg = "#096a62" }
-  hl.mdx_term_winbar_item_selected_reverted = { fg = "#096a62" }
+  hl.xpress_winbar_item                   = { fg = "grey",  bg = "#043c38" }
+  hl.xpress_winbar_item_reverted          = { fg = "#043c38" }
+  hl.xpress_winbar_item_selected          = { fg = "white", bg = "#096a62" }
+  hl.xpress_winbar_item_selected_reverted = { fg = "#096a62" }
 
-  hl.mdx_term_winbar = { }
+  hl.xpress_winbar = { }
   hl.mdx_float_term_winbar = { link = 'mdx_block_float' }
 
   -- cursor

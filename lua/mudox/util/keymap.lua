@@ -205,6 +205,8 @@ M.leader = {
 }
 
 -- stylua: ignore start
+
+---string wrapper: <Cmd>...<Cr>
 function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
 
 ---primary leader: space + key
@@ -213,6 +215,7 @@ function M.p(sfx)  return M.leader.primary   .. sfx end
 function M.s(sfx)  return M.leader.secondary .. sfx end
 ---shortcut: semicolon + key
 function M.sc(sfx) return M.leader.shortcut  .. sfx end
+
 -- stylua: ignore end
 
 return M

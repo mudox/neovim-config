@@ -1,6 +1,7 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
 vim.g.mapleader = K.leader.primary
+vim.g.maplocalleader = K.leader.secondary
 
 -- Save file
 K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
@@ -19,28 +20,25 @@ K.nmap("zi", "zizz", "Toggle fold")
 -- stylua: ignore
 local zjk = {
   name = "Fold",
-  next = function() vim.cmd.normal { "zjzv", bang = true } end,
-  prev = function() vim.cmd.normal { "zkzv", bang = true } end,
+  left = function() vim.cmd.normal { "zjzv", bang = true } end,
+  right = function() vim.cmd.normal { "zkzv", bang = true } end,
 }
-K.nmap("zj", X.dirop.wrap(zjk, "next"), "Goto next fold start")
-K.nmap("zk", X.dirop.wrap(zjk, "prev"), "Goto prev fold end")
+K.nmap("zj", X.dirop.left(zjk), "Goto next fold start")
+K.nmap("zk", X.dirop.right(zjk), "Goto prev fold end")
 
 K.nmap("z<Space>", "zMzA", { remap = true })
 
-K.nmap("<C-S-,>", "zm", { remap = true })
-K.nmap("<C-S-.>", "zr", { remap = true })
 
--- K.nmap("zn", function()
---   vim.opt_local.foldenable = false
---   U.redraw_status_column()
--- end)
-
--- Resize window using <Ctrl>+arrow keys
--- local s = 4
--- K.ncmd("<C-Up>", "resize +" .. s, { desc = "Increase window height" })
--- K.ncmd("<C-Down>", "resize -" .. s, { desc = "Decrease window height" })
--- K.ncmd("<C-Left>", "vertical resize -" .. s, { desc = "Decrease window width" })
--- K.ncmd("<C-Right>", "vertical resize +" .. s, { desc = "Increase window width" })
+-- stylua: ignore
+local fdlvl = {
+  name = "Fold Level",
+  left = function() vim.cmd.normal { "zr", bang = true } end,
+  right = function() vim.cmd.normal { "zm", bang = true } end,
+}
+K.nmap("<C-S-.>", X.dirop.left(fdlvl), "Unfold a level")
+K.nmap("<C-S-,>", X.dirop.right(fdlvl), "Fold a level")
+-- K.nmap("<C-S-,>", "zm", { remap = true })
+-- K.nmap("<C-S-.>", "zr", { remap = true })
 
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
@@ -70,10 +68,11 @@ K.nmap(K.sc("q"), "q", { desc = "macro" })
 K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
 
 -- Window jump
--- K.map({ "n", "t" }, "<C-h>", K.c("wincmd h"))
--- K.map({ "n", "t" }, "<C-j>", K.c("wincmd j"))
--- K.map({ "n", "t" }, "<C-k>", K.c("wincmd k"))
--- K.map({ "n", "t" }, "<C-l>", K.c("wincmd l"))
+K.cmd({ "n", "t" }, "<C-h>", "wincmd h")
+K.cmd({ "n", "t" }, "<C-j>", "wincmd j")
+K.cmd({ "n", "t" }, "<C-k>", "wincmd k")
+K.cmd({ "n", "t" }, "<C-l>", "wincmd l")
+K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
 
 -- Profiling
 K.nmap(K.p("ps"), function()
@@ -98,3 +97,6 @@ K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
 -- Cmdline
 K.nmap(K.sc(";"), ":", { silent = false, desc = "[cmdline] :" })
 K.nmap(K.sc("l"), ":lua ", { silent = false, desc = "[cmdline] :lua" })
+
+-- Terminal
+K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })

@@ -1,9 +1,3 @@
-local function opts()
-  return {
-    filetypes = { "markdown", "quarto", "rmd", "Avante" },
-  }
-end
-
 return {
   "OXY2DEV/markview.nvim",
   ft = { "markdown", "quarto", "rmd", "Avante" },
@@ -11,4 +5,5 @@ return {
     "nvim-treesitter",
     "mini.nvim",
   },
+  cond = false, -- too distracting
 }

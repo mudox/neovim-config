@@ -33,4 +33,5 @@ end
 return {
   "lukas-reineke/indent-blankline.nvim",
   config = config,
+  cond = false, -- use blink-indent for better performance
 }
