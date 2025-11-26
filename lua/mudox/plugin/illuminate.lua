@@ -23,9 +23,11 @@ local function config()
     name = "illuminate",
     left = function()
       require("illuminate").goto_next_reference(true)
+      vim.cmd.normal { "zv", bang = true }
     end,
     right = function()
       require("illuminate").goto_prev_reference(true)
+      vim.cmd.normal { "zv", bang = true }
     end,
   }
 

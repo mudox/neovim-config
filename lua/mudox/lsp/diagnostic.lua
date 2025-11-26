@@ -86,7 +86,7 @@ local function setup()
   config()
   -- setup_signs()
 
-  On.lsp_attach(setup_keymaps)
+  On.LspAttach(setup_keymaps)
 end
 
 return {

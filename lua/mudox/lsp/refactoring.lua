@@ -20,7 +20,7 @@ local function setup_keymaps(_, bufnr)
 end
 
 function M.setup()
-  On.lsp_attach(setup_keymaps)
+  On.LspAttach(setup_keymaps)
 end
 
 return M

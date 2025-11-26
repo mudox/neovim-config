@@ -22,4 +22,5 @@ return {
   "nvimtools/hydra.nvim",
   event = "VeryLazy",
   config = config,
+  cond = false,
 }

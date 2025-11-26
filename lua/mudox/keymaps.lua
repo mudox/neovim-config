@@ -19,7 +19,7 @@ end
 K.nmap("zi", "zizz", "Toggle fold")
 -- stylua: ignore
 local zjk = {
-  name = "Fold",
+  name = "Fold Nav",
   left = function() vim.cmd.normal { "zjzv", bang = true } end,
   right = function() vim.cmd.normal { "zkzv", bang = true } end,
 }
@@ -28,17 +28,29 @@ K.nmap("zk", X.dirop.right(zjk), "Goto prev fold end")
 
 K.nmap("z<Space>", "zMzA", { remap = true })
 
+local fdlvl = (function()
+  function notify(dir)
+    local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and -1 or 1)
+    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↗" or "↘"))
+  end
 
--- stylua: ignore
-local fdlvl = {
-  name = "Fold Level",
-  left = function() vim.cmd.normal { "zr", bang = true } end,
-  right = function() vim.cmd.normal { "zm", bang = true } end,
-}
+  return {
+    name = "Fold Level",
+    left = function()
+      notify("left")
+      vim.cmd.normal { "zr", bang = true }
+    end,
+    right = function()
+      notify("right")
+      vim.cmd.normal { "zm", bang = true }
+    end,
+    notify = function(dir)
+      notify(dir)
+    end,
+  }
+end)()
 K.nmap("<C-S-.>", X.dirop.left(fdlvl), "Unfold a level")
 K.nmap("<C-S-,>", X.dirop.right(fdlvl), "Fold a level")
--- K.nmap("<C-S-,>", "zm", { remap = true })
--- K.nmap("<C-S-.>", "zr", { remap = true })
 
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
@@ -72,23 +84,30 @@ K.cmd({ "n", "t" }, "<C-h>", "wincmd h")
 K.cmd({ "n", "t" }, "<C-j>", "wincmd j")
 K.cmd({ "n", "t" }, "<C-k>", "wincmd k")
 K.cmd({ "n", "t" }, "<C-l>", "wincmd l")
-K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
+-- K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
+
+-- Window resizing
+local resize_op = X.dirop.excmd("Window resize", "wincmd >", "wincmd <", "wincmd -", "wincmd +")
+K.nmap("<C-w>>", X.dirop.left(resize_op), { desc = "Increase window width" })
+K.nmap("<C-w><", X.dirop.right(resize_op), { desc = "Decrease window width" })
+K.nmap("<C-w>+", X.dirop.up(resize_op), { desc = "Increase window height" })
+K.nmap("<C-w>-", X.dirop.down(resize_op), { desc = "Decrease window height" })
 
 -- Profiling
-K.nmap(K.p("ps"), function()
-  vim.cmd([[
-    :profile start /tmp/nvim-profile.log
-    :profile func *
-    :profile file *
-    ]])
-end, { desc = "Start profiling" })
+-- K.nmap(K.p("ps"), function()
+--   vim.cmd([[
+--     :profile start /tmp/nvim-profile.log
+--     :profile func *
+--     :profile file *
+--     ]])
+-- end, { desc = "Start profiling" })
 
-K.nmap(K.p("pe"), function()
-  vim.cmd([[
-    :profile stop
-    :edit /tmp/nvim-profile.log
-    ]])
-end, { desc = "End profiling" })
+-- K.nmap(K.p("pe"), function()
+--   vim.cmd([[
+--     :profile stop
+--     :edit /tmp/nvim-profile.log
+--     ]])
+-- end, { desc = "End profiling" })
 
 -- Clipboard
 K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
@@ -100,3 +119,6 @@ K.nmap(K.sc("l"), ":lua ", { silent = false, desc = "[cmdline] :lua" })
 
 -- Terminal
 K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })
+
+-- Open in finder
+K.nmap("gX", K.c("!open %:p:h"), { desc = "Open dir in finder" })

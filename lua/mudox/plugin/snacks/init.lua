@@ -17,12 +17,10 @@ local function keys()
 
   -- stylua: ignore
   local ret = {
-    { k"\\",        function() Snacks.explorer() end,         desc = "File explorer"           },
+    { k"\\",   function() Snacks.explorer() end,         desc = "File explorer"           },
     { K.p"fl", function() Snacks.explorer() end,         desc = "File explorer"           },
-    -- { "<C-S-p>",        function() Snacks.explorer() end,               desc = "File explorer"           },
 
     { K.p"ps", function() Snacks.profiler.scratch() end, desc = "Profiler scratch buffer" },
-
   }
 
   for _, name in ipairs(mods) do

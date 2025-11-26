@@ -4,8 +4,7 @@ local opts = {
     header = U.logo(),
         -- stylua: ignore
         keys = {
-          { icon = " ", key = "f", desc = "Find",     action  = ":lua Snacks.dashboard.pick('files')"     },
-          { icon = " ", key = "r", desc = "Recent",   action  = ":lua Snacks.dashboard.pick('oldfiles')"  },
+          { icon = " ", key = "f", desc = "Find",     action  = ":Telescope smart_open"                   },
           { icon = " ", key = "q", desc = "New",      action  = ":ene | startinsert"                      },
           { icon = "󰦪 ", key = "g", desc = "Grep",     action  = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "󰞷 ", key = "t", desc = "Terminal", action  = ":Xpress"                                 },

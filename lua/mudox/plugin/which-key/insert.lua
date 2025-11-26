@@ -23,11 +23,13 @@ return {
   mode = "i",
   { "<C-k>", group = "insert leader" },
 
-  { "<C-;>",    end_with(";"),        desc = "End with ; + NL" },
-  { "<M-;>",    end_with(";", false), desc = "End with ;"      },
-  { ";;",       end_with(";", false), desc = "End with ;"      },
+  { "<C-j>", "<C-o>o",             desc = "Next line"       },
 
-  { "<C-,>",    end_with(","),        desc = "End with , + NL" },
-  { "<M-,>",    end_with(",", false), desc = "End with ,"      },
-  { ",,",       end_with(",", false), desc = "End with ,"      },
+  { "<C-;>", end_with(";"),        desc = "End with ; + NL" },
+  { "<M-;>", end_with(";", false), desc = "End with ;"      },
+  { ";;",    end_with(";", false), desc = "End with ;"      },
+
+  { "<C-,>", end_with(","),        desc = "End with , + NL" },
+  { "<M-,>", end_with(",", false), desc = "End with ,"      },
+  { ",,",    end_with(",", false), desc = "End with ,"      },
 }

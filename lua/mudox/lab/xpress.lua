@@ -168,12 +168,13 @@ function M.get_title(buf)
   end
 
   local bufname = vim.api.nvim_buf_get_name(buf)
-  assert(bufname:match("^term://"))
-  local cmd = bufname:match("([^:/\\]+)$") -- remove term://{path}//pid:{bin_path}
-  assert(cmd and cmd ~= "")
-  local bin = cmd:match("^[^ ]+") -- remove args
+  -- if bufname:match("^term://")) then
+  local cmd = bufname:match("([^:/\\]*)$") -- remove term://{path}//pid:{bin_path}
+  -- assert(cmd and cmd ~= "")
+  local bin = cmd:match("^[^ ]*") -- remove args
   -- bin = vim.fn.fnamemodify(bin, ":t")
   return bin
+  -- end
 end
 
 function M.list_term_bufs()

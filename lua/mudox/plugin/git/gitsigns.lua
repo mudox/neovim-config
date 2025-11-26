@@ -49,7 +49,7 @@ local opts = {
   signcolumn = false, -- disabled initially, toggle with `:Gitsigns toggle_signs`
   signs = signs,
 
-  numhl = true,
+  numhl = false,
   linehl = false,
 
   -- Blame

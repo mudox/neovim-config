@@ -57,7 +57,7 @@ return {
   -- stylua: ignore
   keys = {
     { K.p"fo", K.c"Oil",         desc = "[Oil] Open", },
-    { "<M-o>",      K.c"Oil",         desc = "[Oil] Open", },
+    -- { "<M-o>", K.c"Oil",         desc = "[Oil] Open", },
 
     { K.p"fO", K.c"Oil --float", desc = "[Oil] Open", },
   },

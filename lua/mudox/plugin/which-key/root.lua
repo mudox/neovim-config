@@ -51,21 +51,6 @@ local window = {
   { p"w2", function() X.layout.two_windows() end, desc = "2 windows layout" },
 
   { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Focus next floating windows" },
-
-  -- resize window repeatable
-  (function()
-    local step = 4
-    local prefix = p"wr"
-
-    return {
-      { prefix, function() require("which-key").show { keys = prefix, loop = true } end, group = "resize" },
-
-      { prefix .. "w", function() vim.cmd("vertical resize -" .. step) end, group = "- width"   },
-      { prefix .. "W", function() vim.cmd("vertical resize +" .. step) end, group = "+ width"   },
-      { prefix .. "h", function() vim.cmd("resize -" .. step) end,          group = "- height"  },
-      { prefix .. "H", function() vim.cmd("resize +" .. step) end,          group = "+ height"  },
-    }
-  end)()
 }
 
 local primary = {
@@ -91,12 +76,12 @@ local secondary = {
 }
 
 local shortcut = {
-  { K.sc"v", c"Lazy", desc = "Plugin manager" },
+  { c"v", c"Lazy", desc = "Plugin manager" },
 
-  { sc"1",      function() X.layout.main:focus() end,     desc = "Focus main window"     },
-  { "<C-Cr>",   function() X.layout.main:focus() end,     desc = "Focus main window"     },
-  { sc"2",      function() X.layout.secondary:open() end, desc = "Open secondary window" },
-  { "<C-S-Cr>", function() X.layout.secondary:open() end, desc = "Open secondary window" },
+  { sc"1",      function() X.layout.main:focus() end,     desc = "Main window"      },
+  { "<C-Cr>",   function() X.layout.main:focus() end,     desc = "Main window"      },
+  { sc"2",      function() X.layout.secondary:open() end, desc = "Secondary window" },
+  { "<C-S-Cr>", function() X.layout.secondary:open() end, desc = "Secondary window" },
   { sc"3",      function() X.layout.one_window() end,     desc = "Main window only"      },
 }
 

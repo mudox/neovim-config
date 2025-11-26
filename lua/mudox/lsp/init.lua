@@ -1,4 +1,4 @@
-On.very_lazy(function()
+On.VeryLazy(function()
   -- stylua: ignore
   vim.lsp.enable {
     -- lua
@@ -29,4 +29,9 @@ On.very_lazy(function()
   setup("browsing")
   setup("diagnostic")
   setup("refactoring")
+
+  -- disable semantic token globally
+  On.LspAttach(function(client, _)
+    client.server_capabilities.semanticTokensProvider = nil
+  end)
 end)

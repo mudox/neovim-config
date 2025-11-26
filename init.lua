@@ -1,4 +1,5 @@
 vim.loader.enable()
+
 -- https://www.reddit.com/r/neovim/comments/1kcz8un/great_improvements_to_the_cmdline_in_nightly
 -- https://github.com/neovim/neovim/pull/27855
 require("vim._extui").enable {
@@ -30,7 +31,7 @@ require("mudox.lsp")
 -- Autocmds & keymaps
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
-  On.very_lazy(function()
+  On.VeryLazy(function()
     require("mudox.keymaps")
     X.dirop.setup()
   end)

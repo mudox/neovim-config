@@ -1,9 +1,12 @@
 return {
   "saghen/blink.indent",
-  event = "VeryLazy",
+  event = { "BufRead", "BufNewFile" },
+  init = function()
+    vim.g.indent_guide = false
+  end,
   opts = {
     blocked = {
-      filetypes = { "snacks_picker_preview", "help" },
+      filetypes = { include_defaults = true, "help" },
     },
   },
 }

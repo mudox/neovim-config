@@ -56,7 +56,7 @@ local function _init()
   t.inlay_hints():map(k"H")
 
   -- line numbers
-  t.line_number():map(k"n")
+  o("number", { name = "Line Number" }):map(k"n")
   o("relativenumber", { name = "Relative Number" }):map(k"N")
 
   -- conceal level
@@ -81,14 +81,6 @@ local function _init()
     end,
     set = function() require("nvim-highlight-colors").toggle() end,
   }):map(k"c")
-
-  -- indent-blank-line
-  -- t.new({
-  --   id = "indent_blank_line",
-  --   name = "Indent Blank Line",
-  --   get = function() return require("ibl.config").get_config(-1).enabled end,
-  --   set = function() vim.cmd.IBLToggle() end,
-  -- }):map(k"i")
 
   -- conform locally
   t.new({
@@ -128,6 +120,23 @@ local function _init()
   t.profiler():map(k"p")
   -- profiler highlights
   t.profiler_highlights():map(k"P")
+
+  -- blink.indent
+  t.new({
+    id = "blink_indent",
+    name = "Indent Guidelines",
+    get = function() require("blink.indent").is_enabled() end,
+    set = function() require("blink.indent").enable(not require("blink.indent").is_enabled({ bufnr = 0}), { bufnr = 0 }) end,
+  }):map(k"i")
+
+  -- indent-blank-line
+  -- t.new({
+  --   id = "indent_blank_line",
+  --   name = "Indent Blank Line",
+  --   get = function() return require("ibl.config").get_config(-1).enabled end,
+  --   set = function() vim.cmd.IBLToggle() end,
+  -- }):map(k"i")
+
 end
 
 return {
@@ -143,6 +152,6 @@ return {
     },
   },
   init = function()
-    On.very_lazy(_init)
+    On.VeryLazy(_init)
   end,
 }

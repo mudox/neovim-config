@@ -56,10 +56,8 @@ local icons = {
 
 local ui = {
   backdrop = 100, -- remove backdrop
-  -- a number <1 is a percentage., >1 is a fixed size
-  size = { width = 0.6, height = 0.8 },
-  wrap = true, -- wrap the lines in the ui
-  -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+  size = { width = 0.7, height = 0.8 },
+  wrap = false,
   border = "none",
   icons = icons,
   -- leave nil, to automatically select a browser depending on your OS.

@@ -1,45 +1,42 @@
 local u = require("mudox.plugin.overseer.util")
 
+-- stylua: ignore start
+local function k(keys) return K.p("r") .. keys end
+local function c(args) return ("<Cmd>Overseer%s<Cr>"):format(args) end
+-- stylua: ignore en
+
+
 -- stylua: ignore
 local keys = {
   -- task list panel
-  { "v",            "Toggle",                      "Toggle list",            },
+  { k"v",     c"Toggle",                     "Toggle list",            },
+  { K.p"wr",  c"Toggle",                     "[Overseer] Toggle",      },
 
-  -- run task
-  { "n",            "Build",                       "Build new task",         },
+  { k"<Cr>",  c"Run",                        "Run template",           },
 
-  { "c",            "RunCmd",                      "Run shell command",      },
-  { ":",            "RunCmd",                      "Run shell command",      },
+  { k"r",     u.on_task("run"),              "Run task",               },
 
-  { "<Cr>",         "Run",                         "Run template",           },
-
-  { "r",            u.on_task("run"),              "Run task",               },
-
-  { "q",            u.quick_run,                   "Quick run"               },
-  { "w",            u.watch_run,                   "Watch & run",            },
+  { k"q",     u.quick_run,                   "Quick run"               },
+  { k"w",     u.watch_run,                   "Watch & run",            },
 
   -- on last task
-  { ".",            u.on_last_task('restart'),     "Rerun last",             },
-  { "<C-j><C-j>",   u.save_rerun,                  "Rerun last",             mode = 'i' },
-  { "e",            u.on_last_task('edit'),        "Edit last",              },
-  { "<C-s>",        u.on_last_task('open hsplit'), "Split last",             },
-  { "<C-v>",        u.on_last_task('open vsplit'), "VSplit last",            },
+  { k".",     u.on_last_task('restart'),     "Rerun last",             },
+  -- { k"<C-j><C-j>",   u.save_rerun,                  "Rerun last",             mode = 'i' },
+  { k"e",     u.on_last_task('edit'),        "Edit last",              },
+  { k"<C-s>", u.on_last_task('open hsplit'), "Split last",             },
+  { k"<C-v>", u.on_last_task('open vsplit'), "VSplit last",            },
 
   -- action
-  { "a",            "QuickAction",                 "Perform on last",        },
-  { "o",            "TaskAction",                  "Perform on ...",         },
+  { k"o",     c"TaskAction",                 "Perform on ...",         },
 
   -- tasks bundle
-  { "S",            "SaveBundle",                  "Save task bundle",       },
-  { "R",            "LoadBundle",                  "Load & run task bundle", },
-  { "L",            "LoadBundle!",                 "Load task bundle",       },
-  { "D",            "DeleteBundle",                "Delete task bundle",     },
+  { k"S",     c"SaveBundle",                 "Save task bundle",       },
+  { k"R",     c"LoadBundle",                 "Load & run task bundle", },
+  { k"L",     c"LoadBundle!",                "Load task bundle",       },
+  { k"D",     c"DeleteBundle",               "Delete task bundle",     },
 
   -- info
-  { K.p"vo ✓", "Info",                        "Overseer ✓",             },
+  { K.p"vo",  K.c"checkhealth overseer",     "Overseer",               },
 }
 
-return K.lazy_keys(keys, {
-  key_prefix = K.p"r",
-  cmd_prefix = "Overseer",
-})
+return keys

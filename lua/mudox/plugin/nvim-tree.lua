@@ -100,6 +100,7 @@ local function opts()
     symlink = "󰿨",
     git     = git,
     folder  = folder,
+    bookmark = '✔',
   }
 
   local renderer = {
@@ -109,15 +110,17 @@ local function opts()
     indent_markers = {
       enable = true,
     },
+
     icons = {
       show = {
         folder = true,
         folder_arrow = false,
       },
       padding = " ",
-      git_placement = "after",
       symlink_arrow = " -> ",
       glyphs = glyphs,
+      git_placement = "after",
+      bookmarks_placement = "after",
     },
 
     special_files = {},

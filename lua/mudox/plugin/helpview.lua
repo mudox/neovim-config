@@ -28,4 +28,5 @@ return {
   dependencies = "nvim-treesitter",
   event = "VeryLazy",
   opts = opts,
+  cond = false,
 }

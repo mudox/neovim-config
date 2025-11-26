@@ -40,9 +40,13 @@ a("e", {
 -- stylua: ignore start
 a("a", c("Argument file", "next", "previous"))
 
+-- change list
 a(",", k("Change point", "g,zv", "g;zv", true))
+
+-- diff
 a("c", k("Diff hunk", "]c", "[c", true))
 
+-- quickfix / loclist
 a("q", c("Quickfix item", "cnext", "cprevious"))
 a("Q", c("Quickfix file", "cnfile", "cpfile"))
 a("l", c("Loclist item", "lnext", "lprevious"))

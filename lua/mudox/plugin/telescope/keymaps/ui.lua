@@ -12,7 +12,7 @@ end
 -- stylua: ignore
 local insert = {
   -- disable normal mode
-  ["<Esc>"]     = a.close,
+  -- ["<Esc>"]     = a.close,
 
   -- restore nvim default
   ["<C-u>"]     = false,

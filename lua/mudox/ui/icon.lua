@@ -150,7 +150,7 @@ return {
 
   chevron       = chevron,
 
-  diagnostic   = diagnostic,
+  diagnostic    = diagnostic,
   powerline     = powerline,
   tree          = tree,
   folder        = folder,

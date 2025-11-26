@@ -31,7 +31,8 @@ end
 
 local M = {}
 
-function M.lsp_attach(fn, opts)
+---@param fn fun(client, bufnr)
+function M.LspAttach(fn, opts)
   opts = opts or {}
   opts.callback = function(event)
     local bufnr = event.buf
@@ -41,11 +42,11 @@ function M.lsp_attach(fn, opts)
   vim.api.nvim_create_autocmd("LspAttach", opts)
 end
 
-function M.very_lazy(fn, opts)
+function M.VeryLazy(fn, opts)
   M.user("VeryLazy", fn, opts)
 end
 
-function M.colorscheme(fn, opts)
+function M.ColorScheme(fn, opts)
   opts = opts or {}
   opts.callback = fn
   vim.api.nvim_create_autocmd("ColorScheme", opts)
@@ -65,6 +66,131 @@ function M.user(pattern, fn, opts)
   vim.api.nvim_create_autocmd("User", opts)
 end
 
+-- stylua: ignore
+local BUILTIN_EVENTS = {
+  BufAdd               = true,
+  BufDelete            = true,
+  BufEnter             = true,
+  BufFilePost          = true,
+  BufFilePre           = true,
+  BufHidden            = true,
+  BufLeave             = true,
+  BufModifiedSet       = true,
+  BufNew               = true,
+  BufNewFile           = true,
+  BufReadCmd           = true,
+  BufReadPost          = true,
+  BufReadPre           = true,
+  BufUnload            = true,
+  BufWinEnter          = true,
+  BufWinLeave          = true,
+  BufWipeout           = true,
+  BufWriteCmd          = true,
+  BufWritePost         = true,
+  BufWritePre          = true,
+  ChanOpen             = true,
+  ChanInfo             = true,
+  CmdUndefined         = true,
+  CmdlineChanged       = true,
+  CmdlineEnter         = true,
+  CmdlineLeave         = true,
+  ColorScheme          = true,
+  ColorSchemePre       = true,
+  CompleteChanged      = true,
+  CompleteDone         = true,
+  CompleteDonePre      = true,
+  CursorHold           = true,
+  CursorHoldI          = true,
+  CursorMoved          = true,
+  CursorMovedI         = true,
+  DiffUpdated          = true,
+  DirChanged           = true,
+  DirChangedPre        = true,
+  ExitPre              = true,
+  FileAppendCmd        = true,
+  FileAppendPost       = true,
+  FileAppendPre        = true,
+  FileChangedRO        = true,
+  FileChangedShell     = true,
+  FileChangedShellPost = true,
+  FileReadCmd          = true,
+  FileReadPost         = true,
+  FileReadPre          = true,
+  FileType             = true,
+  FileWriteCmd         = true,
+  FileWritePost        = true,
+  FileWritePre         = true,
+  FilterReadPost       = true,
+  FilterReadPre        = true,
+  FilterWritePost      = true,
+  FilterWritePre       = true,
+  FocusGained          = true,
+  FocusLost            = true,
+  FuncUndefined        = true,
+  GUIEnter             = true,
+  GUIFailed            = true,
+  InsertChange         = true,
+  InsertEnter          = true,
+  InsertLeave          = true,
+  LspAttach            = true,
+  LspDetach            = true,
+  MenuPopup            = true,
+  ModeChanged          = true,
+  OptionSet            = true,
+  QuickFixCmdPost      = true,
+  QuickFixCmdPre       = true,
+  QuitPre              = true,
+  RemoteReply          = true,
+  SearchWrapped        = true,
+  SessionLoadPost      = true,
+  ShellCmdPost         = true,
+  ShellFilterPost      = true,
+  Signal               = true,
+  SourceCmd            = true,
+  SourcePost           = true,
+  SourcePre            = true,
+  SpellFileMissing     = true,
+  StdinReadPost        = true,
+  StdinReadPre         = true,
+  SwapExists           = true,
+  Syntax               = true,
+  TabClosed            = true,
+  TabEnter             = true,
+  TabLeave             = true,
+  TabNew               = true,
+  TabNewEntered        = true,
+  TermClose            = true,
+  TermOpen             = true,
+  TermResponse         = true,
+  TextChanged          = true,
+  TextChangedI         = true,
+  TextChangedP         = true,
+  TextYankPost         = true,
+  UIEnter              = true,
+  UILeave              = true,
+  User                 = true,
+  VimEnter             = true,
+  VimLeave             = true,
+  VimLeavePre          = true,
+  VimResized           = true,
+  VimResume            = true,
+  VimSuspend           = true,
+  WinClosed            = true,
+  WinEnter             = true,
+  WinLeave             = true,
+  WinNew               = true,
+  WinScrolled          = true,
+}
+
 return setmetatable(M, {
   __call = on,
+  __index = function(t, name)
+    if BUILTIN_EVENTS[name] then
+      t[name] = function(fn, opts)
+        opts = opts or {}
+        opts.callback = fn
+        vim.api.nvim_create_autocmd(name, opts)
+      end
+    end
+  end,
 })

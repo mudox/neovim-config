@@ -80,7 +80,7 @@ local keys = {
   { "<C-k>y",         function() Snacks.picker.yanky() end,           desc = "[Snacks] Yanky",         mode = 'i' },
 
   -- symbols
-  { '<C-f>',          function_symbols,                               desc = "[Snacks] Goto functions" },
+  { K.sc'sf',         function_symbols,                               desc = "[Snacks] Goto functions" },
 }
 
 local opts = {

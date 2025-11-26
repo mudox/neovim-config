@@ -6,6 +6,7 @@ local M = {}
 ---@field right fun() right op
 ---@field up? fun() up op
 ---@field down? fun() down op
+---@field notify? fun(dir) custom notify logic
 ---@field [string] fun()?
 
 ---@alias Dir "left" | "right" | "up" | "down"
@@ -14,6 +15,14 @@ _G.mdx_last_dirop = nil
 
 local next = "󰅂"
 local prev = "󰅁"
+
+-- stylua: ignore
+local diricon = {
+  up    = '↑',
+  down  = '↓',
+  left  = '←',
+  right = '→',
+}
 
 ---@param dir Dir
 ---@return fun()
@@ -37,7 +46,11 @@ function M.dir_func(dir)
       end
     end
 
-    print(op.name .. " -> " .. dir)
+    if op.notify then
+      op.notify(dir)
+    else
+      print(op.name .. " " .. diricon[dir])
+    end
     op[dir]()
   end
 end
@@ -47,13 +60,13 @@ function M.setup()
   assert(not once)
   once = true
 
-  K.map({ "i", "c" }, "<C-S-]>", next)
-  K.map({ "i", "c" }, "<C-S-[>", prev)
+  -- K.map({ "i", "c" }, "<C-S-]>", next)
+  -- K.map({ "i", "c" }, "<C-S-[>", prev)
 
-  K.nmap("L", M.dir_func("left"), { desc = "DirOp left" })
-  K.nmap("H", M.dir_func("right"), { desc = "DirOp right" })
-  K.nmap("K", M.dir_func("up"), { desc = "DirOp up" })
-  K.nmap("J", M.dir_func("down"), { desc = "DirOp down" })
+  K.nmap("L", M.dir_func("left"), { desc = "[DirOp] Left" })
+  K.nmap("H", M.dir_func("right"), { desc = "[DirOp] Right" })
+  K.nmap("K", M.dir_func("up"), { desc = "[DirOp] Up" })
+  K.nmap("J", M.dir_func("down"), { desc = "[DirOp] Down" })
 end
 
 ---Perform a directional operation
@@ -120,7 +133,7 @@ end
 function M.normal(name, l, r, u, d, bang)
   local function _w(lhs)
     return function()
-      pcall(vim.cmd.normal, { vim.keycode(lhs), bang = bang })
+      pcall(vim.cmd.normal, { lhs, bang = bang })
     end
   end
 
