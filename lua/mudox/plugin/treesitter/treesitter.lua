@@ -25,45 +25,29 @@ opts.highlight = {
   end,
 }
 
-opts.indent = {
-  enable = true,
-}
-
-opts.incremental_selection = {
-  enable = false, -- use flash.nvim instead
-}
-
-opts.query_linter = {
-  enable = true,
-  use_virtual_text = true,
-  lint_events = { "BufWrite", "CursorHold" },
-}
-
-local function config()
-  require("nvim-treesitter.configs").setup(opts)
-
-  -- disable injection queries for better performance
-  -- vim.treesitter.query.set("lua", "injections", "")
-end
-
 local function init()
   -- folding
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   vim.o.foldtext = "" -- use default transparent foldtext
-  -- vim.o.foldminlines = 6
-  -- vim.o.foldnestmax = 3
 
+  -- highlight
   vim.hl.priorities.semantic_tokens = 75 -- do not override treesitter highlighting
+  On.FileType(function()
+    pcall(vim.treesitter.start)
+  end)
+
+  -- indent
+  vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 end
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
-    cmd = { "TSUpdate", "TSInstallInfo", "TSDisable", "TSBufDisable" },
     init = init,
-    config = config,
+    -- config = config,
   },
 }
