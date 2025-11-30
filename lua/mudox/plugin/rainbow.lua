@@ -12,8 +12,6 @@ end
 
 return {
   "hiphish/rainbow-delimiters.nvim",
-  -- event = { "BufReadPre", "BufNewFile" },
-  -- event = "VeryLazy",
-  lazy = false,
+  event = { "BufReadPre", "BufNewFile" },
   config = config,
 }

@@ -9,7 +9,8 @@ local opts = {
           { icon = "󰦪 ", key = "g", desc = "Grep",     action  = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "󰞷 ", key = "t", desc = "Terminal", action  = ":Xpress"                                 },
           { icon = "󰭹 ", key = "R", desc = "Restore",  section = "session"                                 },
-          { icon = " ", key = "v", desc = "Plugin",   action  = ":Lazy"                                   },
+          { icon = " ", key = "v", desc = "Lazy",     action  = ":Lazy"                                   },
+          { icon = " ", key = "m", desc = "Mason",    action  = ":Mason"                                  },
         },
   },
 }

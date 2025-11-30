@@ -136,6 +136,6 @@ On("InsertLeave", {
 
 -- DO NOT ues event earlier than UIEnter
 -- event `TermOpen` will not be triggered
-On("UIEnter", function()
+On.UIEnter(function()
   require("mudox.lab.xpress")
 end)

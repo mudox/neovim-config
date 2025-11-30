@@ -182,15 +182,33 @@ local BUILTIN_EVENTS = {
   WinScrolled          = true,
 }
 
+-- stylua: ignore
+local USER_EVENTS = {
+  VeryLazy = true,
+}
+
 return setmetatable(M, {
   __call = on,
   __index = function(t, name)
     if BUILTIN_EVENTS[name] then
-      t[name] = function(fn, opts)
+      local f = function(cb, opts)
         opts = opts or {}
-        opts.callback = fn
+        opts.callback = cb
         vim.api.nvim_create_autocmd(name, opts)
       end
+      t[name] = f
+      return f
+    elseif USER_EVENTS[name] then
+      local f = function(cb, opts)
+        opts = opts or {}
+        opts.pattern = name
+        opts.callback = cb
+        vim.api.nvim_create_autocmd("User", opts)
+      end
+      t[name] = f
+      return f
+    else
+      assert(false, "invalid event name")
     end
   end,
 })

@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = "neoconf.nvim",
-  lazy = false,
+  -- lazy = false,
+  event = "VeryLazy",
 }
