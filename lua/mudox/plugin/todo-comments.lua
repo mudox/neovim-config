@@ -10,8 +10,8 @@ local op = {
 
 -- stylua: ignore
 local keys = {
-  { "]<C-t>", X.dirop.left(op),  desc = "Next todo comment",     },
-  { "[<C-t>", X.dirop.right(op), desc = "Previous todo comment", },
+  { "]<C-t>", X.arrows.left(op),  desc = "Next todo comment",     },
+  { "[<C-t>", X.arrows.right(op), desc = "Previous todo comment", },
 
   { K.p"xt", "<Cmd>TodoTrouble<Cr>",                         desc = "Todo",           },
   { K.p"xT", "<Cmd>TodoTrouble keywords=TODO,FIX,FIXME<Cr>", desc = "Todo|Fix|Fixme", },

@@ -8,4 +8,5 @@ return {
     "MurenRefresh",
   },
   config = true,
+  cond = false,
 }

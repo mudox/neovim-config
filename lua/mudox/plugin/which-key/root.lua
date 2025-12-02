@@ -22,9 +22,10 @@ local close = {
 }
 
 local edit = {
-  { p"eq", c"EditQuery",                                desc = "Edit query",  },
-  { p"ee", c"edit!",                                    desc = "Reload file", },
-  { p"ev", function() X.layout.secondary:open("#") end, desc = "Edit #",      },
+  { p"eq", c"EditQuery",                                desc = "Edit query",     },
+  { p"ee", c"edit!",                                    desc = "Reload file",    },
+  { p"ev", function() X.layout.secondary:open("#") end, desc = "Edit #",         },
+  { p"et", c"tabnew .nvim.lua",                         desc = "Edit .nvim.lua", },
 }
 
 local refactoring = {

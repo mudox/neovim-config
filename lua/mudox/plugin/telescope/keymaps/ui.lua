@@ -18,7 +18,7 @@ local insert = {
   ["<C-u>"]     = false,
 
   -- preview
-  ["?"]         = require("telescope.actions.layout").toggle_preview,
+  -- ["?"]         = require("telescope.actions.layout").toggle_preview,
 
   -- scroll preview
   ["<C-f>"]     = a.preview_scrolling_down,
@@ -35,8 +35,6 @@ local insert = {
   -- history
   ["<C-j>"]     = a.cycle_history_next,
   ["<C-k>"]     = a.cycle_history_prev,
-
-  ["<C-/>"]     = a.which_key,
 
   -- flash labels
   ["<C-d>"]     = ma.flash,
@@ -58,9 +56,7 @@ local insert = {
 }
 
 local normal = {
-  ["q"] = function(...)
-    return a().close(...)
-  end,
+  ["q"] = a.close,
 }
 
 return { i = insert, n = normal }

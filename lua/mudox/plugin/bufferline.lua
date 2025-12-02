@@ -91,20 +91,20 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<M-,> ✓",      "Pick",                 "Pick",           },
-  { K.p"fb ✓",      "Pick",                 "Pick",           },
+  { "<M-,> ✓",      "Pick",                 "pick",           },
+  { K.p"fb ✓",      "Pick",                 "pick",           },
 
   -- close buffer
-  { "x",            "PickClose",            "Pick & close",   },
-  { "<",            "CloseLeft",            "Close left",     },
-  { ">",            "CloseRight",           "Close right",    },
-  { "o",            "CloseOthers",          "Close other",    },
-  { "O",            "GroupClose ungrouped", "Close unpinned", },
+  { "x",            "PickClose",            "pick & close",   },
+  { "<",            "CloseLeft",            "close left",     },
+  { ">",            "CloseRight",           "close right",    },
+  { "o",            "CloseOthers",          "close other",    },
+  { "O",            "GroupClose ungrouped", "close unpinned", },
 
-  { "-",            "TogglePin",            "Pin",            },
+  { "-",            "TogglePin",            "pin",            },
 
-  { "<C-S-]> ✓",    "CycleNext",            "Cycle next",     },
-  { "<C-S-[> ✓",    "CyclePrev",            "Cycle previous", },
+  { "<C-S-]> ✓",    "CycleNext",            "cycle next",     },
+  { "<C-S-[> ✓",    "CyclePrev",            "cycle previous", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = K.p("b"),
@@ -114,7 +114,7 @@ keys = K.lazy_keys(keys, {
 
 -- <leader>[1-5] to switch to visually displayed buffer on buffer line
 for i = 1, 5 do
-  table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[BufferLine] Buffer " .. i })
+  table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[bufferline] #" .. i })
 end
 
 return {

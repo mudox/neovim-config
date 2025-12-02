@@ -8,5 +8,4 @@ return {
   event = "InsertEnter",
   cmd = "Codeium",
   config = config,
-  cond = false, -- TODO: learn about it
 }

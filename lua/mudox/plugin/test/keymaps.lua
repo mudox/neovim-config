@@ -68,10 +68,10 @@ local keys = {
   { "l",       toggle_output_panel, "Toggle output panel", },
 
   -- jump
-  { "]t ✓", X.dirop.left(test_nav),         "Next test",            },
-  { "[t ✓", X.dirop.right(test_nav),        "Previous test",        },
-  { "]T ✓", X.dirop.left(failed_test_nav),  "Next failed test",     },
-  { "[T ✓", X.dirop.right(failed_test_nav), "Previous failed test", },
+  { "]t ✓", X.arrows.left(test_nav),         "Next test",            },
+  { "[t ✓", X.arrows.right(test_nav),        "Previous test",        },
+  { "]T ✓", X.arrows.left(failed_test_nav),  "Next failed test",     },
+  { "[T ✓", X.arrows.right(failed_test_nav), "Previous failed test", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = K.p("c"),

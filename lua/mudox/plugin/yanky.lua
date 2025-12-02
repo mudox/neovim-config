@@ -23,8 +23,8 @@ local keys = {
   { "p",     "<Plug>(YankyPutAfter)",                desc = "[Yanky] Put after cursor",             mode = { "n", "x" } },
   { "P",     "<Plug>(YankyPutBefore)",               desc = "[Yanky] Put before cursor",            mode = { "n", "x" } },
 
-  { "[y",    X.dirop.right(op),                      desc = "[Yanky] Next entry" },
-  { "]y",    X.dirop.left(op),                       desc = "[Yanky] Previous entry" },
+  { "[y",    X.arrows.right(op),                      desc = "[Yanky] Next entry" },
+  { "]y",    X.arrows.left(op),                       desc = "[Yanky] Previous entry" },
 
   { "gp",    "<Plug>(YankyGPutAfter)",               desc = "[Yanky] Put after selection",          mode = { "n", "x" } },
   { "gP",    "<Plug>(YankyGPutBefore)",              desc = "[Yanky] Put before selection",         mode = { "n", "x" } },

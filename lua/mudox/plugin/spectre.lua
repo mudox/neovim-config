@@ -9,4 +9,5 @@ return {
       desc = "[Spectre] Replace in files",
     },
   },
+  cond = false,
 }

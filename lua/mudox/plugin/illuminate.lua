@@ -22,18 +22,18 @@ local function config()
   local op = {
     name = "illuminate",
     left = function()
-      require("illuminate").goto_next_reference(true)
+      require("illuminate").goto_prev_reference(true)
       vim.cmd.normal { "zv", bang = true }
     end,
     right = function()
-      require("illuminate").goto_prev_reference(true)
+      require("illuminate").goto_next_reference(true)
       vim.cmd.normal { "zv", bang = true }
     end,
   }
 
   local function setup_keymaps()
-    K.nmap("]]", X.dirop.left(op))
-    K.nmap("[[", X.dirop.right(op))
+    K.nmap("]r", X.arrows.right(op))
+    K.nmap("[r", X.arrows.left(op))
   end
 
   setup_keymaps()

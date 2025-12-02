@@ -1,37 +1,39 @@
 local c = K.c
 
 -- stylua: ignore
+local function v(k) return K.s("v" .. k) end
+
+-- stylua: ignore
 return {
   { K.s"v", group = "neovim views" },
 
-  { K.s"va",     c"args",                                 desc = "Arguments"             },
-  { K.s"vb",     c"buffers!",                             desc = "Buffers!"              },
-  { K.s"vB",     c"buffers",                              desc = "Buffers"               },
-  { K.s"vc",     c"ascii",                                desc = "ASCII"                 },
-  { K.s"vg",     "8<C-G>",                                desc = "Buffer info"           },
-  { K.s"vH",     c"checkhealth",                          desc = "Health"                },
-  { K.s"vI",     c"Inspect!",                             desc = "Inspect!"              },
-  { K.s"vi",     c"Inspect",                              desc = "Inspect"               },
-  { K.s"vj",     c"jumps",                                desc = "Jumps"                 },
-  { K.s"vl",     c"lopen",                                desc = "Loclist"               },
-  { K.s"vm",     c"marks",                                desc = "Marks"                 },
-  { K.s"vo",     c"options",                              desc = "Options"               },
-  { K.s"vq",     c"copen",                                desc = "Quickfix"              },
-  { K.s"vr",     c"registers",                            desc = "Registers"             },
-  { K.s"vs",     c"scriptnames",                          desc = "Loaded scripts"        },
-  { K.s"vt",     c"InspectTree",                          desc = "Inspect tree"          },
-  { K.s"vu",     c"packadd nvim.undotree <Bar> Undotree", desc = "Undo tree"             },
-  { K.s"vU",     c"undolist",                             desc = "Undo list"             },
-  { K.s"vv",     c"messages",                             desc = "Messages"              },
-  { K.s"vV",     c"verbose version",                      desc = "Version"               },
-
-  { K.s"vw",     X.inspect_win,                           desc = "Inspect window"        },
-
-  { K.s"v<Tab>", c"tabs",                                 desc = "Tabpages"              },
-  { K.s"v=",     c"EditQuery",                            desc = "TreeSitter playground" },
+  { v"<Tab>", c"tabs",                                 desc = "Tabpages"              },
+  { v"=",     c"EditQuery",                            desc = "TreeSitter playground" },
+  { v"a",     c"args",                                 desc = "Arguments"             },
+  { v"b",     c"buffers!",                             desc = "Buffers!"              },
+  { v"B",     c"buffers",                              desc = "Buffers"               },
+  { v"c",     c"ascii",                                desc = "ASCII"                 },
+  { v"g",     "8<C-G>",                                desc = "Buffer info"           },
+  { v"H",     c"checkhealth",                          desc = "Health"                },
+  { v"I",     c"Inspect!",                             desc = "Inspect!"              },
+  { v"i",     c"Inspect",                              desc = "Inspect"               },
+  { v"j",     c"jumps",                                desc = "Jumps"                 },
+  { v"l",     c"lopen",                                desc = "Loclist"               },
+  { v"m",     c"marks",                                desc = "Marks"                 },
+  { v"o",     c"options",                              desc = "Options"               },
+  { v"q",     c"copen",                                desc = "Quickfix"              },
+  { v"r",     c"registers",                            desc = "Registers"             },
+  { v"s",     c"scriptnames",                          desc = "Loaded scripts"        },
+  { v"t",     c"InspectTree",                          desc = "Inspect tree"          },
+  { v"u",     c"packadd nvim.undotree <Bar> Undotree", desc = "Undo tree"             },
+  { v"U",     c"undolist",                             desc = "Undo list"             },
+  { v"v",     c"messages",                             desc = "Messages"              },
+  { v"V",     c"verbose version",                      desc = "Version"               },
+  { v"w",     X.inspect_win,                           desc = "Inspect window"        },
+  { v"x",     c"!open %:h",                            desc = "Finder"                },
 
   { K.p"v", group = "plugin views" },
 
-  { K.p"vz", c"Lazy",                                     desc = "Lazy"     },
-  { K.p"vw", c"WhichKey",                                 desc = "WhichKey" },
+  { K.p"vz", c"Lazy",                                  desc = "Lazy"     },
+  { K.p"vw", c"WhichKey",                              desc = "WhichKey" },
 }

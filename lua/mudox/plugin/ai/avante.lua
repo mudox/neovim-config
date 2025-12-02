@@ -14,5 +14,4 @@ return {
   build = "make",
   cmd = "AvanteAsk",
   opts = {},
-  cond = false,
 }

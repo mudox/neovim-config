@@ -10,4 +10,5 @@ return {
       help = true,
     },
   },
+  cond = false,
 }

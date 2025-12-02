@@ -1,21 +1,26 @@
 local M = {
   { "]", group = "next" },
+  { "][", group = "start of" },
+  { "]]", group = "end of" },
+
   { "[", group = "prev" },
+  { "[[", group = "start of" },
+  { "[]", group = "end of" },
 }
 
-local function a(key, t)
+local function add(key, t)
   table.insert(M, {
-    { "]" .. key, X.dirop.left(t), desc = t.name },
-    { "[" .. key, X.dirop.right(t), desc = t.name },
+    { "]" .. key, X.arrows.left(t), desc = t.name },
+    { "[" .. key, X.arrows.right(t), desc = t.name },
   })
 end
 
-local c = X.dirop.excmd
-local k = X.dirop.normal
+local excmd = X.arrows.excmd
+local normal = X.arrows.normal
 
 -- insert empty line
-a("<Space>", {
-  name = "Insert blankline",
+add("<Space>", {
+  name = "insert blankline",
   left = function()
     vim.cmd("put  =repeat(nr2char(10), v:count1)|silent '[-")
   end,
@@ -25,7 +30,7 @@ a("<Space>", {
 })
 
 -- swap line
-a("e", {
+add("e", {
   name = "Swap line",
   left = function()
     vim.cmd("silent! move +" .. vim.v.count1)
@@ -38,27 +43,36 @@ a("e", {
 })
 
 -- stylua: ignore start
-a("a", c("Argument file", "next", "previous"))
+add("a", excmd("argument file", "next", "previous"))
 
 -- change list
-a(",", k("Change point", "g,zv", "g;zv", true))
+local op = normal("change point", "g;zv", "g,zv")
+op.notify = function(dir)
+  if dir == 'left' or dir == 'up' then
+    print('older change point')
+  else
+    print('newer change point')
+  end
+end
+K.nmap("g;", X.arrows.left(op), { desc = "older change point" })
+K.nmap("g,", X.arrows.right(op), { desc = "newer change point" })
 
 -- diff
-a("c", k("Diff hunk", "]c", "[c", true))
+add("c", normal("diff hunk", "]c", "[c", true))
 
 -- quickfix / loclist
-a("q", c("Quickfix item", "cnext", "cprevious"))
-a("Q", c("Quickfix file", "cnfile", "cpfile"))
-a("l", c("Loclist item", "lnext", "lprevious"))
-a("L", c("Loclist file", "lnfile", "lpfile"))
+add("q", excmd("quickfix item", "cnext", "cprevious"))
+add("Q", excmd("quickfix file", "cnfile", "cpfile"))
+add("l", excmd("loclist item", "lnext", "lprevious"))
+add("L", excmd("loclist file", "lnfile", "lpfile"))
 
-a("<Tab>", c("Tabpage", "tabnext", "tabprevious"))
+add("<Tab>", excmd("Tabpage", "tabnext", "tabprevious"))
 -- stylua: ignore end
 
 -- jumplist
 -- <C-i> can not be used directly in `k` for unknown reason
 K.nmap("<Plug>MdxJumplistForwards", "<C-i>")
 K.nmap("<Plug>MdxJumplistBackwards", "<C-o>")
-a("j", k("Jumplist", "<Plug>MdxJumplistForwards", "<Plug>MdxJumplistBackwards", false))
+add("j", normal("jumplist", "<Plug>MdxJumplistForwards", "<Plug>MdxJumplistBackwards", false))
 
 return M

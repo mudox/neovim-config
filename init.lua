@@ -6,20 +6,20 @@ require("vim._extui").enable {
   enable = true,
   msg = {
     target = "msg",
+    timeout = 6000,
   },
 }
--- it breaks easy-align
 
--- Convenient globals
+-- Globals
 require("mudox.globals")
 
 -- Load plugins
 require("mudox.lazy")
 
 -- Colorscheme
-local ok, tn = pcall(require, "tokyonight")
+local ok, theme = pcall(require, "tokyonight")
 if ok then
-  tn.load()
+  theme.load()
 end
 
 require("mudox.settings")
@@ -28,17 +28,17 @@ require("mudox.autocmds")
 -- LSP
 require("mudox.lsp")
 
--- Autocmds & keymaps
+-- Keymaps ...
 if vim.fn.argc(-1) == 0 then
   -- delay loading till `VeryLazy`
   On.VeryLazy(function()
     require("mudox.keymaps")
-    X.dirop.setup()
+    X.arrows.setup()
   end)
 else
   -- load them immediately so they affect the opened buffers
   require("mudox.keymaps")
-  X.dirop.setup()
+  X.arrows.setup()
 end
 
 -- HACK: swizzle nvim_open_win

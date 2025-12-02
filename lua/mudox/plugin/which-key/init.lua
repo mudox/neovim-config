@@ -34,6 +34,13 @@ local key_icons = {
 local opts = {
   notify = false,
 
+  replace = {
+    -- stylua: ignore
+    desc = {
+      { "%u+", function(c) return c:lower() end },
+    },
+  },
+
   -- ui
   show_help = true,
   show_keys = true,

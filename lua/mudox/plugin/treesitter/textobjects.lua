@@ -11,69 +11,6 @@
 -- s  󰅂 scope
 -- /  󰅂 comment
 
--- stylua: ignore start
-
-local select = {
-  enable = true,
-  lookahead = true,
-}
-
-
-
-local move = {
-  enable = true,
-  set_jumps = true, -- whether to set jumps in the jumplist
-}
-
--- stylua: ignore end
-
-local function setup_keymaps()
-  local function d(name, postfix)
-    -- stylua: ignore
-    return {
-      name = name,
-      left = function() vim.cmd.normal("󰅂" .. postfix) end,
-      right = function() vim.cmd.normal("󰅁" .. postfix) end,
-    }
-  end
-
-  local function next(name, postfix)
-    return X.dirop.left(d(name, postfix))
-  end
-
-  local function prev(name, postfix)
-    return X.dirop.right(d(name, postfix))
-  end
-
-  local keys = {}
-
-  for k, v in pairs(move.goto_next_start) do
-    local name = v.desc:sub(6)
-    local postfix = k:sub(-1)
-    table.insert(keys, { "]" .. postfix, next(name, postfix), desc = v.desc })
-  end
-
-  for k, v in pairs(move.goto_previous_start) do
-    local name = v.desc:sub(9)
-    local postfix = k:sub(-1)
-    table.insert(keys, { "[" .. postfix, prev(name, postfix), desc = v.desc })
-  end
-
-  for k, v in pairs(move.goto_next_end) do
-    local name = v.desc:sub(6)
-    local postfix = k:sub(-1)
-    table.insert(keys, { "]" .. postfix, next(name, postfix), desc = v.desc })
-  end
-
-  for k, v in pairs(move.goto_previous_end) do
-    local name = v.desc:sub(9)
-    local postfix = k:sub(-1)
-    table.insert(keys, { "[" .. postfix, prev(name, postfix), desc = v.desc })
-  end
-
-  require("which-key").add(keys)
-end
-
 local function setup_select()
   require("nvim-treesitter-textobjects").setup {
     select = {
@@ -141,42 +78,42 @@ local function setup_jump()
 
   -- stylua: ignore
   local move = {
-    ["f"] = { query = "@function.outer",                       name = "function definition" },
-    ["k"] = { query = "@call.outer",                           name = "funcall call"        },
+    ["f"] = { query = "@function.outer",                       name = "function"  },
+    ["k"] = { query = "@call.outer",                           name = "call"      },
 
-    ["^"] = { query = "@conditional.outer",                    name = "condition"         },
-    ["@"] = { query = "@loop.outer",                           name = "loop"                },
+    ["^"] = { query = "@conditional.outer",                    name = "condition" },
+    ["@"] = { query = "@loop.outer",                           name = "loop"      },
 
-    ["s"] = { query = "@scope",             origin = "locals", name = "scope"               },
+    ["s"] = { query = "@scope",             origin = "locals", name = "scope"     },
     --["󰅂c"] = { query = "@class.outer",       desc = "Class start" },
   }
 
   for key, v in pairs(move) do
     local start_op = {
-      name = "Start of " .. v.name,
+      name = v.name,
       left = function()
-        require("nvim-treesitter-textobjects.move").goto_next_start(v.query, v.origin or "textobjects")
-      end,
-      right = function()
         require("nvim-treesitter-textobjects.move").goto_previous_start(v.query, v.origin or "textobjects")
       end,
+      right = function()
+        require("nvim-treesitter-textobjects.move").goto_next_start(v.query, v.origin or "textobjects")
+      end,
     }
 
-    vim.keymap.set({ "n", "x", "o" }, "]" .. key, X.dirop.left(start_op))
-    vim.keymap.set({ "n", "x", "o" }, "[" .. key, X.dirop.right(start_op))
+    vim.keymap.set({ "n", "x", "o" }, "][" .. key, X.arrows.right(start_op), { desc = start_op.name })
+    vim.keymap.set({ "n", "x", "o" }, "[[" .. key, X.arrows.left(start_op), { desc = start_op.name })
 
     local end_op = {
-      name = "End of " .. v.name,
+      name = v.name,
       left = function()
-        require("nvim-treesitter-textobjects.move").goto_next_end(v.query, v.origin or "textobjects")
+        require("nvim-treesitter-textobjects.move").goto_previous_end(v.query, v.origin or "textobjects")
       end,
       right = function()
-        require("nvim-treesitter-textobjects.move").goto_previous_end(v.query, v.origin or "textobjects")
+        require("nvim-treesitter-textobjects.move").goto_next_end(v.query, v.origin or "textobjects")
       end,
     }
 
-    vim.keymap.set({ "n", "x", "o" }, "]" .. key, X.dirop.left(end_op))
-    vim.keymap.set({ "n", "x", "o" }, "[" .. key, X.dirop.right(end_op))
+    vim.keymap.set({ "n", "x", "o" }, "]]" .. key, X.arrows.right(end_op), { desc = end_op.name })
+    vim.keymap.set({ "n", "x", "o" }, "[]" .. key, X.arrows.left(end_op), { desc = end_op.name })
   end
 end
 

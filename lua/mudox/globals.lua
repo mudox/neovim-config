@@ -7,6 +7,9 @@ _G.C = {
   alpha = true,  -- alpha.nvim | snacks.dashboard
 }
 
+-- global data vault
+_G.V = {}
+
 -- Dev, debug
 _G.D = {
   dd = function(...)

@@ -27,8 +27,8 @@ local keys = {
 
   { "r",      "lsp_references toggle",                                                         "References",            },
 
-  { "]<C-x> ✓", X.dirop.left(op),  "Next trouble item",     },
-  { "[<C-x> ✓", X.dirop.right(op), "Previous trouble item", },
+  { "]<C-x> ✓", X.arrows.left(op),  "Next trouble item",     },
+  { "[<C-x> ✓", X.arrows.right(op), "Previous trouble item", },
 }
   keys = K.lazy_keys(keys, {
     key_prefix = K.p("x"),

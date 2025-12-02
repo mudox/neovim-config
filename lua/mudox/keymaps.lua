@@ -12,7 +12,7 @@ K.nmap("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Tabpage navigation
 for i = 1, 9 do
-  K.nmap("]" .. i, i .. "gt", { desc = "Goto tabpage " .. i })
+  K.nmap("]" .. i, i .. "gt", { desc = "tab #" .. i })
 end
 
 -- Folding
@@ -23,8 +23,8 @@ local zjk = {
   left = function() vim.cmd.normal { "zjzv", bang = true } end,
   right = function() vim.cmd.normal { "zkzv", bang = true } end,
 }
-K.nmap("zj", X.dirop.left(zjk), "Goto next fold start")
-K.nmap("zk", X.dirop.right(zjk), "Goto prev fold end")
+K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
+K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
 
 K.nmap("z<Space>", "zMzA", { remap = true })
 
@@ -49,9 +49,10 @@ local fdlvl = (function()
     end,
   }
 end)()
-K.nmap("<C-S-.>", X.dirop.left(fdlvl), "Unfold a level")
-K.nmap("<C-S-,>", X.dirop.right(fdlvl), "Fold a level")
+K.nmap("<C-S-.>", X.arrows.left(fdlvl), "Unfold a level")
+K.nmap("<C-S-,>", X.arrows.right(fdlvl), "Fold a level")
 
+K.nmap("/", "/\\v", { desc = "Search magically" })
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
@@ -87,31 +88,21 @@ K.cmd({ "n", "t" }, "<C-l>", "wincmd l")
 -- K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
 
 -- Window resizing
-local resize_op = X.dirop.excmd("Window resize", "wincmd >", "wincmd <", "wincmd -", "wincmd +")
-K.nmap("<C-w>>", X.dirop.left(resize_op), { desc = "Increase window width" })
-K.nmap("<C-w><", X.dirop.right(resize_op), { desc = "Decrease window width" })
-K.nmap("<C-w>+", X.dirop.up(resize_op), { desc = "Increase window height" })
-K.nmap("<C-w>-", X.dirop.down(resize_op), { desc = "Decrease window height" })
-
--- Profiling
--- K.nmap(K.p("ps"), function()
---   vim.cmd([[
---     :profile start /tmp/nvim-profile.log
---     :profile func *
---     :profile file *
---     ]])
--- end, { desc = "Start profiling" })
-
--- K.nmap(K.p("pe"), function()
---   vim.cmd([[
---     :profile stop
---     :edit /tmp/nvim-profile.log
---     ]])
--- end, { desc = "End profiling" })
+local resize_op = X.arrows.excmd("Window resize", "wincmd >", "wincmd <", "wincmd -", "wincmd +")
+K.nmap("<C-w>>", X.arrows.left(resize_op), { desc = "Increase window width" })
+K.nmap("<C-w><", X.arrows.right(resize_op), { desc = "Decrease window width" })
+K.nmap("<C-w>+", X.arrows.up(resize_op), { desc = "Increase window height" })
+K.nmap("<C-w>-", X.arrows.down(resize_op), { desc = "Decrease window height" })
 
 -- Clipboard
 K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
+K.xmap("<C-d>", function()
+  print(vim.v.count1)
+  local k = ("y`]%d]pgv"):format(vim.v.count1)
+  print(k)
+  vim.cmd.normal { k, bang = true }
+end, { desc = "Duplicate below" })
 
 -- Cmdline
 K.nmap(K.sc(";"), ":", { silent = false, desc = "[cmdline] :" })

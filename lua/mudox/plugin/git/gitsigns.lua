@@ -35,8 +35,8 @@ local function on_attach(buffer)
     { K.p"gv", gs.preview_hunk,                              desc = "Preview hunk"    },
 
     -- goto
-    { "]c",         X.dirop.left(op),                   desc = "Next hunk"       },
-    { "[c",         X.dirop.right(op),                   desc = "Prev hunk"       },
+    { "]c",         X.arrows.left(op),                   desc = "Next hunk"       },
+    { "[c",         X.arrows.right(op),                   desc = "Prev hunk"       },
   }
 
   require("which-key").add(keys)

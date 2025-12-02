@@ -15,8 +15,8 @@ end
 
 -- stylua: ignore
 local keys = {
-  { K.p"eo", "<Cmd>OtherVSplit<Cr>", desc = "[Other] VSplit" },
-  { K.p"eO", "<Cmd>Other<Cr>",       desc = "[Other] Goto"   },
+  -- { K.p"eo", "<Cmd>OtherVSplit<Cr>", desc = "[Other] VSplit" },
+  { K.p"eo", "<Cmd>Other<Cr>",       desc = "[Other] Edit"   },
 }
 
 return {

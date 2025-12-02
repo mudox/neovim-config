@@ -48,7 +48,7 @@ local keys = {
   { "s",        function() require("flash").jump() end,              "Jump",                   mode = { "o",   "x",   "n" }, },
 
   -- expand selection
-  { "<Space>",  function() require("flash").treesitter() end,        "Expand selection",       mode = { "o",   "x"        }, },
+  { ";",        function() require("flash").treesitter() end,        "Expand selection",       mode = { "o",   "x"        }, },
 
   -- remote motion
   { "<Bslash>", function() require("flash").remote() end,            "Remote mode",            mode = { "o"               }, },

@@ -1,6 +1,6 @@
 local M = {}
 
----@class DirOp
+---@class arrows.Op
 ---@field name string
 ---@field left fun() left op
 ---@field right fun() right op
@@ -9,12 +9,7 @@ local M = {}
 ---@field notify? fun(dir) custom notify logic
 ---@field [string] fun()?
 
----@alias Dir "left" | "right" | "up" | "down"
-
-_G.mdx_last_dirop = nil
-
-local next = "󰅂"
-local prev = "󰅁"
+---@alias arrows.Dir "left" | "right" | "up" | "down"
 
 -- stylua: ignore
 local diricon = {
@@ -24,33 +19,37 @@ local diricon = {
   right = '→',
 }
 
----@param dir Dir
+---@param dir arrows.Dir
 ---@return fun()
 function M.dir_func(dir)
   return function()
-    local op = _G.mdx_last_dirop
-
+    -- fetch op
+    local op = V.last_arrow_op
     if not op then
-      print("DirOp: no last op")
+      print("Arrows: no last op")
       return
     end
 
+    -- dir fallback: up -> left, down -> right
     if not op[dir] then
       if dir == "up" then
-        dir = "right"
-      elseif dir == "down" then
         dir = "left"
+      elseif dir == "down" then
+        dir = "right"
       else
-        print(("DirOp: %s missing dir %s"):format(op.name, dir))
+        print(("Arrows: %s missing dir %s"):format(op.name, dir))
         return
       end
     end
 
+    -- notify
     if op.notify then
       op.notify(dir)
     else
       print(op.name .. " " .. diricon[dir])
     end
+
+    -- execute
     op[dir]()
   end
 end
@@ -60,26 +59,25 @@ function M.setup()
   assert(not once)
   once = true
 
-  -- K.map({ "i", "c" }, "<C-S-]>", next)
-  -- K.map({ "i", "c" }, "<C-S-[>", prev)
-
-  K.nmap("L", M.dir_func("left"), { desc = "[DirOp] Left" })
-  K.nmap("H", M.dir_func("right"), { desc = "[DirOp] Right" })
-  K.nmap("K", M.dir_func("up"), { desc = "[DirOp] Up" })
-  K.nmap("J", M.dir_func("down"), { desc = "[DirOp] Down" })
+  -- stylua: ignore start
+  K.nmap("<Left>",  M.dir_func("left"),  { desc = "[Arrow] Left"  })
+  K.nmap("<Right>", M.dir_func("right"), { desc = "[Arrow] Right" })
+  K.nmap("<Up>",    M.dir_func("up"),    { desc = "[Arrow] Up"    })
+  K.nmap("<Down>",  M.dir_func("down"),  { desc = "[Arrow] Down"  })
+  -- stylua: ignore end
 end
 
 ---Perform a directional operation
----@param op DirOp
----@param dir Dir
+---@param op arrows.Op
+---@param dir arrows.Dir
 ---@return fun() wrapped operation function for keymap def
 function M._perform(op, dir)
   assert(op.next == nil)
   assert(op.prev == nil)
   return function()
-    _G.mdx_last_dirop = op
+    V.last_arrow_op = op
     if not op[dir] then
-      print(("DirOp: no %s op"):format(dir))
+      print(("Arrows: no %s op"):format(dir))
       return
     end
     op[dir]()
@@ -98,7 +96,7 @@ function M.down(op)  return M._perform(op, "down")  end
 ---@param r string down ex-command
 ---@param u? string up ex-command
 ---@param d? string down ex-command
----@return DirOp
+---@return arrows.Op
 function M.excmd(name, l, r, u, d)
   local function _w(cmd)
     return function()
@@ -129,11 +127,11 @@ end
 ---@param r string right normal command
 ---@param u? string up normal command
 ---@param d? string down normal command
----@return DirOp
-function M.normal(name, l, r, u, d, bang)
+---@return arrows.Op
+function M.normal(name, l, r, u, d)
   local function _w(lhs)
     return function()
-      pcall(vim.cmd.normal, { lhs, bang = bang })
+      pcall(vim.cmd.normal, { lhs, bang = true })
     end
   end
 

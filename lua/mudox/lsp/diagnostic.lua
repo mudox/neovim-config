@@ -43,16 +43,16 @@ local function setup_keymaps(_, bufnr)
     end
   end
 
-  local jump_dirop = {
+  local nav_issue = {
     name = "Diagnostic issue",
-    left = jump(true),
-    right = jump(false),
+    left = jump(false),
+    right = jump(true),
   }
 
-  local jump_error_dirop = {
+  local nav_error = {
     name = "Diagnostic error",
-    left = jump(true, "ERROR"),
-    right = jump(false, "ERROR"),
+    left = jump(false, "ERROR"),
+    right = jump(true, "ERROR"),
   }
 
   local function toggle()
@@ -63,19 +63,20 @@ local function setup_keymaps(_, bufnr)
 
   local first_time = true
 
+  K.nnop("[D")
+  K.nnop("]D")
   -- stylua: ignore
   local keys = {
-    -- Navigate
-    { "]d",  X.dirop.left(jump_dirop),        desc = "[Diagnostic] Next issue"     },
-    { "[d",  X.dirop.right(jump_dirop),       desc = "[Diagnostic] Previous issue" },
-    { "]E",  X.dirop.left(jump_error_dirop),  desc = "[Diagnostic] Next error"     },
-    { "[E",  X.dirop.right(jump_error_dirop), desc = "[Diagnostic] Previous error" },
+    -- nav
+    { "[d",  X.arrows.left(nav_issue),  desc = "issue" },
+    { "]d",  X.arrows.right(nav_issue), desc = "issue" },
+    { "[E",  X.arrows.left(nav_error),  desc = "error" },
+    { "]E",  X.arrows.right(nav_error), desc = "error" },
 
-    -- View
-    { "gl",  d.open_float,                    desc = "[Diagnostic] Show issue(s)"  },
-    { "grq", vim.diagnostic.setloclist,       desc = "[Diagnostic] Set loclist"    },
+    -- view
+    { "gl",  d.open_float,                    desc = "[diagnostic] show issue(s)"  },
 
-    -- Toggle
+    -- toggle
     -- see snacks/toggle.lua
   }
 

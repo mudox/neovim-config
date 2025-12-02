@@ -4,11 +4,17 @@ local config = function()
   t.setup {
     extensions = {
       smart_open = {
+        cwd_only = true,
         match_algorithm = "fzf",
         ignore_patterns = {
           "*.git/*",
           "*/tmp/*",
           ".obsidian/*",
+        },
+        mappings = {
+          i = {
+            ["<C-w>"] = { "<C-S-w>", type = "command" }, -- override: delete opened buffer
+          },
         },
       },
     },
