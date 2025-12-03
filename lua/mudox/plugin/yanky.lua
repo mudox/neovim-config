@@ -16,32 +16,27 @@ end
 
 -- stylua: ignore
 local keys = {
-  { K.p "ty", paste,                                 desc = "[Yanky] History",                      mode = { "n", "x" } },
+  { "y",  "<Plug>(YankyYank)",                    desc = "[yanky] yank text",                    mode = { "n", "x" } },
 
-  { "y",     "<Plug>(YankyYank)",                    desc = "[Yanky] Yank text",                    mode = { "n", "x" } },
-
-  { "p",     "<Plug>(YankyPutAfter)",                desc = "[Yanky] Put after cursor",             mode = { "n", "x" } },
-  { "P",     "<Plug>(YankyPutBefore)",               desc = "[Yanky] Put before cursor",            mode = { "n", "x" } },
-
-  { "[y",    X.arrows.right(op),                      desc = "[Yanky] Next entry" },
-  { "]y",    X.arrows.left(op),                       desc = "[Yanky] Previous entry" },
-
-  { "gp",    "<Plug>(YankyGPutAfter)",               desc = "[Yanky] Put after selection",          mode = { "n", "x" } },
-  { "gP",    "<Plug>(YankyGPutBefore)",              desc = "[Yanky] Put before selection",         mode = { "n", "x" } },
+  { K.p"ty",  paste,                              desc = "[yanky] history",                      mode = { "n", "x" } },
+  { "[y", X.arrows.right(op),                     desc = "[yanky] next entry",                   mode = { "n", "x" } },
+  { "]y", X.arrows.left(op),                      desc = "[yanky] previous entry",               mode = { "n", "x" } },
 
 
-  { "]p",    "<Plug>(YankyPutIndentAfterLinewise)",  desc = "[Yanky] Put after (linewise)" },
-  { "[p",    "<Plug>(YankyPutIndentAfterLinewise)",  desc = "[Yanky] Put after (linewise)" },
-  { "]P",    "<Plug>(YankyPutIndentBeforeLinewise)", desc = "[Yanky] Put before (linewise)" },
-  { "[P",    "<Plug>(YankyPutIndentBeforeLinewise)", desc = "[Yanky] Put before (linewise)" },
+  { "p",  "<Plug>(YankyPutAfter)",                desc = "[yanky] put after cursor",             mode = { "n", "x" } },
+  { "P",  "<Plug>(YankyPutBefore)",               desc = "[yanky] put before cursor",            mode = { "n", "x" } },
 
-  -- { ">p",         "<Plug>(YankyPutIndentAfterShiftRight)",  desc =  "[Yanky] Put and indent right"                                },
-  -- { "<p",         "<Plug>(YankyPutIndentAfterShiftLeft)",   desc =  "[Yanky] Put and indent left"                                 },
-  -- { ">P",         "<Plug>(YankyPutIndentBeforeShiftRight)", desc =  "[Yanky] Put before and indent right"                         },
-  -- { "<P",         "<Plug>(YankyPutIndentBeforeShiftLeft)",  desc =  "[Yanky] Put before and indent left"                          },
+  { "gp", "<Plug>(YankyGPutAfter)",               desc = "[yanky] put after selection",          mode = { "n", "x" } },
+  { "gP", "<Plug>(YankyGPutBefore)",              desc = "[yanky] put before selection",         mode = { "n", "x" } },
 
-  { "=p",    "<Plug>(YankyPutAfterFilter)",          desc = "[Yanky] Put after applying a filter" },
-  { "=P",    "<Plug>(YankyPutBeforeFilter)",         desc = "[Yanky] Put before applying a filter" },
+
+  { "]p", "<Plug>(YankyPutIndentAfterLinewise)",  desc = "[yanky] put above",                    mode = { "n", "x" } },
+  { "[p", "<Plug>(YankyPutIndentAfterLinewise)",  desc = "[yanky] put above",                    mode = { "n", "x" } },
+  { "]P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "[yanky] put below",                    mode = { "n", "x" } },
+  { "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "[yanky] put below",                    mode = { "n", "x" } },
+
+  -- { "=p", "<Plug>(YankyPutAfterFilter)",          desc = "[yanky] put after applying a filter",  mode = { "n", "x" } },
+  -- { "=P", "<Plug>(YankyPutBeforeFilter)",         desc = "[yanky] put before applying a filter", mode = { "n", "x" } },
 }
 
 return {

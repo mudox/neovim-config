@@ -119,7 +119,7 @@ end
 
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VeryLazy",
   branch = "main",
   config = function()
     setup_select()

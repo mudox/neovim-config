@@ -3,6 +3,22 @@ local function opts()
   local a = g.actions
 
   return {
+    border = {
+      enable = true,
+      top_char = " ",
+      bottom_char = " ",
+    },
+    preview_win_opts = {
+      cursorline = false,
+      number = false,
+      wrap = false,
+
+      statuscolumn = "",
+      foldcolumn = "0",
+      signcolumn = "no",
+
+      winhl = "Folded:GlancePreviewNormal",
+    },
     mappings = {
       list = {
         ["J"] = a.next_location,

@@ -15,18 +15,8 @@ local opts = {
   },
 }
 
-local function config()
-  local ap = require("nvim-autopairs")
-  ap.setup(opts)
-
-  -- map <Cr> integrate with `nvim-cmp`
-  -- local cmp = require("cmp")
-  -- local cmp_pairs = require("nvim-autopairs.completion.cmp")
-  -- cmp.event:on("confirm_done", cmp_pairs.on_confirm_done())
-end
-
 return {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
-  config = config,
+  opts = opts,
 }

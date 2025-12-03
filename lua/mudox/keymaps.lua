@@ -31,7 +31,7 @@ K.nmap("z<Space>", "zMzA", { remap = true })
 local fdlvl = (function()
   function notify(dir)
     local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and -1 or 1)
-    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↗" or "↘"))
+    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↘" or "↗"))
   end
 
   return {
@@ -49,8 +49,8 @@ local fdlvl = (function()
     end,
   }
 end)()
-K.nmap("<C-S-.>", X.arrows.left(fdlvl), "Unfold a level")
-K.nmap("<C-S-,>", X.arrows.right(fdlvl), "Fold a level")
+K.nmap("<C-S-,>", X.arrows.left(fdlvl), "fold a level")
+K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
 
 K.nmap("/", "/\\v", { desc = "Search magically" })
 -- Clear search highlight with <Esc>
@@ -77,9 +77,6 @@ K.ncmd("yf", "0,$y +")
 K.nnop("q")
 K.nmap(K.sc("q"), "q", { desc = "macro" })
 
--- Digraph
-K.imap("<C-k><C-k>", "<C-k>", { desc = "Enter digraph" })
-
 -- Window jump
 K.cmd({ "n", "t" }, "<C-h>", "wincmd h")
 K.cmd({ "n", "t" }, "<C-j>", "wincmd j")
@@ -88,20 +85,24 @@ K.cmd({ "n", "t" }, "<C-l>", "wincmd l")
 -- K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
 
 -- Window resizing
-local resize_op = X.arrows.excmd("Window resize", "wincmd >", "wincmd <", "wincmd -", "wincmd +")
-K.nmap("<C-w>>", X.arrows.left(resize_op), { desc = "Increase window width" })
-K.nmap("<C-w><", X.arrows.right(resize_op), { desc = "Decrease window width" })
-K.nmap("<C-w>+", X.arrows.up(resize_op), { desc = "Increase window height" })
-K.nmap("<C-w>-", X.arrows.down(resize_op), { desc = "Decrease window height" })
+local resize = X.arrows.excmd("Window resize", "wincmd >", "wincmd <", "wincmd -", "wincmd +")
+-- stylua: ignore start
+K.nmap("<C-w>>", X.arrows.left(resize),  { desc = "width +"  })
+K.nmap("<C-w><", X.arrows.right(resize), { desc = "width -"  })
+K.nmap("<C-w>+", X.arrows.up(resize),    { desc = "height +" })
+K.nmap("<C-w>-", X.arrows.down(resize),  { desc = "height -" })
+-- stylua: ignore end
 
--- Clipboard
-K.map({ "i", "c" }, "<C-k>v", "<C-r><C-o>+", { desc = "Paste from clipboard" })
+-- Yank & paste
+K.map({ "i", "c" }, K.ip("v"), "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
+K.xmap("<C-u>", function()
+  local k = ("y`[%d[Pgv"):format(vim.v.count1)
+  vim.cmd.normal { k, bang = false }
+end, { desc = "Duplicate above" })
 K.xmap("<C-d>", function()
-  print(vim.v.count1)
   local k = ("y`]%d]pgv"):format(vim.v.count1)
-  print(k)
-  vim.cmd.normal { k, bang = true }
+  vim.cmd.normal { k, bang = false }
 end, { desc = "Duplicate below" })
 
 -- Cmdline

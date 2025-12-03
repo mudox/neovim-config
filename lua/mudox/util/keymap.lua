@@ -79,11 +79,8 @@ function bodys.req(mode, from, module, to, opts)
 end
 
 ---Clear mapping
-function bodys.nop(mode, from, opts)
-  opts = initopts(opts)
-  opts.desc = opts.desc or "[Nop]"
-
-  bodys.map(mode, from, "<Nop>", opts)
+function bodys.nop(mode, from)
+  bodys.map(mode, from, "<Nop>")
 end
 
 local modes = {
@@ -133,7 +130,7 @@ setmetatable(M, {
 
 function M.lazy_keys(tbl, opts)
   -- parts with suffix ` ✓` are skipped
-  -- input ✓ by <C-k><C-k>OK in insert mode
+  -- input ✓ by <C-;><C-;>OK in insert mode
 
   local function skip(v, i)
     if type(v[i]) == "string" and v[i]:sub(-4) == " ✓" then
@@ -202,20 +199,16 @@ M.leader = {
   secondary = ",",
   shortcut  = ";",
   toggle    = ",,",
+
+  i_primary = "<C-;>"
 }
 
 -- stylua: ignore start
-
----string wrapper: <Cmd>...<Cr>
-function M.c(cmd) return "<Cmd>" .. cmd .. "<Cr>" end
-
----primary leader: space + key
-function M.p(sfx)  return M.leader.primary   .. sfx end
----secondary leader: comma + key
-function M.s(sfx)  return M.leader.secondary .. sfx end
----shortcut: semicolon + key
-function M.sc(sfx) return M.leader.shortcut  .. sfx end
-
+function M.c(cmd)  return "<Cmd>" .. cmd .. "<Cr>"   end
+function M.p(sfx)  return M.leader.primary   .. sfx  end
+function M.s(sfx)  return M.leader.secondary .. sfx  end
+function M.sc(sfx) return M.leader.shortcut  .. sfx  end
+function M.ip(sfx) return M.leader.i_primary  .. sfx end
 -- stylua: ignore end
 
 return M

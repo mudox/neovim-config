@@ -1,5 +1,5 @@
 -- stylua: ignore
-local function k(c) return K.p"s" .. c end
+local function p(c) return K.p"s" .. c end
 
 local function function_symbols()
   Snacks.picker.treesitter {
@@ -54,33 +54,33 @@ local layouts = {
 
 -- stylua: ignore
 local keys = {
-  { k":",             function() Snacks.picker.pickers() end,         desc = "Pickers"                 },
-  { k".",             function() Snacks.picker.resume() end,          desc = "Resume"                  },
+  { p":",             function() Snacks.picker.pickers() end,         desc = "Pickers"                 },
+  { p".",             function() Snacks.picker.resume() end,          desc = "Resume"                  },
 
-  { K.sc"f",          smart,                                          desc = "[Snacks] Files"          },
-  { k"f",             smart,                                          desc = "Files"                   },
-  { k"r",             recent,                                         desc = "Recent"                  },
-  { k"F",             function() Snacks.picker.git_files() end,       desc = "Git files"               },
+  { K.sc"f",          smart,                                          desc = "[snacks] Files"          },
+  { p"f",             smart,                                          desc = "Files"                   },
+  { p"r",             recent,                                         desc = "Recent"                  },
+  { p"F",             function() Snacks.picker.git_files() end,       desc = "Git files"               },
 
-  { k"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"                 },
+  { p"b",             function() Snacks.picker.buffers() end,         desc = "Buffers"                 },
   { "<C-S-o>",        function() Snacks.picker.buffers() end,         desc = "Buffers"                 },
 
-  { K.sc"G",          function() Snacks.picker.grep() end,            desc = "[Snacks] Grep"           },
-  { k"g",             function() Snacks.picker.grep() end,            desc = "Grep"                    },
+  { K.sc"G",          function() Snacks.picker.grep() end,            desc = "[snacks] Grep"           },
+  { p"g",             function() Snacks.picker.grep() end,            desc = "Grep"                    },
 
-  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "[Snacks] Help"           },
-  { k"h",             function() Snacks.picker.help() end,            desc = "Help"                    },
+  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "[snacks] Help"           },
+  { p"h",             function() Snacks.picker.help() end,            desc = "Help"                    },
 
-  { k"C",             function() Snacks.picker.command_history() end, desc = "Command history"         },
-  { k"n",             function() Snacks.picker.notifications() end,   desc = "Notification history"    },
+  { p"C",             function() Snacks.picker.command_history() end, desc = "Command history"         },
+  { p"n",             function() Snacks.picker.notifications() end,   desc = "Notification history"    },
 
-  { k"p",             function() Snacks.picker.lazy() end,            desc = "Plugins"                 },
+  { p"p",             function() Snacks.picker.lazy() end,            desc = "Plugins"                 },
 
-  { "<C-k>i",         function() Snacks.picker.icons() end,           desc = "[Snacks] Icons",         mode = 'i' },
-  { "<C-k>y",         function() Snacks.picker.yanky() end,           desc = "[Snacks] Yanky",         mode = 'i' },
+  { K.ip"i",          function() Snacks.picker.icons() end,           desc = "[snacks] Icons",         mode = 'i' },
+  { K.ip"y",          function() Snacks.picker.yanky() end,           desc = "[snacks] Yanky",         mode = 'i' },
 
   -- symbols
-  { K.sc'sf',         function_symbols,                               desc = "[Snacks] Goto functions" },
+  { "gof",            function_symbols,                               desc = "[snacks] Goto functions" },
 }
 
 local opts = {

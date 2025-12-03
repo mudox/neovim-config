@@ -17,21 +17,18 @@ On.VeryLazy(function()
     "emmet_language_server",
     "html",
     "cssls",
-    -- "ts_ls", -- managed by `typescript-tools.nvim`
+
+    "tsgo",
   }
 
   K.ncmd(K.p("vl"), "checkhealth vim.lsp", "LSP information")
 
-  local function setup(name)
-    require("mudox.lsp." .. name).setup()
-  end
+  require("mudox.lsp.browsing")
+  require("mudox.lsp.diagnostic")
+  require("mudox.lsp.refactoring")
+end)
 
-  setup("browsing")
-  setup("diagnostic")
-  setup("refactoring")
-
-  -- disable semantic token globally
-  On.LspAttach(function(client, _)
-    client.server_capabilities.semanticTokensProvider = nil
-  end)
+-- disable semantic token globally
+On.LspAttach(function(client, _)
+  client.server_capabilities.semanticTokensProvider = nil
 end)

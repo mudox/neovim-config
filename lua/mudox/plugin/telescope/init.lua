@@ -4,7 +4,7 @@ local function r(name) return require("mudox.plugin.telescope." .. name) end
 -- stylua: ignore
 return {
   r "telescope",
-
+  r "ctags",
   r "file-browser",
   -- r "frecency",
   -- r "heading",

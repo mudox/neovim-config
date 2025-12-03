@@ -1,49 +1,28 @@
-local M = {}
-
-local function setup_keymaps(_, bufnr)
-  local function toggle_inlay_hint()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end
-
-  local function hover()
-    vim.lsp.buf.hover {
-      border = { " " },
-    }
-  end
-
-  -- stylua: ignore
-  local keys = {
-    { "gx",     vim.lsp.buf.declaration,                   desc = "[LSP] Goto declaration"           },
-
-    -- Telescope
-    { "gd",     "<Cmd>Telescope lsp_definitions<Cr>",      desc = "[LSP] Goto definitions"           },
-    { "gy",     "<Cmd>Telescope lsp_type_definitions<Cr>", desc = "[LSP] Goto type definitions"      },
-    { "gm",     "<Cmd>Telescope lsp_implementations<Cr>",  desc = "[LSP] Goto implementations"       },
-    { "gr",     "<Cmd>Telescope lsp_references<Cr>",       desc = "[LSP] Goto references"            },
-
-    -- Glance
-    { "gD",     "<Cmd>Glance definitions<Cr>",             desc = "[Glance] Goto definitions"        },
-    { "gY",     "<Cmd>Glance type_definitions<Cr>",        desc = "[Glance] Goto type definitions"   },
-    { "gM",     "<Cmd>Glance implementations<Cr>",         desc = "[Glance] Goto implementations"    },
-    { "gR",     "<Cmd>Glance references<Cr>",              desc = "[Glance] Goto references"         },
-
-    -- in favor of hover.nvim
-    { "gk",     hover,                                     desc = "[LSP] Hover"                      },
-
-    { "gK",     vim.lsp.buf.signature_help,                desc = "[LSP] Signature help"             },
-    { "<C-k>k", vim.lsp.buf.signature_help,                desc = "[LSP] Signature Help",            mode = "i" },
-
-    { "yoH",    toggle_inlay_hint,                         desc = "[LSP] inlay hint"                 },
+local function hover()
+  vim.lsp.buf.hover {
+    border = { " " },
   }
-
-  for _, v in pairs(keys) do
-    v.buffer = bufnr
-  end
-  require("which-key").add(keys)
 end
 
-function M.setup()
-  On.LspAttach(setup_keymaps)
-end
+-- stylua: ignore start
+K.nmap("gx",     vim.lsp.buf.declaration,             { desc = "[lsp] goto declaration"         })
 
-return M
+-- Telescope
+K.nmap("gd",     K.c"Telescope lsp_definitions",      { desc = "[lsp] goto definitions"         })
+K.nmap("gy",     K.c"Telescope lsp_type_definitions", { desc = "[lsp] goto type definitions"    })
+K.nmap("gm",     K.c"Telescope lsp_implementations",  { desc = "[lsp] goto implementations"     })
+K.nmap("gr",     K.c"Telescope lsp_references",       { desc = "[lsp] goto references"          })
+
+-- Glance
+K.nmap("g<Space>d",     K.c"Glance definitions",            { desc = "[glance] goto definitions"      })
+K.nmap("g<Space>y",     K.c"Glance type_definitions",       { desc = "[glance] goto type definitions" })
+K.nmap("g<Space>m",     K.c"Glance implementations",        { desc = "[glance] goto implementations"  })
+K.nmap("g<Space>r",     K.c"Glance references",             { desc = "[glance] goto references"       })
+
+-- in favor of hover.nvim
+K.nnop("K")
+K.nmap("gk",     hover,                               { desc = "[lsp] hover"                    })
+
+K.nmap("gK",     vim.lsp.buf.signature_help,          { desc = "[lsp] signature help"           })
+K.imap("<C-k>k", vim.lsp.buf.signature_help,          { desc = "[lsp] signature Help"           })
+-- stylua: ignore end

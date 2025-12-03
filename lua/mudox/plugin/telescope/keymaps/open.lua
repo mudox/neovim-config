@@ -13,9 +13,9 @@ local M = {
   { "!",          "diagnostics",               "Workspace diagnostics",     },
 
   -- symbols
-  { "<M-1> ✓",    "lsp_document_symbols",      "LSP document symbols",      },
-  { "<M-2> ✓",    "treesitter",                "Treesitter symbols",        },
-  { "<M-3> ✓",    "lsp_workspace_symbols",     "LSP workspace symbols",     },
+  { "gos",        "lsp_document_symbols",      "LSP document symbols",      },
+  { "got",        "treesitter",                "Treesitter symbols",        },
+  { "goS",        "lsp_workspace_symbols",     "LSP workspace symbols",     },
 
   -- vim
   { "a",          "autocommands",              "Autocommands",              },

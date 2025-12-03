@@ -43,18 +43,20 @@ local config = function()
   On.user("visual_multi_start", function()
     require("illuminate").pause_buf()
     require("lualine").hide { unhide = false, place = { "statusline" } }
+    require("nvim-autopairs").disable()
   end)
 
   On.user("visual_multi_exit", function()
     require("illuminate").resume_buf()
     require("lualine").hide { unhide = true, place = { "statusline" } }
+    require("nvim-autopairs").disable()
 
     -- recover
-    require("which-key").add {
-      { "<Tab>", group = "tabpage" },
-      { "]", group = "next" },
-      { "[", group = "prev" },
-    }
+    -- require("which-key").add {
+    --   { "<Tab>", group = "tabpage" },
+    --   { "]", group = "next" },
+    --   { "[", group = "prev" },
+    -- }
   end)
 end
 

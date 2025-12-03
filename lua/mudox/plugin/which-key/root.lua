@@ -77,8 +77,6 @@ local secondary = {
 }
 
 local shortcut = {
-  { c"v", c"Lazy", desc = "Plugin manager" },
-
   { sc"1",      function() X.layout.main:focus() end,     desc = "Main window"      },
   { "<C-Cr>",   function() X.layout.main:focus() end,     desc = "Main window"      },
   { sc"2",      function() X.layout.secondary:open() end, desc = "Secondary window" },
@@ -99,4 +97,6 @@ return {
   r"view",
   r"next_prev",
   r"insert",
+
+  { "z", group = "z" },
 }

@@ -15,7 +15,7 @@ local key_icons = {
   NL    = "C-j",
   BS    = "Bs",
   Space = "Spc",
-  Tab   = "Tab ",
+  Tab   = "Tab",
 
   F1    = "F1",
   F2    = "F2",
@@ -32,6 +32,10 @@ local key_icons = {
 }
 
 local opts = {
+  filter = function(spec)
+    -- exclude mappings without a description
+    return spec.desc and spec.desc ~= ""
+  end,
   notify = false,
 
   replace = {
