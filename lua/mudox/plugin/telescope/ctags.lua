@@ -1,5 +1,5 @@
 local keys = {
-  { "goc", K.c("Telescope ctags_outline"), desc = "[telescope] smart files" },
+  { "goc", K.c("Telescope ctags_outline"), desc = "[telescope] ctags" },
 }
 
 local function config()

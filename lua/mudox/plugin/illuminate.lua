@@ -11,43 +11,51 @@ local allowlist = {
 }
 
 local opts = {
-  delay = 200,
+  providers = {
+    "lsp",
+    "treesitter",
+    "regex",
+  },
+
   filetypes_denylist = {}, -- for `allowlist` to take effect
   filetypes_allowlist = allowlist,
+
+  modes_denylist = {},
+  modes_allowlist = { "n" },
+
+  delay = 200,
+  under_cursor = false,
+  min_count_to_highlight = 2,
+
+  large_file_cutoff = 300,
+  large_file_overrides = {
+    providers = {
+      "lsp",
+      "regex",
+    },
+  },
 }
 
-local function config()
-  require("illuminate").configure(opts)
-
-  local op = {
-    name = "illuminate",
-    left = function()
-      require("illuminate").goto_prev_reference(true)
-      vim.cmd.normal { "zv", bang = true }
-    end,
-    right = function()
-      require("illuminate").goto_next_reference(true)
-      vim.cmd.normal { "zv", bang = true }
-    end,
-  }
-
-  local function setup_keymaps()
-    K.nmap("]r", X.arrows.right(op))
-    K.nmap("[r", X.arrows.left(op))
-  end
-
-  setup_keymaps()
-
-  -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-  On("FileType", { callback = setup_keymaps })
-end
+local nav = {
+  name = "illuminate",
+  left = function()
+    require("illuminate").goto_prev_reference(true)
+    vim.cmd.normal({ "zv", bang = true })
+  end,
+  right = function()
+    require("illuminate").goto_next_reference(true)
+    vim.cmd.normal({ "zv", bang = true })
+  end,
+}
 
 return {
   "RRethy/vim-illuminate",
   event = { "BufRead", "BufNewFile" },
   keys = {
-    { "]]", desc = "Goto next reference" },
-    { "[[", desc = "Goto prev reference" },
+    { "]r", X.arrows.right(nav), desc = "[illuminate] reference" },
+    { "[r", X.arrows.left(nav), desc = "[illuminate] reference" },
   },
-  config = config,
+  config = function()
+    require("illuminate").configure(opts)
+  end,
 }

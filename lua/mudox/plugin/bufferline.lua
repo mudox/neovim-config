@@ -114,7 +114,7 @@ keys = K.lazy_keys(keys, {
 
 -- <leader>[1-5] to switch to visually displayed buffer on buffer line
 for i = 1, 5 do
-  table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i), desc = "[bufferline] #" .. i })
+  table.insert(keys, { "[" .. i, ("<Cmd>BufferLineGoToBuffer %d<Cr>"):format(i) })
 end
 
 return {

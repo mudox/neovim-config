@@ -3,13 +3,10 @@
 -- helpers
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local p = K.p
-local s = K.s
 local sc = K.sc
 local c = K.c
 
 local close = {
-  { "<Bs>", group = "close" },
-
   { "<Bs>v",     c"confirm qall",                  desc = "Quit all"                   },
   { "<Bs>V",     c"qall!",                         desc = "Quit all forcibly"          },
   { "<Bs>r",     c"restart",                       desc = "Restart"                    },
@@ -29,14 +26,10 @@ local edit = {
 }
 
 local refactoring = {
-  { "<Bslash>", group = "refactoring" },
-
   { "<Bslash><Space>",  c"%s+\\n\\(\\s*\\n\\)\\{2,}+\\r\\r+e", desc = "Squeeze empty lines" },
 }
 
 local tabpage = {
-  { "<Tab>", group = "tabpage" },
-
   { "<Tab>n",     c"tabnew",                 desc = "New tabpage"           },
   { "<Tab>c",     c"tabclose",               desc = "Close tabpage"         },
   { "<Tab>l",     "g<Tab>",                  desc = "Last accessed tabpage" },
@@ -85,14 +78,14 @@ local shortcut = {
 }
 
 return {
-  { K.leader.primary,   group = "primary",  primary    },
-  { K.leader.secondary, group = "seconary", secondary, },
-  { K.leader.shortcut,  group = "shortcut", shortcut   },
-  { K.leader.toggle,    group = "toggle"               }, -- defined in mudox/plugin/snacks/toggle.lua
+  { K.leader.primary,   group = "primary",                primary      },
+  { K.leader.secondary, group = "seconary",               secondary    },
+  { K.leader.shortcut,  group = "shortcut",               shortcut     },
+  { K.leader.toggle,    group = "toggle",                              },
 
-  { "<Bslash>", group = "refactoring", refactoring, },
-  { "<Bs>",     group = "close",       close,       },
-  { "<Tab>",    group = "tabpage",     tabpage,     },
+  { "<Bslash>",         group = "refactoring",            refactoring, },
+  { "<Bs>",             group = "close",                  close,       },
+  { "<Tab>",            group = "tabpage",                tabpage,     },
 
   r"view",
   r"next_prev",

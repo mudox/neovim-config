@@ -12,7 +12,7 @@ K.nmap("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Tabpage navigation
 for i = 1, 9 do
-  K.nmap("]" .. i, i .. "gt", { desc = "tab #" .. i })
+  K.nmap("]" .. i, i .. "gt")
 end
 
 -- Folding
@@ -25,8 +25,7 @@ local zjk = {
 }
 K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
 K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
-
-K.nmap("z<Space>", "zMzA", { remap = true })
+K.nmap("z<Space>", "zMzvzczO", { remap = true })
 
 local fdlvl = (function()
   function notify(dir)
@@ -52,7 +51,7 @@ end)()
 K.nmap("<C-S-,>", X.arrows.left(fdlvl), "fold a level")
 K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
 
-K.nmap("/", "/\\v", { desc = "Search magically" })
+K.nmap("/", "/\\v", { desc = "/ very magically" })
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
@@ -60,11 +59,7 @@ K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearc
 K.nnop("gs")
 
 -- `<C-w>`
-K.ncmd(K.sc("w"), 'call feedkeys("\\<C-w>", "t")', { desc = "<C-w>+" })
-
--- Change list
-K.nmap("g;", "g;zv", { remap = true })
-K.nmap("g,", "g,zv", { remap = true })
+K.ncmd(K.sc("w"), 'call feedkeys("\\<C-w>", "t")', { desc = "-> <C-w>" })
 
 -- Insert mode keymaps
 K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })
@@ -106,8 +101,18 @@ K.xmap("<C-d>", function()
 end, { desc = "Duplicate below" })
 
 -- Cmdline
-K.nmap(K.sc(";"), ":", { silent = false, desc = "[cmdline] :" })
-K.nmap(K.sc("l"), ":lua ", { silent = false, desc = "[cmdline] :lua" })
+local function enter_cmd()
+  local cmds = {
+    ":lua ",
+    ":=",
+    ":G ",
+    "q:",
+    ":%s/\\v",
+  }
+  local cmd = cmds[vim.v.count] or ":"
+  vim.api.nvim_feedkeys(cmd, "n", false)
+end
+K.nmap(K.sc(";"), enter_cmd, { desc = "enter command" })
 
 -- Terminal
 K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })
@@ -117,3 +122,6 @@ K.nmap("gX", K.c("!open %:p:h"), { desc = "Open dir in finder" })
 
 -- stylua: ignore
 K.nmap(K.sc"v", function() X.layout.secondary:open("#") end, { desc = "Edit #" })
+
+K.nnop("]]")
+K.nnop("[[")

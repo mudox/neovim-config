@@ -20,23 +20,27 @@ local function on_attach(buffer)
     right = function() gs.nav_hunk("prev") end,
   }
 
+  local function blame()
+    gs.blame_line { full = true }
+  end
+
   -- stylua: ignore
   local keys = {
     buffer = buffer,
 
     -- stage
-    { K.p"gs", gs.stage_hunk,                                desc = "Stage hunk"      },
-    { K.p"gD", gs.reset_hunk,                                desc = "Discard changes" },
+    { K.p"gs", gs.stage_hunk,      desc = "stage hunk"      },
+    { K.p"gD", gs.reset_hunk,      desc = "discard changes" },
 
     -- blame
-    { K.p"gb", function() gs.blame_line { full = true } end, desc = "Blame line"      },
+    { K.p"gb", blame,              desc = "blame line"      },
 
     -- diff
-    { K.p"gv", gs.preview_hunk,                              desc = "Preview hunk"    },
+    { K.p"gv", gs.preview_hunk,    desc = "preview hunk"    },
 
     -- goto
-    { "]c",         X.arrows.left(op),                   desc = "Next hunk"       },
-    { "[c",         X.arrows.right(op),                   desc = "Prev hunk"       },
+    { "]c",    X.arrows.left(op),  desc = "diff hunk"       },
+    { "[c",    X.arrows.right(op), desc = "diff hunk"       },
   }
 
   require("which-key").add(keys)
