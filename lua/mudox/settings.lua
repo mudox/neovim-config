@@ -112,7 +112,7 @@ o.wrapscan = true
 o.ignorecase = true
 o.smartcase = true
 o.incsearch = true
-o.inccommand = "nosplit"
+o.inccommand = "split"
 
 -- 〉
 

@@ -3,18 +3,20 @@ local function config()
 
   -- stylua: ignore
   lint.linters_by_ft = {
-    lua        = { "typos"           },
+    lua        = { "typos"    },
 
-    javascript = { "biomejs"         },
+    javascript = { "oxlint"   },
+    typescript = { "oxlint"   },
+    html       = { "htmlhint" },
 
-    json       = { "biomejs"         },
+    json       = { "biomejs"  },
 
-    python     = { "typos"           },
+    python     = { "typos"    },
 
-    rust       = { "typos"           },
+    rust       = { "typos"    },
   }
 
-  local gid = vim.api.nvim_create_augroup("mdx_lint", { clear = true })
+  V.ag.lint = vim.api.nvim_create_augroup("mudox.lint", { clear = true })
   On({ "BufEnter", "BufWritePost" }, {
     group = gid,
     desc = "Lint document by nvim-lint",

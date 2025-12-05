@@ -24,7 +24,6 @@ local keys = {
 return {
   "junegunn/vim-easy-align",
   dependencies = "vim-repeat",
-  event = { "BufRead", "BufNewFile" },
   keys = keys,
   init = init,
 }

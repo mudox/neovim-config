@@ -1,10 +1,8 @@
--- vim: fml& fdn& fdm=marker fmr=〈,〉
-
 vim.g.mapleader = K.leader.primary
 vim.g.maplocalleader = K.leader.secondary
 
 -- Save file
-K.map({ "n", "i", "v", "o" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
+K.map({ "n", "i" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
 
 -- Sensible `j, k`
 K.nmap("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -29,19 +27,20 @@ K.nmap("z<Space>", "zMzvzczO", { remap = true })
 
 local fdlvl = (function()
   function notify(dir)
-    local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and -1 or 1)
-    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↘" or "↗"))
+    local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and 1 or -1)
+    lvl = math.max(0, lvl)
+    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↘" or "↖"))
   end
 
   return {
     name = "Fold Level",
     left = function()
       notify("left")
-      vim.cmd.normal { "zr", bang = true }
+      vim.cmd.normal { "zm", bang = true }
     end,
     right = function()
       notify("right")
-      vim.cmd.normal { "zm", bang = true }
+      vim.cmd.normal { "zr", bang = true }
     end,
     notify = function(dir)
       notify(dir)
@@ -51,7 +50,7 @@ end)()
 K.nmap("<C-S-,>", X.arrows.left(fdlvl), "fold a level")
 K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
 
-K.nmap("/", "/\\v", { desc = "/ very magically" })
+-- K.nmap("/", "/\\v", { desc = "/ very magically" })
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
@@ -105,9 +104,10 @@ local function enter_cmd()
   local cmds = {
     ":lua ",
     ":=",
+    ":set ",
+    ":%s/\\v",
     ":G ",
     "q:",
-    ":%s/\\v",
   }
   local cmd = cmds[vim.v.count] or ":"
   vim.api.nvim_feedkeys(cmd, "n", false)

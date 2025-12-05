@@ -1,6 +1,6 @@
 local adapter = {
   "jbyuki/one-small-step-for-vimkind",
-  ft = "lua",
+  -- ft = "lua",
   dependencies = "nvim-dap",
 }
 

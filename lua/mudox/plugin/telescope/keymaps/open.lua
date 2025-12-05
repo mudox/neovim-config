@@ -1,58 +1,57 @@
 -- stylua: ignore
 local M = {
-  { ":",          "builtin",                   "All telescope pickers",     },
-  { ".",          "resume",                    "Resume telescope",          },
+  { ":",         "builtin",                   "pickers",                   },
+  { ".",         "resume",                    "resume",                    },
 
   -- files
-  { "f",          "find_files",                "Find files",                },
-  { "F",          "git_files",                 "Git files",                 },
-  { "r",          "oldfiles",                  "Old files",                 },
+  { "f",         "git_files",                 "git files",                 },
+  { "F",         "find_files",                "find files",                },
+  { "r",         "oldfiles",                  "old files",                 },
 
   -- lsp
-  { "?",          "diagnostics bufnr=0",       "Document diagnostics",      },
-  { "!",          "diagnostics",               "Workspace diagnostics",     },
+  { "?",         "diagnostics bufnr=0",       "document diagnostics",      },
+  { "!",         "diagnostics",               "workspace diagnostics",     },
 
   -- symbols
-  { "gos",        "lsp_document_symbols",      "LSP document symbols",      },
-  { "got",        "treesitter",                "Treesitter symbols",        },
-  { "goS",        "lsp_workspace_symbols",     "LSP workspace symbols",     },
+  { "gos ✓",     "lsp_document_symbols",      "lsp document symbols",      },
+  { "got ✓",     "treesitter",                "treesitter symbols",        },
+  { "goS ✓",     "lsp_workspace_symbols",     "lsp workspace symbols",     },
 
   -- vim
-  { "a",          "autocommands",              "Autocommands",              },
-  { "b",          "buffers",                   "Buffers",                   },
-  { "<C-S-o> ✓",  "buffers",                   "Buffers",                   },
-  { "o",          "vim_options",               "Vim options",               },
-  { "h",          "highlights",                "Highlight groups",          },
+  { "a",         "autocommands",              "autocommands",              },
+  { "b",         "buffers",                   "buffers",                   },
+  { "<C-S-o> ✓", "buffers",                   "buffers",                   },
+  { "o",         "vim_options",               "vim options",               },
+  { "h",         "highlights",                "highlight groups",          },
 
-  { "k",          "keymaps",                   "Keymaps",                   },
+  { "k",         "keymaps",                   "keymaps",                   },
 
-  { "C",          "command_history",           "Command history",           },
-  { "<C-S-;> ✓",  "command_history",           "Command history",           },
-  { "c",          "commands",                  "Commands",                  },
-  { "<M-;> ✓",    "commands",                  "Commands",                  },
+  { "C",         "command_history",           "command history",           },
+  { "c",         "commands",                  "commands",                  },
 
-  { "<C-S-/> ✓",  "help_tags",                 "Vim help",                  },
+  { "<C-S-/> ✓", "help_tags",                 "vim help",                  },
+  { K.sc"z ✓",   "help_tags",                 "vim help",                  },
 
-  { "<M-/> ✓",    "current_buffer_fuzzy_find", "Search in buffer",          },
+  { "<M-/> ✓",   "current_buffer_fuzzy_find", "search in buffer",          },
 
   -- grep
-  { "/",          "live_grep",                 "Live grep",                 },
-  { K.sc"g ✓",    "live_grep",                 "[Telescope] Live grep",     },
-  { "w",          "grep_string",               "Grep <cword> under cursor", },
+  { "/",         "live_grep",                 "live grep",                 },
+  { K.sc"g ✓",   "live_grep",                 "[telescope] live grep",     },
+  { "w",         "grep_string",               "grep <cword> under cursor", },
 
   -- git
-  { "gc",         "git_commits",               "Git commits",               },
-  { "gb",         "git_bcommits",              "Git buffer history",        },
-  { "gB",         "git_branches",              "Git branches",              },
-  { "gs",         "git_status",                "Git status",                },
-  { "gS",         "git_stash",                 "Git stash",                 },
+  { "gc",        "git_commits",               "git commits",               },
+  { "gb",        "git_bcommits",              "git buffer history",        },
+  { "gB",        "git_branches",              "git branches",              },
+  { "gs",        "git_status",                "git status",                },
+  { "gS",        "git_stash",                 "git stash",                 },
 
   -- search
-  { "M",          "man_pages",                 "Man pages",                 },
-  { "m",          "marks",                     "Jump to mark",              },
+  { "M",         "man_pages",                 "man pages",                 },
+  { "m",         "marks",                     "jump to mark",              },
 
   -- notify
-  { "n",          "notify",                    "Notifications",             },
+  { "n",         "notify",                    "notifications",             },
 }
 
 M = K.lazy_keys(M, {

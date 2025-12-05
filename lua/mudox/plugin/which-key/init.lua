@@ -36,12 +36,21 @@ local opts = {
     -- exclude mappings without a description
     return spec.desc and spec.desc ~= ""
   end,
-  notify = false,
+
+  notify = true,
 
   replace = {
     -- stylua: ignore
     desc = {
       { "%u+", function(c) return c:lower() end },
+    },
+  },
+
+  plugins = {
+    presets = {
+      operators = false,
+      motions = false,
+      text_objects = false,
     },
   },
 

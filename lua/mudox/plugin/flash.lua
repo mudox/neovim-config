@@ -1,4 +1,5 @@
 local opts = {
+  -- default options for modes
   search = {
     multi_window = true,
   },
@@ -21,19 +22,17 @@ local opts = {
 
   modes = {
     search = {
+      enabled = true,
       jump = {
         autojump = false,
       },
     },
-
     char = {
-      -- `,` conflict with `<leader>` settings and `which-key.nvim`
-      keys = { "f", "F", "t", "T" },
+      -- `,`, `;` are used as prefixes
+      eys = { "f", "F", "t", "T" },
       jump_labels = true,
       char_actions = function(motion)
         return {
-          [";"] = "right",
-          [","] = "left",
           [motion:lower()] = "right",
           [motion:upper()] = "left",
         }
@@ -42,26 +41,31 @@ local opts = {
   },
 }
 
+local function empty_line()
+  require("flash").jump {
+    search = { mode = "search", max_length = 0 },
+    highlight = { backdrop = false, matches = false },
+    pattern = "^\\s*$",
+  }
+end
+
 -- stylua: ignore
 local keys = {
   -- jump
-  { "s",        function() require("flash").jump() end,              "Jump",                   mode = { "o",   "x",   "n" }, },
+  { "s",        function() require("flash").jump() end,              "[flash] jump",                   mode = { "o",   "x",   "n" }, },
+  { "gG",       empty_line,                                          "[flash] empty line",             mode = { "o",   "x",   "n" }, },
 
-  -- expand selection
-  { ";",        function() require("flash").treesitter() end,        "Expand selection",       mode = { "o",   "x"        }, },
+  -- expantion
+  { ";",        function() require("flash").treesitter() end,        "[flash] expand selection",       mode = { "o",   "x"        }, },
+
+  -- search mode
+  { "<C-,>",    function() require("flash").toggle() end,            "[flash] toggle flash search",    mode = { "c"               }, },
 
   -- remote motion
-  { "<Bslash>", function() require("flash").remote() end,            "Remote mode",            mode = { "o"               }, },
-  -- remote expand selection
-  { "/",        function() require("flash").treesitter_search() end, "Remote treesitter mode", mode = { "o"               }, },
-
-  -- search
-  { "<C-s>",    function() require("flash").toggle() end,            "Toggle flash search",    mode = { "c"               }, },
+  { [[\]],      function() require("flash").remote() end,            "[flash] remote mode",            mode = { "o"               }, },
+  -- remote expansion
+  { [[/]],      function() require("flash").treesitter_search() end, "[flash] remote treesitter mode", mode = { "o"               }, },
 }
-
-keys = K.lazy_keys(keys, {
-  desc_prefix = "Flash",
-})
 
 vim.list_extend(keys, { "f", "F", "t", "T" })
 

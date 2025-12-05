@@ -8,7 +8,9 @@ _G.C = {
 }
 
 -- global data vault
-_G.V = {}
+_G.V = {
+  ag = {}, -- augroups
+}
 
 -- Dev, debug
 _G.D = {
