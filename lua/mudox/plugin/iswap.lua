@@ -1,11 +1,11 @@
 -- stylua: ignore start
 local keys = {
-  { "<M-]>", "<Cmd>ISwapNodeWithRight<Cr>", desc = "[ISwap] Swap node forwards" },
-  { "<M-[>", "<Cmd>ISwapNodeWithLeft<Cr>",  desc = "[ISwap] Swap node backwards" },
-  { "\\x",   "<Cmd>ISwapWith<Cr>",          desc = "[ISwap] Swap current item with ..." },
-  { "\\X",   "<Cmd>ISwap<Cr>",              desc = "[ISwap] Swap 2 items" },
-  { "\\n",   "<Cmd>ISwapNodeWith<Cr>",      desc = "[ISwap] Swap current node" },
-  { "\\N",   "<Cmd>ISwapNode<Cr>",          desc = "[ISwap] Swap 2 nodes" },
+  { "<M-]>", "<Cmd>ISwapNodeWithRight<Cr>", desc = "[iswap] swap node forwards" },
+  { "<M-[>", "<Cmd>ISwapNodeWithLeft<Cr>",  desc = "[iswap] swap node backwards" },
+  { "\\x",   "<Cmd>ISwapWith<Cr>",          desc = "[iswap] swap current item with ..." },
+  { "\\X",   "<Cmd>ISwap<Cr>",              desc = "[iswap] swap 2 items" },
+  { "\\n",   "<Cmd>ISwapNodeWith<Cr>",      desc = "[iswap] swap current node" },
+  { "\\N",   "<Cmd>ISwapNode<Cr>",          desc = "[iswap] swap 2 nodes" },
 }
 -- stylua: ignore end
 
@@ -19,4 +19,5 @@ return {
   "mizlan/iswap.nvim",
   keys = keys,
   opts = opts,
+  cond = false,
 }

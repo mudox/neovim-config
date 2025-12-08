@@ -25,9 +25,9 @@ local surrounds = {
 
 -- stylua: ignore
 local keys = {
-  { "qa", "<Plug>(nvim-surround-normal)",      remap = true, desc = "[surround] add"              },
-  { "qc", "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change"           },
-  { "qd", "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] delete"           },
+  { "ys", "<Plug>(nvim-surround-normal)",      remap = true, desc = "[surround] add"              },
+  { "cs", "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change"           },
+  { "ds", "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] delete"           },
 
   { "q",  "<Plug>(nvim-surround-visual)",      remap = true, desc = "[surround] add",             mode = "x" },
   { "Q",  "<Plug>(nvim-surround-visual-line)", remap = true, desc = "[surround] add in new line", mode = "x" },

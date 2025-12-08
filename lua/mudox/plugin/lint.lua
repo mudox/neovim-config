@@ -16,10 +16,9 @@ local function config()
     rust       = { "typos"    },
   }
 
-  V.ag.lint = vim.api.nvim_create_augroup("mudox.lint", { clear = true })
   On({ "BufEnter", "BufWritePost" }, {
-    group = gid,
-    desc = "Lint document by nvim-lint",
+    group = V.ag.lint,
+    desc = "Lint by nvim-lint",
     callback = function(event)
       if vim.b.auto_lint == false or vim.g.auto_lint == false then
         return

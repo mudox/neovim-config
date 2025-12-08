@@ -56,7 +56,7 @@ local keymap = {
 }
 
 local sources = {
-  default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+  default = { "lazydev", "lsp", "path", "snippets", "buffer", "calc" },
 
   providers = {
     lazydev = {
@@ -84,6 +84,10 @@ local sources = {
       should_show_items = function(ctx)
         return ctx.trigger.initial_kind ~= "trigger_character"
       end,
+    },
+    calc = {
+      name = "Calc",
+      module = "blink-calc",
     },
   },
 }
@@ -169,6 +173,7 @@ local opts = {
 
 return {
   "saghen/blink.cmp",
+  dependencies = { "joelazar/blink-calc" },
   build = "cargo build --release",
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   opts = opts,

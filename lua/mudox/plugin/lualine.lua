@@ -50,5 +50,5 @@ return {
     options = options,
     sections = statusline,
   },
-  cond = not C.noice,
+  cond = not V.noice,
 }

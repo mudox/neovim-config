@@ -60,10 +60,15 @@ function M.setup()
   once = true
 
   -- stylua: ignore start
-  K.nmap("<Left>",  M.dir_func("left"),  { desc = "[Arrow] Left"  })
-  K.nmap("<Right>", M.dir_func("right"), { desc = "[Arrow] Right" })
-  K.nmap("<Up>",    M.dir_func("up"),    { desc = "[Arrow] Up"    })
-  K.nmap("<Down>",  M.dir_func("down"),  { desc = "[Arrow] Down"  })
+  K.nmap("<Left>",  M.dir_func("left"),  { desc = "[arrow] left"  })
+  K.nmap("<Right>", M.dir_func("right"), { desc = "[arrow] right" })
+  K.nmap("<Up>",    M.dir_func("up"),    { desc = "[arrow] up"    })
+  K.nmap("<Down>",  M.dir_func("down"),  { desc = "[arrow] down"  })
+
+  K.nmap("H", M.dir_func("left"),  { desc = "[arrow] left"  })
+  K.nmap("L", M.dir_func("right"), { desc = "[arrow] right" })
+  K.nmap("K", M.dir_func("up"),    { desc = "[arrow] up"    })
+  K.nmap("J", M.dir_func("down"),  { desc = "[arrow] down"  })
   -- stylua: ignore end
 end
 

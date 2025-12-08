@@ -16,16 +16,6 @@ local quickfix = {
   end,
 }
 
-local diagnostic = {
-  get = function()
-    return require("tiny-inline-diagnostic.diagnostic").user_toggle_state
-  end,
-  set = function(s)
-    require("tiny-inline-diagnostic")[s and "enable" or "disable"]()
-    pcall(vim.diagnostic[s and "enabled" or "disable"])
-  end,
-}
-
 -- stylua: ignore
 local function _init()
   -- for parameter `key`
@@ -37,15 +27,15 @@ local function _init()
   local t = Snacks.toggle
   local o = t.option
 
-  o("spell",    { name = "Spelling"         }):map(k"s")
-  o("wrap",     { name = "Wrap"             }):map(k"w")
-  o("list",     { name = "List Mode"        }):map(k"<C-l>")
-  o("hlsearch", { name = "Highlight Search" }):map(k"h")
+  o("spell",    { name = "spelling"         }):map(k"s")
+  o("wrap",     { name = "wrap"             }):map(k"w")
+  o("list",     { name = "list mode"        }):map(k"<C-l>")
+  o("hlsearch", { name = "highlight search" }):map(k"h")
 
   -- lsp virtual lines
   t.new({
     id = "lsp_virtual_lines",
-    name = "LSP Virtual Lines",
+    name = "lsp virtual lines",
     get = function() return vim.lsp.config.virtual_lines end,
     set = function(state) vim.lsp.config { virtual_lines = state } end,
   }):map(k"L")
@@ -56,17 +46,17 @@ local function _init()
   t.inlay_hints():map(k"H")
 
   -- line numbers
-  o("number", { name = "Line Number" }):map(k"n")
-  o("relativenumber", { name = "Relative Number" }):map(k"N")
+  o("number", { name = "line number" }):map(k"n")
+  o("relativenumber", { name = "relative number" }):map(k"N")
 
   -- conceal level
-  local opts = { name = "Conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
+  local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
   o("conceallevel", opts):map(k"C")
 
   -- gitsigns
   t.new({
     id = "gitsigns",
-    name = "GitSigns",
+    name = "gitsigns",
     get = function() return require("gitsigns.config").config.signcolumn end,
     set = function() require("gitsigns").toggle_signs() end,
   }):map(k"g")
@@ -74,7 +64,7 @@ local function _init()
   -- highlight-colors
   t.new({
     id = "highlight_colors",
-    name = "Highlight Colors",
+    name = "highlight colors",
     get = function()
       local id  = vim.api.nvim_get_namespaces()["nvim-highlight-colors"]
       return id and #vim.api.nvim_buf_get_extmarks(0, id, 0, -1, {}) > 0
@@ -85,7 +75,7 @@ local function _init()
   -- conform locally
   t.new({
     id = "conform_locally",
-    name = "Conform Locally",
+    name = "conform locally",
     get = function() return not vim.b.disable_autoformat end,
     set = function() vim.b.disable_autoformat = not vim.b.disable_autoformat end,
   }):map(k"f")
@@ -93,7 +83,7 @@ local function _init()
   -- conform globally
   t.new({
     id = "conform_globally",
-    name = "Conform Globally",
+    name = "conform globally",
     get = function() return not vim.g.disable_autoformat end,
     set = function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
   }):map(k"F")
@@ -102,16 +92,24 @@ local function _init()
   -- TODO: move under <leader>w
   t.new({
     id = "quickfix",
-    name = "Quickfix",
+    name = "quickfix",
     get = quickfix.get,
     set = quickfix.set,
   }):map(k"q")
 
   -- diagnostic
-  -- vim.diagnostic + tiny-inline-diagnostic
+  local diagnostic = {
+    get = function()
+      return require("tiny-inline-diagnostic.diagnostic").user_toggle_state
+    end,
+    set = function(s)
+      require("tiny-inline-diagnostic")[s and "enable" or "disable"]()
+      pcall(vim.diagnostic[s and "enabled" or "disable"])
+    end,
+  }
   t.new({
     id = "diagnostic",
-    name = "Diagnostic",
+    name = "diagnostic",
     get = diagnostic.get,
     set = diagnostic.set,
   }):map(k"d")
@@ -124,15 +122,15 @@ local function _init()
   -- blink.indent
   t.new({
     id = "blink_indent",
-    name = "Indent Guidelines",
-    get = function() require("blink.indent").is_enabled() end,
-    set = function() require("blink.indent").enable(not require("blink.indent").is_enabled({ bufnr = 0}), { bufnr = 0 }) end,
+    name = "indent guidelines",
+    get = function() return require("blink.indent").is_enabled({ bufnr = 0 }) end,
+    set = function(b) require("blink.indent").enable(b, { bufnr = 0 }) end,
   }):map(k"i")
 
   -- indent-blank-line
   -- t.new({
   --   id = "indent_blank_line",
-  --   name = "Indent Blank Line",
+  --   name = "indent blank line",
   --   get = function() return require("ibl.config").get_config(-1).enabled end,
   --   set = function() vim.cmd.IBLToggle() end,
   -- }):map(k"i")

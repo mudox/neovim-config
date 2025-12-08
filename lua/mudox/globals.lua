@@ -1,15 +1,14 @@
--- stylua: ignore
-_G.C = {
-  -- noice.nvim cause vim-visual-multi failed to load
-  noice = false, -- noice      | builtin
-
-  -- snacks dashboard is not faster than alpha
-  alpha = true,  -- alpha.nvim | snacks.dashboard
-}
-
 -- global data vault
 _G.V = {
-  ag = {}, -- augroups
+  ag = setmetatable({}, {
+    __index = function(self, name)
+      local group = vim.api.nvim_create_augroup("mdx." .. name, { clear = true })
+      self[name] = group
+      return group
+    end,
+  }), -- augroups
+  noice = false,
+  ufo = true,
 }
 
 -- Dev, debug

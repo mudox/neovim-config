@@ -22,7 +22,7 @@ local opts = {
 
   modes = {
     search = {
-      enabled = true,
+      enabled = false,
       jump = {
         autojump = false,
       },
@@ -52,8 +52,9 @@ end
 -- stylua: ignore
 local keys = {
   -- jump
-  { "s",        function() require("flash").jump() end,              "[flash] jump",                   mode = { "o",   "x",   "n" }, },
-  { "gG",       empty_line,                                          "[flash] empty line",             mode = { "o",   "x",   "n" }, },
+  { "s",        function() require("flash").jump() end,              "[flash] jump",                                                 },
+  { ",",        function() require("flash").jump() end,              "[flash] jump",                   mode = { "o",   "x",       }, },
+  { "g<Space>", empty_line,                                          "[flash] empty line",             mode = { "o",   "x",   "n" }, },
 
   -- expantion
   { ";",        function() require("flash").treesitter() end,        "[flash] expand selection",       mode = { "o",   "x"        }, },

@@ -21,44 +21,44 @@ local function setup_select()
   -- stylua: ignore
   local keymaps = {
     -- assignment (`lhs = rhs`)
-    ["a="] = { query = "@assignment.outer",  desc = "Outer of an assignment"         },
-    ["i="] = { query = "@assignment.inner",  desc = "Inner of an assignment"         },
-    [",="] = { query = "@assignment.lhs",    desc = "Left of an assignment"          },
-    [".="] = { query = "@assignment.rhs",    desc = "Right of an assignment"         },
+    ["a="] = { query = "@assignment.outer",  desc = "around an assignment"         },
+    ["i="] = { query = "@assignment.inner",  desc = "inside an assignment"         },
+    ["[="] = { query = "@assignment.lhs",    desc = "left of an assignment"        },
+    ["]="] = { query = "@assignment.rhs",    desc = "right of an assignment"       },
 
     -- pairs (`key: value`) in languages like javascript, typescript ...
-    ["a:"] = { query = "@property.outer",    desc = "Outer of an object property"    },
-    ["i:"] = { query = "@property.inner",    desc = "Inner of an object property"    },
-    [",:"] = { query = "@property.lhs",      desc = "Left of an object property"     },
-    [".:"] = { query = "@property.rhs",      desc = "Right of an object property"    },
+    ["a:"] = { query = "@property.outer",    desc = "around an property"           },
+    ["i:"] = { query = "@property.inner",    desc = "inside an property"           },
+    ["[:"] = { query = "@property.lhs",      desc = "left of an property"          },
+    ["]:"] = { query = "@property.rhs",      desc = "right of an property"         },
 
     -- argument / parameter
-    ["aa"] = { query = "@parameter.outer",   desc = "Outer of a parameter/argument"  },
-    ["ia"] = { query = "@parameter.inner",   desc = "Inner of a parameter/argument"  },
+    ["aa"] = { query = "@parameter.outer",   desc = "around a parameter/argument"  },
+    ["ia"] = { query = "@parameter.inner",   desc = "inside a parameter/argument"  },
 
     -- condition
-    ["a^"] = { query = "@conditional.outer", desc = "Outer of a condition"         },
-    ["i^"] = { query = "@conditional.inner", desc = "Inner of a condition"         },
+    ["a^"] = { query = "@conditional.outer", desc = "around a condition"           },
+    ["i^"] = { query = "@conditional.inner", desc = "inside a condition"           },
 
     -- loop
-    ["a@"] = { query = "@loop.outer",        desc = "Outer of a loop"                },
-    ["i@"] = { query = "@loop.inner",        desc = "Inner of a loop"                },
+    ["a@"] = { query = "@loop.outer",        desc = "around a loop"                },
+    ["i@"] = { query = "@loop.inner",        desc = "inside a loop"                },
 
     -- function call
-    ["ak"] = { query = "@call.outer",        desc = "Outer of a function call"       },
-    ["ik"] = { query = "@call.inner",        desc = "Inner of a function call"       },
+    ["ak"] = { query = "@call.outer",        desc = "around a function call"       },
+    ["ik"] = { query = "@call.inner",        desc = "inside a function call"       },
 
     -- function definition
-    ["af"] = { query = "@function.outer",    desc = "Outer of a function definition" },
-    ["if"] = { query = "@function.inner",    desc = "Inner of a function definition" },
+    ["af"] = { query = "@function.outer",    desc = "around a function definition" },
+    ["if"] = { query = "@function.inner",    desc = "inside a function definition" },
 
     -- class
-    ["ac"] = { query = "@class.outer",       desc = "Outer of a class"               },
-    ["ic"] = { query = "@class.inner",       desc = "Inner of a class"               },
+    ["ac"] = { query = "@class.outer",       desc = "around a class"               },
+    ["ic"] = { query = "@class.inner",       desc = "inside a class"               },
 
     -- comment
-    ["a/"] = { query = "@comment.outer",     desc = "Outer of a comment"             },
-    ["i/"] = { query = "@comment.inner",     desc = "Inner of a comment"             },
+    ["a/"] = { query = "@comment.outer",     desc = "around a comment"             },
+    ["i/"] = { query = "@comment.inner",     desc = "inside a comment"             },
   }
 
   for key, v in pairs(keymaps) do
@@ -78,13 +78,13 @@ local function setup_jump()
 
   -- stylua: ignore
   local move = {
-    ["f"] = { query = "@function.outer",                       name = "function"  },
-    ["k"] = { query = "@call.outer",                           name = "call"      },
+    ["f"] = { query = "@function.outer",    name = "function"  },
+    ["k"] = { query = "@call.outer",        name = "call"      },
 
-    ["^"] = { query = "@conditional.outer",                    name = "condition" },
-    ["@"] = { query = "@loop.outer",                           name = "loop"      },
+    ["^"] = { query = "@conditional.outer", name = "condition" },
+    ["@"] = { query = "@loop.outer",        name = "loop"      },
 
-    ["s"] = { query = "@scope",             origin = "locals", name = "scope"     },
+    ["s"] = { query = "@scope",             name = "scope",    origin = "locals" },
     --["󰅂c"] = { query = "@class.outer",       desc = "Class start" },
   }
 

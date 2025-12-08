@@ -75,6 +75,8 @@ local shortcut = {
   { sc"2",      function() X.layout.secondary:open() end, desc = "Secondary window" },
   { "<C-S-Cr>", function() X.layout.secondary:open() end, desc = "Secondary window" },
   { sc"3",      function() X.layout.one_window() end,     desc = "Main window only" },
+
+  { sc"m",      "g<",     desc = "Messages" },
 }
 
 return {

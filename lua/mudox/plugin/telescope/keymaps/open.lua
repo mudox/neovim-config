@@ -13,6 +13,7 @@ local M = {
   { "!",         "diagnostics",               "workspace diagnostics",     },
 
   -- symbols
+  { "gs  ✓",     "lsp_document_symbols",      "lsp document symbols",      },
   { "gos ✓",     "lsp_document_symbols",      "lsp document symbols",      },
   { "got ✓",     "treesitter",                "treesitter symbols",        },
   { "goS ✓",     "lsp_workspace_symbols",     "lsp workspace symbols",     },
@@ -30,7 +31,7 @@ local M = {
   { "c",         "commands",                  "commands",                  },
 
   { "<C-S-/> ✓", "help_tags",                 "vim help",                  },
-  { K.sc"z ✓",   "help_tags",                 "vim help",                  },
+  { K.sc"/ ✓",   "help_tags",                 "vim help",                  },
 
   { "<M-/> ✓",   "current_buffer_fuzzy_find", "search in buffer",          },
 

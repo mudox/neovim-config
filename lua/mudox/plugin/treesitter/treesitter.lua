@@ -19,10 +19,13 @@ end
 
 local function init()
   -- folding
-  -- TODO: use ufo.nvim for perf
-  vim.o.foldmethod = "expr"
-  vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-  vim.o.foldtext = "" -- use default transparent foldtext
+  if not V.ufo then
+    vim.o.foldcolumn = "1"
+    vim.o.foldmethod = "expr"
+    vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    -- vim.o.foldtext = "" -- use default transparent foldtext
+    vim.o.foldtext = "v:lua.require('ufo.main').foldtext()"
+  end
 
   -- highlight
   vim.hl.priorities.semantic_tokens = 75 -- do not override treesitter highlighting

@@ -36,11 +36,11 @@ local fdlvl = (function()
     name = "Fold Level",
     left = function()
       notify("left")
-      vim.cmd.normal { "zm", bang = true }
+      vim.cmd.normal { "zm", bang = false }
     end,
     right = function()
       notify("right")
-      vim.cmd.normal { "zr", bang = true }
+      vim.cmd.normal { "zr", bang = false }
     end,
     notify = function(dir)
       notify(dir)
@@ -105,6 +105,7 @@ local function enter_cmd()
     ":lua ",
     ":=",
     ":set ",
+    ":setlocal ",
     ":%s/\\v",
     ":G ",
     "q:",
@@ -112,7 +113,7 @@ local function enter_cmd()
   local cmd = cmds[vim.v.count] or ":"
   vim.api.nvim_feedkeys(cmd, "n", false)
 end
-K.nmap(K.sc(";"), enter_cmd, { desc = "enter command" })
+K.nmap("<Enter>", enter_cmd, { desc = "enter cmdline" })
 
 -- Terminal
 K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })

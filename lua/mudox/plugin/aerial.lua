@@ -29,7 +29,9 @@ local opts = {
   close_on_select = false,
   post_jump_cmd = "normal! zzzv",
 
-  icons = I.kind,
+  icons = {
+    Collapsed = " " .. I.chevron.right,
+  },
 
   filter_kind = kinds,
 
@@ -37,7 +39,7 @@ local opts = {
 }
 
 local keys = {
-  { K.p"wa", "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
+  { K.p("wa"), "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
 }
 
 -- stylua: ignore

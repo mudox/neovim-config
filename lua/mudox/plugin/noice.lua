@@ -87,9 +87,6 @@ local keys = {
 -- stylua: ignore end
 
 return {
-  cond = function()
-    return _G.C.noice
-  end,
   "folke/noice.nvim",
   dependencies = {
     "nui.nvim",
@@ -109,4 +106,5 @@ return {
       set statusline=%{repeat('─',winwidth('.'))}
     ]])
   end,
+  cond = V.noice,
 }
