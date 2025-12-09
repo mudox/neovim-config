@@ -42,6 +42,7 @@ add("e", {
 })
 
 -- stylua: ignore start
+-- args
 add("a", excmd("argfile", "previous", "next"))
 
 -- change list
@@ -60,18 +61,26 @@ K.nmap("g,", X.arrows.right(op), { desc = "newer change point" })
 add("c", normal("diff hunk", "]c", "[c", true))
 
 -- quickfix / loclist
-add("q", excmd("quickfix item", "cpreviuos", "cnext"))
+add("q", excmd("quickfix item", "cprevious", "cnext"))
 add("Q", excmd("quickfix file", "cpfile", "cnfile"))
 add("l", excmd("loclist item", "lprevious", "lnext"))
 add("L", excmd("loclist file", "lpfile", "lnfile"))
 
+-- tabpage
 add("<Tab>", excmd("tab", "tabprevious", "tabnext"))
 -- stylua: ignore end
 
 -- jumplist
--- <C-i> can not be used directly in `k` for unknown reason
-K.nmap("<Plug>MdxJumplistForwards", "<C-i>")
-K.nmap("<Plug>MdxJumplistBackwards", "<C-o>")
-add("j", normal("jumplist", "<Plug>MdxJumplistBackwards", "<Plug>MdxJumplistForwards"))
+local function jump(back)
+  return function()
+    local key = vim.api.nvim_replace_termcodes(back and "<C-o>" or "<C-i>", true, false, true)
+    vim.api.nvim_feedkeys(key, "n", false)
+  end
+end
+add("j", {
+  name = "jumplist",
+  left = jump(true),
+  right = jump(false),
+})
 
 return M

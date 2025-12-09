@@ -45,7 +45,7 @@ local statusline = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  event = "UIEnter", -- auto loaded by alpha.nvim as a dependency
+  event = { "User SnacksDashboardClosed", "TabNew" },
   opts = {
     options = options,
     sections = statusline,

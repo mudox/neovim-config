@@ -63,7 +63,9 @@ end, {
 -- Close with `q` 〉
 
 On.CmdwinEnter(function(ev)
-  K.nmap("<Cr>", "<Cr>", { buffer = ev.buf, nowait = true, remap = false })
+  local opts = { buffer = ev.buf, nowait = true, remap = false, silent = true }
+  K.nmap("<Cr>", "<Cr>", opts)
+  K.nmap("q", K.c("close"), opts)
 end)
 
 -- Wrap & check spell 〈

@@ -1,8 +1,7 @@
 return {
   "johmsalas/text-case.nvim",
   keys = {
-    "ga",
-    { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+    { "\\c", K.c("TextCaseOpenTelescope"), mode = { "n", "x" }, desc = "text case" },
   },
   cmd = {
     "Subs",
@@ -11,5 +10,5 @@ return {
     "TextCaseOpenTelescopeLSPChange",
     "TextCaseStartReplacingCommand",
   },
-  opts = true,
+  opts = {},
 }

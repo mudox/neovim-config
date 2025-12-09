@@ -41,4 +41,10 @@ M.scratch = {
   noautocmd = false,
 }
 
+M.dashboard = {
+  wo = {
+    foldmethod = "marker",
+  },
+}
+
 return M

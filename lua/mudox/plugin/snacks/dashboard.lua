@@ -5,7 +5,7 @@ local opts = {
         -- stylua: ignore
         keys = {
           { icon = " ", key = "f", desc = "Find",     action  = ":Telescope smart_open"                   },
-          { icon = " ", key = "q", desc = "New",      action  = ":ene | startinsert"                      },
+          { icon = " ", key = "q", desc = "New",      action  = ":enew"                                   },
           { icon = "󰦪 ", key = "g", desc = "Grep",     action  = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = "󰞷 ", key = "t", desc = "Terminal", action  = ":Xpress"                                 },
           { icon = "󰭹 ", key = "R", desc = "Restore",  section = "session"                                 },
@@ -16,5 +16,12 @@ local opts = {
 }
 
 return {
+  init = function()
+    On.user("SnacksDashboardUpdatePost", function()
+      if vim.bo.filetype == "snacks_dashboard" then
+        pcall(vim.keymap.del, "n", "<Cr>", { buffer = true })
+      end
+    end)
+  end,
   opts = opts,
 }

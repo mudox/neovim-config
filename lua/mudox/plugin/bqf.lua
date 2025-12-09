@@ -7,7 +7,7 @@ local opts = {
 
 local function config()
   require("bqf").setup(opts)
-  vim.api.nvim_set_hl(0, "BqfPreviewBorder", { bg = "bg" })
+  vim.api.nvim_set_hl(0, "BqfPreviewBorder", { fg = "grey", bg = "bg" })
 end
 
 return {

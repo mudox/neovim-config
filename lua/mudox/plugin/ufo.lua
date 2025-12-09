@@ -1,49 +1,44 @@
 local providers_per_ft = {
-  -- lua = { "treesitter", "indent" },
-  -- python = { "treesitter", "indent" },
-  -- vim = { "treesitter", "indent" },
-  html = { "treesitter", "indent" },
-
   ["_"] = { "lsp", "indent" },
 }
 
-local handler = function(virtText, lnum, endLnum, width, truncate)
-  local newVirtText = {}
+local handler = function(virt_text, lnum, end_lnum, width, truncate)
+  local new_virt_text = {}
   local suffix = { "  ", "Folded" }
-  local sufWidth = vim.fn.strdisplaywidth(suffix)
-  local targetWidth = width - sufWidth
-  local curWidth = 0
+  local suf_width = vim.fn.strdisplaywidth(suffix[1])
+  local target_width = width - suf_width
+  local cur_width = 0
 
-  for _, chunk in ipairs(virtText) do
-    local chunkText = chunk[1]
-    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-    if targetWidth > curWidth + chunkWidth then
-      table.insert(newVirtText, chunk)
+  for _, chunk in ipairs(virt_text) do
+    local chunk_text = chunk[1]
+    local chunk_width = vim.fn.strdisplaywidth(chunk_text)
+    if target_width > cur_width + chunk_width then
+      table.insert(new_virt_text, chunk)
     else
-      chunkText = truncate(chunkText, targetWidth - curWidth)
+      chunk_text = truncate(chunk_text, target_width - cur_width)
       local hlGroup = chunk[2]
-      table.insert(newVirtText, { chunkText, hlGroup })
-      chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      table.insert(new_virt_text, { chunk_text, hlGroup })
+      chunk_width = vim.fn.strdisplaywidth(chunk_text)
       -- str width returned from truncate() may less than 2nd argument, need padding
-      if curWidth + chunkWidth < targetWidth then
-        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+      if cur_width + chunk_width < target_width then
+        suffix = suffix .. (" "):rep(target_width - cur_width - chunk_width)
       end
       break
     end
-    curWidth = curWidth + chunkWidth
+    cur_width = cur_width + chunk_width
   end
 
-  table.insert(newVirtText, suffix)
-  return newVirtText
+  table.insert(new_virt_text, suffix)
+  return new_virt_text
 end
 
 local opts = {
   close_fold_kinds = {},
   -- open_fold_hl_timeout = 0, -- disable
   ---@diagnostic disable-next-line: unused-local
-  -- provider_selector = function(bufnr, filetype, buftype)
-  --   return providers_per_ft[filetype] or providers_per_ft["_"]
-  -- end,
+  provider_selector = function(bufnr, filetype, buftype)
+    return providers_per_ft[filetype] or providers_per_ft["_"]
+  end,
   fold_virt_text_handler = handler,
   preview = {
     win_config = {

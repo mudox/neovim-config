@@ -102,13 +102,13 @@ end, { desc = "Duplicate below" })
 -- Cmdline
 local function enter_cmd()
   local cmds = {
-    ":lua ",
-    ":=",
-    ":set ",
-    ":setlocal ",
-    ":%s/\\v",
-    ":G ",
-    "q:",
+    [1] = ":lua ",
+    [2] = ":=",
+    [3] = ":set ",
+    [4] = ":setlocal ",
+    [5] = ":%s/\\v",
+    [6] = ":checkhealth ",
+    [7] = "q:",
   }
   local cmd = cmds[vim.v.count] or ":"
   vim.api.nvim_feedkeys(cmd, "n", false)

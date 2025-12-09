@@ -4,6 +4,11 @@ local function opts()
     Folder = "",
   })
 
+  local disable_fts = {
+    help = true,
+    checkhealth = true,
+  }
+
   return {
     icons = {
       kinds = {
@@ -43,7 +48,7 @@ local function opts()
           or not vim.api.nvim_win_is_valid(win)
           or vim.fn.win_gettype(win) ~= "" -- spacial window
           or vim.wo[win].winbar ~= "" -- winbar already set
-          -- or vim.bo[buf].ft == "help"
+          or disable_fts[vim.bo[buf].filetype]
         then
           return false
         end
