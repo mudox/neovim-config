@@ -4,7 +4,7 @@ local opts = {
     multi_window = true,
   },
   label = {
-    current = true, -- for foldline
+    current = true, -- for folded line
     after = false,
     before = true,
   },

@@ -60,11 +60,11 @@ end, {
   },
 })
 
-On.CmdwinEnter(function()
-  K.nmap("q", K.c("close"), { buffer = true, nowait = true })
-end, { once = true })
-
 -- Close with `q` 〉
+
+On.CmdwinEnter(function(ev)
+  K.nmap("<Cr>", "<Cr>", { buffer = ev.buf, nowait = true, remap = false })
+end)
 
 -- Wrap & check spell 〈
 

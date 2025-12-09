@@ -2,12 +2,8 @@ return {
   "folke/lazydev.nvim",
   ft = "lua",
   opts = {
-    integrations = {
-      lspconfig = false,
-      cmp = false,
-      coq = false,
-    },
     library = {
+      { path = vim.env.VIMRUNTIME, words = { "vim" } },
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     },
   },

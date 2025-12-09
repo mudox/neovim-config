@@ -40,9 +40,8 @@ local function _init()
     set = function(state) vim.lsp.config { virtual_lines = state } end,
   }):map(k"L")
 
-  -- treesitter & lsp
   t.treesitter():map(k"T")
-  -- t.diagnostics():map(k"d")
+  t.diagnostics():map(k"d")
   t.inlay_hints():map(k"H")
 
   -- line numbers
@@ -100,19 +99,19 @@ local function _init()
   -- diagnostic
   local diagnostic = {
     get = function()
-      return require("tiny-inline-diagnostic.diagnostic").user_toggle_state
+      return require("tiny-inline-diagnostic.state").user_toggle_state
     end,
     set = function(s)
       require("tiny-inline-diagnostic")[s and "enable" or "disable"]()
-      pcall(vim.diagnostic[s and "enabled" or "disable"])
+      -- pcall(vim.diagnostic[s and "enabled" or "disable"])
     end,
   }
   t.new({
-    id = "diagnostic",
-    name = "diagnostic",
+    id = "tiny inline diagnostic",
+    name = "inline diagnostic",
     get = diagnostic.get,
     set = diagnostic.set,
-  }):map(k"d")
+  }):map(k"D")
 
   -- profiler
   t.profiler():map(k"p")
@@ -120,19 +119,11 @@ local function _init()
   t.profiler_highlights():map(k"P")
 
   -- blink.indent
-  t.new({
-    id = "blink_indent",
-    name = "indent guidelines",
-    get = function() return require("blink.indent").is_enabled({ bufnr = 0 }) end,
-    set = function(b) require("blink.indent").enable(b, { bufnr = 0 }) end,
-  }):map(k"i")
-
-  -- indent-blank-line
   -- t.new({
-  --   id = "indent_blank_line",
-  --   name = "indent blank line",
-  --   get = function() return require("ibl.config").get_config(-1).enabled end,
-  --   set = function() vim.cmd.IBLToggle() end,
+  --   id = "blink_indent",
+  --   name = "indent guidelines",
+  --   get = function() return require("blink.indent").is_enabled({ bufnr = 0 }) end,
+  --   set = function(b) require("blink.indent").enable(b, { bufnr = 0 }) end,
   -- }):map(k"i")
 
 end

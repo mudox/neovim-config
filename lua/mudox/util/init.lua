@@ -1,7 +1,7 @@
 local M = setmetatable({}, {
-  __index = function(u, key)
-    u[key] = require("mudox.util." .. key)
-    return u[key]
+  __index = function(t, key)
+    t[key] = require("mudox.util." .. key)
+    return t[key]
   end,
 })
 
@@ -34,5 +34,33 @@ function M.logo()
 
   return table.concat(lines, "\n")
 end
+
+-- all my b: vars go under b:mdx table
+M.b = setmetatable({}, {
+  __index = function(_, key)
+    local mdx = vim.b.mdx or { desc = "my b:var vault" }
+    vim.b.mdx = mdx
+    return vim.b.mdx[key]
+  end,
+  __newindex = function(_, key, value)
+    local mdx = vim.b.mdx or { desc = "my b:var vault" }
+    mdx[key] = value
+    vim.b.mdx = mdx
+  end,
+})
+
+-- all my w: vars go under w:mdx table
+M.w = setmetatable({}, {
+  __index = function(_, key)
+    local mdx = vim.w.mdx or { desc = "my w:var vault" }
+    vim.w.mdx = mdx
+    return vim.w.mdx[key]
+  end,
+  __newindex = function(_, key, value)
+    local mdx = vim.w.mdx or { desc = "my w:var vault" }
+    mdx[key] = value
+    vim.w.mdx = mdx
+  end,
+})
 
 return M

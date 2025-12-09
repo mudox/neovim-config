@@ -29,17 +29,17 @@ require("mudox.autocmds")
 require("mudox.lsp")
 
 -- Keymaps ...
-if vim.fn.argc(-1) == 0 then
-  -- delay loading till `VeryLazy`
-  On.VeryLazy(function()
-    require("mudox.keymaps")
-    X.arrows.setup()
-  end)
-else
-  -- load them immediately so they affect the opened buffers
+-- if vim.fn.argc(-1) == 0 then
+-- delay loading till `VeryLazy`
+On.VeryLazy(function()
   require("mudox.keymaps")
   X.arrows.setup()
-end
+end)
+-- else
+--   -- load them immediately so they affect the opened buffers
+--   require("mudox.keymaps")
+--   X.arrows.setup()
+-- end
 
 -- HACK: swizzle nvim_open_win
 X.swizzle_nvim_open_win()

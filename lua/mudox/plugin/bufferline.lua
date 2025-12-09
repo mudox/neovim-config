@@ -119,7 +119,7 @@ end
 
 return {
   "akinsho/bufferline.nvim",
-  event = "VeryLazy",
+  event = "VimEnter", -- need load before dashboard
   cmd = { "BufferLineTabRename" },
   init = init,
   keys = keys,

@@ -3,7 +3,7 @@ On.VeryLazy(function()
   vim.lsp.enable {
     -- lua
     "lua_ls",
-    -- "emmylua_ls",
+    -- "emmylua_ls", -- diagnostic feature weak
 
     -- data format
     "jsonls",
@@ -21,7 +21,7 @@ On.VeryLazy(function()
     "tsgo",
   }
 
-  K.ncmd(K.p("vl"), "checkhealth vim.lsp", "LSP information")
+  K.ncmd(K.p("vl"), "checkhealth vim.lsp", "lsp information")
 
   require("mudox.lsp.browsing")
   require("mudox.lsp.diagnostic")
@@ -29,6 +29,7 @@ On.VeryLazy(function()
 end)
 
 -- disable semantic token globally
-On.LspAttach(function(client, _)
-  client.server_capabilities.semanticTokensProvider = nil
-end)
+-- On.LspAttach(function(client, _)
+--   client.server_capabilities.semanticTokensProvider = nil
+-- end)
+vim.lsp.semantic_tokens.enable(false)

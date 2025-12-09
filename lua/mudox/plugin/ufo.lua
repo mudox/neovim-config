@@ -48,8 +48,9 @@ local opts = {
   preview = {
     win_config = {
       border = { "", "─", "", "", "", "─", "", "" },
-      -- winhighlight = "Normal:Folded",
+      winhighlight = "Normal:NormalFloat",
       winblend = 0,
+      title = "fold preview",
     },
     mappings = {
       scrollU = "<C-u>",
@@ -69,15 +70,23 @@ local function config()
   require("ufo").setup(opts)
 end
 
+local function preview()
+  require("ufo").peekFoldedLinesUnderCursor()
+end
+
 -- stylua: ignore
 local keys = {
-  { "zR", function() require("ufo").openAllFolds() end,         desc = "[ufo] open all folds",  },
-  { "zM", function() require("ufo").closeAllFolds() end,        desc = "[ufo] close all folds", },
+  { "zR",    function() require("ufo").openAllFolds() end,               desc = "[ufo] open all folds",  },
+  { "zM",    function() require("ufo").closeAllFolds() end,              desc = "[ufo] close all folds", },
 
-  { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "[ufo] open fold",       },
-  { "zm", function() require("ufo").closeFoldsWith() end,       desc = "[ufo] close fold",      },
+  { "zr",    function() require("ufo").openFoldsExceptKinds() end,       desc = "[ufo] open fold",       },
+  { "zm",    function() require("ufo").closeFoldsWith() end,             desc = "[ufo] close fold",      },
 
-  { "zx", "zMzv", remap = true, desc = "[ufo] close all folds", },
+  { "zx",    "zMzv", remap = true,                                       desc = "[ufo] close all folds", },
+
+  { "gj",    function() require('ufo').peekFoldedLinesUnderCursor() end, desc = "[ufo] preview",         },
+
+  { K.p"vu", K.c"UfoInspect",                                            desc = "ufo",                   },
 }
 
 return {

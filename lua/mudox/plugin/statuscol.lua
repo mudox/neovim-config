@@ -73,7 +73,7 @@ local function opts()
 
   return {
     segments = {
-      fold,
+      -- fold, -- use ufo.nvim instead
       -- todo,
       -- diagnostic,
       test_debug,
@@ -87,6 +87,6 @@ end
 
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VimEnter", -- need to load before alpha.nvim
+  event = "VimEnter", -- need to load before dashboard
   opts = opts,
 }
