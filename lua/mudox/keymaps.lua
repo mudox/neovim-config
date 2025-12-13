@@ -23,7 +23,10 @@ local zjk = {
 }
 K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
 K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
-K.nmap("z<Space>", "zMzvzczO", { remap = true })
+K.normal("z<Space>", "zMzvzczO", { remap = true })
+-- K.nmap("z<Space>", function()
+--   vim.cmd.normal { "zMzvzczO", bang = false }
+-- end)
 
 local fdlvl = (function()
   function notify(dir)
@@ -54,18 +57,12 @@ K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
 
--- Useless legacy `sleep` function
-K.nnop("gs")
-
 -- `<C-w>`
 K.ncmd(K.sc("w"), 'call feedkeys("\\<C-w>", "t")', { desc = "-> <C-w>" })
 
 -- Insert mode keymaps
 K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })
 K.imap("<M-l>", "<C-x><C-l>", { remap = true, desc = "Omni completion line" })
-
--- Copy entire buffer content into system pasteboard
-K.ncmd("yf", "0,$y +")
 
 -- Macro
 K.nnop("q")
@@ -108,7 +105,7 @@ local function enter_cmd()
     [4] = ":setlocal ",
     [5] = ":%s/\\v",
     [6] = ":checkhealth ",
-    [7] = "q:",
+    [7] = ":G ",
   }
   local cmd = cmds[vim.v.count] or ":"
   vim.api.nvim_feedkeys(cmd, "n", false)

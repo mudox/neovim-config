@@ -1,0 +1,13 @@
+{
+  "a": { "path": "lua/mudox/autocmds.lua", "desc": "autocmds" },
+  "g": { "path": "lua/mudox/globals.lua", "desc": "globals" },
+  "k": { "path": "lua/mudox/keymaps.lua", "desc": "keymaps" },
+  "K": {
+    "path": "lua/mudox/plugin/which-key/root.lua",
+    "desc": "which-key/root"
+  },
+  "<C-k>": { "path": "lua/mudox/util/keymap.lua", "desc": "util/keymap" },
+  "l": { "path": "lua/mudox/lsp/init.lua", "desc": "lsp/init" },
+  "r": { "path": "init.lua", "desc": "/init" },
+  "s": { "path": "lua/mudox/settings.lua", "desc": "settings" }
+}

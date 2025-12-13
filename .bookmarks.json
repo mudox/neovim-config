@@ -1,0 +1,12 @@
+local tokyonight = require("mudox.plugin.tokyonight")
+-- stylua: ignore
+V.files = vim.tbl_extend("force", V.files, {
+  ["a"]     = { "lua/mudox/autocmds.lua",              "autocmds"       },
+  ["g"]     = { "lua/mudox/globals.lua",               "globals"        },
+  ["k"]     = { "lua/mudox/keymaps.lua",               "keymaps"        },
+  ["K"]     = { "lua/mudox/plugin/which-key/root.lua", "which-key/root" },
+  ["<C-k>"] = { "lua/mudox/util/keymap.lua",           "util/keymap"    },
+  ["l"]     = { "lua/mudox/lsp/init.lua",              "lsp/init"       },
+  ["r"]     = { "init.lua",                            "/init"          },
+  ["s"]     = { "lua/mudox/settings.lua",              "settings"       },
+})

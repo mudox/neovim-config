@@ -48,9 +48,7 @@ local insert = {
   -- <C-v> open to right
   -- <C-t> open in new tabpage
   ["<C-s>"]     = a.select_horizontal,
-  ["<M-h>"]     = ma.open_in_main,
   ["<C-Cr>"]    = ma.open_in_main,
-  ["<M-l>"]     = ma.open_in_secondary,
   ["<C-v>"]     = ma.open_in_secondary,
   ["<C-S-Cr>"]  = ma.open_in_secondary,
 }

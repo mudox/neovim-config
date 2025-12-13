@@ -50,7 +50,7 @@ local function _init()
 
   -- conceal level
   local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
-  o("conceallevel", opts):map(k"C")
+  o("conceallevel", opts):map(k"<C-c>")
 
   -- gitsigns
   t.new({
@@ -60,7 +60,17 @@ local function _init()
     set = function() require("gitsigns").toggle_signs() end,
   }):map(k"g")
 
-  -- highlight-colors
+  -- lsp document colors
+  t.new({
+    id = "lsp_document_colors",
+    name = "lsp document colors",
+    get = function()
+      return vim.lsp.document_color.is_enabled()
+    end,
+    set = function(b) vim.lsp.document_color.enable(b, 0, { style = " " }) end,
+  }):map(k"c")
+
+  -- nvim-highlight-colors
   t.new({
     id = "highlight_colors",
     name = "highlight colors",
@@ -69,7 +79,7 @@ local function _init()
       return id and #vim.api.nvim_buf_get_extmarks(0, id, 0, -1, {}) > 0
     end,
     set = function() require("nvim-highlight-colors").toggle() end,
-  }):map(k"c")
+  }):map(k"C")
 
   -- conform locally
   t.new({
@@ -113,10 +123,10 @@ local function _init()
     set = diagnostic.set,
   }):map(k"D")
 
-  -- profiler
+  -- snacks profiler
   t.profiler():map(k"p")
-  -- profiler highlights
-  t.profiler_highlights():map(k"P")
+  -- snacks profiler highlights
+  t.profiler_highlights():map(k"<C-p>")
 
   -- blink.indent
   -- t.new({

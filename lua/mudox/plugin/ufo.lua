@@ -63,6 +63,13 @@ local function config()
   vim.o.foldlevelstart = 99
 
   require("ufo").setup(opts)
+
+  On({ "CursorHold", "CursorHoldI", "WinEnter" }, function()
+    if vim.wo.foldlevel ~= 99 then
+      print(("[ufo] foldlevel (%d) != 99, restore"):format(vim.wo.foldlevel))
+      vim.wo.foldlevel = 99
+    end
+  end)
 end
 
 local function preview()

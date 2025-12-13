@@ -46,12 +46,15 @@ end
 
 ---For pattern `<Cmd>{ex command}<Cr>`
 function bodys.cmd(mode, from, to, opts)
-  to = "<Cmd>" .. to .. "<Cr>"
-
+  -- to = "<Cmd>" .. to .. "<Cr>"
   opts = initopts(opts)
-  opts.silent = false
+  -- opts.silent = false
 
-  bodys.map(mode, from, to, opts)
+  local fn = function()
+    vim.cmd(to)
+  end
+
+  bodys.map(mode, from, fn, opts)
 end
 
 ---For pattern `<Cmd>lua {lua code}<Cr>`
@@ -79,8 +82,13 @@ function bodys.req(mode, from, module, to, opts)
 end
 
 ---Clear mapping
-function bodys.nop(mode, from)
-  bodys.map(mode, from, "<Nop>")
+function bodys.nop(mode, key)
+  bodys.map(mode, key, "<Nop>")
+end
+
+---Delete mapping
+function bodys.del(mode, key)
+  vim.keymap.del(mode, key)
 end
 
 local modes = {
@@ -120,6 +128,14 @@ end
 
 local M = vim.deepcopy(bodys)
 
+function M.normal(from, to, opts)
+  opts = initopts(opts)
+  opts.remap = opts.remap or false
+  vim.keymap.set("n", from, function()
+    vim.cmd.normal { to, bang = not opts.remap }
+  end)
+end
+
 setmetatable(M, {
   __index = function(t, name)
     local fn = get(name)
@@ -142,7 +158,7 @@ function M.lazy_keys(tbl, opts)
   end
 
   local function lhs(v)
-    if v.mode ~= nil or skip(v, 1) then
+    if skip(v, 1) then
       return
     end
 
@@ -200,7 +216,8 @@ M.leader = {
   shortcut  = ";",
   toggle    = ",,",
 
-  i_primary = "<C-;>"
+  i_primary = "<C-;>", -- for imap & cmap
+  x_primary = "v",
 }
 
 -- stylua: ignore start
@@ -209,6 +226,7 @@ function M.p(sfx)  return M.leader.primary   .. sfx  end
 function M.s(sfx)  return M.leader.secondary .. sfx  end
 function M.sc(sfx) return M.leader.shortcut  .. sfx  end
 function M.ip(sfx) return M.leader.i_primary  .. sfx end
+
 -- stylua: ignore end
 
 return M

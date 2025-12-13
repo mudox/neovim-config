@@ -6,7 +6,14 @@
 
 -- Checktime 〈
 
-On({ "CursorHold", "FocusGained", "TermClose", "TermLeave" }, {
+On({
+  "BufEnter",
+  "CursorHold",
+  "CursorHoldI",
+  "FocusGained",
+  "TermClose",
+  "TermLeave",
+}, {
   group = V.ag.checktime,
   command = "silent! checktime",
 })
@@ -62,12 +69,6 @@ end, {
 
 -- Close with `q` 〉
 
-On.CmdwinEnter(function(ev)
-  local opts = { buffer = ev.buf, nowait = true, remap = false, silent = true }
-  K.nmap("<Cr>", "<Cr>", opts)
-  K.nmap("q", K.c("close"), opts)
-end)
-
 -- Wrap & check spell 〈
 
 On("FileType", function()
@@ -103,8 +104,16 @@ end)
 
 -- Disable folding in insert mode 〉
 
--- DO NOT ues event earlier than UIEnter
--- event `TermOpen` will not be triggered
-On.UIEnter(function()
-  require("mudox.lab.xpress")
+-- Command window 〈
+
+On.CmdwinEnter(function(ev)
+  local opts = { buffer = ev.buf, nowait = true, remap = false, silent = true }
+  K.nmap("<Cr>", "<Cr>", opts)
+  K.nmap("q", K.c("close"), opts)
 end)
+
+-- Command window 〉
+
+On.BufWritePost(function()
+  vim.cmd.trust()
+end, { pattern = "\\.nvim\\.lua" })

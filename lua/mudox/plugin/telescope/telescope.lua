@@ -54,6 +54,7 @@ local function pickers()
 
     command_history = {
       theme = "dropdown",
+      sorter = require("telescope.sorters").get_fzy_sorter(),
     },
 
     symbols = {

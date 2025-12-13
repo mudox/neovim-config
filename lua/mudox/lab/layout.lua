@@ -36,16 +36,13 @@ end
 function secondary:open(file)
   if not self:winid() then
     main:focus()
-    if file then
-      vim.cmd.vsplit(file)
-    elseif vim.fn.bufname("#") ~= "" then
-      vim.cmd.vsplit("#")
-    else
+    file = file or "#"
+    if not pcall(vim.cmd.vsplit, file) then
       vim.cmd.vsplit()
     end
   else
     self:focus()
-    if file ~= nil then
+    if file then
       vim.cmd.edit(file)
     end
   end

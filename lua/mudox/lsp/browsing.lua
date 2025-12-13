@@ -12,6 +12,11 @@ K.nmap("gd",     K.c"Telescope lsp_definitions",      { desc = "[lsp] goto defin
 K.nmap("gy",     K.c"Telescope lsp_type_definitions", { desc = "[lsp] goto type definitions"    })
 K.nmap("gm",     K.c"Telescope lsp_implementations",  { desc = "[lsp] goto implementations"     })
 K.nmap("gr",     K.c"Telescope lsp_references",       { desc = "[lsp] goto references"          })
+K.ndel("gra")
+K.ndel("gri")
+K.ndel("grn")
+K.ndel("grr")
+K.ndel("grt")
 
 -- Glance
 K.nmap("g<Space>d",     K.c"Glance definitions",            { desc = "[glance] goto definitions"      })

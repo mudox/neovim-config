@@ -4,7 +4,6 @@ local M = {}
 M[1] = {
   { K.s"v", group = "neovim views" },
 
-  { K.s"v<Cr>",  K.c"!open %:h",                            desc = "finder"                },
   { K.s"v<Tab>", K.c"tabs",                                 desc = "tabpages"              },
   { K.s"v=",     K.c"EditQuery",                            desc = "treesitter playground" },
   { K.s"va",     K.c"args",                                 desc = "arguments"             },

@@ -1,5 +1,5 @@
 local log = Log("xpress")
-log.info("\27[2J\27[3J\27[H")
+-- log.info("\27[2J\27[3J\27[H")
 
 local wv_name = "xpress"
 local title_bv_name = "xpress_title"

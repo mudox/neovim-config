@@ -18,6 +18,7 @@ On.VeryLazy(function()
     "html",
     "cssls",
 
+    -- javascript, typescript
     "tsgo",
   }
 
@@ -28,8 +29,8 @@ On.VeryLazy(function()
   require("mudox.lsp.refactoring")
 end)
 
--- disable semantic token globally
--- On.LspAttach(function(client, _)
---   client.server_capabilities.semanticTokensProvider = nil
--- end)
+On.LspAttach(function(_, bufnr)
+  vim.lsp.document_color.enable(false, bufnr)
+end)
+
 vim.lsp.semantic_tokens.enable(false)

@@ -3,7 +3,6 @@
 -- helpers
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local p = K.p
-local sc = K.sc
 local c = K.c
 
 local close = {
@@ -67,22 +66,15 @@ local primary = {
 }
 
 local secondary = {
-}
-
-local shortcut = {
-  { sc"1",      function() X.layout.main:focus() end,     desc = "Main window"      },
-  { "<C-Cr>",   function() X.layout.main:focus() end,     desc = "Main window"      },
-  { sc"2",      function() X.layout.secondary:open() end, desc = "Secondary window" },
-  { "<C-S-Cr>", function() X.layout.secondary:open() end, desc = "Secondary window" },
-  { sc"3",      function() X.layout.one_window() end,     desc = "Main window only" },
-
-  { sc"m",      "g<",     desc = "Messages" },
+  { K.s"e", group = "edit" },
+  { K.s"1", group = "open in left" },
+  { K.s"2", group = "open in right" },
 }
 
 return {
   { K.leader.primary,   group = "primary",                primary      },
   { K.leader.secondary, group = "seconary",               secondary    },
-  { K.leader.shortcut,  group = "shortcut",               shortcut     },
+  { K.leader.shortcut,  group = "shortcut",               r"shortcut"  },
   { K.leader.toggle,    group = "toggle",                              },
 
   { "<Bslash>",         group = "refactoring",            refactoring, },
@@ -93,5 +85,5 @@ return {
   r"next_prev",
   r"insert",
 
-  { "z", group = "z" },
+  { "fy", group = "copy" },
 }
