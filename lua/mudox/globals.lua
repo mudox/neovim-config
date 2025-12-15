@@ -1,5 +1,9 @@
 -- global data vault
 _G.V = {
+  float = {
+    width = 0.7,
+    height = 0.7,
+  },
   ag = setmetatable({}, {
     __index = function(self, name)
       local group = vim.api.nvim_create_augroup("mdx." .. name, { clear = true })

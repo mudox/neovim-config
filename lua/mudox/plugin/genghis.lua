@@ -18,7 +18,7 @@ local opts = {
 -- stylua: ignore
 local keys = {
   -- new file
-  { "C", "createNew",              "create"                       },
+  { "C", "createNewFile",          "create"                       },
   { "c", "createNewFileInFolder",  "create in ..."                },
   { "c", "moveSelectionToNewFile", "move to new file", mode = "x" },
   { "d", "duplidateFile",          "duplicate"                    },

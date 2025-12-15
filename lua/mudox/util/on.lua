@@ -31,35 +31,18 @@ end
 
 local M = {}
 
----@param fn fun(client, bufnr)
+---@param fn fun(client, bufnr, event)
 function M.LspAttach(fn, opts)
   opts = opts or {}
   opts.callback = function(event)
     local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    fn(client, bufnr)
+    fn(client, bufnr, event)
   end
   vim.api.nvim_create_autocmd("LspAttach", opts)
 end
 
-function M.VeryLazy(fn, opts)
-  M.user("VeryLazy", fn, opts)
-end
-
-function M.ColorScheme(fn, opts)
-  opts = opts or {}
-  opts.callback = fn
-  vim.api.nvim_create_autocmd("ColorScheme", opts)
-end
-
-function M.filetype(pattern, fn, opts)
-  opts = opts or {}
-  opts.pattern = pattern
-  opts.callback = fn
-  vim.api.nvim_create_autocmd("FileType", opts)
-end
-
-function M.user(pattern, fn, opts)
+function M.User(pattern, fn, opts)
   opts = opts or {}
   opts.pattern = pattern
   opts.callback = fn

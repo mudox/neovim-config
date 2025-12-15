@@ -23,15 +23,24 @@ function M:reload()
   end
 end
 
-function M:init()
-  self:reload()
-
+function M:update_keymaps()
   -- stylua: ignore
   for key, v in pairs(self.final) do
     K.ncmd(K.s("e" .. key), "edit " .. v.path, v.desc)
-    K.nmap(K.s("e[" .. key), function() X.layout.main:open(v.path) end)
-    K.nmap(K.s("e]" .. key), function() X.layout.secondary:open(v.path) end)
+    K.nmap(K.s("e[" .. key), function() X.layout.main:open(v.path) end, v.desc)
+    K.nmap(K.s("e]" .. key), function() X.layout.secondary:open(v.path) end, v.desc)
+    K.nmap(K.s("e<Tab>" .. key), function() vim.cmd.tabnew(v.path) end, v.desc)
   end
+end
+
+function M:init()
+  self:reload()
+  self:update_keymaps()
+
+  On.BufWritePost(function()
+    self:reload()
+    self:update_keymaps()
+  end, { pattern = ".files.json", group = V.ag.files })
 end
 
 return M

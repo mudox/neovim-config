@@ -1,21 +1,3 @@
-local quickfix = {
-  get = function()
-    for _, win in pairs(vim.fn.getwininfo()) do
-      if win["quickfix"] == 1 then
-        return true
-      end
-    end
-    return false
-  end,
-  set = function(s)
-    if s then
-      vim.cmd.copen()
-    else
-      vim.cmd.cclose()
-    end
-  end,
-}
-
 -- stylua: ignore
 local function _init()
   -- for parameter `key`
@@ -46,7 +28,7 @@ local function _init()
 
   -- line numbers
   o("number", { name = "line number" }):map(k"n")
-  o("relativenumber", { name = "relative number" }):map(k"N")
+  o("relativenumber", { name = "relative number" }):map(k"r")
 
   -- conceal level
   local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
@@ -96,15 +78,6 @@ local function _init()
     get = function() return not vim.g.disable_autoformat end,
     set = function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
   }):map(k"F")
-
-  -- quickfix window
-  -- TODO: move under <leader>w
-  t.new({
-    id = "quickfix",
-    name = "quickfix",
-    get = quickfix.get,
-    set = quickfix.set,
-  }):map(k"q")
 
   -- diagnostic
   local diagnostic = {

@@ -107,20 +107,36 @@ local function config()
     format_after_save = format_after_save,
   }
 
+  On.FileType(function()
+    vim.wo.winhighlight = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border"
+  end, { pattern = "conform-info" })
+
+  -- conform.nvim
+  X.swizzle_nvim_open_win:add_handler(function(ctx, orig, args)
+    local r = vim.tbl_contains(ctx, function(v)
+      return v.plugin == "conform.nvim"
+    end, { predicate = true })
+    if r then
+      local tw = vim.o.columns
+      local th = vim.o.lines
+      local w = math.floor(tw * V.float.width)
+      local h = math.floor(th * V.float.height)
+      local x = math.floor((tw - w) / 2)
+      local y = math.floor((th - h) / 2)
+
+      args[3] = vim.tbl_deep_extend("force", args[3], {
+        col = x,
+        row = y,
+        width = w,
+        height = h,
+      })
+      return orig(unpack(args))
+    else
+      return false
+    end
+  end)
+
   setup_commands()
-end
-
-local function toggle(global)
-  return function()
-    local s = global and "g" or "b"
-    vim[s].disable_autoformat = not vim[s].disable_autoformat
-
-    local msg = ([[Autoformat turned %s %s]]):format(
-      vim[s].disable_autoformat and "OFF" or "ON",
-      global and "globally" or "for current buffer"
-    )
-    vim.notify(msg, vim.log.levels.INFO, { title = "Conform" })
-  end
 end
 
 -- stylua: ignore

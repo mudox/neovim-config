@@ -136,6 +136,14 @@ local function fzflua(hl, c)
   }
 end
 
+local function lazy(hl, c)
+  hl.LazyNormal = { link = "mdx_block_float" }
+end
+
+local function mason(hl, c)
+  hl.MasonNormal = { link = "mdx_block_float" }
+end
+
 local function trouble(hl, _)
   hl.TroubleNormal = hl.Normal
   hl.TroubleNormalNC = hl.NormalNC
@@ -258,19 +266,26 @@ end
 
 local function nvim(hl, c)
   hl.MsgSeparator = { link = "WinSeparator" }
+
+  -- floating windows
+  -- hl.NormalFloat = { link = "mdx_block_float" }
+  -- hl.FloatBorder = { link = "mdx_block_float_border"}
 end
 
 local function on_highlights(...)
   local hl, _ = ...
 
+  mudox(...) -- NOTE: must come first
+
   nvim(...)
+  lazy(...)
+  mason(...)
   fzflua(...)
   -- diagnostic(...)
   -- notify(...)
   -- statusline(...)
   bufferline(...)
   diff(...)
-  mudox(...)
   folding(...)
   italic_keyword(...)
   lightbulb(...)

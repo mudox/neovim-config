@@ -40,9 +40,6 @@ local tabpage = {
 }
 
 local window = {
-  { p"w1", function() X.layout.one_window() end,  desc = "1 window layout"  },
-  { p"w2", function() X.layout.two_windows() end, desc = "2 windows layout" },
-
   { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Focus next floating windows" },
 }
 
@@ -65,10 +62,12 @@ local primary = {
   { p"z",  group = "visual-multi",  mode = { "n", "x" } },
 }
 
+-- stylua: ignore
 local secondary = {
-  { K.s"e", group = "edit" },
-  { K.s"1", group = "open in left" },
-  { K.s"2", group = "open in right" },
+  { K.s"e",      group = "edit"       },
+  { K.s"e[",     group = "in left"    },
+  { K.s"e]",     group = "in right"   },
+  { K.s"e<Tab>", group = "in new tab" },
 }
 
 return {

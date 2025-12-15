@@ -12,6 +12,6 @@ return {
   "AndrewRadev/switch.vim",
   init = init,
   keys = {
-    { "-", "<Plug>(Switch)", desc = "Switch" },
+    { "+", "<Plug>(Switch)", desc = "switch" },
   },
 }

@@ -40,13 +40,13 @@ local function init()
 end
 
 local config = function()
-  On.user("visual_multi_start", function()
+  On.User("visual_multi_start", function()
     require("illuminate").pause_buf()
     require("lualine").hide { unhide = false, place = { "statusline" } }
     require("nvim-autopairs").disable()
   end)
 
-  On.user("visual_multi_exit", function()
+  On.User("visual_multi_exit", function()
     require("illuminate").resume_buf()
     require("lualine").hide { unhide = true, place = { "statusline" } }
     require("nvim-autopairs").disable()

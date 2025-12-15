@@ -119,7 +119,6 @@ end
 
 return {
   "akinsho/bufferline.nvim",
-  -- event = "VimEnter", -- need load before dashboard
   event = { "User SnacksDashboardClosed", "TabNew" },
   cmd = { "BufferLineTabRename" },
   init = init,

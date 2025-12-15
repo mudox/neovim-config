@@ -56,7 +56,7 @@ local icons = {
 
 local ui = {
   backdrop = 100, -- remove backdrop
-  size = { width = 0.7, height = 0.8 },
+  size = { width = V.float.width, height = V.float.height },
   wrap = false,
   border = "none",
   icons = icons,

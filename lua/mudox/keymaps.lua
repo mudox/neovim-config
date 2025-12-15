@@ -123,3 +123,17 @@ K.nmap(K.sc"v", function() X.layout.secondary:open("#") end, { desc = "Edit #" }
 
 K.nnop("]]")
 K.nnop("[[")
+
+K.nmap(K.p("wq"), function()
+  local open = true
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      vim.cmd.cclose()
+      open = false
+    end
+  end
+
+  if open then
+    return vim.cmd.copen()
+  end
+end, "[toggle] quickfix")

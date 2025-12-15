@@ -1,3 +1,6 @@
+local M = {
+  handlers = {},
+}
 -- local log = Log("swizzle_nvim_open_win")
 
 local function get_plugin(path)
@@ -36,15 +39,13 @@ local function parse(n)
   return contexts
 end
 
-local handlers = {}
-
 ---Router
 ---@param ctx [mudox.swizzle_nvim_open_win.Context] parsed traceback
 ---@param orig fun(...):number the original `vim.api.nvim_open_win`
 ---@param args table args passed to call `orig`
 ---@return number winnr from calling `orig`
 local function route(ctx, orig, args)
-  for _, fn in ipairs(handlers) do
+  for _, fn in ipairs(M.handlers) do
     local r = fn(ctx, orig, args)
     if r then
       return r
@@ -54,39 +55,11 @@ local function route(ctx, orig, args)
   return orig(unpack(args))
 end
 
--- conform.nvim
-table.insert(handlers, function(contexts, orig, args)
-  local r = vim.tbl_contains(contexts, function(v)
-    return v.plugin == "conform.nvim"
-  end, { predicate = true })
-  if r then
-    args[3] = vim.tbl_deep_extend("force", args[3], {
-      border = "none",
-      col = 5,
-      row = 4,
-      width = vim.o.columns - 10,
-      height = vim.o.lines - 12,
-    })
-    return orig(unpack(args))
-  else
-    return false
-  end
-end)
+function M:add_handler(handler)
+  table.insert(self.handlers, handler)
+end
 
--- triptych
-table.insert(handlers, function(contexts, orig, args)
-  local r = vim.tbl_contains(contexts, function(v)
-    return v.plugin == "triptych.nvim"
-  end, { predicate = true })
-  if r then
-    local win = orig(unpack(args))
-    vim.wo[win].winhl = "NormalFloat:TelescopeNormal,FloatBorder:TelescopeBorder"
-  else
-    return false
-  end
-end)
-
-return function()
+function M:start()
   vim.api.nvim_open_win = (function(orig)
     return function(buf, enter, opts)
       if opts.relative ~= "" then
@@ -99,3 +72,5 @@ return function()
     end
   end)(vim.api.nvim_open_win)
 end
+
+return M

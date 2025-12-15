@@ -21,7 +21,7 @@ On.VeryLazy(function()
 end)
 
 -- HACK: swizzle nvim_open_win
-X.swizzle_nvim_open_win()
+X.swizzle_nvim_open_win:start()
 
 -- DO NOT ues event earlier than UIEnter
 -- event `TermOpen` will not be triggered

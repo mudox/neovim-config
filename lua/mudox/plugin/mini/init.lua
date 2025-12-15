@@ -4,6 +4,7 @@ local function r(name) return require("mudox.plugin.mini." .. name) end
 local modules = {
   "bufremove",
   "icons",
+  "files",
 }
 
 local function config()

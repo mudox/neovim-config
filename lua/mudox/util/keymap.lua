@@ -214,7 +214,7 @@ M.leader = {
   primary   = "<Space>",
   secondary = ",",
   shortcut  = ";",
-  toggle    = ",,",
+  toggle    = "-",
 
   i_primary = "<C-;>", -- for imap & cmap
   x_primary = "v",

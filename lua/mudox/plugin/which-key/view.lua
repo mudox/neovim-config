@@ -34,8 +34,8 @@ M[1] = {
 M[2] = {
   { K.p"v", group = "plugin views" },
 
-  { K.p"vz", K.c"Lazy",     desc = "[lazy] main window"     },
-  { K.p"vk", K.c"WhichKey", desc = "[whichkey] normal" },
+  { K.p"vz", K.c"Lazy",     desc = "lazy"     },
+  { K.p"vk", K.c"WhichKey", desc = "whichkey normal" },
 }
 
 return M
