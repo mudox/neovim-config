@@ -11,9 +11,6 @@ _G.V = {
       return group
     end,
   }), -- augroups
-  files = {
-    ["."] = { ".nvim.lua", ".nvim.lua" },
-  },
   noice = false,
   ufo = true,
 }

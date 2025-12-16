@@ -22,10 +22,10 @@ local function keys()
 
   -- stylua: ignore
   local ret = {
-    { k"\\",   function() Snacks.explorer() end,         desc = "File explorer"           },
-    { K.p"fl", function() Snacks.explorer() end,         desc = "File explorer"           },
+    { k"\\",    function() Snacks.explorer() end,         desc = "file explorer"           },
+    { K.p"o\\", function() Snacks.explorer() end,         desc = "file explorer"           },
 
-    { K.p"ps", function() Snacks.profiler.scratch() end, desc = "Profiler scratch buffer" },
+    { K.p"ps",  function() Snacks.profiler.scratch() end, desc = "profiler scratch buffer" },
   }
 
   for _, name in ipairs(mods) do

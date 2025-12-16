@@ -3,6 +3,7 @@
 -- helpers
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local p = K.p
+local s = K.s
 local c = K.c
 
 local close = {
@@ -44,33 +45,66 @@ local window = {
 }
 
 local primary = {
+  -- { p"a",  group = "..."                             },
   { p"b",  group = "buffer"                             },
   { p"c",  group = "test"                               },
   { p"d",  group = "debug"                              },
   { p"e",  group = "edit", edit                         },
-  { p"f",  group = "files"                              },
+  { p"f",  group = "file"                               },
   { p"g",  group = "git"                                },
+  -- { p"h",  group = "..."                             },
   { p"i",  group = "inspect"                            },
+  -- { p"j",  group = "..."                             },
   { p"k",  group = "kulala"                             },
+  -- { p"l",  group = "..."                             },
+  -- { p"m",  group = "..."                             },
+  -- { p"n",  group = "..."                             },
+  { p"o",  group = "open"                               },
   { p"p",  group = "profile"                            },
-  { p"t",  group = "telescope"                          },
+  -- { p"q",  group = "..."                             },
   { p"r",  group = "overseer"                           },
   { p"s",  group = "snacks.picker"                      },
-  { p"sf", group = "find"                               },
+  { p"t",  group = "telescope"                          },
+  -- { p"u",  group = "..."                             },
+  -- { p"v",  group = "..."                             },
   { p"w",  group = "window", window,                    },
   { p"x",  group = "trouble"                            },
+  -- { p"y",  group = "..."                             },
   { p"z",  group = "visual-multi",  mode = { "n", "x" } },
 }
 
 -- stylua: ignore
 local secondary = {
-  { K.s"e",      group = "edit"       },
-  { K.s"e[",     group = "in left"    },
-  { K.s"e]",     group = "in right"   },
-  { K.s"e<Tab>", group = "in new tab" },
-
-  { K.s"i",      group = "inspect"    },
-  { K.s"iw",    U.inspect.win, desc = 'window'    },
+  -- { s"a",      group = "..."               },
+  -- { s"b",      group = "..."               },
+  -- { s"c",      group = "..."               },
+  -- { s"d",      group = "..."               },
+  { s"e",      group = "edit"                 },
+  { s"e[",     group = "in left"              },
+  { s"e]",     group = "in right"             },
+  { s"e<Tab>", group = "in new tab"           },
+  -- { s"f",      group = "..."               },
+  -- { s"g",      group = "..."               },
+  -- { s"h",      group = "..."               },
+  { s"i",      group = "inspect"              },
+  { s"iw",     U.inspect.win, desc = 'window' },
+  -- { s"j",      group = "..."               },
+  -- { s"k",      group = "..."               },
+  -- { s"l",      group = "..."               },
+  -- { s"m",      group = "..."               },
+  -- { s"n",      group = "..."               },
+  -- { s"o",      group = "..."               },
+  -- { s"p",      group = "..."               },
+  -- { s"q",      group = "..."               },
+  -- { s"r",      group = "..."               },
+  -- { s"s",      group = "..."               },
+  -- { s"t",      group = "..."               },
+  -- { s"u",      group = "..."               },
+  -- { s"v",      group = "..."               },
+  -- { s"w",      group = "..."               },
+  -- { s"x",      group = "..."               },
+  -- { s"y",      group = "..."               },
+  -- { s"z",      group = "..."               },
 }
 
 return {

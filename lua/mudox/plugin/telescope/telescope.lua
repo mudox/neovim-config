@@ -120,6 +120,20 @@ local function pickers()
   }
 end
 
+local function extensions()
+  return {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        layout_config = {
+          width = 0.4, -- 占编辑器宽度的比例
+          height = 0.3, -- 占编辑器高度的比例
+        },
+        previewer = false,
+      },
+    },
+  }
+end
+
 local function config()
   r("patch")
 
@@ -128,6 +142,7 @@ local function config()
   t.setup {
     defaults = defaults(),
     pickers = pickers(),
+    extensions = extensions(),
   }
 
   t.load_extension("fzf")

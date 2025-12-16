@@ -352,6 +352,7 @@ end
 function M.create_term_buf()
   vim.cmd.tabnew()
   vim.cmd.terminal()
+  M.setup_term_buffer()
   local buf = vim.api.nvim_get_current_buf()
   vim.cmd.tabclose()
   return buf

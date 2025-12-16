@@ -19,6 +19,15 @@ local function should_disable_hl()
 end
 
 local function init()
+  -- highlight
+  On.FileType(nil, function()
+    if not should_disable_hl() then
+      pcall(vim.treesitter.start)
+    else
+      pcall(vim.treesitter.stop)
+    end
+  end)
+
   -- folding
   if not V.ufo then
     vim.o.foldcolumn = "1"
@@ -27,15 +36,6 @@ local function init()
     -- vim.o.foldtext = "" -- use default transparent foldtext
     vim.o.foldtext = "v:lua.require('ufo.main').foldtext()"
   end
-
-  -- highlight
-  On.FileType(function()
-    if not should_disable_hl() then
-      pcall(vim.treesitter.start)
-    else
-      pcall(vim.treesitter.stop)
-    end
-  end)
 
   -- indent
   vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
@@ -47,6 +47,5 @@ return {
     lazy = false,
     build = ":TSUpdate",
     init = init,
-    -- config = config,
   },
 }

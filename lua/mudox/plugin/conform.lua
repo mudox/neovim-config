@@ -107,9 +107,9 @@ local function config()
     format_after_save = format_after_save,
   }
 
-  On.FileType(function()
+  On.FileType("conform-info", function()
     vim.wo.winhighlight = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border"
-  end, { pattern = "conform-info" })
+  end)
 
   -- conform.nvim
   X.swizzle_nvim_open_win:add_handler(function(ctx, orig, args)

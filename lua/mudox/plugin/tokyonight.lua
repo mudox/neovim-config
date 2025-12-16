@@ -1,8 +1,8 @@
 ---@diagnostic disable: unused-local
 -- stylua: ignore start
 
-local picker_input = "#2D3149"
-local picker_title = "#FF966C"
+local picker_input = "#2d3149"
+local picker_title = "#ff966c"
 
 local function mudox(hl, c)
   -- floating window styles

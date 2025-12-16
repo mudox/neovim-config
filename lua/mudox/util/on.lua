@@ -42,6 +42,13 @@ function M.LspAttach(fn, opts)
   vim.api.nvim_create_autocmd("LspAttach", opts)
 end
 
+function M.FileType(ft, fn, opts)
+  opts = opts or {}
+  opts.callback = fn
+  opts.pattern = ft
+  vim.api.nvim_create_autocmd("FileType", opts)
+end
+
 function M.User(pattern, fn, opts)
   opts = opts or {}
   opts.pattern = pattern

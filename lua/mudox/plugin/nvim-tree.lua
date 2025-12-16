@@ -157,9 +157,9 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<M-p>",      "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
-  { K.p"fe", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[NvimTree] Toggle"      },
-  { K.p"fv", "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[NvimTree] Reveal file" },
+  { "<M-p>", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[nvimtree] toggle"      },
+  { K.p"oe", "<Cmd>NvimTreeFindFileToggle<Cr>", desc = "[nvimtree] toggle"      },
+  { K.p"ov", "<Cmd>NvimTreeFindFile!<Cr>",      desc = "[nvimtree] reveal file" },
 }
 
 return {

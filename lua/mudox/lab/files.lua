@@ -32,7 +32,7 @@ end
 -- stylua: ignore start
 local function edit(path)           return function() vim.cmd.edit(path) end           end
 local function main_open(path)      return function() X.layout.main:open(path) end     end
-local function secondary_open(path) return function() X.layout.seconary:open(path) end end
+local function secondary_open(path) return function() X.layout.secondary:open(path) end end
 local function tab_open(path)       return function() vim.cmd.tabnew(path) end         end
 -- stylua: ignore end
 
@@ -44,7 +44,10 @@ local M = {
 }
 
 function M.read()
-  local lines = io.lines(SPECFILE)
+  local ok, lines = pcall(io.lines, SPECFILE)
+  if not ok then
+    return
+  end
   return vim.iter(lines):fold({}, function(acc, line)
     local key, path, desc = unpack(vim.split(line, ","))
     acc[key] = { path = path, desc = desc }
@@ -53,10 +56,13 @@ function M.read()
 end
 
 function M:reload()
+  self.final = self.base
+
   local ok, spec = pcall(self.read)
   if not ok then
     print("[files] read spec file failed. " .. spec)
-    self.final = self.base
+  elseif spec == nil then
+    -- no spec file found
   else
     self.final = vim.tbl_extend("keep", spec, self.base)
   end

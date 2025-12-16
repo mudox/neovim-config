@@ -4,9 +4,10 @@ end
 
 -- stylua: ignore
 return {
-  r "fugitive",
-  r "diffview",
-  r "gitsigns",
-  r "neogit",
-  r "conflict",
+  r"vscode-diff",
+  r"fugitive",
+  r"diffview",
+  r"gitsigns",
+  r"neogit",
+  r"conflict",
 }
