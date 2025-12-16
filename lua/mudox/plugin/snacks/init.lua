@@ -1,7 +1,12 @@
 -- stylua: ignore
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
-local mods = { "picker", "toggle", "dashboard", "scratch" }
+local mods = {
+  "picker",
+  "toggle",
+  "dashboard",
+  "scratch",
+}
 
 local function init()
   for _, name in ipairs(mods) do

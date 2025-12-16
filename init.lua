@@ -15,13 +15,13 @@ require("mudox.settings")
 require("mudox.autocmds")
 require("mudox.lsp")
 
+-- HACK: swizzle nvim_open_win
+X.swizzle_nvim_open_win:start()
+
 On.VeryLazy(function()
   require("mudox.keymaps")
   X.arrows.setup()
 end)
-
--- HACK: swizzle nvim_open_win
-X.swizzle_nvim_open_win:start()
 
 -- DO NOT ues event earlier than UIEnter
 -- event `TermOpen` will not be triggered
@@ -33,3 +33,5 @@ end)
 On.VimEnter(function()
   require("tokyonight").load()
 end)
+
+-- X.autocmds:start()

@@ -18,5 +18,6 @@ return {
   { k"v",       open_alternative, desc = "edit #" },
   { "<C-S-Cr>", open_alternative, desc = "edit #" },
 
-  { k"m",       "g<",             desc = "messages" },
+  { k"m",       "g<",             desc = "g<"        },
+  { k"M",       K.c"message",     desc = ":messages" },
 }

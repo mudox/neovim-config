@@ -16,8 +16,8 @@ local function on_attach(buffer)
   -- stylua: ignore
   local op = {
     name = "Gitsigns hunk",
-    left = function() gs.nav_hunk("next") end,
-    right = function() gs.nav_hunk("prev") end,
+    left = function() gs.nav_hunk("prev", { foldopen = true, preview = true }) end,
+    right = function() gs.nav_hunk("next", { foldopen = true, preview = true }) end,
   }
 
   local function blame()
@@ -39,8 +39,8 @@ local function on_attach(buffer)
     { K.p"gv", gs.preview_hunk,    desc = "preview hunk"    },
 
     -- goto
-    { "]c",    X.arrows.left(op),  desc = "diff hunk"       },
-    { "[c",    X.arrows.right(op), desc = "diff hunk"       },
+    { "[c",    X.arrows.left(op),  desc = "diff hunk"       },
+    { "]c",    X.arrows.right(op), desc = "diff hunk"       },
   }
 
   require("which-key").add(keys)

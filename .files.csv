@@ -1,0 +1,12 @@
+-,lua/mudox/plugin/snacks/toggle.lua,toggle
+<C-k>,lua/mudox/util/keymap.lua,util/keymap
+a,lua/mudox/autocmds.lua,autocmds
+d,lua/mudox/plugin/snacks/dashboard.lua,dashboard
+g,lua/mudox/globals.lua,globals
+k,lua/mudox/keymaps.lua,keymaps
+K,lua/mudox/plugin/which-key/root.lua,which-key/root
+l,lua/mudox/lsp/init.lua,lsp/init
+o,lua/mudox/util/on.lua,util/on
+r,init.lua,/init
+s,lua/mudox/settings.lua,settings
+t,lua/mudox/plugin/tokyonight.lua,tokyonight

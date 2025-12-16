@@ -4,6 +4,38 @@
 local picker_input = "#2D3149"
 local picker_title = "#FF966C"
 
+local function mudox(hl, c)
+  -- floating window styles
+  -- frame
+  hl.mdx_frame_float        = { link = "Normal" }
+  hl.mdx_frame_float_border = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
+  -- block
+  hl.mdx_block_float        = {                 bg = c.bg_dark }
+  hl.mdx_block_float_border = { fg = c.bg_dark, bg = c.bg_dark }
+
+  -- terminal
+  hl.xpress_winbar_item                   = { fg = "grey",  bg = "#043c38" }
+  hl.xpress_winbar_item_reverted          = { fg = "#043c38" }
+  hl.xpress_winbar_item_selected          = { fg = "white", bg = "#096a62" }
+  hl.xpress_winbar_item_selected_reverted = { fg = "#096a62" }
+
+  hl.xpress_winbar = { }
+  hl.mdx_float_term_winbar = { link = 'mdx_block_float' }
+
+  -- cursor
+  hl.mdx_cursor =   { bg = "orange" }
+  hl.mdx_o_cursor = { bg = "cyan"   }
+  hl.mdx_t_cursor = { bg = "green"  }
+end
+
+local function nvim(hl, c)
+  hl.MsgSeparator = { link = "WinSeparator" }
+
+  -- floating windows
+  -- hl.NormalFloat = { link = "mdx_block_float" }
+  -- hl.FloatBorder = { link = "mdx_block_float_border"}
+end
+
 local function telescope(hl, c)
   hl.TelescopeNormal = {
     fg = c.fg_dark,
@@ -240,36 +272,9 @@ local function tiny_inline_diagnostic(hl, _)
   hl.TinyInlineDiagnosticVirtualTextBg = { bg = "bg" }
 end
 
-local function mudox(hl, c)
-  -- floating window styles
-  -- frame
-  hl.mdx_frame_float        = { link = "Normal" }
-  hl.mdx_frame_float_border = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
-  -- block
-  hl.mdx_block_float        = {                 bg = c.bg_dark }
-  hl.mdx_block_float_border = { fg = c.bg_dark, bg = c.bg_dark }
-
-  -- terminal
-  hl.xpress_winbar_item                   = { fg = "grey",  bg = "#043c38" }
-  hl.xpress_winbar_item_reverted          = { fg = "#043c38" }
-  hl.xpress_winbar_item_selected          = { fg = "white", bg = "#096a62" }
-  hl.xpress_winbar_item_selected_reverted = { fg = "#096a62" }
-
-  hl.xpress_winbar = { }
-  hl.mdx_float_term_winbar = { link = 'mdx_block_float' }
-
-  -- cursor
-  hl.mdx_cursor =   { bg = "orange" }
-  hl.mdx_o_cursor = { bg = "cyan"   }
-  hl.mdx_t_cursor = { bg = "green"  }
-end
-
-local function nvim(hl, c)
-  hl.MsgSeparator = { link = "WinSeparator" }
-
-  -- floating windows
-  -- hl.NormalFloat = { link = "mdx_block_float" }
-  -- hl.FloatBorder = { link = "mdx_block_float_border"}
+local function mini(hl, c)
+  hl.MiniFilesNormal = { link = "mdx_frame_float" }
+  hl.MiniFilesBorder = { link = "mdx_frame_float_border" }
 end
 
 local function on_highlights(...)
@@ -296,6 +301,7 @@ local function on_highlights(...)
   trouble(...)
   win_separator(...)
   winbar(...)
+  mini(...)
 
   -- alalcritty
   if U.in_alacritty() then

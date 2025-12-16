@@ -87,7 +87,7 @@
   "nvim-window-picker": { "branch": "main", "commit": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec" },
   "nvim_context_vt": { "branch": "master", "commit": "fadbd9e57af72f6df3dd33df32ee733aa01cdbc0" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
-  "octo.nvim": { "branch": "master", "commit": "fb072b0dd58c467ae81c7bec581fbc8f07418d7c" },
+  "octo.nvim": { "branch": "master", "commit": "1cefac4317530784bd829abe21d433e2f879a98b" },
   "oil.nvim": { "branch": "master", "commit": "cbcb3f997f6f261c577b943ec94e4ef55108dd95" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "87eeca2bd4d90a94eed1ef0dbc66885117e7bacb" },
   "other.nvim": { "branch": "main", "commit": "1d48e090f6d1d53dda9fb5094af3f2006ebbb858" },

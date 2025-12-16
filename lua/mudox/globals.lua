@@ -43,9 +43,9 @@ _G.K = require("mudox.util.keymap")
 ---Symbols
 _G.I = require("mudox.ui.icon")
 
-_G.Log = function(subsystem)
+_G.Log = function(scope)
   return require("plenary.log").new {
-    plugin = subsystem,
+    plugin = scope,
     use_console = false,
     level = "trace",
   }

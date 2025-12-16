@@ -1,22 +1,61 @@
-local M = {
-  -- stylua: ignore
-  base = {
-    ["."] = { path = ".nvim.lua",   desc = ".nvim.lua"   },
-    [","] = { path = ".files.json", desc = ".files.json" },
-  },
-}
+local SPECFILE = ".files.csv"
 
-function M:reload()
-  local ok, lines = pcall(vim.fn.readfile, ".files.json")
-  if not ok then
-    self.final = self.base
+---open ftplugin/{ft}.lua
+---@param open fun(path: string) function to open file
+local function open_ft(open)
+  local o = vim.bo.filetype
+  if not o or o == "" then
+    vim.notify("[files] current buffer has no filetype", vim.log.levels.WARN)
     return
   end
 
-  local text = table.concat(lines, "\n")
-  local ok, spec = pcall(vim.json.decode, text)
+  local fts = vim.split(o, ".", { plain = true })
+
+  local function make_path(ft)
+    local base = vim.fn.stdpath("config") .. "/after/ftplugin/"
+    return base .. ft .. ".lua"
+  end
+
+  if #fts == 1 then
+    open(make_path(fts[1]))
+  else
+    vim.ui.select(fts, {
+      prompt = "Select filetype to open",
+    }, function(ft)
+      if ft then
+        open(make_path(ft))
+      end
+    end)
+  end
+end
+
+-- stylua: ignore start
+local function edit(path)           return function() vim.cmd.edit(path) end           end
+local function main_open(path)      return function() X.layout.main:open(path) end     end
+local function secondary_open(path) return function() X.layout.seconary:open(path) end end
+local function tab_open(path)       return function() vim.cmd.tabnew(path) end         end
+-- stylua: ignore end
+
+local M = {
+  base = {
+    ["."] = { path = ".nvim.lua", desc = ".nvim.lua" },
+    [","] = { path = ".files.csv", desc = ".files.csv" },
+  },
+}
+
+function M.read()
+  local lines = io.lines(SPECFILE)
+  return vim.iter(lines):fold({}, function(acc, line)
+    local key, path, desc = unpack(vim.split(line, ","))
+    acc[key] = { path = path, desc = desc }
+    return acc
+  end)
+end
+
+function M:reload()
+  local ok, spec = pcall(self.read)
   if not ok then
-    vim.fn.echoerr("[files] json decoding failed. " .. spec)
+    print("[files] read spec file failed. " .. spec)
     self.final = self.base
   else
     self.final = vim.tbl_extend("keep", spec, self.base)
@@ -24,13 +63,21 @@ function M:reload()
 end
 
 function M:update_keymaps()
-  -- stylua: ignore
   for key, v in pairs(self.final) do
-    K.ncmd(K.s("e" .. key), "edit " .. v.path, v.desc)
-    K.nmap(K.s("e[" .. key), function() X.layout.main:open(v.path) end, v.desc)
-    K.nmap(K.s("e]" .. key), function() X.layout.secondary:open(v.path) end, v.desc)
-    K.nmap(K.s("e<Tab>" .. key), function() vim.cmd.tabnew(v.path) end, v.desc)
+    -- stylua: ignore start
+    K.nmap(K.s("e" .. key),      edit(v.path),           v.desc)
+    K.nmap(K.s("e[" .. key),     main_open(v.path),      v.desc)
+    K.nmap(K.s("e]" .. key),     secondary_open(v.path), v.desc)
+    K.nmap(K.s("e<Tab>" .. key), tab_open(v.path),       v.desc)
+    -- stylua: ignore end
   end
+
+  -- stylua: ignore start
+  K.nmap(K.s("e;"),     function() open_ft(function(path) edit(path)() end) end,           "{ft}.lua")
+  K.nmap(K.s("e["),     function() open_ft(function(path) main_open(path)() end) end,      "{ft}.lua")
+  K.nmap(K.s("e]"),     function() open_ft(function(path) secondary_open(path)() end) end, "{ft}.lua")
+  K.nmap(K.s("e<Tab>"), function() open_ft(function(path) tab_open(path)() end) end,       "{ft}.lua")
+  -- stylua: ignore end
 end
 
 function M:init()
@@ -40,7 +87,7 @@ function M:init()
   On.BufWritePost(function()
     self:reload()
     self:update_keymaps()
-  end, { pattern = ".files.json", group = V.ag.files })
+  end, { pattern = SPECFILE, group = V.ag.files })
 end
 
 return M

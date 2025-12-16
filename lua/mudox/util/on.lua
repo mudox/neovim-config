@@ -50,8 +50,10 @@ function M.User(pattern, fn, opts)
 end
 
 -- stylua: ignore
-local BUILTIN_EVENTS = {
+-- from $VIMRUNTIME/lua/vim/_meta/api_keysets.lua, `gf` to open
+M.BUILTIN_EVENTS = {
   BufAdd               = true,
+  BufCreate            = true,
   BufDelete            = true,
   BufEnter             = true,
   BufFilePost          = true,
@@ -63,6 +65,7 @@ local BUILTIN_EVENTS = {
   BufNewFile           = true,
   BufRead              = true,
   BufReadCmd           = true,
+  BufReadPost          = true,
   BufReadPre           = true,
   BufUnload            = true,
   BufWinEnter          = true,
@@ -71,13 +74,14 @@ local BUILTIN_EVENTS = {
   BufWrite             = true,
   BufWriteCmd          = true,
   BufWritePost         = true,
+  BufWritePre          = true,
   ChanInfo             = true,
   ChanOpen             = true,
+  CmdUndefined         = true,
   CmdlineChanged       = true,
   CmdlineEnter         = true,
   CmdlineLeave         = true,
   CmdlineLeavePre      = true,
-  CmdUndefined         = true,
   CmdwinEnter          = true,
   CmdwinLeave          = true,
   ColorScheme          = true,
@@ -90,9 +94,11 @@ local BUILTIN_EVENTS = {
   CursorMoved          = true,
   CursorMovedC         = true,
   CursorMovedI         = true,
+  DiagnosticChanged    = true,
   DiffUpdated          = true,
   DirChanged           = true,
   DirChangedPre        = true,
+  EncodingChanged      = true,
   ExitPre              = true,
   FileAppendCmd        = true,
   FileAppendPost       = true,
@@ -100,6 +106,7 @@ local BUILTIN_EVENTS = {
   FileChangedRO        = true,
   FileChangedShell     = true,
   FileChangedShellPost = true,
+  FileEncoding         = true,
   FileReadCmd          = true,
   FileReadPost         = true,
   FileReadPre          = true,
@@ -114,6 +121,8 @@ local BUILTIN_EVENTS = {
   FocusGained          = true,
   FocusLost            = true,
   FuncUndefined        = true,
+  GUIEnter             = true,
+  GUIFailed            = true,
   InsertChange         = true,
   InsertCharPre        = true,
   InsertEnter          = true,
@@ -125,9 +134,12 @@ local BUILTIN_EVENTS = {
   LspProgress          = true,
   LspRequest           = true,
   LspTokenUpdate       = true,
+  MarkSet              = true,
   MenuPopup            = true,
   ModeChanged          = true,
   OptionSet            = true,
+  PackChanged          = true,
+  PackChangedPre       = true,
   Progress             = true,
   QuickFixCmdPost      = true,
   QuickFixCmdPre       = true,
@@ -155,6 +167,7 @@ local BUILTIN_EVENTS = {
   TabLeave             = true,
   TabNew               = true,
   TabNewEntered        = true,
+  TermChanged          = true,
   TermClose            = true,
   TermEnter            = true,
   TermLeave            = true,
@@ -169,7 +182,6 @@ local BUILTIN_EVENTS = {
   UIEnter              = true,
   UILeave              = true,
   User                 = true,
-  UserGettingBored     = true,
   VimEnter             = true,
   VimLeave             = true,
   VimLeavePre          = true,
@@ -185,29 +197,29 @@ local BUILTIN_EVENTS = {
 }
 
 -- stylua: ignore
-local USER_EVENTS = {
+M.USER_EVENTS = {
   VeryLazy = true,
 }
 
 return setmetatable(M, {
   __call = on,
-  __index = function(t, name)
-    if BUILTIN_EVENTS[name] then
+  __index = function(self, name)
+    if self.BUILTIN_EVENTS[name] then
       local f = function(cb, opts)
         opts = opts or {}
         opts.callback = cb
         vim.api.nvim_create_autocmd(name, opts)
       end
-      t[name] = f
+      self[name] = f
       return f
-    elseif USER_EVENTS[name] then
+    elseif self.USER_EVENTS[name] then
       local f = function(cb, opts)
         opts = opts or {}
         opts.pattern = name
         opts.callback = cb
         vim.api.nvim_create_autocmd("User", opts)
       end
-      t[name] = f
+      self[name] = f
       return f
     else
       assert(false, "invalid event name")

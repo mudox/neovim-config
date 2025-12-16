@@ -68,6 +68,9 @@ local secondary = {
   { K.s"e[",     group = "in left"    },
   { K.s"e]",     group = "in right"   },
   { K.s"e<Tab>", group = "in new tab" },
+
+  { K.s"i",      group = "inspect"    },
+  { K.s"iw",    U.inspect.win, desc = 'window'    },
 }
 
 return {

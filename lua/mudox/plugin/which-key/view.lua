@@ -27,7 +27,6 @@ M[1] = {
   { K.s"vU",     K.c"undolist",                             desc = "undo list"             },
   { K.s"vv",     K.c"messages",                             desc = "messages"              },
   { K.s"vV",     K.c"verbose version",                      desc = "version"               },
-  { K.s"vw",     X.inspect_win,                             desc = "inspect window"        },
 }
 
 -- stylua: ignore
