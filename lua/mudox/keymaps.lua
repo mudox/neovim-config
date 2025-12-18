@@ -29,7 +29,7 @@ K.normal("z<Space>", "zMzvzczO", { remap = true })
 -- end)
 
 local fdlvl = (function()
-  function notify(dir)
+  local function notify(dir)
     local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and 1 or -1)
     lvl = math.max(0, lvl)
     print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↘" or "↖"))

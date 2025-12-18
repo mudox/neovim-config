@@ -111,7 +111,7 @@ local function config()
     vim.wo.winhighlight = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border"
   end)
 
-  -- conform.nvim
+  -- HACK: change window layout
   X.swizzle_nvim_open_win:add_handler(function(ctx, orig, args)
     local r = vim.tbl_contains(ctx, function(v)
       return v.plugin == "conform.nvim"

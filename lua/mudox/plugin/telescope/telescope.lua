@@ -125,8 +125,8 @@ local function extensions()
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
         layout_config = {
-          width = 0.4, -- 占编辑器宽度的比例
-          height = 0.3, -- 占编辑器高度的比例
+          width = 0.4,
+          height = 0.3,
         },
         previewer = false,
       },
@@ -147,7 +147,7 @@ local function config()
 
   t.load_extension("fzf")
   t.load_extension("notify")
-  t.load_extension("ui-select")
+  -- t.load_extension("ui-select")
 end
 
 return {

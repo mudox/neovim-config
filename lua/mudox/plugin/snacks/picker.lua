@@ -33,8 +33,6 @@ end
 local layouts = {
   vertical = {
     layout = {
-      backdrop = false,
-
       width = 0.5,
       min_width = 80,
       height = 0.8,
@@ -43,6 +41,7 @@ local layouts = {
       border = "rounded",
       title = "{title} {live} {flags}",
       title_pos = "center",
+      backdrop = false,
 
       box = "vertical",
       { win = "input", height = 1, border = "single" },
@@ -93,7 +92,26 @@ local opts = {
   },
 
   sources = {
-    files = {},
+    select = {
+      layout = {
+        hidden = { "preview" },
+        layout = {
+          width = 0.5,
+          min_width = 80,
+          max_width = 100,
+          height = 0.4,
+          min_height = 2,
+
+          border = false,
+          backdrop = false,
+
+          box = "vertical",
+          { win = "input", height = 1, border = "single" },
+          { win = "list", border = "single" },
+          { win = "preview", height = 0.4, border = "single" },
+        },
+      },
+    },
     explorer = {
       diagnostics = false,
       layout = {

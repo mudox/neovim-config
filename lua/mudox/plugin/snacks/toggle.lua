@@ -22,8 +22,17 @@ local function _init()
     set = function(state) vim.lsp.config { virtual_lines = state } end,
   }):map(k"L")
 
+  t.new {
+    id = "mdx.diagnostics",
+    name = "diagnostics",
+    get = vim.diagnostic.is_enabled,
+    set = function(b)
+      vim.diagnostic.enable(b)
+      require("tiny-inline-diagnostic")[b and 'enable' or 'disable']()
+    end
+  }:map(k"d")
+
   t.treesitter():map(k"T")
-  t.diagnostics():map(k"d")
   t.inlay_hints():map(k"H")
 
   -- line numbers

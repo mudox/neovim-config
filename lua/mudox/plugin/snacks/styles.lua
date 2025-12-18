@@ -5,7 +5,7 @@ M.default = {
 }
 
 M.select = {
-  border = "single",
+  border = "none",
 }
 
 M.minimal = {

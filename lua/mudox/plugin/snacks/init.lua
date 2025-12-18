@@ -43,6 +43,7 @@ local function opts()
     bigfile = {},
     input = {},
     quickfile = {},
+    scope = {},
   }
 
   for _, name in ipairs(mods) do

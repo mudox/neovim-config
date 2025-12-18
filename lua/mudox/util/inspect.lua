@@ -22,7 +22,7 @@ function M.win()
   local win = vim.fn.getwininfo(vim.fn.win_getid())[1]
 
   local lines = {
-    ("win: %d %d tab(%d)"):format(win.winnr, win.winid, win.tabnr),
+    ("win: %d %d tab(%d) %dx%d"):format(win.winnr, win.winid, win.tabnr, win.width, win.height),
     ("  qf: %d, loclist: %d, term: %d"):format(win.quickfix, win.loclist, win.terminal),
     "",
     opt("winhighlight"),

@@ -29,5 +29,5 @@ K.nnop("K")
 K.nmap("gk",     hover,                               { desc = "[lsp] hover"                    })
 
 K.nmap("gK",     vim.lsp.buf.signature_help,          { desc = "[lsp] signature help"           })
-K.imap("<C-k>k", vim.lsp.buf.signature_help,          { desc = "[lsp] signature Help"           })
+K.imap("<C-;>k", vim.lsp.buf.signature_help,          { desc = "[lsp] signature Help"           })
 -- stylua: ignore end

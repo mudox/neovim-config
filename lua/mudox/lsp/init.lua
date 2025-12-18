@@ -20,6 +20,9 @@ On.VeryLazy(function()
 
     -- javascript, typescript
     "tsgo",
+
+    -- python
+    "ty", "ruff",
   }
 
   K.ncmd(K.p("vl"), "checkhealth vim.lsp", "lsp information")

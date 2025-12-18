@@ -2,8 +2,6 @@ local M = {}
 
 -- stylua: ignore
 M[1] = {
-  { K.s"v", group = "neovim views" },
-
   { K.s"v<Tab>", K.c"tabs",                                 desc = "tabpages"              },
   { K.s"v=",     K.c"EditQuery",                            desc = "treesitter playground" },
   { K.s"va",     K.c"args",                                 desc = "arguments"             },
@@ -31,8 +29,6 @@ M[1] = {
 
 -- stylua: ignore
 M[2] = {
-  { K.p"v", group = "plugin views" },
-
   { K.p"vz", K.c"Lazy",     desc = "lazy"     },
   { K.p"vk", K.c"WhichKey", desc = "whichkey normal" },
 }

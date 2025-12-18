@@ -2,9 +2,10 @@
 local function r(name) return require("mudox.plugin.mini." .. name) end
 
 local modules = {
+  "align",
   "bufremove",
-  "icons",
   "files",
+  "icons",
 }
 
 local function config()

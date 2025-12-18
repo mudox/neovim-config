@@ -65,6 +65,11 @@ local function config()
   require("ufo").setup(opts)
 
   On({ "CursorHold", "CursorHoldI", "WinEnter" }, function()
+    local backlist = { "Navbuddy", "snacks_dashboard" }
+    if vim.tbl_contains(backlist, vim.bo.filetype) then
+      return
+    end
+
     if vim.wo.foldlevel ~= 99 then
       print(("[ufo] foldlevel (%d) != 99, restore"):format(vim.wo.foldlevel))
       vim.wo.foldlevel = 99
