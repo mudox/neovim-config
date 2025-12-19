@@ -5,6 +5,9 @@ function M.setup()
     mappings = {
       go_in_plus = "<Cr>",
     },
+    options = {
+      use_as_default_explorer = false,
+    },
   }
 
   -- require("mudox.plugin.mini.files_layout")

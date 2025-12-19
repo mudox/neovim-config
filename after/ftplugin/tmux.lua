@@ -1,1 +1,1 @@
-K.nmap(";s", K.c("!tmux source-file %"), { buffer = 0, desc = "re-source in tmux" })
+K.nmap(";r", K.c("write <Bar> !tmux source-file %"), { buffer = true, desc = "tmux source %" })

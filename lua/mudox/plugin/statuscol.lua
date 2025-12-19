@@ -87,6 +87,7 @@ end
 
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VimEnter", -- need to load before dashboard
+  -- event = "VimEnter", -- need to load before dashboard
+  event = { "BufRead", "BufNewFile" },
   opts = opts,
 }

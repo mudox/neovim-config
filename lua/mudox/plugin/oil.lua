@@ -62,6 +62,7 @@ end
 
 return {
   "stevearc/oil.nvim",
+  lazy = false, -- for default explorer
   -- stylua: ignore
   keys = {
     { "<M-o>", K.c"Oil",         desc = "[oil] open", },

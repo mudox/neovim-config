@@ -1,25 +1,22 @@
 -- stylua: ignore
 local keys = {
-  { K.p"wh",    function() require("edgy").toggle("left") end,   desc = "[Edgy] Toggle left"    },
-  { K.p"wl",    function() require("edgy").toggle("right") end,  desc = "[Edgy] Toggle right"   },
-  { K.p"wj",    function() require("edgy").toggle("bottom") end, desc = "[Edgy] Toggle bottom"  },
+  { K.p"wh",    function() require("edgy").toggle("left") end,   desc = "[edgy] toggle left"    },
+  { K.p"wl",    function() require("edgy").toggle("right") end,  desc = "[edgy] toggle right"   },
+  { K.p"wj",    function() require("edgy").toggle("bottom") end, desc = "[edgy] toggle bottom"  },
 
-  { K.p"w/",    function() require("edgy").select() end,         desc = "[Edgy] Goto ..."       },
-  { K.p"w<Cr>", function() require("edgy").goto_main() end,      desc = "[Edgy] Goto main area" },
+  { K.p"w/",    function() require("edgy").select() end,         desc = "[edgy] goto ..."       },
+  { K.p"w<Cr>", function() require("edgy").goto_main() end,      desc = "[edgy] goto main area" },
 
-  { K.p"w-",    function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
-  { "<Bs>e",         function() require("edgy").close() end,          desc = "[Edgy] Close all"      },
-  { "<Bs>h",         function() require("edgy").close("left") end,    desc = "[Edgy] Close left"     },
-  { "<Bs>l",         function() require("edgy").close("right") end,   desc = "[Edgy] Close right"    },
-  { "<Bs>j",         function() require("edgy").close("bottom") end,  desc = "[Edgy] Close bottom"   },
+  { K.p"w-",    function() require("edgy").close() end,          desc = "[edgy] close all"      },
+  { "<Bs>e",    function() require("edgy").close() end,          desc = "[edgy] close all"      },
 }
 
 local function init()
   -- views can only be fully collapsed with the global statusline
-  vim.opt.laststatus = 3
+  vim.o.laststatus = 3
   -- Default splitting will cause your main splits to jump when opening an edgebar.
   -- To prevent this, set `splitkeep` to either `screen` or `topline`.
-  vim.opt.splitkeep = "screen"
+  vim.o.splitkeep = "screen"
 end
 
 local function opts()

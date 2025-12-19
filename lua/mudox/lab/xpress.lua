@@ -223,6 +223,7 @@ function M.open()
     zindex = 50,
     style = "minimal",
     border = "single",
+    noautocmd = true,
   }
   win_opts = vim.tbl_extend("force", win_opts, M.calc_layout())
   win = vim.api.nvim_open_win(existing_buf or M.create_term_buf(), true, win_opts)

@@ -6,8 +6,8 @@ local opts = {
 -- stylua: ignore
 local op = {
   name = "yanky",
-  left = function() require("yanky").cycle(1) end,
-  right = function() require("yanky").cycle(-1) end,
+  left = function() require("yanky").cycle(-1) end,
+  right = function() require("yanky").cycle(1) end,
 }
 
 local function paste()

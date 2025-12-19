@@ -45,7 +45,8 @@ local statusline = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  event = { "User SnacksDashboardClosed", "TabNew" },
+  -- event = { "User SnacksDashboardClosed", "TabNew", "WinNew" },
+  -- let bufferline.nvim load it
   opts = {
     options = options,
     sections = statusline,

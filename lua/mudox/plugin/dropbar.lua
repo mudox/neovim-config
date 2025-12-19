@@ -83,7 +83,7 @@ local keys = {
 
 return {
   "Bekaboo/dropbar.nvim",
-  event = "VeryLazy",
+  event = { "BufRead", "BufNewFile" },
   keys = keys,
   opts = opts,
 }

@@ -69,10 +69,23 @@ K.nnop("q")
 K.nmap(K.sc("q"), "q", { desc = "macro" })
 
 -- Window jump
-K.cmd({ "n", "t" }, "<C-h>", "wincmd h")
-K.cmd({ "n", "t" }, "<C-j>", "wincmd j")
-K.cmd({ "n", "t" }, "<C-k>", "wincmd k")
-K.cmd({ "n", "t" }, "<C-l>", "wincmd l")
+local function tmux_nav(direction, tmux_cmd)
+  return function()
+    local curwin = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd " .. direction)
+    if curwin == vim.api.nvim_get_current_win() then
+      vim.fn.system("tmux select-pane " .. tmux_cmd)
+    end
+  end
+end
+
+-- stylua: ignore start
+K.map({ "n", "t" }, "<C-h>", tmux_nav("h", "-L"), { desc = "to left window / tmux pane" })
+K.map({ "n", "t" }, "<C-l>", tmux_nav("l", "-R"), { desc = "to right window / tmux pane" })
+K.map({ "n", "t" }, "<C-j>", tmux_nav("j", "-D"), { desc = "to down window / tmux pane" })
+K.map({ "n", "t" }, "<C-k>", tmux_nav("k", "-U"), { desc = "to up window / tmux pane" })
+-- stylua: ignore end
+
 -- K.cmd({ "n", "t" }, "<M-Bslash>", "wincmd p")
 
 -- Window resizing

@@ -53,8 +53,8 @@ local function init()
   end
 end
 
-local function opts()
-  local o = {
+local function config()
+  require("bufferline").setup {
     options = {
       indicator = { style = "none" },
       separator_style = { "", " " }, -- transparent tabline appearance
@@ -86,7 +86,7 @@ local function opts()
     },
   }
 
-  return o
+  require("lualine")
 end
 
 -- stylua: ignore
@@ -123,5 +123,5 @@ return {
   cmd = { "BufferLineTabRename" },
   init = init,
   keys = keys,
-  opts = opts,
+  config = config,
 }

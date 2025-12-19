@@ -1,11 +1,8 @@
--- stylua: ignore
-local function _init()
-  -- for parameter `key`
-  -- + use lowercase for commonly used ones
-  -- + use uppercase for less commonly used ones
-  -- + use <C-X> for less rarely used ones
-  local function k(key) return K.leader.toggle .. key end
+-- vim: fml& fdn& fdm=marker fmr=〈,〉
 
+-- stylua: ignore
+local function init_toggles()
+  local function k(key) return K.leader.toggle .. key end
   local t = Snacks.toggle
   local o = t.option
 
@@ -14,42 +11,56 @@ local function _init()
   o("list",     { name = "list mode"        }):map(k"<C-l>")
   o("hlsearch", { name = "highlight search" }):map(k"h")
 
-  -- lsp virtual lines
-  t.new({
-    id = "lsp_virtual_lines",
-    name = "lsp virtual lines",
-    get = function() return vim.lsp.config.virtual_lines end,
-    set = function(state) vim.lsp.config { virtual_lines = state } end,
-  }):map(k"L")
-
-  t.new {
-    id = "mdx.diagnostics",
-    name = "diagnostics",
-    get = vim.diagnostic.is_enabled,
-    set = function(b)
-      vim.diagnostic.enable(b)
-      require("tiny-inline-diagnostic")[b and 'enable' or 'disable']()
-    end
-  }:map(k"d")
-
-  t.treesitter():map(k"T")
-  t.inlay_hints():map(k"H")
-
-  -- line numbers
-  o("number", { name = "line number" }):map(k"n")
-  o("relativenumber", { name = "relative number" }):map(k"r")
-
   -- conceal level
   local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
   o("conceallevel", opts):map(k"<C-c>")
 
-  -- gitsigns
+  t.treesitter():map(k"T")
+  t.inlay_hints():map(k"H")
+
+  -- snacks profile 〈
+
+  -- snacks profiler
+  t.profiler():map(k"p")
+  -- snacks profiler highlights
+  t.profiler_highlights():map(k"<C-p>")
+
+  -- profile 〉
+
+  -- lsp virtual lines 〈
+
+  t.new({
+    id = "lsp_virtual_lines",
+    name = "lsp virtual lines",
+    get = function() return vim.lsp.config.virtual_lines end,
+    set = function(b) vim.lsp.config { virtual_lines = b } end,
+  }):map(k"L")
+
+  -- lsp virtual lines 〉
+
+  -- line numbers
+  -- TODO: `-n` toggle fully
+  o("number", { name = "line number" }):map(k"n")
+  o("relativenumber", { name = "relative number" }):map(k"r")
+
+  -- gitsigns 〈
+
   t.new({
     id = "gitsigns",
     name = "gitsigns",
-    get = function() return require("gitsigns.config").config.signcolumn end,
+    get = function()
+      if package.loaded["gitsigns"] then
+        return require("gitsigns.config").config.signcolumn
+      else
+        return false
+      end
+    end,
     set = function() require("gitsigns").toggle_signs() end,
   }):map(k"g")
+
+  -- gitsigns 〉
+
+  -- color highlighting 〈
 
   -- lsp document colors
   t.new({
@@ -72,7 +83,11 @@ local function _init()
     set = function() require("nvim-highlight-colors").toggle() end,
   }):map(k"C")
 
-  -- conform locally
+  -- color highlighting 〉
+
+  -- conform 〈
+
+  -- local
   t.new({
     id = "conform_locally",
     name = "conform locally",
@@ -80,7 +95,7 @@ local function _init()
     set = function() vim.b.disable_autoformat = not vim.b.disable_autoformat end,
   }):map(k"f")
 
-  -- conform globally
+  -- global
   t.new({
     id = "conform_globally",
     name = "conform globally",
@@ -88,35 +103,59 @@ local function _init()
     set = function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
   }):map(k"F")
 
-  -- diagnostic
-  local diagnostic = {
-    get = function()
-      return require("tiny-inline-diagnostic.state").user_toggle_state
-    end,
-    set = function(s)
-      require("tiny-inline-diagnostic")[s and "enable" or "disable"]()
-      -- pcall(vim.diagnostic[s and "enabled" or "disable"])
-    end,
-  }
+  -- conform 〉
+
+  -- disgnostics 〈
+
+  t.new {
+    id = "mdx.diagnostics",
+    name = "diagnostics",
+    get = vim.diagnostic.is_enabled,
+    set = function(b)
+      vim.diagnostic.enable(b)
+      if package.loaded["tiny-inline-diagnostic"] then
+        require("tiny-inline-diagnostic")[b and "enable" or "disable"]()
+      end
+    end
+  }:map(k"d")
+
   t.new({
-    id = "tiny inline diagnostic",
-    name = "inline diagnostic",
-    get = diagnostic.get,
-    set = diagnostic.set,
+    id = "tiny_inline_diagnostic",
+    name = "tiny inline diagnostic",
+    get = function()
+      if package.loaded["tiny-inline-diagnostic"] then
+        return require("tiny-inline-diagnostic.state").user_toggle_state
+      else
+        return false
+      end
+    end,
+    set = function(b)
+      if package.loaded["tiny-inline-diagnostic"] then
+        require("tiny-inline-diagnostic")[b and "enable" or "disable"]()
+      else
+        print("tiny-inline-diagnostic is not loaded yet")
+      end
+    end
   }):map(k"D")
 
-  -- snacks profiler
-  t.profiler():map(k"p")
-  -- snacks profiler highlights
-  t.profiler_highlights():map(k"<C-p>")
+  -- disgnostics 〉
 
-  -- blink.indent
-  -- t.new({
-  --   id = "blink_indent",
-  --   name = "indent guidelines",
-  --   get = function() return require("blink.indent").is_enabled({ bufnr = 0 }) end,
-  --   set = function(b) require("blink.indent").enable(b, { bufnr = 0 }) end,
-  -- }):map(k"i")
+  -- indent guidelines 〈
+
+  t.new({
+    id = "blink_indent_buffer",
+    name = "indent guidelines (buffer)",
+    get = function()
+      if package.loaded["blink.indent"] then
+        return require("blink.indent").is_enabled({ bufnr = 0 })
+      else
+        return false
+      end
+    end,
+    set = function(b) require("blink.indent").enable(b, { bufnr = 0 }) end,
+  }):map(k"i")
+
+  -- indent guidelines 〉
 
 end
 
@@ -132,7 +171,6 @@ return {
       disabled = "󰝦  ",
     },
   },
-  init = function()
-    On.VeryLazy(_init)
-  end,
+  -- stylua: ignore
+  init = function() On.VeryLazy(init_toggles) end,
 }

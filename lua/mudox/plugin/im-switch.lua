@@ -1,7 +1,7 @@
 return {
   "drop-stones/im-switch.nvim",
   dependencies = "plenary.nvim",
-  event = "VeryLazy",
+  event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   opts = {
     macos = {
       enabled = true,

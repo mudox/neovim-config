@@ -45,18 +45,18 @@ end
 local keys = {
   -- expand
   -- expand by <tab> in blink.cmp
-  -- { "<M-n>",      function() require("luasnip").expand() end, mode = "i",          desc =  "[LuaSnip] Expand or jump"               },
+  { "<Tab>", function() require("luasnip").expand() end, desc = "[luasnip] expand or jump",               mode = "i"        },
 
   -- jump
-  { "<M-n>", function() require("luasnip").jump(1) end,  desc = "[LuaSnip] Jump to next placeholder",     mode = {'i', 's'} },
-  { "<M-p>", function() require("luasnip").jump(-1) end, desc = "[LuaSnip] Jump to previous placeholder", mode = {'i', 's'} },
+  { "<M-]>", function() require("luasnip").jump(1) end,  desc = "[luasnip] jump to next placeholder",     mode = {'i', 's'} },
+  { "<M-[>", function() require("luasnip").jump(-1) end, desc = "[luasnip] jump to previous placeholder", mode = {'i', 's'} },
 
   -- choices
-  { "<C-e>", change_choice, expr = true,                 desc = "[LuaSnip] Change choice",                mode = {'i', 's'} },
-  { "<C-c>", select_choice,                              desc = "[LuaSnip] Select choice",                mode = {'i', 's'} },
+  { "<C-e>", change_choice, expr = true,                 desc = "[luasnip] change choice",                mode = {'i', 's'} },
+  { "<C-c>", select_choice,                              desc = "[luasnip] select choice",                mode = {'i', 's'} },
 
   -- edit
-  { K.p"es", edit_snippet,                               desc = "[LuaSnip] Edit snippet",                                   },
+  { K.p"es", edit_snippet,                               desc = "[luasnip] edit snippet",                                   },
 
   -- on the fly snippet
   -- { "<C-o>",      [["oc<Cmd>lua require("luasnip.extras.otf").on_the_fly("o")<Cr>]], mode =  "v",          desc =  "[LuaSnip] On-The-Fly snippet" },

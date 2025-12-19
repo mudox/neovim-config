@@ -1,6 +1,7 @@
 return {
   "rachartier/tiny-inline-diagnostic.nvim",
-  lazy = false,
+  -- lazy = false,
+  event = "LspAttach",
   priority = 800,
   opts = {
     signs = {

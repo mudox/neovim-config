@@ -17,7 +17,7 @@ local opts = {
     "regex",
   },
 
-  filetypes_denylist = {}, -- for `allowlist` to take effect
+  filetypes_denylist = { "help" }, -- for `allowlist` to take effect
   filetypes_allowlist = allowlist,
 
   modes_denylist = {},
@@ -40,11 +40,11 @@ local nav = {
   name = "illuminate",
   left = function()
     require("illuminate").goto_prev_reference(true)
-    vim.cmd.normal({ "zv", bang = true })
+    vim.cmd.normal { "zv" }
   end,
   right = function()
     require("illuminate").goto_next_reference(true)
-    vim.cmd.normal({ "zv", bang = true })
+    vim.cmd.normal { "zv" }
   end,
 }
 

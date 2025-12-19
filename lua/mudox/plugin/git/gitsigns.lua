@@ -10,14 +10,14 @@ local signs = {
   untracked    = {  text = bar },
 }
 
-local function on_attach(buffer)
+local function keys()
   local gs = require("gitsigns")
 
   -- stylua: ignore
   local op = {
-    name = "Gitsigns hunk",
-    left = function() gs.nav_hunk("prev", { foldopen = true, preview = true }) end,
-    right = function() gs.nav_hunk("next", { foldopen = true, preview = true }) end,
+    name = "gitsigns hunk",
+    left  = function() gs.nav_hunk("prev", { foldopen = true, preview = true, wrap = true }) end,
+    right = function() gs.nav_hunk("next", { foldopen = true, preview = true, wrap = true }) end,
   }
 
   local function blame()
@@ -25,9 +25,7 @@ local function on_attach(buffer)
   end
 
   -- stylua: ignore
-  local keys = {
-    buffer = buffer,
-
+  return {
     -- stage
     { K.p"gs", gs.stage_hunk,      desc = "stage hunk"      },
     { K.p"gD", gs.reset_hunk,      desc = "discard changes" },
@@ -42,13 +40,9 @@ local function on_attach(buffer)
     { "[c",    X.arrows.left(op),  desc = "diff hunk"       },
     { "]c",    X.arrows.right(op), desc = "diff hunk"       },
   }
-
-  require("which-key").add(keys)
 end
 
 local opts = {
-  on_attach = on_attach,
-
   -- UI
   signcolumn = false, -- disabled initially, toggle with `:Gitsigns toggle_signs`
   signs = signs,
@@ -73,7 +67,7 @@ local opts = {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = I.border.box,
+    border = "single",
     style = "minimal",
     relative = "cursor",
     row = 0,
@@ -83,6 +77,8 @@ local opts = {
 
 return {
   "lewis6991/gitsigns.nvim",
-  event = "VeryLazy",
+  lazy = false,
+  keys = keys,
   opts = opts,
+  cond = false,
 }
