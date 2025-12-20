@@ -15,14 +15,35 @@ local function init_toggles()
   local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
   o("conceallevel", opts):map(k"<C-c>")
 
+  -- line number 〈
+
+  o("relativenumber", { name = "relative number" }):map(k"r")
+  t.new({
+    id = "number",
+    name = "number",
+    get = function()
+      return vim.wo.number or vim.wo.relativenumber
+    end,
+    set = function(b)
+      if b then
+        vim.wo.number = true
+      else
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+      end
+    end,
+  }):map(k"n")
+
+  -- line number 〉
+
   t.treesitter():map(k"T")
   t.inlay_hints():map(k"H")
 
   -- snacks profile 〈
 
-  -- snacks profiler
+  -- profiler
   t.profiler():map(k"p")
-  -- snacks profiler highlights
+  -- profiler highlights
   t.profiler_highlights():map(k"<C-p>")
 
   -- profile 〉
@@ -38,10 +59,6 @@ local function init_toggles()
 
   -- lsp virtual lines 〉
 
-  -- line numbers
-  -- TODO: `-n` toggle fully
-  o("number", { name = "line number" }):map(k"n")
-  o("relativenumber", { name = "relative number" }):map(k"r")
 
   -- gitsigns 〈
 
@@ -156,6 +173,29 @@ local function init_toggles()
   }):map(k"i")
 
   -- indent guidelines 〉
+
+  -- illuminate 〈
+
+  t.new({
+    id = "illuminate",
+    name = "illuminate (global)",
+    get = function()
+      if package.loaded["illuminate"] then
+        return not require("illuminate.engine").is_paused()
+      else
+        return false
+      end
+    end,
+    set = function(b)
+      if b then
+        vim.cmd.IlluminateResume()
+      else
+        vim.cmd.IlluminatePause()
+      end
+    end,
+  }):map(k"v")
+
+  -- illuminate 〉
 
 end
 

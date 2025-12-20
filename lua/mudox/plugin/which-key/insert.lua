@@ -19,19 +19,16 @@ local function end_with(c, nl)
 end
 
 -- stylua: ignore
-local function p(k) return K.leader.i_primary .. k end
-
--- stylua: ignore
 return {
   mode = "i",
 
-  { "<C-k>", group = "insert leader" },
+  { K.leader.insert, group = "insert" },
 
-  { p"<C-;>",  "<C-k>",              desc = "insert digraph"  },
+  { K.i"<C-;>", "<C-k>",              desc = "insert digraph" },
 
-  { "<M-j>",   "<C-o>o",             desc = "new line below"  },
-  { "<M-k>",   "<C-o>O",             desc = "new line above"  },
+  { "<M-j>",    "<C-o>o",             desc = "new line below" },
+  { "<M-k>",    "<C-o>O",             desc = "new line above" },
 
-  { "<M-;>",   end_with(";", false), desc = "end with ;"      },
-  { "<M-,>",   end_with(",", false), desc = "end with ,"      },
+  { "<M-;>",    end_with(";", false), desc = "end with ;"     },
+  { "<M-,>",    end_with(",", false), desc = "end with ,"     },
 }

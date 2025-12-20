@@ -146,7 +146,7 @@ local function config()
   }
 
   t.load_extension("fzf")
-  t.load_extension("notify")
+  -- t.load_extension("notify")
   -- t.load_extension("ui-select")
 end
 

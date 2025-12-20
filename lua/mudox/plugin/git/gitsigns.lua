@@ -11,30 +11,34 @@ local signs = {
 }
 
 local function keys()
-  local gs = require("gitsigns")
+  local function nav(dir)
+    return function()
+      require("gitsigns").nav_hunk(dir, { foldopen = true, preview = true, wrap = true })
+    end
+  end
 
   -- stylua: ignore
   local op = {
     name = "gitsigns hunk",
-    left  = function() gs.nav_hunk("prev", { foldopen = true, preview = true, wrap = true }) end,
-    right = function() gs.nav_hunk("next", { foldopen = true, preview = true, wrap = true }) end,
+    left  = nav("prev"),
+    right = nav("next"),
   }
 
   local function blame()
-    gs.blame_line { full = true }
+    require("gitsigns").blame_line { full = true }
   end
 
   -- stylua: ignore
   return {
     -- stage
-    { K.p"gs", gs.stage_hunk,      desc = "stage hunk"      },
-    { K.p"gD", gs.reset_hunk,      desc = "discard changes" },
+    { K.p"gs", function() require("gitsigns").stage_hunk() end,      desc = "stage hunk"      },
+    { K.p"gD", function() require("gitsigns").reset_hunk() end,      desc = "discard changes" },
 
     -- blame
     { K.p"gb", blame,              desc = "blame line"      },
 
-    -- diff
-    { K.p"gv", gs.preview_hunk,    desc = "preview hunk"    },
+    -- view diff
+    { K.p"gv", function() require("gitsigns").preview_hunk() end,    desc = "preview hunk"    },
 
     -- goto
     { "[c",    X.arrows.left(op),  desc = "diff hunk"       },
@@ -67,7 +71,7 @@ local opts = {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "single",
+    border = "none",
     style = "minimal",
     relative = "cursor",
     row = 0,
@@ -77,8 +81,6 @@ local opts = {
 
 return {
   "lewis6991/gitsigns.nvim",
-  lazy = false,
   keys = keys,
   opts = opts,
-  cond = false,
 }

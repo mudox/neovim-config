@@ -211,13 +211,14 @@ M.nnop(";")
 
 -- stylua: ignore
 M.leader = {
+  -- for nmap
   primary   = "<Space>",
   secondary = ",",
   shortcut  = ";",
   toggle    = "-",
 
-  i_primary = "<C-;>", -- for imap & cmap
-  x_primary = "v",
+  ic        = "<C-;>", -- for imap & cmap
+  x         = "v",     -- for xmap
 }
 
 -- stylua: ignore start
@@ -225,7 +226,7 @@ function M.c(cmd)  return "<Cmd>" .. cmd .. "<Cr>"   end
 function M.p(sfx)  return M.leader.primary   .. sfx  end
 function M.s(sfx)  return M.leader.secondary .. sfx  end
 function M.sc(sfx) return M.leader.shortcut  .. sfx  end
-function M.ip(sfx) return M.leader.i_primary  .. sfx end
+function M.i(sfx)  return M.leader.ic  .. sfx        end
 
 -- stylua: ignore end
 

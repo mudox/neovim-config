@@ -24,9 +24,6 @@ local zjk = {
 K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
 K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
 K.normal("z<Space>", "zMzvzczO", { remap = true })
--- K.nmap("z<Space>", function()
---   vim.cmd.normal { "zMzvzczO", bang = false }
--- end)
 
 local fdlvl = (function()
   local function notify(dir)
@@ -98,7 +95,7 @@ K.nmap("<C-w>-", X.arrows.down(resize),  { desc = "height -" })
 -- stylua: ignore end
 
 -- Yank & paste
-K.map({ "i", "c" }, K.ip("v"), "<C-r><C-o>+", { desc = "Paste from clipboard" })
+K.map({ "i", "c" }, K.i("v"), "<C-r><C-o>+", { desc = "Paste from clipboard" })
 K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
 K.xmap("<C-u>", function()
   local k = ("y`[%d[Pgv"):format(vim.v.count1)
@@ -110,20 +107,21 @@ K.xmap("<C-d>", function()
 end, { desc = "Duplicate below" })
 
 -- Cmdline
-local function enter_cmd()
+local function cmdstart()
+  -- stylua: ignore
   local cmds = {
-    [1] = ":lua ",
-    [2] = ":=",
-    [3] = ":set ",
-    [4] = ":setlocal ",
-    [5] = ":%s/\\v",
-    [6] = ":checkhealth ",
-    [7] = ":G ",
+    [1]  = ":lua ",
+    [11] = ":=",
+    [2]  = ":set ",
+    [22] = ":setlocal ",
+    [3]  = ":%s/\\v",
+    [4]  = ":Git ",
+    [5]  = ":checkhealth ",
   }
   local cmd = cmds[vim.v.count] or ":"
   vim.api.nvim_feedkeys(cmd, "n", false)
 end
-K.nmap("<Enter>", enter_cmd, { desc = "enter cmdline" })
+K.nmap("<Enter>", cmdstart, { desc = "enter cmdline" })
 
 -- Terminal
 K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })

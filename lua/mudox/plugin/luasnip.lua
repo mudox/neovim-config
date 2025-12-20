@@ -41,11 +41,30 @@ local function edit_snippet()
   }
 end
 
+local function should_insert_tab()
+  local col = vim.fn.col(".") - 1
+  if col == 0 then
+    return true
+  end
+  local line = vim.fn.getline(".")
+  return line:sub(col, col):match("%s") ~= nil
+end
+
+local function super_tab()
+  local ls = require("luasnip")
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  elseif should_insert_tab() then
+    vim.fn.feedkeys("	", "n")
+  else
+    print("tab nop")
+  end
+end
+
 -- stylua: ignore
 local keys = {
   -- expand
-  -- expand by <tab> in blink.cmp
-  { "<Tab>", function() require("luasnip").expand() end, desc = "[luasnip] expand or jump",               mode = "i"        },
+  { "<Tab>", super_tab, desc = "[luasnip] super tab", mode = "i" },
 
   -- jump
   { "<M-]>", function() require("luasnip").jump(1) end,  desc = "[luasnip] jump to next placeholder",     mode = {'i', 's'} },

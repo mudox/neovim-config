@@ -57,9 +57,6 @@ end
 K.nmap("g;", X.arrows.left(op), { desc = "older change point" })
 K.nmap("g,", X.arrows.right(op), { desc = "newer change point" })
 
--- diff
-add("c", normal("diff hunk", "]c", "[c", true))
-
 -- quickfix / loclist
 add("q", excmd("quickfix item", "cprevious", "cnext"))
 add("Q", excmd("quickfix file", "cpfile", "cnfile"))

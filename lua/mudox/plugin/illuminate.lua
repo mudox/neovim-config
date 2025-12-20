@@ -57,5 +57,6 @@ return {
   },
   config = function()
     require("illuminate").configure(opts)
+    require("illuminate").pause()
   end,
 }
