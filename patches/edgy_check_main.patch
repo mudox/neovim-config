@@ -1,0 +1,23 @@
+diff --git a/lua/edgy/editor.lua b/lua/edgy/editor.lua
+index 48c8559..03b8ec9 100644
+--- a/lua/edgy/editor.lua
++++ b/lua/edgy/editor.lua
+@@ -34,9 +34,17 @@ end
+ 
+ -- Ensures that there is always a main window
+ -- when a edgebar is visible
+-function M.check_main()
++function M.check_main(event)
+   local wins = M.list_wins()
+ 
++  -- vim.cmd.messages("clear")
++  local m = tonumber(event.match)
++  -- vim.print(m)
++  wins.main[m] = nil
++  wins.edgy[m] = nil
++  wins.floating[m] = nil
++  -- vim.print(wins)
++
+   if vim.tbl_isempty(wins.edgy) or not vim.tbl_isempty(wins.main) then
+     return
+   end

@@ -206,6 +206,8 @@ M.BUILTIN_EVENTS = {
 -- stylua: ignore
 M.USER_EVENTS = {
   VeryLazy = true,
+  LazySyncPre = true,
+  LazySync = true,
 }
 
 return setmetatable(M, {

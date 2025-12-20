@@ -1,0 +1,13 @@
+diff --git a/lua/snacks/dashboard.lua b/lua/snacks/dashboard.lua
+index 4047780..108e076 100644
+--- a/lua/snacks/dashboard.lua
++++ b/lua/snacks/dashboard.lua
+@@ -259,7 +259,7 @@ function D:init()
+     buffer = self.buf,
+     callback = function()
+       self.fire("Closed")
+-      vim.api.nvim_del_augroup_by_id(self.augroup)
++      pcall(vim.api.nvim_del_augroup_by_id, self.augroup)
+     end,
+   })
+   vim.api.nvim_create_autocmd("WinEnter", {

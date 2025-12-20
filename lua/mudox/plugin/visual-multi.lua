@@ -41,22 +41,19 @@ end
 
 local config = function()
   On.User("visual_multi_start", function()
+    vim.opt.eventignore = { "TextChangedI", "TextChangedP", "InsertCharPre", "CursorMovedI" }
+
     require("illuminate").pause_buf()
     require("lualine").hide { unhide = false, place = { "statusline" } }
     require("nvim-autopairs").disable()
   end)
 
   On.User("visual_multi_exit", function()
+    vim.o.eventignore = ""
+
     require("illuminate").resume_buf()
     require("lualine").hide { unhide = true, place = { "statusline" } }
-    require("nvim-autopairs").disable()
-
-    -- recover
-    -- require("which-key").add {
-    --   { "<Tab>", group = "tabpage" },
-    --   { "]", group = "next" },
-    --   { "[", group = "prev" },
-    -- }
+    require("nvim-autopairs").enable()
   end)
 end
 
