@@ -335,7 +335,7 @@ function M.setup_global_keymaps()
     },
     {
       mode = 't',
-      unpack(vim.deepcopy(_local_keymaps))
+      vim.deepcopy(_local_keymaps)
     }
   }
 end
@@ -346,7 +346,7 @@ function M.setup_local_keymaps()
 
   require("which-key").add {
     mode = "n", buffer = true,
-    unpack(vim.deepcopy(_local_keymaps))
+    vim.deepcopy(_local_keymaps)
   }
 end
 
