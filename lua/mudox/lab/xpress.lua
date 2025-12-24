@@ -305,16 +305,16 @@ end
 -- stylua: ignore
 local _local_keymaps = {
   -- nav
-  { "<C-S-]>",  function() M.nav("next") end, desc = "[Term] Next"          },
-  { "<C-S-[>",  function() M.nav("prev") end, desc = "[Term] Prev"          },
+  { "<C-S-]>",  function() M.nav("next") end, desc = "[term] next"          },
+  { "<C-S-[>",  function() M.nav("prev") end, desc = "[term] prev"          },
 
   -- new, delete, rename
-  { "<C-S-Cr>", M.new,                        desc = "[Term] New"           },
-  { "<C-S-±>",  M.delete,                     desc = "[Term] Delete"        }, -- Ctrl+Shift+Backspace
-  { "<C-S-k>r", M.rename,                     desc = "[Term] Rename"        },
+  { "<C-S-Cr>", M.new,                        desc = "[term] new"           },
+  { "<C-S-±>",  M.delete,                     desc = "[term] delete"        }, -- Ctrl+Shift+Backspace
+  { "<C-S-k>r", M.rename,                     desc = "[term] rename"        },
 
   -- pin
-  { "<C-S-k>p", M.toggle_pinned,              desc = "[Term] Toggle pinned" },
+  { "<C-S-k>p", M.toggle_pinned,              desc = "[term] toggle pinned" },
 }
 
 -- stylua: ignore
@@ -322,16 +322,17 @@ function M.setup_global_keymaps()
   require("which-key").add {
     {
       mode = { "n", "t", "i" },
+
       -- toggle
-      { "<C-S-j>",  M.toggle, desc = "[Xpress] Toggle" },
-      { "<C-S-k>x", M.close,  desc = "[Xpress] Close"  },
+      { "<C-S-j>",  M.toggle, desc = "[xpress] toggle" },
+      { "<C-S-k>x", M.close,  desc = "[xpress] close"  },
 
       -- move
-      { "<C-S-k>k", function() M.repos('float-top') end,    desc = "[Xpress] Dock top"    },
-      { "<C-S-k>j", function() M.repos('float-bottom') end, desc = "[Xpress] Dock bottom" },
-      { "<C-S-k>l", function() M.repos('float-right') end,  desc = "[Xpress] Dock right"  },
-      { "<C-S-k>h", function() M.repos('float-left') end,   desc = "[Xpress] Dock left"   },
-      { "<C-S-k>c", function() M.repos('float-center') end, desc = "[Xpress] Dock center" },
+      { "<C-S-k>k", function() M.repos("float-top") end,    desc = "[xpress] dock top"    },
+      { "<C-S-k>j", function() M.repos("float-bottom") end, desc = "[xpress] dock bottom" },
+      { "<C-S-k>l", function() M.repos("float-right") end,  desc = "[xpress] dock right"  },
+      { "<C-S-k>h", function() M.repos("float-left") end,   desc = "[xpress] dock left"   },
+      { "<C-S-k>c", function() M.repos("float-center") end, desc = "[xpress] dock center" },
     },
     {
       mode = 't',
@@ -345,7 +346,7 @@ function M.setup_local_keymaps()
   assert_buf(0)
 
   require("which-key").add {
-    mode = "n", buffer = true,
+    buffer = vim.api.nvim_get_current_buf(),
     vim.deepcopy(_local_keymaps)
   }
 end

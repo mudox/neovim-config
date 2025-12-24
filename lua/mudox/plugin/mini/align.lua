@@ -3,8 +3,8 @@ local M = {}
 function M.setup()
   require("mini.align").setup {
     mappings = {
-      -- start = "ga",
-      -- start_with_preview = "gA",
+      start = "gA",
+      start_with_preview = "ga",
     },
 
     modifiers = {

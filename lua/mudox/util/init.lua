@@ -24,7 +24,7 @@ function M.logo()
 
   local filename = ".nvim-logo.ascii.txt"
   local ok, lines = pcall(vim.fn.readfile, filename)
-  lines = ok and lines or vim.fn.readfile(vim.env.MDX_NVIM_DIR .. "/asset/logo.ascii.txt")
+  lines = ok and lines or vim.fn.readfile(vim.fn.stdpath("config") .. "/asset/logo.ascii.txt")
 
   -- version line
   local ver = version()

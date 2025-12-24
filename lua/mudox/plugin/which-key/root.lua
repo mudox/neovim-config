@@ -7,22 +7,20 @@ local s = K.s
 local c = K.c
 
 local close = {
-  { "<Bs>v",     c"confirm qall",                  desc = "Quit all"                   },
-  { "<Bs>V",     c"qall!",                         desc = "Quit all forcibly"          },
-  { "<Bs>r",     c"restart",                       desc = "Restart"                    },
-  { "<Bs>R",     c"restart!",                      desc = "Restart forcibly"           },
+  { "<Bs>v",     c"confirm qall",                  desc = "quit all"                   },
+  { "<Bs>V",     c"qall!",                         desc = "quit all forcibly"          },
+  { "<Bs>r",     c"restart",                       desc = "restart"                    },
+  { "<Bs>R",     c"restart!",                      desc = "restart forcibly"           },
 
-  { "<Bs><Tab>", c"tabclose",                      desc = "Close tabpage"              },
-  { "<Bs>w",     c"wincmd c",                      desc = "Close window"               },
+  { "<Bs><Tab>", c"tabclose",                      desc = "close tabpage"              },
+  { "<Bs>w",     c"wincmd c",                      desc = "close window"               },
 
-  { "<Bs>f",     U.window.close_all_floating_wins, desc = "Close all floating windows" },
+  { "<Bs>f",     U.window.close_all_floating_wins, desc = "close all floating windows" },
 }
 
 local edit = {
-  { p"eq", c"EditQuery",                                desc = "Edit query",     },
-  { p"ee", c"edit!",                                    desc = "Reload file",    },
-  { p"ev", function() X.layout.secondary:open("#") end, desc = "Edit #",         },
-  { p"et", c"tabnew .nvim.lua",                         desc = "Edit .nvim.lua", },
+  { p"eq", c"EditQuery", desc = "edit query",  },
+  { p"ee", c"edit!",     desc = "reload file", },
 }
 
 local refactoring = {
@@ -30,18 +28,18 @@ local refactoring = {
 }
 
 local tabpage = {
-  { "<Tab>n",     c"tabnew",                 desc = "New tabpage"           },
-  { "<Tab>c",     c"tabclose",               desc = "Close tabpage"         },
-  { "<Tab>l",     "g<Tab>",                  desc = "Last accessed tabpage" },
+  { "<Tab>n",     c"tabnew",                 desc = "new tabpage"           },
+  { "<Tab>c",     c"tabclose",               desc = "close tabpage"         },
+  { "<Tab>l",     "g<Tab>",                  desc = "last accessed tabpage" },
 
-  { "<Tab>o",     c"tabnext 1<Bar>tabonly",  desc = "Main tabpage only"     },
-  { "<Tab><Tab>", c"tabnext 1",              desc = "Goto main tabpage"     },
+  { "<Tab>o",     c"tabnext 1<Bar>tabonly",  desc = "main tabpage only"     },
+  { "<Tab><Tab>", c"tabnext 1",              desc = "goto main tabpage"     },
 
-  { "<Tab>.",     X.tabman.recreate_current, desc = "[Tabman] Recreate current"      },
+  { "<Tab>.",     X.tabman.recreate_current, desc = "[tabman] recreate current"      },
 }
 
 local window = {
-  { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "Focus next floating windows" },
+  { "<C-w><C-w>", U.window.focus_next_floating_win, desc = "focus next floating windows" },
 }
 
 local primary = {

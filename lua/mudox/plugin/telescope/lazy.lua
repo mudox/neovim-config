@@ -19,7 +19,7 @@ local function open_plugin_window(prompt_buf)
 
   require("telescope.actions").close(prompt_buf)
   vim.system {
-    vim.env.MDX_NVIM_DIR .. "/scripts/tmux_plugin_win.sh",
+    vim.fn.stdpath("config") .. "/scripts/tmux_plugin_win.sh",
     name,
     path,
   }
@@ -28,7 +28,7 @@ end
 return {
   "tsakirist/telescope-lazy.nvim",
   dependencies = "telescope.nvim",
-  keys = { { K.p"tp", "<Cmd>Telescope lazy<Cr>", desc = "Plugins" } },
+  keys = { { K.p("tp"), "<Cmd>Telescope lazy<Cr>", desc = "Plugins" } },
   config = function()
     require("telescope._extensions.lazy.actions").open_in_terminal = open_plugin_window
     local t = require("telescope")

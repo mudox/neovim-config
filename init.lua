@@ -23,7 +23,7 @@ On.VeryLazy(function()
   X.arrows.setup()
 end)
 
--- DO NOT ues event earlier than UIEnter
+-- DO NOT uses event earlier than UIEnter
 -- event `TermOpen` will not be triggered
 On.UIEnter(function()
   require("mudox.lab.xpress")

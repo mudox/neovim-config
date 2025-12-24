@@ -1,7 +1,7 @@
 -- stylua: ignore
 local function r(name) return require("mudox.plugin.snacks." .. name) end
 
-local mods = {
+local modules = {
   "picker",
   "toggle",
   "dashboard",
@@ -9,7 +9,7 @@ local mods = {
 }
 
 local function init()
-  for _, name in ipairs(mods) do
+  for _, name in ipairs(modules) do
     if r(name).init then
       r(name).init()
     end
@@ -28,7 +28,7 @@ local function keys()
     { K.p"ps",  function() Snacks.profiler.scratch() end, desc = "profiler scratch buffer" },
   }
 
-  for _, name in ipairs(mods) do
+  for _, name in ipairs(modules) do
     vim.list_extend(ret, r(name).keys or {})
   end
 
@@ -46,7 +46,7 @@ local function opts()
     scope = {},
   }
 
-  for _, name in ipairs(mods) do
+  for _, name in ipairs(modules) do
     ret[name] = r(name).opts
   end
 

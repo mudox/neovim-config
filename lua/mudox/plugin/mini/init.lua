@@ -6,6 +6,7 @@ local modules = {
   "bufremove",
   "files",
   "icons",
+  "surround",
 }
 
 local function config()

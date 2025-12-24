@@ -31,22 +31,22 @@ local function keys()
   -- stylua: ignore
   return {
     -- stage
-    { K.p"gs", function() require("gitsigns").stage_hunk() end,      desc = "stage hunk"      },
-    { K.p"gD", function() require("gitsigns").reset_hunk() end,      desc = "discard changes" },
+    { K.p"gs", function() require("gitsigns").stage_hunk() end,   desc = "stage hunk"  },
+    { K.p"gD", function() require("gitsigns").reset_hunk() end,   desc = "discard hunk"},
 
     -- blame
-    { K.p"gb", blame,              desc = "blame line"      },
+    { K.p"gb", blame,                                             desc = "blame line"  },
 
     -- view diff
-    { K.p"gv", function() require("gitsigns").preview_hunk() end,    desc = "preview hunk"    },
+    { K.p"gv", function() require("gitsigns").preview_hunk() end, desc = "preview hunk"},
 
     -- goto
-    { "[c",    X.arrows.left(op),  desc = "diff hunk"       },
-    { "]c",    X.arrows.right(op), desc = "diff hunk"       },
+    { "[c",    X.arrows.left(op),                                 desc = "diff hunk"   },
+    { "]c",    X.arrows.right(op),                                desc = "diff hunk"   },
   }
 end
 
-local opts = {
+local config = {
   -- UI
   signcolumn = false, -- disabled initially, toggle with `:Gitsigns toggle_signs`
   signs = signs,
@@ -71,16 +71,16 @@ local opts = {
   -- Preview
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "none",
+    border = "single",
     style = "minimal",
     relative = "cursor",
     row = 0,
-    col = 1,
+    col = 2,
   },
 }
 
 return {
   "lewis6991/gitsigns.nvim",
   keys = keys,
-  opts = opts,
+  config = config,
 }
