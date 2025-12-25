@@ -18,7 +18,7 @@ local function should_disable_hl()
   return false
 end
 
-local function init()
+local function config()
   local ts = require("nvim-treesitter")
 
   -- ensure installed
@@ -86,5 +86,5 @@ return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
   build = ":TSUpdate",
-  init = init,
+  config = config,
 }

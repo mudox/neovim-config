@@ -20,7 +20,7 @@ end
 local function init()
   vim.o.termguicolors = true
   vim.o.mousemoveevent = true -- hover to show close icon
-  vim.o.laststatus = 3
+  -- vim.o.laststatus = 3
 
   On("WinEnter", function()
     if not U.window.is_floating() then

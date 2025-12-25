@@ -53,7 +53,7 @@ o.number = false
 o.showtabline = 0
 
 -- status line
-o.laststatus = 3 -- Global statusline
+o.laststatus = 3 -- global statusline
 o.showmode = false
 o.showcmd = false
 o.ruler = false

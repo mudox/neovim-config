@@ -13,9 +13,10 @@ local keys = {
 
 local function init()
   -- views can only be fully collapsed with the global statusline
-  vim.o.laststatus = 3
-  -- Default splitting will cause your main splits to jump when opening an edgebar.
-  -- To prevent this, set `splitkeep` to either `screen` or `topline`.
+  -- vim.o.laststatus = 3
+
+  -- default splitting will cause your main splits to jump when opening an edgebar.
+  -- to prevent this, set `splitkeep` to either `screen` or `topline`.
   vim.o.splitkeep = "screen"
 end
 

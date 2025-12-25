@@ -27,6 +27,7 @@ On.VeryLazy(function()
 
   K.ncmd(K.p("vl"), "checkhealth vim.lsp", "lsp information")
 
+  require("mudox.lsp.servers")
   require("mudox.lsp.browsing")
   require("mudox.lsp.diagnostic")
   require("mudox.lsp.refactoring")
