@@ -3,9 +3,9 @@ On.VeryLazy(function()
   vim.lsp.enable {
     -- lua
     "lua_ls",
-    -- "emmylua_ls", -- diagnostic feature weak
+    -- "emmylua_ls",
 
-    -- data format
+    -- data
     "jsonls",
     "yamlls",
     "taplo", -- toml

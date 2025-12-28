@@ -28,13 +28,13 @@ local keys = {
   { "M", "moveToFolderInCwd", "move to ..."   },
 
   -- copy to clipboard
-  { "yn", "copyFilename",              "copy filename"                },
-  { "yp", "copyFilepath",              "copy absolute filepath"       },
-  { "yP", "copyRelativePath",          "copy relative filepath"       },
-  { "yd", "copyDirectoryPath",         "copy absolute directory path" },
-  { "yD", "copyRelativeDirectoryPath", "copy relative directory path" },
-  { "yY", "copyFileItself",            "system copy file"             },
-  { "yy", "<Cmd>0,$y<Cr> + ✓",         "copy file content"            },
+  { "yn", "copyFilename",              "filename"                 },
+  { "yp", "copyFilepath",              "absolute filepath"        },
+  { "yP", "copyRelativePath",          "relative filepath"        },
+  { "yd", "copyDirectoryPath",         "absolute directory path"  },
+  { "yD", "copyRelativeDirectoryPath", "relative directory path"  },
+  { "yY", "copyFileItself",            "file content (clipboard)" }, -- error
+  { "yy", "<Cmd>0,$y +<Cr> ✓",         "file content (register)"  },
 
   -- misc
   { "r",    "renameFile",           "rename"           },

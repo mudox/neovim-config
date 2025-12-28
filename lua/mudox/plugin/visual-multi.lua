@@ -63,17 +63,17 @@ local function keys()
     "<C-LeftMouse>",
 
     { "<C-n>", mode = { "n", "x" },     desc = "[VM] Add word",          },
-    { K.p"z*", mode = { 'n', 'x' },     desc = "Select all",             },
-    { K.p"z+", mode = { 'n', 'x' },     desc = "Add",                    },
-    { K.p"z/", mode = { 'n', 'x' },     desc = "Search",                 },
+    { K.p"z*", mode = { 'n', 'x' },     desc = "select all",             },
+    { K.p"z+", mode = { 'n', 'x' },     desc = "add",                    },
+    { K.p"z/", mode = { 'n', 'x' },     desc = "search",                 },
 
     { "<M-j>",                          desc = "[VM] Select cursor down" },
     { "<M-k>",                          desc = "[VM] Select cursor up"   },
 
-    { K.p"z.",                          desc = "Reselct"                 },
+    { K.p"z.",                          desc = "reselct"                 },
 
     { "<Bs>z",      "<Cmd>VMClear<Cr>", desc = "[VM] Clear"              },
-    { K.p"vZ",      "<Cmd>VMDebug<Cr>", desc = "Visual Multi"            },
+    { K.p"vZ",      "<Cmd>VMDebug<Cr>", desc = "visual multi"            },
   }
 end
 

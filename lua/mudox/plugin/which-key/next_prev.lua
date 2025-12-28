@@ -1,13 +1,4 @@
--- stylua: ignore
-local M = {
-  { "]",  group = "next"     },
-  { "][", group = "start of" },
-  { "]]", group = "end of"   },
-
-  { "[",  group = "prev"     },
-  { "[[", group = "start of" },
-  { "[]", group = "end of"   },
-}
+local M = {}
 
 local function add(key, op)
   table.insert(M, {

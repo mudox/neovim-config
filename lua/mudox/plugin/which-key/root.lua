@@ -24,7 +24,7 @@ local edit = {
 }
 
 local refactoring = {
-  { "<Bslash><Space>",  c"%s+\\n\\(\\s*\\n\\)\\{2,}+\\r\\r+e", desc = "Squeeze empty lines" },
+  { "<Bslash><Space>",  c"%s+\\n\\(\\s*\\n\\)\\{2,}+\\r\\r+e", desc = "squeeze empty lines" },
 }
 
 local tabpage = {
@@ -49,6 +49,7 @@ local primary = {
   { p"d",  group = "debug"                              },
   { p"e",  group = "edit", edit                         },
   { p"f",  group = "file"                               },
+  { p"fy", group = "copy"                               },
   { p"g",  group = "git"                                },
   -- { p"h",  group = "..."                             },
   { p"i",  group = "inspect"                            },
@@ -64,7 +65,7 @@ local primary = {
   { p"s",  group = "snacks.picker"                      },
   { p"t",  group = "telescope"                          },
   -- { p"u",  group = "..."                             },
-  { p"v",  group = "view"                               },
+  { p"v",  group = "view", r"view"[1]                   },
   { p"w",  group = "window", window,                    },
   { p"x",  group = "trouble"                            },
   -- { p"y",  group = "..."                             },
@@ -77,15 +78,19 @@ local secondary = {
   -- { s"b",      group = "..."               },
   -- { s"c",      group = "..."               },
   -- { s"d",      group = "..."               },
-  { s"e",      group = "edit"                 },
-  { s"e[",     group = "in left"              },
-  { s"e]",     group = "in right"             },
-  { s"e<Tab>", group = "in new tab"           },
+  {
+    { s"e",      group = "edit"                 },
+    { s"e[",     group = "in left"              },
+    { s"e]",     group = "in right"             },
+    { s"e<Tab>", group = "in new tab"           },
+  },
   -- { s"f",      group = "..."               },
   -- { s"g",      group = "..."               },
   -- { s"h",      group = "..."               },
-  { s"i",      group = "inspect"              },
-  { s"iw",     U.inspect.win, desc = 'window' },
+  {
+    { s"i",      group = "inspect"              },
+    { s"iw",     U.inspect.win, desc = 'window' },
+  },
   -- { s"j",      group = "..."               },
   -- { s"k",      group = "..."               },
   -- { s"l",      group = "..."               },
@@ -98,7 +103,7 @@ local secondary = {
   -- { s"s",      group = "..."               },
   -- { s"t",      group = "..."               },
   -- { s"u",      group = "..."               },
-  { s"v",      group = "view"                 },
+  { s"v",      group = "view", r"view"[2]     },
   -- { s"w",      group = "..."               },
   -- { s"x",      group = "..."               },
   -- { s"y",      group = "..."               },
@@ -115,9 +120,27 @@ return {
   { "<Bs>",             group = "close",                  close,       },
   { "<Tab>",            group = "tabpage",                tabpage,     },
 
-  r"view",
-  r"next_prev",
-  r"insert",
 
-  { "fy", group = "copy" },
+  {
+    { "]", group = "next" },
+    { "][", group = "start of" },
+    { "]]", group = "end of"   },
+
+    { "[", group = "prev" },
+    { "[[", group = "start of" },
+    { "[]", group = "end of"   },
+
+    r"next_prev",
+  },
+
+  { "s", group = "surround" },
+
+  { "<C-p>",          K.p"os",       remap = true, desc = "open files" },
+  { "<Space><Space>", K.p"o<Space>", remap = true, desc = "open files" },
+
+  {
+    mode = "i",
+    { K.leader.ic, group = "insert" },
+    r"insert",
+  },
 }

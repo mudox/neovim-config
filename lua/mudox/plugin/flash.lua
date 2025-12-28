@@ -29,7 +29,7 @@ local opts = {
     },
     char = {
       -- `,`, `;` are used as prefixes
-      eys = { "f", "F", "t", "T" },
+      keys = { "t", "T" },
       jump_labels = true,
       char_actions = function(motion)
         return {
@@ -41,7 +41,7 @@ local opts = {
   },
 }
 
-local function empty_line()
+local function goto_empty_line()
   require("flash").jump {
     search = { mode = "search", max_length = 0 },
     highlight = { backdrop = false, matches = false },
@@ -52,9 +52,8 @@ end
 -- stylua: ignore
 local keys = {
   -- jump
-  { "s",        function() require("flash").jump() end,              "[flash] jump",                                                 },
-  { ",",        function() require("flash").jump() end,              "[flash] jump",                   mode = { "o",   "x",       }, },
-  { "g<Space>", empty_line,                                          "[flash] empty line",             mode = { "o",   "x",   "n" }, },
+  { "f",        function() require("flash").jump() end,              "[flash] jump",                   mode = { "o",   "x",   "n" }, },
+  { "g<Space>", goto_empty_line,                                     "[flash] empty line",             mode = { "o",   "x",   "n" }, },
 
   -- expantion
   { ";",        function() require("flash").treesitter() end,        "[flash] expand selection",       mode = { "o",   "x"        }, },
@@ -68,7 +67,7 @@ local keys = {
   { [[/]],      function() require("flash").treesitter_search() end, "[flash] remote treesitter mode", mode = { "o"               }, },
 }
 
-vim.list_extend(keys, { "f", "F", "t", "T" })
+vim.list_extend(keys, { "t", "T" })
 
 return {
   "folke/flash.nvim",

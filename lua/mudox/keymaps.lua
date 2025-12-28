@@ -2,7 +2,7 @@ vim.g.mapleader = K.leader.primary
 vim.g.maplocalleader = K.leader.secondary
 
 -- Save file
-K.map({ "n", "i" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "Save file" })
+K.map({ "n", "i" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "save file" })
 
 -- Sensible `j, k`
 K.nmap("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -52,17 +52,17 @@ K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
 
 -- K.nmap("/", "/\\v", { desc = "/ very magically" })
 -- Clear search highlight with <Esc>
-K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "Clear hlsearch & escape" })
+K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "clear hlsearch & escape" })
 
 -- `<C-w>`
 K.ncmd(K.sc("w"), 'call feedkeys("\\<C-w>", "t")', { desc = "-> <C-w>" })
 
 -- Insert mode keymaps
-K.imap("<M-.>", "<Esc>A", { desc = "Jump to line end" })
-K.imap("<M-l>", "<C-x><C-l>", { remap = true, desc = "Omni completion line" })
+K.imap("<M-.>", "<Esc>A", { desc = "jump to line end" })
+K.imap("<M-l>", "<C-x><C-l>", { remap = true, desc = "omni completion line" })
 
 -- Macro
-K.nnop("q")
+-- `.nnop("q")
 K.nmap(K.sc("q"), "q", { desc = "macro" })
 
 -- Window jump
@@ -95,16 +95,16 @@ K.nmap("<C-w>-", X.arrows.down(resize),  { desc = "height -" })
 -- stylua: ignore end
 
 -- Yank & paste
-K.map({ "i", "c" }, K.i("v"), "<C-r><C-o>+", { desc = "Paste from clipboard" })
-K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "Yank to clipboard" })
+K.map({ "i", "c" }, K.i("v"), "<C-r><C-o>+", { desc = "paste from clipboard" })
+K.map({ "n", "v" }, "<C-S-Y>", '"+y', { desc = "yank to clipboard" })
 K.xmap("<C-u>", function()
   local k = ("y`[%d[Pgv"):format(vim.v.count1)
   vim.cmd.normal { k, bang = false }
-end, { desc = "Duplicate above" })
+end, { desc = "duplicate above" })
 K.xmap("<C-d>", function()
   local k = ("y`]%d]pgv"):format(vim.v.count1)
   vim.cmd.normal { k, bang = false }
-end, { desc = "Duplicate below" })
+end, { desc = "duplicate below" })
 
 -- Cmdline
 local function cmdstart()
@@ -124,13 +124,13 @@ end
 K.nmap("<Enter>", cmdstart, { desc = "enter cmdline" })
 
 -- Terminal
-K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] Leave" })
+K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] leave" })
 
 -- Open in finder
-K.nmap("gX", K.c("!open %:p:h"), { desc = "Open dir in finder" })
+K.nmap("gX", K.c("!open %:p:h"), { desc = "open dir in finder" })
 
 -- stylua: ignore
-K.nmap(K.sc"v", function() X.layout.secondary:open("#") end, { desc = "Edit #" })
+K.nmap(K.sc"v", function() X.layout.secondary:open("#") end, { desc = "edit #" })
 
 K.nnop("]]")
 K.nnop("[[")

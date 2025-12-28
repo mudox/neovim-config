@@ -26,6 +26,10 @@ local cmdline = {
   keymap = { preset = "inherit" },
 }
 
+local term = {
+  enabled = true,
+}
+
 -- stylua: ignore
 local keymap = {
   preset = "enter",
@@ -57,7 +61,14 @@ local keymap = {
 }
 
 local sources = {
-  default = { "lazydev", "lsp", "path", "snippets", "buffer", "calc" },
+  default = {
+    "snippets",
+    "lazydev",
+    "lsp",
+    "path",
+    "buffer",
+    "calc",
+  },
 
   providers = {
     lazydev = {
@@ -89,6 +100,25 @@ local sources = {
     calc = {
       name = "Calc",
       module = "blink-calc",
+    },
+    ripgrep = {
+      module = "blink-ripgrep",
+      name = "Ripgrep",
+      ---@module "blink-ripgrep"
+      ---@type blink-ripgrep.Options
+      opts = {
+        prefix_min_len = 3,
+        backend = {
+          use = "gitgrep-or-ripgrep",
+        },
+        keymap = {
+          [K.i("g")] = {
+            function()
+              require("blink-cmp").show { providers = { "ripgrep" } }
+            end,
+          },
+        },
+      },
     },
   },
 }
@@ -162,19 +192,25 @@ local opts = {
   enabled = function()
     return vim.bo.buftype ~= "prompt" and vim.b.mdx_blink ~= false
   end,
+
   completion = completion,
-
   signature = { enabled = true },
-  snippets = { preset = "luasnip" },
 
+  snippets = { preset = "luasnip" },
   sources = sources,
+
   keymap = keymap,
+
   cmdline = cmdline,
+  term = term,
 }
 
 return {
   "saghen/blink.cmp",
-  dependencies = { "joelazar/blink-calc" },
+  dependencies = {
+    "joelazar/blink-calc",
+    "mikavilpas/blink-ripgrep.nvim",
+  },
   build = "cargo build --release",
   event = { "InsertEnter", "CmdlineEnter", "CmdwinEnter" },
   opts = opts,

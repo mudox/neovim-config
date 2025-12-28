@@ -1,4 +1,9 @@
-local log = Log("xpress")
+local log = require("plenary.log").new {
+  plugin = "xpress",
+  use_console = false,
+  level = "trace",
+}
+
 -- log.info("\27[2J\27[3J\27[H")
 
 local wv_name = "xpress"

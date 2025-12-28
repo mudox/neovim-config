@@ -20,10 +20,6 @@ end
 
 -- stylua: ignore
 return {
-  mode = "i",
-
-  { K.leader.insert, group = "insert" },
-
   { K.i"<C-;>", "<C-k>",              desc = "insert digraph" },
 
   { "<M-j>",    "<C-o>o",             desc = "new line below" },

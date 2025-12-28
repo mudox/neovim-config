@@ -35,36 +35,37 @@ On("VimResized", {
 -- Auto resize window 〉
 
 -- Quit with `q` 〈
-
-On("FileType", function()
-  vim.bo.buflisted = false
-  K.nmap("q", K.c("close"), { buffer = true, nowait = true })
+local fts = {
+  "OverseerList",
+  "PlenaryTestPopup",
+  "aerial-nav",
+  "checkhealth",
+  "fugitive",
+  "fugitiveblame",
+  "grug-far",
+  "help",
+  "lspinfo",
+  "neotest-output",
+  "neotest-output-panel",
+  "neotest-summary",
+  "notify",
+  "null-ls-info",
+  "nvim-undotree",
+  "qf",
+  "qr_panel",
+  "spectre_panel",
+  "startuptime",
+  "tsplayground",
+}
+On("BufEnter", function(ev)
+  if vim.tbl_contains(fts, vim.bo[ev.buf].filetype) then
+    vim.bo[ev.buf].buflisted = false
+    K.nmap("q", K.c("wincmd c"), { buffer = ev.buf, nowait = true, remap = false })
+    K.nmap("<Bs>", K.c("wincmd c"), { buffer = ev.buf, nowait = true, remap = false })
+  end
 end, {
   group = V.ag.q,
   desc = "quit",
-  pattern = {
-    "OverseerList",
-    "PlenaryTestPopup",
-    "aerial-nav",
-    "checkhealth",
-    "fugitive",
-    "fugitiveblame",
-    "grug-far",
-    "help",
-    "lspinfo",
-    "neotest-output",
-    "neotest-output-panel",
-    "neotest-summary",
-    "notify",
-    "null-ls-info",
-    "nvim-undotree",
-    "qf",
-    "qr_panel",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "pager",
-  },
 })
 
 -- Close with `q` 〉

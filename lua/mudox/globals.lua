@@ -11,6 +11,7 @@ _G.V = {
       return group
     end,
   }), -- augroups
+
   noice = false,
   ufo = true,
 }
@@ -39,11 +40,3 @@ _G.K = require("mudox.util.keymap")
 
 ---Symbols
 _G.I = require("mudox.ui.icon")
-
-_G.Log = function(scope)
-  return require("plenary.log").new {
-    plugin = scope,
-    use_console = false,
-    level = "trace",
-  }
-end
