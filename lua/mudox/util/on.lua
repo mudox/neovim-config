@@ -2,23 +2,23 @@
 ---
 ---Examples
 ---```lua
----  On(event, fn)
----  On(event, fn, {...})
----  On(event, {...})
+---  On(events, fn)
+---  On(events, fn, {...})
+---  On(events, {...})
 ---```
 local function on(_, ...)
   local args = { ... }
   if #args == 2 then
     -- for `On(event, fn)`
     if type(args[2]) == "function" then
-      local event, fn = ...
-      vim.api.nvim_create_autocmd(event, {
+      local events, fn = ...
+      vim.api.nvim_create_autocmd(events, {
         callback = fn,
       })
     else
       -- for `On(event, opts)`
-      local event, opts = ...
-      vim.api.nvim_create_autocmd(event, opts)
+      local events, opts = ...
+      vim.api.nvim_create_autocmd(events, opts)
     end
   elseif #args == 3 and type(args[2]) == "function" and type(args[3]) == "table" then
     -- for `On(event, fn, { ... })`

@@ -23,7 +23,7 @@ local function init()
   -- vim.o.laststatus = 3
 
   On("WinEnter", function()
-    if not U.window.is_floating() then
+    if not U.window.is_float() then
       local listed_buffers = vim.tbl_filter(function(b)
         return vim.bo[b].buflisted
       end, vim.api.nvim_list_bufs())
@@ -56,12 +56,12 @@ end
 local function config()
   require("bufferline").setup {
     options = {
-      indicator = { style = "none" },
-      separator_style = { "", " " }, -- transparent tabline appearance
+      indicator          = { style = "none" },
+      separator_style    = { "", " " }, -- transparent tabline appearance
 
-      name_formatter = name_formatter,
+      name_formatter     = name_formatter,
 
-      hover = {
+      hover              = {
         enabled = true,
         delay = 150,
         reveal = { "close" },
@@ -76,13 +76,13 @@ local function config()
       right_trunc_marker = "⋯",
       -- stylua: ignore end
 
-      groups = {
+      groups             = {
         items = {
           require("bufferline.groups").builtin.pinned:with { icon = " " },
         },
       },
 
-      custom_filter = filter,
+      custom_filter      = filter,
     },
   }
 
@@ -91,20 +91,20 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<M-,> ✓",      "Pick",                 "pick",           },
-  { K.p"fb ✓",      "Pick",                 "pick",           },
+  { "<M-,> ✓", "Pick", "pick", },
+  { K.p "fb ✓", "Pick", "pick", },
 
   -- close buffer
-  { "x",            "PickClose",            "pick & close",   },
-  { "<",            "CloseLeft",            "close left",     },
-  { ">",            "CloseRight",           "close right",    },
-  { "o",            "CloseOthers",          "close other",    },
-  { "O",            "GroupClose ungrouped", "close unpinned", },
+  { "x", "PickClose", "pick & close", },
+  { "<", "CloseLeft", "close left", },
+  { ">", "CloseRight", "close right", },
+  { "o", "CloseOthers", "close other", },
+  { "O", "GroupClose ungrouped", "close unpinned", },
 
-  { "-",            "TogglePin",            "pin",            },
+  { "-", "TogglePin", "pin", },
 
-  { "<C-S-]> ✓",    "CycleNext",            "cycle next",     },
-  { "<C-S-[> ✓",    "CyclePrev",            "cycle previous", },
+  { "<C-S-]> ✓", "CycleNext", "cycle next", },
+  { "<C-S-[> ✓", "CyclePrev", "cycle previous", },
 }
 keys = K.lazy_keys(keys, {
   key_prefix = K.p("b"),

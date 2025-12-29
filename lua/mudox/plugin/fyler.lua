@@ -8,9 +8,32 @@ return {
   },
   opts = {
     views = {
-      explorer = {
-        win_opts = {
-          winhighlight = "Normal:MdxFloatFrameNormal,FloatBorder:MdxFloatFrameBorder",
+      finder = {
+        columns = {
+          git = {
+            enabled = false,
+          },
+        },
+        mappings_opts = {
+          nowait = true,
+        },
+        mappings = {
+          ["<C-v>"] = "SelectVSplit",
+          ["<C-s>"] = "SelectSplit",
+
+          ["zm"] = "CollapseNode",
+          ["zM"] = "CollapseAll",
+
+          ["-"] = "GotoParent",
+        },
+        win = {
+          kinds = {
+            float = {
+              win_opts = {
+                winhighlight = "NormalFloat:mdx_f,FloatBorder:mdx_fb,FloatTitle:mdx_fb",
+              },
+            },
+          },
         },
       },
     },

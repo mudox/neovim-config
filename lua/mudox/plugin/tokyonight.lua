@@ -7,11 +7,11 @@ local picker_title = "#ff966c"
 local function mudox(hl, c)
   -- floating window styles
   -- frame
-  hl.mdx_frame_float        = { link = "Normal" }
-  hl.mdx_frame_float_border = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
+  hl.mdx_f  = { link = "Normal" }
+  hl.mdx_fb = { fg = hl.FloatBorder.fg, bg = hl.Normal.bg }
   -- block
-  hl.mdx_block_float        = {                 bg = c.bg_dark }
-  hl.mdx_block_float_border = { fg = c.bg_dark, bg = c.bg_dark }
+  hl.mdx_b  = {                 bg = c.bg_dark }
+  hl.mdx_bb = { fg = c.bg_dark, bg = c.bg_dark }
 
   -- terminal
   hl.xpress_winbar_item                   = { fg = "grey",  bg = "#043c38" }
@@ -20,7 +20,7 @@ local function mudox(hl, c)
   hl.xpress_winbar_item_selected_reverted = { fg = "#096a62" }
 
   hl.xpress_winbar = { }
-  hl.mdx_float_term_winbar = { link = 'mdx_block_float' }
+  hl.mdx_float_term_winbar = { link = 'mdx_b' }
 
   -- cursor
   hl.mdx_cursor =   { bg = "orange" }
@@ -32,11 +32,11 @@ local function nvim(hl, c)
   hl.MsgSeparator = { link = "WinSeparator" }
 
   -- floating windows
-  -- hl.NormalFloat = { link = "mdx_block_float" }
-  -- hl.FloatBorder = { link = "mdx_block_float_border"}
+  -- hl.NormalFloat = { link = "mdx_b" }
+  -- hl.FloatBorder = { link = "mdx_bb"}
 end
 
-local function telescope(hl, c)
+local function telescope_b(hl, c)
   hl.TelescopeNormal = {
     fg = c.fg_dark,
     bg = c.bg_dark1,
@@ -85,6 +85,48 @@ local function telescope(hl, c)
   hl.TelescoeResultsNormal = {
     bg = c.bg_dark1,
     fg = c.fg_dark1,
+  }
+end
+
+local function telescope_f(hl, c)
+  hl.TelescopeNormal = {
+    link = "mdx_f"
+  }
+  hl.TelescopeBorder = {
+    link = "mdx_fb"
+  }
+
+  -- input
+  hl.TelescopePromptBorder = {
+    link = "mdx_fb"
+  }
+  hl.TelescopePromptTitle = {
+    link = "mdx_fb"
+  }
+  hl.TelescopePromptNormal = {
+    link = "mdx_f"
+  }
+
+  -- preview
+  hl.TelescopePreviewTitle = {
+    link = "mdx_fb"
+  }
+  hl.TelescopePreviewBorder = {
+    link = "mdx_fb"
+  }
+  hl.TelescopePreviewNormal = {
+    link = "mdx_f"
+  }
+
+  -- results
+  hl.TelescoeResultsTitle = {
+    link = "mdx_fb"
+  }
+  hl.TelescoeResultsBorder = {
+    link = "mdx_fb"
+  }
+  hl.TelescoeResultsNormal = {
+    link = "mdx_f"
   }
 end
 
@@ -169,11 +211,11 @@ local function fzflua(hl, c)
 end
 
 local function lazy(hl, c)
-  hl.LazyNormal = { link = "mdx_block_float" }
+  hl.LazyNormal = { link = "mdx_b" }
 end
 
 local function mason(hl, c)
-  hl.MasonNormal = { link = "mdx_block_float" }
+  hl.MasonNormal = { link = "mdx_b" }
 end
 
 local function trouble(hl, _)
@@ -273,8 +315,8 @@ local function tiny_inline_diagnostic(hl, _)
 end
 
 local function mini(hl, c)
-  hl.MiniFilesNormal = { link = "mdx_frame_float" }
-  hl.MiniFilesBorder = { link = "mdx_frame_float_border" }
+  hl.MiniFilesNormal = { link = "mdx_f" }
+  hl.MiniFilesBorder = { link = "mdx_fb" }
 end
 
 local function on_highlights(...)
@@ -296,7 +338,7 @@ local function on_highlights(...)
   lightbulb(...)
   multicursor(...)
   snacks(...)
-  telescope(...)
+  telescope_b(...)
   tiny_inline_diagnostic(...)
   trouble(...)
   win_separator(...)

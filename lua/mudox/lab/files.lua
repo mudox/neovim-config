@@ -29,12 +29,30 @@ local function open_ft(open)
   end
 end
 
--- stylua: ignore start
-local function edit(path)           return function() vim.cmd.edit(path) end           end
-local function main_open(path)      return function() X.layout.main:open(path) end     end
-local function secondary_open(path) return function() X.layout.secondary:open(path) end end
-local function tab_open(path)       return function() vim.cmd.tabnew(path) end         end
--- stylua: ignore end
+local function edit(path)
+  return function()
+    U.window.close_all_floats()
+    require("edgy").goto_main()
+    vim.cmd.edit(path)
+  end
+end
+local function main_open(path)
+  return function()
+    U.window.close_all_floats()
+    X.layout.main:open(path)
+  end
+end
+local function secondary_open(path)
+  return function()
+    U.window.close_all_floats()
+    X.layout.secondary:open(path)
+  end
+end
+local function tab_open(path)
+  return function()
+    vim.cmd.tabnew(path)
+  end
+end
 
 local M = {
   base = {

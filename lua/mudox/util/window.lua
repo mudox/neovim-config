@@ -1,34 +1,28 @@
 local M = {}
 
-local function all_valid_floating_wins()
-  local wins = vim.tbl_filter(function(w)
-    local ok, config = pcall(vim.api.nvim_win_get_config, w)
-    if not ok then
-      return false
+function M.list_floats()
+  return vim.iter(vim.api.nvim_list_wins()):fold({}, function(acc, wid)
+    local ok, config = pcall(vim.api.nvim_win_get_config, wid)
+    if not ok or config.relative == "" then
+      return acc
     else
-      return config.relative ~= ""
+      config.id = wid
+      acc[#acc + 1] = config
+      return acc
     end
-  end, vim.api.nvim_list_wins())
-
-  wins = vim.tbl_map(function(w)
-    local config = vim.api.nvim_win_get_config(w)
-    config.id = w
-    return config
-  end, wins)
-
-  return wins
+  end)
 end
 
-function M.close_all_floating_wins()
-  for _, win in ipairs(all_valid_floating_wins()) do
+function M.close_all_floats()
+  for _, win in ipairs(M.list_floats()) do
     pcall(vim.api.nvim_win_close, win.id, false)
   end
 end
 
-function M.focus_next_floating_win()
+function M.focus_next_float()
   local wins = vim.tbl_filter(function(w)
     return w.focusable
-  end, all_valid_floating_wins())
+  end, M.list_floats())
   if #wins == 0 then
     print("No feasible floating windows found")
     return
@@ -54,7 +48,7 @@ end
 ---Return if the window is a floating window
 ---@param win number?
 ---@return boolean
-function M.is_floating(win)
+function M.is_float(win)
   win = win or vim.api.nvim_get_current_win()
   return vim.api.nvim_win_get_config(win).relative ~= ""
 end

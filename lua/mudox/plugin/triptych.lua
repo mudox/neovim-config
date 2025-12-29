@@ -40,7 +40,7 @@ local function config()
 
     if hit then
       local winid = orig(unpack(args))
-      vim.wo[winid].winhighlight = "NormalFloat:mdx_frame_float,FloatBorder:mdx_frame_float_border"
+      vim.wo[winid].winhighlight = "NormalFloat:mdx_f,FloatBorder:mdx_fb"
       return winid
     else
       return false

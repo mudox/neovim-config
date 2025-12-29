@@ -25,31 +25,6 @@ K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
 K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
 K.normal("z<Space>", "zMzvzczO", { remap = true })
 
-local fdlvl = (function()
-  local function notify(dir)
-    local lvl = vim.wo.foldlevel + ((dir == "right" or dir == "up") and 1 or -1)
-    lvl = math.max(0, lvl)
-    print(("fold level %d %s"):format(lvl, (dir == "right" or dir == "up") and "↘" or "↖"))
-  end
-
-  return {
-    name = "Fold Level",
-    left = function()
-      notify("left")
-      vim.cmd.normal { "zm", bang = false }
-    end,
-    right = function()
-      notify("right")
-      vim.cmd.normal { "zr", bang = false }
-    end,
-    notify = function(dir)
-      notify(dir)
-    end,
-  }
-end)()
-K.nmap("<C-S-,>", X.arrows.left(fdlvl), "fold a level")
-K.nmap("<C-S-.>", X.arrows.right(fdlvl), "unfold a level")
-
 -- K.nmap("/", "/\\v", { desc = "/ very magically" })
 -- Clear search highlight with <Esc>
 K.map({ "n", "i" }, "<Esc>", "<Cmd>nohlsearch<Cr><Esc>", { desc = "clear hlsearch & escape" })

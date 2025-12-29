@@ -1,5 +1,6 @@
 local providers_per_ft = {
-  ["_"] = { "lsp", "indent" },
+  ["_"] = { "treesitter", "indent" },
+  lua = { "treesitter", "lsp" },
 }
 
 local handler = function(virt_text, lnum, end_lnum, width, truncate)
@@ -77,23 +78,56 @@ local function config()
   end)
 end
 
-local function preview()
-  require("ufo").peekFoldedLinesUnderCursor()
+local ufo = { level = 0 }
+
+function ufo:notify()
+  print("fold level " .. self.level)
+end
+
+function ufo:zM()
+  self.level = 0
+  require("ufo").closeAllFolds()
+  ufo:notify()
+end
+
+function ufo:zm()
+  self.level = math.max(0, self.level - 1)
+  require("ufo").closeFoldsWith(self.level)
+  ufo:notify()
+end
+
+function ufo:zR()
+  self.level = 8 -- HACK: magic number
+  require("ufo").openAllFolds()
+  ufo:notify()
+end
+
+function ufo:zr()
+  self.level = math.min(99, self.level + 1)
+  require("ufo").closeFoldsWith(self.level)
+  ufo:notify()
 end
 
 -- stylua: ignore
+local fold = {
+  name  = "fold Level",
+  left  = function() ufo:zm() end,
+  right = function() ufo:zr() end,
+  up    = function() ufo:zM() end,
+  down  = function() ufo:zR() end,
+  notify = function() end
+}
+
+-- stylua: ignore
 local keys = {
-  { "zR",    function() require("ufo").openAllFolds() end,               desc = "[ufo] open all folds",  },
-  { "zM",    function() require("ufo").closeAllFolds() end,              desc = "[ufo] close all folds", },
+  { "zR",    X.arrows.down(fold),  desc = "[ufo] open all",  },
+  { "zM",    X.arrows.up(fold),    desc = "[ufo] close all", },
 
-  { "zr",    function() require("ufo").openFoldsExceptKinds() end,       desc = "[ufo] open fold",       },
-  { "zm",    function() require("ufo").closeFoldsWith() end,             desc = "[ufo] close fold",      },
+  { "zr",    X.arrows.right(fold), desc = "[ufo] open +",    },
+  { "zm",    X.arrows.left(fold),  desc = "[ufo] close -",   },
 
-  { "zx",    "zMzv", remap = true,                                       desc = "[ufo] close all folds", },
-
-  { "gj",    function() require('ufo').peekFoldedLinesUnderCursor() end, desc = "[ufo] preview",         },
-
-  { K.p"vu", K.c"UfoInspect",                                            desc = "ufo",                   },
+  { "zx",    "zMzv", remap = true, desc = "[ufo] zx",        },
+  { K.p"vu", K.c"UfoInspect",      desc = "ufo",             },
 }
 
 return {

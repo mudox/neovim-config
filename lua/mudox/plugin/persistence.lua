@@ -1,7 +1,7 @@
 return {
   "folke/persistence.nvim",
   event = "BufReadPre",
-  opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" } },
+  opts = {},
   -- stylua: ignore
   -- keys = {
   -- { "<Bs>r", function() require("persistence").load() end,                desc = "[Persistence] Restore" },

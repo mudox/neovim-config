@@ -56,7 +56,7 @@ local function config()
   require("oil").setup(opts)
 
   On.FileType("oil", function()
-    vim.wo.winhighlight = "NormalFloat:mdx_frame_float,FloatBorder:mdx_frame_float_border"
+    vim.wo.winhighlight = "NormalFloat:mdx_f,FloatBorder:mdx_fb"
   end)
 end
 

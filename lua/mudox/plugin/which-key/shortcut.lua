@@ -22,6 +22,24 @@ local function open_or_alternate()
   end
 end
 
+local function run_t()
+  local n
+  if vim.v.count1 ~= 1 then
+    n = vim.v.count1
+  elseif V.t then
+    n = V.t
+  else
+    n = 1
+  end
+  local f = ".mise/tasks/t" .. n
+  if vim.uv.fs_stat(f) then
+    print("run task file " .. f)
+    vim.system { f }
+  else
+    print(("task file %s does not exist"):format(f))
+  end
+end
+
 -- stylua: ignore
 return {
   { k"1",       function() X.layout.main:focus() end,     desc = "main window"      },
@@ -32,6 +50,8 @@ return {
   { k"v",       open_alternative, desc = "edit #" },
   { "<C-S-CR>", open_or_alternate, desc = "open or edit #" },
 
-  { k"m",       "g<",             desc = "g<"        },
-  { k"M",       K.c"message",     desc = ":messages" },
+  { k"m", "g<",         desc = "g<"        },
+  { k"M", K.c"message", desc = ":messages" },
+
+  { k"t", run_t, desc = "test" }
 }

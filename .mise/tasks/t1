@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+#MISE description="test task-1"
+
+if ! tmux has -t.2 &>/dev/null; then
+  tmux split-window -hd
+fi
+
+tmux respawn-pane -t.2 -k nvim
+sleep 0.3
+tmux send-keys -t.2 C-p
+
+# vim: ft=zsh

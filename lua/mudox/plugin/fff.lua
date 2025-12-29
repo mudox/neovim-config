@@ -10,8 +10,8 @@ local opts = {
   title = "FFF",
   prompt = " 󰉁 ",
   hl = {
-    normal = "mdx_frame_float",
-    border = "mdx_frame_float_border",
+    normal = "mdx_f",
+    border = "mdx_fb",
   },
 }
 

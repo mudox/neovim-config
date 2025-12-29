@@ -11,6 +11,7 @@ local function defaults()
     selection_caret = " ",
     prompt_prefix   = " ",
     multi_icon      = "│",
+    borderchars     = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     -- stylua: ignore end
 
     -- dynamic_preview_title = true,
@@ -20,6 +21,7 @@ local function defaults()
     layout_config = {
       prompt_position = "top",
     },
+
     sorting_strategy = "ascending",
 
     -- files finder

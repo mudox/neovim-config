@@ -147,7 +147,7 @@ function M.setup_term_buffer()
   M.setup_local_keymaps()
 
   if M.is_floating_term_win(0) then
-    vim.wo.winhl = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border,"
+    vim.wo.winhl = "NormalFloat:mdx_b,FloatBorder:mdx_bb,"
       .. "WinBar:mdx_float_term_winbar,WinBarNC:mdx_float_term_winbar"
   else
     vim.wo.winhl = "WinBar:xpress_winbar"

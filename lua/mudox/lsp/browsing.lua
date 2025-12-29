@@ -19,10 +19,10 @@ K.ndel("grr")
 K.ndel("grt")
 
 -- Glance
-K.nmap("g<Space>d",     K.c"Glance definitions",            { desc = "[glance] goto definitions"      })
-K.nmap("g<Space>y",     K.c"Glance type_definitions",       { desc = "[glance] goto type definitions" })
-K.nmap("g<Space>m",     K.c"Glance implementations",        { desc = "[glance] goto implementations"  })
-K.nmap("g<Space>r",     K.c"Glance references",             { desc = "[glance] goto references"       })
+K.nmap("gD",     K.c"Glance definitions",             { desc = "[glance] goto definitions"      })
+K.nmap("gY",     K.c"Glance type_definitions",        { desc = "[glance] goto type definitions" })
+K.nmap("gM",     K.c"Glance implementations",         { desc = "[glance] goto implementations"  })
+K.nmap("gR",     K.c"Glance references",              { desc = "[glance] goto references"       })
 
 -- in favor of hover.nvim
 K.nnop("K")

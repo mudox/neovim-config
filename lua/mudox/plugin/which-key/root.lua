@@ -7,15 +7,16 @@ local s = K.s
 local c = K.c
 
 local close = {
-  { "<Bs>v",     c"confirm qall",                  desc = "quit all"                   },
-  { "<Bs>V",     c"qall!",                         desc = "quit all forcibly"          },
-  { "<Bs>r",     c"restart",                       desc = "restart"                    },
-  { "<Bs>R",     c"restart!",                      desc = "restart forcibly"           },
+  { "<Bs>v",     c"confirm qall",           desc = "exit"                 },
+  { "<Bs>V",     c"qall!",                  desc = "exit!"                },
 
-  { "<Bs><Tab>", c"tabclose",                      desc = "close tabpage"              },
-  { "<Bs>w",     c"wincmd c",                      desc = "close window"               },
+  { "<Bs>r",     c"confirm restart",        desc = "restart"              },
+  { "<Bs>R",     c"restart +qall!",         desc = "restart!"             },
 
-  { "<Bs>f",     U.window.close_all_floating_wins, desc = "close all floating windows" },
+  { "<Bs>w",     c"wincmd c",               desc = "window"               },
+  { "<Bs><Tab>", c"tabclose",               desc = "tabpage"              },
+
+  { "<Bs>f",     U.window.close_all_floats, desc = "all floating windows" },
 }
 
 local edit = {
@@ -50,7 +51,7 @@ local primary = {
   { p"e",  group = "edit", edit                         },
   { p"f",  group = "file"                               },
   { p"fy", group = "copy"                               },
-  { p"g",  group = "git"                                },
+  { p"g",  group = "git", r"git"                        },
   -- { p"h",  group = "..."                             },
   { p"i",  group = "inspect"                            },
   -- { p"j",  group = "..."                             },

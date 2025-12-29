@@ -108,7 +108,7 @@ local function config()
   }
 
   On.FileType("conform-info", function()
-    vim.wo.winhighlight = "NormalFloat:mdx_block_float,FloatBorder:mdx_block_float_border"
+    vim.wo.winhighlight = "NormalFloat:mdx_b,FloatBorder:mdx_bb"
   end)
 
   -- HACK: change window layout
@@ -141,8 +141,8 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<Bslash>q",  "<Cmd>Conformat<Cr>", mode = { "n", "v" }, desc = "[Conform] Format" },
-  { K.p"vq", "<Cmd>ConformInfo<Cr>",                    desc = "Conform" },
+  { "<Bslash>q",  K.c"Conformat", mode = { "n", "v" }, desc = "[conform] format" },
+  { K.p"vq", K.c"ConformInfo", desc = "conform" },
 }
 
 return {

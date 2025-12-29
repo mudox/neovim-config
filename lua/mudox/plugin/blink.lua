@@ -27,7 +27,7 @@ local cmdline = {
 }
 
 local term = {
-  enabled = true,
+  enabled = false,
 }
 
 -- stylua: ignore
