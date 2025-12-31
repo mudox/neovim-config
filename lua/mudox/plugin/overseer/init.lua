@@ -1,12 +1,11 @@
-local function r(name)
-  return require("mudox.plugin.overseer." .. name)
-end
+-- stylua: ignore
+local function r(name) return require("mudox.plugin.overseer." .. name) end
 
 local templates = {
   "builtin",
 
   "mudox.quick_run",
-  "mudox.run_neovim_lua_script",
+  "mudox.run_by_neovim",
 }
 
 -- stylua: ignore
@@ -92,9 +91,7 @@ end
 
 return {
   "stevearc/overseer.nvim",
-
   cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo", "OverseerBuild" },
   keys = r("keymaps"),
-
   config = config,
 }

@@ -55,7 +55,7 @@ function M.dir_func(dir)
 end
 
 local once = false
-function M.setup()
+function M.init()
   assert(not once)
   once = true
 

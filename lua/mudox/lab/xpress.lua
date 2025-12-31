@@ -412,14 +412,7 @@ function _G.xpress_winbar_handler(buf)
   vim.api.nvim_win_set_buf(0, buf)
 end
 
-local function init()
-  -- On("TermOpen", function()
-  --   log.trace("event TermOpen")
-  --
-  --   M.setup_buf()
-  --   M.setup_win()
-  -- end)
-
+function M.init()
   On.WinEnter(function()
     log.trace("event WinEnter")
     if not M.is_float(0) and not M.pinned then
@@ -461,7 +454,5 @@ local function init()
 
   M.last_visited_term_buf = M.create_term_buf()
 end
-
-init()
 
 return M

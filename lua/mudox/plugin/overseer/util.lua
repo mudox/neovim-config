@@ -67,7 +67,7 @@ end
 function M.quick_run()
   local o = require("overseer")
 
-  o.run_template({ name = M.default_task_name() }, function(task)
+  o.run_task({ name = M.default_task_name() }, function(task)
     if task then
       local orig_win = vim.api.nvim_get_current_win()
       o.run_action(task, "open vsplit")
@@ -79,7 +79,7 @@ function M.quick_run()
 
       vim.api.nvim_set_current_win(orig_win)
     else
-      vim.notify("Failed to run task", vim.log.levels.ERROR)
+      vim.notify("Failed to run task: quick run, unsupported filetype?", vim.log.levels.ERROR)
     end
   end)
 end
@@ -87,7 +87,7 @@ end
 function M.watch_run()
   local o = require("overseer")
 
-  o.run_template({ name = M.default_task_name() }, function(task)
+  o.run_task({ name = M.default_task_name() }, function(task)
     if task then
       task:add_component { "restart_on_save", paths = { vim.fn.expand("%:p") } }
 
@@ -95,7 +95,7 @@ function M.watch_run()
       o.run_action(task, "open vsplit")
       vim.api.nvim_set_current_win(main_win)
     else
-      vim.notify("Failed to run task: quick run, unsupported filetype?", vim.log.levels.ERROR)
+      vim.notify("Failed to run task: watch run, unsupported filetype?", vim.log.levels.ERROR)
     end
   end)
 end

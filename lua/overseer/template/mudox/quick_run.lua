@@ -1,3 +1,4 @@
+---@type overseer.TemplateFileDefinition
 return {
   name = "quick run",
 

@@ -1,8 +1,9 @@
+---@type overseer.TemplateFileDefinition
 return {
-  name = "run neovim lua script",
+  name = "run by neovim",
 
   condition = {
-    filetype = { "lua" },
+    filetype = "lua",
   },
 
   builder = function()

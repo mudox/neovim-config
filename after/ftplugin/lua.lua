@@ -3,7 +3,7 @@ o.suffixesadd:prepend(".lua")
 o.suffixesadd:prepend("init.lua")
 o.path:prepend(vim.fn.stdpath("config") .. "/lua")
 
-K.nmap(K.sc("r"), function()
+K.nmap(K.sc("s"), function()
   vim.cmd([[
   silent! write
   source %
