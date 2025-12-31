@@ -20,7 +20,7 @@ local function mudox(hl, c)
   hl.xpress_winbar_item_selected_reverted = { fg = "#096a62" }
 
   hl.xpress_winbar = { }
-  hl.mdx_float_term_winbar = { link = 'mdx_b' }
+  hl.xpress_winbar = { link = 'mdx_b' }
 
   -- cursor
   hl.mdx_cursor =   { bg = "orange" }

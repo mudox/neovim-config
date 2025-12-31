@@ -1,5 +1,6 @@
 local function keymaps()
   local a = require("telescope").extensions.file_browser.actions
+  -- stylua: ignore
   return {
     i = {
       ["<C-,>n"] = a.create,
@@ -9,7 +10,7 @@ local function keymaps()
       ["<C-,>m"] = a.move,
       ["<C-,>o"] = a.open,
 
-      ["<C-/>"] = a.toggle_browser,
+      ["<C-/>"]  = a.toggle_browser,
     },
   }
 end
@@ -58,7 +59,6 @@ end
 -- stylua: ignore
 local keys = {
   { K.p"t\\",  open_buffer, desc = "[tfb] open buffer path" },
-  { "<C-S-p>", open_cwd,    desc = "[tfb] open $cwd"        },
 
   { K.p"oB",   open_buffer, desc = "[tfb] open buffer path" },
   { K.p"ob",   open_cwd,    desc = "[tfb] open $cwd"        },

@@ -19,4 +19,5 @@ return {
     icons = I.kind,
     node_markers = { enabled = false },
   },
+  cond = false,
 }

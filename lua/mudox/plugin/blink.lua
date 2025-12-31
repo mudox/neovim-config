@@ -37,8 +37,8 @@ local keymap = {
   ["<C-y>"]     = {}, -- conflict with tmux
 
   -- tab
-  -- ["<Tab>"]     = { "select_and_accept", "fallback" },
-  ["<Tab>"]     = {},
+  ["<Tab>"]     = { "select_and_accept", "fallback" },
+  -- ["<Tab>"]     = {},
   ["<S-Tab>"]   = {},
 
   -- nav

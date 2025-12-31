@@ -1,5 +1,6 @@
 local disable_hl_fts = {
   tmux = true,
+  csv = true,
 }
 
 local function should_disable_hl()

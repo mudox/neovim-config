@@ -46,7 +46,7 @@ local function keys()
   }
 end
 
-local config = {
+local opts = {
   -- UI
   signcolumn = false, -- disabled initially, toggle with `:Gitsigns toggle_signs`
   signs = signs,
@@ -82,5 +82,5 @@ local config = {
 return {
   "lewis6991/gitsigns.nvim",
   keys = keys,
-  config = config,
+  opts = opts,
 }

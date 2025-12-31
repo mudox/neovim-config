@@ -53,32 +53,33 @@ local layouts = {
 
 -- stylua: ignore
 local keys = {
-  { p":",             function() Snacks.picker.pickers() end,         desc = "pickers"                 },
-  { p".",             function() Snacks.picker.resume() end,          desc = "resume"                  },
+  { p":",      function() Snacks.picker.pickers() end,         desc = "pickers"                 },
+  { p".",      function() Snacks.picker.resume() end,          desc = "resume"                  },
 
-  { K.sc"f",          smart,                                          desc = "[snacks] files"          },
-  { p"f",             smart,                                          desc = "files"                   },
-  { p"r",             recent,                                         desc = "recent"                  },
-  { p"F",             function() Snacks.picker.git_files() end,       desc = "git files"               },
+  { K.sc"f",   smart,                                          desc = "[snacks] files"          },
+  { p"f",      smart,                                          desc = "files"                   },
+  { p"r",      recent,                                         desc = "recent"                  },
+  { p"F",      function() Snacks.picker.git_files() end,       desc = "git files"               },
 
-  { p"b",             function() Snacks.picker.buffers() end,         desc = "buffers"                 },
+  { p"b",      function() Snacks.picker.buffers() end,         desc = "buffers"                 },
 
-  { K.sc"G",          function() Snacks.picker.grep() end,            desc = "[snacks] grep"           },
-  { p"g",             function() Snacks.picker.grep() end,            desc = "grep"                    },
+  { K.sc"G",   function() Snacks.picker.grep() end,            desc = "[snacks] grep"           },
+  { p"g",      function() Snacks.picker.grep() end,            desc = "grep"                    },
 
-  { "<C-S-/>",        function() Snacks.picker.help() end,            desc = "[snacks] help"           },
-  { p"h",             function() Snacks.picker.help() end,            desc = "help"                    },
+  { "<C-S-/>", function() Snacks.picker.help() end,            desc = "[snacks] help"           },
+  { p"h",      function() Snacks.picker.help() end,            desc = "help"                    },
 
-  { p"C",             function() Snacks.picker.command_history() end, desc = "command history"         },
-  { p"n",             function() Snacks.picker.notifications() end,   desc = "notification history"    },
+  { p"c",      function() Snacks.picker.commands() end,        desc = "commands"                },
+  { p"C",      function() Snacks.picker.command_history() end, desc = "command history"         },
+  { p"n",      function() Snacks.picker.notifications() end,   desc = "notification history"    },
 
-  { p"p",             function() Snacks.picker.lazy() end,            desc = "plugins"                 },
+  { p"p",      function() Snacks.picker.lazy() end,            desc = "plugins"                 },
 
-  { K.i"i",          function() Snacks.picker.icons() end,           desc = "[snacks] icons",         mode = 'i' },
-  { K.i"y",          function() Snacks.picker.yanky() end,           desc = "[snacks] yanky",         mode = 'i' },
+  { K.i"i",    function() Snacks.picker.icons() end,            desc = "[snacks] icons",        mode = "i" },
+  { K.i"y",    function() Snacks.picker.yanky() end,            desc = "[snacks] yanky",        mode = "i" },
 
   -- symbols
-  { "gof",            functions,                                      desc = "[snacks] goto functions" },
+  { "gof",     functions,                                      desc = "[snacks] goto functions" },
 }
 
 local opts = {

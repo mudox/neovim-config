@@ -6,7 +6,7 @@ local log = require("plenary.log").new {
 
 -- log.info("\27[2J\27[3J\27[H")
 
-local wv_name = "xpress"
+-- local wv_name = "xpress"
 local title_bv_name = "xpress_title"
 
 ---@alias mdx.xpress.WinPos
@@ -36,13 +36,21 @@ local M = {
   last_visited_term_buf = nil,
 }
 
-local function assert_buf(buf)
-  assert(M.is_term_buf(buf), "should be in terminal buffer")
+function M.is_buf(buf)
+  return vim.bo[buf].filetype == "xpress" and vim.bo[buf].buftype == "terminal"
 end
 
-local function assert_win(win)
-  assert(M.is_term_buf(win), "should be in xpress window")
-  assert_buf(vim.api.nvim_win_get_buf(win))
+local function assert_buf(buf)
+  assert(M.is_buf(buf), "should be in xpress buffer")
+end
+
+function M.is_float(win)
+  return M.is_buf(vim.fn.winbufnr(win)) and vim.api.nvim_win_get_config(win).relative ~= ""
+end
+
+local function assert_float(win)
+  assert_buf(vim.fn.winbufnr(win))
+  assert(M.is_float(win), "should be in xpress float")
 end
 
 ---reposition terminal win
@@ -138,33 +146,28 @@ function M.rename()
   end)
 end
 
-function M.setup_term_buffer()
+function M.setup_buf()
+  assert_buf(0)
+
+  vim.bo.buflisted = false
+  vim.bo.swapfile = false
+
+  M.setup_local_keymaps()
+end
+
+function M.setup_win()
   assert_buf(0)
 
   vim.wo.winbar = ("%%!v:lua.xpress_winbar(%d)"):format(vim.api.nvim_get_current_win())
-  vim.bo.buflisted = false
-  vim.bo.swapfile = false
-  M.setup_local_keymaps()
-
-  if M.is_floating_term_win(0) then
-    vim.wo.winhl = "NormalFloat:mdx_b,FloatBorder:mdx_bb,"
-      .. "WinBar:mdx_float_term_winbar,WinBarNC:mdx_float_term_winbar"
+  if M.is_float(0) then
+    vim.wo.winhl = "NormalFloat:mdx_b,FloatBorder:mdx_bb,WinBar:xpress_winbar,WinBarNC:xpress_winbar"
   else
-    vim.wo.winhl = "WinBar:xpress_winbar"
+    vim.wo.winhl = "WinBar:xpress_winbar,WinBarNC:xpress_winbar"
   end
 end
 
-function M.is_floating_term_win(win)
-  return pcall(vim.api.nvim_win_get_var, win, wv_name)
-end
-
-function M.is_term_buf(buf)
-  -- fzf would set its terminal buf's `ft` option
-  return vim.bo[buf].buftype == "terminal" and vim.bo[buf].ft == ""
-end
-
 function M.get_title(buf)
-  assert(M.is_term_buf(buf))
+  assert(M.is_buf(buf))
 
   local ok, title = pcall(vim.api.nvim_buf_get_var, buf, title_bv_name)
   if ok then
@@ -193,7 +196,7 @@ end
 
 ---@return number?
 function M.get_floating_term_win()
-  local wins = vim.iter(vim.api.nvim_tabpage_list_wins(0)):filter(M.is_floating_term_win):totable()
+  local wins = vim.iter(vim.api.nvim_tabpage_list_wins(0)):filter(M.is_float):totable()
   log.fmt_debug("list wins: %s", wins)
   -- assert(#wins <= 1, ("%d flating xpress wins found, at most 1 is allowed"):format(#wins))
   return wins[1]
@@ -211,7 +214,7 @@ function M.open()
 
   log.info("no win found, create a new one")
 
-  -- term buf
+  -- buf
   local existing_buf = nil
   if vim.v.count == 0 and M.last_visited_term_buf and vim.api.nvim_buf_is_valid(M.last_visited_term_buf) then
     existing_buf = M.last_visited_term_buf
@@ -223,17 +226,18 @@ function M.open()
     end
   end
 
-  -- create window
-  local win_opts = {
+  -- window
+  local opts = {
     zindex = 50,
     style = "minimal",
     border = "single",
     noautocmd = true,
   }
-  win_opts = vim.tbl_extend("force", win_opts, M.calc_layout())
-  win = vim.api.nvim_open_win(existing_buf or M.create_term_buf(), true, win_opts)
-  vim.api.nvim_win_set_var(win, wv_name, 1)
-  M.setup_term_buffer()
+  opts = vim.tbl_extend("force", opts, M.calc_layout())
+  win = vim.api.nvim_open_win(existing_buf or M.create_term_buf(), true, opts)
+  -- vim.api.nvim_win_set_var(win, wv_name, 1)
+  M.setup_buf()
+  M.setup_win()
   vim.cmd.startinsert { bang = true }
 end
 
@@ -246,7 +250,7 @@ function M.close()
 end
 
 function M.toggle()
-  if M.is_floating_term_win(0) then
+  if M.is_float(0) then
     if not M.pinned then
       log.debug("close")
       M.close()
@@ -261,7 +265,7 @@ end
 
 vim.api.nvim_set_hl(0, "xpress_pin", { fg = "bg" })
 function M.toggle_pinned()
-  assert_win(0)
+  assert_float(0)
 
   M.pinned = not M.pinned
 
@@ -298,7 +302,7 @@ function M.delete()
   local buf = vim.api.nvim_get_current_buf()
   local bufs = M.list_term_bufs()
   if #bufs == 1 then
-    if M.is_floating_term_win(0) then
+    if M.is_float(0) then
       vim.api.nvim_win_close(0, true)
     end
   else
@@ -333,11 +337,15 @@ function M.setup_global_keymaps()
       { "<C-S-k>x", M.close,  desc = "[xpress] close"  },
 
       -- move
-      { "<C-S-k>k", function() M.repos("float-top") end,    desc = "[xpress] dock top"    },
-      { "<C-S-k>j", function() M.repos("float-bottom") end, desc = "[xpress] dock bottom" },
-      { "<C-S-k>l", function() M.repos("float-right") end,  desc = "[xpress] dock right"  },
-      { "<C-S-k>h", function() M.repos("float-left") end,   desc = "[xpress] dock left"   },
-      { "<C-S-k>c", function() M.repos("float-center") end, desc = "[xpress] dock center" },
+      { "<C-S-k>k",       function() M.repos("float-top") end,    desc = "[xpress] dock top"    },
+      { "<C-S-k><C-S-k>", function() M.repos("float-top") end,    desc = "[xpress] dock top"    },
+      { "<C-S-k>j",       function() M.repos("float-bottom") end, desc = "[xpress] dock bottom" },
+      { "<C-S-k><C-S-j>", function() M.repos("float-bottom") end, desc = "[xpress] dock bottom" },
+      { "<C-S-k>l",       function() M.repos("float-right") end,  desc = "[xpress] dock right"  },
+      { "<C-S-k><C-S-l>", function() M.repos("float-right") end,  desc = "[xpress] dock right"  },
+      { "<C-S-k>h",       function() M.repos("float-left") end,   desc = "[xpress] dock left"   },
+      { "<C-S-k><C-S-h>", function() M.repos("float-left") end,   desc = "[xpress] dock left"   },
+      { "<C-S-k>c",       function() M.repos("float-center") end, desc = "[xpress] dock center" },
     },
     {
       mode = 't',
@@ -359,7 +367,9 @@ end
 function M.create_term_buf()
   vim.cmd.tabnew()
   vim.cmd.terminal()
-  M.setup_term_buffer()
+  vim.bo.filetype = "xpress"
+  M.setup_buf()
+  M.setup_win()
   local buf = vim.api.nvim_get_current_buf()
   vim.cmd.tabclose()
   return buf
@@ -403,30 +413,32 @@ function _G.xpress_winbar_handler(buf)
 end
 
 local function init()
-  On("TermOpen", function()
-    log.trace("event TermOpen")
+  -- On("TermOpen", function()
+  --   log.trace("event TermOpen")
+  --
+  --   M.setup_buf()
+  --   M.setup_win()
+  -- end)
 
-    M.setup_term_buffer()
-  end)
-
-  On("WinEnter", function()
+  On.WinEnter(function()
     log.trace("event WinEnter")
-    if not M.is_floating_term_win(0) and not M.pinned then
+    if not M.is_float(0) and not M.pinned then
       log.info("autoclose unpinned win")
       M.close()
     end
   end)
 
-  On("BufEnter", function()
+  On.BufEnter(function()
     log.trace("event BufEnter")
 
-    if M.is_term_buf(0) then
-      M.setup_term_buffer()
+    if M.is_buf(0) then
+      M.setup_buf()
+      M.setup_win()
       vim.cmd.startinsert { bang = true }
     end
   end)
 
-  On("VimResized", function()
+  On.VimResized(function()
     log.trace("event VimResized")
 
     local win = M.get_floating_term_win()
@@ -435,10 +447,10 @@ local function init()
     end
   end)
 
-  On("WinLeave", function(ev)
+  On.WinLeave(function(ev)
     log.trace("event WinLeave")
 
-    if M.is_term_buf(ev.buf) then
+    if M.is_buf(ev.buf) then
       M.last_visited_term_buf = ev.buf
     end
   end)

@@ -20,18 +20,19 @@ X.swizzle_nvim_open_win:start()
 
 On.VeryLazy(function()
   require("mudox.keymaps")
+
   X.arrows.setup()
+  X.files:init()
 end)
 
 -- DO NOT uses event earlier than UIEnter
 -- event `TermOpen` will not be triggered
 On.UIEnter(function()
   require("mudox.lab.xpress")
-  X.files:init()
 end)
 
-On.VimEnter(function()
-  require("tokyonight").load()
-end)
+-- On.VimEnter(function()
+require("tokyonight").load()
+-- end)
 
--- X.autocmds:start()
+-- X.log_kautocmds:start()

@@ -59,7 +59,6 @@ local function init_toggles()
 
   -- lsp virtual lines 〉
 
-
   -- gitsigns 〈
 
   t.new({
