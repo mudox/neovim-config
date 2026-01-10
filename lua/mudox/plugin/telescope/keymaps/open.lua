@@ -20,7 +20,6 @@ local M = {
   -- vim
   { "a",         "autocommands",              "autocommands",                      },
   { "b",         "buffers",                   "buffers",                           },
-  { "<C-S-o> ✓", "buffers",                   "buffers",                           },
   { "o",         "vim_options",               "vim options",                       },
   { "h",         "highlights",                "highlight groups",                  },
 
@@ -29,15 +28,10 @@ local M = {
   { "C",         "command_history",           "command history",                   },
   { "c",         "commands",                  "commands",                          },
 
-  { "<C-S-/> ✓", "help_tags",                 "vim help",                          },
-  { K.sc"/ ✓",   "help_tags",                 "vim help",                          },
-
-  { "<M-/> ✓",   "current_buffer_fuzzy_find", "search in buffer",                  },
-
   -- grep
-  { "/",         "live_grep",                 "live grep",                         },
-  { K.sc"g ✓",   "live_grep",                 "[telescope] live grep",             },
-  { "w",         "grep_string",               "grep <cword> under cursor",         },
+  { "\\",        "current_buffer_fuzzy_find", "grep in buffer",                    },
+  { "/",         "live_grep",                 "grep",                              },
+  { "w",         "grep_string",               "grep <cword>",                      },
 
   -- git
   { "gc",        "git_commits",               "git commits",                       },

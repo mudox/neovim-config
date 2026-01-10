@@ -1,5 +1,8 @@
 -- global data vault
 _G.V = {
+  key = {
+    bento = ";b",
+  },
   float = {
     width = 0.7,
     height = 0.7,

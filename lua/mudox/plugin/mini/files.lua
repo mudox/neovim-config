@@ -15,8 +15,8 @@ end
 
 -- stylua: ignore
 M.keys = {
-  { "<M-'>", function() MiniFiles.open(vim.fn.expand("%")) end, desc = "[mini] open %:h" },
-  { K.p"om", function() MiniFiles.open() end,                   desc = "[mini] open cwd" },
+  { K.p"om", function() MiniFiles.open(vim.fn.expand("%")) end, desc = "[mini] %:h" },
+  { K.p"oM", function() MiniFiles.open() end,                   desc = "[mini] cwd" },
 }
 
 return M

@@ -42,7 +42,7 @@ local secondary = {
   { s"v",      group = "view", r"view"[2]     },
 }
 
-return {
+local root = {
   { K.leader.primary,   group = "primary",      primary         },
   { K.leader.secondary, group = "seconary",     secondary       },
   { K.leader.shortcut,  group = "shortcut",     r"shortcut"     },
@@ -64,15 +64,31 @@ return {
   },
 
   { "s", group = "surround" },
-
-  { "<C-p>",          K.p"os",       remap = true, desc = "open files"      },
-  { "<C-S-p>",        K.p"ob",       remap = true, desc = "file browser"    },
-  { "<C-;>",          K.p"tC",       remap = true, desc = "command history" },
-  { "<C-S-;>",        K.p"sC",       remap = true, desc = "command history" },
-  { "<Space><Space>", K.p"o<Space>", remap = true, desc = "open files"      },
-
-  {
-    mode = "i",
-    { K.leader.ic, group = "insert", r"insert", },
-  },
 }
+
+root[#root+1] = {
+  remap = true,
+
+  { "<C-p>",          K.p"os",       desc = "[telescope] open files"                   },
+  { "<C-S-p>",        K.p"ob",       desc = "[telescope] file browser"                 },
+  { "<Space><Space>", K.p"o<Space>", desc = "[fff] open files"                         },
+
+  { "<C-S-o>",        K.p"tb",       desc = "[telescope] buffers",                     },
+
+  { "<C-;>",          K.p"tC",       desc = "command history"                          },
+  { "<C-S-;>",        V.key.bento,   desc = "bento"                                    },
+
+  { "<M-/>",          K.p"t\\",      desc = "[telescope] / in buffer",                 },
+  { "<M-'>",          K.p"om",       desc = "[mini] open %:p",                         },
+
+  { "<C-Cr>",   function() X.layout.left:focus() end,        desc = "focus left"       },
+  { "<C-S-CR>", function() X.layout.right:open_or_alt() end, desc = "focus right or #" },
+}
+
+root[#root+1] = {
+  mode = "i",
+
+  { K.leader.ic, group = "insert", r"insert", },
+}
+
+return root

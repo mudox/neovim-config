@@ -20,11 +20,15 @@ end
 
 -- stylua: ignore
 return {
-  { K.i"<C-;>", "<C-k>",              desc = "insert digraph" },
+  { K.i"d",     "<C-k>",              desc = "insert digraph"     },
 
-  { "<M-j>",    "<C-o>o",             desc = "new line below" },
-  { "<M-k>",    "<C-o>O",             desc = "new line above" },
+  { "<M-j>",    "<C-o>o",             desc = "new line below"     },
+  { "<M-k>",    "<C-o>O",             desc = "new line above"     },
 
-  { "<M-;>",    end_with(";", false), desc = "end with ;"     },
-  { "<M-,>",    end_with(",", false), desc = "end with ,"     },
+  { "<M-;>",    end_with(";", false), desc = "end with ;"         },
+  { "<M-,>",    end_with(",", false), desc = "end with ,"         },
+
+  { "<M-l>",    "<C-x><C-l>",         desc = "complete line"      },
+  { "<M-n>",    "<C-x><C-n>",         desc = "complete word"      },
+  { "<M-f>",    "<C-x><C-f>",         desc = "complete file/path" },
 }

@@ -105,7 +105,7 @@ K.tmap("<Esc>", "<C-Bslash><C-N>", { desc = "[term] leave" })
 K.nmap("gX", K.c("!open %:p:h"), { desc = "open dir in finder" })
 
 -- stylua: ignore
-K.nmap(K.sc"v", function() X.layout.secondary:open("#") end, { desc = "edit #" })
+K.nmap(K.sc"v", function() X.layout.right:open("#") end, { desc = "edit #" })
 
 K.nnop("]]")
 K.nnop("[[")

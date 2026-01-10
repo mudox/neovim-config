@@ -115,6 +115,4 @@ end)
 
 -- Command window 〉
 
-On.BufWritePost(function()
-  vim.cmd.trust()
-end, { pattern = "\\.nvim\\.lua" })
+On.BufWritePost(vim.cmd.trust, { pattern = "\\.nvim\\.lua" })

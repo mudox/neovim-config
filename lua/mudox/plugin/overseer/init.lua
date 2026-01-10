@@ -9,32 +9,20 @@ local templates = {
 }
 
 -- stylua: ignore
+-- see
+-- + overseer/task_list/keymaps.lua
+-- + overseer/task_list/actions.lua
+-- + https://github.com/stevearc/overseer.nvim/blob/master/doc/reference.md#setup-options
 local task_list_keymaps = {
-  o          = false,
-  ["]"]      = false,
-  ["["]      = false,
-
   -- navigate
-  ["{"]      = false,
-  ["}"]      = false,
-  ["<C-n>"]  = "NextTask",
-  ["<C-p>"]  = "PrevTask",
+  ["k"]    = "keymap.prev_task",
+  ["j"]    = "keymap.next_task",
 
   -- scroll
-  ["<C-j>"]  = "ScrollOutputDown",
-  ["<C-k>"]  = "ScrollOutputUp",
-
-  -- detail
-  ["<C-h>"]  = false,
-  ["<C-l>"]  = false,
-  m          = "IncreaseDetail",
-  l          = "DecreaseDetail",
-  M          = "IncreaseAllDetail",
-  L          = "DecreaseAllDetail",
-
-  -- custom
-  ["<C-x>"]  = "<CMD>OverseerQuickAction duplicate<CR>",
-  ["<C-Cr>"] = "<CMD>OverseerQuickAction run<CR>",
+  ["<C-j"] = false,
+  ["<C-k"] = false,
+  ["{"]    = "keymap.scroll_output_up",
+  ["}"]    = "keymap.scroll_output_down",
 }
 
 local function opts()
@@ -44,31 +32,35 @@ local function opts()
     -- strategy = { "jobstart", use_terminal = true },
 
     templates = templates,
+
     actions = r("actions"),
 
     task_list = {
-      direction = "right",
       separator = "",
-      bindings = task_list_keymaps,
+      keymaps = task_list_keymaps,
     },
+
     confirm = {
       border = border,
       win_opts = {
         winblend = 0,
       },
     },
+
     task_launcher = {
       border = border,
       win_opts = {
         winblend = 0,
       },
     },
+
     form = {
       border = border,
       win_opts = {
         winblend = 0,
       },
     },
+
     task_win = {
       padding = 8,
       border = border,
@@ -76,6 +68,7 @@ local function opts()
         winblend = 0,
       },
     },
+
     help_win = {
       border = border,
     },

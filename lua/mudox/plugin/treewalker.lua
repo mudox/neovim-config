@@ -4,12 +4,13 @@ local function keys()
       vim.cmd("Treewalker " .. dir)
     end
   end
+  -- stylua: ignore
   local walk_op = {
-    name = "[treewalker] goto",
-    left = walk("Left"),
+    name  = "[treewalker] goto",
+    left  = walk("Left"),
     right = walk("Right"),
-    up = walk("Up"),
-    down = walk("Down"),
+    up    = walk("Up"),
+    down  = walk("Down"),
   }
 
   local function swap(dir)
@@ -17,12 +18,13 @@ local function keys()
       vim.cmd("Treewalker Swap" .. dir)
     end
   end
+  -- stylua: ignore
   local swap_op = {
-    name = "[treewalker] swap",
-    left = swap("Left"),
+    name  = "[treewalker] swap",
+    left  = swap("Left"),
     right = swap("Right"),
-    up = swap("Up"),
-    down = swap("Down"),
+    up    = swap("Up"),
+    down  = swap("Down"),
   }
 
   -- stylua: ignore
@@ -37,6 +39,7 @@ local function keys()
     { "\\x",   function() V.last_arrow_op = swap_op end, desc = "[treewalker] start swapping" },
   }
 end
+
 return {
   "aaronik/treewalker.nvim",
   cmd = "Treewalker",

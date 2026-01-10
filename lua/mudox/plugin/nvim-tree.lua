@@ -42,7 +42,7 @@ local function on_attach(bufnr)
     end
 
     local path = node.link_to or node.absolute_path
-    X.layout.main:open(path)
+    X.layout.left:open(path)
   end, opts("open in main"))
 
   vim.keymap.set("n", "<C-S-Cr>", function()
@@ -52,7 +52,7 @@ local function on_attach(bufnr)
     end
 
     local path = node.link_to or node.absolute_path
-    X.layout.secondary:open(path)
+    X.layout.right:open(path)
   end, opts("open in secondary"))
 end
 

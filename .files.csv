@@ -10,3 +10,4 @@ o,lua/mudox/util/on.lua,util/on
 r,init.lua,/init
 s,lua/mudox/settings.lua,settings
 t,lua/mudox/plugin/tokyonight.lua,tokyonight
+1,.mise/tasks/t1,task #1

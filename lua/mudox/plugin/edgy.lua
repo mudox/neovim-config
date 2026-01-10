@@ -114,7 +114,7 @@ local function opts()
       ft = "neotest-summary",
     },
     {
-      title = "Markdown Help",
+      title = "Help",
       ft = "markdown",
       filter = function(buf)
         return vim.bo[buf].buftype == "help"
@@ -187,8 +187,6 @@ end
 
 return {
   "folke/edgy.nvim",
-  -- dir = "~/Git/neovim-plugins/edgy.nvim", -- HACK: fix `check_main`
-  -- branch = "mudox", -- track: https://github.com/folke/edgy.nvim/issues/58
 
   event = "VeryLazy",
   keys = keys,

@@ -56,7 +56,6 @@ local keys = {
   { p":",      function() Snacks.picker.pickers() end,         desc = "pickers"                 },
   { p".",      function() Snacks.picker.resume() end,          desc = "resume"                  },
 
-  { K.sc"f",   smart,                                          desc = "[snacks] files"          },
   { p"f",      smart,                                          desc = "files"                   },
   { p"r",      recent,                                         desc = "recent"                  },
   { p"F",      function() Snacks.picker.git_files() end,       desc = "git files"               },
@@ -75,11 +74,11 @@ local keys = {
 
   { p"p",      function() Snacks.picker.lazy() end,            desc = "plugins"                 },
 
-  { K.i"i",    function() Snacks.picker.icons() end,            desc = "[snacks] icons",        mode = "i" },
-  { K.i"y",    function() Snacks.picker.yanky() end,            desc = "[snacks] yanky",        mode = "i" },
-
   -- symbols
-  { "gof",     functions,                                      desc = "[snacks] goto functions" },
+  { "gf",      functions,                                      desc = "[snacks] goto functions" },
+
+  { K.i"i",    function() Snacks.picker.icons() end,           desc = "[snacks] icons",         mode = "i" },
+  { K.i"y",    function() Snacks.picker.yanky() end,           desc = "[snacks] yanky",         mode = "i" },
 }
 
 local opts = {

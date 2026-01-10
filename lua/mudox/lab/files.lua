@@ -39,13 +39,13 @@ end
 local function main_open(path)
   return function()
     U.window.close_all_floats()
-    X.layout.main:open(path)
+    X.layout.left:open(path)
   end
 end
 local function secondary_open(path)
   return function()
     U.window.close_all_floats()
-    X.layout.secondary:open(path)
+    X.layout.right:open(path)
   end
 end
 local function tab_open(path)
@@ -97,10 +97,10 @@ function M:update_keymaps()
   end
 
   -- stylua: ignore start
-  K.nmap(K.s("e;"),     function() open_ft(function(path) edit(path)() end) end,           "{ft}.lua")
-  K.nmap(K.s("e["),     function() open_ft(function(path) main_open(path)() end) end,      "{ft}.lua")
-  K.nmap(K.s("e]"),     function() open_ft(function(path) secondary_open(path)() end) end, "{ft}.lua")
-  K.nmap(K.s("e<Tab>"), function() open_ft(function(path) tab_open(path)() end) end,       "{ft}.lua")
+  K.nmap(K.s("e;"),      function() open_ft(function(path) edit(path)() end) end,           "{ft}.lua")
+  K.nmap(K.s("e[;"),     function() open_ft(function(path) main_open(path)() end) end,      "{ft}.lua")
+  K.nmap(K.s("e];"),     function() open_ft(function(path) secondary_open(path)() end) end, "{ft}.lua")
+  K.nmap(K.s("e<Tab>;"), function() open_ft(function(path) tab_open(path)() end) end,       "{ft}.lua")
   -- stylua: ignore end
 end
 

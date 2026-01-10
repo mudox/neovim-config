@@ -56,12 +56,12 @@ end
 local function config()
   require("bufferline").setup {
     options = {
-      indicator          = { style = "none" },
-      separator_style    = { "", " " }, -- transparent tabline appearance
+      indicator = { style = "none" },
+      separator_style = { "", " " }, -- transparent tabline appearance
 
-      name_formatter     = name_formatter,
+      name_formatter = name_formatter,
 
-      hover              = {
+      hover = {
         enabled = true,
         delay = 150,
         reveal = { "close" },
@@ -76,13 +76,13 @@ local function config()
       right_trunc_marker = "⋯",
       -- stylua: ignore end
 
-      groups             = {
+      groups = {
         items = {
           require("bufferline.groups").builtin.pinned:with { icon = " " },
         },
       },
 
-      custom_filter      = filter,
+      custom_filter = filter,
     },
   }
 

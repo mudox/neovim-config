@@ -1,8 +1,9 @@
 return {
   "MagicDuck/grug-far.nvim",
   cmd = "GrugFar",
+  -- stylua: ignore
   keys = {
-    { "\\g", "<Cmd>GrugFar<Cr>", desc = "[GrugFar] Open" },
+    { "\\g", K.c"GrugFar", desc = "[grugfar] open" },
   },
   opts = true,
 }

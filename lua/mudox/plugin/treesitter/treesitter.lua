@@ -9,7 +9,7 @@ local function should_disable_hl()
   end
 
   --- disable for big buffer
-  local max_filesize = 50 * 1024
+  local max_filesize = 500 * 1024
   local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(0))
   if ok and stats and stats.size > max_filesize then
     print(("file size (%d) is too larg, disable treesitter highlighting"):format(stats.size))

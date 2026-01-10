@@ -216,6 +216,9 @@ M.leader = {
   secondary = ",",
   shortcut  = ";",
   toggle    = "-",
+  open      = "o",
+  close     = "<Bs>",
+  refactor  = "<Bslash>",
 
   ic        = "<C-;>", -- for imap & cmap
   x         = "v",     -- for xmap
@@ -223,11 +226,11 @@ M.leader = {
 
 -- stylua: ignore start
 function M.c(cmd)  return "<Cmd>" .. cmd .. "<Cr>"   end
+
 function M.p(sfx)  return M.leader.primary   .. sfx  end
 function M.s(sfx)  return M.leader.secondary .. sfx  end
 function M.sc(sfx) return M.leader.shortcut  .. sfx  end
 function M.i(sfx)  return M.leader.ic  .. sfx        end
-
 -- stylua: ignore end
 
 return M

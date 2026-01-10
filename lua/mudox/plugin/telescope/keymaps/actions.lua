@@ -8,7 +8,7 @@ end
 local function open_in_main(prompt_bufnr)
   local entry = state.get_selected_entry()
   if entry.path then
-    X.layout.main:open(entry.path)
+    X.layout.left:open(entry.path)
   else
     print("`entry.path` is nil")
     require("telescope.actions").close(prompt_bufnr)
@@ -18,7 +18,7 @@ end
 local function open_in_secondary(prompt_bufnr)
   local entry = state.get_selected_entry()
   if entry.path then
-    X.layout.secondary:open(entry.path)
+    X.layout.right:open(entry.path)
   else
     print("`entry.path` is nil")
     require("telescope.actions").close(prompt_bufnr)
