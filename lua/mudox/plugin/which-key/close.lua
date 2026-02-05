@@ -2,14 +2,17 @@
 local function k(t) return "<Bs>" .. t end
 
 return {
-  { k"v",     K.c"confirm qall",           desc = "exit"                 },
-  { k"V",     K.c"qall!",                  desc = "exit!"                },
+  { k"v",     K.c"confirm qall",         desc = "exit"                 },
+  { k"V",     K.c"qall!",                desc = "exit!"                },
 
-  { k"r",     K.c"confirm restart",        desc = "restart"              },
-  { k"R",     K.c"restart +qall!",         desc = "restart!"             },
+  { k"r",     K.c"confirm restart",      desc = "restart"              },
+  { k"R",     K.c"restart +qall!",       desc = "restart!"             },
 
-  { k"w",     K.c"wincmd c",               desc = "window"               },
-  { k"<Tab>", K.c"tabclose",               desc = "tabpage"              },
+  { k"f",     K.c"Genghis trashFile",    desc = "file"                 },
 
-  { k"f",     U.window.close_all_floats, desc = "all floating windows" },
+  { k"w",     K.c"wincmd c",             desc = "window"               },
+  { k"<Tab>", K.c"tabclose",             desc = "tabpage"              },
+
+  { k"W",     U.window.close_all_floats, desc = "all floating windows" },
+
 }

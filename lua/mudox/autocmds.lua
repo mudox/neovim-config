@@ -70,23 +70,6 @@ end, {
 
 -- Close with `q` 〉
 
--- Wrap & check spell 〈
-
-On("FileType", function()
-  vim.opt_local.wrap = true
-  vim.opt_local.spell = true
-end, {
-  group = V.ag.spell,
-  desc = "spell check + wrap lines",
-  pattern = {
-    "gitcommit",
-    "markdown",
-    "neorg",
-  },
-})
-
--- Wrap & check spell 〉
-
 -- Unfold for small files 〈
 
 -- Unfold for small files 〉
@@ -115,4 +98,6 @@ end)
 
 -- Command window 〉
 
-On.BufWritePost(vim.cmd.trust, { pattern = "\\.nvim\\.lua" })
+On.BufWritePost(function()
+  vim.cmd.trust()
+end, { pattern = "\\.nvim\\.lua" })

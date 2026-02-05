@@ -87,8 +87,9 @@ function bodys.nop(mode, key)
 end
 
 ---Delete mapping
-function bodys.del(mode, key)
-  vim.keymap.del(mode, key)
+function bodys.del(mode, key, opts)
+  opts = opts or {}
+  vim.keymap.del(mode, key, opts)
 end
 
 local modes = {

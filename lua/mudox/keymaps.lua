@@ -18,11 +18,11 @@ K.nmap("zi", "zizz", "Toggle fold")
 -- stylua: ignore
 local zjk = {
   name = "Fold Nav",
-  left = function() vim.cmd.normal { "zjzv", bang = true } end,
-  right = function() vim.cmd.normal { "zkzv", bang = true } end,
+  left = function() vim.cmd.normal { "zkzv", bang = true } end,
+  right = function() vim.cmd.normal { "zjzv", bang = true } end,
 }
-K.nmap("zj", X.arrows.left(zjk), "Goto next fold start")
-K.nmap("zk", X.arrows.right(zjk), "Goto prev fold end")
+K.nmap("zk", X.arrows.left(zjk), "Goto prev fold end")
+K.nmap("zj", X.arrows.right(zjk), "Goto next fold start")
 K.normal("z<Space>", "zMzvzczO", { remap = true })
 
 -- K.nmap("/", "/\\v", { desc = "/ very magically" })

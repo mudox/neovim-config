@@ -4,7 +4,6 @@
 local function r(mod) return require("mudox.plugin.which-key." .. mod) end
 local p = K.p
 local s = K.s
-local c = K.c
 
 local primary = {
   { p"b",  group = "buffer"                  },
@@ -43,14 +42,16 @@ local secondary = {
 }
 
 local root = {
-  { K.leader.primary,   group = "primary",      primary         },
-  { K.leader.secondary, group = "seconary",     secondary       },
-  { K.leader.shortcut,  group = "shortcut",     r"shortcut"     },
+  { K.leader.primary,       group = "primary",     primary         },
+  { K.leader.secondary,     group = "seconary",    secondary       },
+  { K.leader.shortcut,      group = "shortcut",    r"shortcut"     },
 
-  { K.leader.toggle,    group = "toggle",                       },
-  { "<Bslash>",         group = "refactoring",  r"refactoring", },
-  { "<Bs>",             group = "close",        r"close",       },
-  { "<Tab>",            group = "tabpage",      r"tabpage",     },
+  { K.leader.toggle,        group = "toggle",                      },
+  { K.leader.toggle .. "-", group = "nvim",                        },
+
+  { "<Bslash>",             group = "refactoring", r"refactoring", },
+  { "<Bs>",                 group = "close",       r"close",       },
+  { "<Tab>",                group = "tabpage",     r"tabpage",     },
 
   {
     { "]",  group = "next"     },
@@ -66,12 +67,13 @@ local root = {
   { "s", group = "surround" },
 }
 
+-- root key combos
 root[#root+1] = {
   remap = true,
 
   { "<C-p>",          K.p"os",       desc = "[telescope] open files"                   },
   { "<C-S-p>",        K.p"ob",       desc = "[telescope] file browser"                 },
-  { "<Space><Space>", K.p"o<Space>", desc = "[fff] open files"                         },
+  { "<Space><Space>", K.p"sf",       desc = "[snacks] open files"                      },
 
   { "<C-S-o>",        K.p"tb",       desc = "[telescope] buffers",                     },
 
@@ -85,6 +87,7 @@ root[#root+1] = {
   { "<C-S-CR>", function() X.layout.right:open_or_alt() end, desc = "focus right or #" },
 }
 
+-- insert mode keymaps
 root[#root+1] = {
   mode = "i",
 

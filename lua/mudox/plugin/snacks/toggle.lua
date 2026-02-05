@@ -1,23 +1,29 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
+--- `-` prefix for plugin toggles
+--- `--` prefix for nvim toggles
+
 -- stylua: ignore
-local function init_toggles()
+local function register_toggles()
   local function k(key) return K.leader.toggle .. key end
   local t = Snacks.toggle
   local o = t.option
 
-  o("spell",    { name = "spelling"         }):map(k"s")
-  o("wrap",     { name = "wrap"             }):map(k"w")
-  o("list",     { name = "list mode"        }):map(k"<C-l>")
-  o("hlsearch", { name = "highlight search" }):map(k"h")
+  o("spell",    { name = "spelling"         }):map(k"-s")
+  o("wrap",     { name = "wrap"             }):map(k"-w")
+  o("list",     { name = "list mode"        }):map(k"-l")
+  o("hlsearch", { name = "highlight search" }):map(k"-h")
+
+  t.treesitter():map(k"-t")
+  t.inlay_hints():map(k"-H")
 
   -- conceal level
   local opts = { name = "conceal", off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
-  o("conceallevel", opts):map(k"<C-c>")
+  o("conceallevel", opts):map(k"-c")
 
   -- line number 〈
 
-  o("relativenumber", { name = "relative number" }):map(k"r")
+  o("relativenumber", { name = "relative number" }):map(k"-r")
   t.new({
     id = "number",
     name = "number",
@@ -32,12 +38,9 @@ local function init_toggles()
         vim.wo.relativenumber = false
       end
     end,
-  }):map(k"n")
+  }):map(k"-n")
 
   -- line number 〉
-
-  t.treesitter():map(k"T")
-  t.inlay_hints():map(k"H")
 
   -- snacks profile 〈
 
@@ -55,7 +58,7 @@ local function init_toggles()
     name = "lsp virtual lines",
     get = function() return vim.lsp.config.virtual_lines end,
     set = function(b) vim.lsp.config { virtual_lines = b } end,
-  }):map(k"L")
+  }):map(k"-L")
 
   -- lsp virtual lines 〉
 
@@ -86,7 +89,7 @@ local function init_toggles()
       return vim.lsp.document_color.is_enabled()
     end,
     set = function(b) vim.lsp.document_color.enable(b, 0, { style = " " }) end,
-  }):map(k"c")
+  }):map(k"-C")
 
   -- nvim-highlight-colors
   t.new({
@@ -97,7 +100,7 @@ local function init_toggles()
       return id and #vim.api.nvim_buf_get_extmarks(0, id, 0, -1, {}) > 0
     end,
     set = function() require("nvim-highlight-colors").toggle() end,
-  }):map(k"C")
+  }):map(k"c")
 
   -- color highlighting 〉
 
@@ -192,7 +195,7 @@ local function init_toggles()
         vim.cmd.IlluminatePause()
       end
     end,
-  }):map(k"v")
+  }):map(k"r")
 
   -- illuminate 〉
 
@@ -211,5 +214,5 @@ return {
     },
   },
   -- stylua: ignore
-  init = function() On.VeryLazy(init_toggles) end,
+  init = function() On.VeryLazy(register_toggles) end,
 }

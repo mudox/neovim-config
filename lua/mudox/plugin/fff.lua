@@ -25,4 +25,5 @@ return {
     { K.p("o<Space>"), function() require("fff").find_files() end, desc = "[fff] open" },
   },
   opts = opts,
+  cond = false,
 }

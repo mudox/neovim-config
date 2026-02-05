@@ -10,7 +10,7 @@ local function title(name)
 end
 
 -- action to open selected plugin in separate tmux window
-local function open_plugin_window(prompt_buf)
+local function open_in_tmux(prompt_buf)
   local state = require("telescope.actions.state")
   local entry = state.get_selected_entry()
 
@@ -28,10 +28,18 @@ end
 return {
   "tsakirist/telescope-lazy.nvim",
   dependencies = "telescope.nvim",
-  keys = { { K.p("tp"), "<Cmd>Telescope lazy<Cr>", desc = "plugins" } },
+  keys = { { K.p("tp"), K.c("Telescope lazy"), desc = "plugins" } },
   config = function()
-    require("telescope._extensions.lazy.actions").open_in_terminal = open_plugin_window
+    require("telescope._extensions.lazy.actions").open_in_terminal = open_in_tmux
     local t = require("telescope")
+    t.setup {
+      extensions = {
+        lazy = {
+          theme = "dropdown",
+          previewer = false,
+        },
+      },
+    }
     t.load_extension("lazy")
   end,
 }

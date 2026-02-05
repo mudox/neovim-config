@@ -3,8 +3,8 @@
 a,lua/mudox/autocmds.lua,autocmds
 d,lua/mudox/plugin/snacks/dashboard.lua,dashboard
 g,lua/mudox/globals.lua,globals
-k,lua/mudox/keymaps.lua,keymaps
-K,lua/mudox/plugin/which-key/root.lua,which-key/root
+K,lua/mudox/keymaps.lua,keymaps
+k,lua/mudox/plugin/which-key/root.lua,which-key/root
 l,lua/mudox/lsp/init.lua,lsp/init
 o,lua/mudox/util/on.lua,util/on
 r,init.lua,/init

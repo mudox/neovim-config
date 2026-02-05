@@ -3,6 +3,7 @@ local providers_per_ft = {
   lua = { "treesitter", "lsp" },
 }
 
+---@diagnostic disable-next-line: unused-local
 local handler = function(virt_text, lnum, end_lnum, width, truncate)
   local new_virt_text = {}
   local suffix = { "  ", "Folded" }

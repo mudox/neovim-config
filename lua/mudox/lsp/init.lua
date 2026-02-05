@@ -23,6 +23,9 @@ On.VeryLazy(function()
 
     -- python
     "ty", "ruff",
+
+    -- markdown
+    -- "marksman",
   }
 
   K.ncmd(K.p("vl"), "checkhealth vim.lsp", "lsp information")

@@ -63,10 +63,9 @@ end
 local keys = {
   -- expand
   { K.i"<Tab>", function() require('luasnip').expand() end, desc = "[luasnip] expand", mode = "i" },
-  { K.i"<C-;>", function() require('luasnip').expand() end, desc = "[luasnip] expand", mode = "i" },
 
   -- jump
-  { "<M-]>", function() require("luasnip").jump(1) end,  desc = "[luasnip] next", mode = {"i", "s"} },
+  { "<M-]>", function() require("luasnip").expand_or_jump() end,  desc = "[luasnip] expand | next", mode = {"i", "s"} },
   { "<M-[>", function() require("luasnip").jump(-1) end, desc = "[luasnip] prev", mode = {"i", "s"} },
 
   -- choices

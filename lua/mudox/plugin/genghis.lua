@@ -50,6 +50,7 @@ K.lazy_keys(keys, {
 
 return {
   "chrisgrieser/nvim-genghis",
+  cmd = "Genghis",
   keys = keys,
   opts = opts,
 }

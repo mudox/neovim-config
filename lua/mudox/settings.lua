@@ -36,15 +36,26 @@ opt.fillchars = {
   --
   -- verthoriz = "╋",
 
-  diff      = '╱',
+  diff      = "╱",
 
-  fold      = ' ',
+  fold      = " ",
   foldopen  = I.chevron.down,
   foldclose = I.chevron.right,
-  foldsep   = ' ',
+  foldsep   = " ",
 }
 
-o.listchars = [[tab:▸-,eol:¶]]
+-- stylua: ignore
+opt.listchars =  {
+  tab      = "▶―",
+  nbsp     = "␣",
+  eol      = "↵",
+
+  lead     = "·",
+  trail    = "·",
+
+  extends  = "›",
+  precedes = "‹",
+}
 
 o.cursorline = false
 o.number = false

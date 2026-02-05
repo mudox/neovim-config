@@ -14,6 +14,8 @@ local function config()
     python     = { "typos"    },
 
     rust       = { "typos"    },
+
+    markdown   = { "markdownlint" },
   }
 
   On({ "BufEnter", "BufWritePost" }, {

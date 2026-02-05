@@ -1,22 +1,34 @@
--- TODO: learn this plugin
+local opts = {
+  legacy_commands = false,
 
-local pattern = vim.fn.expand("~") .. "/Documents/Obsidian/Mudox/**.md"
-local event = {
-  "BufReadPre " .. pattern,
-  "BufNewFile " .. pattern,
-}
-
-return {
-  "epwalsh/obsidian.nvim",
-  version = "*",
-  event = event,
-  opts = {
-    workspaces = {
-      {
-        name = "Mudox",
-        path = "~/Documents/Obsidian/Mudox",
-      },
+  workspaces = {
+    {
+      name = "mudox",
+      path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/mudox",
     },
   },
-  cond = false,
+
+  daily_notes = {
+    folder = "Daily",
+    date_format = "%Y/%Y-%m-%d",
+  },
+}
+
+-- stylua: ignore
+local function k(key) return K.p("n") .. key end
+
+local function keys()
+  -- stylua: ignore
+  return {
+    { k"<Cr>", K.c"Obsidian today", desc = "open today"       },
+    { k"o",    K.c"Obsidian open",  desc = "open in obsidian" },
+  }
+end
+
+return {
+  "obsidian-nvim/obsidian.nvim",
+  ft = "markdown",
+  cmd = "Obsidian",
+  keys = keys,
+  opts = opts,
 }

@@ -21,8 +21,10 @@ local formatters_by_ft = {
   bash            = { "shfmt"                 },
   zsh             = { "shfmt"                 },
 
+  markdown        = { "rumdl"                 },
+
   -- for all filetypes
-  ["*"]           = { "trim_whitespace"       },
+  -- ["*"]           = { "trim_whitespace"       },
 
   -- fallback
   ["_"]           = { "trim_whitespace"       },

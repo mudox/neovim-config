@@ -18,7 +18,7 @@ local insert = {
   ["<C-u>"]     = false,
 
   -- preview
-  -- ["?"]         = require("telescope.actions.layout").toggle_preview,
+  ["<C-S-p>"]   = require("telescope.actions.layout").toggle_preview,
 
   -- scroll preview
   ["<C-f>"]     = a.preview_scrolling_down,
