@@ -64,7 +64,7 @@ local root = {
     r"next_prev",
   },
 
-  { "s", group = "surround" },
+  { "s", group = "surround / substitute" },
 }
 
 -- root key combos

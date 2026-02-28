@@ -25,12 +25,18 @@ local surrounds = {
 
 -- stylua: ignore
 local keys = {
-  { "s=",  "<Plug>(nvim-surround-normal)",      remap = true, desc = "[surround] add"    },
-  { "s\\", "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change" },
-  { "s-",  "<Plug>(nvim-surround-delete)",      remap = true, desc = "[surround] delete" },
+  { "s=",    "<Plug>(nvim-surround-normal)",      remap = true, desc = "[surround] add"    },
+  { "s,",    "<Plug>(nvim-surround-normal)",      remap = true, desc = "[surround] add"    },
 
-  { "s",   "<Plug>(nvim-surround-visual)",      remap = true, desc = "[surround] add",             mode = "x" },
-  { "S",   "<Plug>(nvim-surround-visual-line)", remap = true, desc = "[surround] add in new line", mode = "x" },
+  { "s\\",   "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change" },
+  { "s/",    "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change" },
+  { "s;",    "<Plug>(nvim-surround-change)",      remap = true, desc = "[surround] change" },
+
+  { "s-",    "<Plug>(nvim-surround-delete)",      remap = true, desc = "[surround] delete" },
+  { "s.",    "<Plug>(nvim-surround-delete)",      remap = true, desc = "[surround] delete" },
+
+  { "s",     "<Plug>(nvim-surround-visual)",      remap = true, desc = "[surround] add",             mode = "x" },
+  { "S",     "<Plug>(nvim-surround-visual-line)", remap = true, desc = "[surround] add in new line", mode = "x" },
 }
 
 local opts = {

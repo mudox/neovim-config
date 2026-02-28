@@ -12,7 +12,7 @@ o.expandtab = true
 local function insert_time()
   local lines = {
     "",
-    "- " .. os.date("%H:%M"),
+    "- " .. os.date("%H:%M") .. "  ",
     "  ",
   }
   vim.api.nvim_put(lines, "c", true, true)

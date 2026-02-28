@@ -131,7 +131,8 @@ end
 function M.new()
   assert_buf(0)
 
-  vim.cmd.terminal()
+  local buf = M.create_term_buf()
+  vim.api.nvim_win_set_buf(0, buf)
 end
 
 function M.rename()

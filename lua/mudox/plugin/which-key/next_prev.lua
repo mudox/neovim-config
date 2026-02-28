@@ -71,4 +71,7 @@ add("j", {
   right = jump(false),
 })
 
+-- spell
+add("s", normal("spell", "[s", "]s"))
+
 return M
