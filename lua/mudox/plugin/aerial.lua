@@ -4,24 +4,33 @@ local float = {
 }
 
 local kinds = {
-  "Module",
+  -- fallback
+  ["_"] = {
+    "Module",
 
-  "Interface",
+    "Interface",
 
-  "Class",
-  "Struct",
-  "Enum",
+    "Class",
+    "Struct",
+    "Enum",
 
-  "Constructor",
-  "Function",
-  "Method",
+    "Constructor",
+    "Function",
+    "Method",
 
-  "Variable",
-  "Constant",
+    "Variable",
+    "Constant",
+  },
 }
 
+local post_parse_symbol = function(bufnr, item, ctx)
+  if ctx.lang == "markdown" then
+    item.kind = "MarkdownHeading"
+  end
+end
+
 local opts = {
-  highlight_on_hover = true,
+  highlight_mode = "none",
 
   min_width = require("mudox.ui").left_width,
   float = float,
@@ -31,15 +40,20 @@ local opts = {
 
   icons = {
     Collapsed = " " .. I.chevron.right,
+    MarkdownHeading = "•",
   },
+
+  post_parse_symbol = post_parse_symbol,
 
   filter_kind = kinds,
 
   show_guides = true,
 }
 
+-- stylua: ignore
 local keys = {
-  { K.p("wa"), "<Cmd>AerialToggle<Cr>", desc = "[Aerial] Toggle" },
+  { K.p("wa"),  K.c"AerialToggle",     desc = "[aerial] toggle" },
+  { "goa", K.c"Telescope aerial", desc = "[aerial] toggle" },
 }
 
 -- stylua: ignore
@@ -53,9 +67,14 @@ cmd = vim.tbl_map(function(e)
   return "Aerial" .. e
 end, cmd)
 
+local function config()
+  require("aerial").setup(opts)
+  require("telescope").load_extension("aerial")
+end
+
 return {
   "stevearc/aerial.nvim",
   cmd = cmd,
   keys = keys,
-  opts = opts,
+  config = config,
 }

@@ -75,7 +75,7 @@ local keys = {
   { p"p",      function() Snacks.picker.lazy() end,            desc = "plugins"                 },
 
   -- symbols
-  { "gf",      functions,                                      desc = "[snacks] goto functions" },
+  { "gof",     functions,                                      desc = "[snacks] goto functions" },
 
   { K.i"i",    function() Snacks.picker.icons() end,           desc = "[snacks] icons",         mode = "i" },
   { K.i"y",    function() Snacks.picker.yanky() end,           desc = "[snacks] yanky",         mode = "i" },

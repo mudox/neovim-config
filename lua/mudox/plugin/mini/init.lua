@@ -25,8 +25,9 @@ end)()
 
 return {
   "nvim-mini/mini.nvim",
-  lazy = false,
-  priority = 900,
+  -- lazy = false,
+  -- priority = 900,
+  event = "VeryLazy",
   keys = keys,
   config = config,
 }

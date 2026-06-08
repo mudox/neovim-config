@@ -9,7 +9,7 @@ local formatters_by_ft = {
   json            = { "prettierd"             },
   jsonc           = { "prettierd"             },
 
-  javascript      = { "biome"                 },
+  javascript      = { "oxfmt"                 },
   javascriptreact = { "biome"                 },
   typescript      = { "biome"                 },
   typescriptreact = { "biome"                 },
@@ -20,8 +20,11 @@ local formatters_by_ft = {
   sh              = { "shfmt"                 },
   bash            = { "shfmt"                 },
   zsh             = { "shfmt"                 },
+  -- nu              = { "nufmt"                 },
 
   markdown        = { "rumdl"                 },
+
+  xml             = { "xmlformatter"          },
 
   -- for all filetypes
   -- ["*"]           = { "trim_whitespace"       },
@@ -102,11 +105,19 @@ local function setup_commands()
   })
 end
 
+local formatters = {
+  xmlformatter = {
+    command = "xmlformat",
+    args = { "--selfclose", "-" },
+  },
+}
+
 local function config()
   require("conform").setup {
     formatters_by_ft = formatters_by_ft,
     format_on_save = format_on_save,
     format_after_save = format_after_save,
+    formatters = formatters,
   }
 
   On.FileType("conform-info", function()

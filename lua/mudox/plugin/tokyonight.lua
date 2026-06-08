@@ -346,14 +346,14 @@ local function on_highlights(...)
   mini(...)
 
   -- alalcritty
-  if U.in_alacritty() then
-    local bg = hl.Normal.bg
-    for _, v in pairs(hl) do
-      if v.bg == bg or v.bg == "bg" then
-        v.bg = "NONE"
-      end
-    end
-  end
+  -- if U.in_alacritty() then
+  --   local bg = hl.Normal.bg
+  --   for _, v in pairs(hl) do
+  --     if v.bg == bg or v.bg == "bg" then
+  --       v.bg = "NONE"
+  --     end
+  --   end
+  -- end
 end
 
 local opts = {

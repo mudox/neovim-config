@@ -44,6 +44,15 @@ local function opts()
     input = {},
     quickfile = {},
     scope = {},
+
+    zen = {
+      -- stylua: ignore
+      toggles = {
+        dim             = false,
+        git_signs       = true,
+        mini_diff_signs = true,
+      },
+    },
   }
 
   for _, name in ipairs(modules) do

@@ -1,12 +1,15 @@
 local function opts()
   local symbols = vim.tbl_deep_extend("force", I.kind, {
-    File = "󰈤 ",
+    File = "",
     Folder = "",
   })
 
   local disable_fts = {
+    [""] = true,
     help = true,
     checkhealth = true,
+    snacks_dashboard = true,
+    fugitive = true,
   }
 
   return {
@@ -59,7 +62,7 @@ local function opts()
           return false
         end
 
-        return vim.bo[buf].ft == "markdown"
+        return vim.bo[buf].filetype == "markdown"
           or pcall(vim.treesitter.get_parser, buf)
           or not vim.tbl_isempty(vim.lsp.get_clients {
             bufnr = buf,
@@ -77,12 +80,13 @@ end
 
 -- stylua: ignore
 local keys = {
-    { "<M-.>",      function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
+    { "<M-.>", function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
     { K.p"fb", function() require("dropbar.api").pick() end, desc = "[Dropbar] Open menu", },
 }
 
 return {
   "Bekaboo/dropbar.nvim",
+
   event = { "BufRead", "BufNewFile" },
   keys = keys,
   opts = opts,

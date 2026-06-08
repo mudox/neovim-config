@@ -1,8 +1,10 @@
 -- vim: fml& fdn& fdm=marker fmr=〈,〉
 
--- References
---   autocmds.lua from LazyVim
---   3-autocmds.lua from NormalView
+vim.filetype.add {
+  extension = {
+    plist = "xml",
+  },
+}
 
 -- Checktime 〈
 

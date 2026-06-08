@@ -3,8 +3,8 @@ return {
   dependencies = "telescope.nvim",
   -- stylua: ignore
   keys = {
-    { K.p"tO", "<Cmd>Telescope heading<Cr>", desc = "Headings" },
-    { "go",         "<Cmd>Telescope heading<Cr>", desc = "[Telescope] Headings" },
+    { K.p"tH", K.c"Telescope heading", desc = "Headings"             },
+    { "goh",   K.c"Telescope heading", desc = "[Telescope] Headings" },
   },
   config = function()
     local t = require("telescope")

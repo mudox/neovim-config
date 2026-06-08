@@ -56,7 +56,8 @@ local keys = {
 }
 
 return {
-  "sindrets/diffview.nvim",
+  -- "sindrets/diffview.nvim", -- the origin
+  "dlyongemallo/diffview.nvim", -- actively maintained
   cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewLog" },
   keys = keys,
   opts = opts,

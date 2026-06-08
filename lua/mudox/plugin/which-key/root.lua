@@ -46,6 +46,10 @@ local root = {
   { K.leader.secondary,     group = "seconary",    secondary       },
   { K.leader.shortcut,      group = "shortcut",    r"shortcut"     },
 
+  { K.leader.context,       group = "context",                     },
+
+  { "go",                   group = "goto",                        },
+
   { K.leader.toggle,        group = "toggle",                      },
   { K.leader.toggle .. "-", group = "nvim",                        },
 

@@ -9,6 +9,7 @@ return {
   r"dap",
 
   -- UI
+  r"dap-view",
   r"dap-ui",
   r"dap-virtual-text",
   r"debugmaster",

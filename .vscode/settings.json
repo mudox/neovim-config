@@ -23,5 +23,6 @@
     "**/.DS_Store": true,
     "lua/.rocks": true
   },
-  "stylua.targetReleaseVersion": "latest"
+  "stylua.targetReleaseVersion": "latest",
+  "stylua.disableVersionCheck": true
 }

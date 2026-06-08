@@ -43,6 +43,8 @@ local function keys()
     -- goto
     { "[c",    X.arrows.left(op),                                 desc = "diff hunk"   },
     { "]c",    X.arrows.right(op),                                desc = "diff hunk"   },
+    { "[g",    X.arrows.left(op),                                 desc = "diff hunk"   },
+    { "]g",    X.arrows.right(op),                                desc = "diff hunk"   },
   }
 end
 

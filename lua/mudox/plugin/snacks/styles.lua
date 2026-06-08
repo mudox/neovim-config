@@ -47,4 +47,13 @@ M.dashboard = {
   },
 }
 
+M.zen = {
+  backdrop = { transparent = false },
+}
+
+M.zoom_indicator = {
+  text = "▍ ZOOMED  󰊓  ▍",
+  border = "none",
+}
+
 return M

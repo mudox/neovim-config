@@ -207,6 +207,7 @@ local opts = {
 
 return {
   "saghen/blink.cmp",
+  version = "1.*", -- TODO: v2 is actively developing, unstable
   dependencies = {
     "joelazar/blink-calc",
     "mikavilpas/blink-ripgrep.nvim",

@@ -44,7 +44,7 @@ local function config()
     "json", "toml", "yaml", "xml",
 
     -- neovim
-    "lua", "luadoc", "vim", "vimdoc",
+    "lua", "vim", "vimdoc",
 
     -- major languages
     "python", "rust", "swift", "zig",

@@ -8,6 +8,8 @@ K.map({ "n", "i" }, "<C-s>", "<Cmd>write<Cr><Esc>", { desc = "save file" })
 K.nmap("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 K.nmap("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
+K.nmap("gj", "J", { desc = "join line below" })
+
 -- Tabpage navigation
 for i = 1, 9 do
   K.nmap("]" .. i, i .. "gt")
@@ -44,7 +46,7 @@ K.nmap(K.sc("q"), "q", { desc = "macro" })
 local function tmux_nav(direction, tmux_cmd)
   return function()
     local curwin = vim.api.nvim_get_current_win()
-    vim.cmd("wincmd " .. direction)
+    vim.cmd.wincmd(direction)
     if curwin == vim.api.nvim_get_current_win() then
       vim.fn.system("tmux select-pane " .. tmux_cmd)
     end

@@ -76,7 +76,7 @@ opt.wildmode = "longest:full,full"
 -- message
 -- stylua: ignore
 opt.shortmess:append {
-  -- I  = true, -- `:intro` at startup
+  I  = true, -- `:intro` at startup
   A  = true, -- swap file messages
   cC = true, -- completion menu messages
   s  = true, -- search messages

@@ -6,7 +6,7 @@ local function config()
     priority = {
       [""] = 110,
     },
-    blacklist = { "html" },
+    blacklist = { "html", "markdown" },
   }
 end
 
@@ -14,4 +14,5 @@ return {
   "hiphish/rainbow-delimiters.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = config,
+  cond = false, -- ISSUE: invalid api call `range`, introduced around nvim v0.12
 }

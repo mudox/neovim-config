@@ -6,8 +6,8 @@ end
 
 -- stylua: ignore
 local keys = {
-  { "<Tab>k", function() X.tabman.open(tabman_id, tab_scratchpad) end,     desc = "[Kulala] Open",     },
-  { "<Tab>K", function() X.tabman.recreate(tabman_id, tab_scratchpad) end, desc = "[Kulala] Recreate", },
+  { "<Tab>k", function() X.tabman.open(tabman_id, tab_scratchpad) end,     desc = "[kulala] open",     },
+  { "<Tab>K", function() X.tabman.recreate(tabman_id, tab_scratchpad) end, desc = "[kulala] recreate", },
 }
 
 -- stylua: ignore

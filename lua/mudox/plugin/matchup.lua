@@ -1,5 +1,5 @@
 return {
   "andymass/vim-matchup",
-  event = "CursorHold",
+  event = "VeryLazy",
   opts = true,
 }

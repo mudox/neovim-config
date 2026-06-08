@@ -223,6 +223,9 @@ M.leader = {
 
   ic        = "<C-;>", -- for imap & cmap
   x         = "v",     -- for xmap
+
+  -- for buffer/window/tab local shotcut keymaps
+  context   = "<C-Space>",
 }
 
 -- stylua: ignore start
@@ -231,7 +234,8 @@ function M.c(cmd)  return "<Cmd>" .. cmd .. "<Cr>"   end
 function M.p(sfx)  return M.leader.primary   .. sfx  end
 function M.s(sfx)  return M.leader.secondary .. sfx  end
 function M.sc(sfx) return M.leader.shortcut  .. sfx  end
-function M.i(sfx)  return M.leader.ic  .. sfx        end
+function M.i(sfx)  return M.leader.ic        .. sfx  end
+function M.x(sfx)  return M.leader.context   .. sfx  end
 -- stylua: ignore end
 
 return M

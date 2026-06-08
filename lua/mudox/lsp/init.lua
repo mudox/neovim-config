@@ -2,8 +2,8 @@ On.VeryLazy(function()
   -- stylua: ignore
   vim.lsp.enable {
     -- lua
-    "lua_ls",
-    -- "emmylua_ls",
+    -- "lua_ls",
+    "emmylua_ls",
 
     -- data
     "jsonls",
@@ -25,7 +25,7 @@ On.VeryLazy(function()
     "ty", "ruff",
 
     -- markdown
-    -- "marksman",
+    "rumdl",
   }
 
   K.ncmd(K.p("vl"), "checkhealth vim.lsp", "lsp information")
@@ -37,7 +37,7 @@ On.VeryLazy(function()
 end)
 
 On.LspAttach(function(_, bufnr)
-  vim.lsp.document_color.enable(false, bufnr)
+  vim.lsp.document_color.enable(false)
 end)
 
 vim.lsp.semantic_tokens.enable(false)
